@@ -1,7 +1,7 @@
 package com.farcr.nomansland;
 
 import com.farcr.nomansland.common.registry.*;
-import com.farcr.nomansland.integration.biolith.NMLBiomePlacements;
+import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

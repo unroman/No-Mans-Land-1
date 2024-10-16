@@ -1,11 +1,13 @@
-package com.farcr.nomansland.integration.biolith;
+package com.farcr.nomansland.common.world.generation;
 
 import com.farcr.nomansland.common.registry.NMLBiomes;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.biome.sub.BiomeParameterTargets;
 import com.terraformersmc.biolith.api.biome.sub.CriterionBuilder;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.Climate;
 
 public class NMLBiomePlacements {
     public static void registerBiomes() {
@@ -16,9 +18,9 @@ public class NMLBiomePlacements {
                         Climate.Parameter.span(-1, 1),
                         Climate.Parameter.span(-1, 1),
                         Climate.Parameter.span(-1, 1),
-                        Climate.Parameter.span(0.1F, 1F),
+                        Climate.Parameter.span(0.15F, 1F),
                         Climate.Parameter.span(-1, 1),
-                        0F));
+                        0.075F));
 
         // Autumnal Forest
         BiomePlacement.replaceOverworld(
