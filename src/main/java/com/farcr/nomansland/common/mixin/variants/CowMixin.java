@@ -123,12 +123,12 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Override
-    public Holder<CowVariant> noMansLand$getCustomVariant() {
+    public Holder<CowVariant> noMansLand$getVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setCustomVariant(Holder<CowVariant> mooshroomVariantHolder) {
+    public void noMansLand$setVariant(Holder<CowVariant> mooshroomVariantHolder) {
         this.entityData.set(DATA_VARIANT_ID, mooshroomVariantHolder);
     }
 }

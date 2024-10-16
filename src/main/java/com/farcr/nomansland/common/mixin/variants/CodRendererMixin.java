@@ -1,9 +1,7 @@
 package com.farcr.nomansland.common.mixin.variants;
 
 import com.farcr.nomansland.common.entity.variant.CodVariant;
-import com.farcr.nomansland.common.entity.variant.SalmonVariant;
 import net.minecraft.client.renderer.entity.CodRenderer;
-import net.minecraft.client.renderer.entity.SalmonRenderer;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;

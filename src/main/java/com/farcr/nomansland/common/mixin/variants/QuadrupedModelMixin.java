@@ -2,13 +2,11 @@ package com.farcr.nomansland.common.mixin.variants;
 
 import com.farcr.nomansland.client.model.NMLCowModel;
 import com.farcr.nomansland.client.model.NMLPigModel;
-import com.farcr.nomansland.client.model.NMLSheepModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Pig;
-import net.minecraft.world.entity.animal.Sheep;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

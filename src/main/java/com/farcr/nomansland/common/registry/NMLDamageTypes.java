@@ -21,6 +21,6 @@ public class NMLDamageTypes {
     }
 
     public static DamageSource getSimpleDamageSource(Level level, ResourceKey<DamageType> type) {
-        return new DamageSource(level.registryAccess().registry(Registries.DAMAGE_TYPE).get().getHolderOrThrow(type));
+        return new DamageSource(level.registryAccess().registry(Registries.DAMAGE_TYPE).orElseThrow().getHolderOrThrow(type));
     }
 }

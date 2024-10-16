@@ -1,7 +1,6 @@
 package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.NMLConfig;
-import com.farcr.nomansland.common.mixin.BlockEntityAccessor;
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;

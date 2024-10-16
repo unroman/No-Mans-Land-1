@@ -4,16 +4,14 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
-import com.farcr.nomansland.integration.Mods;
 import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import javax.annotation.Nullable;
 import java.util.LinkedHashSet;
 import java.util.function.Supplier;
 
@@ -47,6 +45,8 @@ public class NMLItems {
             () -> new Item(new Item.Properties().food(NMLFoods.PEAR)));
     public static final DeferredItem<Item> SYRUPED_PEAR = registerItem("syruped_pear",
             () -> new MapleFoodItem(new Item.Properties().food(NMLFoods.SYRUPED_PEAR)));
+    public static final DeferredItem<Item> PANCAKE = registerItem("pancake",
+            () -> new MapleFoodItem(new Item.Properties().food(NMLFoods.PANCAKE)));
     public static final DeferredItem<Item> PEAR_COBBLER = registerItem("pear_cobbler",
             () -> new Item(new Item.Properties().food(NMLFoods.PEAR_COBBLER)));
     //TODO: FD compat pear juice and cobbler slice
@@ -150,9 +150,7 @@ public class NMLItems {
             event.accept(NMLBlocks.PINE_TRAPDOOR);
             event.accept(NMLBlocks.PINE_PRESSURE_PLATE);
             event.accept(NMLBlocks.PINE_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.PINE_CABINET);
-            }
+            NMLBlocks.PINE_CABINET.ifPresent(event::accept);
 
             event.accept(NMLBlocks.MAPLE_LOG);
             event.accept(NMLBlocks.MAPLE_WOOD);
@@ -168,9 +166,7 @@ public class NMLItems {
             event.accept(NMLBlocks.MAPLE_TRAPDOOR);
             event.accept(NMLBlocks.MAPLE_PRESSURE_PLATE);
             event.accept(NMLBlocks.MAPLE_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.MAPLE_CABINET);
-            }
+            NMLBlocks.MAPLE_CABINET.ifPresent(event::accept);
 
             event.accept(NMLBlocks.WALNUT_LOG);
             event.accept(NMLBlocks.WALNUT_WOOD);
@@ -186,9 +182,8 @@ public class NMLItems {
             event.accept(NMLBlocks.WALNUT_TRAPDOOR);
             event.accept(NMLBlocks.WALNUT_PRESSURE_PLATE);
             event.accept(NMLBlocks.WALNUT_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.WALNUT_CABINET);
-            }
+            NMLBlocks.WALNUT_CABINET.ifPresent(event::accept);
+
             event.accept(NMLBlocks.WILLOW_LOG);
             event.accept(NMLBlocks.WILLOW_WOOD);
             event.accept(NMLBlocks.STRIPPED_WILLOW_LOG);
@@ -203,9 +198,7 @@ public class NMLItems {
             event.accept(NMLBlocks.WILLOW_TRAPDOOR);
             event.accept(NMLBlocks.WILLOW_PRESSURE_PLATE);
             event.accept(NMLBlocks.WILLOW_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.WILLOW_CABINET);
-            }
+            NMLBlocks.WILLOW_CABINET.ifPresent(event::accept);
 
             event.accept(NMLBlocks.COD_BARREL);
             event.accept(NMLBlocks.SALMON_BARREL);
@@ -226,8 +219,10 @@ public class NMLItems {
             event.accept(NMLBlocks.TRIMMED_WARPED_PLANKS);
             event.accept(NMLBlocks.TRIMMED_BAMBOO_PLANKS);
         }
+
         if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
         }
+
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(NMLBlocks.GRASS_SPROUTS);
             event.accept(NMLBlocks.OAT_GRASS);
@@ -266,9 +261,8 @@ public class NMLItems {
             event.accept(NMLBlocks.PALE_CHERRY_LEAVES);
             event.accept(NMLBlocks.PALE_CHERRY_SAPLING);
             event.accept(NMLBlocks.FIELD_MUSHROOM);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.FIELD_MUSHROOM_COLONY);
-            }
+            NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(event::accept);
+
             event.accept(NMLBlocks.FIELD_MUSHROOM_BLOCK);
             event.accept(NMLBlocks.SHELF_MUSHROOM);
             event.accept(NMLBlocks.SHELF_MUSHROOM_BLOCK);
@@ -313,6 +307,7 @@ public class NMLItems {
             event.accept(NMLBlocks.WILLOW_SAPLING);
 
         }
+
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(NMLBlocks.PINE_BOOKSHELF);
             event.accept(NMLBlocks.MAPLE_BOOKSHELF);
@@ -340,6 +335,7 @@ public class NMLItems {
             event.accept(NMLBlocks.TAP);
             event.accept(NMLItems.WOODEN_SCAFFOLDING);
         }
+
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
             event.accept(NMLItems.GRILLED_MUSHROOMS);
@@ -352,10 +348,12 @@ public class NMLItems {
             event.accept(NMLItems.MAPLE_SYRUP_BOTTLE);
             event.accept(NMLItems.PEAR);
             event.accept(NMLItems.SYRUPED_PEAR);
+            event.accept(NMLItems.PANCAKE);
             event.accept(NMLItems.PEAR_COBBLER);
             event.accept(NMLItems.HONEYED_APPLE);
             event.accept(NMLItems.WALNUTS);
         }
+
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(NMLItems.PINE_BOAT);
             event.accept(NMLItems.PINE_CHEST_BOAT);
@@ -365,9 +363,9 @@ public class NMLItems {
             event.accept(NMLItems.WALNUT_CHEST_BOAT);
             event.accept(NMLItems.WILLOW_BOAT);
             event.accept(NMLItems.WILLOW_CHEST_BOAT);
-            // TODO: this crashes the game if you have the bundle experiment on
-//            event.accept(Items.BUNDLE);
+            if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.accept(Items.BUNDLE);
         }
+
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(NMLItems.FIREBOMB);
             event.accept(NMLItems.EXPLOSIVE);
@@ -389,8 +387,7 @@ public class NMLItems {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Item> DeferredItem<T> registerItem(String name, @Nullable Supplier<? extends Item> item) {
-        if (item == null) return null;
+    public static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<? extends Item> item) {
         DeferredItem<Item> toReturn = ITEMS.register(name, item);
         CREATIVE_TAB_ITEMS.add(toReturn);
         return (DeferredItem<T>) toReturn;

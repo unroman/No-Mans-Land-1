@@ -49,7 +49,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        this.noMansLand$getCustomVariant().unwrapKey().ifPresent((variant) -> {
+        this.noMansLand$getVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
@@ -59,7 +59,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLVariants.FOX_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLVariants.FOX_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setCustomVariant);
+                .ifPresent(this::noMansLand$setVariant);
     }
 
     @Override
@@ -72,16 +72,16 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
         List<Holder.Reference<FoxVariant>> defaultVariants = registry.holders()
                 .filter((v) -> v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
                 .toList();
-        this.noMansLand$setCustomVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+        this.noMansLand$setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
     }
 
     @Override
-    public Holder<FoxVariant> noMansLand$getCustomVariant() {
+    public Holder<FoxVariant> noMansLand$getVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setCustomVariant(Holder<FoxVariant> foxVariantHolder) {
+    public void noMansLand$setVariant(Holder<FoxVariant> foxVariantHolder) {
         this.entityData.set(DATA_VARIANT_ID, foxVariantHolder);
     }
 
@@ -89,7 +89,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         Fox fox = EntityType.FOX.create(level);
         if (fox != null) {
-            ((FoxDuck)fox).noMansLand$setCustomVariant(this.random.nextBoolean() ? ((FoxDuck)this).noMansLand$getCustomVariant() : ((FoxDuck)otherParent).noMansLand$getCustomVariant());
+            ((FoxDuck)fox).noMansLand$setVariant(this.random.nextBoolean() ? ((FoxDuck)this).noMansLand$getVariant() : ((FoxDuck)otherParent).noMansLand$getVariant());
         }
         cir.setReturnValue(fox);
     }

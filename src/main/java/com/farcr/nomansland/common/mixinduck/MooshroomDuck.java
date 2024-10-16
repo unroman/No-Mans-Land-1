@@ -5,11 +5,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.state.BlockState;
 
 public interface MooshroomDuck {
-    Holder<CowVariant> noMansLand$getCustomVariant();
+
+    Holder<CowVariant> noMansLand$getVariant();
 
     BlockState noMansLand$getMushroomBlock(Holder<CowVariant> mooshroomVariantHolder);
 
-    void noMansLand$setCustomVariant(Holder<CowVariant> mooshroomVariantHolder);
+    void noMansLand$setVariant(Holder<CowVariant> mooshroomVariantHolder);
 
     boolean noMansLand$isMooshroomVariant(Holder<CowVariant> cowVariantHolder);
 }

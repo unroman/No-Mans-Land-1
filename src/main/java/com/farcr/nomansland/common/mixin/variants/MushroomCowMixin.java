@@ -7,7 +7,6 @@ import com.farcr.nomansland.common.registry.NMLVariants;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -45,7 +44,7 @@ public abstract class MushroomCowMixin extends CowMixin {
             List<Holder.Reference<CowVariant>> defaultMooshroomVariants = registry.holders()
                     .filter((v) -> noMansLand$isMooshroomVariant(v) && v.value().biomes().isEmpty())
                     .toList();
-            this.noMansLand$setCustomVariant(possibleMooshroomVariants.isEmpty() ? defaultMooshroomVariants.get(random.nextInt(defaultMooshroomVariants.size())) : possibleMooshroomVariants.get(random.nextInt(possibleMooshroomVariants.size())));
+            this.noMansLand$setVariant(possibleMooshroomVariants.isEmpty() ? defaultMooshroomVariants.get(random.nextInt(defaultMooshroomVariants.size())) : possibleMooshroomVariants.get(random.nextInt(possibleMooshroomVariants.size())));
             this.lastLightningBoltUUID = uuid;
             this.playSound(SoundEvents.MOOSHROOM_CONVERT, 2.0F, 1.0F);
         }
@@ -78,7 +77,7 @@ public abstract class MushroomCowMixin extends CowMixin {
                 Stream<Holder.Reference<CowVariant>> defaultVariants = registry.holders()
                         .filter((v) -> !noMansLand$isMooshroomVariant(v));
 
-                switch (this.noMansLand$getCustomVariant().unwrapKey().get().location().toString()) {
+                switch (this.noMansLand$getVariant().unwrapKey().get().location().toString()) {
                     case "nomansland:mycelial_shroom" -> ((VariantHolder<Holder<CowVariant>>)cow).setVariant(defaultVariants.filter(v -> v.is(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID,"highland"))).findFirst().get());
                     case "nomansland:field_shroom" -> ((VariantHolder<Holder<CowVariant>>)cow).setVariant(defaultVariants.filter(v -> v.is(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID,"base"))).findFirst().get());
                     case "nomansland:red_shroom" -> ((VariantHolder<Holder<CowVariant>>)cow).setVariant(defaultVariants.filter(v -> v.is(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID,"calico_splotches"))).findFirst().get());
@@ -93,7 +92,7 @@ public abstract class MushroomCowMixin extends CowMixin {
                 this.level().addFreshEntity(cow);
 
                 for(int i = 0; i < random.nextInt(3, 7); ++i) {
-                    ItemEntity item = this.spawnAtLocation(new ItemStack(this.noMansLand$getMushroomBlock(this.noMansLand$getCustomVariant()).getBlock()), this.getBbHeight());
+                    ItemEntity item = this.spawnAtLocation(new ItemStack(this.noMansLand$getMushroomBlock(this.noMansLand$getVariant()).getBlock()), this.getBbHeight());
                     if (item != null) {
                         item.setNoPickUpDelay();
                     }
@@ -107,7 +106,7 @@ public abstract class MushroomCowMixin extends CowMixin {
     protected void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         MushroomCow mooshroom = EntityType.MOOSHROOM.create(level);
         if (mooshroom != null) {
-            ((MooshroomDuck)mooshroom).noMansLand$setCustomVariant(this.random.nextBoolean() ?  this.noMansLand$getCustomVariant() : ((MooshroomDuck)otherParent).noMansLand$getCustomVariant());
+            ((MooshroomDuck)mooshroom).noMansLand$setVariant(this.random.nextBoolean() ?  this.noMansLand$getVariant() : ((MooshroomDuck)otherParent).noMansLand$getVariant());
         }
         cir.setReturnValue(mooshroom);
     }

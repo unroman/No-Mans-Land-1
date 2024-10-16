@@ -1,16 +1,12 @@
 package com.farcr.nomansland.common.mixin;
 
-import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
-import com.farcr.nomansland.common.block.torches.ExtinguishedWallTorchBlock;
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
-import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
