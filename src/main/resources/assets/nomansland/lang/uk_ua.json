@@ -1,7 +1,6 @@
 {
   "item.nomansland.no_mans_globe": "No Man's Globe",
   "itemGroup.nomansland": "No Man's Land",
-
   "biome.nomansland.caves": "Печери",
   "biome.nomansland.deep_caves": "Глибокі печери",
   "biome.nomansland.old_growth_forest": "Одвічний ліс",
@@ -15,7 +14,6 @@
   "biome.nomansland.dark_swamp": "Темне болото",
   "biome.nomansland.bog": "Торфовище",
   "biome.nomansland.bayou": "Баю",
-
   "block.nomansland.grass_sprouts": "Трав'яні паростки",
   "block.nomansland.oat_grass": "Райграс",
   "block.nomansland.dried_grass": "Суха трава",
@@ -25,27 +23,21 @@
   "block.nomansland.fiddlehead": "Рахіс",
   "block.nomansland.mycelium_sprouts": "Паростки грибниці",
   "block.nomansland.mycelium_growths": "Пагони грибниці",
-
   "block.nomansland.cattail": "Рогіз",
   "block.nomansland.clover_patch": "Конюшиновий клапоть",
   "block.nomansland.duckweed": "Ряска",
   "block.nomansland.beard_moss": "Уснея",
-
   "block.nomansland.pebbles": "Галька",
   "block.nomansland.seashells": "Черепашки",
-
   "block.nomansland.white_flowerbed": "Біла клумба",
   "block.nomansland.red_flowerbed": "Червона клумба",
   "block.nomansland.blue_flowerbed": "Синя клумба",
   "block.nomansland.violet_flowerbed": "Пурпурова клумба",
   "block.nomansland.yellow_flowerbed": "Жовта клумба",
-
   "block.nomansland.wooden_scaffolding": "Дерев'яне риштування",
-
   "block.nomansland.mundane_tiles": "Земні кахлі",
   "block.nomansland.earthen_tiles": "Глиняні кахлі",
   "block.nomansland.olivine_tiles": "Олівінові кахлі",
-
   "block.nomansland.aconite": "Тоя",
   "block.nomansland.potted_aconite": "Тоя в горщику",
   "block.nomansland.autumn_crocus": "Пізньоцвіт",
@@ -67,7 +59,6 @@
   "block.nomansland.pickleweed": "Солонець",
   "block.nomansland.potted_pickleweed": "Солонець у горщику",
   "block.nomansland.rafflesia": "Рафлезія",
-
   "block.nomansland.yellow_birch_leaves": "Жовте березове листя",
   "block.nomansland.yellow_birch_sapling": "Паросток жовтої берези",
   "block.nomansland.potted_yellow_birch_sapling": "Паросток жовтої берези в горщику",
@@ -78,16 +69,13 @@
   "block.nomansland.pale_cherry_sapling": "Паросток блідої вишні",
   "block.nomansland.potted_pale_cherry_sapling": "Паросток блідої вишні в горщику",
   "block.nomansland.frosted_leaves": "Морозне листя",
-
   "block.nomansland.field_mushroom": "Печериця",
   "block.nomansland.field_mushroom_colony": "Колонія печериць",
   "block.nomansland.field_mushroom_block": "Блок печериці",
   "block.nomansland.potted_field_mushroom": "Печериця в горщику",
-
   "block.nomansland.shelf_mushroom": "Шельфовий гриб",
   "block.nomansland.shelf_mushroom_colony": "Колонія шельфових грибів",
   "block.nomansland.shelf_mushroom_block": "Блок шельфового гриба",
-
   "block.nomansland.dirt_path": "Ґрунтова стежка",
   "block.nomansland.snowy_grass_path": "Засніжена ґрунтова стежка",
   "block.nomansland.mycelium_path": "Стежка з грибниці",
@@ -96,13 +84,11 @@
   "block.nomansland.red_sand_path": "Стежка з червоного піску",
   "block.nomansland.snow_path": "Снігова стежка",
   "block.nomansland.gravel_path": "Гравійна стежка",
-
   "block.nomansland.remains": "Рештки",
   "entity.nomansland.buried": "Похованець",
   "item.nomansland.buried_spawn_egg": "Яйце виклику похованця",
   "block.nomansland.monster_anchor": "Якір монстрів",
   "block.nomansland.spike_trap": "Шипаста пастка",
-
   "block.nomansland.quartzite": "Кварцит",
   "block.nomansland.budding_quartzite": "Родючий кварцит",
   "item.nomansland.trinket": "Прикраса",
@@ -112,7 +98,6 @@
   "block.nomansland.quartzite_cluster": "Кварцитова друза",
   "block.nomansland.petrified_wood": "Скам'яніла деревина",
   "block.nomansland.petrified_log": "Скам'яніла колода",
-
   "block.nomansland.trimmed_oak_planks": "Обрізані дубові дошки",
   "block.nomansland.spruce_bookshelf": "Смерекова книжкова полиця",
   "block.nomansland.trimmed_spruce_planks": "Обрізані смерекові дошки",
@@ -134,7 +119,6 @@
   "block.nomansland.trimmed_crimson_planks": "Обрізані багряні дошки",
   "block.nomansland.bamboo_bookshelf": "Бамбукова книжкова полиця",
   "block.nomansland.trimmed_bamboo_planks": "Обрізані бамбукові дошки",
-
   "block.nomansland.faded_stone_bricks": "Блякла кам'яна цегла",
   "block.nomansland.polished_stone": "Полірований камінь",
   "block.nomansland.polished_stone_slab": "Плита з полірованого каменю",
@@ -147,24 +131,20 @@
   "block.nomansland.mossy_cobblestone_brick_slab": "Цегляна плита з моховитого кругляку",
   "block.nomansland.mossy_cobblestone_brick_stairs": "Цегляні сходи з моховитого кругляку",
   "block.nomansland.mossy_cobblestone_brick_wall": "Цегляна стіна з моховитого кругляку",
-
   "block.nomansland.sconce_torch": "Бра смолоскип",
   "block.nomansland.sconce_soul_torch": "Бра смолоскип душ",
   "block.nomansland.extinguished_sconce_torch": "Погаслий бра смолоскип",
   "block.nomansland.extinguished_sconce_soul_torch": "Погаслий бра смолоскип душ",
   "block.nomansland.extinguished_torch": "Погаслий смолоскип",
   "block.nomansland.extinguished_soul_torch": "Погаслий смолоскип душ",
-
   "block.nomansland.tap": "Кран",
   "block.nomansland.resin_cauldron": "Казан смоли",
   "block.nomansland.honey_cauldron": "Казан меду",
   "block.nomansland.maple_syrup_cauldron": "Казан кленового сиропу",
   "block.nomansland.resin_oil_cauldron": "Казан смоляної олії",
   "block.nomansland.milk_cauldron": "Казан молока",
-
   "entity.nomansland.boat": "Човен",
   "entity.nomansland.chest_boat": "Човен зі скринею",
-
   "block.nomansland.pine_planks": "Соснові дошки",
   "block.nomansland.pine_stairs": "Соснові сходи",
   "block.nomansland.pine_slab": "Соснова плита",
@@ -190,7 +170,6 @@
   "block.nomansland.pine_wall_hanging_sign": "Соснова настінна вивіска",
   "item.nomansland.pine_boat": "Сосновий човен",
   "item.nomansland.pine_chest_boat": "Сосновий човен зі скринею",
-
   "block.nomansland.willow_planks": "Вербові дошки",
   "block.nomansland.willow_stairs": "Вербові сходи",
   "block.nomansland.willow_slab": "Вербова плита",
@@ -216,7 +195,6 @@
   "block.nomansland.willow_wall_hanging_sign": "Вербова настінна вивіска",
   "item.nomansland.willow_boat": "Вербовий човен",
   "item.nomansland.willow_chest_boat": "Вербовий човен зі скринею",
-
   "block.nomansland.maple_planks": "Кленові дошки",
   "block.nomansland.maple_stairs": "Кленові сходи",
   "block.nomansland.maple_slab": "Кленова плита",
@@ -245,7 +223,6 @@
   "block.nomansland.maple_wall_hanging_sign": "Кленова настінна вивіска",
   "item.nomansland.maple_boat": "Кленовий човен",
   "item.nomansland.maple_chest_boat": "Кленовий човен зі скринею",
-
   "block.nomansland.walnut_planks": "Горіхові дошки",
   "block.nomansland.walnut_stairs": "Горіхові сходи",
   "block.nomansland.walnut_slab": "Горіхова плита",
@@ -271,16 +248,13 @@
   "block.nomansland.walnut_wall_hanging_sign": "Горіхова настінна вивіска",
   "item.nomansland.walnut_boat": "Горіховий човен",
   "item.nomansland.walnut_chest_boat": "Горіховий човен зі скринею",
-
   "block.nomansland.cod_barrel": "Діжка тріски",
   "block.nomansland.salmon_barrel": "Діжка лососів",
   "block.nomansland.tropical_fish_barrel": "Діжка тропічної риби",
   "block.nomansland.pufferfish_barrel": "Діжка скелезубів",
   "block.nomansland.gunpowder_barrel": "Діжка пороху",
-
   "block.nomansland.apple_fruit_leaves": "Яблучно-фруктове листя",
   "block.nomansland.apple_fruit": "Яблуко",
-
   "block.nomansland.pear_fruit_leaves": "Грушо-фруктове листя",
   "block.nomansland.pear_fruit": "Груша",
   "block.nomansland.pear_crate": "Ящик груш",
@@ -288,13 +262,9 @@
   "item.nomansland.pear_cobbler": "Грушевий коблер",
   "item.nomansland.syruped_pear": "Груша в сиропі",
   "item.nomansland.pear_juice": "Грушевий сік",
-
   "item.nomansland.honeyed_apple": "Яблуко в меді",
   "block.nomansland.apple_crate": "Ящик яблук",
-
   "item.nomansland.walnuts": "Горіхи",
-
-
   "item.nomansland.mashed_potatoes_with_mushrooms": "Картопляне пюре з грибами",
   "item.nomansland.grilled_mushrooms": "Грильовані гриби",
   "item.nomansland.frog_leg": "Жаб’яча ніжка",
@@ -306,16 +276,12 @@
   "item.nomansland.cooked_venison": "Смажена оленина",
   "item.nomansland.raw_camelid": "Сира верблюжина",
   "item.nomansland.cooked_camelid": "Смажена верблюжина",
-
   "item.nomansland.resin": "Смола",
   "item.nomansland.resin_oil_bottle": "Пляшка смоляної олії",
-
   "item.nomansland.firebomb": "Запальна бомба",
   "item.nomansland.explosive": "Вибухівка",
-
   "nomansland.subtitles.block.spike_trap.extend": "Шипи висуваються",
   "nomansland.subtitles.block.spike_trap.retract": "Шипи втягуються",
-
   "death.attack.nomansland.spike_fall": "%1$s потрапив у шипасту пастку",
   "death.attack.nomansland.spike_fall.player": "%1$s потрапив у шипасту пастку під час битви з %2$s",
   "death.attack.nomansland.spike_impale": "%1$s було пронизано шипастою пасткою",
@@ -324,7 +290,6 @@
   "death.attack.nomansland.spike_poke.player": "%1$s застряг у шипастій пастці під час битви з %2$s",
   "death.attack.nomansland.spike_skewer": "%1$s було нанизано шипастою пасткою",
   "death.attack.nomansland.spike_skewer.player": "%1$s було нанизано шипастою пасткою під час битви з %2$s",
-
   "tooltip.nomansland.missing_interaction_block": "§8Цей блок частина інтеграції моду, проте його необхідний мод відсутній!",
   "tooltip.nomansland.missing_interaction_item": "§8Цей предмет частина інтеграції моду, проте його необхідний мод відсутній!"
 }
