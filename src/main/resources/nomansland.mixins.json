@@ -18,6 +18,8 @@
     "SpreadingSnowyDirtBlockMixin",
     "ThrownPotionMixin",
     "variants.AbstractFishMixin",
+    "variants.CamelMixin",
+    "variants.ChickenMixin",
     "variants.CodMixin",
     "variants.CowMixin",
     "variants.DolphinMixin",
@@ -33,6 +35,8 @@
   "client": [
     "ModelBlockRendererMixin",
     "RenderLayerMixin",
+    "variants.CamelRendererMixin",
+    "variants.ChickenRendererMixin",
     "variants.CodRendererMixin",
     "variants.CowModelMixin",
     "variants.CowRendererMixin",
