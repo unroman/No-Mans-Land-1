@@ -12,6 +12,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -375,22 +376,22 @@ public class NMLItems {
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
-            insertAfter(event, Items.DIAMOND_SWORD, NMLItems.FIREBOMB);
-            insertBefore(event, Items.DIAMOND_AXE, NMLItems.EXPLOSIVE);
-            event.accept(NMLItems.RESIN_OIL_BOTTLE);
+            insertAfter(event, Items.WIND_CHARGE, NMLItems.FIREBOMB);
+            insertBefore(event, Items.TNT, NMLItems.EXPLOSIVE);
+            insertAfter(event, Items.EGG, NMLItems.RESIN_OIL_BOTTLE);
         }
 
         if (tab == CreativeModeTabs.INGREDIENTS) {
-            event.accept(NMLItems.RESIN);
-            event.accept(NMLItems.RESIN_OIL_BOTTLE);
+            insertAfter(event, Items.HONEYCOMB, NMLItems.RESIN);
+            insertAfter(event, NMLItems.RESIN.get(), NMLItems.RESIN_OIL_BOTTLE);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(NMLBlocks.SPIKE_TRAP);
+            event.insertAfter(Blocks.LIGHTNING_ROD.asItem().getDefaultInstance(), NMLBlocks.SPIKE_TRAP.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(NMLBlocks.MONSTER_ANCHOR);
+            insertAfter(event, Blocks.TRIAL_SPAWNER.asItem(), NMLBlocks.MONSTER_ANCHOR);
         }
     }
 
