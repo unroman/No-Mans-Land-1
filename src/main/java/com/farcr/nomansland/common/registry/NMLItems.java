@@ -11,8 +11,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -397,6 +399,14 @@ public class NMLItems {
     }
 
     private static void insertBefore(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredItem<? extends Item> newEntry) {
+        event.insertBefore(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
+    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredBlock<? extends Block> newEntry) {
+        event.insertAfter(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
+    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredBlock<? extends Block> newEntry) {
         event.insertBefore(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
