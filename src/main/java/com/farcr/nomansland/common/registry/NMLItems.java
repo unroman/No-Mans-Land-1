@@ -5,17 +5,14 @@ import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
 import com.google.common.collect.Sets;
-import it.unimi.dsi.fastutil.objects.ObjectSortedSet;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -383,32 +380,36 @@ public class NMLItems {
 
         if (tab == CreativeModeTabs.INGREDIENTS) {
             insertAfter(event, Items.HONEYCOMB, NMLItems.RESIN);
-            insertAfter(event, NMLItems.RESIN.get(), NMLItems.RESIN_OIL_BOTTLE);
+            insertAfter(event, NMLItems.RESIN, NMLItems.RESIN_OIL_BOTTLE);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.insertAfter(Blocks.LIGHTNING_ROD.asItem().getDefaultInstance(), NMLBlocks.SPIKE_TRAP.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            insertAfter(event, Blocks.LIGHTNING_ROD, NMLBlocks.SPIKE_TRAP);
         }
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
-            insertAfter(event, Blocks.TRIAL_SPAWNER.asItem(), NMLBlocks.MONSTER_ANCHOR);
+            insertAfter(event, Blocks.TRIAL_SPAWNER, NMLBlocks.MONSTER_ANCHOR);
         }
     }
 
-    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredItem<? extends Item> newEntry) {
-        event.insertAfter(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {
+        ItemStack existingStack = null;
+        ItemStack newStack = null;
+        if (existingEntry instanceof Item item) existingStack = item.getDefaultInstance();
+        if (existingEntry instanceof Block block) existingStack = block.asItem().getDefaultInstance();
+        if (newEntry.value() instanceof Item item) newStack = item.getDefaultInstance();
+        if (newEntry.value() instanceof Block block) newStack = block.asItem().getDefaultInstance();
+        if (existingStack != null && newStack != null) event.insertBefore(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
-    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredItem<? extends Item> newEntry) {
-        event.insertBefore(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-    }
-
-    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredBlock<? extends Block> newEntry) {
-        event.insertAfter(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-    }
-
-    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredBlock<? extends Block> newEntry) {
-        event.insertBefore(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {
+        ItemStack existingStack = null;
+        ItemStack newStack = null;
+        if (existingEntry instanceof Item item) existingStack = item.getDefaultInstance();
+        if (existingEntry instanceof Block block) existingStack = block.asItem().getDefaultInstance();
+        if (newEntry.value() instanceof Item item) newStack = item.getDefaultInstance();
+        if (newEntry.value() instanceof Block block) newStack = block.asItem().getDefaultInstance();
+        if (existingStack != null && newStack != null) event.insertAfter(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
     @SuppressWarnings("unchecked")
