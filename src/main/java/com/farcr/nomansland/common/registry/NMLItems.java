@@ -5,9 +5,13 @@ import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
 import com.google.common.collect.Sets;
+import it.unimi.dsi.fastutil.objects.ObjectSortedSet;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -118,7 +122,9 @@ public class NMLItems {
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Item.Properties()));
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+        ResourceKey<CreativeModeTab> tab = event.getTabKey();
+
+        if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(NMLBlocks.FADED_STONE_BRICKS);
             event.accept(NMLBlocks.POLISHED_STONE);
             event.accept(NMLBlocks.POLISHED_STONE_STAIRS);
@@ -220,10 +226,10 @@ public class NMLItems {
             event.accept(NMLBlocks.TRIMMED_BAMBOO_PLANKS);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
+        if (tab == CreativeModeTabs.COLORED_BLOCKS) {
         }
 
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+        if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(NMLBlocks.GRASS_SPROUTS);
             event.accept(NMLBlocks.OAT_GRASS);
             event.accept(NMLBlocks.SHORT_BEACHGRASS);
@@ -308,7 +314,7 @@ public class NMLItems {
 
         }
 
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+        if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(NMLBlocks.PINE_BOOKSHELF);
             event.accept(NMLBlocks.MAPLE_BOOKSHELF);
             event.accept(NMLBlocks.WALNUT_BOOKSHELF);
@@ -336,7 +342,7 @@ public class NMLItems {
             event.accept(NMLItems.WOODEN_SCAFFOLDING);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+        if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
             event.accept(NMLItems.GRILLED_MUSHROOMS);
             event.accept(NMLItems.FROG_LEG);
@@ -354,7 +360,7 @@ public class NMLItems {
             event.accept(NMLItems.WALNUTS);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+        if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(NMLItems.PINE_BOAT);
             event.accept(NMLItems.PINE_CHEST_BOAT);
             event.accept(NMLItems.MAPLE_BOAT);
@@ -366,24 +372,32 @@ public class NMLItems {
             if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.accept(Items.BUNDLE);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            event.accept(NMLItems.FIREBOMB);
-            event.accept(NMLItems.EXPLOSIVE);
+        if (tab == CreativeModeTabs.COMBAT) {
+            insertAfter(event, Items.DIAMOND_SWORD, NMLItems.FIREBOMB);
+            insertBefore(event, Items.DIAMOND_AXE, NMLItems.EXPLOSIVE);
             event.accept(NMLItems.RESIN_OIL_BOTTLE);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+        if (tab == CreativeModeTabs.INGREDIENTS) {
             event.accept(NMLItems.RESIN);
             event.accept(NMLItems.RESIN_OIL_BOTTLE);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
+        if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
             event.accept(NMLBlocks.SPIKE_TRAP);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+        if (tab == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(NMLBlocks.MONSTER_ANCHOR);
         }
+    }
+
+    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredItem<? extends Item> newEntry) {
+        event.insertAfter(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
+    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Item existingEntry, DeferredItem<? extends Item> newEntry) {
+        event.insertBefore(existingEntry.getDefaultInstance(), newEntry.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
     @SuppressWarnings("unchecked")

@@ -20,7 +20,7 @@ public class NMLCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NO_MANS_TAB = CREATIVE_TABS.register(NoMansLand.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.nomansland"))
-                    .icon(() -> new ItemStack(NMLItems.NO_MANS_GLOBE.get()))
+                    .icon(NMLItems.NO_MANS_GLOBE::toStack)
                     .displayItems((parameters, output) -> CREATIVE_TAB_ITEMS.forEach((item) -> output.accept(item.get())))
                     .build());
 }
