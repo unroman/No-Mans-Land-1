@@ -104,9 +104,8 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                         if (tempEntity != null) tempEntity.moveTo(spawningPosition);
                         if (tempEntity instanceof Zombie zombie) zombie.setBaby(deadEntity.isBaby());
                         double finalY = y - 1.1D;
-                        processPoints(serverLevel, tempEntity.getBoundingBox(), 0.2D).forEach(point -> {
-                            serverLevel.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, spawningPosition.y - finalY, point.z, 1, 0, 0, 0, 0);
-                        });
+                        processPoints(serverLevel, tempEntity.getBoundingBox(), 0.2D)
+                                .forEach(point -> serverLevel.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, spawningPosition.y - finalY, point.z, 1, 0, 0, 0, 0));
                         tempEntity.remove(Entity.RemovalReason.DISCARDED);
                         break;
                     }
@@ -151,9 +150,8 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                         for (double y = 0; y <= 4; y++) {
                             if (level.getBlockState(BlockPos.containing(spawningPosition.relative(Direction.DOWN, y))).isSolid()) {
                                 double finalY = y - 1.1D;
-                                processPoints(serverLevel, resurrectedEntity.getBoundingBox(), 0.4D).forEach(point -> {
-                                    serverLevel.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_FLAME.get(), point.x, spawningPosition.y - finalY, point.z, 1, 0, 0, 0, 0.1);
-                                });
+                                processPoints(serverLevel, resurrectedEntity.getBoundingBox(), 0.4D)
+                                        .forEach(point -> serverLevel.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_FLAME.get(), point.x, spawningPosition.y - finalY, point.z, 1, 0, 0, 0, 0.1));
                             }
                         }
                     }
