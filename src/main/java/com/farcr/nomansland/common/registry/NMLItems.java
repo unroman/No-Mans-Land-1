@@ -343,21 +343,21 @@ public class NMLItems {
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
-            event.accept(NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
-            event.accept(NMLItems.GRILLED_MUSHROOMS);
-            event.accept(NMLItems.FROG_LEG);
-            event.accept(NMLItems.COOKED_FROG_LEG);
-            event.accept(NMLItems.RAW_HORSE);
-            event.accept(NMLItems.HORSE_STEAK);
-            event.accept(NMLItems.RAW_VENISON);
-            event.accept(NMLItems.COOKED_VENISON);
-            event.accept(NMLItems.MAPLE_SYRUP_BOTTLE);
-            event.accept(NMLItems.PEAR);
-            event.accept(NMLItems.SYRUPED_PEAR);
-            event.accept(NMLItems.PANCAKE);
-            event.accept(NMLItems.PEAR_COBBLER);
-            event.accept(NMLItems.HONEYED_APPLE);
-            event.accept(NMLItems.WALNUTS);
+            insertAfter(event, Items.COOKED_BEEF, NMLItems.HORSE_STEAK);
+            insertAfter(event, Items.COOKED_BEEF, NMLItems.RAW_HORSE);
+            insertAfter(event, Items.COOKED_MUTTON, NMLItems.COOKED_VENISON);
+            insertAfter(event, Items.COOKED_MUTTON, NMLItems.RAW_VENISON);
+            insertAfter(event, Items.COOKED_RABBIT, NMLItems.COOKED_FROG_LEG);
+            insertAfter(event, Items.COOKED_RABBIT, NMLItems.FROG_LEG);
+            insertAfter(event, Items.HONEY_BOTTLE, NMLItems.MAPLE_SYRUP_BOTTLE);
+            insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PEAR_COBBLER);
+            insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PANCAKE);
+            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.SYRUPED_PEAR);
+            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.PEAR);
+            insertAfter(event, Items.APPLE, NMLItems.HONEYED_APPLE);
+            insertAfter(event, Items.MELON_SLICE, NMLItems.WALNUTS);
+            insertAfter(event, Items.MUSHROOM_STEW, NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
+            insertAfter(event, Items.POISONOUS_POTATO, NMLItems.GRILLED_MUSHROOMS);
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
@@ -388,7 +388,7 @@ public class NMLItems {
         }
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
-            insertAfter(event, Blocks.TRIAL_SPAWNER, NMLBlocks.MONSTER_ANCHOR);
+            insertAfter(event, Blocks.SPAWNER, NMLBlocks.MONSTER_ANCHOR);
         }
     }
 
