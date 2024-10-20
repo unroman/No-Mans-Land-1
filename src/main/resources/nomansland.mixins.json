@@ -17,6 +17,7 @@
     "SnowAndFreezeFeatureMixin",
     "SpreadingSnowyDirtBlockMixin",
     "ThrownPotionMixin",
+    "VineBlockMixin",
     "variants.AbstractFishMixin",
     "variants.CamelMixin",
     "variants.ChickenMixin",

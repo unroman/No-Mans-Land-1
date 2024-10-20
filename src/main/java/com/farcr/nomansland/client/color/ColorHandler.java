@@ -57,8 +57,8 @@ public class ColorHandler {
                 NMLBlocks.WALNUT_LEAVES.get(),
                 NMLBlocks.APPLE_FRUIT_LEAVES.get(),
                 NMLBlocks.DUCKWEED.get(),
-                NMLBlocks.WILLOW_LEAVES.get()
-//                NMLBlocks.CUT_VINE.get()
+                NMLBlocks.WILLOW_LEAVES.get(),
+                NMLBlocks.CUT_VINE.get()
         );
     }
 
