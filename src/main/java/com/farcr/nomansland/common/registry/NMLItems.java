@@ -120,6 +120,8 @@ public class NMLItems {
             () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Item.Properties()));
+    public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
+            () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Item.Properties()));
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
@@ -240,7 +242,7 @@ public class NMLItems {
             event.accept(NMLBlocks.MYCELIUM_GROWTHS);
             event.accept(NMLBlocks.FIDDLEHEAD);
             event.accept(NMLBlocks.CATTAIL);
-            event.accept(NMLBlocks.DUCKWEED);
+            event.accept(NMLItems.DUCKWEED);
             event.accept(NMLBlocks.CLOVER_PATCH);
             event.accept(NMLBlocks.RED_FLOWERBED);
             event.accept(NMLBlocks.YELLOW_FLOWERBED);

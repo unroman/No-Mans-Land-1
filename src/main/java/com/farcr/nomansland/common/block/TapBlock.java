@@ -110,12 +110,8 @@ public class TapBlock extends BaseEntityBlock {
                 break;
             }
         }
-        ParticleOptions particle = particleType;
-        if (level.isClientSide) level.addParticle(particle, x, y, z, 0.0, 0.0, 0.0);
-        else {
-            ServerLevel serverLevel = (ServerLevel) level;
-            serverLevel.sendParticles(particle, x, y, z, 1, 0, 0, 0, 0);
-        }
+        ServerLevel serverLevel = (ServerLevel) level;
+        serverLevel.sendParticles((ParticleOptions) particleType, x, y, z, 1, 0, 0, 0, 0);
     }
 
     @Nullable
