@@ -266,12 +266,11 @@ public class NMLItems {
             event.accept(NMLBlocks.AUTUMNAL_OAK_SAPLING);
             event.accept(NMLBlocks.PALE_CHERRY_LEAVES);
             event.accept(NMLBlocks.PALE_CHERRY_SAPLING);
-            event.accept(NMLBlocks.FIELD_MUSHROOM);
             NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(event::accept);
-
-            event.accept(NMLBlocks.FIELD_MUSHROOM_BLOCK);
-            event.accept(NMLBlocks.SHELF_MUSHROOM);
-            event.accept(NMLBlocks.SHELF_MUSHROOM_BLOCK);
+            insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
+            insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);
+            insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.SHELF_MUSHROOM_BLOCK);
+            insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.FIELD_MUSHROOM_BLOCK);
             event.accept(NMLBlocks.FROSTED_LEAVES);
             event.accept(NMLBlocks.BEARD_MOSS);
             insertAfter(event, Items.SAND, NMLBlocks.SAND_PATH);
