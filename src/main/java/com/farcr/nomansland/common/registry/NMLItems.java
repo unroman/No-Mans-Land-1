@@ -274,23 +274,20 @@ public class NMLItems {
             event.accept(NMLBlocks.SHELF_MUSHROOM_BLOCK);
             event.accept(NMLBlocks.FROSTED_LEAVES);
             event.accept(NMLBlocks.BEARD_MOSS);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.SAND_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.RED_SAND_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.SNOW_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.GRAVEL_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.SNOWY_GRASS_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.MYCELIUM_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.PODZOL_PATH);
-            insertAfter(event, Items.DIRT_PATH, NMLBlocks.DIRT_PATH);
-
-            event.accept(NMLBlocks.QUARTZITE);
-            event.accept(NMLBlocks.QUARTZITE_CLUSTER);
-            event.accept(NMLBlocks.SMALL_QUARTZITE_BUD);
-            event.accept(NMLBlocks.MEDIUM_QUARTZITE_BUD);
-            event.accept(NMLBlocks.LARGE_QUARTZITE_BUD);
-            event.accept(NMLBlocks.BUDDING_QUARTZITE);
-//            event.accept(NMLBlocks.PETRIFIED_LOG);
-//            event.accept(NMLBlocks.PETRIFIED_WOOD);
+            insertAfter(event, Items.SAND, NMLBlocks.SAND_PATH);
+            insertAfter(event, Items.RED_SAND, NMLBlocks.RED_SAND_PATH);
+            insertAfter(event, Items.SNOW_BLOCK, NMLBlocks.SNOW_PATH);
+            insertAfter(event, Items.GRAVEL, NMLBlocks.GRAVEL_PATH);
+            insertAfter(event, Items.SNOW, NMLBlocks.SNOWY_GRASS_PATH);
+            insertAfter(event, Items.MYCELIUM, NMLBlocks.MYCELIUM_PATH);
+            insertAfter(event, Items.PODZOL, NMLBlocks.PODZOL_PATH);
+            insertBefore(event, Items.DIRT, NMLBlocks.DIRT_PATH);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.QUARTZITE_CLUSTER);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.LARGE_QUARTZITE_BUD);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.MEDIUM_QUARTZITE_BUD);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.SMALL_QUARTZITE_BUD);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.BUDDING_QUARTZITE);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.QUARTZITE);
 
 //            event.accept(NMLBlocks.REMAINS);
 
