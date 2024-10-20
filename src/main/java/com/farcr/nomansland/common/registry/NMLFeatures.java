@@ -24,6 +24,9 @@ public class NMLFeatures {
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> SHELF_MUSHROOM = FEATURES.register("shelf_mushroom",
             () -> new ShelfMushroomFeature(NoneFeatureConfiguration.CODEC));
 
+    public static final DeferredHolder<Feature<?>, Feature<RandomPatchConfiguration>> CATTAIL = FEATURES.register("cattail",
+            () -> new CattailFeature(RandomPatchConfiguration.CODEC));
+
     public static final DeferredHolder<Feature<?> ,Feature<FillBiomeAboveConfiguration>> FILL_BIOME_ABOVE = FEATURES.register("fill_biome_above",
             () -> new FillBiomeAboveFeature(FillBiomeAboveConfiguration.CODEC));
 
