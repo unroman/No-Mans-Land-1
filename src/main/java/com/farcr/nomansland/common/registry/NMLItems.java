@@ -274,14 +274,14 @@ public class NMLItems {
             event.accept(NMLBlocks.SHELF_MUSHROOM_BLOCK);
             event.accept(NMLBlocks.FROSTED_LEAVES);
             event.accept(NMLBlocks.BEARD_MOSS);
-            event.accept(NMLBlocks.DIRT_PATH);
-            event.accept(NMLBlocks.MYCELIUM_PATH);
-            event.accept(NMLBlocks.PODZOL_PATH);
-            event.accept(NMLBlocks.SNOWY_GRASS_PATH);
-            event.accept(NMLBlocks.SNOW_PATH);
-            event.accept(NMLBlocks.GRAVEL_PATH);
-            event.accept(NMLBlocks.SAND_PATH);
-            event.accept(NMLBlocks.RED_SAND_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.SAND_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.RED_SAND_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.SNOW_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.GRAVEL_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.SNOWY_GRASS_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.MYCELIUM_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.PODZOL_PATH);
+            insertAfter(event, Items.DIRT_PATH, NMLBlocks.DIRT_PATH);
 
             event.accept(NMLBlocks.QUARTZITE);
             event.accept(NMLBlocks.QUARTZITE_CLUSTER);
