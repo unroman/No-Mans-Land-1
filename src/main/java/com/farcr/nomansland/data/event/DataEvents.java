@@ -4,7 +4,6 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.variant.*;
 import com.farcr.nomansland.common.registry.NMLVariants;
 import com.farcr.nomansland.data.Advancements;
-import com.farcr.nomansland.data.assets.ItemModels;
 import com.farcr.nomansland.data.assets.Lang;
 import com.farcr.nomansland.data.tags.BlockTags;
 import com.farcr.nomansland.data.tags.DamageTypeTags;

@@ -3,7 +3,6 @@ package com.farcr.nomansland;
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.entity.EntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;

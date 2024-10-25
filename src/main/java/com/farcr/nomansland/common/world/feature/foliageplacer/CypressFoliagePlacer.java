@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.world.feature.foliageplacers;
+package com.farcr.nomansland.common.world.feature.foliageplacer;
 
 import com.farcr.nomansland.common.registry.NMLFoliagePlacerType;
 import com.mojang.serialization.MapCodec;

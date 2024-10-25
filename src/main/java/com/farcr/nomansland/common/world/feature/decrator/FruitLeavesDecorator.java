@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.world.feature;
+package com.farcr.nomansland.common.world.feature.decrator;
 
 import com.farcr.nomansland.common.registry.NMLTreeDecoratorType;
 import com.mojang.serialization.Codec;
@@ -16,14 +16,14 @@ import java.util.Set;
 
 public class FruitLeavesDecorator extends TreeDecorator {
     public static final MapCodec<FruitLeavesDecorator> CODEC = RecordCodecBuilder.mapCodec(
-            p_225996_ -> p_225996_.group(
+            instance -> instance.group(
                             Codec.floatRange(0.0F, 1.0F).fieldOf("probability").forGetter(f -> f.probability),
                             Codec.intRange(0, 16).fieldOf("exclusion_radius_xz").forGetter(f -> f.exclusionRadiusXZ),
                             Codec.intRange(0, 16).fieldOf("limit").forGetter(f -> f.limit),
                             BlockStateProvider.CODEC.fieldOf("leaves_provider").forGetter(f -> f.leavesProvider),
                             BlockStateProvider.CODEC.fieldOf("fruit_provider").forGetter(f -> f.leavesProvider)
                             )
-                    .apply(p_225996_, FruitLeavesDecorator::new)
+                    .apply(instance, FruitLeavesDecorator::new)
     );
     protected final float probability;
     protected final int exclusionRadiusXZ;

@@ -10,6 +10,7 @@
     "BlockEntityAccessor",
     "EntityMixin",
     "EntityTypeMixin",
+    "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
     "MobMixin",
     "ProjectileMixin",

@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.world.feature.trunkplacers;
+package com.farcr.nomansland.common.world.feature.trunkplacer;
 
 import com.farcr.nomansland.common.registry.NMLTrunkPlacerType;
 import com.mojang.serialization.MapCodec;

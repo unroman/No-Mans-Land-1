@@ -8,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,14 +17,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SpreadingSnowyDirtBlock;
-import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-
-import java.util.Iterator;
 
 import static net.minecraft.world.level.block.VineBlock.*;
 
@@ -40,6 +36,9 @@ public class BoneMealingEvents {
         BlockState state = level.getBlockState(pos);
         Player player = event.getEntity();
         ItemStack stack = event.getItemStack();
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
 
         //Sugarcane Cutting
         if (event.getFace() != Direction.DOWN && stack.is(Items.SHEARS) && state.is(Blocks.SUGAR_CANE) && !player.isSpectator()) {
@@ -76,13 +75,7 @@ public class BoneMealingEvents {
 //                    level.addParticle();
                 if (!level.isClientSide && !player.isCreative()) stack.shrink(1);
 
-                int x = pos.getX();
-                int y = pos.getY();
-                int z = pos.getZ();
-
-                Iterator<BlockPos> it = BlockPos.betweenClosedStream(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3).iterator();
-                while (it.hasNext()) {
-                    BlockPos bp = it.next();
+                for (BlockPos bp : BlockPos.betweenClosed(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3)) {
                     Block block = level.getBlockState(bp).getBlock();
                     if (level.random.nextFloat() <= 0.3F && state.canSurvive(level, bp) && level.isEmptyBlock(bp)) {
                         BlockPos particlePosition = bp.above();
@@ -120,105 +113,30 @@ public class BoneMealingEvents {
             }
 
             if (state.is(Blocks.VINE)) {
-                int i = 0;
-                for (Direction direction : Direction.values()) {
-                    if (level.random.nextBoolean()) i++;
-                    if (i > 6) break;
-                    BlockPos blockpos = pos.above();
-                    BlockPos blockpos4 = pos;
-                    BlockState blockstate;
-                    Direction direction2;
-
-                    if (!level.isEmptyBlock(pos.relative(direction))) continue;
-
-                    if (direction.getAxis().isHorizontal() && !state.getValue(getPropertyForFace(direction))) {
-                        if (canSpread(level, pos)) {
-                            blockpos4 = pos.relative(direction);
-                            blockstate = level.getBlockState(blockpos4);
-                            if (blockstate.isAir()) {
-                                direction2 = direction.getClockWise();
-                                Direction direction4 = direction.getCounterClockWise();
-                                boolean flag = state.getValue(getPropertyForFace(direction2));
-                                boolean flag1 = state.getValue(getPropertyForFace(direction4));
-                                BlockPos blockpos2 = blockpos4.relative(direction2);
-                                BlockPos blockpos3 = blockpos4.relative(direction4);
-                                if (flag && isAcceptableNeighbour(level, blockpos2, direction2)) {
-                                    level.setBlock(blockpos4, state.setValue(getPropertyForFace(direction2), true), 2);
-                                } else if (flag1 && isAcceptableNeighbour(level, blockpos3, direction4)) {
-                                    level.setBlock(blockpos4, state.setValue(getPropertyForFace(direction4), true), 2);
-                                } else {
-                                    Direction direction1 = direction.getOpposite();
-                                    if (flag && level.isEmptyBlock(blockpos2) && isAcceptableNeighbour(level, pos.relative(direction2), direction1)) {
-                                        level.setBlock(blockpos2, state.setValue(getPropertyForFace(direction1), true), 2);
-                                    } else if (flag1 && level.isEmptyBlock(blockpos3) && isAcceptableNeighbour(level, pos.relative(direction4), direction1)) {
-                                        level.setBlock(blockpos3, state.setValue(getPropertyForFace(direction1), true), 2);
-                                    } else if ((double) level.random.nextFloat() < 0.05 && isAcceptableNeighbour(level, blockpos4.above(), Direction.UP)) {
-                                        level.setBlock(blockpos4, state.setValue(UP, true), 2);
-                                    }
-                                }
-                            } else if (isAcceptableNeighbour(level, blockpos4, direction)) {
-                                level.setBlock(pos, state.setValue(getPropertyForFace(direction), true), 2);
+                for (BlockPos bp : BlockPos.betweenClosed(x - 3, y - 3, z - 3, x + 3, y + 3, z + 3)) {
+                    BlockState vineState = Blocks.VINE.defaultBlockState();
+                    if (level.getBlockState(bp).isEmpty() && level.random.nextBoolean()) {
+                        for (Direction d : Direction.values()) {
+                            if (d == Direction.DOWN) continue;
+                            BooleanProperty booleanproperty = getPropertyForFace(d);
+                            vineState = vineState.setValue(booleanproperty, canSupportAtFace(level, bp, d));
+                        }
+                        if (vineState != Blocks.VINE.defaultBlockState()) {
+                            level.setBlockAndUpdate(bp, vineState);
+                            for (int i = 0; i <= 3; i++) {
+                                level.addParticle(ParticleTypes.COMPOSTER, bp.getX() + Math.random(), bp.getY() + 0.2 + Math.random(), bp.getZ() + Math.random(), 0, 0, 0);
                             }
                         }
-                    } else {
-                        if (direction == Direction.UP && pos.getY() < level.getMaxBuildHeight() - 1) {
-                            if (canSupportAtFace(level, pos, direction)) {
-                                level.setBlock(pos, state.setValue(UP, true), 2);
-                                return;
-                            }
-
-                            if (level.isEmptyBlock(blockpos)) {
-                                if (!canSpread(level, pos)) {
-                                    return;
-                                }
-
-                                BlockState blockstate3 = state;
-                                Iterator<Direction> var17 = Direction.Plane.HORIZONTAL.iterator();
-
-                                while (true) {
-                                    do {
-                                        if (!var17.hasNext()) {
-                                            if (hasHorizontalConnection(blockstate3)) {
-                                                level.setBlock(blockpos, blockstate3, 2);
-                                            }
-                                            level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1F, 1F);
-                                            for (int p = 0; p <= 3; p++) {
-                                                level.addParticle(ParticleTypes.COMPOSTER, blockpos.getX() + Math.random(), blockpos.getY() + 0.2 + Math.random(), blockpos.getZ() + Math.random(), 0, 0, 0);
-                                            }
-                                            return;
-                                        }
-
-                                        direction2 = var17.next();
-                                    } while (!level.random.nextBoolean() && isAcceptableNeighbour(level, blockpos.relative(direction2), direction2));
-
-                                    blockstate3 = blockstate3.setValue(getPropertyForFace(direction2), false);
-                                }
-                            }
-                        }
-
-                        if (pos.getY() > level.getMinBuildHeight()) {
-                            blockpos4 = pos.below();
-                            blockstate = level.getBlockState(blockpos4);
-                            if (blockstate.isAir() || blockstate.is(Blocks.VINE)) {
-                                BlockState blockstate1 = blockstate.isAir() ? state : blockstate;
-                                BlockState blockstate2 = copyRandomFaces(state, blockstate1, level.random);
-                                if (blockstate1 != blockstate2 && hasHorizontalConnection(blockstate2)) {
-                                    level.setBlock(blockpos4, blockstate2, 2);
-                                } else continue;
-                            }
-                        }
-                    }
-                    level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1F, 1F);
-                    for (int p = 0; p <= 3; p++) {
-                        level.addParticle(ParticleTypes.COMPOSTER, blockpos4.getX() + Math.random(), blockpos4.getY() + 0.2 + Math.random(), blockpos4.getZ() + Math.random(), 0, 0, 0);
                     }
                 }
+                level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1F, 1F);
+                if (!player.isCreative()) stack.shrink(1);
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                 event.setCanceled(true);
             }
 
             // Bonemealing dirt
-            if (state.getBlock().equals(Blocks.DIRT) && !level.getBlockState(pos.above()).isSolid()) {
+            if (state.is(Blocks.DIRT) && !level.getBlockState(pos.above()).isSolid()) {
                 // Ensure the dirt that is being right-clicked has a suitable block such as grass nearby
                 for (Direction d : Direction.values()) {
                     for (Direction d1 : Direction.values()) {
@@ -253,13 +171,11 @@ public class BoneMealingEvents {
         int z = pos.getZ();
 
         // Iterate through a cube and find suitable dirt blocks that can be turned into the new block
-        Iterator<BlockPos> it = BlockPos.betweenClosedStream(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3).iterator();
-        while (it.hasNext()) {
-            BlockPos bp = it.next();
+        for (BlockPos bp : BlockPos.betweenClosed(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3)) {
             BlockState block = level.getBlockState(bp);
             for (Direction d : Direction.values()) {
                 Block newBlock = level.getBlockState(bp.relative(d)).getBlock();
-                if (level.random.nextFloat() <= 0.3F && block == Blocks.DIRT.defaultBlockState() && newBlock instanceof SpreadingSnowyDirtBlock && !level.getBlockState(bp.above()).isSolid()) {
+                if (level.random.nextFloat() < 0.3F && block == Blocks.DIRT.defaultBlockState() && newBlock instanceof SpreadingSnowyDirtBlock && !level.getBlockState(bp.above()).isSolid()) {
                     BlockPos particlePosition = bp.above();
                     if (!level.isClientSide) level.setBlockAndUpdate(bp, state);
                     else {
@@ -272,42 +188,7 @@ public class BoneMealingEvents {
         }
     }
 
-    private static boolean canSpread(BlockGetter blockReader, BlockPos pos) {
-        boolean i = true;
-        Iterable<BlockPos> iterable = BlockPos.betweenClosed(pos.getX() - 4, pos.getY() - 1, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 1, pos.getZ() + 4);
-        int j = 5;
-
-        for (BlockPos blockpos : iterable) {
-            if (blockReader.getBlockState(blockpos).is(Blocks.VINE)) {
-                --j;
-                if (j <= 0) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private static BlockState copyRandomFaces(BlockState sourceState, BlockState spreadState, RandomSource random) {
-
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            if (random.nextBoolean()) {
-                BooleanProperty booleanproperty = getPropertyForFace(direction);
-                if (sourceState.getValue(booleanproperty)) {
-                    spreadState = spreadState.setValue(booleanproperty, true);
-                }
-            }
-        }
-
-        return spreadState;
-    }
-
-    private static boolean hasHorizontalConnection(BlockState state) {
-        return state.getValue(NORTH) || state.getValue(EAST) || state.getValue(SOUTH) || state.getValue(WEST);
-    }
-
-    private static boolean canSupportAtFace(BlockGetter level, BlockPos pos, Direction direction) {
+    public static boolean canSupportAtFace(BlockGetter level, BlockPos pos, Direction direction) {
         if (direction == Direction.DOWN) {
             return false;
         } else {

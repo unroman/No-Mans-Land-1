@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.world.feature.foliageplacers.CypressFoliagePlacer;
-import com.farcr.nomansland.common.world.feature.foliageplacers.PineFoliagePlacer;
+import com.farcr.nomansland.common.world.feature.foliageplacer.CypressFoliagePlacer;
+import com.farcr.nomansland.common.world.feature.foliageplacer.PineFoliagePlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.neoforged.neoforge.registries.DeferredHolder;
