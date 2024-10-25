@@ -292,52 +292,53 @@ public class NMLItems {
 
 //            event.accept(NMLBlocks.REMAINS);
 
-            event.accept(NMLBlocks.PINE_LOG);
-            event.accept(NMLBlocks.PINE_LEAVES);
-            event.accept(NMLBlocks.PINE_SAPLING);
+            insertAfter(event, Items.SPRUCE_LOG, NMLBlocks.PINE_LOG);
+            insertAfter(event, Items.SPRUCE_LEAVES, NMLBlocks.PINE_LEAVES);
+            insertAfter(event, Items.SPRUCE_SAPLING, NMLBlocks.PINE_SAPLING);
 
-            event.accept(NMLBlocks.MAPLE_LOG);
-            event.accept(NMLBlocks.MAPLE_LEAVES);
-            event.accept(NMLBlocks.MAPLE_SAPLING);
-            event.accept(NMLBlocks.RED_MAPLE_LEAVES);
-            event.accept(NMLBlocks.RED_MAPLE_SAPLING);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_LOG);
+            insertBefore(event, Items.DARK_OAK_LEAVES, NMLBlocks.MAPLE_LEAVES);
+            insertBefore(event, Items.DARK_OAK_SAPLING, NMLBlocks.MAPLE_SAPLING);
+            insertBefore(event, Items.DARK_OAK_LEAVES, NMLBlocks.RED_MAPLE_LEAVES);
+            insertBefore(event, Items.DARK_OAK_SAPLING, NMLBlocks.RED_MAPLE_SAPLING);
 
-            event.accept(NMLBlocks.WALNUT_LOG);
-            event.accept(NMLBlocks.WALNUT_LEAVES);
-            event.accept(NMLBlocks.WALNUT_SAPLING);
+            insertAfter(event, Items.DARK_OAK_LOG, NMLBlocks.WALNUT_LOG);
+            insertAfter(event, Items.DARK_OAK_LEAVES, NMLBlocks.WALNUT_LEAVES);
+            insertAfter(event, Items.DARK_OAK_SAPLING, NMLBlocks.WALNUT_SAPLING);
 
-            event.accept(NMLBlocks.WILLOW_LOG);
-            event.accept(NMLBlocks.WILLOW_LEAVES);
-            event.accept(NMLBlocks.WILLOW_SAPLING);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_LOG);
+            insertBefore(event, Items.MANGROVE_LEAVES, NMLBlocks.WILLOW_LEAVES);
+            insertBefore(event, Items.MANGROVE_PROPAGULE, NMLBlocks.WILLOW_SAPLING);
 
         }
 
         if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(NMLBlocks.PINE_BOOKSHELF);
-            event.accept(NMLBlocks.MAPLE_BOOKSHELF);
-            event.accept(NMLBlocks.WALNUT_BOOKSHELF);
-            event.accept(NMLBlocks.SPRUCE_BOOKSHELF);
-            event.accept(NMLBlocks.BIRCH_BOOKSHELF);
-            event.accept(NMLBlocks.JUNGLE_BOOKSHELF);
-            event.accept(NMLBlocks.ACACIA_BOOKSHELF);
-            event.accept(NMLBlocks.DARK_OAK_BOOKSHELF);
-            event.accept(NMLBlocks.CHERRY_BOOKSHELF);
-            event.accept(NMLBlocks.MANGROVE_BOOKSHELF);
-            event.accept(NMLBlocks.CRIMSON_BOOKSHELF);
-            event.accept(NMLBlocks.WARPED_BOOKSHELF);
-            event.accept(NMLBlocks.BAMBOO_BOOKSHELF);
-            event.accept(NMLItems.PINE_SIGN);
-            event.accept(NMLItems.PINE_HANGING_SIGN);
-            event.accept(NMLItems.MAPLE_SIGN);
-            event.accept(NMLItems.MAPLE_HANGING_SIGN);
-            event.accept(NMLItems.WALNUT_SIGN);
-            event.accept(NMLItems.WALNUT_HANGING_SIGN);
-            event.accept(NMLItems.WILLOW_SIGN);
-            event.accept(NMLItems.WILLOW_HANGING_SIGN);
-            event.accept(NMLItems.SCONCE_TORCH);
-            event.accept(NMLItems.SCONCE_SOUL_TORCH);
-            event.accept(NMLBlocks.TAP);
-            event.accept(NMLItems.WOODEN_SCAFFOLDING);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WARPED_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.CRIMSON_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.CHERRY_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.BAMBOO_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.MANGROVE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WILLOW_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WALNUT_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.DARK_OAK_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.MAPLE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.ACACIA_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.JUNGLE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.BIRCH_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.PINE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.SPRUCE_BOOKSHELF);
+            insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_HANGING_SIGN);
+            insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_SIGN);
+            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, NMLItems.WALNUT_HANGING_SIGN);
+            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, NMLItems.WALNUT_SIGN);
+            insertBefore(event, Items.DARK_OAK_SIGN, NMLItems.MAPLE_SIGN);
+            insertBefore(event, Items.DARK_OAK_SIGN, NMLItems.MAPLE_HANGING_SIGN);
+            insertBefore(event, Items.MANGROVE_SIGN, NMLItems.WILLOW_SIGN);
+            insertBefore(event, Items.MANGROVE_SIGN, NMLItems.WILLOW_HANGING_SIGN);
+            insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_SOUL_TORCH);
+            insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_TORCH);
+            insertAfter(event, Items.CAULDRON, NMLBlocks.TAP);
+            insertBefore(event, Items.SCAFFOLDING, NMLBlocks.WOODEN_SCAFFOLDING);
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
