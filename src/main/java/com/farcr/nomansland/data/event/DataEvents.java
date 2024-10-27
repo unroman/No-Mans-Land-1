@@ -1,8 +1,8 @@
 package com.farcr.nomansland.data.event;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.variant.*;
-import com.farcr.nomansland.common.registry.NMLVariants;
+import com.farcr.nomansland.common.entity.mob_variant.*;
+import com.farcr.nomansland.common.registry.NMLMobVariants;
 import com.farcr.nomansland.data.Advancements;
 import com.farcr.nomansland.data.assets.Lang;
 import com.farcr.nomansland.data.tags.BlockTags;
@@ -53,16 +53,16 @@ public class DataEvents {
 
     @SubscribeEvent
     public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(NMLVariants.COD_VARIANT_KEY, CodVariant.DIRECT_CODEC, CodVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.COW_VARIANT_KEY, CowVariant.DIRECT_CODEC, CowVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.DOLPHIN_VARIANT_KEY, DolphinVariant.DIRECT_CODEC, DolphinVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.GOAT_VARIANT_KEY, GoatVariant.DIRECT_CODEC, GoatVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.FOX_VARIANT_KEY, FoxVariant.DIRECT_CODEC, FoxVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.SALMON_VARIANT_KEY, SalmonVariant.DIRECT_CODEC, SalmonVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.SHEEP_VARIANT_KEY, SheepVariant.DIRECT_CODEC, SheepVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.TURTLE_VARIANT_KEY, TurtleVariant.DIRECT_CODEC, TurtleVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLVariants.CAMEL_VARIANT_KEY, CamelVariant.DIRECT_CODEC, CamelVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.COD_VARIANT_KEY, CodVariant.DIRECT_CODEC, CodVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.COW_VARIANT_KEY, CowVariant.DIRECT_CODEC, CowVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.DOLPHIN_VARIANT_KEY, DolphinVariant.DIRECT_CODEC, DolphinVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.GOAT_VARIANT_KEY, GoatVariant.DIRECT_CODEC, GoatVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.FOX_VARIANT_KEY, FoxVariant.DIRECT_CODEC, FoxVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.SALMON_VARIANT_KEY, SalmonVariant.DIRECT_CODEC, SalmonVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.SHEEP_VARIANT_KEY, SheepVariant.DIRECT_CODEC, SheepVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.TURTLE_VARIANT_KEY, TurtleVariant.DIRECT_CODEC, TurtleVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.CAMEL_VARIANT_KEY, CamelVariant.DIRECT_CODEC, CamelVariant.DIRECT_CODEC);
     }
 }

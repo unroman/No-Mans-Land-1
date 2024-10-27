@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixinduck;
 
-import com.farcr.nomansland.common.entity.variant.CowVariant;
+import com.farcr.nomansland.common.entity.mob_variant.CowVariant;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.state.BlockState;
 

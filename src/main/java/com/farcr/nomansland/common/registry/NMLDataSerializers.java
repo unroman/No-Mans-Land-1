@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.*;
 import net.minecraft.core.Holder;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.neoforged.neoforge.registries.DeferredHolder;

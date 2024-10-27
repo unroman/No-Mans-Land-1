@@ -38,7 +38,7 @@ public class CattailFeature extends Feature<RandomPatchConfiguration> {
                     rand.nextInt(config.ySpread() + 1) - rand.nextInt(config.ySpread() + 1),
                     rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1));
 
-            if (level.getBlockState(blockpos$mutable).getBlock() == Blocks.WATER && level.getBlockState(blockpos$mutable.above()).getBlock() == Blocks.AIR) {
+            if (level.isStateAtPosition(blockpos$mutable, state -> state.is(Blocks.AIR) || state.is(Blocks.WATER)) && level.getBlockState(blockpos$mutable.above()).isAir()) {
                 BlockState bottomCattailState = NMLBlocks.CATTAIL.get().defaultBlockState().setValue(CattailBlock.HALF, DoubleBlockHalf.LOWER);
                 if (bottomCattailState.canSurvive(level, blockpos$mutable)) {
                     DoublePlantBlock.placeAt(level, bottomCattailState, blockpos$mutable, 2);
