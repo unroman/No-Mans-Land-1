@@ -125,24 +125,26 @@ public class NMLItems {
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
-
+//Note about the methods "addBefore and addAfter"
+        //"addAfter" reads from the bottom up, while addBefore reads from up to bottom.
+        // Might look messy, but trust me it makes sense I swear. -Farcr
         if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(NMLBlocks.FADED_STONE_BRICKS);
-            event.accept(NMLBlocks.POLISHED_STONE);
-            event.accept(NMLBlocks.POLISHED_STONE_STAIRS);
-            event.accept(NMLBlocks.POLISHED_STONE_SLAB);
+            insertAfter(event, Items.STONE_BRICKS, NMLBlocks.FADED_STONE_BRICKS);
+            insertBefore(event, Items.STONE_BRICKS, NMLBlocks.POLISHED_STONE);
+            insertBefore(event, Items.STONE_BRICKS, NMLBlocks.POLISHED_STONE_STAIRS);
+            insertBefore(event, Items.STONE_BRICKS, NMLBlocks.POLISHED_STONE_SLAB);
 
-            event.accept(NMLBlocks.COBBLESTONE_BRICKS);
-            event.accept(NMLBlocks.COBBLESTONE_BRICK_STAIRS);
-            event.accept(NMLBlocks.COBBLESTONE_BRICK_SLAB);
-            event.accept(NMLBlocks.COBBLESTONE_BRICK_WALL);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICKS);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICK_STAIRS);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICK_SLAB);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICK_WALL);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_WALL);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_SLAB);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_STAIRS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICKS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_WALL);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_SLAB);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_STAIRS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICKS);
 
-            event.accept(NMLBlocks.MUNDANE_TILES);
-            event.accept(NMLBlocks.EARTHEN_TILES);
+            insertAfter(event, Items.SMOOTH_STONE_SLAB, NMLBlocks.MUNDANE_TILES);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILES);
 
             event.accept(NMLBlocks.PINE_LOG);
             event.accept(NMLBlocks.PINE_WOOD);
@@ -215,17 +217,17 @@ public class NMLItems {
             event.accept(NMLBlocks.APPLE_CRATE);
             event.accept(NMLBlocks.PEAR_CRATE);
 
-            event.accept(NMLBlocks.TRIMMED_OAK_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_SPRUCE_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_BIRCH_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_JUNGLE_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_ACACIA_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_DARK_OAK_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_CHERRY_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_MANGROVE_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_CRIMSON_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_WARPED_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_BAMBOO_PLANKS);
+            insertAfter(event, Items.OAK_SLAB, NMLBlocks.TRIMMED_OAK_PLANKS);
+            insertAfter(event, Items.SPRUCE_SLAB, NMLBlocks.TRIMMED_SPRUCE_PLANKS);
+            insertAfter(event, Items.BIRCH_SLAB, NMLBlocks.TRIMMED_BIRCH_PLANKS);
+            insertAfter(event, Items.JUNGLE_SLAB, NMLBlocks.TRIMMED_JUNGLE_PLANKS);
+            insertAfter(event, Items.ACACIA_SLAB, NMLBlocks.TRIMMED_ACACIA_PLANKS);
+            insertAfter(event, Items.DARK_OAK_SLAB, NMLBlocks.TRIMMED_DARK_OAK_PLANKS);
+            insertAfter(event, Items.CHERRY_SLAB, NMLBlocks.TRIMMED_CHERRY_PLANKS);
+            insertAfter(event, Items.MANGROVE_SLAB, NMLBlocks.TRIMMED_MANGROVE_PLANKS);
+            insertAfter(event, Items.CRIMSON_SLAB, NMLBlocks.TRIMMED_CRIMSON_PLANKS);
+            insertAfter(event, Items.WARPED_SLAB, NMLBlocks.TRIMMED_WARPED_PLANKS);
+            insertAfter(event, Items.BAMBOO_MOSAIC_SLAB, NMLBlocks.TRIMMED_BAMBOO_PLANKS);
         }
 
         if (tab == CreativeModeTabs.COLORED_BLOCKS) {
@@ -360,14 +362,14 @@ public class NMLItems {
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(NMLItems.PINE_BOAT);
-            event.accept(NMLItems.PINE_CHEST_BOAT);
-            event.accept(NMLItems.MAPLE_BOAT);
-            event.accept(NMLItems.MAPLE_CHEST_BOAT);
-            event.accept(NMLItems.WALNUT_BOAT);
-            event.accept(NMLItems.WALNUT_CHEST_BOAT);
-            event.accept(NMLItems.WILLOW_BOAT);
-            event.accept(NMLItems.WILLOW_CHEST_BOAT);
+            insertAfter(event, Items.SPRUCE_CHEST_BOAT, NMLItems.PINE_CHEST_BOAT);
+            insertAfter(event, Items.SPRUCE_CHEST_BOAT, NMLItems.PINE_BOAT);
+            insertBefore(event, Items.DARK_OAK_BOAT, NMLItems.MAPLE_BOAT);
+            insertBefore(event, Items.DARK_OAK_BOAT, NMLItems.MAPLE_CHEST_BOAT);
+            insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_BOAT);
+            insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_CHEST_BOAT);
+            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_CHEST_BOAT);
+            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_BOAT);
             if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.accept(Items.BUNDLE);
         }
 
