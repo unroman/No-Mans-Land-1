@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nomansland:billhook_bass_barrel"
+    }
+  ],
+  "result": {
+    "id": "nomansland:billhook_bass_barrel",
+    "count": 9
+  },
+  "group": "fish_barrels"
+}

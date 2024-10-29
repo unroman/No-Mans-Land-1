@@ -7,11 +7,19 @@ import com.farcr.nomansland.common.item.*;
 import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -44,6 +52,13 @@ public class NMLItems {
             () -> new Item(new Item.Properties().food(NMLFoods.RAW_VENISON)));
     public static final DeferredItem<Item> COOKED_VENISON = registerItem("cooked_venison",
             () -> new Item(new Item.Properties().food(NMLFoods.COOKED_VENISON)));
+
+    public static final DeferredItem<Item> BILLHOOK_BASS = registerItem("billhook_bass",
+            () -> new Item(new Item.Properties().food(NMLFoods.BILLHOOK_BASS)));
+    public static final DeferredItem<Item> COOKED_BILLHOOK_BASS = registerItem("cooked_billhook_bass",
+            () -> new Item(new Item.Properties().food(NMLFoods.COOKED_BILLHOOK_BASS)));
+//    public static final DeferredItem<Item> CAVE_CARP = registerItem("cave_carp",
+//            () -> new Item(new Item.Properties().food(NMLFoods.CAVE_CARP)));
 
     public static final DeferredItem<Item> PEAR = registerItem("pear",
             () -> new Item(new Item.Properties().food(NMLFoods.PEAR)));
@@ -80,6 +95,13 @@ public class NMLItems {
 
     public static final DeferredItem<Item> WOODEN_SCAFFOLDING = registerItem("wooden_scaffolding",
             () -> new ScaffoldingBlockItem(NMLBlocks.WOODEN_SCAFFOLDING.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> BILLHOOK_BASS_BUCKET = registerItem("billhook_bass_bucket",
+            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
+                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
+//    public static final DeferredItem<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
+//            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
+//                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 
     public static final DeferredItem<Item> PINE_SIGN = registerItem("pine_sign",
             () -> new SignItem(new Item.Properties().stacksTo(16), NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get()));

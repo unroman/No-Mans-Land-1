@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "nomansland:block/storage/cave_carp_barrel_top",
+    "bottom": "nomansland:block/storage/cave_carp_barrel_bottom",
+    "side": "nomansland:block/storage/cave_carp_barrel_side"
+  }
+}

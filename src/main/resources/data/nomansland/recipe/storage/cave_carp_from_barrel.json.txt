@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nomansland:cave_carp_barrel"
+    }
+  ],
+  "result": {
+    "id": "nomansland:cave_carp_barrel",
+    "count": 9
+  },
+  "group": "fish_barrels"
+}

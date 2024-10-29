@@ -532,10 +532,14 @@ public class NMLBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL)));
     public static final DeferredBlock<Block> SALMON_BARREL = registerBlock("salmon_barrel",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COD_BARREL.get())));
+    public static final DeferredBlock<Block> BILLHOOK_BASS_BARREL = registerBlock("billhook_bass_barrel",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COD_BARREL.get())));
     public static final DeferredBlock<Block> PUFFERFISH_BARREL = registerBlock("pufferfish_barrel",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COD_BARREL.get())));
     public static final DeferredBlock<Block> TROPICAL_FISH_BARREL = registerBlock("tropical_fish_barrel",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COD_BARREL.get())));
+//    public static final DeferredBlock<Block> CAVE_CARP_BARREL = registerBlock("cave_carp_barrel",
+//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COD_BARREL.get())));
     public static final DeferredBlock<Block> APPLE_CRATE = registerBlock("apple_crate",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL)));
     public static final DeferredBlock<Block> PEAR_CRATE = registerBlock("pear_crate",
