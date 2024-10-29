@@ -25,24 +25,26 @@ public class CattailFeature extends Feature<RandomPatchConfiguration> {
         WorldGenLevel level = context.level();
         BlockPos origin = context.origin();
         RandomPatchConfiguration config = context.config();
-        RandomSource rand = context.random();
+        RandomSource random = context.random();
 
         BlockPos blockpos = level.getHeightmapPos(Heightmap.Types.OCEAN_FLOOR_WG, origin);
 
         int i = 0;
         BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
-        for (int j = 0; j < config.tries(); ++j) {
-            blockpos$mutable.set(blockpos).move(
-                    rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1),
-                    rand.nextInt(config.ySpread() + 1) - rand.nextInt(config.ySpread() + 1),
-                    rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1));
+        if (level.getBlockState(blockpos$mutable.set(blockpos)).is(Blocks.WATER)) {
+            for (int j = 0; j < config.tries(); ++j) {
+                blockpos$mutable.move(
+                        random.nextInt(config.xzSpread() + 1) - random.nextInt(config.xzSpread() + 1),
+                        random.nextInt(config.ySpread() + 1) - random.nextInt(config.ySpread() + 1),
+                        random.nextInt(config.xzSpread() + 1) - random.nextInt(config.xzSpread() + 1));
 
-            if (level.isStateAtPosition(blockpos$mutable, state -> state.is(Blocks.AIR) || state.is(Blocks.WATER)) && level.getBlockState(blockpos$mutable.above()).isAir()) {
-                BlockState bottomCattailState = NMLBlocks.CATTAIL.get().defaultBlockState().setValue(CattailBlock.HALF, DoubleBlockHalf.LOWER);
-                if (bottomCattailState.canSurvive(level, blockpos$mutable)) {
-                    DoublePlantBlock.placeAt(level, bottomCattailState, blockpos$mutable, 2);
-                    ++i;
+                if (level.isStateAtPosition(blockpos$mutable, state -> state.is(Blocks.AIR) || state.is(Blocks.WATER)) && level.getBlockState(blockpos$mutable.above()).isAir()) {
+                    BlockState bottomCattailState = NMLBlocks.CATTAIL.get().defaultBlockState().setValue(CattailBlock.HALF, DoubleBlockHalf.LOWER);
+                    if (bottomCattailState.canSurvive(level, blockpos$mutable)) {
+                        DoublePlantBlock.placeAt(level, bottomCattailState, blockpos$mutable, 2);
+                        ++i;
+                    }
                 }
             }
         }
