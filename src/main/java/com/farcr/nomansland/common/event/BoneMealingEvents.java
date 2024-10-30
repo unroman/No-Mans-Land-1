@@ -53,7 +53,7 @@ public class BoneMealingEvents {
 
         }
 
-        //Sugarcane Cutting
+        //Vine Cutting
         if (stack.is(Items.SHEARS) && state.is(Blocks.VINE) && !player.isSpectator()) {
             level.playSound(player, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!level.isClientSide()) {
