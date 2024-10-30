@@ -25,11 +25,9 @@ public class QuadrupedModelMixin<T extends Entity> {
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
     private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        if (entity instanceof Pig pig) {
+        if (entity instanceof Pig pig)
             NMLPigModel.setupAnim(pig, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
-        }
-        if (entity instanceof Cow cow) {
-            NMLCowModel.setupAnim(cow, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
-        }
+        if (entity instanceof Cow cow)
+            NMLCowModel.setupAnim(cow, root);
     }
 }

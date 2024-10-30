@@ -1,4 +1,4 @@
 {
-  "texture": "nomansland:entity/variants/cow/cow_brown_back",
-  "baby_texture": "nomansland:entity/variants/cow/cow_brown_back_baby"
+  "texture": "nomansland:entity/mob_variants/cow/cow_brown_back",
+  "baby_texture": "nomansland:entity/mob_variants/cow/cow_brown_back_baby"
 }

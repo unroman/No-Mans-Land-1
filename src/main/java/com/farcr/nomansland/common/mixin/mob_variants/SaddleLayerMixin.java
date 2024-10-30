@@ -36,7 +36,7 @@ public abstract class SaddleLayerMixin<T extends Entity & Saddleable, M extends 
             poseStack.scale(1.1F, 0.9F, 1.1F);
             VertexConsumer vertexconsumer;
             if (livingEntity.getType() == EntityType.PIG) {
-                ResourceLocation pigTexture = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/variants/pig/saddle.png");
+                ResourceLocation pigTexture = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/pig/saddle.png");
                 vertexconsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(pigTexture));
             } else {
                 vertexconsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(this.textureLocation));

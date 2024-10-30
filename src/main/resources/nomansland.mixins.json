@@ -39,6 +39,7 @@
     "ModelBlockRendererMixin",
     "RenderLayerMixin",
     "mob_variants.CamelRendererMixin",
+    "mob_variants.ChickenModelMixin",
     "mob_variants.ChickenRendererMixin",
     "mob_variants.CodRendererMixin",
     "mob_variants.CowModelMixin",
