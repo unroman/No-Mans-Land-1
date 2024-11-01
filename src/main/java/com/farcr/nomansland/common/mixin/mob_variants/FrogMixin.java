@@ -2,8 +2,8 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 
 
 import com.farcr.nomansland.common.mixin.EntityMixin;
-import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.Holder;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.MobSpawnType;

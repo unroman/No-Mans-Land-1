@@ -1,7 +1,6 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.client.model.NMLChickenModel;
-import com.farcr.nomansland.client.model.NMLPigModel;
 import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
@@ -13,8 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.logging.Handler;
 
 @Mixin(ChickenModel.class)
 public class ChickenModelMixin<T extends Entity> {

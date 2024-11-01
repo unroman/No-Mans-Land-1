@@ -1,12 +1,5 @@
 package com.farcr.nomansland.common.mixin;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.VineBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.VinesFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;

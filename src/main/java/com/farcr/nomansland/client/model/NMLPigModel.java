@@ -77,6 +77,8 @@ public class NMLPigModel {
         ModelPart leftFrontLegBaby = headBaby.getChild("left_front_leg_baby");
         ModelPart rightHindLegBaby = headBaby.getChild("right_hind_leg_baby");
         ModelPart leftHindLegBaby = headBaby.getChild("left_hind_leg_baby");
+        ModelPart rightEar = head.getChild("right_ear");
+        ModelPart leftEar = head.getChild("left_ear");
         boolean baby = pig.isBaby();
 
         headBaby.xScale = 2;
@@ -99,6 +101,12 @@ public class NMLPigModel {
         leftFrontLeg.visible = !baby;
         rightFrontLeg.visible = !baby;
         headBaby.visible = baby;
+
+        if (!pig.onGround())
+            rightEar.zRot = (float) Mth.lerp(0.5, rightEar.zRot,pig.getDeltaMovement().length());
+            else if (limbSwing > 0)
+            rightEar.zRot = (float) Mth.lerp(0.5, rightEar.zRot,Mth.abs(Mth.cos(limbSwing * 0.6662F + 3.1415927F)) * limbSwingAmount / 2);
+        leftEar.zRot = -rightEar.zRot;
 
         rightHindLegBaby.xRot = rightHindLeg.xRot;
         leftHindLegBaby.xRot = leftHindLeg.xRot;
