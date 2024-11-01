@@ -6,7 +6,6 @@ import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,7 +22,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mixin(Salmon.class)
@@ -59,14 +57,7 @@ public abstract class SalmonMixin extends MobMixin implements VariantHolder<Hold
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         if (spawnType != MobSpawnType.BUCKET) {
-            Registry<SalmonVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.SALMON_VARIANT_KEY);
-            List<Holder.Reference<SalmonVariant>> possibleVariants = registry.holders()
-                    .filter((v) -> v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(this.blockPosition())))
-                    .toList();
-            List<Holder.Reference<SalmonVariant>> defaultVariants = registry.holders()
-                    .filter((v) -> v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
-                    .toList();
-            this.setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+            this.setVariant((Holder<SalmonVariant>) NMLMobVariants.getVariantForSpawn(((Salmon) (Object) this)));
         }
     }
 

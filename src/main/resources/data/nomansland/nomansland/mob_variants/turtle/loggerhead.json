@@ -1,5 +1,6 @@
 {
   "texture": "nomansland:entity/mob_variants/turtle/loggerhead_sea_turtle",
+  "weight": 1,
   "biomes": "#nomansland:entity/spawns_loggerhead_sea_turtle"
 
 }

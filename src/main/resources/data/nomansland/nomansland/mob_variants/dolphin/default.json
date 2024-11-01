@@ -1,3 +1,4 @@
 {
-  "texture": "minecraft:entity/dolphin"
+  "texture": "minecraft:entity/dolphin",
+  "weight": 1
 }

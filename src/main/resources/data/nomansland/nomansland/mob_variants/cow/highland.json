@@ -1,5 +1,6 @@
 {
   "texture": "nomansland:entity/mob_variants/cow/cow_highland",
+  "weight": 1,
   "baby_texture": "nomansland:entity/mob_variants/cow/cow_highland_baby",
   "biomes": "#nomansland:entity/spawns_fluffy_cows"
 }

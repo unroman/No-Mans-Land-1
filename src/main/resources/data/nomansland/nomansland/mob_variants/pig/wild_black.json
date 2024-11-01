@@ -1,5 +1,6 @@
 {
   "texture": "nomansland:entity/mob_variants/pig/pig_wild_black",
+  "weight": 1,
   "baby_texture": "nomansland:entity/mob_variants/pig/pig_wild_black_baby",
   "biomes": "#nomansland:entity/spawns_boar_pig"
 }

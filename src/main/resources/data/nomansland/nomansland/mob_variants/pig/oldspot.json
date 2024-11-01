@@ -1,4 +1,5 @@
 {
   "texture": "nomansland:entity/mob_variants/pig/pig_oldspot",
+  "weight": 1,
   "baby_texture": "nomansland:entity/mob_variants/pig/pig_oldspot_baby"
 }

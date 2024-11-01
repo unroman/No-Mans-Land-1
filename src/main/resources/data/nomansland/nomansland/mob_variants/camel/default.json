@@ -1,4 +1,5 @@
 {
   "texture": "minecraft:entity/camel/camel",
+  "weight": 1,
   "baby_texture": "minecraft:entity/camel/camel"
 }

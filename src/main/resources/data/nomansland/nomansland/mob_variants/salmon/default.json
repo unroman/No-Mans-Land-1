@@ -1,3 +1,4 @@
 {
-  "texture": "minecraft:entity/fish/salmon"
+  "texture": "minecraft:entity/fish/salmon",
+  "weight": 1
 }

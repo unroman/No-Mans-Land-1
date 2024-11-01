@@ -1,5 +1,6 @@
 {
   "texture": "nomansland:entity/mob_variants/fox/forest_fox",
+  "weight": 1,
   "sleeping_texture": "nomansland:entity/mob_variants/fox/forest_fox_sleep",
   "biomes": "#nomansland:entity/spawns_forest_fox"
 }

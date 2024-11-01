@@ -6,7 +6,6 @@ import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,7 +22,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mixin(Dolphin.class)
@@ -58,14 +56,7 @@ public abstract class DolphinMixin extends MobMixin implements VariantHolder<Hol
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Registry<DolphinVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.DOLPHIN_VARIANT_KEY);
-        List<Holder.Reference<DolphinVariant>> possibleVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(this.blockPosition())))
-                .toList();
-        List<Holder.Reference<DolphinVariant>> defaultVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
-                .toList();
-        this.setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+        this.setVariant((Holder<DolphinVariant>) NMLMobVariants.getVariantForSpawn(((Dolphin) (Object) this)));
     }
 
     @Override

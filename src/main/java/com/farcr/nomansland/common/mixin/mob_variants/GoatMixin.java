@@ -6,7 +6,6 @@ import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -15,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mixin(Goat.class)
@@ -59,14 +58,7 @@ public abstract class GoatMixin extends MobMixin implements VariantHolder<Holder
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Registry<GoatVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.GOAT_VARIANT_KEY);
-        List<Holder.Reference<GoatVariant>> possibleVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(this.blockPosition())))
-                .toList();
-        List<Holder.Reference<GoatVariant>> defaultVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
-                .toList();
-        this.setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+        this.setVariant((Holder<GoatVariant>) NMLMobVariants.getVariantForSpawn(((Goat) (Object) this)));
     }
 
     @Override
@@ -81,10 +73,6 @@ public abstract class GoatMixin extends MobMixin implements VariantHolder<Holder
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        Goat goat = EntityType.GOAT.create(level);
-        if (goat != null) {
-            ((VariantHolder<Holder<GoatVariant>>)goat).setVariant(this.random.nextBoolean() ?  this.getVariant() : ((VariantHolder<Holder<GoatVariant>>)otherParent).getVariant());
-        }
-        cir.setReturnValue(goat);
+        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Goat) (Object) this), otherParent));
     }
 }

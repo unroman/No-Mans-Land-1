@@ -7,7 +7,6 @@ import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -19,6 +18,7 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,9 +28,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Mixin(Fox.class)
 public abstract class FoxMixin extends MobMixin implements FoxDuck {
@@ -64,15 +62,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Registry<FoxVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.FOX_VARIANT_KEY);
-        Stream<Holder.Reference<FoxVariant>> allVariants = registry.holders();
-        List<Holder.Reference<FoxVariant>> possibleVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(this.blockPosition())))
-                .toList();
-        List<Holder.Reference<FoxVariant>> defaultVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
-                .toList();
-        this.noMansLand$setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+        this.noMansLand$setVariant((Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this)));
     }
 
     @Override
@@ -87,10 +77,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        Fox fox = EntityType.FOX.create(level);
-        if (fox != null) {
-            ((FoxDuck)fox).noMansLand$setVariant(this.random.nextBoolean() ? ((FoxDuck)this).noMansLand$getVariant() : ((FoxDuck)otherParent).noMansLand$getVariant());
-        }
-        cir.setReturnValue(fox);
+        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
+
     }
 }

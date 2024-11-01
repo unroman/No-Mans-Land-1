@@ -72,14 +72,7 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
                     .toList();
             this.setVariant(possibleMooshroomVariants.isEmpty() ? defaultMooshroomVariants.get(random.nextInt(defaultMooshroomVariants.size())) : possibleMooshroomVariants.get(random.nextInt(possibleMooshroomVariants.size())));
         } else {
-            Registry<CowVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.COW_VARIANT_KEY);
-            List<Holder.Reference<CowVariant>> possibleVariants = registry.holders()
-                    .filter((v) -> !noMansLand$isMooshroomVariant(v) && v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(this.blockPosition())))
-                    .toList();
-            List<Holder.Reference<CowVariant>> defaultVariants = registry.holders()
-                    .filter((v) -> !noMansLand$isMooshroomVariant(v) && v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
-                    .toList();
-            this.setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+            this.setVariant((Holder<CowVariant>) NMLMobVariants.getVariantForSpawn(((Cow) (Object) this)));
         }
     }
 
@@ -110,11 +103,7 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     protected void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        Cow cow = EntityType.COW.create(level);
-        if (cow != null) {
-            ((VariantHolder<Holder<CowVariant>>) cow).setVariant(this.random.nextBoolean() ? this.getVariant() : ((VariantHolder<Holder<CowVariant>>) otherParent).getVariant());
-        }
-        cir.setReturnValue(cow);
+        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Cow) (Object) this), otherParent));
     }
 
     @Inject(method = "getDefaultDimensions", at = @At("HEAD"), cancellable = true)

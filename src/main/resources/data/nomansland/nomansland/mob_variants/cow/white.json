@@ -1,4 +1,5 @@
 {
   "texture": "nomansland:entity/mob_variants/cow/cow_white",
+  "weight": 1,
   "baby_texture": "nomansland:entity/mob_variants/cow/cow_white_baby"
 }

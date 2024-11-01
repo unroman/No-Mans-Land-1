@@ -1,3 +1,4 @@
 {
-  "texture": "minecraft:entity/fish/cod"
+  "texture": "minecraft:entity/fish/cod",
+  "weight": 1
 }

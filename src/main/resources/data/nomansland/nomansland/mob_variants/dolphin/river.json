@@ -1,4 +1,5 @@
 {
   "texture": "nomansland:entity/mob_variants/dolphin/river_dolphin",
+  "weight": 1,
   "biomes": "#nomansland:entity/spawns_river_dolphin"
 }

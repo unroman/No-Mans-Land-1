@@ -1,4 +1,5 @@
 {
   "texture": "minecraft:entity/goat/goat",
+  "weight": 1,
   "biomes": "#nomansland:entity/spawns_highland_goats"
 }

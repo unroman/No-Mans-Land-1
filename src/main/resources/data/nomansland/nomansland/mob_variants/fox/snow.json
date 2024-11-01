@@ -1,5 +1,6 @@
 {
   "texture": "minecraft:entity/fox/snow_fox",
+  "weight": 1,
   "sleeping_texture": "minecraft:entity/fox/snow_fox_sleep",
   "biomes": "#minecraft:spawns_snow_foxes"
 }

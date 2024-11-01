@@ -6,7 +6,6 @@ import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -15,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -25,7 +25,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mixin(Turtle.class)
@@ -60,14 +59,7 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Registry<TurtleVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.TURTLE_VARIANT_KEY);
-        List<Holder.Reference<TurtleVariant>> possibleVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(this.blockPosition())))
-                .toList();
-        List<Holder.Reference<TurtleVariant>> defaultVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isEmpty() || v.is(DEFAULT_VARIANT))
-                .toList();
-        this.setVariant(possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size())));
+        this.setVariant((Holder<TurtleVariant>) NMLMobVariants.getVariantForSpawn(((Turtle) (Object) this)));
     }
 
     @Override
@@ -82,10 +74,6 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        Goat goat = EntityType.GOAT.create(level);
-        if (goat != null) {
-            ((VariantHolder<Holder<TurtleVariant>>)goat).setVariant(this.random.nextBoolean() ?  this.getVariant() : ((VariantHolder<Holder<TurtleVariant>>)otherParent).getVariant());
-        }
-        cir.setReturnValue(goat);
+        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Turtle) (Object) this), otherParent));
     }
 }
