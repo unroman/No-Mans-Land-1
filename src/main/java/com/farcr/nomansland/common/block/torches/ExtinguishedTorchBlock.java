@@ -14,10 +14,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class ExtinguishedTorchBlock extends TorchBlock {
 
@@ -63,5 +65,10 @@ public class ExtinguishedTorchBlock extends TorchBlock {
         if (!level.isClientSide && projectile.isOnFire()) {
             level.setBlock(hit.getBlockPos(), this.litBlock.withPropertiesOf(state), 11);
         }
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+        return litBlock.getCloneItemStack(state, target, level, pos, player);
     }
 }

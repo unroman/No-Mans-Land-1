@@ -26,16 +26,4 @@ public class ExtinguishedSconceTorchBlock extends ExtinguishedTorchBlock {
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return AABB;
     }
-
-    @Override
-    protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
-        level.sendParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5, level.random.nextInt(2, 7), 0, 0, 0, 0.05);
-    }
-
-    @Override
-    protected void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
-        if (!level.isClientSide && projectile.isOnFire()) {
-            level.setBlock(hit.getBlockPos(), this.litBlock.withPropertiesOf(state), 11);
-        }
-    }
 }

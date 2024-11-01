@@ -39,20 +39,4 @@ public class ExtinguishedSconceWallTorchBlock extends ExtinguishedWallTorchBlock
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return getShape(state);
     }
-
-    @Override
-    protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
-        Direction direction = state.getValue(FACING).getOpposite();
-        double dx = pos.getX() + 0.5;
-        double dy = pos.getY() + 0.7;
-        double dz = pos.getZ() + 0.5;
-        level.sendParticles(ParticleTypes.SMOKE, dx + 0.2 * direction.getStepX(), dy + 0.22, dz + 0.2 * direction.getStepZ(), level.random.nextInt(2, 7), 0, 0, 0, 0);
-    }
-
-    @Override
-    protected void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
-        if (!level.isClientSide && projectile.isOnFire()) {
-            level.setBlock(hit.getBlockPos(), this.litBlock.withPropertiesOf(state), 11);
-        }
-    }
 }
