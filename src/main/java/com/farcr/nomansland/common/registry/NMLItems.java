@@ -376,7 +376,7 @@ public class NMLItems {
             insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_SOUL_TORCH);
             insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_TORCH);
             insertAfter(event, Items.CAULDRON, NMLBlocks.TAP);
-            insertBefore(event, Items.SCAFFOLDING, NMLBlocks.WOODEN_SCAFFOLDING);
+            insertBefore(event, Items.SCAFFOLDING, NMLItems.WOODEN_SCAFFOLDING);
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
@@ -395,6 +395,9 @@ public class NMLItems {
             insertAfter(event, Items.MELON_SLICE, NMLItems.WALNUTS);
             insertAfter(event, Items.MUSHROOM_STEW, NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
             insertAfter(event, Items.POISONOUS_POTATO, NMLItems.GRILLED_MUSHROOMS);
+            insertAfter(event, Items.COOKED_SALMON, NMLItems.COOKED_BILLHOOK_BASS);
+            insertAfter(event, Items.COOKED_SALMON, NMLItems.BILLHOOK_BASS);
+//            insertAfter(event, Items.TROPICAL_FISH, NMLItems.CAVE_CARP);
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
@@ -406,6 +409,8 @@ public class NMLItems {
             insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_CHEST_BOAT);
             insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_CHEST_BOAT);
             insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_BOAT);
+            insertAfter(event, Items.SALMON_BUCKET, NMLItems.BILLHOOK_BASS_BUCKET);
+//            insertAfter(event, Items.TROPICAL_FISH_BUCKET, NMLItems.CAVE_CARP_BUCKET);
             if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.accept(Items.BUNDLE);
         }
 

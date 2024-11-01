@@ -1,5 +1,6 @@
 {
   "texture": "nomansland:entity/mob_variants/chicken/chicken_wild",
   "weight": 1,
-  "baby_texture": "nomansland:entity/mob_variants/chicken/chicken_baby"
+  "baby_texture": "nomansland:entity/mob_variants/chicken/chicken_baby",
+  "biomes": "#nomansland:entity/spawns_wild_chicken"
 }
