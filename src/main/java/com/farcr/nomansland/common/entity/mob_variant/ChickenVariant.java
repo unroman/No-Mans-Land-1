@@ -14,37 +14,30 @@ import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
-import java.util.Objects;
 import java.util.Optional;
 
-public record ChickenVariant(ResourceLocation texture, ResourceLocation babyTexture, Optional<HolderSet<Biome>> biomes) {
+public record ChickenVariant(ResourceLocation texture, int weight, ResourceLocation babyTexture, Optional<HolderSet<Biome>> biomes) implements MobVariant {
+
     public static final Codec<ChickenVariant> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
                     ResourceLocation.CODEC.fieldOf("texture").forGetter(ChickenVariant::texture),
+                    Codec.INT.fieldOf("weight").forGetter(ChickenVariant::weight),
                     ResourceLocation.CODEC.fieldOf("baby_texture").forGetter(ChickenVariant::babyTexture),
                     RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(ChickenVariant::biomes))
-            .apply(record, ChickenVariant::new));
-    public static final StreamCodec<RegistryFriendlyByteBuf, ChickenVariant> DIRECT_STREAM_CODEC;
-    public static final Codec<Holder<ChickenVariant>> CODEC;
-    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<ChickenVariant>> STREAM_CODEC;
+            .apply(record, ChickenVariant::new)
+    );
 
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        } else {
-            boolean equals;
-            if (other instanceof ChickenVariant v) {
-                equals = Objects.equals(this.texture, v.texture) && Objects.equals(this.biomes, v.biomes);
-            } else {
-                equals = false;
-            }
+    public static final StreamCodec<RegistryFriendlyByteBuf, ChickenVariant> DIRECT_STREAM_CODEC =
+            StreamCodec.composite(
+                    ResourceLocation.STREAM_CODEC, ChickenVariant::texture,
+                    ByteBufCodecs.INT, ChickenVariant::weight,
+                    ResourceLocation.STREAM_CODEC, ChickenVariant::babyTexture,
+                    ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), ChickenVariant::biomes,
+                    ChickenVariant::new
+            );
 
-            return equals;
-        }
-    }
+    public static final Codec<Holder<ChickenVariant>> CODEC =
+            RegistryFileCodec.create(NMLMobVariants.CHICKEN_VARIANT_KEY, DIRECT_CODEC);
 
-    static {
-        DIRECT_STREAM_CODEC = StreamCodec.composite(ResourceLocation.STREAM_CODEC, ChickenVariant::texture, ResourceLocation.STREAM_CODEC, ChickenVariant::babyTexture, ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), ChickenVariant::biomes, ChickenVariant::new);
-        CODEC = RegistryFileCodec.create(NMLMobVariants.CHICKEN_VARIANT_KEY, DIRECT_CODEC);
-        STREAM_CODEC = ByteBufCodecs.holder(NMLMobVariants.CHICKEN_VARIANT_KEY, DIRECT_STREAM_CODEC);
-    }
+    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<ChickenVariant>> STREAM_CODEC =
+            ByteBufCodecs.holder(NMLMobVariants.CHICKEN_VARIANT_KEY, DIRECT_STREAM_CODEC);
 }

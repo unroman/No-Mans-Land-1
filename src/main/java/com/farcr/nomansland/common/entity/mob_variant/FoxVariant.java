@@ -14,38 +14,32 @@ import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
-import java.util.Objects;
 import java.util.Optional;
 
-public record FoxVariant(ResourceLocation texture, ResourceLocation sleepingTexture, Optional<HolderSet<Biome>> biomes) {
+public record FoxVariant(ResourceLocation texture, int weight, ResourceLocation sleepingTexture, Optional<HolderSet<Biome>> biomes) implements MobVariant {
+
     public static final Codec<FoxVariant> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
-                    ResourceLocation.CODEC.fieldOf("texture").forGetter((config) -> config.texture),
-                    ResourceLocation.CODEC.fieldOf("sleeping_texture").forGetter((config) -> config.sleepingTexture),
+                    ResourceLocation.CODEC.fieldOf("texture").forGetter(FoxVariant::texture),
+                    Codec.INT.fieldOf("weight").forGetter(FoxVariant::weight),
+                    ResourceLocation.CODEC.fieldOf("sleeping_texture").forGetter(FoxVariant::sleepingTexture),
                     RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(FoxVariant::biomes))
-            .apply(record, FoxVariant::new));
-    public static final StreamCodec<RegistryFriendlyByteBuf, FoxVariant> DIRECT_STREAM_CODEC;
-    public static final Codec<Holder<FoxVariant>> CODEC;
-    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<FoxVariant>> STREAM_CODEC;
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        } else {
-            boolean equals;
-            if (other instanceof FoxVariant v) {
-                equals = Objects.equals(this.texture, v.texture) && Objects.equals(this.biomes, v.biomes);
-            } else {
-                equals = false;
-            }
+            .apply(record, FoxVariant::new)
+    );
 
-            return equals;
-        }
-    }
+    public static final StreamCodec<RegistryFriendlyByteBuf, FoxVariant> DIRECT_STREAM_CODEC =
+            StreamCodec.composite(
+                    ResourceLocation.STREAM_CODEC, FoxVariant::texture,
+                    ByteBufCodecs.INT, FoxVariant::weight,
+                    ResourceLocation.STREAM_CODEC, FoxVariant::sleepingTexture,
+                    ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), FoxVariant::biomes,
+                    FoxVariant::new
+            );
 
-    static {
-        DIRECT_STREAM_CODEC = StreamCodec.composite(ResourceLocation.STREAM_CODEC, FoxVariant::texture, ResourceLocation.STREAM_CODEC, FoxVariant::sleepingTexture, ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), FoxVariant::biomes, FoxVariant::new);
-        CODEC = RegistryFileCodec.create(NMLMobVariants.FOX_VARIANT_KEY, DIRECT_CODEC);
-        STREAM_CODEC = ByteBufCodecs.holder(NMLMobVariants.FOX_VARIANT_KEY, DIRECT_STREAM_CODEC);
-    }
+    public static final Codec<Holder<FoxVariant>> CODEC =
+            RegistryFileCodec.create(NMLMobVariants.FOX_VARIANT_KEY, DIRECT_CODEC);
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<FoxVariant>> STREAM_CODEC =
+            ByteBufCodecs.holder(NMLMobVariants.FOX_VARIANT_KEY, DIRECT_STREAM_CODEC);
 }
 
 

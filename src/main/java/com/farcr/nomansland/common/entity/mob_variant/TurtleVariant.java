@@ -14,37 +14,30 @@ import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
-import java.util.Objects;
 import java.util.Optional;
 
-public record TurtleVariant(ResourceLocation texture, Optional<HolderSet<Biome>> biomes) {
+public record TurtleVariant(ResourceLocation texture, int weight, Optional<HolderSet<Biome>> biomes) implements MobVariant {
+
     public static final Codec<TurtleVariant> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
-                    ResourceLocation.CODEC.fieldOf("texture").forGetter((config) -> config.texture),
+                    ResourceLocation.CODEC.fieldOf("texture").forGetter(TurtleVariant::texture),
+                    Codec.INT.fieldOf("weight").forGetter(TurtleVariant::weight),
                     RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(TurtleVariant::biomes))
-            .apply(record, TurtleVariant::new));
-    public static final StreamCodec<RegistryFriendlyByteBuf, TurtleVariant> DIRECT_STREAM_CODEC;
-    public static final Codec<Holder<TurtleVariant>> CODEC;
-    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<TurtleVariant>> STREAM_CODEC;
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        } else {
-            boolean equals;
-            if (other instanceof TurtleVariant v) {
-                equals = Objects.equals(this.texture, v.texture) && Objects.equals(this.biomes, v.biomes);
-            } else {
-                equals = false;
-            }
+            .apply(record, TurtleVariant::new)
+    );
 
-            return equals;
-        }
-    }
+    public static final StreamCodec<RegistryFriendlyByteBuf, TurtleVariant> DIRECT_STREAM_CODEC =
+            StreamCodec.composite(
+                    ResourceLocation.STREAM_CODEC, TurtleVariant::texture,
+                    ByteBufCodecs.INT, TurtleVariant::weight,
+                    ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), TurtleVariant::biomes,
+                    TurtleVariant::new
+            );
 
-    static {
-        DIRECT_STREAM_CODEC = StreamCodec.composite(ResourceLocation.STREAM_CODEC, TurtleVariant::texture, ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), TurtleVariant::biomes, TurtleVariant::new);
-        CODEC = RegistryFileCodec.create(NMLMobVariants.TURTLE_VARIANT_KEY, DIRECT_CODEC);
-        STREAM_CODEC = ByteBufCodecs.holder(NMLMobVariants.TURTLE_VARIANT_KEY, DIRECT_STREAM_CODEC);
-    }
+    public static final Codec<Holder<TurtleVariant>> CODEC =
+            RegistryFileCodec.create(NMLMobVariants.TURTLE_VARIANT_KEY, DIRECT_CODEC);
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<TurtleVariant>> STREAM_CODEC =
+            ByteBufCodecs.holder(NMLMobVariants.TURTLE_VARIANT_KEY, DIRECT_STREAM_CODEC);
 }
 
 

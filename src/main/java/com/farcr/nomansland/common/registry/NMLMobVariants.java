@@ -25,8 +25,8 @@ public class NMLMobVariants {
     public static final ResourceKey<Registry<SheepVariant>> SHEEP_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/sheep"));
     public static final ResourceKey<Registry<TurtleVariant>> TURTLE_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/turtle"));
 
-    public static final DeferredRegister<FrogVariant> FROG_mob_variants = DeferredRegister.create(BuiltInRegistries.FROG_VARIANT, NoMansLand.MODID);
-    public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_mob_variants.register("mud", () -> new FrogVariant(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/mud_frog.png")));
+    public static final DeferredRegister<FrogVariant> FROG_VARIANTS = DeferredRegister.create(BuiltInRegistries.FROG_VARIANT, NoMansLand.MODID);
+    public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_VARIANTS.register("mud", () -> new FrogVariant(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/mud_frog.png")));
 
     public static ResourceKey<? extends Registry<?>> getVariantOfType(EntityType<?> entityType) {
         return ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/" + entityType.toShortString()));
