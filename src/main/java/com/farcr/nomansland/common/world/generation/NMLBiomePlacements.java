@@ -82,11 +82,19 @@ public class NMLBiomePlacements {
                 0.1
         );
 
+        transitionalBiome(
+                Biomes.SWAMP,
+                Biomes.JUNGLE,
+                NMLBiomes.BAYOU
+        );
+
         // Dark Swamp
         transitionalBiome(
                 Biomes.SWAMP,
                 Biomes.DARK_FOREST,
-                NMLBiomes.DARK_SWAMP);
+                NMLBiomes.DARK_SWAMP
+        );
+
         BiomePlacement.replaceOverworld(
                 Biomes.DARK_FOREST,
                 NMLBiomes.DARK_SWAMP,
