@@ -1,0 +1,6 @@
+{
+  "texture": "nomansland:entity/mob_variants/chicken/chicken_black",
+  "weight": 1,
+  "baby_texture": "nomansland:entity/mob_variants/chicken/chicken_baby",
+  "biomes": "#nomansland:entity/spawns_black_chicken"
+}

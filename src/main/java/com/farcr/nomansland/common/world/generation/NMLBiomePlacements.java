@@ -12,6 +12,7 @@ import net.minecraft.world.level.biome.Climate;
 public class NMLBiomePlacements {
     public static void registerBiomes() {
 
+        // Caves
         BiomePlacement.addOverworld(NMLBiomes.CAVES,
                 Climate.parameters(
                         Climate.Parameter.span(-1, 1),
@@ -20,7 +21,7 @@ public class NMLBiomePlacements {
                         Climate.Parameter.span(-1, 1),
                         Climate.Parameter.span(0.15F, 1F),
                         Climate.Parameter.span(-1, 1),
-                        0.075F));
+                        0.08F));
 
         // Autumnal Forest
         BiomePlacement.replaceOverworld(
@@ -82,7 +83,15 @@ public class NMLBiomePlacements {
         );
 
         // Dark Swamp
-        transitionalBiome(Biomes.SWAMP, Biomes.DARK_FOREST, NMLBiomes.DARK_SWAMP);
+        transitionalBiome(
+                Biomes.SWAMP,
+                Biomes.DARK_FOREST,
+                NMLBiomes.DARK_SWAMP);
+        BiomePlacement.replaceOverworld(
+                Biomes.DARK_FOREST,
+                NMLBiomes.DARK_SWAMP,
+                0.1
+        );
 
         // Old Growth Forest
         BiomePlacement.replaceOverworld(
