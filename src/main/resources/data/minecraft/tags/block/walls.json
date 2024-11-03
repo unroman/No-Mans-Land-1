@@ -1,5 +1,7 @@
 {
   "values": [
+    "nomansland:coarse_brick_wall",
+    "nomansland:mossy_coarse_brick_wall",
     "nomansland:cobblestone_brick_wall",
     "nomansland:mossy_cobblestone_brick_wall"
   ]
