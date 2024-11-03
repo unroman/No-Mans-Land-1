@@ -36,6 +36,7 @@
     "mob_variants.TurtleMixin"
   ],
   "client": [
+    "ItemRendererMixin",
     "ModelBlockRendererMixin",
     "RenderLayerMixin",
     "mob_variants.CamelRendererMixin",

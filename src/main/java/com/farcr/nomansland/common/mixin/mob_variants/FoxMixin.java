@@ -77,7 +77,8 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
-
+        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
+        ((FoxDuck) entity).noMansLand$setVariant((Holder<FoxVariant>) NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
+        cir.setReturnValue(entity);
     }
 }

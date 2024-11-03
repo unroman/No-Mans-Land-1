@@ -1,8 +1,10 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.entity.mob_variant.FoxVariant;
 import com.farcr.nomansland.common.entity.mob_variant.GoatVariant;
 import com.farcr.nomansland.common.mixin.MobMixin;
+import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
@@ -15,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -73,6 +76,8 @@ public abstract class GoatMixin extends MobMixin implements VariantHolder<Holder
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Goat) (Object) this), otherParent));
+        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
+        ((VariantHolder<Holder<GoatVariant>>) entity).setVariant((Holder<GoatVariant>) NMLMobVariants.getOffspringWithVariant(((Goat) (Object) this), otherParent));
+        cir.setReturnValue(entity);
     }
 }

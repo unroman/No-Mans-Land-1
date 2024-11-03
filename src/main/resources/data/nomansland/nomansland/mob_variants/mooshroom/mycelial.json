@@ -1,0 +1,5 @@
+{
+  "texture": "nomansland:entity/mob_variants/mooshroom/mooshroom_mycelial",
+  "weight": 1,
+  "baby_texture": "nomansland:entity/mob_variants/mooshroom/mooshroom_mycelial_baby"
+}

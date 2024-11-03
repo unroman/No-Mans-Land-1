@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.entity.mob_variant.GoatVariant;
 import com.farcr.nomansland.common.entity.mob_variant.PigVariant;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
@@ -15,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -72,6 +74,7 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        cir.setReturnValue(NMLMobVariants.getOffspringWithVariant(((Pig) (Object) this), otherParent));
-    }
+        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
+        ((VariantHolder<Holder<PigVariant>>) entity).setVariant((Holder<PigVariant>) NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
+        cir.setReturnValue(entity);    }
 }

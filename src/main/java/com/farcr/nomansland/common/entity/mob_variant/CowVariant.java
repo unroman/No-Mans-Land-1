@@ -16,13 +16,12 @@ import net.minecraft.world.level.biome.Biome;
 
 import java.util.Optional;
 
-public record CowVariant(ResourceLocation texture, int weight, ResourceLocation babyTexture, Optional<Boolean> mooshroom,  Optional<HolderSet<Biome>> biomes) implements MobVariant {
+public record CowVariant(ResourceLocation texture, int weight, ResourceLocation babyTexture,  Optional<HolderSet<Biome>> biomes) implements MobVariant {
 
     public static final Codec<CowVariant> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
                     ResourceLocation.CODEC.fieldOf("texture").forGetter(CowVariant::texture),
                     Codec.INT.fieldOf("weight").forGetter(CowVariant::weight),
                     ResourceLocation.CODEC.fieldOf("baby_texture").forGetter(CowVariant::babyTexture),
-                    Codec.BOOL.optionalFieldOf("mooshroom").forGetter(CowVariant::mooshroom),
                     RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(CowVariant::biomes))
             .apply(record, CowVariant::new)
     );
@@ -32,7 +31,6 @@ public record CowVariant(ResourceLocation texture, int weight, ResourceLocation 
                     ResourceLocation.STREAM_CODEC, CowVariant::texture,
                     ByteBufCodecs.INT, CowVariant::weight,
                     ResourceLocation.STREAM_CODEC, CowVariant::babyTexture,
-                    ByteBufCodecs.optional(ByteBufCodecs.BOOL), CowVariant::mooshroom,
                     ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), CowVariant::biomes,
                     CowVariant::new
             );

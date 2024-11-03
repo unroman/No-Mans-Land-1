@@ -1,6 +1,0 @@
-{
-  "texture": "nomansland:entity/mob_variants/cow/cow_shroom_mycelial",
-  "weight": 1,
-  "baby_texture": "nomansland:entity/mob_variants/cow/cow_shroom_mycelial_baby",
-  "mooshroom": true
-}

@@ -32,7 +32,7 @@ public abstract class MushroomCowMushroomLayerMixin<T extends MushroomCow> exten
             Minecraft minecraft = Minecraft.getInstance();
             boolean flag = minecraft.shouldEntityAppearGlowing(livingEntity) && livingEntity.isInvisible();
             if (!livingEntity.isInvisible() || flag) {
-                BlockState blockstate = ((MooshroomDuck)livingEntity).noMansLand$getMushroomBlock(((MooshroomDuck)livingEntity).noMansLand$getVariant());
+                BlockState blockstate = ((MooshroomDuck)livingEntity).noMansLand$getMushroomBlock(((MooshroomDuck)livingEntity).noMansLand$getMooshroomVariant());
                 int i = LivingEntityRenderer.getOverlayCoords(livingEntity, 0);
                 BakedModel bakedmodel = this.blockRenderer.getBlockModel(blockstate);
                 poseStack.pushPose();

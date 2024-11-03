@@ -8,10 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.VariantHolder;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -23,6 +20,7 @@ public class NMLMobVariants {
 
     public static final ResourceKey<Registry<CodVariant>> COD_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/cod"));
     public static final ResourceKey<Registry<CowVariant>> COW_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/cow"));
+    public static final ResourceKey<Registry<MooshroomVariant>> MOOSHROOM_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/mooshroom"));
     public static final ResourceKey<Registry<CamelVariant>> CAMEL_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/camel"));
     public static final ResourceKey<Registry<DolphinVariant>> DOLPHIN_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/dolphin"));
     public static final ResourceKey<Registry<FoxVariant>> FOX_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/fox"));
@@ -52,14 +50,27 @@ public class NMLMobVariants {
         List<Holder.Reference<MobVariant>> defaultVariants = registry.holders()
                 .filter((v) -> v.value().biomes().isEmpty() || v.is(ResourceKey.create(key, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"))))
                 .toList();
-        return possibleVariants.isEmpty() ? defaultVariants.get(random.nextInt(defaultVariants.size())) : possibleVariants.get(random.nextInt(possibleVariants.size()));
+        Holder<? extends MobVariant> selectedVariant = defaultVariants.get(random.nextInt(defaultVariants.size()));
+        if (!possibleVariants.isEmpty()) {
+            double completeWeight = 0.0;
+            for (Holder.Reference<MobVariant> variant : possibleVariants)
+                completeWeight += variant.value().weight();
+            double r = Math.random() * completeWeight;
+            double countWeight = 0.0;
+            for (Holder.Reference<MobVariant> variant : possibleVariants) {
+                countWeight += variant.value().weight();
+                if (countWeight >= r) {
+                    selectedVariant = variant;
+                    break;
+                }
+            }
+        }
+        return selectedVariant;
     }
 
-    public static AgeableMob getOffspringWithVariant(AgeableMob parent1, AgeableMob parent2) {
-        AgeableMob entity = (AgeableMob) parent1.getType().create(parent1.level());
-        if (entity != null) {
-            ((VariantHolder<Holder<? extends MobVariant>>) entity).setVariant(parent1.getRandom().nextBoolean() ? ((VariantHolder<Holder<? extends MobVariant>>) parent1).getVariant() : ((VariantHolder<Holder<? extends MobVariant>>) parent2).getVariant());
-        }
-        return entity;
+    public static Holder<? extends MobVariant> getOffspringWithVariant(AgeableMob parent1, AgeableMob parent2) {
+        return parent1.getRandom().nextBoolean() ?
+                        ((VariantHolder<Holder<? extends MobVariant>>) parent1).getVariant() :
+                        ((VariantHolder<Holder<? extends MobVariant>>) parent2).getVariant();
     }
 }
