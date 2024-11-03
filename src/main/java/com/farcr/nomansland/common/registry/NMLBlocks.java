@@ -227,6 +227,8 @@ public class NMLBlocks {
             }).pushReaction(PushReaction.DESTROY)));
 //    public static final DeferredBlock<Block> SILT = registerBlock("silt",
 //            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
+//    public static final DeferredBlock<Block> SILT_PATH = registerBlock("silt_path",
+//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.SILT)));
     //Paths
     public static final DeferredBlock<Block> DIRT_PATH = registerBlock("dirt_path",
             () -> new PathBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT), Blocks.DIRT, false));
