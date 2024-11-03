@@ -5,20 +5,16 @@
     "P#"
   ],
   "key": {
-    "#": [
-      {
-        "item": "minecraft:terracotta"
-      },
+    "#": 
       {
         "item": "minecraft:coarse_dirt"
-      }
-    ],
+      },
     "P": {
       "item": "minecraft:brick"
     }
   },
   "result": {
     "id": "nomansland:coarse_bricks",
-    "count": 3
+    "count": 2
   }
 }
