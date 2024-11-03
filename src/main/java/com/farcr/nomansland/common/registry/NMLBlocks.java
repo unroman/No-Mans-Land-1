@@ -225,8 +225,8 @@ public class NMLBlocks {
             () -> new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.ofFullCopy(NMLBlocks.QUARTZITE_CLUSTER.get()).sound(SoundType.NETHER_GOLD_ORE).forceSolidOn().lightLevel((p_152629_) -> {
                 return 4;
             }).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> SILT = registerBlock("silt",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
+//    public static final DeferredBlock<Block> SILT = registerBlock("silt",
+//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
     //Paths
     public static final DeferredBlock<Block> DIRT_PATH = registerBlock("dirt_path",
             () -> new PathBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT), Blocks.DIRT, false));
