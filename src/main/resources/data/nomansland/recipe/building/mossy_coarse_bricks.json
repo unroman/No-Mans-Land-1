@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "coarse_bricks",
+  "key": {
+    "#": {
+      "item": "minecraft:mossy_coarse"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "nomansland:mossy_coarse_bricks"
+  },
+  "show_notification": true
+}

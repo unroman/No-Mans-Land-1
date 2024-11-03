@@ -165,6 +165,15 @@ public class NMLItems {
             insertAfter(event, Items.SMOOTH_STONE_SLAB, NMLBlocks.MUNDANE_TILES);
             insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILES);
 
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_WALL);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_SLAB);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_STAIRS);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICKS);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_WALL);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_SLAB);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_STAIRS);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICKS);
+
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BUTTON);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_PRESSURE_PLATE);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_TRAPDOOR);

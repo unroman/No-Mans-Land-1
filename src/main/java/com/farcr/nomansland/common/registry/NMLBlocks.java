@@ -286,6 +286,14 @@ public class NMLBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COARSE_BRICKS.get())));
     public static final DeferredBlock<Block> COARSE_BRICK_WALL = registerBlock("coarse_brick_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COARSE_BRICKS.get())));
+    public static final DeferredBlock<Block> MOSSY_COARSE_BRICKS = registerBlock("mossy_coarse_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COARSE_BRICKS.get())));
+    public static final DeferredBlock<Block> MOSSY_COARSE_BRICK_STAIRS = registerBlock("mossy_coarse_brick_stairs",
+            () -> new StairBlock(COARSE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COARSE_BRICKS.get())));
+    public static final DeferredBlock<Block> MOSSY_COARSE_BRICK_SLAB = registerBlock("mossy_coarse_brick_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COARSE_BRICKS.get())));
+    public static final DeferredBlock<Block> MOSSY_COARSE_BRICK_WALL = registerBlock("mossy_coarse_brick_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.COARSE_BRICKS.get())));
     //Trimmed Planks and Bookshelves
     public static final DeferredBlock<Block> TRIMMED_OAK_PLANKS = registerBlock("trimmed_oak_planks",
             () -> new TrimmedPlankBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
