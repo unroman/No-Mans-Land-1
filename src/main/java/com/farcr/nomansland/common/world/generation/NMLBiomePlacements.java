@@ -21,7 +21,7 @@ public class NMLBiomePlacements {
                         Climate.Parameter.span(-1, 1),
                         Climate.Parameter.span(0.15F, 1F),
                         Climate.Parameter.span(-1, 1),
-                        0.08F));
+                        0.125F));
 
         // Autumnal Forest
         BiomePlacement.replaceOverworld(

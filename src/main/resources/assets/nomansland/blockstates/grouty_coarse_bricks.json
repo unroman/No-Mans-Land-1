@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nomansland:block/building/coarse_bricks/grouty_coarse_bricks_0"
+      },
+      {
+        "model": "nomansland:block/building/coarse_bricks/grouty_coarse_bricks_1"
+      }
+    ]
+  }
+}
