@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nomansland:block/underground/silt"
+      },
+      {
+        "model": "nomansland:block/underground/silt",
+        "y": 90
+      },
+      {
+        "model": "nomansland:block/underground/silt",
+        "y": 180
+      },
+      {
+        "model": "nomansland:block/underground/silt_alt"
+      },
+      {
+        "model": "nomansland:block/underground/silt_alt",
+        "y": 90
+      },
+      {
+        "model": "nomansland:block/underground/silt_alt",
+        "y": 180
+      }
+    ]
+  }
+}
