@@ -225,19 +225,19 @@ public class NMLBlocks {
             () -> new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.ofFullCopy(NMLBlocks.QUARTZITE_CLUSTER.get()).sound(SoundType.NETHER_GOLD_ORE).forceSolidOn().lightLevel((p_152629_) -> {
                 return 4;
             }).pushReaction(PushReaction.DESTROY)));
-//    public static final DeferredBlock<Block> SILT = registerBlock("silt",
-//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
-//    public static final DeferredBlock<Block> SILT_PATH = registerBlock("silt_path",
-//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.SILT)));
+    public static final DeferredBlock<Block> SILT = registerBlock("silt",
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GRAY).sound(SoundType.ROOTED_DIRT).strength(0.6F)));
+    public static final DeferredBlock<Block> SILT_PATH = registerBlock("silt_path",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(NMLBlocks.SILT.get())));
     //Paths
     public static final DeferredBlock<Block> DIRT_PATH = registerBlock("dirt_path",
             () -> new PathBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT), Blocks.DIRT, false));
     public static final DeferredBlock<Block> MYCELIUM_PATH = registerBlock("mycelium_path",
-            () -> new PathBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(0.6F).sound(SoundType.GRASS), Blocks.DIRT, false));
+            () -> new PathBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(0.5F).sound(SoundType.GRASS), Blocks.DIRT, false));
     public static final DeferredBlock<Block> PODZOL_PATH = registerBlock("podzol_path",
             () -> new PathBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL), Blocks.PODZOL, false));
     public static final DeferredBlock<Block> SNOWY_GRASS_PATH = registerBlock("snowy_grass_path",
-            () -> new PathBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.6F).sound(SoundType.GRASS), Blocks.DIRT, false));
+            () -> new PathBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.5F).sound(SoundType.GRASS), Blocks.DIRT, false));
     public static final DeferredBlock<Block> SNOW_PATH = registerBlock("snow_path",
             () -> new PathBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW_BLOCK), Blocks.SNOW_BLOCK, false));
     public static final DeferredBlock<Block> GRAVEL_PATH = registerBlock("gravel_path",

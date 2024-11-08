@@ -51,7 +51,8 @@ public class PathMakingEvents {
                 Blocks.COARSE_DIRT,
                 Blocks.ROOTED_DIRT,
                 Blocks.SNOW_BLOCK,
-                Blocks.GRASS_BLOCK
+                Blocks.GRASS_BLOCK,
+                NMLBlocks.SILT.get()
         );
         //Paths
         if ((pathableBlocks.contains(state.getBlock()) || (state.is(Blocks.GRASS_BLOCK) && state.getValue(SNOWY))) && event.getFace() != Direction.DOWN && stack.is(ItemTags.SHOVELS) && !player.isSpectator() && (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).canBeReplaced())) {
@@ -77,7 +78,8 @@ public class PathMakingEvents {
                         Map.entry(Blocks.DIRT, NMLBlocks.DIRT_PATH),
                         Map.entry(Blocks.COARSE_DIRT, NMLBlocks.DIRT_PATH),
                         Map.entry(Blocks.ROOTED_DIRT, NMLBlocks.DIRT_PATH),
-                        Map.entry(Blocks.SNOW_BLOCK, NMLBlocks.SNOW_PATH)
+                        Map.entry(Blocks.SNOW_BLOCK, NMLBlocks.SNOW_PATH),
+                        Map.entry(NMLBlocks.SILT, NMLBlocks.SILT_PATH)
                 ).get(state.getBlock()).value().defaultBlockState();
 
                 if ((state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.ROOTED_DIRT) || state.is(Blocks.GRASS_BLOCK)) && level.getBlockState(pos.above()).is(Blocks.SNOW)) level.setBlockAndUpdate(pos, NMLBlocks.SNOWY_GRASS_PATH.get().defaultBlockState());
