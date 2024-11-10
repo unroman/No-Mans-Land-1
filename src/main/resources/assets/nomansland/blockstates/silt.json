@@ -3,6 +3,9 @@
     "": [
       {
         "model": "nomansland:block/underground/silt"
+      },
+      {
+        "model": "nomansland:block/underground/silt_alt"
       }
     ]
   }
