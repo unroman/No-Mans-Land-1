@@ -79,7 +79,7 @@ public class PathMakingEvents {
                         Map.entry(Blocks.COARSE_DIRT, NMLBlocks.DIRT_PATH),
                         Map.entry(Blocks.ROOTED_DIRT, NMLBlocks.DIRT_PATH),
                         Map.entry(Blocks.SNOW_BLOCK, NMLBlocks.SNOW_PATH),
-                        Map.entry(NMLBlocks.SILT, NMLBlocks.SILT_PATH)
+                        Map.entry(NMLBlocks.SILT.get(), NMLBlocks.SILT_PATH)
                 ).get(state.getBlock()).value().defaultBlockState();
 
                 if ((state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.ROOTED_DIRT) || state.is(Blocks.GRASS_BLOCK)) && level.getBlockState(pos.above()).is(Blocks.SNOW)) level.setBlockAndUpdate(pos, NMLBlocks.SNOWY_GRASS_PATH.get().defaultBlockState());

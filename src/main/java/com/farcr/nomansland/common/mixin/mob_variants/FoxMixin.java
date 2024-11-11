@@ -15,10 +15,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -47,7 +45,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        this.noMansLand$getVariant().unwrapKey().ifPresent((variant) -> {
+        this.noMansLand$getFoxVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
@@ -57,28 +55,31 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.FOX_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.FOX_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setVariant);
+                .ifPresent(this::noMansLand$setFoxVariant);
     }
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        this.noMansLand$setVariant((Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this)));
+        this.noMansLand$setFoxVariant((Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this)));
     }
 
     @Override
-    public Holder<FoxVariant> noMansLand$getVariant() {
+    public Holder<FoxVariant> noMansLand$getFoxVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setVariant(Holder<FoxVariant> foxVariantHolder) {
+    public void noMansLand$setFoxVariant(Holder<FoxVariant> foxVariantHolder) {
         this.entityData.set(DATA_VARIANT_ID, foxVariantHolder);
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((FoxDuck) entity).noMansLand$setVariant((Holder<FoxVariant>) NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
+        ((FoxDuck) entity).noMansLand$setFoxVariant(
+                random.nextBoolean() ?
+                ((FoxDuck) this).noMansLand$getFoxVariant() :
+                ((FoxDuck) otherParent).noMansLand$getFoxVariant());
         cir.setReturnValue(entity);
     }
 }

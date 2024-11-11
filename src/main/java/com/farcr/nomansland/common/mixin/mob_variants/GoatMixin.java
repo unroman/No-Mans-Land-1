@@ -1,10 +1,8 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.mob_variant.FoxVariant;
 import com.farcr.nomansland.common.entity.mob_variant.GoatVariant;
 import com.farcr.nomansland.common.mixin.MobMixin;
-import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
@@ -15,9 +13,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.VariantHolder;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;

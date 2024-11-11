@@ -9,7 +9,6 @@ import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -30,7 +29,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mixin(Cow.class)
@@ -108,7 +106,10 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
         if (entity.getType() == EntityType.COW)
             ((VariantHolder<Holder<CowVariant>>) entity).setVariant((Holder<CowVariant>) NMLMobVariants.getOffspringWithVariant(((Cow) (Object) this), otherParent));
-        else ((MooshroomDuck) entity).noMansLand$setMooshroomVariant((Holder<MooshroomVariant>) NMLMobVariants.getOffspringWithVariant(((MushroomCow) (Object) this), otherParent));
+        else ((MooshroomDuck) entity).noMansLand$setMooshroomVariant(
+                random.nextBoolean() ?
+                ((MooshroomDuck) this).noMansLand$getMooshroomVariant() :
+                ((MooshroomDuck) otherParent).noMansLand$getMooshroomVariant());
         cir.setReturnValue(entity);
     }
 
