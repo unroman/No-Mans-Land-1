@@ -6,14 +6,14 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:mud"
+      "tag": "minecraft:sand"
     },
     "A": {
-      "item": "minecraft:gravel"
+      "item": "minecraft:mud"
     }
   },
   "result": {
-    "id": "minecraft:silt",
+    "id": "nomansland:silt",
     "count": 4
   }
 }
