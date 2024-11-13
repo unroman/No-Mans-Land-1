@@ -6,7 +6,7 @@
   ],
   "key": {
     "#": {
-      "tag": "minecraft:sand"
+      "item": "minecraft:gravel"
     },
     "A": {
       "item": "minecraft:mud"
