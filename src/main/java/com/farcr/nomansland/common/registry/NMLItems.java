@@ -311,6 +311,7 @@ public class NMLItems {
             insertAfter(event, Items.CHERRY_SAPLING, NMLBlocks.PALE_CHERRY_SAPLING);
             NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(event::accept);
             insertBefore(event, Items.GRAVEL, NMLBlocks.SILT);
+            insertAfter(event, NMLBlocks.SILT, NMLBlocks.SILT_PATH);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);
             insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.SHELF_MUSHROOM_BLOCK);

@@ -38,8 +38,9 @@ public class BlockTags extends BlockTagsProvider {
                 NMLBlocks.TRIMMED_WILLOW_PLANKS.get()
         );
 
-        tag(NMLTags.BONEMEAL_SPREADS).addTag(net.minecraft.tags.BlockTags.SMALL_FLOWERS);
-
+        tag(NMLTags.BONEMEAL_SPREADS).addTag(
+                net.minecraft.tags.BlockTags.SMALL_FLOWERS
+        );
         tag(NMLTags.BONEMEAL_SPREADS).add(
                 Blocks.LILY_PAD,
                 NMLBlocks.CLOVER_PATCH.get(),
