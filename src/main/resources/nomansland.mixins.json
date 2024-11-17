@@ -29,6 +29,7 @@
     "mob_variants.FoxMixin",
     "mob_variants.FrogMixin",
     "mob_variants.GoatMixin",
+    "mob_variants.LlamaMixin",
     "mob_variants.MushroomCowMixin",
     "mob_variants.PigMixin",
     "mob_variants.SalmonMixin",

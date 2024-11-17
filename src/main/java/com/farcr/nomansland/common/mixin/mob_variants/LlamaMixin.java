@@ -1,8 +1,10 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.mob_variant.CamelVariant;
+import com.farcr.nomansland.common.entity.mob_variant.LlamaGroupData;
+import com.farcr.nomansland.common.entity.mob_variant.LlamaVariant;
 import com.farcr.nomansland.common.mixin.MobMixin;
+import com.farcr.nomansland.common.mixinduck.LlamaDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import net.minecraft.core.Holder;
@@ -16,8 +18,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.VariantHolder;
-import net.minecraft.world.entity.animal.camel.Camel;
+import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -28,23 +29,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
-@Mixin(Camel.class)
-public abstract class CamelMixin extends MobMixin implements VariantHolder<Holder<CamelVariant>> {
+@Mixin(Llama.class)
+public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
     @Unique
-    private static final EntityDataAccessor<Holder<CamelVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Camel.class, NMLDataSerializers.CAMEL_VARIANT.get());
+    private static final EntityDataAccessor<Holder<LlamaVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Llama.class, NMLDataSerializers.LLAMA_VARIANT.get());
     @Unique
     private static final String VARIANT_KEY = "variant";
     @Unique
-    private static final ResourceKey<CamelVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.CAMEL_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
+    private static final ResourceKey<LlamaVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.LLAMA_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_VARIANT_ID, this.registryAccess().registryOrThrow(NMLMobVariants.CAMEL_VARIANT_KEY).getHolderOrThrow(DEFAULT_VARIANT));
+        builder.define(DATA_VARIANT_ID, this.registryAccess().registryOrThrow(NMLMobVariants.LLAMA_VARIANT_KEY).getHolderOrThrow(DEFAULT_VARIANT));
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        this.getVariant().unwrapKey().ifPresent((variant) -> {
+        this.noMansLand$getLlamaVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
@@ -52,30 +53,29 @@ public abstract class CamelMixin extends MobMixin implements VariantHolder<Holde
     @Override
     protected void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
-                .map((string) -> ResourceKey.create(NMLMobVariants.CAMEL_VARIANT_KEY, string))
-                .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.CAMEL_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::setVariant);
+                .map((string) -> ResourceKey.create(NMLMobVariants.LLAMA_VARIANT_KEY, string))
+                .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.LLAMA_VARIANT_KEY).getHolder(variant))
+                .ifPresent(this::noMansLand$setLlamaVariant);
     }
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        this.setVariant((Holder<CamelVariant>) NMLMobVariants.getVariantForSpawn(((Camel) (Object) this)));
-    }
+        Holder<LlamaVariant> llama$variant;
+        if (spawnGroupData instanceof LlamaGroupData llamaGroupData) {
+            llama$variant = llamaGroupData.variant;
+        } else {
+            llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this));
+            spawnGroupData = new LlamaGroupData(llama$variant);
 
-    @Override
-    public Holder<CamelVariant> getVariant() {
-        return this.entityData.get(DATA_VARIANT_ID);
-    }
+        }
 
-    @Override
-    public void setVariant(Holder<CamelVariant> variantHolder) {
-        this.entityData.set(DATA_VARIANT_ID, variantHolder);
+        this.noMansLand$setLlamaVariant(llama$variant);
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<CamelVariant>>) entity).setVariant((Holder<CamelVariant>) NMLMobVariants.getOffspringWithVariant(((Camel) (Object) this), otherParent));
+        ((LlamaDuck) entity).noMansLand$setLlamaVariant((Holder<LlamaVariant>) NMLMobVariants.getOffspringWithVariant(((Llama) (Object) this), otherParent));
         cir.setReturnValue(entity);
     }
 }

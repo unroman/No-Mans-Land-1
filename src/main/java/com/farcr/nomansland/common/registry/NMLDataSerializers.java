@@ -14,6 +14,7 @@ public class NMLDataSerializers {
 
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CodVariant>>> COD_VARIANT = ENTITY_DATA_SERIALIZERS.register("cod_variant", () -> EntityDataSerializer.forValueType(CodVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CamelVariant>>> CAMEL_VARIANT = ENTITY_DATA_SERIALIZERS.register("camel_variant", () -> EntityDataSerializer.forValueType(CamelVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<LlamaVariant>>> LLAMA_VARIANT = ENTITY_DATA_SERIALIZERS.register("llama_variant", () -> EntityDataSerializer.forValueType(LlamaVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CowVariant>>> COW_VARIANT = ENTITY_DATA_SERIALIZERS.register("cow_variant", () -> EntityDataSerializer.forValueType(CowVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<MooshroomVariant>>> MOOSHROOM_VARIANT = ENTITY_DATA_SERIALIZERS.register("mooshroom_variant", () -> EntityDataSerializer.forValueType(MooshroomVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DolphinVariant>>> DOLPHIN_VARIANT = ENTITY_DATA_SERIALIZERS.register("dolphin_variant", () -> EntityDataSerializer.forValueType(DolphinVariant.STREAM_CODEC));
