@@ -16,13 +16,14 @@ import net.minecraft.world.level.biome.Biome;
 
 import java.util.Optional;
 
-public record SheepVariant(ResourceLocation texture, int weight, ResourceLocation babyTexture, ResourceLocation shearedTexture, Optional<HolderSet<Biome>> biomes) implements MobVariant {
+public record SheepVariant(ResourceLocation texture, int weight, ResourceLocation babyTexture, ResourceLocation furTexture, ResourceLocation babyFurTexture, Optional<HolderSet<Biome>> biomes) implements MobVariant {
 
     public static final Codec<SheepVariant> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
                     ResourceLocation.CODEC.fieldOf("texture").forGetter(SheepVariant::texture),
                     Codec.INT.fieldOf("weight").forGetter(SheepVariant::weight),
                     ResourceLocation.CODEC.fieldOf("baby_texture").forGetter(SheepVariant::babyTexture),
-                    ResourceLocation.CODEC.fieldOf("sheared_texture").forGetter(SheepVariant::shearedTexture),
+                    ResourceLocation.CODEC.fieldOf("fur_texture").forGetter(SheepVariant::furTexture),
+                    ResourceLocation.CODEC.fieldOf("baby_fur_texture").forGetter(SheepVariant::babyFurTexture),
                     RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(SheepVariant::biomes))
             .apply(record, SheepVariant::new)
     );
@@ -32,7 +33,8 @@ public record SheepVariant(ResourceLocation texture, int weight, ResourceLocatio
                     ResourceLocation.STREAM_CODEC, SheepVariant::texture,
                     ByteBufCodecs.INT, SheepVariant::weight,
                     ResourceLocation.STREAM_CODEC, SheepVariant::babyTexture,
-                    ResourceLocation.STREAM_CODEC, SheepVariant::shearedTexture,
+                    ResourceLocation.STREAM_CODEC, SheepVariant::furTexture,
+                    ResourceLocation.STREAM_CODEC, SheepVariant::babyFurTexture,
                     ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), SheepVariant::biomes,
                     SheepVariant::new
             );

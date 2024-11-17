@@ -17,7 +17,6 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.VariantHolder;
-import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -76,7 +75,7 @@ public abstract class SheepMixin extends MobMixin implements VariantHolder<Holde
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<SheepVariant>>) entity).setVariant((Holder<SheepVariant>) NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
+        ((VariantHolder<Holder<SheepVariant>>) entity).setVariant((Holder<SheepVariant>) NMLMobVariants.getOffspringWithVariant(((Sheep) (Object) this), otherParent));
         cir.setReturnValue(entity);
     }
 }
