@@ -17,7 +17,6 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.VariantHolder;
-import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -77,7 +76,7 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<TurtleVariant>>) entity).setVariant((Holder<TurtleVariant>) NMLMobVariants.getOffspringWithVariant(((Fox) (Object) this), otherParent));
+        ((VariantHolder<Holder<TurtleVariant>>) entity).setVariant((Holder<TurtleVariant>) NMLMobVariants.getOffspringWithVariant(((Turtle) (Object) this), otherParent));
         cir.setReturnValue(entity);
     }
 }

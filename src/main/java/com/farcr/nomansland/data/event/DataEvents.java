@@ -60,6 +60,7 @@ public class DataEvents {
         event.dataPackRegistry(NMLMobVariants.FOX_VARIANT_KEY, FoxVariant.DIRECT_CODEC, FoxVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.SALMON_VARIANT_KEY, SalmonVariant.DIRECT_CODEC, SalmonVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.LLAMA_VARIANT_KEY, LlamaVariant.DIRECT_CODEC, LlamaVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.SHEEP_VARIANT_KEY, SheepVariant.DIRECT_CODEC, SheepVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.TURTLE_VARIANT_KEY, TurtleVariant.DIRECT_CODEC, TurtleVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
