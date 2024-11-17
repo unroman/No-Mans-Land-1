@@ -2,5 +2,6 @@
   "texture": "nomansland:entity/mob_variants/sheep/sheep",
   "weight": 1,
   "baby_texture": "nomansland:entity/mob_variants/sheep/sheep_baby",
-  "sheared_texture": "nomansland:entity/mob_variants/sheep/sheep_sheared"
+  "fur_texture": "nomansland:entity/mob_variants/sheep/sheep_fur",
+  "baby_fur_texture": "nomansland:entity/mob_variants/sheep/sheep_baby_fur"
 }

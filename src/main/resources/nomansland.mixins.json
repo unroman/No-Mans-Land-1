@@ -29,6 +29,7 @@
     "mob_variants.FoxMixin",
     "mob_variants.FrogMixin",
     "mob_variants.GoatMixin",
+    "mob_variants.LlamaMixin",
     "mob_variants.MushroomCowMixin",
     "mob_variants.PigMixin",
     "mob_variants.SalmonMixin",
@@ -48,6 +49,7 @@
     "mob_variants.DolphinRendererMixin",
     "mob_variants.FoxRendererMixin",
     "mob_variants.GoatRendererMixin",
+    "mob_variants.LlamaRendererMixin",
     "mob_variants.MushroomCowMushroomLayerMixin",
     "mob_variants.MushroomCowRendererMixin",
     "mob_variants.PigModelMixin",
@@ -55,6 +57,9 @@
     "mob_variants.QuadrupedModelMixin",
     "mob_variants.SaddleLayerMixin",
     "mob_variants.SalmonRendererMixin",
+    "mob_variants.SheepFurLayerMixin",
+    "mob_variants.SheepModelMixin",
+    "mob_variants.SheepRendererMixin",
     "mob_variants.TurtleRendererMixin"
   ],
   "injectors": {

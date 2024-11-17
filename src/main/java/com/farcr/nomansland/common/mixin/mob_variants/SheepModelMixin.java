@@ -11,15 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SheepModel.class)
-public class SheepModelMixin extends QuadrupedModelMixin<Sheep> {
+public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
+    private float headXRot;
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
     private static void createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLSheepModel.createBodyLayer());
     }
 
-    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Sheep;FFFFF)V", at = @At("HEAD"), cancellable = true)
-    protected void setupAnim(Sheep entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        NMLSheepModel.setupAnim(entity, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
-        ci.cancel();
+    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Sheep;FFFFF)V", at = @At("TAIL"))
+    private void setupAnim(Sheep entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+        NMLSheepModel.setupAnim(entity, root, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
     }
 }
