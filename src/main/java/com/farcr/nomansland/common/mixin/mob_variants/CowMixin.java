@@ -40,7 +40,7 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     @Unique
     private static final String VARIANT_KEY = "variant";
     @Unique
-    private static final String MOOSHROOM_VARIANT_KEY = "variant";
+    private static final String MOOSHROOM_VARIANT_KEY = "mooshroom_variant";
     @Unique
     private static final ResourceKey<CowVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.COW_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
     @Unique

@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.client.model.NMLSheepModel;
+import com.farcr.nomansland.common.mixin.QuadrupedModelMixin;
 import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.entity.animal.Sheep;
@@ -19,7 +20,7 @@ public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
     }
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Sheep;FFFFF)V", at = @At("TAIL"))
-    private void setupAnim(Sheep entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        NMLSheepModel.setupAnim(entity, root, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+        NMLSheepModel.setupAnim(entity, root, ageInTicks);
     }
 }

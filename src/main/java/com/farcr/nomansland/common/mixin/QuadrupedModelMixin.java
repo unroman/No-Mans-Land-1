@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.mixin.mob_variants;
+package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.client.model.NMLCowModel;
 import com.farcr.nomansland.client.model.NMLPigModel;

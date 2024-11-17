@@ -66,5 +66,8 @@ public class DataEvents {
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CAMEL_VARIANT_KEY, CamelVariant.DIRECT_CODEC, CamelVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.MOOSHROOM_VARIANT_KEY, MooshroomVariant.DIRECT_CODEC, MooshroomVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.BILLHOOK_BASS_VARIANT_KEY, BillhookBassVariant.DIRECT_CODEC, BillhookBassVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.SQUID_VARIANT_KEY, SquidVariant.DIRECT_CODEC, SquidVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.GLOW_SQUID_VARIANT_KEY, GlowSquidVariant.DIRECT_CODEC, GlowSquidVariant.DIRECT_CODEC);
     }
 }

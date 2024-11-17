@@ -2,9 +2,11 @@ package com.farcr.nomansland.client.event;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.client.NMLModelLayers;
+import com.farcr.nomansland.client.model.BassModel;
 import com.farcr.nomansland.client.model.BuriedModel;
 import com.farcr.nomansland.client.model.MooseModel;
 import com.farcr.nomansland.client.particle.*;
+import com.farcr.nomansland.client.renderer.BassRenderer;
 import com.farcr.nomansland.client.renderer.ExplosiveRenderer;
 import com.farcr.nomansland.client.renderer.FirebombRenderer;
 import com.farcr.nomansland.client.renderer.NMLBoatRenderer;
@@ -51,6 +53,7 @@ public class ClientEvents {
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
+        event.registerEntityRenderer(NMLEntities.BASS.get(), BassRenderer::new);
     }
 
     @SubscribeEvent
@@ -70,6 +73,8 @@ public class ClientEvents {
 
         event.registerLayerDefinition(NMLModelLayers.MOOSE_LAYER, MooseModel::createBodyLayer);
         event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
+
+        event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BassModel::createBodyLayer);
     }
 
     @SubscribeEvent

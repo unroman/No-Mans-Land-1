@@ -34,11 +34,14 @@
     "mob_variants.PigMixin",
     "mob_variants.SalmonMixin",
     "mob_variants.SheepMixin",
+    "mob_variants.SquidMixin",
     "mob_variants.TurtleMixin"
   ],
   "client": [
+    "HierarchicalModelMixin",
     "ItemRendererMixin",
     "ModelBlockRendererMixin",
+    "QuadrupedModelMixin",
     "RenderLayerMixin",
     "mob_variants.CamelRendererMixin",
     "mob_variants.ChickenModelMixin",
@@ -54,12 +57,13 @@
     "mob_variants.MushroomCowRendererMixin",
     "mob_variants.PigModelMixin",
     "mob_variants.PigRendererMixin",
-    "mob_variants.QuadrupedModelMixin",
     "mob_variants.SaddleLayerMixin",
     "mob_variants.SalmonRendererMixin",
     "mob_variants.SheepFurLayerMixin",
     "mob_variants.SheepModelMixin",
     "mob_variants.SheepRendererMixin",
+    "mob_variants.SquidModelMixin",
+    "mob_variants.SquidRendererMixin",
     "mob_variants.TurtleRendererMixin"
   ],
   "injectors": {

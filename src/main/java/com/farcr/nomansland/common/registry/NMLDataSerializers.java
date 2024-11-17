@@ -12,6 +12,9 @@ public class NMLDataSerializers {
     public static final DeferredRegister<EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS =
             DeferredRegister.create(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, NoMansLand.MODID);
 
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<GlowSquidVariant>>> GLOW_SQUID_VARIANT = ENTITY_DATA_SERIALIZERS.register("glow_squid_variant", () -> EntityDataSerializer.forValueType(GlowSquidVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<SquidVariant>>> SQUID_VARIANT = ENTITY_DATA_SERIALIZERS.register("squid_variant", () -> EntityDataSerializer.forValueType(SquidVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<BillhookBassVariant>>> BASS_VARIANT = ENTITY_DATA_SERIALIZERS.register("bass_variant", () -> EntityDataSerializer.forValueType(BillhookBassVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CodVariant>>> COD_VARIANT = ENTITY_DATA_SERIALIZERS.register("cod_variant", () -> EntityDataSerializer.forValueType(CodVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CamelVariant>>> CAMEL_VARIANT = ENTITY_DATA_SERIALIZERS.register("camel_variant", () -> EntityDataSerializer.forValueType(CamelVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<LlamaVariant>>> LLAMA_VARIANT = ENTITY_DATA_SERIALIZERS.register("llama_variant", () -> EntityDataSerializer.forValueType(LlamaVariant.STREAM_CODEC));

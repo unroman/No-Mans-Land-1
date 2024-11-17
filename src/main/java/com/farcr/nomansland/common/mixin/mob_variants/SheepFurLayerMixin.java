@@ -1,6 +1,5 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.SheepVariant;
 import com.farcr.nomansland.common.mixin.RenderLayerMixin;
 import com.mojang.blaze3d.vertex.PoseStack;

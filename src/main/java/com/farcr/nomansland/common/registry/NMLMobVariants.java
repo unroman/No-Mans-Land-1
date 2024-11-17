@@ -21,6 +21,9 @@ import java.util.List;
 
 public class NMLMobVariants {
 
+    public static final ResourceKey<Registry<GlowSquidVariant>> GLOW_SQUID_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/glow_squid"));
+    public static final ResourceKey<Registry<SquidVariant>> SQUID_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/squid"));
+    public static final ResourceKey<Registry<BillhookBassVariant>> BILLHOOK_BASS_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/billhook_bass"));
     public static final ResourceKey<Registry<CodVariant>> COD_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/cod"));
     public static final ResourceKey<Registry<CowVariant>> COW_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/cow"));
     public static final ResourceKey<Registry<LlamaVariant>> LLAMA_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/llama"));

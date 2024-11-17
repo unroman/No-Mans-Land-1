@@ -68,7 +68,7 @@ public class NMLSheepModel {
         return LayerDefinition.create(meshdefinition, 128, 64);
     }
 
-    public static void setupAnim(Sheep sheep, ModelPart root, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public static void setupAnim(Sheep sheep, ModelPart root, float ageInTicks) {
         ModelPart head = root.getChild("head");
         ModelPart body = root.getChild("body");
         ModelPart bodyAdult = body.getChild("body_adult");
@@ -90,8 +90,8 @@ public class NMLSheepModel {
         boolean baby = sheep.isBaby();
         boolean sheared = sheep.isSheared();
 
-        head.xRot = sheep.getHeadEatAngleScale(ageInTicks) + 0.425F;
-        head.y = 10.0F + sheep.getHeadEatPositionScale(ageInTicks) * 7.0F;
+        head.xRot = sheep.getHeadEatAngleScale(ageInTicks) + 0.69F;
+        head.y = 8.0F + sheep.getHeadEatPositionScale(ageInTicks) * 7.0F;
 
         headBaby.xScale = 2;
         headBaby.yScale = 2;

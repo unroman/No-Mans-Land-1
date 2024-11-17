@@ -3,7 +3,9 @@ package com.farcr.nomansland.common.event;
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
+import com.farcr.nomansland.common.entity.BillhookBass;
 import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.NMLEntities;
 import com.farcr.nomansland.common.registry.NMLFeatures;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
@@ -224,10 +226,12 @@ public class MiscellaneousEvents {
             //    TODO: BURIED AND MOOSE
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
 //            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
+            event.put(NMLEntities.BASS.get(), BillhookBass.createAttributes().build());
         }
 
         @SubscribeEvent
         public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+            event.register(NMLEntities.BASS.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BillhookBass::checkSurfaceWaterAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
             event.register(EntityType.CAMEL, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Camel::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
         }
     }
