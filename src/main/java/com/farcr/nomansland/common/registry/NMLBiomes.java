@@ -23,11 +23,11 @@ public class NMLBiomes {
     public static final ResourceKey<Biome> BAYOU = createKey("bayou");
 
     public static final ResourceKey<Biome> BOG = createKey("bog");
-    public static final ResourceKey<Biome> MUSKEG = createKey("muskeg");
+    public static final ResourceKey<Biome> MUSKEG = createKey("bog");
 
     //Underground
     public static final ResourceKey<Biome> CAVES = createKey("caves");
-    public static final ResourceKey<Biome> DEEP_CAVES = createKey("caves");
+    public static final ResourceKey<Biome> CAVE_DEPTHS = createKey("caves");
 
 
     public static ResourceKey<Biome> createKey(String name) {

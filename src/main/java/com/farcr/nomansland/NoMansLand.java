@@ -2,6 +2,7 @@ package com.farcr.nomansland;
 
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
+import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -33,6 +34,7 @@ public class NoMansLand {
 //        NMLTerrablender.registerRegions();
 //        NMLTerrablender.registerSurfaceData();
         NMLBiomePlacements.registerBiomes();
+        NMLSurfaceRules.registerSurfaceRules();
 
         modEventBus.addListener(NMLItems::addCreative);
         modEventBus.addListener(this::commonSetup);

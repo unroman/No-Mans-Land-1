@@ -102,7 +102,7 @@ public class BillhookBass extends AbstractFish implements VariantHolder<Holder<B
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.3, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractFish.class, 10, true, true, target -> target.getType() != NMLEntities.BASS.get() && distanceTo(target) < 2));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractFish.class, 10, true, true, target -> target.getType() != NMLEntities.BILLHOOK_BASS.get() && distanceTo(target) < 2));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
 
     }
@@ -153,7 +153,7 @@ public class BillhookBass extends AbstractFish implements VariantHolder<Holder<B
     }
 
     public EntityType<?> getType() {
-        return NMLEntities.BASS.get();
+        return NMLEntities.BILLHOOK_BASS.get();
     }
 
     public static AttributeSupplier.Builder createAttributes() {

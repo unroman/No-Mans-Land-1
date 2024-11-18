@@ -53,7 +53,7 @@ public class ClientEvents {
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
-        event.registerEntityRenderer(NMLEntities.BASS.get(), BassRenderer::new);
+        event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BassRenderer::new);
     }
 
     @SubscribeEvent
