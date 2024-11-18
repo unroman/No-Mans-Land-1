@@ -31,9 +31,9 @@ public class NMLEntities {
             ENTITIES.register("explosive", () -> EntityType.Builder.<ExplosiveEntity>of(ExplosiveEntity::new, MobCategory.MISC)
                     .sized(0.3F, 0.3F).clientTrackingRange(4).updateInterval(20).build("explosive"));
 
-    public static final DeferredHolder<EntityType<?>, EntityType<BillhookBass>> BASS =
-            ENTITIES.register("bass", () -> EntityType.Builder.of(BillhookBass::new, MobCategory.WATER_CREATURE)
-            .sized(1, 1).build("bass"));
+    public static final DeferredHolder<EntityType<?>, EntityType<BillhookBass>> BILLHOOK_BASS =
+            ENTITIES.register("billhook_bass", () -> EntityType.Builder.of(BillhookBass::new, MobCategory.WATER_CREATURE)
+            .sized(1, 1).build("billhook_bass"));
 
 //    public static final DeferredHolder<EntityType<?>, EntityType<BuriedEntity>> BURIED =
 //            ENTITIES.register("buried", () -> EntityType.Builder.of(BuriedEntity::new, MobCategory.MONSTER)
