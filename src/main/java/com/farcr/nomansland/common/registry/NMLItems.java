@@ -100,6 +100,9 @@ public class NMLItems {
     public static final DeferredItem<Item> BILLHOOK_BASS_SPAWN_EGG = registerItem("billhook_bass_spawn_egg",
             () -> new DeferredSpawnEggItem(NMLEntities.BILLHOOK_BASS, 6443553, 11236417, new Item.Properties()));
 
+    public static final DeferredItem<Item> DEER_SPAWN_EGG = registerItem("deer_spawn_egg",
+            () -> new DeferredSpawnEggItem(NMLEntities.DEER, 8412743, 12828347, new Item.Properties()));
+
 //    public static final DeferredItem<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
 //            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
 //                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));

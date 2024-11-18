@@ -37,4 +37,14 @@ public class NMLModelLayers {
 
     public static final ModelLayerLocation BASS_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "bass"), "main");
+
+    public static final ModelLayerLocation DEER_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "deer"), "main");
+
+    public static final ModelLayerLocation DEER_ANTLERS_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "deer"), "antlers");
+
+    public static final ModelLayerLocation DEER_PATTERN_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "deer"), "pattern");
+
 }

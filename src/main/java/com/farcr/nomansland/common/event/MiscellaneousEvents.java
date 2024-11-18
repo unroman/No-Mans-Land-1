@@ -4,6 +4,7 @@ import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
 import com.farcr.nomansland.common.entity.BillhookBass;
+import com.farcr.nomansland.common.entity.deer.Deer;
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLEntities;
 import com.farcr.nomansland.common.registry.NMLFeatures;
@@ -227,11 +228,12 @@ public class MiscellaneousEvents {
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
 //            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
             event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());
+            event.put(NMLEntities.DEER.get(), Deer.createAttributes().build());
         }
 
         @SubscribeEvent
         public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-            event.register(NMLEntities.BILLHOOK_BASS.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BillhookBass::checkSurfaceWaterAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+            event.register(NMLEntities.BILLHOOK_BASS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BillhookBass::checkSurfaceWaterAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
             event.register(EntityType.CAMEL, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Camel::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
         }
     }

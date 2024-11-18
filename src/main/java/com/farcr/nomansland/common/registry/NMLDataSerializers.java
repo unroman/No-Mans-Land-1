@@ -2,6 +2,9 @@ package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import net.minecraft.core.Holder;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -12,6 +15,9 @@ public class NMLDataSerializers {
     public static final DeferredRegister<EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS =
             DeferredRegister.create(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, NoMansLand.MODID);
 
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DeerAntlersVariant>>> DEER_ANTLERS_VARIANT = ENTITY_DATA_SERIALIZERS.register("deer_antlers_variant", () -> EntityDataSerializer.forValueType(DeerAntlersVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DeerPatternVariant>>> DEER_PATTERN_VARIANT = ENTITY_DATA_SERIALIZERS.register("deer_pattern_variant", () -> EntityDataSerializer.forValueType(DeerPatternVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DeerVariant>>> DEER_VARIANT = ENTITY_DATA_SERIALIZERS.register("deer_variant", () -> EntityDataSerializer.forValueType(DeerVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<GlowSquidVariant>>> GLOW_SQUID_VARIANT = ENTITY_DATA_SERIALIZERS.register("glow_squid_variant", () -> EntityDataSerializer.forValueType(GlowSquidVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<SquidVariant>>> SQUID_VARIANT = ENTITY_DATA_SERIALIZERS.register("squid_variant", () -> EntityDataSerializer.forValueType(SquidVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<BillhookBassVariant>>> BASS_VARIANT = ENTITY_DATA_SERIALIZERS.register("bass_variant", () -> EntityDataSerializer.forValueType(BillhookBassVariant.STREAM_CODEC));

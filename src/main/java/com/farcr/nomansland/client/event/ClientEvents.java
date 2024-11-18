@@ -5,11 +5,9 @@ import com.farcr.nomansland.client.NMLModelLayers;
 import com.farcr.nomansland.client.model.BassModel;
 import com.farcr.nomansland.client.model.BuriedModel;
 import com.farcr.nomansland.client.model.MooseModel;
+import com.farcr.nomansland.client.model.deer.DeerModel;
 import com.farcr.nomansland.client.particle.*;
-import com.farcr.nomansland.client.renderer.BassRenderer;
-import com.farcr.nomansland.client.renderer.ExplosiveRenderer;
-import com.farcr.nomansland.client.renderer.FirebombRenderer;
-import com.farcr.nomansland.client.renderer.NMLBoatRenderer;
+import com.farcr.nomansland.client.renderer.*;
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.NMLEntities;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
@@ -54,6 +52,8 @@ public class ClientEvents {
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
         event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BassRenderer::new);
+
+        event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);
     }
 
     @SubscribeEvent
@@ -75,6 +75,10 @@ public class ClientEvents {
         event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
 
         event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BassModel::createBodyLayer);
+
+        event.registerLayerDefinition(NMLModelLayers.DEER_LAYER, DeerModel::createBodyLayer);
+        event.registerLayerDefinition(NMLModelLayers.DEER_ANTLERS_LAYER, DeerModel::createBodyLayer);
+        event.registerLayerDefinition(NMLModelLayers.DEER_PATTERN_LAYER, DeerModel::createBodyLayer);
     }
 
     @SubscribeEvent

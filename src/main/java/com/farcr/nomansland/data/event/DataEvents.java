@@ -2,6 +2,9 @@ package com.farcr.nomansland.data.event;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import com.farcr.nomansland.data.Advancements;
 import com.farcr.nomansland.data.assets.Lang;
@@ -53,20 +56,28 @@ public class DataEvents {
 
     @SubscribeEvent
     public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(NMLMobVariants.COD_VARIANT_KEY, CodVariant.DIRECT_CODEC, CodVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.COW_VARIANT_KEY, CowVariant.DIRECT_CODEC, CowVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.DOLPHIN_VARIANT_KEY, DolphinVariant.DIRECT_CODEC, DolphinVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.GOAT_VARIANT_KEY, GoatVariant.DIRECT_CODEC, GoatVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.FOX_VARIANT_KEY, FoxVariant.DIRECT_CODEC, FoxVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.SALMON_VARIANT_KEY, SalmonVariant.DIRECT_CODEC, SalmonVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.LLAMA_VARIANT_KEY, LlamaVariant.DIRECT_CODEC, LlamaVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.SHEEP_VARIANT_KEY, SheepVariant.DIRECT_CODEC, SheepVariant.DIRECT_CODEC);
-        event.dataPackRegistry(NMLMobVariants.TURTLE_VARIANT_KEY, TurtleVariant.DIRECT_CODEC, TurtleVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
+
+        event.dataPackRegistry(NMLMobVariants.SHEEP_VARIANT_KEY, SheepVariant.DIRECT_CODEC, SheepVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.GOAT_VARIANT_KEY, GoatVariant.DIRECT_CODEC, GoatVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.LLAMA_VARIANT_KEY, LlamaVariant.DIRECT_CODEC, LlamaVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CAMEL_VARIANT_KEY, CamelVariant.DIRECT_CODEC, CamelVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.FOX_VARIANT_KEY, FoxVariant.DIRECT_CODEC, FoxVariant.DIRECT_CODEC);
+
+        event.dataPackRegistry(NMLMobVariants.COW_VARIANT_KEY, CowVariant.DIRECT_CODEC, CowVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.MOOSHROOM_VARIANT_KEY, MooshroomVariant.DIRECT_CODEC, MooshroomVariant.DIRECT_CODEC);
+
+        event.dataPackRegistry(NMLMobVariants.DEER_VARIANT_KEY, DeerVariant.DIRECT_CODEC, DeerVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.DEER_ANTLERS_VARIANT_KEY, DeerAntlersVariant.DIRECT_CODEC, DeerAntlersVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.DEER_PATTERN_VARIANT_KEY, DeerPatternVariant.DIRECT_CODEC, DeerPatternVariant.DIRECT_CODEC);
+
+        event.dataPackRegistry(NMLMobVariants.COD_VARIANT_KEY, CodVariant.DIRECT_CODEC, CodVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.SALMON_VARIANT_KEY, SalmonVariant.DIRECT_CODEC, SalmonVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.BILLHOOK_BASS_VARIANT_KEY, BillhookBassVariant.DIRECT_CODEC, BillhookBassVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.DOLPHIN_VARIANT_KEY, DolphinVariant.DIRECT_CODEC, DolphinVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.TURTLE_VARIANT_KEY, TurtleVariant.DIRECT_CODEC, TurtleVariant.DIRECT_CODEC);
+
         event.dataPackRegistry(NMLMobVariants.SQUID_VARIANT_KEY, SquidVariant.DIRECT_CODEC, SquidVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.GLOW_SQUID_VARIANT_KEY, GlowSquidVariant.DIRECT_CODEC, GlowSquidVariant.DIRECT_CODEC);
     }

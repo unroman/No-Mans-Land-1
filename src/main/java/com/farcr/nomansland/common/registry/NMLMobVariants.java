@@ -2,6 +2,9 @@ package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,6 +23,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.List;
 
 public class NMLMobVariants {
+
+    public static final ResourceKey<Registry<DeerVariant>> DEER_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer"));
+    public static final ResourceKey<Registry<DeerAntlersVariant>> DEER_ANTLERS_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer/antlers"));
+    public static final ResourceKey<Registry<DeerPatternVariant>> DEER_PATTERN_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer/pattern"));
 
     public static final ResourceKey<Registry<GlowSquidVariant>> GLOW_SQUID_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/glow_squid"));
     public static final ResourceKey<Registry<SquidVariant>> SQUID_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/squid"));
@@ -42,20 +49,27 @@ public class NMLMobVariants {
     public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_VARIANTS.register("mud", () -> new FrogVariant(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/mud_frog.png")));
 
     public static ResourceKey<? extends Registry<MobVariant>> getVariantOfType(EntityType<?> entityType) {
-        return ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/" + entityType.toShortString()));
+        return getVariantKey(entityType.toShortString());
+    }
+
+    public static ResourceKey<? extends Registry<MobVariant>> getVariantKey(String name) {
+        return ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/" + name));
     }
 
     public static Holder<? extends MobVariant> getVariantForSpawn(Entity entity) {
+        return getVariantForSpawn(entity, getVariantOfType(entity.getType()));
+    }
+
+    public static Holder<? extends MobVariant> getVariantForSpawn(Entity entity, ResourceKey<? extends Registry<MobVariant>> variantRegistry) {
         Level level = entity.level();
         RandomSource random = entity.getRandom();
-        ResourceKey<? extends Registry<MobVariant>> key = getVariantOfType(entity.getType());
 
-        Registry<MobVariant> registry = entity.registryAccess().registryOrThrow(key);
+        Registry<MobVariant> registry = entity.registryAccess().registryOrThrow(variantRegistry);
         List<Holder.Reference<MobVariant>> possibleVariants = registry.holders()
                 .filter((v) -> v.value().biomes().isPresent() && v.value().biomes().get().contains(level.getBiome(entity.blockPosition())))
                 .toList();
         List<Holder.Reference<MobVariant>> defaultVariants = registry.holders()
-                .filter((v) -> v.value().biomes().isEmpty() || v.is(ResourceKey.create(key, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"))))
+                .filter((v) -> v.value().biomes().isEmpty() || v.is(ResourceKey.create(variantRegistry, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"))))
                 .toList();
         Holder<? extends MobVariant> selectedVariant = defaultVariants.get(random.nextInt(defaultVariants.size()));
         if (!possibleVariants.isEmpty()) {
@@ -75,7 +89,7 @@ public class NMLMobVariants {
         return selectedVariant;
     }
 
-    public static Holder<? extends MobVariant> getOffspringWithVariant(AgeableMob parent1, AgeableMob parent2) {
+        public static Holder<? extends MobVariant> getOffspringWithVariant(AgeableMob parent1, AgeableMob parent2) {
         return parent1.getRandom().nextBoolean() ?
                         ((VariantHolder<Holder<? extends MobVariant>>) parent1).getVariant() :
                         ((VariantHolder<Holder<? extends MobVariant>>) parent2).getVariant();

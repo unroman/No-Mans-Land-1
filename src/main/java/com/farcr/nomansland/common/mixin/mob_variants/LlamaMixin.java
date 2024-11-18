@@ -66,7 +66,6 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
         } else {
             llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this));
             spawnGroupData = new LlamaGroupData(llama$variant);
-
         }
 
         this.noMansLand$setLlamaVariant(llama$variant);
