@@ -34,7 +34,7 @@ public class NMLEntities {
 
     public static final DeferredHolder<EntityType<?>, EntityType<BillhookBass>> BILLHOOK_BASS =
             ENTITIES.register("billhook_bass", () -> EntityType.Builder.of(BillhookBass::new, MobCategory.WATER_CREATURE)
-            .sized(1, 1).build("billhook_bass"));
+            .sized(0.7F, 0.5F).build("billhook_bass"));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Deer>> DEER =
             ENTITIES.register("deer", () -> EntityType.Builder.of(Deer::new, MobCategory.CREATURE)

@@ -2,7 +2,7 @@ package com.farcr.nomansland.client.event;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.client.NMLModelLayers;
-import com.farcr.nomansland.client.model.BassModel;
+import com.farcr.nomansland.client.model.BillhookBassModel;
 import com.farcr.nomansland.client.model.BuriedModel;
 import com.farcr.nomansland.client.model.MooseModel;
 import com.farcr.nomansland.client.model.deer.DeerModel;
@@ -51,7 +51,7 @@ public class ClientEvents {
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
-        event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BassRenderer::new);
+        event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BillhookBassRenderer::new);
 
         event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);
     }
@@ -74,7 +74,7 @@ public class ClientEvents {
         event.registerLayerDefinition(NMLModelLayers.MOOSE_LAYER, MooseModel::createBodyLayer);
         event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
 
-        event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BassModel::createBodyLayer);
+        event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BillhookBassModel::createBodyLayer);
 
         event.registerLayerDefinition(NMLModelLayers.DEER_LAYER, DeerModel::createBodyLayer);
         event.registerLayerDefinition(NMLModelLayers.DEER_ANTLERS_LAYER, DeerModel::createBodyLayer);
