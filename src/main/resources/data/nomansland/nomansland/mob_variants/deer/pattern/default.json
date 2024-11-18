@@ -1,5 +1,5 @@
 {
-  "texture": "nomansland:entity/deer/pattern_white_nose",
-  "weight": 1,
-  "baby_texture": "nomansland:entity/deer/pattern_white_nose"
+  "texture": "nomansland:entity/deer/pattern_nothing",
+  "weight": 4,
+  "baby_texture": "nomansland:entity/deer/pattern_nothing"
 }

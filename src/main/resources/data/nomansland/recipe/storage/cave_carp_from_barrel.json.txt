@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "id": "nomansland:cave_carp_barrel",
+    "id": "nomansland:cave_carp",
     "count": 9
   },
   "group": "fish_barrels"

@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "nomansland:cave_carp_barrel"
+      "item": "nomansland:cave_carp
     }
   },
   "result": {

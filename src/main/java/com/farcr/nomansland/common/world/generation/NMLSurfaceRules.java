@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.world.generation;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLBiomes;
+import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
@@ -15,6 +16,8 @@ public class NMLSurfaceRules {
     private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
     private static final SurfaceRules.RuleSource PODZOL = makeStateRule(Blocks.PODZOL);
     private static final SurfaceRules.RuleSource MUD = makeStateRule(Blocks.MUD);
+    private static final SurfaceRules.RuleSource SILT = makeStateRule(Blocks.DIRT);
+    private static final SurfaceRules.RuleSource GRAVEL = makeStateRule(Blocks.GRAVEL);
     private static final SurfaceRules.RuleSource WATER = makeStateRule(Blocks.WATER);
 
     public static void registerSurfaceRules() {
@@ -48,16 +51,15 @@ public class NMLSurfaceRules {
 
         SurfaceRules.RuleSource bog = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.BOG),
-                SurfaceRules.sequence(SurfaceRules.ifTrue(surfaceNoiseAbove(2.0), MUD),
                         SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0),
                                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0)),
-                                        SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
+                                        SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER)))
         );
 
         SurfaceRules.RuleSource muskeg = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.MUSKEG),
                 SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(surfaceNoiseAbove(2.0), MUD), SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), PODZOL),
+                        SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), PODZOL),
                         SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0),
                                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0)),
                                         SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
@@ -66,7 +68,7 @@ public class NMLSurfaceRules {
         SurfaceRules.RuleSource bayou = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.BAYOU),
                 SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(surfaceNoiseAbove(2.0), MUD), SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), PODZOL),
+                        SurfaceRules.ifTrue(surfaceNoiseAbove(2.0), MUD), SurfaceRules.ifTrue(surfaceNoiseAbove(1.75), PODZOL),
                         SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0),
                                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0)),
                                         SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
@@ -81,11 +83,25 @@ public class NMLSurfaceRules {
                                         SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
         );
 
+        SurfaceRules.RuleSource caves = SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(NMLBiomes.CAVES),
+                SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), SILT))
+        );
+
         SurfaceGeneration.addOverworldSurfaceRules(
                 ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "rules/overworld"),
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
+                                //Surface Biomes
                                 jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, muskeg, bayou, darkSwamp)))
+        );
+
+        SurfaceGeneration.addOverworldSurfaceRules(
+                ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "rules/overworld"),
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
+                                //Underground Biomes
+                                caves))
         );
     }
 
