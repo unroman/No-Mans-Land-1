@@ -1,5 +1,6 @@
 package com.farcr.nomansland.client.model;
 
+import com.farcr.nomansland.common.entity.BillhookBass;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -9,7 +10,6 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -19,18 +19,20 @@ public class BillhookBassModel<T extends Entity> extends HierarchicalModel<T> {
     private final ModelPart root;
     private final ModelPart tail;
     private final ModelPart tailFin;
+    private final ModelPart jaw;
 
     public BillhookBassModel(ModelPart root) {
         this.root = root;
-        this.tail = root.getChild("body").getChild("tail");
-        this.tailFin = tail.getChild("tail_fin");
+        tail = root.getChild("body").getChild("tail");
+        tailFin = tail.getChild("tail_fin");
+        jaw = root.getChild("body").getChild("head").getChild("jaw");
     }
 
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2, -3.5F, -5.5F, 4, 7, 11), PartPose.offset(0, 20, 0));
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2, -3.5F, -5.5F, 4, 7, 11), PartPose.offset(0, 20, 8));
 
         PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-1, -2, -3, 2, 4, 3)
                 .texOffs(19, 0).addBox(-1, -2, -8, 2, 2, 5), PartPose.offset(0, 1.5F, -5.5F));
@@ -68,6 +70,14 @@ public class BillhookBassModel<T extends Entity> extends HierarchicalModel<T> {
 
         tailFin.yRot = -f * 0.25F * Mth.sin(f1 * 0.6F * ageInTicks);
         tail.yRot = tailFin.yRot / 2;
+
+        if (((BillhookBass) entity).isAngry()) {
+            jaw.xRot = -f * 0.2F * Mth.sin(f1 * 0.7F * ageInTicks);
+            jaw.z = -2.5F;
+        } else {
+            jaw.xRot = 0;
+            jaw.z = -3;
+        }
     }
 
     @Override

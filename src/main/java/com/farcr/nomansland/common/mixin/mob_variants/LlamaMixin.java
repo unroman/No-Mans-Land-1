@@ -21,6 +21,7 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,10 +32,12 @@ import java.util.Optional;
 
 @Mixin(Llama.class)
 public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
+    @Shadow public abstract boolean isTraderLlama();
+
     @Unique
     private static final EntityDataAccessor<Holder<LlamaVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Llama.class, NMLDataSerializers.LLAMA_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<LlamaVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.LLAMA_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
@@ -64,7 +67,7 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
         if (spawnGroupData instanceof LlamaGroupData llamaGroupData) {
             llama$variant = llamaGroupData.variant;
         } else {
-            llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this));
+            llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this), NMLMobVariants.getVariantKey("llama"));
             spawnGroupData = new LlamaGroupData(llama$variant);
         }
 
@@ -76,5 +79,15 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
         ((LlamaDuck) entity).noMansLand$setLlamaVariant((Holder<LlamaVariant>) NMLMobVariants.getOffspringWithVariant(((Llama) (Object) this), otherParent));
         cir.setReturnValue(entity);
+    }
+
+    @Override
+    public Holder<LlamaVariant> noMansLand$getLlamaVariant() {
+        return this.entityData.get(DATA_VARIANT_ID);
+    }
+
+    @Override
+    public void noMansLand$setLlamaVariant(Holder<LlamaVariant> llamaVariantHolder) {
+        this.entityData.set(DATA_VARIANT_ID, llamaVariantHolder);
     }
 }

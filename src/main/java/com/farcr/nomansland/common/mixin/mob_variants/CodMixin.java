@@ -30,7 +30,7 @@ public abstract class CodMixin extends MobMixin implements VariantHolder<Holder<
     @Unique
     private static final EntityDataAccessor<Holder<CodVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Cod.class, NMLDataSerializers.COD_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<CodVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.COD_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

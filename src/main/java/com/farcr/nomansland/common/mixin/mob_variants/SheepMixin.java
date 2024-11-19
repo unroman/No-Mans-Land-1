@@ -33,7 +33,7 @@ public abstract class SheepMixin extends MobMixin implements VariantHolder<Holde
     @Unique
     private static final EntityDataAccessor<Holder<SheepVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Sheep.class, NMLDataSerializers.SHEEP_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<SheepVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.SHEEP_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

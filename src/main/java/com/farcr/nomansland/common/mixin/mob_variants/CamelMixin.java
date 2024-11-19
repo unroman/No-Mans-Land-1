@@ -33,7 +33,7 @@ public abstract class CamelMixin extends MobMixin implements VariantHolder<Holde
     @Unique
     private static final EntityDataAccessor<Holder<CamelVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Camel.class, NMLDataSerializers.CAMEL_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<CamelVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.CAMEL_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

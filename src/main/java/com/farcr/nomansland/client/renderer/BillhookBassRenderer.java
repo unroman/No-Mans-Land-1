@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.Cod;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class BillhookBassRenderer extends MobRenderer<BillhookBass, BillhookBassModel<BillhookBass>> {
@@ -20,11 +20,11 @@ public class BillhookBassRenderer extends MobRenderer<BillhookBass, BillhookBass
     }
 
     @Override
-    protected void setupRotations(BillhookBass entity, PoseStack poseStack, float bob, float yBodyRot, float partialTick, float scale) {
-        super.setupRotations(entity, poseStack, bob, yBodyRot, partialTick, scale);
+    protected void setupRotations(BillhookBass billhookBass, PoseStack poseStack, float bob, float yBodyRot, float partialTick, float scale) {
+        super.setupRotations(billhookBass, poseStack, bob, yBodyRot, partialTick, scale);
         float f = 1.0F;
         float f1 = 1.0F;
-        if (!entity.isInWater()) {
+        if (!billhookBass.isInWater()) {
             f = 1.3F;
             f1 = 1.7F;
         }
@@ -32,14 +32,14 @@ public class BillhookBassRenderer extends MobRenderer<BillhookBass, BillhookBass
         float f2 = f * 4.3F * Mth.sin(f1 * 0.6F * bob);
         poseStack.mulPose(Axis.YP.rotationDegrees(f2));
         poseStack.translate(0.0F, 0.0F, -0.4F);
-        if (!entity.isInWater()) {
+        if (!billhookBass.isInWater()) {
             poseStack.translate(0.2F, 0.1F, 0.0F);
             poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
         }
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BillhookBass billhookBass) {
+    public @NotNull ResourceLocation getTextureLocation(BillhookBass billhookBass) {
         return billhookBass.getVariant().value().texture().withPath((path) -> "textures/" + path + ".png");
     }
 }

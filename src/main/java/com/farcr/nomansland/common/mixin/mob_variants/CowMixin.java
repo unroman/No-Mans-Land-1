@@ -38,9 +38,9 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     @Unique
     private static final EntityDataAccessor<Holder<MooshroomVariant>> DATA_MOOSHROOM_VARIANT_ID = SynchedEntityData.defineId(Cow.class, NMLDataSerializers.MOOSHROOM_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
-    private static final String MOOSHROOM_VARIANT_KEY = "mooshroom_variant";
+    private static final String MOOSHROOM_VARIANT_KEY = "MooshroomVariant";
     @Unique
     private static final ResourceKey<CowVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.COW_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
     @Unique

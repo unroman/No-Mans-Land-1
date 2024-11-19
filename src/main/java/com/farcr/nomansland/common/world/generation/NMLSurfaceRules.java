@@ -2,7 +2,6 @@ package com.farcr.nomansland.common.world.generation;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLBiomes;
-import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;

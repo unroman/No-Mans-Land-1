@@ -30,7 +30,7 @@ public abstract class DolphinMixin extends MobMixin implements VariantHolder<Hol
     @Unique
     private static final EntityDataAccessor<Holder<DolphinVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Dolphin.class, NMLDataSerializers.DOLPHIN_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<DolphinVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.DOLPHIN_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

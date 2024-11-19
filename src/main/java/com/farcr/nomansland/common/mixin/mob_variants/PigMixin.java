@@ -33,7 +33,7 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
     @Unique
     private static final EntityDataAccessor<Holder<PigVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Pig.class, NMLDataSerializers.PIG_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<PigVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.PIG_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

@@ -24,7 +24,7 @@ import java.util.List;
 
 public class NMLMobVariants {
 
-    public static final ResourceKey<Registry<DeerVariant>> DEER_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer"));
+    public static final ResourceKey<Registry<DeerVariant>> DEER_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer/base"));
     public static final ResourceKey<Registry<DeerAntlersVariant>> DEER_ANTLERS_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer/antlers"));
     public static final ResourceKey<Registry<DeerPatternVariant>> DEER_PATTERN_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/deer/pattern"));
 

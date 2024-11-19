@@ -34,7 +34,7 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
     @Unique
     private static final EntityDataAccessor<Holder<TurtleVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Turtle.class, NMLDataSerializers.TURTLE_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<TurtleVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.TURTLE_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

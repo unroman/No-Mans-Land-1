@@ -34,7 +34,7 @@ public abstract class GoatMixin extends MobMixin implements VariantHolder<Holder
     @Unique
     private static final EntityDataAccessor<Holder<GoatVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Goat.class, NMLDataSerializers.GOAT_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<GoatVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.GOAT_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

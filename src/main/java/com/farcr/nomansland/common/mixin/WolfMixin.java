@@ -1,11 +1,7 @@
 package com.farcr.nomansland.common.mixin;
 
-import com.farcr.nomansland.common.entity.BillhookBass;
 import com.farcr.nomansland.common.entity.deer.Deer;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
-import net.minecraft.world.entity.animal.AbstractFish;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Wolf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -30,7 +30,7 @@ public abstract class SalmonMixin extends MobMixin implements VariantHolder<Hold
     @Unique
     private static final EntityDataAccessor<Holder<SalmonVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Salmon.class, NMLDataSerializers.SALMON_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "variant";
+    private static final String VARIANT_KEY = "Variant";
     @Unique
     private static final ResourceKey<SalmonVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.SALMON_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 

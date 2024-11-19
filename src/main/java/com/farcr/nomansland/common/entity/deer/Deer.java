@@ -1,18 +1,13 @@
 package com.farcr.nomansland.common.entity.deer;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.mob_variant.BillhookBassVariant;
-import com.farcr.nomansland.common.entity.mob_variant.MobVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import com.farcr.nomansland.common.registry.NMLTags;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -20,8 +15,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -34,13 +27,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.EnumSet;
 import java.util.Optional;
 
 public class Deer extends Animal implements DeerVariantHolder {
@@ -49,9 +37,9 @@ public class Deer extends Animal implements DeerVariantHolder {
     private static final EntityDataAccessor<Holder<DeerAntlersVariant>> DATA_ANTLERS_VARIANT_ID = SynchedEntityData.defineId(Deer.class, NMLDataSerializers.DEER_ANTLERS_VARIANT.get());
     private static final EntityDataAccessor<Holder<DeerPatternVariant>> DATA_PATTERN_VARIANT_ID = SynchedEntityData.defineId(Deer.class, NMLDataSerializers.DEER_PATTERN_VARIANT.get());
 
-    private static final String VARIANT_KEY = "variant";
-    private static final String ANTLER_VARIANT_KEY = "antlers_variant";
-    private static final String PATTERN_VARIANT_KEY = "pattern_variant";
+    private static final String VARIANT_KEY = "Variant";
+    private static final String ANTLER_VARIANT_KEY = "AntlersVariant";
+    private static final String PATTERN_VARIANT_KEY = "PatternVariant";
     private static final ResourceKey<DeerVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.DEER_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
     private static final ResourceKey<DeerAntlersVariant> DEFAULT_ANTLERS_VARIANT = ResourceKey.create(NMLMobVariants.DEER_ANTLERS_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
     private static final ResourceKey<DeerPatternVariant> DEFAULT_PATTERN_VARIANT = ResourceKey.create(NMLMobVariants.DEER_PATTERN_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
@@ -119,12 +107,12 @@ public class Deer extends Animal implements DeerVariantHolder {
         goalSelector.addGoal(3, new FollowParentGoal(this, 1.25));
         goalSelector.addGoal(4, new DeerShedAntlersGoal(this));
         goalSelector.addGoal(4, new DeerDrinkWaterGoal(this));
-        goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
         goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Monster.class, isDrinking() ? 6 : 12, 1.2, 1.5));
         goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, isDrinking() ? 6 : 12, 1.2, 1.5, player -> !player.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player)));
         goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Villager.class, isDrinking() ? 6 : 12, 1.2, 1.5));
         goalSelector.addGoal(5, new AvoidEntityGoal<>(this, LivingEntity.class, isDrinking() ? 6 : 12, 1.2, 1.5, livingEntity -> livingEntity instanceof  NeutralMob));
-        goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
 
@@ -159,12 +147,14 @@ public class Deer extends Animal implements DeerVariantHolder {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        setVariant((Holder<DeerVariant>) NMLMobVariants.getVariantForSpawn((this)));
+        setVariant((Holder<DeerVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/base")));
         setAntlersVariant((Holder<DeerAntlersVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/antlers")));
         setPatternVariant((Holder<DeerPatternVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/pattern")));
 
-        if (!isBaby() && random.nextFloat() < 0.8) setHasAntlers(true);
-        setAntlersLifetime(random.nextInt(0, 36000));
+        if (!isBaby() && random.nextFloat() < 0.8) {
+            setHasAntlers(true);
+            setAntlersLifetime(random.nextInt(0, 36000));
+        }
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
