@@ -1,14 +1,125 @@
 {
   "block.spike_trap.spikes_extend": {
-    "subtitle": "nomansland.subtitles.block.spike_trap.extend",
     "sounds": [
       "nomansland:block/spike_trap/spikes_retract"
-    ]
+    ],
+    "subtitle": "nomansland.subtitles.block.spike_trap.extend"
   },
   "block.spike_trap.spikes_retract": {
-    "subtitle": "nomansland.subtitles.block.spike_trap.retract",
     "sounds": [
       "nomansland:block/spike_trap/spikes_extend"
-    ]
+    ],
+    "subtitle": "nomansland.subtitles.block.spike_trap.retract"
+  },
+  "block.monster_anchor.monster_resurrection": {
+    "sounds": [
+      "block/bell/resonate",
+      {
+        "name": "block/bell/resonate",
+        "pitch": 0.85
+      },
+      {
+        "name": "block/bell/resonate",
+        "pitch": 0.9
+      }
+    ],
+    "subtitle": "nomansland.subtitles.block.monster_anchor.monster_resurrection"
+  },
+  "block.monster_anchor.activate": {
+    "sounds": [
+      "block/beacon/power1",
+      "block/beacon/power2",
+      "block/beacon/power3"
+    ],
+    "subtitle": "nomansland.subtitles.block.monster_anchor.activate"
+  },
+  "block.monster_anchor.deactivate": {
+    "sounds": [
+      "block/beacon/deactivate"
+    ],
+    "subtitle": "nomansland.subtitles.block.monster_anchor.deactivate"
+  },
+  "entity.player.drink_milk": {
+    "sounds": [
+      "mob/wandering_trader/drink_milk1",
+      "mob/wandering_trader/drink_milk2",
+      "mob/wandering_trader/drink_milk3",
+      "mob/wandering_trader/drink_milk4",
+      "mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "nomansland.subtitles.entity.player.drink_milk"
+  },
+  "entity.generic.sticky_cauldron_slide": {
+    "sounds": [
+      {
+        "name": "block/honeyblock/slide1",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide2",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide2",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide3",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide3",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide4",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide4",
+        "pitch": 0.8,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.generic.sticky_cauldron_slide"
+  },
+  "item.honeycomb.consumed": {
+    "sounds": [
+      "item/honeycomb/wax_on1",
+      {
+        "name": "item/honeycomb/wax_on1",
+        "pitch": 0.9
+      },
+      {
+        "name": "item/honeycomb/wax_on1",
+        "pitch": 1.1
+      },
+      "item/honeycomb/wax_on2",
+      {
+        "name": "item/honeycomb/wax_on2",
+        "pitch": 0.9
+      },
+      {
+        "name": "item/honeycomb/wax_on2",
+        "pitch": 1.1
+      },
+      "item/honeycomb/wax_on3",
+      {
+        "name": "item/honeycomb/wax_on3",
+        "pitch": 0.9
+      },
+      {
+        "name": "item/honeycomb/wax_on3",
+        "pitch": 1.1
+      }
+    ],
+    "subtitle": "nomansland.subtitles.item.honeycomb.consumed"
   }
 }

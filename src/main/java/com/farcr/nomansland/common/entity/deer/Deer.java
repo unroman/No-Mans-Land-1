@@ -83,8 +83,8 @@ public class Deer extends Animal implements DeerVariantHolder {
                 .flatMap((variant) -> registryAccess().registryOrThrow(NMLMobVariants.DEER_PATTERN_VARIANT_KEY).getHolder(variant))
                 .ifPresent(this::setPatternVariant);
 
-        setFlag(FLAG_ANTLERS, compound.getBoolean("antlers"));
-        entityData.set(DATA_ANTLERS_LIFETIME, compound.getInt("antlers_lifetime"));
+        setFlag(FLAG_ANTLERS, compound.getBoolean("HasAntlers"));
+        entityData.set(DATA_ANTLERS_LIFETIME, compound.getInt("AntlersLifetime"));
     }
 
     @Override
@@ -94,8 +94,8 @@ public class Deer extends Animal implements DeerVariantHolder {
         getAntlersVariant().unwrapKey().ifPresent((variant) -> compound.putString(ANTLER_VARIANT_KEY, variant.location().toString()));
         getPatternVariant().unwrapKey().ifPresent((variant) -> compound.putString(PATTERN_VARIANT_KEY, variant.location().toString()));
 
-        compound.putBoolean("antlers", getFlag(FLAG_ANTLERS));
-        compound.putInt("antlers_lifetime", entityData.get(DATA_ANTLERS_LIFETIME));
+        compound.putBoolean("HasAntlers", getFlag(FLAG_ANTLERS));
+        compound.putInt("AntlersLifetime", entityData.get(DATA_ANTLERS_LIFETIME));
     }
 
     @Override

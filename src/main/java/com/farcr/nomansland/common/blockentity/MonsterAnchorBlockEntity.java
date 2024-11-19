@@ -5,6 +5,7 @@ import com.farcr.nomansland.common.block.MonsterAnchorBlock;
 import com.farcr.nomansland.common.event.listener.AnchorListener;
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
+import com.farcr.nomansland.common.registry.NMLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -64,7 +65,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
 
             // Deactivate the spawner after 10 seconds of inactivity
             if (state.getValue(MonsterAnchorBlock.ACTIVE)) {
-                level.playSound(null, pos, SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS, 1, 0.75F);
+                level.playSound(null, pos, NMLSounds.ANCHOR_DEACTIVATES.get(), SoundSource.BLOCKS, 1, 0.75F);
                 level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, false));
                 level.gameEvent(GameEvent.BLOCK_DEACTIVATE, pos, GameEvent.Context.of(state));
             } else if (monsterAnchor.timeIdle % 5 == 0)
@@ -119,11 +120,11 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                 if (monsterAnchor.timeResurrecting <= timeBetweenResurrections - 78) {
                     // Turn the block active on mob resurrection
                     if (!state.getValue(MonsterAnchorBlock.ACTIVE)) {
-                        level.playSound(null, pos, SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 1, 0.25F);
+                        level.playSound(null, pos, NMLSounds.ANCHOR_ACTIVATES.get(), SoundSource.BLOCKS, 1, 0.25F);
                         level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, true));
                         level.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(state));
                     }
-                    level.playSound(null, pos, SoundEvents.BELL_RESONATE, SoundSource.BLOCKS, 1, 0.5F);
+                    level.playSound(null, pos, NMLSounds.MONSTER_RESURRECTION.get(), SoundSource.BLOCKS, 1, 0.5F);
                 }
                 if (monsterAnchor.timeResurrecting == timeBetweenResurrections) {
                     monsterAnchor.timeResurrecting = 0;
