@@ -11,6 +11,8 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.max;
+
 public class PondFeature extends Feature<PondFeatureConfiguration> {
 
     public PondFeature(Codec<PondFeatureConfiguration> codec) {
@@ -31,6 +33,8 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
         ArrayList<BlockPos> waterPos = new ArrayList<>();
         for (int i = 0; i < numPools; i++) {
             int poolSize = config.numPools().sample(random);
+            int poolDepth = config.poolDepth().sample(random);
+            float poolStepth = 1 / config.poolStepth();
             if (i == 0) {
                 poolSize += 1;
             }
@@ -41,22 +45,30 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
                 originZ += random.nextIntBetweenInclusive(-1, 1) * poolSpread;
             }
             for (int x = -poolSize; x <= poolSize; x++) {
-                for (int z = -poolSize; z <= poolSize; z++) {
-                    if ((x*x + z*z < poolSize*poolSize - 1 && random.nextInt(3) == 0) || x*x + z*z < (poolSize-1)*(poolSize-1)) {
-                        pos.set(originX + x, origin.getY(), originZ + z);
-                        boolean placeable = level.getBlockState(pos).isSolid();
-                        for (Direction direction : Direction.values())
-                        {
-                            if (direction != Direction.UP && !level.getBlockState(pos.relative(direction)).isSolid()) {
+                for (int y = 0; y < poolDepth; y++) {
+                    for (int z = -poolSize; z <= poolSize; z++) {
+                        float rf = max(poolSize - ((float)y*poolStepth), 0);
+                        float rfm1 = max(rf - 1, 0);
+                        if (((float) x * (float) x + (float) z * (float) z < rf * rf && random.nextInt(3) == 0) || (float) x * (float) x + (float) z * (float) z < (rfm1) * (rfm1)) {
+                            pos.set(originX + x, origin.getY() - y, originZ + z);
+                            boolean placeable = level.getBlockState(pos).isSolid();
+                            for (Direction direction : Direction.values()) {
+                                if (direction != Direction.UP && direction != Direction.DOWN && !level.getBlockState(pos.relative(direction)).isSolid()) {
+                                    placeable = false;
+                                }
+                                if (y == poolDepth - 1 && direction == Direction.DOWN && !level.getBlockState(pos.relative(direction)).isSolid()) {
+                                    placeable = false;
+                                }
+                                if (y == 0 && direction == Direction.UP && level.getBlockState(pos.relative(direction)).isSolid()) {
+                                    return false;
+                                }
+                            }
+                            if (y > 0 && !waterPos.contains(pos.above(y))) {
                                 placeable = false;
                             }
-                            if (direction == Direction.UP && level.getBlockState(pos.relative(direction)).isSolid()) {
-                                return false;
+                            if (placeable) {
+                                waterPos.add(pos.immutable());
                             }
-                        }
-                        if (placeable)
-                        {
-                            waterPos.add(pos.immutable());
                         }
                     }
                 }
@@ -64,10 +76,21 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
         }
         for (BlockPos bpos : waterPos)
         {
-            level.setBlock(bpos, Blocks.WATER.defaultBlockState(), 2);
-            if (!level.getBlockState(bpos.above()).isAir()) {
-                level.setBlock(bpos.above(), Blocks.AIR.defaultBlockState(), 2);
+            for (int y = 1; y <= origin.getY() - bpos.getY() + 1; y++) {
+                if (!level.getBlockState(bpos.above(y)).isAir() && !level.getBlockState(bpos.above(y)).is(Blocks.WATER)) {
+                    if (y < origin.getY() - bpos.getY() + 1)
+                    {
+                        level.setBlock(bpos.above(y), Blocks.WATER.defaultBlockState(), 2);
+                    }
+                    else
+                    {
+                        level.setBlock(bpos.above(y), Blocks.AIR.defaultBlockState(), 2);
+                    }
+                }
             }
+        }
+        for (BlockPos bpos : waterPos) {
+            level.setBlock(bpos, Blocks.WATER.defaultBlockState(), 2);
             blocksChanged++;
         }
         return blocksChanged > 0;
