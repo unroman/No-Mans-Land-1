@@ -1,9 +1,12 @@
 {
-  "feature": "nomansland:patch_barrel_cactus",
+  "feature": "nomansland:pond",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 8
+      "chance": 10
+    },
+    {
+      "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:heightmap",

@@ -27,6 +27,9 @@ public class NMLFeatures {
     public static final DeferredHolder<Feature<?> ,Feature<FillBiomeAboveConfiguration>> FILL_BIOME_ABOVE = FEATURES.register("fill_biome_above",
             () -> new FillBiomeAboveFeature(FillBiomeAboveConfiguration.CODEC));
 
+    public static final DeferredHolder<Feature<?>, Feature<PondFeatureConfiguration>> POND = FEATURES.register("pond",
+            () ->  new PondFeature(PondFeatureConfiguration.CODEC));
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_APPLE_01 = register("oak_apple_01");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_APPLE_05 = register("oak_apple_05");
 

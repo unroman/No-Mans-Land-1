@@ -1,0 +1,16 @@
+{
+  "type": "nomansland:pond",
+  "config": {
+    "num_pools": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 3
+    },
+    "pool_size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 4
+    },
+    "pool_spread": 2
+  }
+}
