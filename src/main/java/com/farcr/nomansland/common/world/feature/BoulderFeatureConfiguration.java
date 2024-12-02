@@ -5,8 +5,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
-public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cubeSpread, IntProvider cubeSize, float cubeRoundingPercentage, int numErosionRounds, float erosionPercentage) implements FeatureConfiguration {
+public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cubeSpread, IntProvider cubeSize, float cubeRoundingPercentage, int numErosionRounds, float erosionPercentage, BlockStateProvider blockProvider) implements FeatureConfiguration {
     public static final Codec<BoulderFeatureConfiguration> CODEC = RecordCodecBuilder.create(
             record -> record.group(
                     IntProvider.codec(1, 8).fieldOf("num_cubes").forGetter(BoulderFeatureConfiguration::numCubes),
@@ -14,7 +15,8 @@ public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cube
                     IntProvider.codec(1, 8).fieldOf("cube_size").forGetter(BoulderFeatureConfiguration::cubeSize),
                     ExtraCodecs.POSITIVE_FLOAT.fieldOf("cube_rounding_percentage").forGetter(BoulderFeatureConfiguration::cubeRoundingPercentage),
                     ExtraCodecs.NON_NEGATIVE_INT.fieldOf("num_erosion_rounds").forGetter(BoulderFeatureConfiguration::numErosionRounds),
-                    ExtraCodecs.POSITIVE_FLOAT.fieldOf("erosion_percentage").forGetter(BoulderFeatureConfiguration::erosionPercentage)
+                    ExtraCodecs.POSITIVE_FLOAT.fieldOf("erosion_percentage").forGetter(BoulderFeatureConfiguration::erosionPercentage),
+                    BlockStateProvider.CODEC.fieldOf("block_provider").forGetter(BoulderFeatureConfiguration::blockProvider)
             ).apply(record, BoulderFeatureConfiguration::new)
     );
 }

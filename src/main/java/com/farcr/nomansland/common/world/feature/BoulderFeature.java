@@ -83,7 +83,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
 
         for (BlockPos pos1 : stonePos) {
             if (level.getBlockState(pos1).is(BlockTags.REPLACEABLE)) {
-                level.setBlock(pos1, Blocks.COBBLESTONE.defaultBlockState(), 2);
+                level.setBlock(pos1, config.blockProvider().getState(random, pos1), 2);
             }
         }
 
