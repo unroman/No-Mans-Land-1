@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.block.cauldrons;
 
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLSounds;
+import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -173,7 +174,7 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
             entity.makeStuckInBlock(state, new Vec3(.9, .9, .9));
         }
         BlockState stateUnder = level.getBlockState(pos.below());
-        if (entity instanceof ItemEntity item && item.getItem().is(Items.HONEYCOMB) && (stateUnder.is(BlockTags.FIRE) || stateUnder.is(BlockTags.CAMPFIRES)) && cauldronBlock == NMLBlocks.RESIN_CAULDRON && state.getValue(LEVEL) > 1 && entity.getY()<=pos.getY()+0.3) {
+        if (cauldronBlock == NMLBlocks.RESIN_CAULDRON && entity instanceof ItemEntity item && item.getItem().is(NMLTags.MAKES_RESIN_OIL) && (stateUnder.is(BlockTags.FIRE) || stateUnder.is(BlockTags.CAMPFIRES)) && state.getValue(LEVEL) > 1 && entity.getY()<=pos.getY()+0.3) {
             entity.remove(Entity.RemovalReason.KILLED);
             level.playSound(null, pos, NMLSounds.HONEYCOMB_CONSUMED.get(), SoundSource.BLOCKS, 1, 0.5F);
             level.setBlockAndUpdate(pos, NMLBlocks.RESIN_OIL_CAULDRON.get().withPropertiesOf(state));

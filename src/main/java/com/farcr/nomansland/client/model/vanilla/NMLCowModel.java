@@ -1,4 +1,4 @@
-package com.farcr.nomansland.client.model;
+package com.farcr.nomansland.client.model.vanilla;
 
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

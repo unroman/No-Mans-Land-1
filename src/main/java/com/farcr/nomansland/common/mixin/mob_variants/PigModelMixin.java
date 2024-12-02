@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.client.model.NMLPigModel;
+import com.farcr.nomansland.client.model.vanilla.NMLPigModel;
 import net.minecraft.client.model.PigModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;

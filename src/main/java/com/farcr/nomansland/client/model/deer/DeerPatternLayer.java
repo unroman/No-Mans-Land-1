@@ -28,6 +28,6 @@ public class DeerPatternLayer extends RenderLayer<Deer, DeerModel<Deer>> {
         model.prepareMobModel(deer, limbSwing, limbSwingAmount, partialTicks);
         model.setupAnim(deer, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         VertexConsumer vertexconsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(patternTexture));
-        model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
+//        model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
     }
 }

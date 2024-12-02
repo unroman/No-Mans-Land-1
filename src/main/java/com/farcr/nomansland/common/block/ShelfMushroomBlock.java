@@ -23,36 +23,6 @@ public class ShelfMushroomBlock extends BaseCoralWallFanBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 
-    @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (!(player.isCreative() && player.getInventory().hasAnyMatching(stack -> stack.getItem() == this.asItem()))) {
-            ItemStack item = new ItemStack(this);
-            if (!player.addItem(item) ) {
-                player.drop(item, false);
-            } else {
-                level.playSound(player,
-                        player.getX(),
-                        player.getY(),
-                        player.getZ(),
-                        SoundEvents.ITEM_PICKUP,
-                        SoundSource.PLAYERS,
-                        0.2F,
-                        (level.random.nextFloat() - level.random.nextFloat()) * 1.4F + 2.0F);
-            }
-        } else {
-            level.playSound(player,
-                    player.getX(),
-                    player.getY(),
-                    player.getZ(),
-                    SoundEvents.ITEM_PICKUP,
-                    SoundSource.PLAYERS,
-                    0.2F,
-                    (level.random.nextFloat() - level.random.nextFloat()) * 1.4F + 2.0F);
-        }
-        level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-        return InteractionResult.sidedSuccess(level.isClientSide);
-    }
-
     public static boolean isAcceptableNeighbour(BlockGetter blockReader, BlockPos neighborPos) {
         BlockState blockstate = blockReader.getBlockState(neighborPos);
         return blockstate.is(BlockTags.LOGS) || blockstate.is(NMLTags.MUSHROOM_BLOCKS);

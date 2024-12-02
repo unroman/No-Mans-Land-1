@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.client.model.NMLSheepModel;
+import com.farcr.nomansland.client.model.vanilla.NMLSheepModel;
 import com.farcr.nomansland.common.mixin.QuadrupedModelMixin;
 import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;

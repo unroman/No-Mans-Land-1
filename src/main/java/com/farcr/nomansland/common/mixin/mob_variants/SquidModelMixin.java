@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.client.model.NMLSquidModel;
+import com.farcr.nomansland.client.model.vanilla.NMLSquidModel;
 import com.farcr.nomansland.common.mixin.HierarchicalModelMixin;
 import net.minecraft.client.model.SquidModel;
 import net.minecraft.client.model.geom.ModelPart;

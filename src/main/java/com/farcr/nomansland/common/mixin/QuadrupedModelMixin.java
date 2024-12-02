@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.mixin;
 
-import com.farcr.nomansland.client.model.NMLCowModel;
-import com.farcr.nomansland.client.model.NMLPigModel;
+import com.farcr.nomansland.client.model.vanilla.NMLCowModel;
+import com.farcr.nomansland.client.model.vanilla.NMLPigModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.Entity;

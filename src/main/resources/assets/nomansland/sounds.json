@@ -1,13 +1,13 @@
 {
   "block.spike_trap.spikes_extend": {
     "sounds": [
-      "nomansland:block/spike_trap/spikes_retract"
+      "nomansland:block/spike_trap/spikes_extend"
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.extend"
   },
   "block.spike_trap.spikes_retract": {
     "sounds": [
-      "nomansland:block/spike_trap/spikes_extend"
+      "nomansland:block/spike_trap/spikes_retract"
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.retract"
   },

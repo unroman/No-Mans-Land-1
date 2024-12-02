@@ -17,12 +17,11 @@ import net.minecraft.world.level.biome.Biome;
 
 import java.util.Optional;
 
-public record DeerAntlersVariant(ResourceLocation texture, int weight, ResourceLocation babyTexture, Optional<HolderSet<Biome>> biomes) implements MobVariant {
+public record DeerAntlersVariant(ResourceLocation texture, int weight, Optional<HolderSet<Biome>> biomes) implements MobVariant {
 
     public static final Codec<DeerAntlersVariant> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
                     ResourceLocation.CODEC.fieldOf("texture").forGetter(DeerAntlersVariant::texture),
                     Codec.INT.fieldOf("weight").forGetter(DeerAntlersVariant::weight),
-                    ResourceLocation.CODEC.fieldOf("baby_texture").forGetter(DeerAntlersVariant::babyTexture),
                     RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(DeerAntlersVariant::biomes))
             .apply(record, DeerAntlersVariant::new)
     );
@@ -31,7 +30,6 @@ public record DeerAntlersVariant(ResourceLocation texture, int weight, ResourceL
             StreamCodec.composite(
                     ResourceLocation.STREAM_CODEC, DeerAntlersVariant::texture,
                     ByteBufCodecs.INT, DeerAntlersVariant::weight,
-                    ResourceLocation.STREAM_CODEC, DeerAntlersVariant::babyTexture,
                     ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), DeerAntlersVariant::biomes,
                     DeerAntlersVariant::new
             );

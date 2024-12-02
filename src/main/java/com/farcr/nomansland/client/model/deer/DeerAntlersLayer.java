@@ -24,7 +24,7 @@ public class DeerAntlersLayer extends RenderLayer<Deer, DeerModel<Deer>> {
     @Override
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, Deer deer, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (deer.hasAntlers()) {
-            ResourceLocation antlersTexture = deer.isBaby() ? deer.getAntlersVariant().value().babyTexture() : deer.getAntlersVariant().value().texture().withPath((path) -> "textures/" + path + ".png");
+            ResourceLocation antlersTexture = deer.getAntlersVariant().value().texture().withPath((path) -> "textures/" + path + ".png");
             getParentModel().copyPropertiesTo(model);
             model.prepareMobModel(deer, limbSwing, limbSwingAmount, partialTicks);
             model.setupAnim(deer, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
