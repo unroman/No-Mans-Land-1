@@ -9,12 +9,12 @@ import org.jetbrains.annotations.Nullable;
 public class FuelItem extends Item {
     public final int burnTime;
 
-    public FuelItem(Properties pProperties, int burnTime) {
-        super(pProperties);
+    public FuelItem(Properties properties, int burnTime) {
+        super(properties);
         this.burnTime = burnTime;
     }
 
-    public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+    public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> recipeType) {
         return this.burnTime;
     }
 }

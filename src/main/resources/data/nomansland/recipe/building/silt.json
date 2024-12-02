@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#A",
+    "A#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gravel"
+    },
+    "A": {
+      "item": "minecraft:mud"
+    }
+  },
+  "result": {
+    "id": "nomansland:silt",
+    "count": 4
+  }
+}

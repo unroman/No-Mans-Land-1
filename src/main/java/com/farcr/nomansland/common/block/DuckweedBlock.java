@@ -12,6 +12,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DuckweedBlock extends BushBlock {
+    public static final MapCodec<DuckweedBlock> CODEC = simpleCodec(DuckweedBlock::new);
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.5, 16.0);
     public DuckweedBlock(Properties properties) {
         super(properties);
@@ -19,16 +20,18 @@ public class DuckweedBlock extends BushBlock {
 
     @Override
     protected MapCodec<? extends BushBlock> codec() {
-        return null;
+        return CODEC;
     }
+
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
+
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         FluidState fluidstate = level.getFluidState(pos);
-        FluidState fluidstate1 = level.getFluidState(pos.above());
-        return (fluidstate.getType() == Fluids.WATER) && fluidstate1.getType() == Fluids.EMPTY;
+        FluidState fluidstate1 = level.getFluidState(pos.above(2));
+        return fluidstate.getType() == Fluids.WATER && fluidstate1.getType() == Fluids.EMPTY;
     }
 }

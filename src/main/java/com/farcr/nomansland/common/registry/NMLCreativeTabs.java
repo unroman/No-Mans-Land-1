@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -20,7 +19,7 @@ public class NMLCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NO_MANS_TAB = CREATIVE_TABS.register(NoMansLand.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.nomansland"))
-                    .icon(() -> new ItemStack(NMLItems.NO_MANS_GLOBE.get()))
+                    .icon(NMLItems.NO_MANS_GLOBE::toStack)
                     .displayItems((parameters, output) -> CREATIVE_TAB_ITEMS.forEach((item) -> output.accept(item.get())))
                     .build());
 }

@@ -4,16 +4,23 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
-import com.farcr.nomansland.integration.Mods;
 import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
-import net.neoforged.fml.ModList;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import javax.annotation.Nullable;
 import java.util.LinkedHashSet;
 import java.util.function.Supplier;
 
@@ -43,6 +50,13 @@ public class NMLItems {
     public static final DeferredItem<Item> COOKED_VENISON = registerItem("cooked_venison",
             () -> new Item(new Item.Properties().food(NMLFoods.COOKED_VENISON)));
 
+    public static final DeferredItem<Item> BILLHOOK_BASS = registerItem("billhook_bass",
+            () -> new Item(new Item.Properties().food(NMLFoods.BILLHOOK_BASS)));
+    public static final DeferredItem<Item> COOKED_BILLHOOK_BASS = registerItem("cooked_billhook_bass",
+            () -> new Item(new Item.Properties().food(NMLFoods.COOKED_BILLHOOK_BASS)));
+//    public static final DeferredItem<Item> CAVE_CARP = registerItem("cave_carp",
+//            () -> new Item(new Item.Properties().food(NMLFoods.CAVE_CARP)));
+
     public static final DeferredItem<Item> PEAR = registerItem("pear",
             () -> new Item(new Item.Properties().food(NMLFoods.PEAR)));
     public static final DeferredItem<Item> SYRUPED_PEAR = registerItem("syruped_pear",
@@ -50,7 +64,7 @@ public class NMLItems {
     public static final DeferredItem<Item> PANCAKE = registerItem("pancake",
             () -> new MapleFoodItem(new Item.Properties().food(NMLFoods.PANCAKE)));
     public static final DeferredItem<Item> PEAR_COBBLER = registerItem("pear_cobbler",
-            () -> new MapleFoodItem(new Item.Properties().food(NMLFoods.PEAR_COBBLER)));
+            () -> new Item(new Item.Properties().food(NMLFoods.PEAR_COBBLER)));
     //TODO: FD compat pear juice and cobbler slice
     public static final DeferredItem<Item> HONEYED_APPLE = registerItem("honeyed_apple",
             () -> new HoneyFoodItem(new Item.Properties().food(NMLFoods.HONEYED_APPLE)));
@@ -78,6 +92,20 @@ public class NMLItems {
 
     public static final DeferredItem<Item> WOODEN_SCAFFOLDING = registerItem("wooden_scaffolding",
             () -> new ScaffoldingBlockItem(NMLBlocks.WOODEN_SCAFFOLDING.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> BILLHOOK_BASS_BUCKET = registerItem("billhook_bass_bucket",
+            () -> new MobBucketItem(NMLEntities.BILLHOOK_BASS.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
+                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
+
+    public static final DeferredItem<Item> BILLHOOK_BASS_SPAWN_EGG = registerItem("billhook_bass_spawn_egg",
+            () -> new DeferredSpawnEggItem(NMLEntities.BILLHOOK_BASS, 6443553, 11236417, new Item.Properties()));
+
+    public static final DeferredItem<Item> DEER_SPAWN_EGG = registerItem("deer_spawn_egg",
+            () -> new DeferredSpawnEggItem(NMLEntities.DEER, 8412743, 12828347, new Item.Properties()));
+
+//    public static final DeferredItem<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
+//            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
+//                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 
     public static final DeferredItem<Item> PINE_SIGN = registerItem("pine_sign",
             () -> new SignItem(new Item.Properties().stacksTo(16), NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get()));
@@ -118,282 +146,335 @@ public class NMLItems {
             () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Item.Properties()));
+    public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
+            () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Item.Properties()));
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(NMLBlocks.FADED_STONE_BRICKS);
-            event.accept(NMLBlocks.POLISHED_STONE);
-            event.accept(NMLBlocks.POLISHED_STONE_STAIRS);
-            event.accept(NMLBlocks.POLISHED_STONE_SLAB);
+        ResourceKey<CreativeModeTab> tab = event.getTabKey();
+//Note about the methods "addBefore and addAfter"
+        //"addAfter" reads from the bottom up, while addBefore reads from up to bottom.
+        // Might look messy, but trust me it makes sense I swear. -Farcr
+        if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
+            insertAfter(event, Items.STONE_BRICKS, NMLBlocks.FADED_STONE_BRICKS);
+            insertBefore(event, Items.STONE_BRICKS, NMLBlocks.POLISHED_STONE);
+            insertBefore(event, Items.STONE_BRICKS, NMLBlocks.POLISHED_STONE_STAIRS);
+            insertBefore(event, Items.STONE_BRICKS, NMLBlocks.POLISHED_STONE_SLAB);
 
-            event.accept(NMLBlocks.COBBLESTONE_BRICKS);
-            event.accept(NMLBlocks.COBBLESTONE_BRICK_STAIRS);
-            event.accept(NMLBlocks.COBBLESTONE_BRICK_SLAB);
-            event.accept(NMLBlocks.COBBLESTONE_BRICK_WALL);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICKS);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICK_STAIRS);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICK_SLAB);
-            event.accept(NMLBlocks.MOSSY_COBBLESTONE_BRICK_WALL);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_WALL);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_SLAB);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_STAIRS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICKS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_WALL);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_SLAB);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_STAIRS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICKS);
 
-            event.accept(NMLBlocks.MUNDANE_TILES);
-            event.accept(NMLBlocks.EARTHEN_TILES);
+            insertAfter(event, Items.SMOOTH_STONE_SLAB, NMLBlocks.MUNDANE_TILES);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILES);
 
-            event.accept(NMLBlocks.PINE_LOG);
-            event.accept(NMLBlocks.PINE_WOOD);
-            event.accept(NMLBlocks.STRIPPED_PINE_LOG);
-            event.accept(NMLBlocks.STRIPPED_PINE_WOOD);
-            event.accept(NMLBlocks.PINE_PLANKS);
-            event.accept(NMLBlocks.PINE_STAIRS);
-            event.accept(NMLBlocks.PINE_SLAB);
-            event.accept(NMLBlocks.TRIMMED_PINE_PLANKS);
-            event.accept(NMLBlocks.PINE_FENCE);
-            event.accept(NMLBlocks.PINE_FENCE_GATE);
-            event.accept(NMLBlocks.PINE_DOOR);
-            event.accept(NMLBlocks.PINE_TRAPDOOR);
-            event.accept(NMLBlocks.PINE_PRESSURE_PLATE);
-            event.accept(NMLBlocks.PINE_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.PINE_CABINET);
-            }
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_WALL);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_SLAB);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_STAIRS);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICKS);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_WALL);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_SLAB);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_STAIRS);
+            insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICKS);
 
-            event.accept(NMLBlocks.MAPLE_LOG);
-            event.accept(NMLBlocks.MAPLE_WOOD);
-            event.accept(NMLBlocks.STRIPPED_MAPLE_LOG);
-            event.accept(NMLBlocks.STRIPPED_MAPLE_WOOD);
-            event.accept(NMLBlocks.MAPLE_PLANKS);
-            event.accept(NMLBlocks.MAPLE_STAIRS);
-            event.accept(NMLBlocks.MAPLE_SLAB);
-            event.accept(NMLBlocks.TRIMMED_MAPLE_PLANKS);
-            event.accept(NMLBlocks.MAPLE_FENCE);
-            event.accept(NMLBlocks.MAPLE_FENCE_GATE);
-            event.accept(NMLBlocks.MAPLE_DOOR);
-            event.accept(NMLBlocks.MAPLE_TRAPDOOR);
-            event.accept(NMLBlocks.MAPLE_PRESSURE_PLATE);
-            event.accept(NMLBlocks.MAPLE_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.MAPLE_CABINET);
-            }
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BUTTON);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_PRESSURE_PLATE);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_TRAPDOOR);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_DOOR);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE_GATE);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.TRIMMED_PINE_PLANKS);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BOOKSHELF);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_SLAB);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_STAIRS);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_PLANKS);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.STRIPPED_PINE_WOOD);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.STRIPPED_PINE_LOG);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_WOOD);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_LOG);
+            NMLBlocks.PINE_CABINET.ifPresent(event::accept);
 
-            event.accept(NMLBlocks.WALNUT_LOG);
-            event.accept(NMLBlocks.WALNUT_WOOD);
-            event.accept(NMLBlocks.STRIPPED_WALNUT_LOG);
-            event.accept(NMLBlocks.STRIPPED_WALNUT_WOOD);
-            event.accept(NMLBlocks.WALNUT_PLANKS);
-            event.accept(NMLBlocks.WALNUT_STAIRS);
-            event.accept(NMLBlocks.WALNUT_SLAB);
-            event.accept(NMLBlocks.TRIMMED_WALNUT_PLANKS);
-            event.accept(NMLBlocks.WALNUT_FENCE);
-            event.accept(NMLBlocks.WALNUT_FENCE_GATE);
-            event.accept(NMLBlocks.WALNUT_DOOR);
-            event.accept(NMLBlocks.WALNUT_TRAPDOOR);
-            event.accept(NMLBlocks.WALNUT_PRESSURE_PLATE);
-            event.accept(NMLBlocks.WALNUT_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.WALNUT_CABINET);
-            }
-            event.accept(NMLBlocks.WILLOW_LOG);
-            event.accept(NMLBlocks.WILLOW_WOOD);
-            event.accept(NMLBlocks.STRIPPED_WILLOW_LOG);
-            event.accept(NMLBlocks.STRIPPED_WILLOW_WOOD);
-            event.accept(NMLBlocks.WILLOW_PLANKS);
-            event.accept(NMLBlocks.WILLOW_STAIRS);
-            event.accept(NMLBlocks.WILLOW_SLAB);
-            event.accept(NMLBlocks.TRIMMED_WILLOW_PLANKS);
-            event.accept(NMLBlocks.WILLOW_FENCE);
-            event.accept(NMLBlocks.WILLOW_FENCE_GATE);
-            event.accept(NMLBlocks.WILLOW_DOOR);
-            event.accept(NMLBlocks.WILLOW_TRAPDOOR);
-            event.accept(NMLBlocks.WILLOW_PRESSURE_PLATE);
-            event.accept(NMLBlocks.WILLOW_BUTTON);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.WILLOW_CABINET);
-            }
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BUTTON);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_PRESSURE_PLATE);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_TRAPDOOR);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_DOOR);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE_GATE);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.TRIMMED_WALNUT_PLANKS);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BOOKSHELF);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_SLAB);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_STAIRS);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_PLANKS);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.STRIPPED_WALNUT_WOOD);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.STRIPPED_WALNUT_LOG);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_WOOD);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_LOG);
+            NMLBlocks.WALNUT_CABINET.ifPresent(event::accept);
 
-            event.accept(NMLBlocks.COD_BARREL);
-            event.accept(NMLBlocks.SALMON_BARREL);
-            event.accept(NMLBlocks.PUFFERFISH_BARREL);
-            event.accept(NMLBlocks.TROPICAL_FISH_BARREL);
-            event.accept(NMLBlocks.APPLE_CRATE);
-            event.accept(NMLBlocks.PEAR_CRATE);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_LOG);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_WOOD);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.STRIPPED_MAPLE_LOG);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.STRIPPED_MAPLE_WOOD);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_PLANKS);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_STAIRS);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_SLAB);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BOOKSHELF);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.TRIMMED_MAPLE_PLANKS);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE_GATE);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_DOOR);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_TRAPDOOR);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_PRESSURE_PLATE);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BUTTON);
+            NMLBlocks.MAPLE_CABINET.ifPresent(event::accept);
 
-            event.accept(NMLBlocks.TRIMMED_OAK_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_SPRUCE_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_BIRCH_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_JUNGLE_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_ACACIA_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_DARK_OAK_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_CHERRY_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_MANGROVE_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_CRIMSON_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_WARPED_PLANKS);
-            event.accept(NMLBlocks.TRIMMED_BAMBOO_PLANKS);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_LOG);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_WOOD);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.STRIPPED_WILLOW_LOG);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.STRIPPED_WILLOW_WOOD);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_PLANKS);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_STAIRS);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_SLAB);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BOOKSHELF);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.TRIMMED_WILLOW_PLANKS);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE_GATE);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_DOOR);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_TRAPDOOR);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_PRESSURE_PLATE);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BUTTON);
+            NMLBlocks.WILLOW_CABINET.ifPresent(event::accept);
+
+            insertAfter(event, Items.OAK_SLAB, NMLBlocks.TRIMMED_OAK_PLANKS);
+            insertAfter(event, Items.OAK_SLAB, Items.BOOKSHELF.getDefaultInstance().getItemHolder());
+            insertAfter(event, Items.SPRUCE_SLAB, NMLBlocks.TRIMMED_SPRUCE_PLANKS);
+            insertAfter(event, Items.SPRUCE_SLAB, NMLBlocks.SPRUCE_BOOKSHELF);
+            insertAfter(event, Items.BIRCH_SLAB, NMLBlocks.TRIMMED_BIRCH_PLANKS);
+            insertAfter(event, Items.BIRCH_SLAB, NMLBlocks.BIRCH_BOOKSHELF);
+            insertAfter(event, Items.JUNGLE_SLAB, NMLBlocks.TRIMMED_JUNGLE_PLANKS);
+            insertAfter(event, Items.JUNGLE_SLAB, NMLBlocks.JUNGLE_BOOKSHELF);
+            insertAfter(event, Items.ACACIA_SLAB, NMLBlocks.TRIMMED_ACACIA_PLANKS);
+            insertAfter(event, Items.ACACIA_SLAB, NMLBlocks.ACACIA_BOOKSHELF);
+            insertAfter(event, Items.DARK_OAK_SLAB, NMLBlocks.TRIMMED_DARK_OAK_PLANKS);
+            insertAfter(event, Items.DARK_OAK_SLAB, NMLBlocks.DARK_OAK_BOOKSHELF);
+            insertAfter(event, Items.CHERRY_SLAB, NMLBlocks.TRIMMED_CHERRY_PLANKS);
+            insertAfter(event, Items.CHERRY_SLAB, NMLBlocks.CHERRY_BOOKSHELF);
+            insertAfter(event, Items.MANGROVE_SLAB, NMLBlocks.TRIMMED_MANGROVE_PLANKS);
+            insertAfter(event, Items.MANGROVE_SLAB, NMLBlocks.MANGROVE_BOOKSHELF);
+            insertAfter(event, Items.CRIMSON_SLAB, NMLBlocks.TRIMMED_CRIMSON_PLANKS);
+            insertAfter(event, Items.CRIMSON_SLAB, NMLBlocks.CRIMSON_BOOKSHELF);
+            insertAfter(event, Items.WARPED_SLAB, NMLBlocks.TRIMMED_WARPED_PLANKS);
+            insertAfter(event, Items.WARPED_SLAB, NMLBlocks.WARPED_BOOKSHELF);
+            insertAfter(event, Items.BAMBOO_MOSAIC_SLAB, NMLBlocks.TRIMMED_BAMBOO_PLANKS);
+            insertAfter(event, Items.BAMBOO_MOSAIC_SLAB, NMLBlocks.BAMBOO_BOOKSHELF);
+
+            insertBefore(event, Items.AMETHYST_BLOCK, NMLBlocks.QUARTZITE);
         }
-        if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
-        }
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(NMLBlocks.GRASS_SPROUTS);
-            event.accept(NMLBlocks.OAT_GRASS);
-            event.accept(NMLBlocks.SHORT_BEACHGRASS);
-            event.accept(NMLBlocks.TALL_BEACHGRASS);
-            event.accept(NMLBlocks.FROSTED_GRASS);
-            event.accept(NMLBlocks.DRIED_GRASS);
-            event.accept(NMLBlocks.MYCELIUM_SPROUTS);
-            event.accept(NMLBlocks.MYCELIUM_GROWTHS);
-            event.accept(NMLBlocks.FIDDLEHEAD);
-            event.accept(NMLBlocks.CATTAIL);
-            event.accept(NMLBlocks.DUCKWEED);
-            event.accept(NMLBlocks.CLOVER_PATCH);
-            event.accept(NMLBlocks.RED_FLOWERBED);
-            event.accept(NMLBlocks.YELLOW_FLOWERBED);
-            event.accept(NMLBlocks.BLUE_FLOWERBED);
-            event.accept(NMLBlocks.VIOLET_FLOWERBED);
-            event.accept(NMLBlocks.WHITE_FLOWERBED);
-            event.accept(NMLBlocks.RED_LUPINE);
-            event.accept(NMLBlocks.BLUE_LUPINE);
-            event.accept(NMLBlocks.PINK_LUPINE);
-            event.accept(NMLBlocks.YELLOW_LUPINE);
-            event.accept(NMLBlocks.ACONITE);
-            event.accept(NMLBlocks.WILD_MINT);
-            event.accept(NMLBlocks.AUTUMN_CROCUS);
-            event.accept(NMLBlocks.RAFFLESIA);
-            event.accept(NMLBlocks.BARREL_CACTUS);
-            event.accept(NMLBlocks.SUCCULENT);
-            event.accept(NMLBlocks.PICKLEWEED);
-            event.accept(NMLBlocks.PEBBLES);
-            event.accept(NMLBlocks.SEASHELLS);
-            event.accept(NMLBlocks.YELLOW_BIRCH_LEAVES);
-            event.accept(NMLBlocks.YELLOW_BIRCH_SAPLING);
-            event.accept(NMLBlocks.AUTUMNAL_OAK_LEAVES);
-            event.accept(NMLBlocks.AUTUMNAL_OAK_SAPLING);
-            event.accept(NMLBlocks.PALE_CHERRY_LEAVES);
-            event.accept(NMLBlocks.PALE_CHERRY_SAPLING);
-            event.accept(NMLBlocks.FIELD_MUSHROOM);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                event.accept(NMLBlocks.FIELD_MUSHROOM_COLONY);
-            }
-            event.accept(NMLBlocks.FIELD_MUSHROOM_BLOCK);
-            event.accept(NMLBlocks.SHELF_MUSHROOM);
-            event.accept(NMLBlocks.SHELF_MUSHROOM_BLOCK);
-            event.accept(NMLBlocks.FROSTED_LEAVES);
-            event.accept(NMLBlocks.BEARD_MOSS);
-            event.accept(NMLBlocks.DIRT_PATH);
-            event.accept(NMLBlocks.MYCELIUM_PATH);
-            event.accept(NMLBlocks.PODZOL_PATH);
-            event.accept(NMLBlocks.SNOWY_GRASS_PATH);
-            event.accept(NMLBlocks.SNOW_PATH);
-            event.accept(NMLBlocks.GRAVEL_PATH);
-            event.accept(NMLBlocks.SAND_PATH);
-            event.accept(NMLBlocks.RED_SAND_PATH);
 
-            event.accept(NMLBlocks.QUARTZITE);
-            event.accept(NMLBlocks.QUARTZITE_CLUSTER);
-            event.accept(NMLBlocks.SMALL_QUARTZITE_BUD);
-            event.accept(NMLBlocks.MEDIUM_QUARTZITE_BUD);
-            event.accept(NMLBlocks.LARGE_QUARTZITE_BUD);
-            event.accept(NMLBlocks.BUDDING_QUARTZITE);
-//            event.accept(NMLBlocks.PETRIFIED_LOG);
-//            event.accept(NMLBlocks.PETRIFIED_WOOD);
+        if (tab == CreativeModeTabs.COLORED_BLOCKS) {
+        }
+
+        if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
+            insertAfter(event, Items.SHORT_GRASS, NMLBlocks.FROSTED_GRASS);
+            insertAfter(event, Items.SHORT_GRASS, NMLBlocks.OAT_GRASS);
+            insertAfter(event, Items.SHORT_GRASS, NMLBlocks.GRASS_SPROUTS);
+            insertAfter(event, Items.FERN, NMLBlocks.FIDDLEHEAD);
+            insertBefore(event, Items.DEAD_BUSH, NMLBlocks.SHORT_BEACHGRASS);
+            insertBefore(event, Items.DEAD_BUSH, NMLBlocks.TALL_BEACHGRASS);
+            insertBefore(event, Items.DEAD_BUSH, NMLBlocks.DRIED_GRASS);
+            insertBefore(event, Items.CRIMSON_ROOTS, NMLBlocks.MYCELIUM_GROWTHS);
+            insertBefore(event, Items.CRIMSON_ROOTS, NMLBlocks.MYCELIUM_SPROUTS);
+            insertAfter(event, Items.LARGE_FERN, NMLBlocks.CATTAIL);
+            insertAfter(event, Items.LILY_PAD, NMLBlocks.DUCKWEED);
+            insertAfter(event, Items.HANGING_ROOTS, NMLBlocks.BEARD_MOSS);
+            insertAfter(event, Items.PINK_PETALS, NMLBlocks.CLOVER_PATCH);
+            insertAfter(event, Items.PINK_PETALS, NMLBlocks.RED_FLOWERBED);
+            insertAfter(event, Items.PINK_PETALS, NMLBlocks.YELLOW_FLOWERBED);
+            insertAfter(event, Items.PINK_PETALS, NMLBlocks.BLUE_FLOWERBED);
+            insertAfter(event, Items.PINK_PETALS, NMLBlocks.VIOLET_FLOWERBED);
+            insertAfter(event, Items.PINK_PETALS, NMLBlocks.WHITE_FLOWERBED);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.RED_LUPINE);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.BLUE_LUPINE);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.PINK_LUPINE);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.YELLOW_LUPINE);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.ACONITE);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.WILD_MINT);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.AUTUMN_CROCUS);
+            insertAfter(event, Items.SPORE_BLOSSOM, NMLBlocks.RAFFLESIA);
+            insertAfter(event, Items.DEAD_BUSH, NMLBlocks.BARREL_CACTUS);
+            insertAfter(event, Items.DEAD_BUSH, NMLBlocks.SUCCULENT);
+            insertAfter(event, Items.DEAD_BUSH, NMLBlocks.PICKLEWEED);
+            insertAfter(event, Items.WARPED_FUNGUS, NMLBlocks.PEBBLES);
+            insertAfter(event, Items.WARPED_FUNGUS, NMLBlocks.SEASHELLS);
+            insertAfter(event, Items.BIRCH_LEAVES, NMLBlocks.YELLOW_BIRCH_LEAVES);
+            insertAfter(event, Items.BIRCH_SAPLING, NMLBlocks.YELLOW_BIRCH_SAPLING);
+            insertAfter(event, Items.OAK_LEAVES, NMLBlocks.AUTUMNAL_OAK_LEAVES);
+            insertAfter(event, Items.OAK_SAPLING, NMLBlocks.AUTUMNAL_OAK_SAPLING);
+            insertAfter(event, Items.CHERRY_LEAVES, NMLBlocks.PALE_CHERRY_LEAVES);
+            insertAfter(event, Items.CHERRY_SAPLING, NMLBlocks.PALE_CHERRY_SAPLING);
+            NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(event::accept);
+            insertBefore(event, Items.GRAVEL, NMLBlocks.SILT);
+            insertAfter(event, NMLBlocks.SILT, NMLBlocks.SILT_PATH);
+            insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
+            insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);
+            insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.SHELF_MUSHROOM_BLOCK);
+            insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.FIELD_MUSHROOM_BLOCK);
+            insertAfter(event, Items.SPRUCE_LEAVES, NMLBlocks.FROSTED_LEAVES);
+            insertAfter(event, Items.SAND, NMLBlocks.SAND_PATH);
+            insertAfter(event, Items.RED_SAND, NMLBlocks.RED_SAND_PATH);
+            insertAfter(event, Items.SNOW_BLOCK, NMLBlocks.SNOW_PATH);
+            insertAfter(event, Items.GRAVEL, NMLBlocks.GRAVEL_PATH);
+            insertAfter(event, Items.SNOW, NMLBlocks.SNOWY_GRASS_PATH);
+            insertAfter(event, Items.MYCELIUM, NMLBlocks.MYCELIUM_PATH);
+            insertAfter(event, Items.PODZOL, NMLBlocks.PODZOL_PATH);
+            insertAfter(event, NMLBlocks.SILT, NMLBlocks.SILT_PATH);
+            insertBefore(event, Items.DIRT, NMLBlocks.DIRT_PATH);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.QUARTZITE_CLUSTER);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.LARGE_QUARTZITE_BUD);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.MEDIUM_QUARTZITE_BUD);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.SMALL_QUARTZITE_BUD);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.BUDDING_QUARTZITE);
+            insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.QUARTZITE);
+
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.TROPICAL_FISH_BARREL);
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.PUFFERFISH_BARREL);
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.SALMON_BARREL);
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.COD_BARREL);
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.PEAR_CRATE);
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.APPLE_CRATE);
 
 //            event.accept(NMLBlocks.REMAINS);
 
-            event.accept(NMLBlocks.PINE_LOG);
-            event.accept(NMLBlocks.PINE_LEAVES);
-            event.accept(NMLBlocks.PINE_SAPLING);
+            insertAfter(event, Items.SPRUCE_LOG, NMLBlocks.PINE_LOG);
+            insertAfter(event, Items.SPRUCE_LEAVES, NMLBlocks.PINE_LEAVES);
+            insertAfter(event, Items.SPRUCE_SAPLING, NMLBlocks.PINE_SAPLING);
 
-            event.accept(NMLBlocks.MAPLE_LOG);
-            event.accept(NMLBlocks.MAPLE_LEAVES);
-            event.accept(NMLBlocks.MAPLE_SAPLING);
-            event.accept(NMLBlocks.RED_MAPLE_LEAVES);
-            event.accept(NMLBlocks.RED_MAPLE_SAPLING);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_LOG);
+            insertBefore(event, Items.DARK_OAK_LEAVES, NMLBlocks.MAPLE_LEAVES);
+            insertBefore(event, Items.DARK_OAK_SAPLING, NMLBlocks.MAPLE_SAPLING);
+            insertBefore(event, Items.DARK_OAK_LEAVES, NMLBlocks.RED_MAPLE_LEAVES);
+            insertBefore(event, Items.DARK_OAK_SAPLING, NMLBlocks.RED_MAPLE_SAPLING);
 
-            event.accept(NMLBlocks.WALNUT_LOG);
-            event.accept(NMLBlocks.WALNUT_LEAVES);
-            event.accept(NMLBlocks.WALNUT_SAPLING);
+            insertAfter(event, Items.DARK_OAK_LOG, NMLBlocks.WALNUT_LOG);
+            insertAfter(event, Items.DARK_OAK_LEAVES, NMLBlocks.WALNUT_LEAVES);
+            insertAfter(event, Items.DARK_OAK_SAPLING, NMLBlocks.WALNUT_SAPLING);
 
-            event.accept(NMLBlocks.WILLOW_LOG);
-            event.accept(NMLBlocks.WILLOW_LEAVES);
-            event.accept(NMLBlocks.WILLOW_SAPLING);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_LOG);
+            insertBefore(event, Items.MANGROVE_LEAVES, NMLBlocks.WILLOW_LEAVES);
+            insertBefore(event, Items.MANGROVE_PROPAGULE, NMLBlocks.WILLOW_SAPLING);
 
         }
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(NMLBlocks.PINE_BOOKSHELF);
-            event.accept(NMLBlocks.MAPLE_BOOKSHELF);
-            event.accept(NMLBlocks.WALNUT_BOOKSHELF);
-            event.accept(NMLBlocks.SPRUCE_BOOKSHELF);
-            event.accept(NMLBlocks.BIRCH_BOOKSHELF);
-            event.accept(NMLBlocks.JUNGLE_BOOKSHELF);
-            event.accept(NMLBlocks.ACACIA_BOOKSHELF);
-            event.accept(NMLBlocks.DARK_OAK_BOOKSHELF);
-            event.accept(NMLBlocks.CHERRY_BOOKSHELF);
-            event.accept(NMLBlocks.MANGROVE_BOOKSHELF);
-            event.accept(NMLBlocks.CRIMSON_BOOKSHELF);
-            event.accept(NMLBlocks.WARPED_BOOKSHELF);
-            event.accept(NMLBlocks.BAMBOO_BOOKSHELF);
-            event.accept(NMLItems.PINE_SIGN);
-            event.accept(NMLItems.PINE_HANGING_SIGN);
-            event.accept(NMLItems.MAPLE_SIGN);
-            event.accept(NMLItems.MAPLE_HANGING_SIGN);
-            event.accept(NMLItems.WALNUT_SIGN);
-            event.accept(NMLItems.WALNUT_HANGING_SIGN);
-            event.accept(NMLItems.WILLOW_SIGN);
-            event.accept(NMLItems.WILLOW_HANGING_SIGN);
-            event.accept(NMLItems.SCONCE_TORCH);
-            event.accept(NMLItems.SCONCE_SOUL_TORCH);
-            event.accept(NMLBlocks.TAP);
-            event.accept(NMLItems.WOODEN_SCAFFOLDING);
-        }
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            event.accept(NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
-            event.accept(NMLItems.GRILLED_MUSHROOMS);
-            event.accept(NMLItems.FROG_LEG);
-            event.accept(NMLItems.COOKED_FROG_LEG);
-            event.accept(NMLItems.RAW_HORSE);
-            event.accept(NMLItems.HORSE_STEAK);
-            event.accept(NMLItems.RAW_VENISON);
-            event.accept(NMLItems.COOKED_VENISON);
-            event.accept(NMLItems.MAPLE_SYRUP_BOTTLE);
-            event.accept(NMLItems.PEAR);
-            event.accept(NMLItems.SYRUPED_PEAR);
-            event.accept(NMLItems.PANCAKE);
-            event.accept(NMLItems.PEAR_COBBLER);
-            event.accept(NMLItems.HONEYED_APPLE);
-            event.accept(NMLItems.WALNUTS);
-        }
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(NMLItems.PINE_BOAT);
-            event.accept(NMLItems.PINE_CHEST_BOAT);
-            event.accept(NMLItems.MAPLE_BOAT);
-            event.accept(NMLItems.MAPLE_CHEST_BOAT);
-            event.accept(NMLItems.WALNUT_BOAT);
-            event.accept(NMLItems.WALNUT_CHEST_BOAT);
-            event.accept(NMLItems.WILLOW_BOAT);
-            event.accept(NMLItems.WILLOW_CHEST_BOAT);
-            // TODO: this crashes the game if you have the bundle experiment on
-//            event.accept(Items.BUNDLE);
-        }
-        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            event.accept(NMLItems.FIREBOMB);
-            event.accept(NMLItems.EXPLOSIVE);
-            event.accept(NMLItems.RESIN_OIL_BOTTLE);
+
+        if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WARPED_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.CRIMSON_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.CHERRY_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.BAMBOO_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.MANGROVE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WILLOW_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WALNUT_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.DARK_OAK_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.MAPLE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.ACACIA_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.JUNGLE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.BIRCH_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.PINE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.SPRUCE_BOOKSHELF);
+            insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_HANGING_SIGN);
+            insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_SIGN);
+            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, NMLItems.WALNUT_HANGING_SIGN);
+            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, NMLItems.WALNUT_SIGN);
+            insertBefore(event, Items.DARK_OAK_SIGN, NMLItems.MAPLE_SIGN);
+            insertBefore(event, Items.DARK_OAK_SIGN, NMLItems.MAPLE_HANGING_SIGN);
+            insertBefore(event, Items.MANGROVE_SIGN, NMLItems.WILLOW_SIGN);
+            insertBefore(event, Items.MANGROVE_SIGN, NMLItems.WILLOW_HANGING_SIGN);
+            insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_SOUL_TORCH);
+            insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_TORCH);
+            insertAfter(event, Items.CAULDRON, NMLBlocks.TAP);
+            insertBefore(event, Items.SCAFFOLDING, NMLItems.WOODEN_SCAFFOLDING);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(NMLItems.RESIN);
-            event.accept(NMLItems.RESIN_OIL_BOTTLE);
+        if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
+            insertAfter(event, Items.COOKED_BEEF, NMLItems.HORSE_STEAK);
+            insertAfter(event, Items.COOKED_BEEF, NMLItems.RAW_HORSE);
+            insertAfter(event, Items.COOKED_MUTTON, NMLItems.COOKED_VENISON);
+            insertAfter(event, Items.COOKED_MUTTON, NMLItems.RAW_VENISON);
+            insertAfter(event, Items.COOKED_RABBIT, NMLItems.COOKED_FROG_LEG);
+            insertAfter(event, Items.COOKED_RABBIT, NMLItems.FROG_LEG);
+            insertAfter(event, Items.HONEY_BOTTLE, NMLItems.MAPLE_SYRUP_BOTTLE);
+            insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PEAR_COBBLER);
+            insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PANCAKE);
+            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.SYRUPED_PEAR);
+            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.PEAR);
+            insertAfter(event, Items.APPLE, NMLItems.HONEYED_APPLE);
+            insertAfter(event, Items.MELON_SLICE, NMLItems.WALNUTS);
+            insertAfter(event, Items.MUSHROOM_STEW, NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
+            insertAfter(event, Items.POISONOUS_POTATO, NMLItems.GRILLED_MUSHROOMS);
+            insertAfter(event, Items.COOKED_SALMON, NMLItems.COOKED_BILLHOOK_BASS);
+            insertAfter(event, Items.COOKED_SALMON, NMLItems.BILLHOOK_BASS);
+//            insertAfter(event, Items.TROPICAL_FISH, NMLItems.CAVE_CARP);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(NMLBlocks.SPIKE_TRAP);
+        if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            insertAfter(event, Items.SPRUCE_CHEST_BOAT, NMLItems.PINE_CHEST_BOAT);
+            insertAfter(event, Items.SPRUCE_CHEST_BOAT, NMLItems.PINE_BOAT);
+            insertBefore(event, Items.DARK_OAK_BOAT, NMLItems.MAPLE_BOAT);
+            insertBefore(event, Items.DARK_OAK_BOAT, NMLItems.MAPLE_CHEST_BOAT);
+            insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_BOAT);
+            insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_CHEST_BOAT);
+            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_CHEST_BOAT);
+            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_BOAT);
+            insertAfter(event, Items.SALMON_BUCKET, NMLItems.BILLHOOK_BASS_BUCKET);
+//            insertAfter(event, Items.TROPICAL_FISH_BUCKET, NMLItems.CAVE_CARP_BUCKET);
+            if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.accept(Items.BUNDLE);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(NMLBlocks.MONSTER_ANCHOR);
+        if (tab == CreativeModeTabs.COMBAT) {
+            insertAfter(event, Items.WIND_CHARGE, NMLItems.FIREBOMB);
+            insertBefore(event, Items.TNT, NMLItems.EXPLOSIVE);
+            insertAfter(event, Items.EGG, NMLItems.RESIN_OIL_BOTTLE);
+        }
+
+        if (tab == CreativeModeTabs.INGREDIENTS) {
+            insertAfter(event, Items.HONEYCOMB, NMLItems.RESIN);
+            insertAfter(event, NMLItems.RESIN, NMLItems.RESIN_OIL_BOTTLE);
+        }
+
+        if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
+            insertAfter(event, Blocks.LIGHTNING_ROD, NMLBlocks.SPIKE_TRAP);
+        }
+
+        if (tab == CreativeModeTabs.SPAWN_EGGS) {
+            insertAfter(event, Blocks.SPAWNER, NMLBlocks.MONSTER_ANCHOR);
         }
     }
 
+    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {
+        ItemStack existingStack = null;
+        ItemStack newStack = null;
+        if (existingEntry instanceof Item item) existingStack = item.getDefaultInstance();
+        if (existingEntry instanceof Block block) existingStack = block.asItem().getDefaultInstance();
+        if (newEntry.value() instanceof Item item) newStack = item.getDefaultInstance();
+        if (newEntry.value() instanceof Block block) newStack = block.asItem().getDefaultInstance();
+        if (existingStack != null && newStack != null) event.insertBefore(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
+    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {
+        ItemStack existingStack = null;
+        ItemStack newStack = null;
+        if (existingEntry instanceof Item item) existingStack = item.getDefaultInstance();
+        if (existingEntry instanceof Block block) existingStack = block.asItem().getDefaultInstance();
+        if (newEntry.value() instanceof Item item) newStack = item.getDefaultInstance();
+        if (newEntry.value() instanceof Block block) newStack = block.asItem().getDefaultInstance();
+        if (existingStack != null && newStack != null) event.insertAfter(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
     @SuppressWarnings("unchecked")
-    public static <T extends Item> DeferredItem<T> registerItem(String name, @Nullable Supplier<? extends Item> item) {
-        if (item == null) return null;
+    public static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<? extends Item> item) {
         DeferredItem<Item> toReturn = ITEMS.register(name, item);
         CREATIVE_TAB_ITEMS.add(toReturn);
         return (DeferredItem<T>) toReturn;

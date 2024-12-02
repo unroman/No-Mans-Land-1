@@ -13,7 +13,8 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "enchantments": [
+                    "predicates": {
+                      "minecraft:enchantments": [
                       {
                         "enchantment": "minecraft:silk_touch",
                         "levels": {
@@ -23,6 +24,7 @@
                     ]
                   }
                 }
+              }
               ],
               "name": "nomansland:quartzite_cluster"
             },

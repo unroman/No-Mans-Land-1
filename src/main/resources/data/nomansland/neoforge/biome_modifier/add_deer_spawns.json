@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#c:is_forest",
+  "spawners": [
+    {
+      "type": "nomansland:deer",
+      "weight": 8, 
+      "minCount": 2, 
+      "maxCount": 6 
+    }
+  ]
+}

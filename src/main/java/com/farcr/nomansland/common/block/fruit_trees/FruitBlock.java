@@ -11,6 +11,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -23,6 +24,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.function.BiConsumer;
 
 public class FruitBlock extends BushBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
@@ -102,7 +105,14 @@ public class FruitBlock extends BushBlock {
 
     @Override
     protected void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
-        if (state.getValue(AGE) != getMaxAge()) return;
         level.destroyBlock(hit.getBlockPos(), true);
+    }
+
+    @Override
+    protected void onExplosionHit(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> dropConsumer) {
+        if (explosion.canTriggerBlocks()) {
+            level.destroyBlock(pos, true);
+        }
+        super.onExplosionHit(state, level, pos, explosion, dropConsumer);
     }
 }

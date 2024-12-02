@@ -1,7 +1,10 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
+import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import net.minecraft.core.Holder;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -12,13 +15,23 @@ public class NMLDataSerializers {
     public static final DeferredRegister<EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS =
             DeferredRegister.create(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, NoMansLand.MODID);
 
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DeerAntlersVariant>>> DEER_ANTLERS_VARIANT = ENTITY_DATA_SERIALIZERS.register("deer_antlers_variant", () -> EntityDataSerializer.forValueType(DeerAntlersVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DeerPatternVariant>>> DEER_PATTERN_VARIANT = ENTITY_DATA_SERIALIZERS.register("deer_pattern_variant", () -> EntityDataSerializer.forValueType(DeerPatternVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DeerVariant>>> DEER_VARIANT = ENTITY_DATA_SERIALIZERS.register("deer_variant", () -> EntityDataSerializer.forValueType(DeerVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<GlowSquidVariant>>> GLOW_SQUID_VARIANT = ENTITY_DATA_SERIALIZERS.register("glow_squid_variant", () -> EntityDataSerializer.forValueType(GlowSquidVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<SquidVariant>>> SQUID_VARIANT = ENTITY_DATA_SERIALIZERS.register("squid_variant", () -> EntityDataSerializer.forValueType(SquidVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<BillhookBassVariant>>> BASS_VARIANT = ENTITY_DATA_SERIALIZERS.register("bass_variant", () -> EntityDataSerializer.forValueType(BillhookBassVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CodVariant>>> COD_VARIANT = ENTITY_DATA_SERIALIZERS.register("cod_variant", () -> EntityDataSerializer.forValueType(CodVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CamelVariant>>> CAMEL_VARIANT = ENTITY_DATA_SERIALIZERS.register("camel_variant", () -> EntityDataSerializer.forValueType(CamelVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<LlamaVariant>>> LLAMA_VARIANT = ENTITY_DATA_SERIALIZERS.register("llama_variant", () -> EntityDataSerializer.forValueType(LlamaVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<CowVariant>>> COW_VARIANT = ENTITY_DATA_SERIALIZERS.register("cow_variant", () -> EntityDataSerializer.forValueType(CowVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<MooshroomVariant>>> MOOSHROOM_VARIANT = ENTITY_DATA_SERIALIZERS.register("mooshroom_variant", () -> EntityDataSerializer.forValueType(MooshroomVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<DolphinVariant>>> DOLPHIN_VARIANT = ENTITY_DATA_SERIALIZERS.register("dolphin_variant", () -> EntityDataSerializer.forValueType(DolphinVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<GoatVariant>>> GOAT_VARIANT = ENTITY_DATA_SERIALIZERS.register("goat_variant", () -> EntityDataSerializer.forValueType(GoatVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<FoxVariant>>> FOX_VARIANT = ENTITY_DATA_SERIALIZERS.register("fox_variant", () -> EntityDataSerializer.forValueType(FoxVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<PigVariant>>> PIG_VARIANT = ENTITY_DATA_SERIALIZERS.register("pig_variant", () -> EntityDataSerializer.forValueType(PigVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<SalmonVariant>>> SALMON_VARIANT = ENTITY_DATA_SERIALIZERS.register("salmon_variant", () -> EntityDataSerializer.forValueType(SalmonVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<ChickenVariant>>> CHICKEN_VARIANT = ENTITY_DATA_SERIALIZERS.register("chicken_variant", () -> EntityDataSerializer.forValueType(ChickenVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<SheepVariant>>> SHEEP_VARIANT = ENTITY_DATA_SERIALIZERS.register("sheep_variant", () -> EntityDataSerializer.forValueType(SheepVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<TurtleVariant>>> TURTLE_VARIANT = ENTITY_DATA_SERIALIZERS.register("turtle_variant", () -> EntityDataSerializer.forValueType(TurtleVariant.STREAM_CODEC));
 }

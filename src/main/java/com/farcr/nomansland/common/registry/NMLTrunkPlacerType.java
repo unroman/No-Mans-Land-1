@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.world.feature.trunkplacers.BranchyTrunkPlacer;
-import com.farcr.nomansland.common.world.feature.trunkplacers.CypressTrunkPlacer;
+import com.farcr.nomansland.common.world.feature.trunkplacer.BranchyTrunkPlacer;
+import com.farcr.nomansland.common.world.feature.trunkplacer.CypressTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.neoforged.neoforge.registries.DeferredHolder;

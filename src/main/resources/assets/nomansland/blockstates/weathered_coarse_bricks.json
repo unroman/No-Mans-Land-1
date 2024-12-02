@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "nomansland:block/building/coarse_bricks/weathered_coarse_bricks"
+    }
+  }
+}

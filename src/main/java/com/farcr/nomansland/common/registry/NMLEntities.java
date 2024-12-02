@@ -1,10 +1,12 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.entity.BillhookBass;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.entity.ChestBoatEntity;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
+import com.farcr.nomansland.common.entity.deer.Deer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -29,6 +31,14 @@ public class NMLEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<ExplosiveEntity>> EXPLOSIVE =
             ENTITIES.register("explosive", () -> EntityType.Builder.<ExplosiveEntity>of(ExplosiveEntity::new, MobCategory.MISC)
                     .sized(0.3F, 0.3F).clientTrackingRange(4).updateInterval(20).build("explosive"));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<BillhookBass>> BILLHOOK_BASS =
+            ENTITIES.register("billhook_bass", () -> EntityType.Builder.of(BillhookBass::new, MobCategory.WATER_CREATURE)
+            .sized(0.7F, 0.5F).build("billhook_bass"));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<Deer>> DEER =
+            ENTITIES.register("deer", () -> EntityType.Builder.of(Deer::new, MobCategory.CREATURE)
+                    .sized(0.8F, 1.4F).build("deer"));
 
 //    public static final DeferredHolder<EntityType<?>, EntityType<BuriedEntity>> BURIED =
 //            ENTITIES.register("buried", () -> EntityType.Builder.of(BuriedEntity::new, MobCategory.MONSTER)

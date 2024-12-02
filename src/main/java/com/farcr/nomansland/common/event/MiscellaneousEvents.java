@@ -2,10 +2,12 @@ package com.farcr.nomansland.common.event;
 
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.variant.*;
+import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
+import com.farcr.nomansland.common.entity.BillhookBass;
+import com.farcr.nomansland.common.entity.deer.Deer;
 import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.NMLEntities;
 import com.farcr.nomansland.common.registry.NMLFeatures;
-import com.farcr.nomansland.common.registry.NMLVariants;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.worldgen.features.TreeFeatures;
@@ -17,16 +19,18 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SpawnPlacementTypes;
-import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.animal.camel.Camel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -36,7 +40,7 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 
 import java.util.Iterator;
 import java.util.List;
@@ -117,6 +121,25 @@ public class MiscellaneousEvents {
                     event.setCanceled(true);
                 }
             }
+        }
+
+        @SubscribeEvent
+        public static void onExplosion(ExplosionEvent.Detonate event) {
+            Explosion explosion = event.getExplosion();
+            Level level = event.getLevel();
+
+            event.getAffectedBlocks().forEach(pos -> {
+                BlockState state = level.getBlockState(pos);
+                if (state.getBlock() instanceof TorchBlock && !(state.getBlock() instanceof ExtinguishedTorchBlock)) {
+                    level.gameEvent(explosion.getDirectSourceEntity(), GameEvent.BLOCK_CHANGE, pos);
+                    level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+                    if (state.is(Blocks.TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_TORCH.get().withPropertiesOf(state), 11);
+                    if (state.is(Blocks.WALL_TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_WALL_TORCH.get().withPropertiesOf(state), 11);
+                    if (state.is(Blocks.SOUL_TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_TORCH.get().withPropertiesOf(state), 11);
+                    if (state.is(Blocks.SOUL_WALL_TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
+                }
+            });
         }
 
         @SubscribeEvent
@@ -204,23 +227,13 @@ public class MiscellaneousEvents {
             //    TODO: BURIED AND MOOSE
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
 //            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
-        }
-
-        @SubscribeEvent
-        public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-            event.dataPackRegistry(NMLVariants.COD_VARIANT_KEY, CodVariant.DIRECT_CODEC, CodVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.COW_VARIANT_KEY, CowVariant.DIRECT_CODEC, CowVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.DOLPHIN_VARIANT_KEY, DolphinVariant.DIRECT_CODEC, DolphinVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.GOAT_VARIANT_KEY, GoatVariant.DIRECT_CODEC, GoatVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.FOX_VARIANT_KEY, FoxVariant.DIRECT_CODEC, FoxVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.SALMON_VARIANT_KEY, SalmonVariant.DIRECT_CODEC, SalmonVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.SHEEP_VARIANT_KEY, SheepVariant.DIRECT_CODEC, SheepVariant.DIRECT_CODEC);
-            event.dataPackRegistry(NMLVariants.TURTLE_VARIANT_KEY, TurtleVariant.DIRECT_CODEC, TurtleVariant.DIRECT_CODEC);
+            event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());
+            event.put(NMLEntities.DEER.get(), Deer.createAttributes().build());
         }
 
         @SubscribeEvent
         public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+            event.register(NMLEntities.BILLHOOK_BASS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BillhookBass::checkSurfaceWaterAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
             event.register(EntityType.CAMEL, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Camel::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
         }
     }

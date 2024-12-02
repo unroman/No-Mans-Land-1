@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
+import com.farcr.nomansland.common.registry.NMLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
@@ -70,7 +71,8 @@ public class MilkCauldron extends NMLCauldronBlock {
                     player.removeEffect(selectedEffect.getEffect());
                 }
             }
-            level.playSound(player, pos, SoundEvents.WANDERING_TRADER_DRINK_MILK, SoundSource.PLAYERS, 0.5F, 1);
+
+            level.playSound(player, pos, NMLSounds.PLAYER_DRINK_MILK.get(), SoundSource.PLAYERS, 0.5F, 1);
             lowerFillLevel(state, level, pos);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }

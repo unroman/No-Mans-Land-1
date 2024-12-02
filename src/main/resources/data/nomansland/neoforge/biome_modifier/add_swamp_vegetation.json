@@ -3,7 +3,8 @@
   "biomes": "#c:is_swamp",
   "features": [
     "nomansland:patch_duckweed",
-    "nomansland:patch_pickleweed"
+    "nomansland:patch_pickleweed",
+    "nomansland:patch_cattail_swamp"
   ],
   "step": "vegetal_decoration"
 }

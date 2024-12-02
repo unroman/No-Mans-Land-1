@@ -13,6 +13,14 @@ public class NMLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIKES_EXTEND = registerSound("block.spike_trap.spikes_extend");
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIKES_RETRACT = registerSound("block.spike_trap.spikes_retract");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> MONSTER_RESURRECTION = registerSound("block.monster_anchor.monster_resurrection");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ANCHOR_ACTIVATES = registerSound("block.monster_anchor.activate");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ANCHOR_DEACTIVATES = registerSound("block.monster_anchor.deactivate");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PLAYER_DRINK_MILK = registerSound("entity.player.drink_milk");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STICKY_CAULDRON_SLIDE = registerSound("entity.generic.sticky_cauldron_slide");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> HONEYCOMB_CONSUMED = registerSound("item.honeycomb.consumed");
+
     private static DeferredHolder<SoundEvent, SoundEvent> registerSound(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name)));
     }

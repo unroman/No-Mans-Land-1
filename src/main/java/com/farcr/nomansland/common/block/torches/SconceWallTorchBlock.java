@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.block.torches;
 
+import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
@@ -7,7 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallTorchBlock;
@@ -16,6 +19,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class SconceWallTorchBlock extends WallTorchBlock {
 
@@ -49,5 +53,14 @@ public class SconceWallTorchBlock extends WallTorchBlock {
         double dz = pos.getZ() + 0.5;
         level.addParticle(ParticleTypes.SMOKE, dx + 0.2 * direction.getStepX(), dy + 0.22, dz + 0.2 * direction.getStepZ(), 0, 0, 0);
         level.addParticle(this.flameParticle, dx + 0.2 * direction.getStepX(), dy + 0.22, dz + 0.2 * direction.getStepZ(), 0, 0, 0);
+    }
+
+    @Override
+    protected void onExplosionHit(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> dropConsumer) {
+        if (explosion.canTriggerBlocks()) {
+            level.setBlockAndUpdate(pos, state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH) ? NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state) : NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state));
+        }
+
+        super.onExplosionHit(state, level, pos, explosion, dropConsumer);
     }
 }

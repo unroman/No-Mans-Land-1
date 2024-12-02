@@ -1,15 +1,14 @@
 package com.farcr.nomansland.common.mixinduck;
 
-import com.farcr.nomansland.common.entity.variant.CowVariant;
+import com.farcr.nomansland.common.entity.mob_variant.MooshroomVariant;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.state.BlockState;
 
 public interface MooshroomDuck {
-    Holder<CowVariant> noMansLand$getCustomVariant();
 
-    BlockState noMansLand$getMushroomBlock(Holder<CowVariant> mooshroomVariantHolder);
+    Holder<MooshroomVariant> noMansLand$getMooshroomVariant();
 
-    void noMansLand$setCustomVariant(Holder<CowVariant> mooshroomVariantHolder);
+    BlockState noMansLand$getMushroomBlock(Holder<MooshroomVariant> mooshroomVariantHolder);
 
-    boolean noMansLand$isMooshroomVariant(Holder<CowVariant> cowVariantHolder);
+    void noMansLand$setMooshroomVariant(Holder<MooshroomVariant> mooshroomVariantHolder);
 }

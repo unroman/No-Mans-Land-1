@@ -12,7 +12,6 @@ import com.google.common.collect.Maps;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
@@ -110,12 +109,8 @@ public class TapBlock extends BaseEntityBlock {
                 break;
             }
         }
-        ParticleOptions particle = particleType;
-        if (level.isClientSide) level.addParticle(particle, x, y, z, 0.0, 0.0, 0.0);
-        else {
-            ServerLevel serverLevel = (ServerLevel) level;
-            serverLevel.sendParticles(particle, x, y, z, 1, 0, 0, 0, 0);
-        }
+        if (level.isClientSide) level.addParticle(particleType, x, y, z, 0, 0,0);
+        else ((ServerLevel) (level)).sendParticles(particleType, x, y, z, 1, 0, 0,0,0);
     }
 
     @Nullable

@@ -6,6 +6,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -49,6 +50,6 @@ public class CattailBlock extends DoublePlantBlock implements SimpleWaterloggedB
     }
 
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.is(BlockTags.DIRT) ||state.is(Tags.Blocks.GRAVELS) ||state.is(Tags.Blocks.SANDS) ||state.getBlock() instanceof net.minecraft.world.level.block.FarmBlock;
+        return state.is(BlockTags.DIRT) ||state.is(Tags.Blocks.GRAVELS) ||state.is(Tags.Blocks.SANDS) ||state.getBlock() instanceof FarmBlock;
     }
 }

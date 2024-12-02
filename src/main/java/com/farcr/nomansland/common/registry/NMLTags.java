@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 
 public class NMLTags {
     public static final TagKey<Item> FIRESTARTERS = createItemTag("firestarters");
+    public static final TagKey<Item> DEER_FOOD = createItemTag("deer_food");
     public static final TagKey<Block> MUSHROOM_BLOCKS = createBlockTag("mushroom_blocks");
     public static final TagKey<Block> BONEMEAL_SPREADS = createBlockTag("bonemeal_spreads");
     public static final TagKey<Block> BONEMEAL_SPREADS_UPWARDS = createBlockTag("bonemeal_spreads_upwards");
@@ -18,6 +19,7 @@ public class NMLTags {
     public static final TagKey<Biome> HAS_DENSE_FOG = createBiomeTag("has_dense_fog");
     public static final TagKey<Block> BOMB_EXPLODE = createBlockTag("firebomb_explode");
     public static final TagKey<Block> HEAT_SOURCES = createBlockTag("heat_sources");
+    public static final TagKey<Block> TRIMMED_PLANKS = createBlockTag("trimmed_planks");
     public static final TagKey<EntityType<?>> ANCHOR_BLACKLIST = createEntityTag("anchor_blacklist");
     public static final TagKey<Biome> SPAWNS_MUD_FROGS = createBiomeTag("entity/spawns_mud_frog");
 

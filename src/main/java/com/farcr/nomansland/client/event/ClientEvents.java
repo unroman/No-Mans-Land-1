@@ -2,12 +2,12 @@ package com.farcr.nomansland.client.event;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.client.NMLModelLayers;
+import com.farcr.nomansland.client.model.BillhookBassModel;
 import com.farcr.nomansland.client.model.BuriedModel;
 import com.farcr.nomansland.client.model.MooseModel;
+import com.farcr.nomansland.client.model.deer.DeerModel;
 import com.farcr.nomansland.client.particle.*;
-import com.farcr.nomansland.client.renderer.ExplosiveRenderer;
-import com.farcr.nomansland.client.renderer.FirebombRenderer;
-import com.farcr.nomansland.client.renderer.NMLBoatRenderer;
+import com.farcr.nomansland.client.renderer.*;
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.NMLEntities;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
@@ -51,6 +51,9 @@ public class ClientEvents {
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
+        event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BillhookBassRenderer::new);
+
+        event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);
     }
 
     @SubscribeEvent
@@ -70,6 +73,12 @@ public class ClientEvents {
 
         event.registerLayerDefinition(NMLModelLayers.MOOSE_LAYER, MooseModel::createBodyLayer);
         event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
+
+        event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BillhookBassModel::createBodyLayer);
+
+        event.registerLayerDefinition(NMLModelLayers.DEER_LAYER, DeerModel::createBodyLayer);
+        event.registerLayerDefinition(NMLModelLayers.DEER_ANTLERS_LAYER, DeerModel::createBodyLayer);
+        event.registerLayerDefinition(NMLModelLayers.DEER_PATTERN_LAYER, DeerModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -82,25 +91,25 @@ public class ClientEvents {
                 -> new CaveDustParticle(clientLevel, d, e, f, sprites));
         event.registerSpriteSet(NMLParticleTypes.RESIN_DROPLET.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.RESIN_DROPLET_FLAT.get()));
+                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.RESIN_DROPLET_FLAT));
         event.registerSpriteSet(NMLParticleTypes.RESIN_DROPLET_FLAT.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new FluidLandParticle(clientLevel, d, e, f, sprites));
         event.registerSpriteSet(NMLParticleTypes.MAPLE_SYRUP_DROPLET.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.MAPLE_SYRUP_DROPLET_FLAT.get()));
+                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.MAPLE_SYRUP_DROPLET_FLAT));
         event.registerSpriteSet(NMLParticleTypes.MAPLE_SYRUP_DROPLET_FLAT.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new FluidLandParticle(clientLevel, d, e, f, sprites));
         event.registerSpriteSet(NMLParticleTypes.OIL.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.OIL_FLAT.get()));
+                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.OIL_FLAT));
         event.registerSpriteSet(NMLParticleTypes.OIL_FLAT.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new FluidLandParticle(clientLevel, d, e, f, sprites));
         event.registerSpriteSet(NMLParticleTypes.RESIN_OIL_BUBBLE.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new BubbleParticle(clientLevel, d, e, f, g, h, i, sprites, NMLParticleTypes.RESIN_OIL_BUBBLE_POP.get()));
+                -> new BubbleParticle(clientLevel, d, e, f, g, h, i, sprites, NMLParticleTypes.RESIN_OIL_BUBBLE_POP));
         event.registerSpriteSet(NMLParticleTypes.RESIN_OIL_BUBBLE_POP.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new BubblePopParticle(clientLevel, d, e, f, g, h, i, sprites));

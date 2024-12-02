@@ -55,9 +55,9 @@ public enum Mods {
      * @param toRun will be run only if the mod is loaded
      * @return Optional.empty() if the mod is not loaded, otherwise an Optional of the return value of the given supplier
      */
-    public <T> Optional<T> runIfInstalled(Supplier<Supplier<T>> toRun) {
+    public <T> Optional<T> runIfInstalled(Supplier<T> toRun) {
         if (isLoaded())
-            return Optional.of(toRun.get().get());
+            return Optional.of(toRun.get());
         return Optional.empty();
     }
 

@@ -1,5 +1,0 @@
-{
-  "texture": "nomansland:entity/variants/pig/pig_wild_brown",
-  "baby_texture": "nomansland:entity/variants/pig/pig_wild_brown_baby",
-  "biomes": "#nomansland:entity/spawns_boar_pig"
-}

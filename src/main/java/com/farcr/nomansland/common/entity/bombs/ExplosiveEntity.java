@@ -2,9 +2,7 @@ package com.farcr.nomansland.common.entity.bombs;
 
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLEntities;
-import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.SynchedEntityData;

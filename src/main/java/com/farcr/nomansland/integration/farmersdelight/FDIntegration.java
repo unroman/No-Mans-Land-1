@@ -20,10 +20,10 @@ public class FDIntegration {
 
     public static Supplier<? extends BlockEntityType<?>> cabinetBlockEntity() {
         return () -> BlockEntityType.Builder.of(NMLCabinetBlockEntity::new,
-                NMLBlocks.PINE_CABINET.get(),
-                NMLBlocks.MAPLE_CABINET.get(),
-                NMLBlocks.WALNUT_CABINET.get(),
-                NMLBlocks.WILLOW_CABINET.get()
+                NMLBlocks.PINE_CABINET.get().value(),
+                NMLBlocks.MAPLE_CABINET.get().value(),
+                NMLBlocks.WALNUT_CABINET.get().value(),
+                NMLBlocks.WILLOW_CABINET.get().value()
         ).build(null);
     }
 }
