@@ -1,0 +1,19 @@
+{
+  "type": "nomansland:boulder",
+  "config": {
+    "num_cubes": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 3
+    },
+    "cube_spread": 0,
+    "cube_size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 3
+    },
+    "cube_rounding_percentage": 0.5,
+    "num_erosion_rounds": 1,
+    "erosion_percentage": 0.75
+  }
+}

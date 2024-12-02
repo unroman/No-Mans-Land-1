@@ -28,7 +28,10 @@ public class NMLFeatures {
             () -> new FillBiomeAboveFeature(FillBiomeAboveConfiguration.CODEC));
 
     public static final DeferredHolder<Feature<?>, Feature<PondFeatureConfiguration>> POND = FEATURES.register("pond",
-            () ->  new PondFeature(PondFeatureConfiguration.CODEC));
+            () -> new PondFeature(PondFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<BoulderFeatureConfiguration>> BOULDER = FEATURES.register("boulder",
+            () -> new BoulderFeature(BoulderFeatureConfiguration.CODEC));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_APPLE_01 = register("oak_apple_01");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_APPLE_05 = register("oak_apple_05");
