@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#c:is_river",
+    "#c:is_icy",
+    "#c:is_desert",
+    "#c:is_ocean",
+    "#c:is_stony_shores"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "#nomansland:feature_removal/no_cattails",
+  "features": [
+    "nomansland:patch_cattail"
+  ]
+}
