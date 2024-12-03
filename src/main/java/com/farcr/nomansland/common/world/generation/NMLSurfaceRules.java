@@ -2,7 +2,9 @@ package com.farcr.nomansland.common.world.generation;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLBiomes;
+import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +17,7 @@ public class NMLSurfaceRules {
     private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
     private static final SurfaceRules.RuleSource PODZOL = makeStateRule(Blocks.PODZOL);
     private static final SurfaceRules.RuleSource MUD = makeStateRule(Blocks.MUD);
-    private static final SurfaceRules.RuleSource SILT = makeStateRule(Blocks.DIRT);
+    private static final SurfaceRules.RuleSource SILT = makeStateRule(NMLBlocks.SILT);
     private static final SurfaceRules.RuleSource GRAVEL = makeStateRule(Blocks.GRAVEL);
     private static final SurfaceRules.RuleSource WATER = makeStateRule(Blocks.WATER);
 
@@ -85,7 +87,7 @@ public class NMLSurfaceRules {
         SurfaceRules.RuleSource caves = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.CAVES),
                 SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), SILT))
+                        SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.steep()), SILT)))
         );
 
         SurfaceGeneration.addOverworldSurfaceRules(
@@ -106,6 +108,10 @@ public class NMLSurfaceRules {
 
     private static SurfaceRules.RuleSource makeStateRule(Block block) {
         return SurfaceRules.state(block.defaultBlockState());
+    }
+
+    private static SurfaceRules.RuleSource makeStateRule(Holder<Block> blockHolder) {
+        return SurfaceRules.state(blockHolder.isBound() ? blockHolder.value().defaultBlockState() : Blocks.DIRT.defaultBlockState());
     }
 
     private static SurfaceRules.ConditionSource surfaceNoiseAbove(double value) {
