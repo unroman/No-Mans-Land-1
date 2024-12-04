@@ -4,6 +4,7 @@
   "features": [
     "nomansland:patch_duckweed",
     "nomansland:patch_pickleweed",
+    "nomansland:patch_reeds_swamp",
     "nomansland:patch_cattail_swamp"
   ],
   "step": "vegetal_decoration"
