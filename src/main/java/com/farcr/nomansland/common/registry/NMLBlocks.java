@@ -107,7 +107,9 @@ public class NMLBlocks {
     public static final DeferredBlock<Block> MYCELIUM_GROWTHS = registerBlock("mycelium_growths",
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> CATTAIL = registerBlock("cattail",
-            () -> new CattailBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)));
+            () -> new WaterPlantBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)));
+    public static final DeferredBlock<Block> REEDS = registerBlock("reeds",
+            () -> new WaterPlantBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> DUCKWEED = BLOCKS.register("duckweed",
             () -> new DuckweedBlock(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> BEARD_MOSS = registerBlock("beard_moss",
