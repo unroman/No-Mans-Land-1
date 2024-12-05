@@ -3,10 +3,7 @@ package com.farcr.nomansland.common.entity;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.BillhookBassVariant;
 import com.farcr.nomansland.common.mixinduck.LivingEntityDuck;
-import com.farcr.nomansland.common.registry.NMLDataSerializers;
-import com.farcr.nomansland.common.registry.NMLEntities;
-import com.farcr.nomansland.common.registry.NMLItems;
-import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.*;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -125,19 +122,16 @@ public class BillhookBass extends AbstractFish implements VariantHolder<Holder<B
     }
 
     public SoundEvent getAmbientSound() {
-        return SoundEvents.SALMON_AMBIENT;
+        return NMLSounds.BASS_AMBIENT.get();
     }
-
-    public SoundEvent getDeathSound() {
-        return SoundEvents.SALMON_DEATH;
-    }
-
-    public SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.SALMON_HURT;
-    }
-
     public SoundEvent getFlopSound() {
-        return SoundEvents.SALMON_FLOP;
+        return NMLSounds.BASS_FLOP.get();
+    }
+    public SoundEvent getHurtSound(DamageSource damageSource) {
+        return NMLSounds.BASS_HURT.get();
+    }
+    public SoundEvent getDeathSound() {
+        return NMLSounds.BASS_DEATH.get();
     }
 
     public ItemStack getBucketItemStack() {

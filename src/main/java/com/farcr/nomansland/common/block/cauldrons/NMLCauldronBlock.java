@@ -101,11 +101,7 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
                 ItemStack outputStack = new ItemStack(outputItem);
                 if (!player.addItem(outputStack)) {
                     player.drop(outputStack, false);
-                } else {
-                    level.playSound(player, pos, SoundEvents.HONEY_BLOCK_STEP, SoundSource.PLAYERS, 2, 1);
                 }
-            } else {
-                level.playSound(player, pos, SoundEvents.HONEY_BLOCK_STEP, SoundSource.PLAYERS, 2, 1);
             }
             player.awardStat(Stats.ITEM_USED.get(inputItem.value()));
             lowerFillLevel(state, level, pos);
