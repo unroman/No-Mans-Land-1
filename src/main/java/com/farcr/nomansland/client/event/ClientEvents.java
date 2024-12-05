@@ -77,8 +77,6 @@ public class ClientEvents {
         event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BillhookBassModel::createBodyLayer);
 
         event.registerLayerDefinition(NMLModelLayers.DEER_LAYER, DeerModel::createBodyLayer);
-        event.registerLayerDefinition(NMLModelLayers.DEER_ANTLERS_LAYER, DeerModel::createBodyLayer);
-        event.registerLayerDefinition(NMLModelLayers.DEER_PATTERN_LAYER, DeerModel::createBodyLayer);
     }
 
     @SubscribeEvent
