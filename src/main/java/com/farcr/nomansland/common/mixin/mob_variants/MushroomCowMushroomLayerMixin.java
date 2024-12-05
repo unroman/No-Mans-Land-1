@@ -34,13 +34,13 @@ public abstract class MushroomCowMushroomLayerMixin<T extends MushroomCow> exten
             if (!livingEntity.isInvisible() || flag) {
                 BlockState blockstate = ((MooshroomDuck)livingEntity).noMansLand$getMushroomBlock(((MooshroomDuck)livingEntity).noMansLand$getMooshroomVariant());
                 int i = LivingEntityRenderer.getOverlayCoords(livingEntity, 0);
-                BakedModel bakedmodel = this.blockRenderer.getBlockModel(blockstate);
+                BakedModel bakedmodel = blockRenderer.getBlockModel(blockstate);
                 poseStack.pushPose();
                 poseStack.translate(0.2F, -0.35F, 0.5F);
                 poseStack.mulPose(Axis.YP.rotationDegrees(-48));
                 poseStack.scale(-1, -1, 1);
                 poseStack.translate(-0.5F, -0.3F, -0.5F);
-                this.renderMushroomBlock(poseStack, buffer, packedLight, flag, blockstate, i, bakedmodel);
+                renderMushroomBlock(poseStack, buffer, packedLight, flag, blockstate, i, bakedmodel);
                 poseStack.popPose();
                 poseStack.pushPose();
                 poseStack.translate(0.2F, -0.35F, 0.5F);
@@ -49,15 +49,15 @@ public abstract class MushroomCowMushroomLayerMixin<T extends MushroomCow> exten
                 poseStack.mulPose(Axis.YP.rotationDegrees(-48));
                 poseStack.scale(-1, -1, 1);
                 poseStack.translate(-0.5F, -0.3F, -0.5F);
-                this.renderMushroomBlock(poseStack, buffer, packedLight, flag, blockstate, i, bakedmodel);
+                renderMushroomBlock(poseStack, buffer, packedLight, flag, blockstate, i, bakedmodel);
                 poseStack.popPose();
                 poseStack.pushPose();
-                this.getParentModel().getHead().translateAndRotate(poseStack);
+                getParentModel().getHead().translateAndRotate(poseStack);
                 poseStack.translate(0, -0.6F, -0.2F);
                 poseStack.mulPose(Axis.YP.rotationDegrees(-78));
                 poseStack.scale(-1, -1, 1);
                 poseStack.translate(-0.5F, -0.3F, -0.5F);
-                this.renderMushroomBlock(poseStack, buffer, packedLight, flag, blockstate, i, bakedmodel);
+                renderMushroomBlock(poseStack, buffer, packedLight, flag, blockstate, i, bakedmodel);
                 poseStack.popPose();
             }
         }
