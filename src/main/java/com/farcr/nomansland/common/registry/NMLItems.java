@@ -151,7 +151,8 @@ public class NMLItems {
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
-//Note about the methods "addBefore and addAfter"
+
+        //Note about the methods "addBefore and addAfter"
         //"addAfter" reads from the bottom up, while addBefore reads from up to bottom.
         // Might look messy, but trust me it makes sense I swear. -Farcr
         if (tab == CreativeModeTabs.BUILDING_BLOCKS) {

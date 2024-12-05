@@ -1,11 +1,16 @@
 package com.farcr.nomansland.common.event;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.block.ShelfMushroomBlock;
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -14,11 +19,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SpreadingSnowyDirtBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -73,18 +77,14 @@ public class BoneMealingEvents {
             if (state.is(NMLTags.BONEMEAL_SPREADS)) {
                 level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1F, 1F);
 //                    level.addParticle();
-                if (!level.isClientSide && !player.isCreative()) stack.shrink(1);
+                stack.consume(1, player);
 
-                for (BlockPos bp : BlockPos.betweenClosed(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3)) {
-                    Block block = level.getBlockState(bp).getBlock();
-                    if (level.random.nextFloat() <= 0.3F && state.canSurvive(level, bp) && level.isEmptyBlock(bp)) {
-                        BlockPos particlePosition = bp.above();
-                        if (!level.isClientSide) level.setBlockAndUpdate(bp, state);
-                        else {
-                            for (int i = 0; i <= 3; i++) {
-                                level.addParticle(ParticleTypes.COMPOSTER, particlePosition.getX() + Math.random(), particlePosition.getY() + 0.2 + Math.random(), particlePosition.getZ() + Math.random(), 0, 0, 0);
-                            }
-                        }
+                for (BlockPos blockPos : BlockPos.betweenClosed(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3)) {
+                    Block block = level.getBlockState(blockPos).getBlock();
+                    if (level.random.nextFloat() <= 0.3F && state.canSurvive(level, blockPos) && level.isEmptyBlock(blockPos)) {
+                        BlockPos particlePosition = blockPos.above();
+                        level.setBlockAndUpdate(blockPos, state);
+                        spawnParticles(level, particlePosition);
                     }
                 }
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
@@ -103,9 +103,7 @@ public class BoneMealingEvents {
                         if (!player.isCreative()) stack.shrink(1);
                         level.setBlockAndUpdate(pos, state);
                     } else {
-                        for (int i = 0; i <= 3; i++) {
-                            level.addParticle(ParticleTypes.COMPOSTER, pos.getX() + Math.random(), pos.getY() + 0.2 + Math.random(), pos.getZ() + Math.random(), 0, 0, 0);
-                        }
+                        spawnParticles(level, pos);
                         event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                         event.setCanceled(true);
                     }
@@ -123,9 +121,7 @@ public class BoneMealingEvents {
                         }
                         if (vineState != Blocks.VINE.defaultBlockState()) {
                             level.setBlockAndUpdate(bp, vineState);
-                            for (int i = 0; i <= 3; i++) {
-                                level.addParticle(ParticleTypes.COMPOSTER, bp.getX() + Math.random(), bp.getY() + 0.2 + Math.random(), bp.getZ() + Math.random(), 0, 0, 0);
-                            }
+                            spawnParticles(level, bp);
                         }
                     }
                 }
@@ -160,6 +156,33 @@ public class BoneMealingEvents {
                     }
                 }
             }
+
+            if (state.is(NMLBlocks.SHELF_MUSHROOM)) {
+                if (level instanceof  ServerLevel serverLevel) {
+                    Direction facing = state.getValue(BaseCoralWallFanBlock.FACING);
+                    BlockPos sidePos = level.random.nextBoolean() && level.isEmptyBlock(pos.relative(facing.getClockWise())) ?
+                            pos.relative(facing.getClockWise()) : level.isEmptyBlock(pos.relative(facing.getCounterClockWise())) ?
+                            pos.relative(facing.getCounterClockWise()) : level.isEmptyBlock(pos.relative(facing.getClockWise())) ?
+                            pos.relative(facing.getClockWise()) : null;
+                    BlockState newState = NMLBlocks.SHELF_MUSHROOM_BLOCK.get().defaultBlockState()
+                            .setValue(SlabBlock.TYPE, level.random.nextBoolean() ? SlabType.BOTTOM : SlabType.TOP);
+
+                    level.setBlockAndUpdate(pos, newState);
+                    if (sidePos != null) {
+                        level.setBlockAndUpdate(sidePos, newState);
+                        sendParticles(serverLevel, sidePos);
+                        if (level.isEmptyBlock(sidePos.relative(facing.getOpposite()))) {
+                            level.setBlockAndUpdate(sidePos.relative(facing.getOpposite()), newState);
+                            sendParticles(serverLevel, sidePos.relative(facing.getOpposite()));
+                        }
+                    }
+                }
+
+                spawnParticles(level, pos);
+                level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1, 1);
+                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
+                event.setCanceled(true);
+            }
         }
     }
 
@@ -175,14 +198,10 @@ public class BoneMealingEvents {
             BlockState block = level.getBlockState(bp);
             for (Direction d : Direction.values()) {
                 Block newBlock = level.getBlockState(bp.relative(d)).getBlock();
-                if (level.random.nextFloat() < 0.3F && block == Blocks.DIRT.defaultBlockState() && newBlock instanceof SpreadingSnowyDirtBlock && !level.getBlockState(bp.above()).isSolid()) {
+                if (level.random.nextFloat() < .3F && block == Blocks.DIRT.defaultBlockState() && newBlock instanceof SpreadingSnowyDirtBlock && !level.getBlockState(bp.above()).isSolid()) {
                     BlockPos particlePosition = bp.above();
-                    if (!level.isClientSide) level.setBlockAndUpdate(bp, state);
-                    else {
-                        for (int i = 0; i <= 3; i++) {
-                            level.addParticle(ParticleTypes.COMPOSTER, particlePosition.getX() + Math.random(), particlePosition.getY() + 0.2 + Math.random(), particlePosition.getZ() + Math.random(), 0, 0, 0);
-                        }
-                    }
+                    level.setBlockAndUpdate(bp, state);
+                    spawnParticles(level, particlePosition);
                 }
             }
         }
@@ -203,5 +222,23 @@ public class BoneMealingEvents {
                 return blockstate.is(Blocks.VINE) && blockstate.getValue(booleanproperty);
             }
         }
+    }
+
+    public static void spawnParticles(Level level, BlockPos pos) {
+        for (int i = 0; i <= 3; i++) {
+            level.addParticle(ParticleTypes.COMPOSTER,
+                    pos.getX() + level.random.nextFloat() - level.random.nextFloat(),
+                    pos.getY() + 0.2 + level.random.nextFloat() - level.random.nextFloat(),
+                    pos.getZ() + level.random.nextFloat() - level.random.nextFloat(),
+                    0, 0, 0);
+        }
+    }
+
+    public static void sendParticles(ServerLevel level, BlockPos pos) {
+            level.sendParticles(ParticleTypes.COMPOSTER,
+                    pos.getX() + level.random.nextFloat() - level.random.nextFloat(),
+                    pos.getY() + 0.2 + level.random.nextFloat() - level.random.nextFloat(),
+                    pos.getZ() + level.random.nextFloat() - level.random.nextFloat(),
+                    3, 0, 0, 0, 0);
     }
 }
