@@ -32,7 +32,7 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 
-            if (this.shouldPlace(level, random, pos)) {
+            if (shouldPlace(level, random, pos)) {
                 config.feature().value().place(level, context.chunkGenerator(), random, pos);
             }
         }
@@ -46,7 +46,7 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
     // this might be really laggy. give it a try to make sure it's not.
     private boolean shouldPlace(WorldGenLevel level, RandomSource random, BlockPos pos) {
         // exit early if this chunk doesn't yet exist
-        if (!level.hasChunkAt(pos)) {
+        if (!level.hasChunkAt(pos) || !level.isAreaLoaded(pos, 1)) {
             return false;
         }
 
@@ -55,7 +55,7 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
         BlockPos.MutableBlockPos checkPos = pos.mutable();
         for (int i = 0; i < 8; i++) {
             checkPos.offset((int) (random.nextGaussian() * 4), 0, (int) (random.nextGaussian() * 4));
-            if (level.hasChunkAt(pos)) {
+            if (level.hasChunkAt(pos) && level.isAreaLoaded(pos, 1)) {
                 successfulTries++;
             }
         }

@@ -151,7 +151,8 @@ public class NMLItems {
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
-//Note about the methods "addBefore and addAfter"
+
+        //Note about the methods "addBefore and addAfter"
         //"addAfter" reads from the bottom up, while addBefore reads from up to bottom.
         // Might look messy, but trust me it makes sense I swear. -Farcr
         if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
@@ -289,6 +290,7 @@ public class NMLItems {
             insertBefore(event, Items.CRIMSON_ROOTS, NMLBlocks.MYCELIUM_GROWTHS);
             insertBefore(event, Items.CRIMSON_ROOTS, NMLBlocks.MYCELIUM_SPROUTS);
             insertAfter(event, Items.LARGE_FERN, NMLBlocks.CATTAIL);
+            insertAfter(event, Items.LARGE_FERN, NMLBlocks.REEDS);
             insertAfter(event, Items.LILY_PAD, NMLBlocks.DUCKWEED);
             insertAfter(event, Items.HANGING_ROOTS, NMLBlocks.BEARD_MOSS);
             insertAfter(event, Items.PINK_PETALS, NMLBlocks.CLOVER_PATCH);
@@ -450,6 +452,8 @@ public class NMLItems {
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
             insertAfter(event, Blocks.SPAWNER, NMLBlocks.MONSTER_ANCHOR);
+            insertAfter(event, Items.FOX_SPAWN_EGG, NMLItems.DEER_SPAWN_EGG);
+            insertAfter(event, Items.SALMON_SPAWN_EGG, NMLItems.BILLHOOK_BASS_SPAWN_EGG);
         }
     }
 

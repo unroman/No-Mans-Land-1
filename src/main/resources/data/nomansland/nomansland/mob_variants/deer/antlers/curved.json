@@ -1,5 +1,4 @@
 {
   "texture": "nomansland:entity/deer/antlers_curved",
-  "weight": 1,
-  "baby_texture": "nomansland:entity/deer/antlers_curved"
+  "weight": 1
 }

@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.client.model.NMLChickenModel;
+import com.farcr.nomansland.client.model.vanilla.NMLChickenModel;
 import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;

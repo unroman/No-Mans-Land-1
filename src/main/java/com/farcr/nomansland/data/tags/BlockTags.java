@@ -34,7 +34,6 @@ public class BlockTags extends BlockTagsProvider {
                 NMLBlocks.TRIMMED_SPRUCE_PLANKS.get(),
                 NMLBlocks.TRIMMED_WALNUT_PLANKS.get(),
                 NMLBlocks.TRIMMED_WARPED_PLANKS.get(),
-                NMLBlocks.TRIMMED_JUNGLE_PLANKS.get(),
                 NMLBlocks.TRIMMED_WILLOW_PLANKS.get()
         );
 

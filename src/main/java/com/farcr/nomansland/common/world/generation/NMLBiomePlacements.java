@@ -5,9 +5,12 @@ import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.biome.sub.BiomeParameterTargets;
 import com.terraformersmc.biolith.api.biome.sub.CriterionBuilder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
+
+import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 
 public class NMLBiomePlacements {
     public static void registerBiomes() {
@@ -40,7 +43,7 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 Biomes.GROVE,
                 NMLBiomes.MAPLE_GROVE,
-                CriterionBuilder.allOf(CriterionBuilder.alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST))
+                allOf(alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST))
         );
 
         // Bog
@@ -59,14 +62,14 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 Biomes.SWAMP,
                 NMLBiomes.BOG,
-                CriterionBuilder.allOf(CriterionBuilder.neighbor(Biomes.PLAINS))
+                allOf(neighbor(Biomes.PLAINS))
         );
 
         // Muskeg
         BiomePlacement.addSubOverworld(
                 Biomes.SNOWY_PLAINS,
                 NMLBiomes.MUSKEG,
-                CriterionBuilder.allOf(CriterionBuilder.alternate(NMLBiomes.BOG, Biomes.SWAMP))
+                allOf(alternate(NMLBiomes.BOG, Biomes.SWAMP))
         );
 
         // Bayou
@@ -111,10 +114,10 @@ public class NMLBiomePlacements {
         BiomePlacement.replaceOverworld(
                 Biomes.OLD_GROWTH_BIRCH_FOREST,
                 NMLBiomes.OLD_GROWTH_FOREST,
-                0.2F
+                0.2
         );
 
-        edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE);
+        edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE, BiomeParameterTargets.HUMIDITY);
         clearingBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_CLEARING);
     }
 
@@ -122,26 +125,31 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 mainBiome,
                 transitionalBiome,
-                CriterionBuilder.allOf(CriterionBuilder.neighbor(secondaryBiome), CriterionBuilder.not(CriterionBuilder.NEAR_INTERIOR))
+                allOf(neighbor(secondaryBiome), not(NEAR_INTERIOR))
         );
 
         BiomePlacement.addSubOverworld(
                 secondaryBiome,
                 transitionalBiome,
-                CriterionBuilder.allOf(CriterionBuilder.alternate(transitionalBiome, mainBiome), CriterionBuilder.not(CriterionBuilder.NEAR_INTERIOR))
+                allOf(alternate(transitionalBiome, mainBiome), not(NEAR_INTERIOR))
         );
     }
 
-    public static void edgeBiome(ResourceKey<Biome> interiorBiome, ResourceKey<Biome> edgeBiome) {
+    public static void edgeBiome(ResourceKey<Biome> interiorBiome, ResourceKey<Biome> edgeBiome, BiomeParameterTargets biomeParameterTarget) {
         BiomePlacement.addSubOverworld(
                 interiorBiome,
                 edgeBiome,
-                CriterionBuilder.anyOf(
-                        CriterionBuilder.allOf(
-                                CriterionBuilder.NEAR_BORDER,
-                                CriterionBuilder.not(CriterionBuilder.NEAR_INTERIOR)
-                        ),
-                        CriterionBuilder.anyOf(CriterionBuilder.BEACHSIDE, CriterionBuilder.OCEANSIDE, CriterionBuilder.RIVERSIDE)
+                allOf(
+                        CriterionBuilder.deviationMin(biomeParameterTarget, .02F),
+                        anyOf(
+                                allOf(
+                                        NEAR_BORDER,
+                                        not(NEAR_INTERIOR)
+                                ),
+                                CriterionBuilder.BEACHSIDE,
+                                CriterionBuilder.OCEANSIDE,
+                                allOf(NEAR_BORDER, neighbor(BiomeTags.IS_RIVER))
+                        )
                 )
         );
     }
@@ -150,7 +158,7 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 interiorBiome,
                 clearingBiome,
-                CriterionBuilder.allOf(CriterionBuilder.deviationMin(BiomeParameterTargets.PEAKS_VALLEYS, .05F), CriterionBuilder.NEAR_INTERIOR)
+                allOf(CriterionBuilder.deviationMin(BiomeParameterTargets.PEAKS_VALLEYS, .05F), NEAR_INTERIOR)
         );
     }
 }

@@ -1,13 +1,13 @@
 {
   "block.spike_trap.spikes_extend": {
     "sounds": [
-      "nomansland:block/spike_trap/spikes_retract"
+      "nomansland:block/spike_trap/spikes_extend"
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.extend"
   },
   "block.spike_trap.spikes_retract": {
     "sounds": [
-      "nomansland:block/spike_trap/spikes_extend"
+      "nomansland:block/spike_trap/spikes_retract"
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.retract"
   },
@@ -121,5 +121,75 @@
       }
     ],
     "subtitle": "nomansland.subtitles.item.honeycomb.consumed"
+  },
+  "entity.billhook_bass.ambient": {
+    "sounds": []
+  },
+  "entity.billhook_bass.death": {
+    "sounds": [
+      {
+        "name": "entity/fish/hurt1",
+        "pitch": 0.8
+      },
+      {
+        "name": "entity/fish/hurt2",
+        "pitch": 0.8
+      },
+      {
+        "name": "entity/fish/hurt3",
+        "pitch": 0.8
+      },
+      {
+        "name": "entity/fish/hurt4",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.billhook_bass.death"
+  },
+  "entity.billhook_bass.flop": {
+    "sounds": [
+      {
+        "name": "entity/fish/flop1",
+        "pitch": 0.8,
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop2",
+        "pitch": 0.8,
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop3",
+        "pitch": 0.8,
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop4",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.billhook_bass.flop"
+  },
+  "entity.billhook_bass.hurt": {
+    "sounds": [
+      {
+        "name": "entity/fish/hurt1",
+        "pitch": 0.8
+      },
+      {
+        "name": "entity/fish/hurt2",
+        "pitch": 0.8
+      },
+      {
+        "name": "entity/fish/hurt3",
+        "pitch": 0.8
+      },
+      {
+        "name": "entity/fish/hurt4",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.billhook_bass.hurt"
   }
 }

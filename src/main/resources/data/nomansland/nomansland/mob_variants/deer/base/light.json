@@ -1,5 +1,5 @@
 {
   "texture": "nomansland:entity/deer/deer_light_brown",
   "weight": 1,
-  "baby_texture": "nomansland:entity/deer/deer_light_brown"
+  "baby_texture": "nomansland:entity/deer/deer_baby"
 }

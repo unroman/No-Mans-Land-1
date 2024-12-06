@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.client.model.NMLCowModel;
+import com.farcr.nomansland.client.model.vanilla.NMLCowModel;
 import net.minecraft.client.model.CowModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import org.spongepowered.asm.mixin.Mixin;

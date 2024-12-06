@@ -1,5 +1,9 @@
 {
   "structures": [
+    {
+      "structure": "nomansland:desert_well",
+      "weight": 1
+    }
   ],
   "placement": {
     "salt": 4255,

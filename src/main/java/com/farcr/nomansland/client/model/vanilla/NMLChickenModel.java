@@ -1,4 +1,4 @@
-package com.farcr.nomansland.client.model;
+package com.farcr.nomansland.client.model.vanilla;
 
 // Made with Blockbench 4.11.0
 // Exported for Minecraft version 1.17 or later with Mojang mappings

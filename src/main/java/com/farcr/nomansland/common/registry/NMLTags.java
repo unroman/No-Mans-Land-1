@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.Block;
 public class NMLTags {
     public static final TagKey<Item> FIRESTARTERS = createItemTag("firestarters");
     public static final TagKey<Item> DEER_FOOD = createItemTag("deer_food");
+    public static final TagKey<Item> MAKES_RESIN_OIL = createItemTag("makes_resin_oil");
+
     public static final TagKey<Block> MUSHROOM_BLOCKS = createBlockTag("mushroom_blocks");
     public static final TagKey<Block> BONEMEAL_SPREADS = createBlockTag("bonemeal_spreads");
     public static final TagKey<Block> BONEMEAL_SPREADS_UPWARDS = createBlockTag("bonemeal_spreads_upwards");

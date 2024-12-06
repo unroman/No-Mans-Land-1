@@ -95,9 +95,9 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     public BlockState noMansLand$getMushroomBlock(Holder<MooshroomVariant> mooshroomVariantHolder) {
         return switch(mooshroomVariantHolder.unwrapKey().get().location().toString()) {
             default -> Blocks.AIR.defaultBlockState();
-            case "nomansland:red_shroom" -> Blocks.RED_MUSHROOM.defaultBlockState();
-            case "nomansland:brown_shroom" -> Blocks.BROWN_MUSHROOM.defaultBlockState();
-            case "nomansland:field_shroom" -> NMLBlocks.FIELD_MUSHROOM.get().defaultBlockState();
+            case "nomansland:red" -> Blocks.RED_MUSHROOM.defaultBlockState();
+            case "nomansland:brown" -> Blocks.BROWN_MUSHROOM.defaultBlockState();
+            case "nomansland:field" -> NMLBlocks.FIELD_MUSHROOM.get().defaultBlockState();
         };
     }
 
