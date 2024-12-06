@@ -27,7 +27,7 @@ public class NMLBiomes {
 
     //Underground
     public static final ResourceKey<Biome> CAVES = createKey("caves");
-    public static final ResourceKey<Biome> CAVE_DEPTHS = createKey("caves");
+    public static final ResourceKey<Biome> CAVE_DEPTHS = createKey("cave_depths");
 
 
     public static ResourceKey<Biome> createKey(String name) {
