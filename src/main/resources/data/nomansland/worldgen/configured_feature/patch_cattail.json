@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:random_patch",
+  "type": "nomansland:spread_patch",
   "config": {
     "feature": {
       "feature": {
@@ -40,7 +40,7 @@
         }
       ]
     },
-    "tries": 410,
+    "tries": 1210,
     "xz_spread": 7,
     "y_spread": 3
   }
