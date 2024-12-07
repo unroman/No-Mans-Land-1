@@ -452,8 +452,8 @@ public class NMLItems {
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
             insertAfter(event, Blocks.SPAWNER, NMLBlocks.MONSTER_ANCHOR);
-            insertAfter(event, Items.FOX_SPAWN_EGG, NMLItems.DEER_SPAWN_EGG);
-            insertAfter(event, Items.SALMON_SPAWN_EGG, NMLItems.BILLHOOK_BASS_SPAWN_EGG);
+            insertAfter(event, Items.CREEPER_SPAWN_EGG, NMLItems.DEER_SPAWN_EGG);
+            insertAfter(event, Items.BEE_SPAWN_EGG, NMLItems.BILLHOOK_BASS_SPAWN_EGG);
         }
     }
 

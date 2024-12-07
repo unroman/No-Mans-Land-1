@@ -2,6 +2,7 @@
   "values": [
     "nomansland:grass_sprouts",
     "nomansland:cattail",
+    "nomansland:reeds",
     "#nomansland:flowerbeds",
     "nomansland:oat_grass",
     "nomansland:fiddlehead",
@@ -13,6 +14,7 @@
     "nomansland:duckweed",
     "nomansland:beard_moss",
     "nomansland:mycelium_sprouts",
-    "nomansland:mycelium_growths"
+    "nomansland:mycelium_growths",
+    "nomansland:cut_vine"
   ]
 }
