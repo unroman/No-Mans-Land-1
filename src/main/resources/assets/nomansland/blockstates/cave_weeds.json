@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nomansland:block/underground/cave_weeds_0"
+      },
+      {
+        "model": "nomansland:block/underground/cave_weeds_1"
+      },
+      {
+        "model": "nomansland:block/underground/cave_weeds_2"
+      },
+      {
+        "model": "nomansland:block/underground/cave_weeds_3"
+      },
+      {
+        "model": "nomansland:block/underground/cave_weeds_4"
+      },
+      {
+        "model": "nomansland:block/underground/cave_weeds_5"
+      },
+      {
+        "model": "nomansland:block/underground/cave_weeds_6"
+      }
+    ]
+  }
+}
