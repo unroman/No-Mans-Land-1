@@ -1,4 +1,4 @@
 {
-  "texture": "minecraft:entity/squid/glow_squid",
+  "texture": "nomansland:entity/mob_variants/glow_squid/default",
   "weight": 1
 }
