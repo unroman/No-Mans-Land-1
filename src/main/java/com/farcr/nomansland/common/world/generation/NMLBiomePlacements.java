@@ -65,13 +65,6 @@ public class NMLBiomePlacements {
                 allOf(neighbor(Biomes.PLAINS))
         );
 
-        // Muskeg
-        BiomePlacement.addSubOverworld(
-                Biomes.SNOWY_PLAINS,
-                NMLBiomes.MUSKEG,
-                allOf(alternate(NMLBiomes.BOG, Biomes.SWAMP))
-        );
-
         // Bayou
         BiomePlacement.replaceOverworld(
                 Biomes.MANGROVE_SWAMP,
