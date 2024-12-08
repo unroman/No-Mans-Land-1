@@ -57,15 +57,6 @@ public class NMLSurfaceRules {
                                         SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER)))
         );
 
-        SurfaceRules.RuleSource muskeg = SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(NMLBiomes.MUSKEG),
-                SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), PODZOL),
-                        SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0),
-                                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0)),
-                                        SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
-        );
-
         SurfaceRules.RuleSource bayou = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.BAYOU),
                 SurfaceRules.sequence(
@@ -95,7 +86,7 @@ public class NMLSurfaceRules {
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
                                 //Surface Biomes
-                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, muskeg, bayou, darkSwamp)))
+                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, bayou, darkSwamp)))
         );
 
         SurfaceGeneration.addOverworldSurfaceRules(
