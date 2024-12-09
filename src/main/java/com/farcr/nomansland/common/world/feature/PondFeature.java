@@ -1,5 +1,7 @@
 package com.farcr.nomansland.common.world.feature;
 
+import com.farcr.nomansland.common.world.feature.decorator.PondDecorator;
+import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +13,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.function.BiConsumer;
 
 import static java.lang.Math.max;
 
@@ -31,7 +35,8 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
         int poolSpread = config.poolSpread();
         int blocksChanged = 0;
         BlockPos.MutableBlockPos pos = origin.mutable();
-        ArrayList<BlockPos> waterPos = new ArrayList<>();
+        Set<BlockPos> waterPos = Sets.newHashSet();
+        Set<BlockPos> decoPos = Sets.newHashSet();
         for (int i = 0; i < numPools; i++) {
             int basePoolSize = config.poolSize().sample(random);
             int poolSizeX = max(basePoolSize - config.poolEccentricity().sample(random), 1);
@@ -112,6 +117,18 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
             }
             blocksChanged++;
         }
+
+        BiConsumer<BlockPos, BlockState> decoratorConsumer = (pos1, state1) -> {
+            decoPos.add(pos1.immutable());
+            level.setBlock(pos1, state1, 19);
+        };
+        if (!config.decorators().isEmpty()) {
+            PondDecorator.Context ponddecorator$context = new PondDecorator.Context(level, decoratorConsumer, random, waterPos);
+            config.decorators().forEach((deco) -> {
+                deco.place(ponddecorator$context);
+            });
+        }
+
         return blocksChanged > 0;
     }
 

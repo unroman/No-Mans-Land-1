@@ -1,6 +1,49 @@
 {
   "type": "nomansland:pond",
   "config": {
+    "decorators": [
+      {
+        "type": "nomansland:cluster_on_water",
+        "block_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:lily_pad"
+          }
+        },
+        "probability": 0.1,
+        "limit": 5
+      },
+      {
+        "type": "nomansland:stacked_plant",
+        "block_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:sugar_cane"
+          }
+        },
+        "cluster_count": {
+          "type": "minecraft:uniform",
+          "min_inclusive": 0,
+          "max_inclusive": 2
+        },
+        "cluster_size": {
+          "type": "minecraft:uniform",
+          "min_inclusive": 2,
+          "max_inclusive": 5
+        },
+        "cluster_density": 0.7,
+        "cluster_spread": {
+          "type": "minecraft:uniform",
+          "min_inclusive": 1,
+          "max_inclusive": 2
+        },
+        "plant_height": {
+          "type": "minecraft:uniform",
+          "min_inclusive": 1,
+          "max_inclusive": 3
+        }
+      }
+    ],
     "num_pools": {
       "type": "minecraft:uniform",
       "min_inclusive": 2,

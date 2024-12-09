@@ -6,6 +6,7 @@ import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.NMLRegistries;
 import com.farcr.nomansland.data.Advancements;
 import com.farcr.nomansland.data.assets.Lang;
 import com.farcr.nomansland.data.tags.BlockTags;
@@ -22,6 +23,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -55,6 +57,11 @@ public class DataEvents {
     }
 
     @SubscribeEvent
+    public static void registerRegistries(NewRegistryEvent event) {
+        event.register(NMLRegistries.POND_DECORATOR_TYPE);
+    }
+
+                                          @SubscribeEvent
     public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
