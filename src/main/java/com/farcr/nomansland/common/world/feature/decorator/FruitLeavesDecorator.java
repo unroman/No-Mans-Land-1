@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.world.feature.decrator;
+package com.farcr.nomansland.common.world.feature.decorator;
 
 import com.farcr.nomansland.common.registry.NMLTreeDecoratorType;
 import com.mojang.serialization.Codec;

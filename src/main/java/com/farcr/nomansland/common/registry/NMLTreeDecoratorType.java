@@ -2,7 +2,7 @@ package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.world.feature.BeardMossDecorator;
-import com.farcr.nomansland.common.world.feature.decrator.FruitLeavesDecorator;
+import com.farcr.nomansland.common.world.feature.decorator.FruitLeavesDecorator;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
