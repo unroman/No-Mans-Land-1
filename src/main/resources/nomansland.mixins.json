@@ -41,7 +41,6 @@
   "client": [
     "HierarchicalModelMixin",
     "ItemRendererMixin",
-    "ModelBlockRendererMixin",
     "QuadrupedModelMixin",
     "RenderLayerMixin",
     "mob_variants.CamelRendererMixin",

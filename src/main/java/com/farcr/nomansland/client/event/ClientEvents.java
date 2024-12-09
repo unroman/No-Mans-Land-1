@@ -1,124 +1,86 @@
 package com.farcr.nomansland.client.event;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.client.NMLModelLayers;
-import com.farcr.nomansland.client.model.BillhookBassModel;
-import com.farcr.nomansland.client.model.BuriedModel;
-import com.farcr.nomansland.client.model.MooseModel;
-import com.farcr.nomansland.client.model.deer.DeerModel;
-import com.farcr.nomansland.client.particle.*;
-import com.farcr.nomansland.client.renderer.*;
-import com.farcr.nomansland.common.registry.NMLBlockEntities;
-import com.farcr.nomansland.common.registry.NMLEntities;
-import com.farcr.nomansland.common.registry.NMLParticleTypes;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.resources.ResourceLocation;
+import com.farcr.nomansland.common.block.FrostedGrassBlock;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.SectionPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.AddSectionGeometryEvent;
+
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 @SuppressWarnings("unused")
-@EventBusSubscriber(modid = NoMansLand.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = NoMansLand.MODID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class ClientEvents {
     @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
-        EntityRenderers.register(NMLEntities.BOAT.get(), pContext -> new NMLBoatRenderer(pContext, false));
-        EntityRenderers.register(NMLEntities.CHEST_BOAT.get(), pContext -> new NMLBoatRenderer(pContext, true));
-
-//        EntityRenderers.register(NMLEntities.BURIED.get(), BuriedRenderer::new);
-//        EntityRenderers.register(NMLEntities.MOOSE.get(), MooseRenderer::new);
-
-        EntityRenderers.register(NMLEntities.FIREBOMB.get(), FirebombRenderer::new);
-        EntityRenderers.register(NMLEntities.EXPLOSIVE.get(), ExplosiveRenderer::new);
+    public static void addSectionGeometryEvent(AddSectionGeometryEvent event) {
+        BlockPos origin = event.getSectionOrigin();
+        LevelChunk chunk = event.getLevel().getChunkAt(origin);
+        LevelChunkSection section = chunk.getSection(chunk.getSectionIndex(origin.getY()));
+        if (section.maybeHas(FrostedGrassAdditionalGeoRenderer.STATE_PREDICATE))
+            event.addRenderer(new FrostedGrassAdditionalGeoRenderer(Minecraft.getInstance().getBlockRenderer(), RandomSource.create(), SectionPos.of(origin)));
     }
 
-    @SubscribeEvent
-    public static void registerModels(ModelEvent.RegisterAdditional event) {
-        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "entity/firebomb")));
-        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "entity/explosive")));
-    }
+    static class FrostedGrassAdditionalGeoRenderer implements AddSectionGeometryEvent.AdditionalSectionRenderer {
+        private static final Predicate<BlockState> STATE_PREDICATE = state -> state.getOptionalValue(FrostedGrassBlock.SNOWLOGGED).orElse(false);
+        private static final BlockState SNOW_BLOCKSTATE = Blocks.SNOW.defaultBlockState();
+        final RandomSource randomsource;
+        final ModelBlockRenderer modelBlockRenderer;
+        final BakedModel snowModel;
+        final SectionPos sectionPos;
 
-    @SubscribeEvent
-    public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
-        event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
-        event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BillhookBassRenderer::new);
+        FrostedGrassAdditionalGeoRenderer(BlockRenderDispatcher blockRenderer, RandomSource randomsource, SectionPos sectionPos) {
+            this.randomsource = randomsource;
+            this.modelBlockRenderer = blockRenderer.getModelRenderer();
+            this.snowModel = blockRenderer.getBlockModel(SNOW_BLOCKSTATE);
+            this.sectionPos = sectionPos;
+        }
 
-        event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);
-    }
+        @Override
+        public void render(AddSectionGeometryEvent.SectionRenderingContext context) {
+            BlockAndTintGetter region = context.getRegion();
+            PoseStack stack = context.getPoseStack();
+            sectionPos.blocksInside()
+                    // filter for only snowlogged blocks
+                    .filter((pos) -> STATE_PREDICATE.test(context.getRegion().getBlockState(pos)))
+                    // for each snowlogged block, render snow at that position.
+                    .forEach((pos) -> drawSnow(stack, region, pos, context::getOrCreateChunkBuffer));
+        }
 
-    @SubscribeEvent
-    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-
-        event.registerLayerDefinition(NMLModelLayers.PINE_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.PINE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.MAPLE_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.MAPLE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.WALNUT_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.WALNUT_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.WILLOW_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.WILLOW_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.MOOSE_LAYER, MooseModel::createBodyLayer);
-        event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
-
-        event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BillhookBassModel::createBodyLayer);
-
-        event.registerLayerDefinition(NMLModelLayers.DEER_LAYER, DeerModel::createBodyLayer);
-    }
-
-    @SubscribeEvent
-    public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(NMLParticleTypes.PALE_CHERRY_LEAVES.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FallingParticle(clientLevel, d, e, f, sprites));
-        event.registerSpriteSet(NMLParticleTypes.CAVE_DUST.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new CaveDustParticle(clientLevel, d, e, f, sprites));
-        event.registerSpriteSet(NMLParticleTypes.RESIN_DROPLET.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.RESIN_DROPLET_FLAT));
-        event.registerSpriteSet(NMLParticleTypes.RESIN_DROPLET_FLAT.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidLandParticle(clientLevel, d, e, f, sprites));
-        event.registerSpriteSet(NMLParticleTypes.MAPLE_SYRUP_DROPLET.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.MAPLE_SYRUP_DROPLET_FLAT));
-        event.registerSpriteSet(NMLParticleTypes.MAPLE_SYRUP_DROPLET_FLAT.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidLandParticle(clientLevel, d, e, f, sprites));
-        event.registerSpriteSet(NMLParticleTypes.OIL.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.OIL_FLAT));
-        event.registerSpriteSet(NMLParticleTypes.OIL_FLAT.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FluidLandParticle(clientLevel, d, e, f, sprites));
-        event.registerSpriteSet(NMLParticleTypes.RESIN_OIL_BUBBLE.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new BubbleParticle(clientLevel, d, e, f, g, h, i, sprites, NMLParticleTypes.RESIN_OIL_BUBBLE_POP));
-        event.registerSpriteSet(NMLParticleTypes.RESIN_OIL_BUBBLE_POP.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new BubblePopParticle(clientLevel, d, e, f, g, h, i, sprites));
-        event.registerSpriteSet(NMLParticleTypes.SCULK_AMBIENCE.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new SculkAmbienceParticle(clientLevel, d, e, f, sprites));
-        event.registerSpriteSet(NMLParticleTypes.MALEVOLENT_EMBERS.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new EmbersParticle(clientLevel, d, e, f, g, h, i, sprites));
-        event.registerSpriteSet(NMLParticleTypes.MALEVOLENT_FLAME.get(), sprites
-                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
-                -> new FlameParticle(clientLevel, d, e, f, g, h, i, sprites));
+        private void drawSnow(PoseStack stack, BlockAndTintGetter region, BlockPos pos, Function<RenderType, VertexConsumer> consumer) {
+            stack.pushPose();
+            stack.translate(SectionPos.sectionRelative(pos.getX()), SectionPos.sectionRelative(pos.getY()), SectionPos.sectionRelative(pos.getZ()));
+            modelBlockRenderer.tesselateWithAO(
+                    region,
+                    snowModel,
+                    SNOW_BLOCKSTATE,
+                    pos, stack,
+                    consumer.apply(RenderType.cutoutMipped()),
+                    true,
+                    randomsource, SNOW_BLOCKSTATE.getSeed(pos), OverlayTexture.NO_OVERLAY,
+                    net.neoforged.neoforge.client.model.data.ModelData.EMPTY,
+                    RenderType.cutoutMipped()
+            );
+            stack.popPose();
+        }
     }
 }
