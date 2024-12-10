@@ -11,7 +11,7 @@ public class CaveBiomeFogModifier extends FogModifier {
 
     @Override
     public float getFogStartAddend() {
-        return -0.2F;
+        return -0.05F;
     }
 
     @Override

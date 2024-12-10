@@ -10,6 +10,11 @@ public class DeepDarkFogModifier extends FogModifier {
     }
 
     @Override
+    public float getFogStartAddend() {
+        return -0.1F;
+    }
+
+    @Override
     public boolean active(FogModifierHandler.FogContext context) {
         return context.biome().is(Biomes.DEEP_DARK);
     }
