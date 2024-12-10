@@ -1,7 +1,6 @@
 package com.farcr.nomansland.client.ambience.fogmodifiers;
 
 import com.farcr.nomansland.client.ambience.FogModifierHandler;
-import com.farcr.nomansland.utility.NMLMath;
 import net.minecraft.util.Mth;
 import org.joml.Vector3f;
 
@@ -39,9 +38,8 @@ public class FogModifierInstance {
     }
 
     public void multiplyFogColors(Vector3f fogColors) {
-        fogColors.set(NMLMath.exponentialInterpolation(fogColors.x(), this.modifier.getFogRedMultiplier(), this.interpolationFactor),
-                      NMLMath.exponentialInterpolation(fogColors.y(), this.modifier.getFogGreenMultiplier(), this.interpolationFactor),
-                      NMLMath.exponentialInterpolation(fogColors.z(), this.modifier.getFogBlueMultiplier(), this.interpolationFactor)
-        );
+        fogColors.mul(Mth.lerp(this.interpolationFactor, 1, this.modifier.getFogRedMultiplier()),
+                      Mth.lerp(this.interpolationFactor, 1, this.modifier.getFogGreenMultiplier()),
+                      Mth.lerp(this.interpolationFactor, 1, this.modifier.getFogBlueMultiplier()));
     }
 }
