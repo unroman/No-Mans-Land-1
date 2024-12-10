@@ -84,12 +84,15 @@ public class FogModifierHandler {
         this.colorMult.set(1, 1, 1);
         for (FogModifierInstance modifier : fogModifiers) {
             modifier.tick();
-            fogStartMult *= modifier.getFogStartMultiplier();
-            fogEndMult *= modifier.getFogEndMultiplier();
+            if (modifier.modifier.isEnabledWithFogType(Minecraft.getInstance().gameRenderer.getMainCamera().getFluidInCamera())) {
+                fogStartMult *= modifier.getFogStartMultiplier();
+                fogEndMult *= modifier.getFogEndMultiplier();
 
-            fogStartAdd += modifier.getFogStartAddend();
-            fogEndAdd += modifier.getFogEndAddend();
-            modifier.multiplyFogColors(this.colorMult);
+                fogStartAdd += modifier.getFogStartAddend();
+                fogEndAdd += modifier.getFogEndAddend();
+
+                modifier.multiplyFogColors(this.colorMult);
+            }
         }
     }
 
