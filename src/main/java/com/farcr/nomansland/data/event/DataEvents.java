@@ -59,9 +59,10 @@ public class DataEvents {
     @SubscribeEvent
     public static void registerRegistries(NewRegistryEvent event) {
         event.register(NMLRegistries.POND_DECORATOR_TYPE);
+        event.register(NMLRegistries.FOG_MODIFIERS);
     }
 
-                                          @SubscribeEvent
+    @SubscribeEvent
     public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);
