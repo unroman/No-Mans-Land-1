@@ -3,7 +3,6 @@
     "#c:is_swamp",
     "minecraft:jungle",
     "minecraft:bamboo_jungle",
-    "minecraft:mushroom_fields",
-    "#c:is_underground"
+    "minecraft:mushroom_fields"
   ]
 }

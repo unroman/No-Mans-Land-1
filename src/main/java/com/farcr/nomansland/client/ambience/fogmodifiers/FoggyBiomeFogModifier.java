@@ -6,7 +6,7 @@ import com.farcr.nomansland.common.registry.NMLTags;
 public class FoggyBiomeFogModifier extends FogModifier {
     @Override
     public float getFogStartAddend() {
-        return -0.3F;
+        return -0.2F;
     }
 
     @Override
