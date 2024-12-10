@@ -1,8 +1,6 @@
 package com.farcr.nomansland.client.ambience.fogmodifiers;
 
 import com.farcr.nomansland.client.ambience.FogModifierHandler;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.Tags;
 
 public class CaveBiomeFogModifier extends FogModifier {
