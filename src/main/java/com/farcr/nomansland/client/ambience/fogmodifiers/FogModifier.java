@@ -1,6 +1,7 @@
 package com.farcr.nomansland.client.ambience.fogmodifiers;
 
 import com.farcr.nomansland.client.ambience.FogModifierHandler;
+import net.minecraft.world.level.material.FogType;
 
 public abstract class FogModifier {
     public float getFogStartMultiplier() { return 1; }
@@ -20,6 +21,8 @@ public abstract class FogModifier {
     public float getFogBlueMultiplier() { return 1; }
 
     public float getInterpolationSpeed() { return 0.05F; }
+
+    public boolean isEnabledWithFogType(FogType type) { return type == FogType.NONE; }
 
     abstract boolean active(FogModifierHandler.FogContext context);
 }
