@@ -29,6 +29,7 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
 
     @Unique
     private static final EntityDataAccessor<Holder<SquidVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Squid.class, NMLDataSerializers.SQUID_VARIANT.get());
+    @Unique
     private static final EntityDataAccessor<Holder<GlowSquidVariant>> DATA_GLOWING_VARIANT_ID = SynchedEntityData.defineId(Squid.class, NMLDataSerializers.GLOW_SQUID_VARIANT.get());
     @Unique
     private static final String VARIANT_KEY = "Variant";
@@ -38,6 +39,7 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
     @Unique
     private static final ResourceKey<SquidVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.SQUID_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
+    @Unique
     private static final ResourceKey<GlowSquidVariant> DEFAULT_GLOWING_VARIANT = ResourceKey.create(NMLMobVariants.GLOW_SQUID_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
     @Override

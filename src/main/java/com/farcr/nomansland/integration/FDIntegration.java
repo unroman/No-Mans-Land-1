@@ -1,5 +1,7 @@
-package com.farcr.nomansland.integration.farmersdelight;
+package com.farcr.nomansland.integration;
 
+import com.farcr.nomansland.common.block.NMLCabinetBlock;
+import com.farcr.nomansland.common.blockentity.NMLCabinetBlockEntity;
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLItems;
 import net.minecraft.world.level.block.Block;

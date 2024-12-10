@@ -155,6 +155,7 @@ public class Deer extends Animal implements DeerVariantHolder {
             setHasAntlers(true);
             setAntlersLifetime(random.nextInt(0, 36000));
         }
+
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 

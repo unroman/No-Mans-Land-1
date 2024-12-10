@@ -1,5 +1,6 @@
-package com.farcr.nomansland.integration.farmersdelight;
+package com.farcr.nomansland.common.block;
 
+import com.farcr.nomansland.common.blockentity.NMLCabinetBlockEntity;
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

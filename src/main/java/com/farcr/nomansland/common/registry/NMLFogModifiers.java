@@ -2,8 +2,8 @@ package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.client.ambience.fogmodifiers.DeepDarkFogModifier;
-import com.farcr.nomansland.client.ambience.fogmodifiers.FogModifier;
 import com.farcr.nomansland.client.ambience.fogmodifiers.FogLooksGoodNowModifier;
+import com.farcr.nomansland.client.ambience.fogmodifiers.FogModifier;
 import com.farcr.nomansland.client.ambience.fogmodifiers.FoggyBiomeFogModifier;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;

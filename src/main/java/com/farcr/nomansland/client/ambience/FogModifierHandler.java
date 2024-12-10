@@ -1,18 +1,14 @@
 package com.farcr.nomansland.client.ambience;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.client.ambience.fogmodifiers.FogModifier;
 import com.farcr.nomansland.client.ambience.fogmodifiers.FogModifierInstance;
 import com.farcr.nomansland.common.registry.NMLRegistries;
-import com.farcr.nomansland.utility.NMLMath;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.CubicSampler;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,7 +20,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.joml.Vector3d;
 import org.joml.Vector3dc;

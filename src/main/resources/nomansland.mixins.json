@@ -9,7 +9,6 @@
     "BiomeMixin",
     "BlockEntityAccessor",
     "EntityMixin",
-    "EntityTypeMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
     "MobMixin",
@@ -41,6 +40,7 @@
   "client": [
     "HierarchicalModelMixin",
     "ItemRendererMixin",
+    "LivingEntityRendererMixin",
     "QuadrupedModelMixin",
     "RenderLayerMixin",
     "mob_variants.CamelRendererMixin",

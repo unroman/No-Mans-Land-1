@@ -1,7 +1,6 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
 import com.farcr.nomansland.common.registry.NMLPondDecoratorType;
-import com.google.common.collect.Sets;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.Util;
@@ -12,8 +11,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.FloatProvider;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import org.apache.commons.compress.utils.Lists;
@@ -21,7 +18,6 @@ import org.apache.commons.compress.utils.Lists;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class StackedPlantPondDecorator extends PondDecorator {
     public static final MapCodec<StackedPlantPondDecorator> CODEC = RecordCodecBuilder.mapCodec(

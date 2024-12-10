@@ -1,11 +1,8 @@
 package com.farcr.nomansland.client.ambience;
 
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.Heightmap;
 
 // probably make this a registry, at some point.
 // or something like that... idk if there are any

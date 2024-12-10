@@ -5,7 +5,6 @@
 
 package com.farcr.nomansland.common.world.feature.decorator;
 
-import com.farcr.nomansland.common.registry.NMLRegistries;
 import com.mojang.serialization.MapCodec;
 
 public class PondDecoratorType<P extends PondDecorator> {

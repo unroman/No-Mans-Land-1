@@ -6,10 +6,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import com.farcr.nomansland.common.world.feature.BoulderFeatureConfiguration;
 
 import java.util.ArrayList;
 import java.util.Iterator;

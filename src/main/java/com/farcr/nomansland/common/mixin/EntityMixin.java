@@ -81,7 +81,7 @@ public abstract class EntityMixin {
     @Shadow public abstract void igniteForSeconds(float seconds);
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void init(EntityType entityType, Level level, CallbackInfo ci) {
-        this.dimensions = this.getDimensions(this.getPose());
+    private void init(EntityType<?> entityType, Level level, CallbackInfo ci) {
+        if (entityType == EntityType.COW) dimensions = getDimensions(getPose()) == null ?  entityType.getDimensions() : getDimensions(getPose());
     }
 }

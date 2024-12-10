@@ -1,7 +1,6 @@
 package com.farcr.nomansland.client.ambience.fogmodifiers;
 
 import com.farcr.nomansland.client.ambience.FogModifierHandler;
-import org.joml.Vector3f;
 
 public abstract class FogModifier {
     public float getFogStartMultiplier() { return 1; }

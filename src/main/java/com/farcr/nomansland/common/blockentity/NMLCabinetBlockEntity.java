@@ -1,4 +1,4 @@
-package com.farcr.nomansland.integration.farmersdelight;
+package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import net.minecraft.core.BlockPos;
