@@ -24,6 +24,8 @@ import static net.minecraft.world.level.block.WallTorchBlock.FACING;
 
 public class ExplosiveEntity extends ThrowableBombEntity {
 
+    private BlockPos hitPos;
+
     public ExplosiveEntity(EntityType<? extends ThrowableProjectile> entityType, Level level) {
         super(entityType, level);
     }
@@ -110,21 +112,33 @@ public class ExplosiveEntity extends ThrowableBombEntity {
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
-        Vec3 vec3 = this.position().vectorTo(result.getLocation());
-        this.setDeltaMovement(vec3);
+        super.onHitBlock(result);
+        Vec3 pos = this.position();
+        Vec3 resultPos = result.getLocation();
+        Vec3 dir = pos.vectorTo(resultPos).normalize();
+        this.setDeltaMovement(Vec3.ZERO);
+        this.setPos(new Vec3(resultPos.x - dir.x * this.getBbWidth() * 0.01, resultPos.y - dir.y * this.getBbHeight() * 0.01, resultPos.z - dir.z * this.getBbWidth() * 0.01));
+        this.setNoGravity(true);
+        if (!this.shouldFuse()) {
+            this.startFuse(100);
+        }
+        this.hitPos = result.getBlockPos();
     }
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
-        Vec3 vec3 = this.position().vectorTo(result.getLocation());
-        this.setDeltaMovement(vec3);
-        this.shouldFuse();
+        super.onHitEntity(result);
+        this.setDeltaMovement(this.getDeltaMovement().scale(-0.1));
+        if (!this.shouldFuse()) {
+            this.startFuse(100);
+        }
     }
 
     @Override
     public void tick() {
-        if (!this.shouldFuse() && !this.getInBlockState().is(Blocks.AIR)) {
-            this.setMaxFuse(100);
+        if (this.hitPos != null && this.level().getBlockState(this.hitPos).getCollisionShape(this.level(), this.hitPos).isEmpty()) {
+            this.hitPos = null;
+            this.setNoGravity(false);
         }
 
         super.tick();

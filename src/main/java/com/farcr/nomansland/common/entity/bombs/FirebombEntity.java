@@ -79,43 +79,47 @@ public class FirebombEntity extends ThrowableBombEntity {
 
     @Override
     protected void explode() {
-        this.level().explode(this, this.getX(), this.getY(0.0625), this.getZ(), 2.0F, Level.ExplosionInteraction.NONE);
+        Level level = this.level();
+
+        level.explode(this, this.getX(), this.getY(0.0625), this.getZ(), 2.0F, Level.ExplosionInteraction.NONE);
         // Light nearby campfires on fire
         BlockPos.withinManhattan(this.blockPosition(), 6, 4, 6).forEach(pos -> {
-            BlockState state = this.level().getBlockState(pos);
+            BlockState state = level.getBlockState(pos);
             if (state.is(BlockTags.CAMPFIRES) && state.hasProperty(CampfireBlock.LIT) && !state.getValue(CampfireBlock.LIT)) {
-                this.level().setBlock(pos, state.setValue(CampfireBlock.LIT, true), 3);
+                level.setBlock(pos, state.setValue(CampfireBlock.LIT, true), 3);
             }
             if (state.getBlock() == Blocks.TNT) {
-                TntBlock.explode(this.level(), pos);
-                this.level().setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+                TntBlock.explode(level, pos);
+                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
             }
             if (state.getBlock() == NMLBlocks.EXTINGUISHED_TORCH.get()) {
-                this.level().setBlock(pos, Blocks.TORCH.defaultBlockState(), 3);
+                level.setBlock(pos, Blocks.TORCH.defaultBlockState(), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_WALL_TORCH.get()) {
-                this.level().setBlock(pos, Blocks.WALL_TORCH.defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
+                level.setBlock(pos, Blocks.WALL_TORCH.defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_SOUL_TORCH.get()) {
-                this.level().setBlock(pos, Blocks.SOUL_TORCH.defaultBlockState(), 3);
+                level.setBlock(pos, Blocks.SOUL_TORCH.defaultBlockState(), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_SOUL_WALL_TORCH.get()) {
-                this.level().setBlock(pos, Blocks.SOUL_WALL_TORCH.defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
+                level.setBlock(pos, Blocks.SOUL_WALL_TORCH.defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_SCONCE_TORCH.get()) {
-                this.level().setBlock(pos, NMLBlocks.SCONCE_TORCH.get().defaultBlockState(), 3);
+                level.setBlock(pos, NMLBlocks.SCONCE_TORCH.get().defaultBlockState(), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get()) {
-                this.level().setBlock(pos, NMLBlocks.SCONCE_WALL_TORCH.get().defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
+                level.setBlock(pos, NMLBlocks.SCONCE_WALL_TORCH.get().defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_SCONCE_SOUL_TORCH.get()) {
-                this.level().setBlock(pos, NMLBlocks.SCONCE_SOUL_TORCH.get().defaultBlockState(), 3);
+                level.setBlock(pos, NMLBlocks.SCONCE_SOUL_TORCH.get().defaultBlockState(), 3);
             } else if (state.getBlock() == NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get()) {
 
-                this.level().setBlock(pos, NMLBlocks.SCONCE_SOUL_WALL_TORCH.get().defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
+                level.setBlock(pos, NMLBlocks.SCONCE_SOUL_WALL_TORCH.get().defaultBlockState().setValue(FACING, state.getValue(FACING)), 3);
             }
 
         });
-        this.level().broadcastEntityEvent(this, (byte) (this.isInWater() ? 1 : 0));
+        level.broadcastEntityEvent(this, (byte) (this.isInWater() ? 1 : 0));
         this.discard();
     }
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
+        super.onHitEntity(result);
+
         if (!this.level().isClientSide()) {
             this.explode();
         }
@@ -123,6 +127,8 @@ public class FirebombEntity extends ThrowableBombEntity {
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
+
         Vec3 motion = this.getDeltaMovement();
         if (motion.lengthSqr() < 0.1) {
             this.setDeltaMovement(Vec3.ZERO);
@@ -146,7 +152,7 @@ public class FirebombEntity extends ThrowableBombEntity {
             );
         }
         if (!this.shouldFuse()) {
-            this.setMaxFuse(30);
+            this.startFuse(30);
         }
     }
 

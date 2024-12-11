@@ -6,6 +6,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -62,7 +64,8 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
     protected void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.fuse = compound.getInt("Fuse");
-        this.setMaxFuse(compound.getInt("MaxFuse"));
+        this.maxFuse = compound.getInt("MaxFuse");
+        this.entityData.set(DATA_SHOULD_FUSE_ID, this.maxFuse >= 0);
     }
 
     @Override
@@ -107,21 +110,14 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
         return this.entityData.get(DATA_SHOULD_FUSE_ID);
     }
 
-    public int getFuse() {
-        return this.fuse;
-    }
-
     public int getMaxFuse() {
         return this.maxFuse;
     }
 
-    public void setFuse(int fuse) {
-        this.fuse = fuse;
-    }
-
-    public void setMaxFuse(int maxFuse) {
+    public void startFuse(int maxFuse) {
         this.maxFuse = maxFuse;
         this.entityData.set(DATA_SHOULD_FUSE_ID, maxFuse >= 0);
+        this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.TNT_PRIMED, SoundSource.PLAYERS, 1.0F, 1.0F);
     }
 
     protected abstract void explode();
