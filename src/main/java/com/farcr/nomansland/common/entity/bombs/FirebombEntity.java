@@ -145,22 +145,9 @@ public class FirebombEntity extends ThrowableBombEntity {
                     -motion.z() * HORIZONTAL_RESTITUTION
             );
         }
-        if (this.getFuse() == -1) {
-            this.setFuse(30);;
+        if (!this.shouldFuse()) {
+            this.setMaxFuse(30);
         }
-    }
-
-    @Override
-    public void tick() {
-        if (!this.level().isClientSide) {
-            if (this.getFuse() > -1) {
-                this.setFuse(this.getFuse()-1);;
-                if (this.getFuse() <= 0) {
-                    this.explode();
-                }
-            }
-        }
-        super.tick();
     }
 
     @Override

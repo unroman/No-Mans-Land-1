@@ -15,34 +15,29 @@ import net.minecraft.world.phys.Vec3;
 
 public abstract class ThrowableBombEntity extends ThrowableProjectile {
 
-    private static final int MAX_LIFE = 200;
-    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(ThrowableBombEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> DATA_SHOULD_FUSE_ID = SynchedEntityData.defineId(ThrowableBombEntity.class, EntityDataSerializers.BOOLEAN);
 
     private float oRoll;
     private float roll;
+    private int oFuse;
+    private int fuse;
+    private int maxFuse = -1;
 
     protected ThrowableBombEntity(EntityType<? extends ThrowableProjectile> entityType, Level level) {
         super(entityType, level);
-        this.setFuse(60);
     }
 
     protected ThrowableBombEntity(EntityType<? extends ThrowableProjectile> entityType, double d, double e, double f, Level level) {
         super(entityType, d, e, f, level);
-        this.setFuse(60);
     }
 
     protected ThrowableBombEntity(EntityType<? extends ThrowableProjectile> entityType, LivingEntity livingEntity, Level level) {
         super(entityType, livingEntity, level);
-        this.setFuse(60);
     }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        builder.define(DATA_FUSE_ID, 80);
-    }
-
-    public int getFuse() {
-        return this.entityData.get(DATA_FUSE_ID);
+        builder.define(DATA_SHOULD_FUSE_ID, false);
     }
 
     @Override
@@ -57,29 +52,34 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag nbt) {
-        nbt.putShort("fuse", (short)this.getFuse());
-        super.addAdditionalSaveData(nbt);
+    protected void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Fuse", this.fuse);
+        compound.putInt("MaxFuse", this.maxFuse);
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag nbt) {
-        this.setFuse(nbt.getShort("fuse"));
-        super.readAdditionalSaveData(nbt);
+    protected void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.fuse = compound.getInt("Fuse");
+        this.setMaxFuse(compound.getInt("MaxFuse"));
     }
-
-    public void setFuse(int life) {
-        this.entityData.set(DATA_FUSE_ID, life);
-    }
-
 
     @Override
     public void tick() {
         super.tick();
 
-        if (this.level().isClientSide()) {
-
+        Level level = this.level();
+        if (level.isClientSide()) {
+            this.oFuse = this.fuse;
             this.oRoll = this.roll;
+
+            if (this.shouldFuse()) {
+                this.fuse++;
+                if (this.fuse >= this.maxFuse) {
+                    this.fuse = this.maxFuse;
+                }
+            }
 
             double distance = this.getDeltaMovement().lengthSqr();
             if (distance > 0.01) {
@@ -87,13 +87,41 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
             }
 
             if (!this.onGround()) {
-                this.level().addParticle(this.getParticle(), this.getX(), this.getY() + this.getBbHeight(), this.getZ(), 0, 0, 0);
+                level.addParticle(this.getParticle(), this.getX(), this.getY() + this.getBbHeight(), this.getZ(), 0, 0, 0);
             }
         } else {
-            if (this.level().getBlockState(this.blockPosition()).is(NMLTags.BOMB_EXPLODE)) {
+            if (this.shouldFuse()) {
+                this.fuse++;
+                if (this.fuse >= this.maxFuse) {
+                    this.explode();
+                }
+            }
+
+            if (level.getBlockState(this.blockPosition()).is(NMLTags.BOMB_EXPLODE)) {
                 this.explode();
             }
         }
+    }
+
+    public boolean shouldFuse() {
+        return this.entityData.get(DATA_SHOULD_FUSE_ID);
+    }
+
+    public int getFuse() {
+        return this.fuse;
+    }
+
+    public int getMaxFuse() {
+        return this.maxFuse;
+    }
+
+    public void setFuse(int fuse) {
+        this.fuse = fuse;
+    }
+
+    public void setMaxFuse(int maxFuse) {
+        this.maxFuse = maxFuse;
+        this.entityData.set(DATA_SHOULD_FUSE_ID, maxFuse >= 0);
     }
 
     protected abstract void explode();
@@ -102,5 +130,9 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
 
     public float getRoll(float partialTicks) {
         return Mth.lerp(partialTicks, this.oRoll, this.roll);
+    }
+
+    public float getSwelling(float partialTicks) {
+        return Mth.lerp(partialTicks, this.oFuse, this.fuse) / (float) (this.getMaxFuse() - 2);
     }
 }
