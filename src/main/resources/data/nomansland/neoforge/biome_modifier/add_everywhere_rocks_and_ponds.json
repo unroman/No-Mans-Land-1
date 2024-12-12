@@ -3,7 +3,8 @@
   "biomes": "#minecraft:is_overworld",
   "features": [
     "nomansland:pond_common",
-    "nomansland:pebbles"
+    "nomansland:pebbles",
+    "nomansland:quartzite_geode"
   ],
   "step": "local_modifications"
 }
