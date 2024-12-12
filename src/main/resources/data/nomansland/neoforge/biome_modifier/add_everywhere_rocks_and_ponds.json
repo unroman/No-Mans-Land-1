@@ -4,7 +4,7 @@
   "features": [
     "nomansland:pond_common",
     "nomansland:pebbles",
-    "nomansland:quartzite_geode"
+    "nomansland:underground/quartzite_geode"
   ],
   "step": "local_modifications"
 }
