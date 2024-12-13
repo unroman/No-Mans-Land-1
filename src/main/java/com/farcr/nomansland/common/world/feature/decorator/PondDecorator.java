@@ -13,8 +13,10 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 
 import java.util.Comparator;
 import java.util.Set;
@@ -35,17 +37,19 @@ public abstract class PondDecorator {
     }
 
     public static final class Context {
-        private final LevelReader level;
+        private final WorldGenLevel level;
         private final BiConsumer<BlockPos, BlockState> decorationSetter;
         private final RandomSource random;
         private final ObjectArrayList<BlockPos> water;
+        private final ChunkGenerator chunkGen;
 
-        public Context(LevelReader level, BiConsumer<BlockPos, BlockState> decorationSetter, RandomSource random, Set<BlockPos> water) {
+        public Context(WorldGenLevel level, BiConsumer<BlockPos, BlockState> decorationSetter, RandomSource random, Set<BlockPos> water, ChunkGenerator chunkGen) {
             this.level = level;
             this.decorationSetter = decorationSetter;
             this.random = random;
             this.water = new ObjectArrayList(water);
             this.water.sort(Comparator.comparingInt(Vec3i::getY));
+            this.chunkGen = chunkGen;
         }
 
         public void setBlock(BlockPos pos, BlockState state) {
@@ -53,14 +57,17 @@ public abstract class PondDecorator {
         }
 
         public boolean isAir(BlockPos pos) {
-            return simulated().isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir);
+            return levelSimulatedReader().isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir);
         }
 
-        public LevelReader level() {
+        public WorldGenLevel level() {
+            return this.level;
+        }
+        public LevelReader levelReader() {
             return this.level;
         }
 
-        public LevelSimulatedReader simulated() { return (LevelSimulatedReader) this.level; }
+        public LevelSimulatedReader levelSimulatedReader() { return this.level; }
 
         public RandomSource random() {
             return this.random;
@@ -69,5 +76,7 @@ public abstract class PondDecorator {
         public ObjectArrayList<BlockPos> water() {
             return this.water;
         }
+
+        public ChunkGenerator chunkGenerator() { return this.chunkGen; }
     }
 }

@@ -122,7 +122,7 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
             level.setBlock(pos1, state1, 19);
         };
         if (!config.decorators().isEmpty()) {
-            PondDecorator.Context ponddecorator$context = new PondDecorator.Context(level, decoratorConsumer, random, waterPos);
+            PondDecorator.Context ponddecorator$context = new PondDecorator.Context(level, decoratorConsumer, random, waterPos, context.chunkGenerator());
             config.decorators().forEach((deco) -> {
                 deco.place(ponddecorator$context);
             });

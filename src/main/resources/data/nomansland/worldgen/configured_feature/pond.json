@@ -42,6 +42,58 @@
           "min_inclusive": 1,
           "max_inclusive": 3
         }
+      },
+      {
+        "type": "nomansland:feature_cluster",
+        "place_count": {
+          "type": "minecraft:uniform",
+          "min_inclusive": 0,
+          "max_inclusive": 2
+        },
+        "tries": 12,
+        "xz_spread": 1,
+        "y_spread": 1,
+        "features": [
+          {
+            "feature": {
+              "type": "minecraft:simple_block",
+              "config": {
+                "to_place": {
+                  "type": "minecraft:weighted_state_provider",
+                  "entries": [
+                    {
+                      "data": {
+                        "Name": "nomansland:cattail",
+                        "Properties": {
+                          "half": "lower"
+                        }
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "data": {
+                        "Name": "nomansland:reeds",
+                        "Properties": {
+                          "half": "lower"
+                        }
+                      },
+                      "weight": 2
+                    }
+                  ]
+                }
+              }
+            },
+            "placement": [
+              {
+                "type": "minecraft:block_predicate_filter",
+                "predicate": {
+                  "type": "minecraft:matching_blocks",
+                  "blocks": ["minecraft:air", "minecraft:water"]
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "num_pools": {
