@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.registry;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.world.feature.BeardMossDecorator;
 import com.farcr.nomansland.common.world.feature.decorator.FruitLeavesDecorator;
+import com.farcr.nomansland.common.world.feature.decorator.HugeShelfMushroomDecorator;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
@@ -19,6 +20,9 @@ public record NMLTreeDecoratorType<P extends TreeDecorator>(MapCodec<P> codec) {
 
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<BeardMossDecorator>>
             BEARD_MOSS = register("beard_moss", BeardMossDecorator.CODEC);
+
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<HugeShelfMushroomDecorator>>
+            HUGE_SHELF_MUSHROOM = register("huge_shelf_mushroom", HugeShelfMushroomDecorator.CODEC);
 
     private static <P extends TreeDecorator> DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<P>> register(String name, MapCodec<P> codec) {
         return TREE_DECORATOR_TYPES.register(name, () -> new TreeDecoratorType<>(codec));
