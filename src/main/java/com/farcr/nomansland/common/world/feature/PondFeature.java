@@ -99,20 +99,20 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
                 if (!level.getBlockState(bpos.above(y)).isAir() && level.getBlockState(bpos.above(y)) != config.waterState().getState(random, bpos.above(y))) {
                     if (y < origin.getY() - bpos.getY() + 1)
                     {
-                        level.setBlock(bpos.above(y), config.waterState().getState(random, bpos.above(y)), 2);
+                        level.setBlock(bpos.above(y), config.waterState().getState(random, bpos.above(y)), 3);
                     }
                     else
                     {
-                        level.setBlock(bpos.above(y), Blocks.AIR.defaultBlockState(), 2);
+                        level.setBlock(bpos.above(y), Blocks.AIR.defaultBlockState(), 3);
                     }
                 }
             }
         }
         for (BlockPos bpos : waterPos) {
-            level.setBlock(bpos, config.waterState().getState(random, bpos), 2);
+            level.setBlock(bpos, config.waterState().getState(random, bpos), 3);
             BlockState floorState = config.floorState().getState(random, bpos.below());
             if (!floorState.isAir() && level.getBlockState(bpos.below()) != config.waterState().getState(random, bpos.below())) {
-                level.setBlock(bpos.below(), floorState, 2);
+                level.setBlock(bpos.below(), floorState, 3);
             }
             blocksChanged++;
         }
@@ -122,7 +122,7 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
             level.setBlock(pos1, state1, 19);
         };
         if (!config.decorators().isEmpty()) {
-            PondDecorator.Context ponddecorator$context = new PondDecorator.Context(level, decoratorConsumer, random, waterPos);
+            PondDecorator.Context ponddecorator$context = new PondDecorator.Context(level, decoratorConsumer, random, waterPos, context.chunkGenerator());
             config.decorators().forEach((deco) -> {
                 deco.place(ponddecorator$context);
             });
