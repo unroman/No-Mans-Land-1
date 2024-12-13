@@ -14,12 +14,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-public abstract class BombItem extends Item {
+public abstract class ThrowableBombItem extends Item {
 
-    private static final int DEFAULT_THROW_TIME = 10;
+    protected static final int DEFAULT_THROW_TIME = 10;
     private static final int COOLDOWN_TIME = 40;
 
-    public BombItem(Properties properties) {
+    public ThrowableBombItem(Properties properties) {
         super(properties);
     }
 
@@ -36,10 +36,7 @@ public abstract class BombItem extends Item {
     @Override
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingTicks) {
         int timeUsed = this.getUseDuration(stack, entity) - remainingTicks;
-        if (timeUsed >= DEFAULT_THROW_TIME) {
-            if (!entity.isShiftKeyDown()) entity.releaseUsingItem();
-//            if (timeUsed < DEFAULT_THROW_TIME + 30)
-        }
+        if (timeUsed >= DEFAULT_THROW_TIME && !entity.isShiftKeyDown()) entity.releaseUsingItem();
     }
 
     @Override
