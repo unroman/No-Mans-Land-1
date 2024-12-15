@@ -33,10 +33,7 @@ public class NoMansLand {
         NMLPondDecoratorType.POND_DECORATOR_TYPES.register(modEventBus);
         NMLDataSerializers.ENTITY_DATA_SERIALIZERS.register(modEventBus);
         NMLFogModifiers.FOG_MODIFIERS.register(modEventBus);
-//        NMLTerrablender.registerRegions();
-//        NMLTerrablender.registerSurfaceData();
-        NMLBiomePlacements.registerBiomes();
-        NMLSurfaceRules.registerSurfaceRules();
+        NMLBiomePlacements.register();
 
         modEventBus.addListener(NMLItems::addCreative);
         modEventBus.addListener(this::commonSetup);
@@ -48,6 +45,7 @@ public class NoMansLand {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            NMLSurfaceRules.register();
             NMLFlammables.register();
             NMLPottables.register();
         });

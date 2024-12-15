@@ -13,7 +13,7 @@ import net.minecraft.world.level.biome.Climate;
 import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 
 public class NMLBiomePlacements {
-    public static void registerBiomes() {
+    public static void register() {
 
         // Caves
         BiomePlacement.addOverworld(NMLBiomes.CAVES,
