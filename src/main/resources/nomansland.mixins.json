@@ -18,6 +18,7 @@
     "SnowAndFreezeFeatureMixin",
     "SpreadingSnowyDirtBlockMixin",
     "ThrownPotionMixin",
+    "TreeFeatureMixin",
     "VineBlockMixin",
     "VinesFeatureMixin",
     "WolfMixin",
