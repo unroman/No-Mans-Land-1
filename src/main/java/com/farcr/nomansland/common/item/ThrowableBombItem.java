@@ -2,6 +2,10 @@ package com.farcr.nomansland.common.item;
 
 
 import com.farcr.nomansland.common.entity.bombs.ThrowableBombEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -11,15 +15,20 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.phys.Vec3;
 
-public abstract class BombItem extends Item {
+import java.util.OptionalInt;
 
-    private static final int DEFAULT_THROW_TIME = 10;
+public abstract class ThrowableBombItem extends Item {
+
+    protected static final int DEFAULT_THROW_TIME = 10;
     private static final int COOLDOWN_TIME = 40;
 
-    public BombItem(Properties properties) {
+    public ThrowableBombItem(Properties properties) {
         super(properties);
     }
 
@@ -36,10 +45,7 @@ public abstract class BombItem extends Item {
     @Override
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingTicks) {
         int timeUsed = this.getUseDuration(stack, entity) - remainingTicks;
-        if (timeUsed >= DEFAULT_THROW_TIME) {
-            if (!entity.isShiftKeyDown()) entity.releaseUsingItem();
-//            if (timeUsed < DEFAULT_THROW_TIME + 30)
-        }
+        if (timeUsed >= DEFAULT_THROW_TIME && !entity.isShiftKeyDown()) entity.releaseUsingItem();
     }
 
     @Override
@@ -72,4 +78,6 @@ public abstract class BombItem extends Item {
     }
 
     public abstract ThrowableBombEntity createBomb(LivingEntity entity, Level level);
+
+    public abstract ThrowableBombEntity createBomb(Level level, BlockPos pos);
 }

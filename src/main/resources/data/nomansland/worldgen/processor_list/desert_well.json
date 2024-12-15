@@ -4,11 +4,18 @@
       "rules": [
         {
           "output_state": {
-            "Name": "minecraft:suspicious_sand"
+            "Name": "minecraft:suspicious_sand",
+            "Properties": {
+              "dusted": "0"
+            }
+          },
+          "block_entity_modifier": {
+            "type": "minecraft:append_loot",
+            "loot_table": "minecraft:archaeology/desert_well"
           },
           "input_predicate": {
             "block": "minecraft:sand",
-            "probability": 1.0,
+            "probability": 0.5,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {

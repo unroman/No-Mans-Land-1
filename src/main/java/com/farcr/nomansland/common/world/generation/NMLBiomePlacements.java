@@ -13,17 +13,17 @@ import net.minecraft.world.level.biome.Climate;
 import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 
 public class NMLBiomePlacements {
-    public static void registerBiomes() {
+    public static void register() {
 
         // Caves
         BiomePlacement.addOverworld(NMLBiomes.CAVES,
                 Climate.parameters(
-                        Climate.Parameter.span(-1, 1),
-                        Climate.Parameter.span(-1, 1),
-                        Climate.Parameter.span(-1, 1),
-                        Climate.Parameter.span(-1, 1),
-                        Climate.Parameter.span(0.15F, 1F),
-                        Climate.Parameter.span(-1, 1),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(0.15F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
                         0.125F));
 
         // Autumnal Forest
@@ -40,10 +40,22 @@ public class NMLBiomePlacements {
                 0.2
         );
 
+        BiomePlacement.replaceOverworld(
+                Biomes.GROVE,
+                NMLBiomes.MAPLE_GROVE,
+                0.2
+        );
+
         BiomePlacement.addSubOverworld(
                 Biomes.GROVE,
                 NMLBiomes.MAPLE_GROVE,
                 allOf(alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST))
+        );
+
+        BiomePlacement.addSubOverworld(
+                Biomes.FOREST,
+                NMLBiomes.MAPLE_FOREST,
+                allOf(alternate(NMLBiomes.MAPLE_GROVE, Biomes.GROVE))
         );
 
         // Bog

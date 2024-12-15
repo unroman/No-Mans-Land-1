@@ -22,6 +22,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.AddSectionGeometryEvent;
+import net.neoforged.neoforge.client.model.data.ModelData;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -75,7 +76,7 @@ public class ClientEvents {
                     consumer.apply(RenderType.cutoutMipped()),
                     true,
                     randomsource, SNOW_BLOCKSTATE.getSeed(pos), OverlayTexture.NO_OVERLAY,
-                    net.neoforged.neoforge.client.model.data.ModelData.EMPTY,
+                    ModelData.EMPTY,
                     RenderType.cutoutMipped()
             );
             stack.popPose();

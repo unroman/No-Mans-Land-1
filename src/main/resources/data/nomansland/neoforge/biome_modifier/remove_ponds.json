@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "#nomansland:feature_removal/no_ponds",
+  "features": [
+    "nomansland:pond_common",
+    "nomansland:pond_swamp",
+    "nomansland:pond_stony_shore"
+  ]
+}
