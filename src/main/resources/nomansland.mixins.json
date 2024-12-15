@@ -8,6 +8,7 @@
     "BaseSpawnerMixin",
     "BiomeMixin",
     "BlockEntityAccessor",
+    "DispenserBlockMixin",
     "EntityMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
