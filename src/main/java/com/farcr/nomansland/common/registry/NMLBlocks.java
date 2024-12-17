@@ -104,6 +104,8 @@ public class NMLBlocks {
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.FERN).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> MYCELIUM_SPROUTS = registerBlock("mycelium_sprouts",
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(BlockBehaviour.OffsetType.XYZ)));
+    public static final DeferredBlock<Block> CAVE_WEEDS = registerBlock("cave_weeds",
+            () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.TERRACOTTA_GRAY).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> MYCELIUM_GROWTHS = registerBlock("mycelium_growths",
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> CATTAIL = registerBlock("cattail",

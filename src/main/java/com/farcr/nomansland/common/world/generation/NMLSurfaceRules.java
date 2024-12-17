@@ -80,18 +80,6 @@ public class NMLSurfaceRules {
                                 //Surface Biomes
                                 jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, bayou, darkSwamp)))
         );
-
-        SurfaceRules.RuleSource caves = SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(NMLBiomes.CAVES),
-                SurfaceRules.sequence(SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.steep()), SILT)))
-        );
-
-        SurfaceGeneration.addOverworldSurfaceRules(
-                ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "rules/overworld"),
-                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
-                        //Underground Biomes
-                        caves))
-        );
     }
 
     private static SurfaceRules.RuleSource makeStateRule(Block block) {

@@ -286,6 +286,7 @@ public class NMLItems {
             insertAfter(event, Items.FERN, NMLBlocks.FIDDLEHEAD);
             insertBefore(event, Items.DEAD_BUSH, NMLBlocks.SHORT_BEACHGRASS);
             insertBefore(event, Items.DEAD_BUSH, NMLBlocks.TALL_BEACHGRASS);
+            insertBefore(event, Items.DEAD_BUSH, NMLBlocks.CAVE_WEEDS);
             insertBefore(event, Items.DEAD_BUSH, NMLBlocks.DRIED_GRASS);
             insertBefore(event, Items.CRIMSON_ROOTS, NMLBlocks.MYCELIUM_GROWTHS);
             insertBefore(event, Items.CRIMSON_ROOTS, NMLBlocks.MYCELIUM_SPROUTS);
