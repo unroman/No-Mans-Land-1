@@ -1,6 +1,7 @@
 {
   "type": "nomansland:pond",
   "config": {
+    "decorators": [],
     "num_pools": {
       "type": "minecraft:uniform",
       "min_inclusive": 2,
