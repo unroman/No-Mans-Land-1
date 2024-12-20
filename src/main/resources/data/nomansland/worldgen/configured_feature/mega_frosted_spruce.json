@@ -1,15 +1,7 @@
 {
   "type": "minecraft:tree",
   "config": {
-    "decorators": [
-      {
-        "type": "nomansland:huge_shelf_mushroom",
-        "probability": 0.2,
-        "limit": 3,
-        "exclusion_bottom": 2,
-        "exclusion_top": 5
-      }
-    ],
+    "decorators": [],
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
