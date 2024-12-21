@@ -20,7 +20,7 @@ public class NMLFoods {
     public static final FoodProperties COOKED_BILLHOOK_BASS = new FoodProperties.Builder().nutrition(7).saturationModifier(0.8F).build();
     public static final FoodProperties CAVE_CARP = new FoodProperties.Builder().nutrition(3).saturationModifier(0.2F).build();
 
-    public static final FoodProperties MAPLE_SYRUP_BOTTLE = new FoodProperties.Builder().nutrition(5).saturationModifier(0.2f).alwaysEdible().usingConvertsTo(Items.GLASS_BOTTLE).build();
+    public static final FoodProperties MAPLE_SYRUP_BOTTLE = new FoodProperties.Builder().nutrition(5).saturationModifier(0.2f).alwaysEdible().build();
 
     public static final FoodProperties PEAR = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3f).build();
     public static final FoodProperties SYRUPED_PEAR = new FoodProperties.Builder().nutrition(6).saturationModifier(0.4f).build();

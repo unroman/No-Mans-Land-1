@@ -10,11 +10,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DesertPlantBlock extends BushBlock {
-    public static final MapCodec<DesertPlantBlock> CODEC = simpleCodec(DesertPlantBlock::new);
+public class DesertFoliageBlock extends BushBlock {
+    public static final MapCodec<DesertFoliageBlock> CODEC = simpleCodec(DesertFoliageBlock::new);
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 
-    public DesertPlantBlock(Properties pProperties) {
+    public DesertFoliageBlock(Properties pProperties) {
         super(pProperties);
     }
 
