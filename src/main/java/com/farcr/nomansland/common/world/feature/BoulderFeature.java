@@ -114,7 +114,10 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
                 while (level.getBlockState(pos1.below(i)).is(BlockTags.REPLACEABLE) && !stonePosPlaced.contains(pos1.below(i)) && i < 10) {
                     i++;
                 }
-                stonePosPlaced.add(pos1.below(i - 1));
+                BlockPos pos2 = pos1.below(i - 1);
+                if (pos2.getY() >= origin.getY() + config.heightMin() && pos2.getY() <= origin.getY() + config.heightMax()) {
+                    stonePosPlaced.add(pos2);
+                }
             }
         }
 
