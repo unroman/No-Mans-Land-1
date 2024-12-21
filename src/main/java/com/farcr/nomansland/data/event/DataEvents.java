@@ -59,6 +59,7 @@ public class DataEvents {
     @SubscribeEvent
     public static void registerRegistries(NewRegistryEvent event) {
         event.register(NMLRegistries.POND_DECORATOR_TYPE);
+        event.register(NMLRegistries.BOULDER_DECORATOR_TYPE);
         event.register(NMLRegistries.FOG_MODIFIERS);
     }
 

@@ -31,6 +31,7 @@ public class NoMansLand {
         NMLLootModifiers.LOOT_MODIFIERS.register(modEventBus);
         NMLTreeDecoratorType.TREE_DECORATOR_TYPES.register(modEventBus);
         NMLPondDecoratorType.POND_DECORATOR_TYPES.register(modEventBus);
+        NMLBoulderDecoratorType.BOULDER_DECORATOR_TYPES.register(modEventBus);
         NMLDataSerializers.ENTITY_DATA_SERIALIZERS.register(modEventBus);
         NMLFogModifiers.FOG_MODIFIERS.register(modEventBus);
         NMLBiomePlacements.register();

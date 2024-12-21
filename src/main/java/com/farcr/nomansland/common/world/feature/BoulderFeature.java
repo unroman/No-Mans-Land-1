@@ -1,5 +1,7 @@
 package com.farcr.nomansland.common.world.feature;
 
+import com.farcr.nomansland.common.world.feature.decorator.BoulderDecorator;
+import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -8,12 +10,14 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
+import java.util.Set;
+import java.util.function.BiConsumer;
 
 public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
     public BoulderFeature(Codec<BoulderFeatureConfiguration> codec) {
@@ -30,6 +34,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
         int numCubes = config.numCubes().sample(random);
 
         ArrayList<BlockPos> stonePos = new ArrayList<>();
+        ArrayList<BlockPos> decoPos = new ArrayList<>();
 
         BlockPos.MutableBlockPos cube_origin_pos = origin.mutable();
         BlockPos.MutableBlockPos pos = origin.mutable();
@@ -162,8 +167,20 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
         }
 
         // place all blocks
+        Set<BlockPos> stonePosSet = Sets.newHashSet();
         for (BlockPos pos1 : stonePosPlaced) {
             level.setBlock(pos1, config.blockProvider().getState(random, pos1), 2);
+            stonePosSet.add(pos1);
+        }
+
+
+        BiConsumer<BlockPos, BlockState> decoratorConsumer = (pos1, state1) -> {
+            decoPos.add(pos1.immutable());
+            level.setBlock(pos1, state1, 19);
+        };
+        if (!config.decorators().isEmpty()) {
+            BoulderDecorator.Context boulderdecorator$context = new BoulderDecorator.Context(level, decoratorConsumer, random, stonePosSet, context.chunkGenerator());
+            config.decorators().forEach((deco) -> deco.place(boulderdecorator$context));
         }
 
         return true;

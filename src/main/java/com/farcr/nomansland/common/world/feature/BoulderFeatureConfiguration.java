@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.world.feature;
 
+import com.farcr.nomansland.common.world.feature.decorator.BoulderDecorator;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.ExtraCodecs;
@@ -7,7 +8,9 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
-public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cubeSize, float percentLargerCube, IntProvider cubeErosion, float cubeErosionSizeMultiplier, IntProvider extraErosion, int heightMin, int heightMax, int minimumSize, BlockStateProvider blockProvider) implements FeatureConfiguration {
+import java.util.List;
+
+public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cubeSize, float percentLargerCube, IntProvider cubeErosion, float cubeErosionSizeMultiplier, IntProvider extraErosion, int heightMin, int heightMax, int minimumSize, BlockStateProvider blockProvider, List<BoulderDecorator> decorators) implements FeatureConfiguration {
     public static final Codec<BoulderFeatureConfiguration> CODEC = RecordCodecBuilder.create(
             record -> record.group(
                     IntProvider.codec(1, 8).fieldOf("num_cubes").forGetter(BoulderFeatureConfiguration::numCubes),
@@ -19,7 +22,8 @@ public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cube
                     ExtraCodecs.NON_NEGATIVE_INT.fieldOf("height_min").forGetter(BoulderFeatureConfiguration::heightMin),
                     ExtraCodecs.NON_NEGATIVE_INT.fieldOf("height_max").forGetter(BoulderFeatureConfiguration::heightMax),
                     ExtraCodecs.NON_NEGATIVE_INT.fieldOf("minimum_size").forGetter(BoulderFeatureConfiguration::minimumSize),
-                    BlockStateProvider.CODEC.fieldOf("block_provider").forGetter(BoulderFeatureConfiguration::blockProvider)
+                    BlockStateProvider.CODEC.fieldOf("block_provider").forGetter(BoulderFeatureConfiguration::blockProvider),
+                    BoulderDecorator.CODEC.listOf().fieldOf("decorators").orElse(List.of()).forGetter(BoulderFeatureConfiguration::decorators)
             ).apply(record, BoulderFeatureConfiguration::new)
     );
 }
