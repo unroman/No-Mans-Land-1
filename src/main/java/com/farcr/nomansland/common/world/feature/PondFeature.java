@@ -95,9 +95,9 @@ public class PondFeature extends Feature<PondFeatureConfiguration> {
         }
         for (BlockPos bpos : waterPos)
         {
-            for (int y = 1; y <= origin.getY() - bpos.getY() + 1; y++) {
+            for (int y = 1; y <= origin.getY() - bpos.getY() + 2; y++) {
                 if (!level.getBlockState(bpos.above(y)).isAir() && level.getBlockState(bpos.above(y)) != config.waterState().getState(random, bpos.above(y))) {
-                    if (y < origin.getY() - bpos.getY() + 1)
+                    if (y <= origin.getY() - bpos.getY())
                     {
                         level.setBlock(bpos.above(y), config.waterState().getState(random, bpos.above(y)), 3);
                     }
