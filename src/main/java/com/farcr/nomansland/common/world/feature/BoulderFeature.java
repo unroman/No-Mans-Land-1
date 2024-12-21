@@ -143,7 +143,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
         } while (posToRemove != null && erodedBlocks < erosion);
 
         // erode sharp edges
-        do {
+        /*do {
             posToRemove = null;
             for (BlockPos cpos : stonePosPlaced) {
                 int directionsWithoutBlocks = 0;
@@ -160,7 +160,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
             if (posToRemove != null) {
                 stonePosPlaced.remove(posToRemove);
             }
-        } while (posToRemove != null);
+        } while (posToRemove != null);*/
 
         if (stonePosPlaced.size() <= config.minimumSize()) {
             return false;
