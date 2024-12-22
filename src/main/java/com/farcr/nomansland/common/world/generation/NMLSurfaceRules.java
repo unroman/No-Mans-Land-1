@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 public class NMLSurfaceRules {
     private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
@@ -73,12 +74,30 @@ public class NMLSurfaceRules {
                                         SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
         );
 
+        SurfaceRules.RuleSource caves = SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(NMLBiomes.CAVES),
+                SurfaceRules.sequence(
+                        SurfaceRules.state(Blocks.STONE.defaultBlockState())
+                )
+        );
+
+        SurfaceRules.RuleSource cave_depths = SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(NMLBiomes.CAVE_DEPTHS),
+                SurfaceRules.sequence(
+                        SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState())
+                )
+        );
+
         SurfaceGeneration.addOverworldSurfaceRules(
                 ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "rules/overworld"),
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
                                 //Surface Biomes
-                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, bayou, darkSwamp)))
+                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, bayou, darkSwamp))),
+                SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
+                    SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), SurfaceRules.sequence(
+                            // Cave Biomes
+                            caves, cave_depths)))
         );
     }
 
