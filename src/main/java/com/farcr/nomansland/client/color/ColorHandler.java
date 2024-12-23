@@ -18,16 +18,17 @@ public class ColorHandler {
     public static void registerItemColorHandlers(RegisterColorHandlersEvent.Item event) {
         event.register((state, tintIndex) -> GrassColor.get(0.5D, 1),
                 NMLBlocks.GRASS_SPROUTS.get(),
-                NMLBlocks.FIDDLEHEAD.get());
+                NMLBlocks.FIDDLEHEAD.get(),
+                NMLBlocks.OAT_GRASS.get());
 
-        event.register((state, tintIndex) -> {
-            int grassColorPacked = GrassColor.get(0.5D, 1.0D);
-            return packColor(unpackRed(grassColorPacked) / 0.556862745F,
-                    unpackGreen(grassColorPacked) / 0.745098039F,
-                    unpackBlue(grassColorPacked) / 0.705882353F);
-        }, NMLBlocks.OAT_GRASS.get());
+//        event.register((state, tintIndex) -> {
+//            int grassColorPacked = GrassColor.get(0.5D, 1);
+//            return packColor(unpackRed(grassColorPacked) / 0.556862745F,
+//                    unpackGreen(grassColorPacked) / 0.745098039F,
+//                    unpackBlue(grassColorPacked) / 0.705882353F);
+//        }, NMLBlocks.OAT_GRASS.get());
 
-        event.register((stack, index) -> FoliageColor.get(0.5D, 1.0D),
+        event.register((stack, index) -> FoliageColor.get(0.5D, 1),
                 NMLBlocks.MAPLE_LEAVES.get(),
                 NMLBlocks.WALNUT_LEAVES.get(),
                 NMLBlocks.APPLE_FRUIT_LEAVES.get(),
@@ -37,22 +38,23 @@ public class ColorHandler {
 
     @SubscribeEvent
     public static void registerBlockColorHandlers(RegisterColorHandlersEvent.Block event) {
-        event.register((state, level, pos, tintIndex) -> level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.get(0.5D, 1.0D),
+        event.register((state, level, pos, tintIndex) -> level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.get(0.5D, 1),
                 NMLBlocks.GRASS_SPROUTS.get(),
                 NMLBlocks.FIDDLEHEAD.get(),
                 NMLBlocks.CUT_SUGAR_CANE.get(),
-                NMLBlocks.FROSTED_GRASS.get()
-        );
-        event.register((state, level, pos, tintIndex) -> {
-                    int grassColorPacked = GrassColor.get(0.5D, 1.0D);
-                    if (level != null && pos != null) grassColorPacked = BiomeColors.getAverageGrassColor(level, pos);
-                    return packColor(unpackRed(grassColorPacked) / 0.556862745F,
-                            unpackGreen(grassColorPacked) / 0.745098039F,
-                            unpackBlue(grassColorPacked) / 0.705882353F);
-                },
+                NMLBlocks.FROSTED_GRASS.get(),
                 NMLBlocks.OAT_GRASS.get()
         );
-        event.register((state, level, pos, tintIndex) -> level != null && pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : GrassColor.get(0.5D, 1.0D),
+//        event.register((state, level, pos, tintIndex) -> {
+//                    int grassColorPacked = GrassColor.get(0.5D, 1);
+//                    if (level != null && pos != null) grassColorPacked = BiomeColors.getAverageGrassColor(level, pos);
+//                    return packColor(unpackRed(grassColorPacked) / 0.556862745F,
+//                            unpackGreen(grassColorPacked) / 0.745098039F,
+//                            unpackBlue(grassColorPacked) / 0.705882353F);
+//                },
+//                NMLBlocks.OAT_GRASS.get()
+//        );
+        event.register((state, level, pos, tintIndex) -> level != null && pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : GrassColor.get(0.5D, 1),
                 NMLBlocks.MAPLE_LEAVES.get(),
                 NMLBlocks.WALNUT_LEAVES.get(),
                 NMLBlocks.APPLE_FRUIT_LEAVES.get(),
@@ -63,21 +65,21 @@ public class ColorHandler {
     }
 
     private static float unpackRed(int rgb) {
-        return ((rgb >> 16) & 0xFF) / 255.0F;
+        return ((rgb >> 16) & 0xFF) / 255F;
     }
 
     private static float unpackGreen(int rgb) {
-        return ((rgb >> 8) & 0xFF) / 255.0F;
+        return ((rgb >> 8) & 0xFF) / 255F;
     }
 
     private static float unpackBlue(int rgb) {
-        return ((rgb) & 0xFF) / 255.0F;
+        return ((rgb) & 0xFF) / 255F;
     }
 
     private static int packColor(float r, float g, float b) {
-        return (((int) (Mth.clamp(r, 0, 1) * 255.0F) & 0xFF) << 16) |
-                (((int) (Mth.clamp(g, 0, 1) * 255.0F) & 0xFF) << 8) |
-                (((int) (Mth.clamp(b, 0, 1) * 255.0F) & 0xFF));
+        return (((int) (Mth.clamp(r, 0, 1) * 255F) & 0xFF) << 16) |
+                (((int) (Mth.clamp(g, 0, 1) * 255F) & 0xFF) << 8) |
+                (((int) (Mth.clamp(b, 0, 1) * 255F) & 0xFF));
     }
 
 }

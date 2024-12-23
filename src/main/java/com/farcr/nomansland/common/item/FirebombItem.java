@@ -1,6 +1,5 @@
 package com.farcr.nomansland.common.item;
 
-import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
 import com.farcr.nomansland.common.entity.bombs.ThrowableBombEntity;
 import net.minecraft.core.BlockPos;

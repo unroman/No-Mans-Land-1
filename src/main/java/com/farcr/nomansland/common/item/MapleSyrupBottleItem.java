@@ -36,7 +36,7 @@ public class MapleSyrupBottleItem extends Item {
         if (stack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
         } else {
-            if (livingEntity instanceof Player player && !((Player) livingEntity).getAbilities().instabuild) {
+            if (livingEntity instanceof Player player && !player.hasInfiniteMaterials()) {
                 ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
                 if (!player.getInventory().add(itemstack)) {
                     player.drop(itemstack, false);
@@ -52,6 +52,10 @@ public class MapleSyrupBottleItem extends Item {
         return UseAnim.DRINK;
     }
 
+    @Override
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
+        return 40;
+    }
 
     @Override
     public SoundEvent getDrinkingSound() {

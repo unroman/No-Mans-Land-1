@@ -163,7 +163,7 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 interiorBiome,
                 clearingBiome,
-                allOf(CriterionBuilder.deviationMin(BiomeParameterTargets.PEAKS_VALLEYS, .05F), NEAR_INTERIOR)
+                allOf(CriterionBuilder.deviationMin(BiomeParameterTargets.WEIRDNESS, .02F), NEAR_INTERIOR, not(NEAR_BORDER))
         );
     }
 }
