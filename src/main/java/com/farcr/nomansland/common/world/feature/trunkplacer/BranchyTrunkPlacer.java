@@ -14,8 +14,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -43,7 +43,7 @@ public class BranchyTrunkPlacer extends TrunkPlacer {
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
         setDirtAt(level, blockSetter,  random, pos.below(), config);
-        List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
+        List<FoliagePlacer.FoliageAttachment> list = new ArrayList<>();
 
         // Trunk
         for (int i = 0; i < freeTreeHeight; ++i) {

@@ -13,8 +13,8 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,7 +89,7 @@ public class StackedPlantPondDecorator extends PondDecorator {
     }
 
     private BlockPos getAdjacentGround(LevelReader level, RandomSource random, BlockPos pos) {
-        List<BlockPos> validPositions = Lists.newArrayList();
+        List<BlockPos> validPositions = new ArrayList<>();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             BlockPos rel = pos.relative(dir).above();
             if (blockProvider.getState(random, rel).canSurvive(level, rel) && level.getBlockState(rel).is(BlockTags.REPLACEABLE)) {

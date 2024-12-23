@@ -14,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +43,7 @@ public class CypressTrunkPlacer extends TrunkPlacer {
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
         setDirtAt(level, blockSetter, random, pos.below(), config);
-        List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
+        List<FoliagePlacer.FoliageAttachment> list = new ArrayList<>();
 
         // Roots
         for (int x = 0; x < 2; ++x) {
@@ -66,7 +65,7 @@ public class CypressTrunkPlacer extends TrunkPlacer {
         // Branches
         int branches = branchCount.sample(random);
 
-        ArrayList<Direction> directions = Lists.newArrayList();
+        ArrayList<Direction> directions = new ArrayList<>();
         while (directions.size() < branches) {
             Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
             if (!directions.contains(dir)) {

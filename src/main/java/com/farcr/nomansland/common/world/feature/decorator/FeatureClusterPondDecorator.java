@@ -15,8 +15,8 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FeatureClusterPondDecorator extends PondDecorator {
@@ -80,7 +80,7 @@ public class FeatureClusterPondDecorator extends PondDecorator {
     }
 
     private BlockPos getAdjacentGround(LevelReader level, RandomSource random, BlockPos pos) {
-        List<BlockPos> validPositions = Lists.newArrayList();
+        List<BlockPos> validPositions = new ArrayList<>();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             BlockPos rel = pos.relative(dir).above();
             if (level.getBlockState(rel.below()).isSolid() && level.getBlockState(rel).is(BlockTags.REPLACEABLE)) {
