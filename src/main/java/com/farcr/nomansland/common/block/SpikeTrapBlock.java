@@ -1,7 +1,6 @@
 package com.farcr.nomansland.common.block;
 
 import com.farcr.nomansland.NMLConfig;
-import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLDamageTypes;
 import com.farcr.nomansland.common.registry.NMLSounds;
 import com.mojang.serialization.MapCodec;

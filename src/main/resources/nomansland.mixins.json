@@ -21,7 +21,6 @@
     "ThrownPotionMixin",
     "TreeFeatureMixin",
     "VineBlockMixin",
-    "VinesFeatureMixin",
     "WolfMixin",
     "mob_variants.AbstractFishMixin",
     "mob_variants.CamelMixin",
