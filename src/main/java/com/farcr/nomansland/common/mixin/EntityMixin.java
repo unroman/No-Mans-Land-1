@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.mixin;
 
+import com.farcr.nomansland.common.registry.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
@@ -13,12 +14,14 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 import java.util.Set;
@@ -80,8 +83,19 @@ public abstract class EntityMixin {
 
     @Shadow public abstract void igniteForSeconds(float seconds);
 
+    @Shadow public abstract BlockPos getOnPos();
+
+    @Shadow protected abstract BlockPos getOnPos(float yOffset);
+
+    @Shadow public abstract BlockState getBlockStateOn();
+
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(EntityType<?> entityType, Level level, CallbackInfo ci) {
         if (entityType == EntityType.COW) dimensions = getDimensions(getPose()) == null ?  entityType.getDimensions() : getDimensions(getPose());
+    }
+
+    @Inject(method = "getOnPosLegacy", at = @At("RETURN"), cancellable = true)
+    private void getOnPosLegacy(CallbackInfoReturnable<BlockPos> cir) {
+        cir.setReturnValue(getBlockStateOn().is(NMLBlocks.SPIKE_TRAP) ? getOnPos() : getOnPos(0.2F));
     }
 }

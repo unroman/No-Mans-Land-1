@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nomansland:mossy_coarse_bricks"
+  },
+  "result": {
+    "id": "nomansland:mossy_coarse_brick_wall"
+  }
+}

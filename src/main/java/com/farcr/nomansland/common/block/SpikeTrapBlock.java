@@ -102,31 +102,29 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof Player player && player.isCreative()) return;
-        if (state.getValue(POWERED)) return;
-        if (entity instanceof LivingEntity le && entity.isAlive()) {
-            boolean up = state.getValue(FACING) == Direction.UP;
-
-            if (!level.isClientSide) {
-                NoMansLand.LOGGER.info(String.valueOf(le.getDeltaMovement()));
-                if (!entity.isShiftKeyDown() || !le.getPosition(0).equals(le.getPosition(1))) entity.hurt(NMLDamageTypes.getSimpleDamageSource(level, NMLDamageTypes.SPIKE_POKE), NMLConfig.POKING_DAMAGE.get().floatValue());
-            }
-        }
+        if (!level.isClientSide
+                && entity instanceof LivingEntity livingEntity
+                && livingEntity.isAlive()
+                && !state.getValue(POWERED)
+                && !(livingEntity instanceof Player player && !player.getAbilities().invulnerable)
+                && (!livingEntity.isShiftKeyDown() || !livingEntity.getPosition(0).equals(livingEntity.getPosition(1))))
+            livingEntity.hurt(NMLDamageTypes.getSimpleDamageSource(level, NMLDamageTypes.SPIKE_POKE), NMLConfig.POKING_DAMAGE.get().floatValue());
     }
 
     private void checkIfPowered(Level level, BlockPos pos, BlockState state) {
-        boolean flag = false;
+        boolean hasSignal = false;
         for (Direction d : Direction.values()) {
             if (level.hasSignal(pos.relative(d), d)) {
-                flag = true;
+                hasSignal = true;
                 break;
             }
         }
-        if (flag && !state.getValue(POWERED)) {
+
+        if (hasSignal && !state.getValue(POWERED)) {
             level.setBlockAndUpdate(pos, state.setValue(POWERED, true));
             level.playSound(null, pos, NMLSounds.SPIKES_RETRACT.get(), SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.2F + 0.6F);
             level.gameEvent(GameEvent.BLOCK_DEACTIVATE, pos, GameEvent.Context.of(state));
-        } else if (!flag && state.getValue(POWERED)) {
+        } else if (!hasSignal && state.getValue(POWERED)) {
             level.setBlockAndUpdate(pos, state.setValue(POWERED, false));
             level.playSound(null, pos, NMLSounds.SPIKES_EXTEND.get(), SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.2F + 0.6F);
             level.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(state));
@@ -139,7 +137,7 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallingDistance) {
-        if (state.getValue(FACING) == Direction.UP) {
+        if (state.getValue(FACING) == Direction.UP && !state.getValue(POWERED)) {
             entity.causeFallDamage(fallingDistance + 2.0F, NMLConfig.FALLING_DAMAGE.get().floatValue(), NMLDamageTypes.getSimpleDamageSource(level, NMLDamageTypes.SPIKE_FALL));
         } else {
             super.fallOn(level, state, pos, entity, fallingDistance);
