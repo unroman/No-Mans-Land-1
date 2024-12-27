@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
-import com.farcr.nomansland.common.registry.NMLTreeDecoratorType;
+import com.farcr.nomansland.common.registry.NMLTreeDecoratorTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -65,7 +65,7 @@ public class FruitLeavesDecorator extends TreeDecorator {
 
     @Override
     protected TreeDecoratorType<?> type() {
-        return NMLTreeDecoratorType.FRUIT_LEAVES.get();
+        return NMLTreeDecoratorTypes.FRUIT_LEAVES.get();
     }
 }
 

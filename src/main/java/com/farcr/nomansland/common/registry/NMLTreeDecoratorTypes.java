@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorTy
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public record NMLTreeDecoratorType<P extends TreeDecorator>(MapCodec<P> codec) {
+public class NMLTreeDecoratorTypes {
     public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATOR_TYPES =
             DeferredRegister.create(BuiltInRegistries.TREE_DECORATOR_TYPE, NoMansLand.MODID);
 
@@ -26,10 +26,6 @@ public record NMLTreeDecoratorType<P extends TreeDecorator>(MapCodec<P> codec) {
 
     private static <P extends TreeDecorator> DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<P>> register(String name, MapCodec<P> codec) {
         return TREE_DECORATOR_TYPES.register(name, () -> new TreeDecoratorType<>(codec));
-    }
-
-    public MapCodec<P> codec() {
-        return this.codec;
     }
 
 }

@@ -26,10 +26,10 @@ public enum NMLCauldronType {
     private final Holder<Item> inputItem;
     private final Holder<Item> outputItem;
     private final Holder<Item> containedItem;
-    private final Supplier<SimpleParticleType> particleType;
+    private final Supplier<? extends SimpleParticleType> particleType;
     private final boolean sticky;
 
-    NMLCauldronType(Holder<Block> cauldron, Holder<Item> emptyBottle, Holder<Item> fullBottle, Holder<Item> inputItem, Holder<Item> outputItem, Holder<Item> containedItem, Supplier<SimpleParticleType> particleType, boolean sticky) {
+    NMLCauldronType(Holder<Block> cauldron, Holder<Item> emptyBottle, Holder<Item> fullBottle, Holder<Item> inputItem, Holder<Item> outputItem, Holder<Item> containedItem, Supplier<? extends SimpleParticleType> particleType, boolean sticky) {
         this.cauldron = cauldron;
         this.emptyBottle = emptyBottle;
         this.fullBottle = fullBottle;
@@ -64,7 +64,7 @@ public enum NMLCauldronType {
         return containedItem;
     }
 
-    public Supplier<SimpleParticleType> getParticleType() {
+    public Supplier<? extends SimpleParticleType> getParticleType() {
         return particleType;
     }
 

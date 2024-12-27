@@ -13,8 +13,7 @@ public class NMLCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NoMansLand.MODID);
 
-    public static Sets.SetView<DeferredHolder<Item, ? extends Item>> CREATIVE_TAB_ITEMS = Sets.union(NMLItems.CREATIVE_TAB_ITEMS, NMLBlocks.CREATIVE_TAB_ITEMS);
-
+    private static final Sets.SetView<DeferredHolder<Item, ? extends Item>> CREATIVE_TAB_ITEMS = Sets.union(NMLItems.CREATIVE_TAB_ITEMS, NMLBlocks.CREATIVE_TAB_ITEMS);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NO_MANS_TAB = CREATIVE_TABS.register(NoMansLand.MODID,
             () -> CreativeModeTab.builder()

@@ -45,7 +45,7 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
     private final Holder<Item> inputItem;
     private final Holder<Item> outputItem;
     private final Holder<Item> containedItem;
-    private final Supplier<SimpleParticleType> particleType;
+    private final Supplier<? extends SimpleParticleType> particleType;
     private final boolean sticky;
     private final int boilingTime = 0;
 

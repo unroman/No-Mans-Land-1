@@ -9,14 +9,15 @@ import com.farcr.nomansland.integration.FDIntegration;
 import com.farcr.nomansland.integration.Mods;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class NMLBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, NoMansLand.MODID);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<NMLSignBlockEntity>> NML_SIGN =
+    public static final Supplier<BlockEntityType<NMLSignBlockEntity>> NML_SIGN =
             BLOCK_ENTITIES.register("nml_sign", () ->
                     BlockEntityType.Builder.of(NMLSignBlockEntity::new,
                             NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get(),
@@ -25,7 +26,7 @@ public class NMLBlockEntities {
                             NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()
                     ).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<NMLSignBlockEntity>> NML_HANGING_SIGN =
+    public static final Supplier<BlockEntityType<NMLSignBlockEntity>> NML_HANGING_SIGN =
             BLOCK_ENTITIES.register("nml_hanging_sign", () ->
                     BlockEntityType.Builder.of(NMLSignBlockEntity::new,
                             NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(),
@@ -34,18 +35,18 @@ public class NMLBlockEntities {
                             NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get()
                     ).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TapBlockEntity>> TAP =
+    public static final Supplier<BlockEntityType<TapBlockEntity>> TAP =
             BLOCK_ENTITIES.register("tap", () ->
                     BlockEntityType.Builder.of(TapBlockEntity::new, NMLBlocks.TAP.get()).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MonsterAnchorBlockEntity>> MONSTER_ANCHOR =
+    public static final Supplier<BlockEntityType<MonsterAnchorBlockEntity>> MONSTER_ANCHOR =
             BLOCK_ENTITIES.register("monster_anchor", () ->
                     BlockEntityType.Builder.of(MonsterAnchorBlockEntity::new, NMLBlocks.MONSTER_ANCHOR.get()).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RemainsBlockEntity>> REMAINS =
+    public static final Supplier<BlockEntityType<RemainsBlockEntity>> REMAINS =
             BLOCK_ENTITIES.register("remains", () ->
                     BlockEntityType.Builder.of(RemainsBlockEntity::new, NMLBlocks.REMAINS.get()).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CABINET = Mods.FARMERSDELIGHT.isLoaded() ?
+    public static final Supplier<BlockEntityType<?>> CABINET = Mods.FARMERSDELIGHT.isLoaded() ?
             BLOCK_ENTITIES.register("nml_cabinets", FDIntegration.cabinetBlockEntity()) : null;
 }

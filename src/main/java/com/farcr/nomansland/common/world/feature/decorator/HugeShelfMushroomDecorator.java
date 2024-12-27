@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
 import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLTreeDecoratorType;
+import com.farcr.nomansland.common.registry.NMLTreeDecoratorTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -40,7 +40,7 @@ public class HugeShelfMushroomDecorator extends TreeDecorator {
     }
 
     @Override
-    protected TreeDecoratorType<?> type() { return NMLTreeDecoratorType.HUGE_SHELF_MUSHROOM.get(); }
+    protected TreeDecoratorType<?> type() { return NMLTreeDecoratorTypes.HUGE_SHELF_MUSHROOM.get(); }
 
     @Override
     public void place(Context context) {

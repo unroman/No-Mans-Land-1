@@ -6,7 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public record NMLPondDecoratorType<P extends PondDecorator>(MapCodec<P> codec) {
+public class NMLPondDecoratorTypes {
     public static final DeferredRegister<PondDecoratorType<?>> POND_DECORATOR_TYPES =
             DeferredRegister.create(NMLRegistries.POND_DECORATOR_TYPE, NoMansLand.MODID);
 
@@ -17,6 +17,4 @@ public record NMLPondDecoratorType<P extends PondDecorator>(MapCodec<P> codec) {
     private static <P extends PondDecorator> DeferredHolder<PondDecoratorType<?>, PondDecoratorType<P>> register (String name, MapCodec<P> codec) {
         return POND_DECORATOR_TYPES.register(name, () -> new PondDecoratorType<>(codec));
     }
-
-    public MapCodec<P> codec() { return this.codec; }
 }

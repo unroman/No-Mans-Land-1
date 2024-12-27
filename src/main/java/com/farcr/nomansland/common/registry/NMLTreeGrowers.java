@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 import java.util.Optional;
 
 public final class NMLTreeGrowers {
+
     public static final TreeGrower MAPLE = new TreeGrower(
             "maple",
             0.1F,

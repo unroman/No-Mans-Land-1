@@ -8,7 +8,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class NMLFoliagePlacerType {
+public class NMLFoliagePlacerTypes {
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES =
             DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, NoMansLand.MODID);
 

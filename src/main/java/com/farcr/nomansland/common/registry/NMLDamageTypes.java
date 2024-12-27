@@ -16,7 +16,7 @@ public class NMLDamageTypes {
     public static final ResourceKey<DamageType> SPIKE_SKEWER = registerDamageType("spike_skewer");
 
 
-    public static ResourceKey<DamageType> registerDamageType(String name) {
+    private static ResourceKey<DamageType> registerDamageType(String name) {
         return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
     }
 

@@ -106,10 +106,10 @@ public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
         float f10 = deer.isInWater() ? 0.2F : 1.0F;
         float f11 = Mth.cos(f10 * limbSwing * 0.6662F + 3.1415927F);
 
-        leftHindLeg.xRot = -f11 * 0.5F * limbSwingAmount * f7;
-        rightHindLeg.xRot = f11 * 0.5F * limbSwingAmount * f7;
-        leftFrontLeg.xRot = -f11 * 0.5F * limbSwingAmount * f7;
-        rightFrontLeg.xRot = f11 * 0.5F * limbSwingAmount * f7;
+        leftHindLeg.xRot = -f11 * 0.5F * limbSwingAmount * f7 / 4;
+        rightHindLeg.xRot = f11 * 0.5F * limbSwingAmount * f7 / 4;
+        leftFrontLeg.xRot = -f11 * 0.5F * limbSwingAmount * f7 / 4;
+        rightFrontLeg.xRot = f11 * 0.5F * limbSwingAmount * f7 / 4;
     }
 
     @Override

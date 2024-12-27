@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 
 public class NMLPottables {
+
     public static void register() {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(NMLBlocks.PINE_SAPLING.getId(), NMLBlocks.POTTED_PINE_SAPLING);
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(NMLBlocks.YELLOW_BIRCH_SAPLING.getId(), NMLBlocks.POTTED_YELLOW_BIRCH_SAPLING);
@@ -24,6 +25,5 @@ public class NMLPottables {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(NMLBlocks.AUTUMN_CROCUS.getId(), NMLBlocks.POTTED_AUTUMN_CROCUS);
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(NMLBlocks.SUCCULENT.getId(), NMLBlocks.POTTED_SUCCULENT);
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(NMLBlocks.BARREL_CACTUS.getId(), NMLBlocks.POTTED_BARREL_CACTUS);
-
     }
 }

@@ -4,56 +4,40 @@ import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class NMLParticleTypes {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, NoMansLand.MODID);
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PALE_CHERRY_LEAVES = PARTICLE_TYPES.register("pale_cherry_leaves",
-            () -> new SimpleParticleType(false) {
-            });
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> CAVE_DUST = PARTICLE_TYPES.register("cave_dust",
-            () -> new SimpleParticleType(false) {
-            });
+    public static final Supplier<SimpleParticleType> PALE_CHERRY_LEAVES = register("pale_cherry_leaves");
+    
+    public static final Supplier<SimpleParticleType> CAVE_DUST = register("cave_dust");
+    
+    public static final Supplier<SimpleParticleType> RESIN_DROPLET = register("resin_droplet");
+    
+    public static final Supplier<SimpleParticleType> RESIN_DROPLET_FLAT = register("resin_droplet_flat");
+    
+    public static final Supplier<SimpleParticleType> MAPLE_SYRUP_DROPLET = register("maple_syrup_droplet");
+    
+    public static final Supplier<SimpleParticleType> MAPLE_SYRUP_DROPLET_FLAT = register("maple_syrup_droplet_flat");
 
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RESIN_DROPLET = PARTICLE_TYPES.register("resin_droplet",
-            () -> new SimpleParticleType(false) {
-            });
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RESIN_DROPLET_FLAT = PARTICLE_TYPES.register("resin_droplet_flat",
-            () -> new SimpleParticleType(false) {
-            });
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MAPLE_SYRUP_DROPLET = PARTICLE_TYPES.register("maple_syrup_droplet",
-            () -> new SimpleParticleType(false) {
-            });
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MAPLE_SYRUP_DROPLET_FLAT = PARTICLE_TYPES.register("maple_syrup_droplet_flat",
-            () -> new SimpleParticleType(false) {
-            });
+    public static final Supplier<SimpleParticleType> OIL = register("oil");
 
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> OIL = PARTICLE_TYPES.register("oil",
-            () -> new SimpleParticleType(false) {
-            });
+    public static final Supplier<SimpleParticleType> OIL_FLAT = register("oil_flat");
+    
+    public static final Supplier<SimpleParticleType> RESIN_OIL_BUBBLE = register("resin_oil_bubble");
+    
+    public static final Supplier<SimpleParticleType> RESIN_OIL_BUBBLE_POP = register("resin_oil_bubble_pop");
+    
+    public static final Supplier<SimpleParticleType> MALEVOLENT_FLAME = register("malevolent_flame");
+            
+    public static final Supplier<SimpleParticleType> MALEVOLENT_EMBERS = register("malevolent_embers");
 
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> OIL_FLAT = PARTICLE_TYPES.register("oil_flat",
-            () -> new SimpleParticleType(false) {
-            });
+    public static final Supplier<SimpleParticleType> SCULK_AMBIENCE = register("sculk_ambience");
 
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RESIN_OIL_BUBBLE = PARTICLE_TYPES.register("resin_oil_bubble",
-            () -> new SimpleParticleType(false) {
-            });
-
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RESIN_OIL_BUBBLE_POP = PARTICLE_TYPES.register("resin_oil_bubble_pop",
-            () -> new SimpleParticleType(false) {
-            });
-
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MALEVOLENT_FLAME = PARTICLE_TYPES.register("malevolent_flame",
-            () -> new SimpleParticleType(false) {
-            });
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MALEVOLENT_EMBERS = PARTICLE_TYPES.register("malevolent_embers",
-            () -> new SimpleParticleType(false) {
-            });
-
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SCULK_AMBIENCE = PARTICLE_TYPES.register("sculk_ambience",
-            () -> new SimpleParticleType(false) {
-            });
+    public static Supplier<SimpleParticleType> register(String name) {
+        return PARTICLE_TYPES.register(name, () -> new SimpleParticleType(false));
+    }
 }

@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.foliageplacer;
 
-import com.farcr.nomansland.common.registry.NMLFoliagePlacerType;
+import com.farcr.nomansland.common.registry.NMLFoliagePlacerTypes;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -35,7 +35,7 @@ public class PineFoliagePlacer extends FoliagePlacer {
     }
 
     protected @NotNull FoliagePlacerType<?> type() {
-        return NMLFoliagePlacerType.PINE_FOLIAGE_PLACER.get();
+        return NMLFoliagePlacerTypes.PINE_FOLIAGE_PLACER.get();
     }
 
     protected void createFoliage(@NotNull LevelSimulatedReader level, @NotNull FoliageSetter blockSetter, @NotNull RandomSource random, @NotNull TreeConfiguration config, int maxFreeTreeHeight, @NotNull FoliageAttachment attachment, int foliageHeight, int foliageRadius, int foliageOffset) {

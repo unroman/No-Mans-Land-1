@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
-import com.farcr.nomansland.common.registry.NMLPondDecoratorType;
+import com.farcr.nomansland.common.registry.NMLPondDecoratorTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.Util;
@@ -44,7 +44,7 @@ public class FeatureClusterPondDecorator extends PondDecorator {
     }
 
     @Override
-    protected PondDecoratorType<?> type() { return NMLPondDecoratorType.FEATURE_CLUSTER.get(); }
+    protected PondDecoratorType<?> type() { return NMLPondDecoratorTypes.FEATURE_CLUSTER.get(); }
 
     @Override
     public void place(Context context) {

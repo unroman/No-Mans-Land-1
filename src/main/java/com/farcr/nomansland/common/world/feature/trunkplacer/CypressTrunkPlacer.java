@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.trunkplacer;
 
-import com.farcr.nomansland.common.registry.NMLTrunkPlacerType;
+import com.farcr.nomansland.common.registry.NMLTrunkPlacerTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -38,7 +38,7 @@ public class CypressTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    protected TrunkPlacerType<?> type() { return NMLTrunkPlacerType.CYPRESS_TRUNK_PLACER.get(); }
+    protected TrunkPlacerType<?> type() { return NMLTrunkPlacerTypes.CYPRESS_TRUNK_PLACER.get(); }
 
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {

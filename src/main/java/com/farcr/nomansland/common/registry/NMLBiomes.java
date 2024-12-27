@@ -29,7 +29,7 @@ public class NMLBiomes {
     public static final ResourceKey<Biome> CAVE_DEPTHS = createKey("cave_depths");
 
 
-    public static ResourceKey<Biome> createKey(String name) {
+    private static ResourceKey<Biome> createKey(String name) {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
     }
 }

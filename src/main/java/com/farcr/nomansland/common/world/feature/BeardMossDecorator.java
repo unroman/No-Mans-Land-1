@@ -2,7 +2,7 @@ package com.farcr.nomansland.common.world.feature;
 
 import com.farcr.nomansland.common.block.BeardMossBlock;
 import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLTreeDecoratorType;
+import com.farcr.nomansland.common.registry.NMLTreeDecoratorTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -30,7 +30,7 @@ public class BeardMossDecorator extends TreeDecorator {
 
     @Override
     protected TreeDecoratorType<?> type() {
-        return NMLTreeDecoratorType.BEARD_MOSS.get();
+        return NMLTreeDecoratorTypes.BEARD_MOSS.get();
 
     }
 

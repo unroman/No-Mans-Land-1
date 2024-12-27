@@ -2,6 +2,10 @@
   "values": [
     "minecraft:pumpkin",
     "minecraft:apple",
-    "nomansland:pear"
+    "nomansland:pear",
+    {
+      "id": "farmersdelight:pumpkin_slice",
+      "required": false
+    }
   ]
 }

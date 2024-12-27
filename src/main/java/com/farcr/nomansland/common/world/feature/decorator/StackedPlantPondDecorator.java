@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
-import com.farcr.nomansland.common.registry.NMLPondDecoratorType;
+import com.farcr.nomansland.common.registry.NMLPondDecoratorTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.Util;
@@ -48,7 +48,7 @@ public class StackedPlantPondDecorator extends PondDecorator {
 
     @Override
     protected PondDecoratorType<?> type() {
-        return NMLPondDecoratorType.STACKED_PLANT.get();
+        return NMLPondDecoratorTypes.STACKED_PLANT.get();
     }
 
     @Override

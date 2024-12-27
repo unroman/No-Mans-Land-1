@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.trunkplacer;
 
-import com.farcr.nomansland.common.registry.NMLTrunkPlacerType;
+import com.farcr.nomansland.common.registry.NMLTrunkPlacerTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -37,7 +37,7 @@ public class BranchyTrunkPlacer extends TrunkPlacer {
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return NMLTrunkPlacerType.BRANCHY_TRUNK_PLACER.get();
+        return NMLTrunkPlacerTypes.BRANCHY_TRUNK_PLACER.get();
     }
 
     @Override

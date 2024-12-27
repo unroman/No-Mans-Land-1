@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
-import com.farcr.nomansland.common.registry.NMLPondDecoratorType;
+import com.farcr.nomansland.common.registry.NMLPondDecoratorTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -32,7 +32,7 @@ public class ClusterOnWaterPondDecorator extends PondDecorator {
 
     @Override
     protected PondDecoratorType<?> type() {
-        return NMLPondDecoratorType.CLUSTER_ON_WATER.get();
+        return NMLPondDecoratorTypes.CLUSTER_ON_WATER.get();
     }
 
     @Override
