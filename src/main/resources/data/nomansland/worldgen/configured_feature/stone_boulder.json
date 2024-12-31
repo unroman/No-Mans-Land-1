@@ -1,8 +1,48 @@
 {
-  "type": "minecraft:forest_rock",
+  "type": "nomansland:boulder",
   "config": {
-    "state": {
-      "Name": "minecraft:stone"
-    }
+    "decorators": [],
+    "block_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:stone"
+          },
+          "weight": 500
+        },
+        {
+          "data": {
+            "Name": "minecraft:infested_stone"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "num_cubes": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 3
+    },
+    "cube_size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 2
+    },
+    "percent_larger_cube": 0.2,
+    "cube_erosion": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 1,
+      "max_inclusive": 3
+    },
+    "cube_erosion_size_multiplier": 0.125,
+    "extra_erosion": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 0,
+      "max_inclusive": 0
+    },
+    "height_min": 0,
+    "height_max": 2,
+    "minimum_size": 10
   }
 }
