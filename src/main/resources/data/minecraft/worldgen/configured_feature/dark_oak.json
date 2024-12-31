@@ -4,8 +4,8 @@
     "decorators": [
       {
         "type": "nomansland:huge_shelf_mushroom",
-        "probability": 0.15,
-        "limit": 2,
+        "probability": 0.1,
+        "limit": 1,
         "exclusion_bottom": 2,
         "exclusion_top": 2
       }

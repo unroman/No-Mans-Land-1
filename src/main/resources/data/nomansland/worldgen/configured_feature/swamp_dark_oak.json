@@ -5,6 +5,13 @@
       {
         "type": "minecraft:leave_vine",
         "probability": 0.25
+      },
+      {
+        "type": "nomansland:huge_shelf_mushroom",
+        "probability": 0.25,
+        "limit": 2,
+        "exclusion_bottom": 2,
+        "exclusion_top": 2
       }
     ],
     "dirt_provider": {
