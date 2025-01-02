@@ -41,8 +41,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
         BlockPos.MutableBlockPos posMutable = origin.mutable();
 
         for (int i = 0; i < numCubes; i++) {
-            BlockPos cubeOriginRaw = cubeFloorPlan.get(random.nextInt(cubeFloorPlan.size()));
-            BlockPos cubeOrigin = cubeOriginRaw;
+            BlockPos cubeOrigin = cubeFloorPlan.get(random.nextInt(cubeFloorPlan.size()));
             //BlockPos cubeOrigin = new BlockPos(cubeOriginRaw.getX() + random.nextInt(2) - 1,  cubeOriginRaw.getY(), cubeOriginRaw.getZ() + random.nextInt(2) - 1);
 
             int cubeHeight = Math.max(config.cubeHeight().sample(random) - (int)(cubeHeightDecrease * i), 0);
