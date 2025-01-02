@@ -3,7 +3,6 @@ package com.farcr.nomansland.common.world.feature;
 import com.farcr.nomansland.common.world.feature.decorator.BoulderDecorator;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
