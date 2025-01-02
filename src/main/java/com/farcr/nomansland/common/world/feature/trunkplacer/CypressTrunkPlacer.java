@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.world.feature.trunkplacer;
 import com.farcr.nomansland.common.registry.NMLTrunkPlacerTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +40,12 @@ public class CypressTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    protected TrunkPlacerType<?> type() { return NMLTrunkPlacerTypes.CYPRESS_TRUNK_PLACER.get(); }
+    @MethodsReturnNonnullByDefault
+    protected @NotNull TrunkPlacerType<?> type() { return NMLTrunkPlacerTypes.CYPRESS_TRUNK_PLACER.get(); }
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
+    @MethodsReturnNonnullByDefault
+    public @NotNull List<FoliagePlacer.FoliageAttachment> placeTrunk(@NotNull LevelSimulatedReader level, @NotNull BiConsumer<BlockPos, BlockState> blockSetter, @NotNull RandomSource random, int freeTreeHeight, @NotNull BlockPos pos, @NotNull TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> list = new ArrayList<>();
 
         // Roots
@@ -91,11 +95,9 @@ public class CypressTrunkPlacer extends TrunkPlacer {
     private BlockPos makeLimb(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, BlockPos basePos, int steps, Direction dir, TreeConfiguration config) {
         int wobble = random.nextInt(3) - 1;
         int wobbleStart = random.nextInt(steps);
-        Function<BlockState, BlockState> function = (log) -> {
-            return (BlockState) log.trySetValue(RotatedPillarBlock.AXIS, dir.getAxis());
-        };
+        Function<BlockState, BlockState> function = (log) -> (BlockState) log.trySetValue(RotatedPillarBlock.AXIS, dir.getAxis());
         for (int i = 0; i < steps; i++) {
-            BlockPos currentBlockPos = basePos;
+            BlockPos currentBlockPos;
             if (i >= wobbleStart) {
                 currentBlockPos = basePos.relative(dir, i+1).relative(dir.getClockWise(), wobble);
             } else {
@@ -109,17 +111,13 @@ public class CypressTrunkPlacer extends TrunkPlacer {
 
     static {
         CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-            return trunkPlacerParts(instance).and(instance.group(IntProvider.codec(0, 5).fieldOf("root_height").forGetter((tree) -> {
-                return tree.rootHeight;
-            }), IntProvider.codec(0, 8).fieldOf("branch_count").forGetter((tree) -> {
-                return tree.branchCount;
-            }), IntProvider.codec(1, 8).fieldOf("branch_length").forGetter((tree) -> {
-                return tree.branchLength;
-            }), IntProvider.codec(0, 8).fieldOf("branch_min_height").forGetter((tree) -> {
-                return tree.branchMinHeight;
-            }), IntProvider.codec(0, 8).fieldOf("branch_max_height").forGetter((tree) -> {
-                return tree.branchMaxHeight;
-            }))).apply(instance, CypressTrunkPlacer::new);
+            return trunkPlacerParts(instance).and(instance.group(
+                    IntProvider.codec(0, 5).fieldOf("root_height").forGetter((tree) -> tree.rootHeight),
+                    IntProvider.codec(0, 8).fieldOf("branch_count").forGetter((tree) -> tree.branchCount),
+                    IntProvider.codec(1, 8).fieldOf("branch_length").forGetter((tree) -> tree.branchLength),
+                    IntProvider.codec(0, 8).fieldOf("branch_min_height").forGetter((tree) -> tree.branchMinHeight),
+                    IntProvider.codec(0, 8).fieldOf("branch_max_height").forGetter((tree) -> tree.branchMaxHeight)
+            )).apply(instance, CypressTrunkPlacer::new);
         });
     }
 }
