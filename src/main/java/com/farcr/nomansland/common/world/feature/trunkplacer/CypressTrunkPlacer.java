@@ -42,13 +42,14 @@ public class CypressTrunkPlacer extends TrunkPlacer {
 
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
-        setDirtAt(level, blockSetter, random, pos.below(), config);
         List<FoliagePlacer.FoliageAttachment> list = new ArrayList<>();
 
         // Roots
+        int maxRootHeight = 0;
         for (int x = 0; x < 2; ++x) {
             for (int z = 0; z < 2; ++z) {
                 int height = rootHeight.sample(random);
+                if (height > maxRootHeight) maxRootHeight = height;
                 for (int i = 0; i < height; ++i) {
                     this.placeLog(level, blockSetter, random, pos.offset(x, i, z), config);
                 }
@@ -56,7 +57,7 @@ public class CypressTrunkPlacer extends TrunkPlacer {
         }
 
         // Trunk
-        BlockPos trunkPos = pos.offset(random.nextInt(2), 0, random.nextInt(2));
+        BlockPos trunkPos = maxRootHeight > 0 ? pos.offset(random.nextInt(2), 0, random.nextInt(2)) : pos;
         for (int i = 0; i < freeTreeHeight; ++i) {
             this.placeLog(level, blockSetter, random, trunkPos.above(i), config);
         }
@@ -68,18 +69,20 @@ public class CypressTrunkPlacer extends TrunkPlacer {
         ArrayList<Direction> directions = new ArrayList<>();
         while (directions.size() < branches) {
             Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-            if (!directions.contains(dir)) {
+            if (!directions.contains(dir) || directions.size() >= 4) {
                 directions.add(dir);
             }
         }
 
         int minBranchHeight = branchMinHeight.sample(random);
         int maxBranchHeight = branchMaxHeight.sample(random);
-        for (Direction dir : directions) {
-            int height = random.nextIntBetweenInclusive(minBranchHeight, freeTreeHeight - maxBranchHeight);
+        if (minBranchHeight < freeTreeHeight - maxBranchHeight) {
+            for (Direction dir : directions) {
+                int height = random.nextIntBetweenInclusive(minBranchHeight, freeTreeHeight - maxBranchHeight);
 
-            BlockPos foliagePos = makeLimb(level, blockSetter, random, trunkPos.above(height), branchLength.sample(random), dir, config);
-            list.add(new FoliagePlacer.FoliageAttachment(foliagePos, 0, false));
+                BlockPos foliagePos = makeLimb(level, blockSetter, random, trunkPos.above(height), branchLength.sample(random), dir, config);
+                list.add(new FoliagePlacer.FoliageAttachment(foliagePos, 0, false));
+            }
         }
 
         return list;
@@ -106,7 +109,7 @@ public class CypressTrunkPlacer extends TrunkPlacer {
 
     static {
         CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-            return trunkPlacerParts(instance).and(instance.group(IntProvider.codec(1, 5).fieldOf("root_height").forGetter((tree) -> {
+            return trunkPlacerParts(instance).and(instance.group(IntProvider.codec(0, 5).fieldOf("root_height").forGetter((tree) -> {
                 return tree.rootHeight;
             }), IntProvider.codec(0, 8).fieldOf("branch_count").forGetter((tree) -> {
                 return tree.branchCount;
