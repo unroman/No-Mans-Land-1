@@ -10,12 +10,14 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -32,157 +34,80 @@ public class BoulderFeature extends Feature<BoulderFeatureConfiguration> {
         BoulderFeatureConfiguration config = context.config();
 
         int numCubes = config.numCubes().sample(random);
+        float cubeHeightDecrease = config.cubeHeightDecrease();
 
-        ArrayList<BlockPos> stonePos = new ArrayList<>();
+        Set<BlockPos> stonePos = new HashSet<>();
         ArrayList<BlockPos> decoPos = new ArrayList<>();
 
-        BlockPos.MutableBlockPos cube_origin_pos = origin.mutable();
-        BlockPos.MutableBlockPos pos = origin.mutable();
+        ArrayList<BlockPos> cubeFloorPlan = new ArrayList<>();
+        cubeFloorPlan.add(origin);
+
+        BlockPos.MutableBlockPos posMutable = origin.mutable();
 
         for (int i = 0; i < numCubes; i++) {
-            if (i > 0) {
-                // set cube origin to a random stone block
-                cube_origin_pos.set(stonePos.get(random.nextInt(stonePos.size())));
-            }
+            BlockPos cubeOriginRaw = cubeFloorPlan.get(random.nextInt(cubeFloorPlan.size()));
+            BlockPos cubeOrigin = cubeOriginRaw;
+            //BlockPos cubeOrigin = new BlockPos(cubeOriginRaw.getX() + random.nextInt(2) - 1,  cubeOriginRaw.getY(), cubeOriginRaw.getZ() + random.nextInt(2) - 1);
 
-            // find cube size, move cube randomly so that at least one block intersects the existing cubes
-            int cubeSize = config.cubeSize().sample(random);
-            if (random.nextFloat() < config.percentLargerCube()) cubeSize++;
-            cube_origin_pos.move(random.nextInt(cubeSize - 1), random.nextInt(cubeSize - 1), random.nextInt(cubeSize - 1));
-            if (cube_origin_pos.getY() < origin.getY() + config.heightMin()) {
-                cube_origin_pos.setY(origin.getY() + config.heightMin());
-            }
-            if (cube_origin_pos.getY() > origin.getY() + config.heightMax() - cubeSize) {
-                cube_origin_pos.setY(origin.getY() + config.heightMax() - cubeSize);
-            }
+            int cubeHeight = Math.max(config.cubeHeight().sample(random) - (int)(cubeHeightDecrease * i), 0);
+            int numErodedBlocks = config.numErodedBlocks().sample(random);
+            ArrayList<BlockPos> topBlocks = new ArrayList<>();
 
-            // make the cube
-            ArrayList<BlockPos> cubePos = new ArrayList<>();
-            for (int x = 0; x < cubeSize; x++) {
-                for (int y = 0; y < cubeSize; y++) {
-                    for (int z = 0; z < cubeSize; z++) {
-                        pos.set(cube_origin_pos);
-                        pos.move(x, y, z);
-                        cubePos.add(pos.immutable());
+            cubeFloorPlan.remove(cubeOrigin);
+            cubeFloorPlan.add(cubeOrigin.north().east());
+            cubeFloorPlan.add(cubeOrigin.north().west());
+            cubeFloorPlan.add(cubeOrigin.south().east());
+            cubeFloorPlan.add(cubeOrigin.south().west());
+            for (int x = cubeOrigin.getX(); x <= cubeOrigin.getX() + 1; x++) {
+                for (int z = cubeOrigin.getZ(); z <= cubeOrigin.getZ() + 1; z++) {
+                    for (int y = cubeOrigin.getY(); y <= cubeOrigin.getY() + cubeHeight; y++) {
+                        posMutable.set(x, y, z);
+                        //level.setBlock(posMutable, config.blockProvider().getState(random, posMutable), 2);
+                        stonePos.add(posMutable.immutable());
+                        if (y == cubeOrigin.getY() + cubeHeight )
+                            topBlocks.add(posMutable.immutable());
                     }
-                }
-            }
-
-            // erode random blocks from the cube with at least 3 adj air blocks
-            int cubeErosion = config.cubeErosion().sample(random);
-            if (config.cubeErosionSizeMultiplier() > 0) cubeErosion = (int) (cubeErosion * config.cubeErosionSizeMultiplier() * cubeSize * cubeSize * cubeSize);
-            int erodedBlocks = 0;
-            BlockPos posToRemove;
-            // I really should refactor this into its own method since it's used 3 times
-            // However I am lazy ¯\_(ツ)_/¯
-            do {
-                Util.shuffle(cubePos, random);
-                posToRemove = null;
-                for (BlockPos cpos : cubePos) {
-                    int directionsWithoutBlocks = 0;
-                    for (Direction d : Direction.values()) {
-                        if (!cubePos.contains(cpos.relative(d))) {
-                            directionsWithoutBlocks++;
-                        } else if (d == Direction.UP) {
-                            // at this point in generation don't erode stuff with blocks above, we're just shaving off the top
-                            directionsWithoutBlocks = -10;
+                    for (int j = 0; j < numErodedBlocks && !topBlocks.isEmpty(); j++) {
+                        int blockIdx = random.nextInt(topBlocks.size());
+                        posMutable.set(topBlocks.get(blockIdx));
+                        if (level.getBlockState(posMutable.above()).isAir() && !stonePos.contains(posMutable.above().immutable())) {
+                            stonePos.remove(posMutable.immutable());
+                            topBlocks.remove(blockIdx);
                         }
                     }
-                    if (directionsWithoutBlocks >= 3) {
-                        posToRemove = cpos;
-                        break;
-                    }
-                }
-                if (posToRemove != null) {
-                    cubePos.remove(posToRemove);
-                    erodedBlocks++;
-                }
-            } while (posToRemove != null && erodedBlocks < cubeErosion);
-
-            // add the cube to the final block positions
-            stonePos.addAll(cubePos);
-        }
-
-        // sort stonePos from lowest to highest y for gravity purposes
-        stonePos.sort(Comparator.comparingInt(Vec3i::getY));
-
-        // check all blocks for placeability & apply gravity
-        ArrayList<BlockPos> stonePosPlaced = new ArrayList<>();
-        for (BlockPos pos1 : stonePos) {
-            if (level.getBlockState(pos1).is(BlockTags.REPLACEABLE)) {
-                int i = 0;
-                while (level.getBlockState(pos1.below(i)).is(BlockTags.REPLACEABLE) && !stonePosPlaced.contains(pos1.below(i)) && i < 10) {
-                    i++;
-                }
-                BlockPos pos2 = pos1.below(i - 1);
-                if (pos2.getY() >= origin.getY() + config.heightMin() && pos2.getY() <= origin.getY() + config.heightMax()) {
-                    stonePosPlaced.add(pos2);
                 }
             }
         }
 
-        // extra bit of final erosion
-        BlockPos posToRemove;
-        int erodedBlocks = 0;
-        int erosion = config.extraErosion().sample(random);
-        do {
-            posToRemove = null;
-            for (BlockPos cpos : stonePosPlaced) {
-                int directionsWithoutBlocks = 0;
-                for (Direction d : Direction.values()) {
-                    if (!stonePosPlaced.contains(cpos.relative(d))) {
-                        directionsWithoutBlocks++;
-                    }
-                }
-                if (directionsWithoutBlocks >= 3) {
-                    posToRemove = cpos;
-                    break;
-                }
+        ArrayList<BlockPos> stonePosList = new ArrayList<>();
+        for (BlockPos pos : stonePos) {
+            if (level.getBlockState(pos).is(BlockTags.REPLACEABLE)) {
+                stonePosList.add(pos);
             }
-            if (posToRemove != null) {
-                stonePosPlaced.remove(posToRemove);
-                erodedBlocks++;
-            }
-        } while (posToRemove != null && erodedBlocks < erosion);
+        }
+        stonePosList.sort(Comparator.comparingInt(Vec3i::getY));
 
-        // erode sharp edges
-        /*do {
-            posToRemove = null;
-            for (BlockPos cpos : stonePosPlaced) {
-                int directionsWithoutBlocks = 0;
-                for (Direction d : Direction.values()) {
-                    if (!stonePosPlaced.contains(cpos.relative(d))) {
-                        directionsWithoutBlocks++;
-                    }
-                }
-                if (directionsWithoutBlocks >= 5) {
-                    posToRemove = cpos;
-                    break;
-                }
+        Set<BlockPos> gravityStonePos = new HashSet<>();
+        for (BlockPos pos : stonePosList) {
+            int i = 0;
+            while (i < 10 && level.getBlockState(pos.below(i)).is(BlockTags.REPLACEABLE) && !gravityStonePos.contains(pos.below(i))) {
+                i++;
             }
-            if (posToRemove != null) {
-                stonePosPlaced.remove(posToRemove);
-            }
-        } while (posToRemove != null);*/
-
-        if (stonePosPlaced.size() <= config.minimumSize()) {
-            return false;
+            if (i == 10) return false;
+            i--;
+            gravityStonePos.add(pos.below(i));
         }
 
-        // place all blocks
-        Set<BlockPos> stonePosSet = Sets.newHashSet();
-        for (BlockPos pos1 : stonePosPlaced) {
-            level.setBlock(pos1, config.blockProvider().getState(random, pos1), 2);
-            stonePosSet.add(pos1);
+        for (BlockPos pos : gravityStonePos) {
+            level.setBlock(pos, config.blockProvider().getState(random, pos), 2);
         }
-
 
         BiConsumer<BlockPos, BlockState> decoratorConsumer = (pos1, state1) -> {
             decoPos.add(pos1.immutable());
             level.setBlock(pos1, state1, 19);
         };
         if (!config.decorators().isEmpty()) {
-            BoulderDecorator.Context boulderdecorator$context = new BoulderDecorator.Context(level, decoratorConsumer, random, stonePosSet, context.chunkGenerator());
+            BoulderDecorator.Context boulderdecorator$context = new BoulderDecorator.Context(level, decoratorConsumer, random, gravityStonePos, context.chunkGenerator());
             config.decorators().forEach((deco) -> deco.place(boulderdecorator$context));
         }
 

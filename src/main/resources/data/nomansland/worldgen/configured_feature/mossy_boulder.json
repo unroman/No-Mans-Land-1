@@ -33,28 +33,15 @@
     },
     "num_cubes": {
       "type": "minecraft:uniform",
-      "min_inclusive": 2,
-      "max_inclusive": 3
+      "min_inclusive": 3,
+      "max_inclusive": 4
     },
-    "cube_size": {
+    "cube_height": {
       "type": "minecraft:uniform",
       "min_inclusive": 2,
-      "max_inclusive": 2
+      "max_inclusive": 4
     },
-    "percent_larger_cube": 0.2,
-    "cube_erosion": {
-      "type": "minecraft:uniform",
-      "min_inclusive": 1,
-      "max_inclusive": 3
-    },
-    "cube_erosion_size_multiplier": 0.125,
-    "extra_erosion": {
-      "type": "minecraft:uniform",
-      "min_inclusive": 0,
-      "max_inclusive": 0
-    },
-    "height_min": 0,
-    "height_max": 2,
-    "minimum_size": 10
+    "cube_height_decrease": 1,
+    "num_eroded_blocks": 1
   }
 }

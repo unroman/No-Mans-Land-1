@@ -10,18 +10,13 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 
 import java.util.List;
 
-public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider cubeSize, float percentLargerCube, IntProvider cubeErosion, float cubeErosionSizeMultiplier, IntProvider extraErosion, int heightMin, int heightMax, int minimumSize, BlockStateProvider blockProvider, List<BoulderDecorator> decorators) implements FeatureConfiguration {
+public record BoulderFeatureConfiguration(IntProvider numCubes, IntProvider numErodedBlocks, IntProvider cubeHeight, float cubeHeightDecrease, BlockStateProvider blockProvider, List<BoulderDecorator> decorators) implements FeatureConfiguration {
     public static final Codec<BoulderFeatureConfiguration> CODEC = RecordCodecBuilder.create(
             record -> record.group(
                     IntProvider.codec(1, 8).fieldOf("num_cubes").forGetter(BoulderFeatureConfiguration::numCubes),
-                    IntProvider.codec(1, 8).fieldOf("cube_size").forGetter(BoulderFeatureConfiguration::cubeSize),
-                    Codec.FLOAT.fieldOf("percent_larger_cube").forGetter(BoulderFeatureConfiguration::percentLargerCube),
-                    IntProvider.codec(0, 8).fieldOf("cube_erosion").forGetter(BoulderFeatureConfiguration::cubeErosion),
-                    Codec.FLOAT.fieldOf("cube_erosion_size_multiplier").forGetter(BoulderFeatureConfiguration::cubeErosionSizeMultiplier),
-                    IntProvider.codec(0, 8).fieldOf("extra_erosion").forGetter(BoulderFeatureConfiguration::extraErosion),
-                    ExtraCodecs.NON_NEGATIVE_INT.fieldOf("height_min").forGetter(BoulderFeatureConfiguration::heightMin),
-                    ExtraCodecs.NON_NEGATIVE_INT.fieldOf("height_max").forGetter(BoulderFeatureConfiguration::heightMax),
-                    ExtraCodecs.NON_NEGATIVE_INT.fieldOf("minimum_size").forGetter(BoulderFeatureConfiguration::minimumSize),
+                    IntProvider.codec(0, 8).fieldOf("num_eroded_blocks").forGetter(BoulderFeatureConfiguration::numErodedBlocks),
+                    IntProvider.codec(1, 8).fieldOf("cube_height").forGetter(BoulderFeatureConfiguration::cubeHeight),
+                    Codec.FLOAT.fieldOf("cube_height_decrease").forGetter(BoulderFeatureConfiguration::cubeHeightDecrease),
                     BlockStateProvider.CODEC.fieldOf("block_provider").forGetter(BoulderFeatureConfiguration::blockProvider),
                     BoulderDecorator.CODEC.listOf().fieldOf("decorators").orElse(List.of()).forGetter(BoulderFeatureConfiguration::decorators)
             ).apply(record, BoulderFeatureConfiguration::new)
