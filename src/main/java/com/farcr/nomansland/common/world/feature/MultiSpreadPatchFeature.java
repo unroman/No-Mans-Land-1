@@ -31,12 +31,15 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 
-            float distanceFromOriginXZ = Mth.sqrt((x - origin.getX())*(x - origin.getX()) + (z - origin.getZ())*(z - origin.getZ()));
-            distanceFromOriginXZ+=((random.nextFloat() * 2) - 1) * 0.8;
-            distanceFromOriginXZ = Mth.clamp(distanceFromOriginXZ / (xzSpread*3), 0.0f, 0.99f);
-            int index = Mth.floor(distanceFromOriginXZ * config.features().size());
+            if (Math.abs(x - origin.getX()) > 16 || Math.abs(z - origin.getZ()) > 16)
+                break;
 
-            if (distanceFromOriginXZ < 1.5*16) config.features().get(index).value().place(level, context.chunkGenerator(), random, pos);
+            float distanceFromOriginXZ = Mth.sqrt((x - origin.getX())*(x - origin.getX()) + (z - origin.getZ())*(z - origin.getZ()));
+            float modifiedDistanceFromOriginXZ = distanceFromOriginXZ + ((random.nextFloat() * 2) - 1) * 0.8f;
+            modifiedDistanceFromOriginXZ = Mth.clamp(modifiedDistanceFromOriginXZ / (xzSpread*3), 0.0f, 0.99f);
+            int index = Mth.floor(modifiedDistanceFromOriginXZ * config.features().size());
+
+            if (distanceFromOriginXZ < 1.5*16 && modifiedDistanceFromOriginXZ < 1.5*16) config.features().get(index).value().place(level, context.chunkGenerator(), random, pos);
         }
 
         return true;

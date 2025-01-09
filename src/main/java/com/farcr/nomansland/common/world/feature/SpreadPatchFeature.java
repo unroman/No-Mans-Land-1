@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.world.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -32,7 +33,12 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 
-            if (shouldPlace(level, random, pos)) {
+            if (Math.abs(x - origin.getX()) > 16 || Math.abs(z - origin.getZ()) > 16)
+                break;
+
+            float distanceFromOriginXZ = Mth.sqrt((x - origin.getX())*(x - origin.getX()) + (z - origin.getZ())*(z - origin.getZ()));
+
+            if (distanceFromOriginXZ < 1.5*16 && shouldPlace(level, random, pos)) {
                 config.feature().value().place(level, context.chunkGenerator(), random, pos);
             }
         }
