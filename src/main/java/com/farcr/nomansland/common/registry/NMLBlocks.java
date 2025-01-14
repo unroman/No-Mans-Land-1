@@ -112,10 +112,10 @@ public class NMLBlocks {
             () -> new WaterPlantBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<WaterPlantBlock> REEDS = registerBlock("reeds",
             () -> new WaterPlantBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)));
-    public static final DeferredBlock<DuckweedBlock> DUCKWEED = BLOCKS.register("duckweed",
-            () -> new DuckweedBlock(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ)));
-    public static final DeferredBlock<DuckweedBlock> WATER_MOSAIC = BLOCKS.register("water_mosaic",
-            () -> new DuckweedBlock(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ)));
+    public static final DeferredBlock<WaterSurfacePlant> DUCKWEED = BLOCKS.register("duckweed",
+            () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ)));
+    public static final DeferredBlock<WaterSurfacePlant> WATER_MOSAIC = BLOCKS.register("water_mosaic",
+            () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<BeardMossBlock> BEARD_MOSS = registerBlock("beard_moss",
             () -> new BeardMossBlock(Block.Properties.of().mapColor(MapColor.PLANT).instabreak().sound(SoundType.MOSS).noOcclusion().noCollission()));
     public static final DeferredBlock<LeavesBlock> YELLOW_BIRCH_LEAVES = registerBlock("yellow_birch_leaves",

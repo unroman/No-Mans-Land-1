@@ -11,10 +11,10 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DuckweedBlock extends BushBlock {
-    public static final MapCodec<DuckweedBlock> CODEC = simpleCodec(DuckweedBlock::new);
+public class WaterSurfacePlant extends BushBlock {
+    public static final MapCodec<WaterSurfacePlant> CODEC = simpleCodec(WaterSurfacePlant::new);
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.5, 16.0);
-    public DuckweedBlock(Properties properties) {
+    public WaterSurfacePlant(Properties properties) {
         super(properties);
     }
 
