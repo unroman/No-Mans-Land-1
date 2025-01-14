@@ -1,0 +1,19 @@
+{
+	"credit": "Made by Farcr",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "nomansland:block/plants/water_mosaic",
+		"particle": "nomansland:block/plants/water_mosaic"
+	},
+	"elements": [
+		{
+			"from": [0, 0.5, 0],
+			"to": [16, 0.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, -14.5, 0]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0", "tintindex": 0},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0", "tintindex": 0}
+			}
+		}
+	]
+}

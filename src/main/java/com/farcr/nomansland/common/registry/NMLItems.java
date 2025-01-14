@@ -293,6 +293,7 @@ public class NMLItems {
             insertAfter(event, Items.LARGE_FERN, NMLBlocks.CATTAIL);
             insertAfter(event, Items.LARGE_FERN, NMLBlocks.REEDS);
             insertAfter(event, Items.LILY_PAD, NMLBlocks.DUCKWEED);
+            insertAfter(event, Items.LILY_PAD, NMLBlocks.WATER_MOSAIC);
             insertAfter(event, Items.HANGING_ROOTS, NMLBlocks.BEARD_MOSS);
             insertAfter(event, Items.PINK_PETALS, NMLBlocks.CLOVER_PATCH);
             insertAfter(event, Items.PINK_PETALS, NMLBlocks.RED_FLOWERBED);

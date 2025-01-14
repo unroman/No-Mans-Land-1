@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+      "model": "nomansland:block/plants/water_mosaic"
+    },
+    {
+      "model": "nomansland:block/plants/water_mosaic",
+      "y": 90
+    },
+    {
+      "model": "nomansland:block/plants/water_mosaic",
+      "y": 180
+    },
+    {
+      "model": "nomansland:block/plants/water_mosaic",
+      "y": 270
+    }
+  ]
+  }
+}
