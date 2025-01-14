@@ -34,6 +34,7 @@ public class NoMansLand {
         NMLBoulderDecoratorType.BOULDER_DECORATOR_TYPES.register(modEventBus);
         NMLDataSerializers.ENTITY_DATA_SERIALIZERS.register(modEventBus);
         NMLFogModifiers.FOG_MODIFIERS.register(modEventBus);
+        NMLMobVariants.FROG_VARIANTS.register(modEventBus);
         NMLBiomePlacements.register();
 
         modEventBus.addListener(NMLItems::addCreative);

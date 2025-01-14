@@ -1,17 +1,16 @@
 package com.farcr.nomansland.client.model.deer;
 
+import com.farcr.nomansland.common.entity.deer.Deer;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.AgeableMob;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
+public class DeerModel<T extends Deer> extends QuadrupedModel<T> {
     protected final ModelPart babyHead;
     protected final ModelPart babyBody;
     private final ModelPart rightHindLeg;
@@ -22,6 +21,7 @@ public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
     private final ModelPart leftHindBabyLeg;
     private final ModelPart rightFrontBabyLeg;
     private final ModelPart leftFrontBabyLeg;
+    private float headXRot;
 
     public DeerModel(ModelPart root) {
         super(root, false, 0, 0, 1, 1, 0);
@@ -30,13 +30,13 @@ public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
         rightFrontLeg = root.getChild("right_front_leg");
         leftFrontLeg = root.getChild("left_front_leg");
 
-        babyHead = root.getChild("baby_head");
         babyBody = root.getChild("baby_body");
+        babyHead = babyBody.getChild("baby_head");
 
-        rightHindBabyLeg = root.getChild("right_hind_baby_leg");
-        leftHindBabyLeg = root.getChild("left_hind_baby_leg");
-        rightFrontBabyLeg = root.getChild("right_front_baby_leg");
-        leftFrontBabyLeg = root.getChild("left_front_baby_leg");
+        rightHindBabyLeg = babyBody.getChild("right_hind_baby_leg");
+        leftHindBabyLeg = babyBody.getChild("left_hind_baby_leg");
+        rightFrontBabyLeg = babyBody.getChild("right_front_baby_leg");
+        leftFrontBabyLeg = babyBody.getChild("left_front_baby_leg");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -68,15 +68,15 @@ public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
 
         PartDefinition babyBody = partdefinition.addOrReplaceChild("baby_body", CubeListBuilder.create().texOffs(0, 0).addBox(-2, -2, -3.5F, 4, 4, 7), PartPose.offset(0, 17, 0));
 
-        partdefinition.addOrReplaceChild("right_front_baby_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(-1.5F, 2, -2));
+        babyBody.addOrReplaceChild("right_front_baby_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(-1.5F, 2, -2));
 
-        partdefinition.addOrReplaceChild("left_front_baby_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(1.5F, 2, -2));
+        babyBody.addOrReplaceChild("left_front_baby_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(1.5F, 2, -2));
 
-        partdefinition.addOrReplaceChild("right_hind_baby_leg", CubeListBuilder.create().texOffs(15, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(-1.5F, 2, 3));
+        babyBody.addOrReplaceChild("right_hind_baby_leg", CubeListBuilder.create().texOffs(15, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(-1.5F, 2, 3));
 
-        partdefinition.addOrReplaceChild("left_hind_baby_leg", CubeListBuilder.create().texOffs(15, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(1.5F, 2, 3));
+        babyBody.addOrReplaceChild("left_hind_baby_leg", CubeListBuilder.create().texOffs(15, 0).addBox(-0.5F, 0, -0.5F, 1, 5, 1), PartPose.offset(1.5F, 2, 3));
 
-        PartDefinition babyHead = partdefinition.addOrReplaceChild("baby_head", CubeListBuilder.create().texOffs(22, 0).addBox(-1.5F, -5, -2, 3, 6, 3)
+        PartDefinition babyHead = babyBody.addOrReplaceChild("baby_head", CubeListBuilder.create().texOffs(22, 0).addBox(-1.5F, -5, -2, 3, 6, 3)
                 .texOffs(8, 11).addBox(-1, -4, -4, 2, 2, 2), PartPose.offset(0, -1, -2.5F));
 
         babyHead.addOrReplaceChild("right_ear_baby", CubeListBuilder.create().texOffs(20, 0).mirror().addBox(-2, -2, 0, 2, 2, 0).mirror(false), PartPose.offsetAndRotation(-1.5F, -3, 0.5F, 0, 0.5236F, 0.1745F));
@@ -91,30 +91,31 @@ public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
     @Override
     public void setupAnim(T deer, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(deer, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        head.xRot = headXRot;
+
         babyHead.xRot = head.xRot / 2;
         babyHead.yRot = head.yRot / 2;
 
         head.xRot /= 5;
         head.yRot /= 5;
 
+        leftHindLeg.xRot /= 5;
+        rightHindLeg.xRot /= 5;
+        leftFrontLeg.xRot /= 5;
+        rightFrontLeg.xRot /= 5;
+
         rightHindBabyLeg.xRot = rightHindLeg.xRot;
         leftHindBabyLeg.xRot = leftHindLeg.xRot;
         rightFrontBabyLeg.xRot = rightFrontLeg.xRot;
         leftFrontBabyLeg.xRot = leftFrontLeg.xRot;
-
-        float f7 = 1;
-        float f10 = deer.isInWater() ? 0.2F : 1.0F;
-        float f11 = Mth.cos(f10 * limbSwing * 0.6662F + 3.1415927F);
-
-        leftHindLeg.xRot = -f11 * 0.5F * limbSwingAmount * f7 / 4;
-        rightHindLeg.xRot = f11 * 0.5F * limbSwingAmount * f7 / 4;
-        leftFrontLeg.xRot = -f11 * 0.5F * limbSwingAmount * f7 / 4;
-        rightFrontLeg.xRot = f11 * 0.5F * limbSwingAmount * f7 / 4;
     }
 
     @Override
     public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick) {
         super.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTick);
+
+        head.y = 8.0F + entity.getHeadDrinkPositionScale(partialTick) * 7.0F;
+        headXRot = entity.getHeadDrinkAngleScale(partialTick);
 
         boolean baby = entity.isBaby();
         head.visible = !baby;
@@ -133,12 +134,12 @@ public class DeerModel<T extends AgeableMob> extends QuadrupedModel<T> {
 
     @Override
     protected Iterable<ModelPart> headParts() {
-        return ImmutableList.of(head, babyHead);
+        return ImmutableList.of(head);
     }
 
 
     @Override
     protected Iterable<ModelPart> bodyParts() {
-        return ImmutableList.of(body, babyBody, leftFrontLeg, rightFrontLeg, leftFrontBabyLeg, rightFrontBabyLeg, leftHindLeg, rightHindLeg, leftHindBabyLeg, rightHindBabyLeg);
+        return ImmutableList.of(body, babyBody, leftFrontLeg, rightFrontLeg, leftHindLeg, rightHindLeg);
     }
 }

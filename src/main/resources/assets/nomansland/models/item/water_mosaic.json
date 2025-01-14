@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nomansland:block/water_mosaic"
+    "layer0": "nomansland:block/plants/water_mosaic"
   }
 }

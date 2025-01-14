@@ -15,6 +15,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -51,6 +52,8 @@ public class Deer extends Animal implements DeerVariantHolder {
 
     private static final EntityDataAccessor<Integer> DATA_HYDRATION = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ANTLERS_LIFETIME = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.INT);
+    private int drinkAnimationTick;
+    private DeerDrinkWaterGoal drinkGoal;
 
     public Deer(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -101,12 +104,13 @@ public class Deer extends Animal implements DeerVariantHolder {
     @Override
     protected void registerGoals() {
         super.registerGoals();
+        drinkGoal = new DeerDrinkWaterGoal(this);
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(0, new PanicGoal(this, 1.5));
         goalSelector.addGoal(2, new BreedGoal(this, 1.5));
         goalSelector.addGoal(3, new FollowParentGoal(this, 1.5));
         goalSelector.addGoal(4, new DeerShedAntlersGoal(this));
-        goalSelector.addGoal(4, new DeerDrinkWaterGoal(this));
+        goalSelector.addGoal(4, drinkGoal);
         goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
         goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Monster.class, isDrinking() ? 6 : 12, 1.25, 1.5));
         goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, isDrinking() ? 6 : 12, 1.25, 1.5, player -> !player.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player)));
@@ -126,9 +130,18 @@ public class Deer extends Animal implements DeerVariantHolder {
 
     @Override
     protected void customServerAiStep() {
-        super.customServerAiStep();
         handleHydration(getHydration());
         handleAntlers(getAntlersLifetime());
+        drinkAnimationTick = drinkGoal.getDrinkAnimationTick();
+
+        super.customServerAiStep();
+    }
+
+    @Override
+    public void aiStep() {
+        if (level().isClientSide) drinkAnimationTick = Math.max(0, drinkAnimationTick - 1);
+        
+        super.aiStep();
     }
 
     private void handleHydration(int hydration) {
@@ -172,6 +185,25 @@ public class Deer extends Animal implements DeerVariantHolder {
         return deer;
     }
 
+    public float getHeadDrinkPositionScale(float partialTick) {
+        if (drinkAnimationTick <= 0) {
+            return 0.0F;
+        } else if (drinkAnimationTick >= 4 && drinkAnimationTick <= 36) {
+            return 1.0F;
+        } else {
+            return drinkAnimationTick < 4 ? (drinkAnimationTick - partialTick) / 4.0F : -((drinkAnimationTick - 40) - partialTick) / 4.0F;
+        }
+    }
+
+    public float getHeadDrinkAngleScale(float partialTick) {
+        if (drinkAnimationTick > 4 && drinkAnimationTick <= 36) {
+            float f = ((drinkAnimationTick - 4) - partialTick) / 32.0F;
+            return 0.62831855F + 0.21991149F * Mth.sin(f * 28.7F);
+        } else {
+            return drinkAnimationTick > 0 ? 0.62831855F : getXRot() * 0.017453292F;
+        }
+    }
+    
     @Override
     public boolean isFood(ItemStack itemStack) {
         return itemStack.is(NMLTags.DEER_FOOD);

@@ -149,6 +149,9 @@ public class NMLItems {
     public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
             () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> WATER_MOSAIC = registerItem("water_mosaic",
+            () -> new PlaceOnWaterBlockItem(NMLBlocks.WATER_MOSAIC.get(), new Item.Properties()));
+
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
 
@@ -188,6 +191,7 @@ public class NMLItems {
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_DOOR);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE_GATE);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE);
+            NMLBlocks.PINE_CABINET.ifPresent(cabinet -> insertAfter(event, Items.SPRUCE_BUTTON, cabinet));
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.TRIMMED_PINE_PLANKS);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BOOKSHELF);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_SLAB);
@@ -197,7 +201,6 @@ public class NMLItems {
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.STRIPPED_PINE_LOG);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_WOOD);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_LOG);
-            NMLBlocks.PINE_CABINET.ifPresent(event::accept);
 
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BUTTON);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_PRESSURE_PLATE);
@@ -205,6 +208,7 @@ public class NMLItems {
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_DOOR);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE_GATE);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE);
+            NMLBlocks.WALNUT_CABINET.ifPresent(cabinet -> insertAfter(event, Items.DARK_OAK_BUTTON, cabinet));
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.TRIMMED_WALNUT_PLANKS);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BOOKSHELF);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_SLAB);
@@ -214,7 +218,6 @@ public class NMLItems {
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.STRIPPED_WALNUT_LOG);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_WOOD);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_LOG);
-            NMLBlocks.WALNUT_CABINET.ifPresent(event::accept);
 
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_LOG);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_WOOD);
@@ -225,13 +228,13 @@ public class NMLItems {
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_SLAB);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BOOKSHELF);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.TRIMMED_MAPLE_PLANKS);
+            NMLBlocks.MAPLE_CABINET.ifPresent(cabinet -> insertBefore(event, Items.DARK_OAK_LOG, cabinet));
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE_GATE);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_DOOR);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_TRAPDOOR);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_PRESSURE_PLATE);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BUTTON);
-            NMLBlocks.MAPLE_CABINET.ifPresent(event::accept);
 
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_LOG);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_WOOD);
@@ -242,13 +245,13 @@ public class NMLItems {
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_SLAB);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BOOKSHELF);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.TRIMMED_WILLOW_PLANKS);
+            NMLBlocks.WILLOW_CABINET.ifPresent(cabinet -> insertBefore(event, Items.MANGROVE_LOG, cabinet));
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE_GATE);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_DOOR);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_TRAPDOOR);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_PRESSURE_PLATE);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BUTTON);
-            NMLBlocks.WILLOW_CABINET.ifPresent(event::accept);
 
             insertAfter(event, Items.OAK_SLAB, NMLBlocks.TRIMMED_OAK_PLANKS);
             insertAfter(event, Items.OAK_SLAB, Items.BOOKSHELF.getDefaultInstance().getItemHolder());
@@ -320,11 +323,11 @@ public class NMLItems {
             insertAfter(event, Items.OAK_SAPLING, NMLBlocks.AUTUMNAL_OAK_SAPLING);
             insertAfter(event, Items.CHERRY_LEAVES, NMLBlocks.PALE_CHERRY_LEAVES);
             insertAfter(event, Items.CHERRY_SAPLING, NMLBlocks.PALE_CHERRY_SAPLING);
-            NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(event::accept);
             insertBefore(event, Items.GRAVEL, NMLBlocks.SILT);
             insertAfter(event, NMLBlocks.SILT, NMLBlocks.SILT_PATH);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);
+            NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(colony -> insertAfter(event, Items.RED_MUSHROOM, colony));
             insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.SHELF_MUSHROOM_BLOCK);
             insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.FIELD_MUSHROOM_BLOCK);
             insertAfter(event, Items.SPRUCE_LEAVES, NMLBlocks.FROSTED_LEAVES);
@@ -434,7 +437,7 @@ public class NMLItems {
             insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_BOAT);
             insertAfter(event, Items.SALMON_BUCKET, NMLItems.BILLHOOK_BASS_BUCKET);
 //            insertAfter(event, Items.TROPICAL_FISH_BUCKET, NMLItems.CAVE_CARP_BUCKET);
-            if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.accept(Items.BUNDLE);
+            if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), Items.BUNDLE.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
