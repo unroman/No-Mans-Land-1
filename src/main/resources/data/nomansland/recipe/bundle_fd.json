@@ -18,7 +18,7 @@
   "pattern": [
     "RRR",
     "L L",
-    "LLL"
+    " L "
   ],
   "result": {
     "count": 1,
