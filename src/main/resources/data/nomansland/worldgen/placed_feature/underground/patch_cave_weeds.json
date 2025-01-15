@@ -1,5 +1,5 @@
 {
-    "feature": "nomansland:patch_cave_weeds",
+    "feature": "nomansland:underground/patch_cave_weeds",
     "placement": [
       {
         "type": "minecraft:count_on_every_layer",
