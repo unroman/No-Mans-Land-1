@@ -349,6 +349,7 @@ public class NMLItems {
 
             insertAfter(event, Items.HAY_BLOCK, NMLBlocks.TROPICAL_FISH_BARREL);
             insertAfter(event, Items.HAY_BLOCK, NMLBlocks.PUFFERFISH_BARREL);
+            insertAfter(event, Items.HAY_BLOCK, NMLBlocks.BILLHOOK_BASS_BARREL);
             insertAfter(event, Items.HAY_BLOCK, NMLBlocks.SALMON_BARREL);
             insertAfter(event, Items.HAY_BLOCK, NMLBlocks.COD_BARREL);
             insertAfter(event, Items.HAY_BLOCK, NMLBlocks.PEAR_CRATE);
