@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
 
-public class DeerShedAntlersGoal  extends Goal {
+public class DeerShedAntlersGoal extends Goal {
 
     private final Deer mob;
     

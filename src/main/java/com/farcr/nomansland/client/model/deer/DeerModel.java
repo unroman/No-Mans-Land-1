@@ -21,7 +21,6 @@ public class DeerModel<T extends Deer> extends QuadrupedModel<T> {
     private final ModelPart leftHindBabyLeg;
     private final ModelPart rightFrontBabyLeg;
     private final ModelPart leftFrontBabyLeg;
-    private float headXRot;
 
     public DeerModel(ModelPart root) {
         super(root, false, 0, 0, 1, 1, 0);
@@ -91,7 +90,6 @@ public class DeerModel<T extends Deer> extends QuadrupedModel<T> {
     @Override
     public void setupAnim(T deer, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(deer, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        head.xRot = headXRot;
 
         babyHead.xRot = head.xRot / 2;
         babyHead.yRot = head.yRot / 2;
@@ -113,9 +111,6 @@ public class DeerModel<T extends Deer> extends QuadrupedModel<T> {
     @Override
     public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick) {
         super.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTick);
-
-        head.y = 8.0F + entity.getHeadDrinkPositionScale(partialTick) * 7.0F;
-        headXRot = entity.getHeadDrinkAngleScale(partialTick);
 
         boolean baby = entity.isBaby();
         head.visible = !baby;

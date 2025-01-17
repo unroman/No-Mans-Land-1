@@ -66,8 +66,7 @@ public class DeerDrinkWaterGoal  extends Goal {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
                 if (mob.level().getBlockState(mob.blockPosition().below().relative(direction)).is(Blocks.WATER)) {
                     drinkAnimationTick = Math.max(0, drinkAnimationTick - 1);
-                    if (drinkAnimationTick == adjustedTickDelay(4)) mob.setIsDrinking(false);
-                    else mob.setIsDrinking(true);
+                    mob.setIsDrinking(drinkAnimationTick != adjustedTickDelay(4));
                 }
             }
         } else mob.setIsDrinking(false);
