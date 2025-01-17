@@ -11,7 +11,6 @@
   "biome.nomansland.maple_grove": "Maple Grove",
   "biome.nomansland.dark_swamp": "Dark Swamp",
   "biome.nomansland.bog": "Bog",
-  "biome.nomansland.muskeg": "Muskeg",
   "biome.nomansland.bayou": "Bayou",
   "biome.nomansland.caves": "Caves",
   "biome.nomansland.cave_depths": "Cave Depths",
@@ -308,8 +307,6 @@
   "item.nomansland.horse_steak": "Horse Steak",
   "item.nomansland.raw_venison": "Raw Venison",
   "item.nomansland.cooked_venison": "Cooked Venison",
-  "item.nomansland.raw_camelid": "Raw Camel",
-  "item.nomansland.cooked_camelid": "Cooked Camel",
   "item.nomansland.resin": "Resin",
   "item.nomansland.resin_oil_bottle": "Resin Oil Bottle",
   "item.nomansland.firebomb": "Firebomb",
@@ -333,6 +330,6 @@
   "death.attack.nomansland.spike_poke.player": "%1$s got stuck in a spike trap while fighting %2$s",
   "death.attack.nomansland.spike_skewer": "%1$s was skewered by a spike trap",
   "death.attack.nomansland.spike_skewer.player": "%1$s was skewered by a spike trap while fighting %2$s",
-  "tooltip.nomansland.missing_interaction_block": "§8This block is part of Mod Integration, but its required Mod is missing!",
-  "tooltip.nomansland.missing_interaction_item": "§8This item is part of Mod Integration, but its required Mod is missing!"
+  "entity.nomansland.explosive": "Explosive",
+  "entity.nomansland.firebomb": "Firebomb"
 }
