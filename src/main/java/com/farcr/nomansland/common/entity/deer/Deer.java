@@ -6,6 +6,7 @@ import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -15,8 +16,11 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -45,12 +49,12 @@ public class Deer extends Animal implements DeerVariantHolder {
     private static final ResourceKey<DeerAntlersVariant> DEFAULT_ANTLERS_VARIANT = ResourceKey.create(NMLMobVariants.DEER_ANTLERS_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
     private static final ResourceKey<DeerPatternVariant> DEFAULT_PATTERN_VARIANT = ResourceKey.create(NMLMobVariants.DEER_PATTERN_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
-    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BYTE);;
+    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BYTE);
     private static final int FLAG_DRINKING = 1;
 
-    private static final int FLAG_ANTLERS = 2;
+    private static final int FLAG_ANTLERS = 1;
 
-    private static final EntityDataAccessor<Integer> DATA_HYDRATION = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.INT);
+//    private static final EntityDataAccessor<Integer> DATA_HYDRATION = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ANTLERS_LIFETIME = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.INT);
     private int drinkAnimationTick;
     private DeerDrinkWaterGoal drinkGoal;
@@ -66,7 +70,7 @@ public class Deer extends Animal implements DeerVariantHolder {
         builder.define(DATA_ANTLERS_VARIANT_ID, registryAccess().registryOrThrow(NMLMobVariants.DEER_ANTLERS_VARIANT_KEY).getHolderOrThrow(DEFAULT_ANTLERS_VARIANT));
         builder.define(DATA_PATTERN_VARIANT_ID, registryAccess().registryOrThrow(NMLMobVariants.DEER_PATTERN_VARIANT_KEY).getHolderOrThrow(DEFAULT_PATTERN_VARIANT));
         builder.define(DATA_FLAGS_ID, (byte) 0);
-        builder.define(DATA_HYDRATION, 0);
+//        builder.define(DATA_HYDRATION, 0);
         builder.define(DATA_ANTLERS_LIFETIME, 0);
     }
 
@@ -104,18 +108,18 @@ public class Deer extends Animal implements DeerVariantHolder {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        drinkGoal = new DeerDrinkWaterGoal(this);
+//        drinkGoal = new DeerDrinkWaterGoal(this);
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(0, new PanicGoal(this, 1.5));
         goalSelector.addGoal(2, new BreedGoal(this, 1.5));
         goalSelector.addGoal(3, new FollowParentGoal(this, 1.5));
         goalSelector.addGoal(4, new DeerShedAntlersGoal(this));
-        goalSelector.addGoal(4, drinkGoal);
+//        goalSelector.addGoal(4, drinkGoal);
         goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Monster.class, isDrinking() ? 6 : 12, 1.25, 1.5));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, isDrinking() ? 6 : 12, 1.25, 1.5, player -> !player.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player)));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Villager.class, isDrinking() ? 6 : 12, 1.25, 1.5));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, LivingEntity.class, isDrinking() ? 6 : 12, 1.25, 1.5, livingEntity -> livingEntity instanceof  NeutralMob));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Monster.class, 12, 1.25, 1.5));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, 12, 1.25, 1.5, player -> !player.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player)));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Villager.class, 12, 1.25, 1.5));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, LivingEntity.class, 12, 1.25, 1.5, livingEntity -> livingEntity instanceof  NeutralMob));
         goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
@@ -130,9 +134,9 @@ public class Deer extends Animal implements DeerVariantHolder {
 
     @Override
     protected void customServerAiStep() {
-        handleHydration(getHydration());
+//        handleHydration(getHydration());
         handleAntlers(getAntlersLifetime());
-        drinkAnimationTick = drinkGoal.getDrinkAnimationTick();
+//        drinkAnimationTick = drinkGoal.getDrinkAnimationTick();
 
         super.customServerAiStep();
     }
@@ -209,6 +213,29 @@ public class Deer extends Animal implements DeerVariantHolder {
         return itemStack.is(NMLTags.DEER_FOOD);
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return NMLSounds.DEER_AMBIENT.get();
+    }
+
+    @Override
+    public SoundEvent getEatingSound(ItemStack stack) {
+        return NMLSounds.DEER_EAT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return NMLSounds.DEER_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return NMLSounds.DEER_DEATH.get();
+    }
+
     private void setFlag(int flagId, boolean value) {
         if (value) {
             entityData.set(DATA_FLAGS_ID, (byte) (entityData.get(DATA_FLAGS_ID) | flagId));
@@ -264,11 +291,12 @@ public class Deer extends Animal implements DeerVariantHolder {
     }
 
     public int getHydration() {
-        return entityData.get(DATA_HYDRATION);
+        return 0;
+//        return entityData.get(DATA_HYDRATION);
     }
 
     public void setHydration(int hydration) {
-        entityData.set(DATA_HYDRATION, hydration);
+//        entityData.set(DATA_HYDRATION, hydration);
     }
 
     public int getAntlersLifetime() {
