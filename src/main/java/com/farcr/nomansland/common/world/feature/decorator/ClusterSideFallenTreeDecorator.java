@@ -13,9 +13,6 @@ import net.minecraft.world.level.block.BaseCoralWallFanBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class ClusterSideFallenTreeDecorator extends FallenTreeDecorator {
     public static final MapCodec<ClusterSideFallenTreeDecorator> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(

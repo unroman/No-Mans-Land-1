@@ -18,7 +18,7 @@ import java.util.function.BiConsumer;
 public abstract class FallenTreeDecorator {
     public static final Codec<FallenTreeDecorator> CODEC;
 
-    public FallenTreeDecorator() {};
+    public FallenTreeDecorator() {}
 
     protected abstract FallenTreeDecoratorType<?> type();
 
