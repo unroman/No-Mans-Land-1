@@ -566,7 +566,7 @@ public class NMLBlocks {
     //Mushrooms
     public static final DeferredBlock<SurfaceMushroomBlock> FIELD_MUSHROOM = BLOCKS.register("field_mushroom",
             () -> new SurfaceMushroomBlock((HugeMushrooms.HUGE_FIELD_MUSHROOM), (BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))));
-    public static final Optional<DeferredBlock<Block>> FIELD_MUSHROOM_COLONY = Mods.FARMERSDELIGHT.runIfInstalled(() -> registerBlock("field_mushroom_colony", FDIntegration.fieldMushroomColony()));
+    public static final Optional<DeferredBlock<Block>> FIELD_MUSHROOM_COLONY = Mods.FARMERSDELIGHT.runIfInstalled(() -> BLOCKS.register("field_mushroom_colony", FDIntegration.fieldMushroomColony()));
     public static final DeferredBlock<FlowerPotBlock> POTTED_FIELD_MUSHROOM = BLOCKS.register("potted_field_mushroom",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.FIELD_MUSHROOM,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM).noOcclusion()));

@@ -4,16 +4,22 @@ import com.farcr.nomansland.common.block.NMLCabinetBlock;
 import com.farcr.nomansland.common.blockentity.NMLCabinetBlockEntity;
 import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLItems;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
+import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 
 import java.util.function.Supplier;
 
 public class FDIntegration {
     public static Supplier<? extends Block> fieldMushroomColony() {
         return () -> new MushroomColonyBlock(NMLItems.FIELD_MUSHROOM, Block.Properties.ofFullCopy(NMLBlocks.FIELD_MUSHROOM.get()));
+    }
+
+    public static Supplier<? extends Item> fieldMushroomColonyItem() {
+        return () -> new MushroomColonyItem(NMLBlocks.FIELD_MUSHROOM_COLONY.get().value(), new Item.Properties());
     }
 
     public static Supplier<? extends Block> cabinetBlock() {
