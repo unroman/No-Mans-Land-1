@@ -42,6 +42,7 @@
   "client": [
     "HierarchicalModelMixin",
     "ItemRendererMixin",
+    "LevelRendererMixin",
     "LivingEntityRendererMixin",
     "QuadrupedModelMixin",
     "RenderLayerMixin",
