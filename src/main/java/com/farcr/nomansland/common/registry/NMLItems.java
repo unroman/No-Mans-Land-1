@@ -4,6 +4,8 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
+import com.farcr.nomansland.integration.FDIntegration;
+import com.farcr.nomansland.integration.Mods;
 import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -22,6 +24,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class NMLItems {
@@ -146,6 +149,7 @@ public class NMLItems {
             () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Item.Properties()));
+    public static final Optional<DeferredItem<Item>> FIELD_MUSHROOM_COLONY = Mods.FARMERSDELIGHT.runIfInstalled(() -> registerItem("field_mushroom_colony", FDIntegration.fieldMushroomColonyItem()));
     public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
             () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Item.Properties()));
 

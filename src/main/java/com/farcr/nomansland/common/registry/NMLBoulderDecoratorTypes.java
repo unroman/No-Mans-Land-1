@@ -9,7 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public record NMLBoulderDecoratorType<P extends BoulderDecorator>(MapCodec<P> codec) {
+public class NMLBoulderDecoratorTypes {
     public static final DeferredRegister<BoulderDecoratorType<?>> BOULDER_DECORATOR_TYPES =
             DeferredRegister.create(NMLRegistries.BOULDER_DECORATOR_TYPE, NoMansLand.MODID);
 
@@ -18,6 +18,4 @@ public record NMLBoulderDecoratorType<P extends BoulderDecorator>(MapCodec<P> co
     private static <P extends BoulderDecorator> Supplier<BoulderDecoratorType<P>> register (String name, MapCodec<P> codec) {
         return BOULDER_DECORATOR_TYPES.register(name, () -> new BoulderDecoratorType<>(codec));
     }
-
-    public MapCodec<P> codec() { return this.codec; }
 }

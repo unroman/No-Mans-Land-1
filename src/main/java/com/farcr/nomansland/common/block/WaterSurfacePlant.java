@@ -31,7 +31,7 @@ public class WaterSurfacePlant extends BushBlock {
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         FluidState fluidstate = level.getFluidState(pos);
-        FluidState fluidstate1 = level.getFluidState(pos.above(2));
+        FluidState fluidstate1 = level.getFluidState(pos.above());
         return fluidstate.getType() == Fluids.WATER && fluidstate1.getType() == Fluids.EMPTY;
     }
 }

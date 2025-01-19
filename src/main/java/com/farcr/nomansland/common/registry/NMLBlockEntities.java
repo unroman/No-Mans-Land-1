@@ -1,10 +1,7 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
-import com.farcr.nomansland.common.blockentity.NMLSignBlockEntity;
-import com.farcr.nomansland.common.blockentity.RemainsBlockEntity;
-import com.farcr.nomansland.common.blockentity.TapBlockEntity;
+import com.farcr.nomansland.common.blockentity.*;
 import com.farcr.nomansland.integration.FDIntegration;
 import com.farcr.nomansland.integration.Mods;
 import net.minecraft.core.registries.Registries;
@@ -26,9 +23,9 @@ public class NMLBlockEntities {
                             NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()
                     ).build(null));
 
-    public static final Supplier<BlockEntityType<NMLSignBlockEntity>> NML_HANGING_SIGN =
+    public static final Supplier<BlockEntityType<NMLHangingSignBlockEntity>> NML_HANGING_SIGN =
             BLOCK_ENTITIES.register("nml_hanging_sign", () ->
-                    BlockEntityType.Builder.of(NMLSignBlockEntity::new,
+                    BlockEntityType.Builder.of(NMLHangingSignBlockEntity::new,
                             NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(),
                             NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(),
                             NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(),
