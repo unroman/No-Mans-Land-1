@@ -195,29 +195,29 @@
   "entity.deer.ambient": {
     "sounds": [
       {
-        "name": "mob/fox/idle1",
-        "volume": 0.8,
-        "pitch": 0.5
+        "name": "nomansland:entity/deer/bleat1",
+        "volume": 0.5
       },
-      "mob/fox/idle2",
-      "mob/fox/idle3",
-      "mob/fox/idle4",
-      "mob/fox/idle5",
-      "mob/fox/idle6"
+      {
+        "name": "nomansland:entity/deer/bleat2",
+        "volume": 0.5
+      },
+      {
+        "name": "nomansland:entity/deer/bleat3",
+        "volume": 0.5
+      }
     ],
-    "subtitle": "nomansland.subtitles.entity.deer.death"
+    "subtitle": "nomansland.subtitles.entity.deer.ambient"
   },
   "entity.deer.death": {
     "sounds": [
       {
-        "name": "mob/fox/death1",
-        "volume": 0.9,
-        "pitch": 0.5
+        "name": "nomansland:entity/deer/death1",
+        "volume": 1
       },
       {
-        "name": "mob/fox/death2",
-        "volume": 0.9,
-        "pitch": 0.5
+        "name": "nomansland:entity/deer/death2",
+        "volume": 1
       }
     ],
     "subtitle": "nomansland.subtitles.entity.deer.death"
@@ -225,24 +225,19 @@
   "entity.deer.hurt": {
     "sounds": [
       {
-        "name": "mob/fox/hurt1",
-        "volume": 0.5,
-        "pitch": 0.5
+        "name": "nomansland:entity/deer/hurt1",
+        "volume": 1.25,
+        "pitch": 0.8
       },
       {
-        "name": "mob/fox/hurt2",
-        "volume": 0.5,
-        "pitch": 0.5
+        "name": "nomansland:entity/deer/hurt2",
+        "volume": 1.25,
+        "pitch": 0.8
       },
       {
-        "name": "mob/fox/hurt3",
-        "volume": 0.5,
-        "pitch": 0.5
-      },
-      {
-        "name": "mob/fox/hurt4",
-        "volume": 0.5,
-        "pitch": 0.5
+        "name": "nomansland:entity/deer/hurt3",
+        "volume": 1.25,
+        "pitch": 0.8
       }
     ],
     "subtitle": "nomansland.subtitles.entity.deer.hurt"
@@ -250,21 +245,22 @@
   "entity.deer.eat": {
     "sounds": [
       {
-        "name": "mob/fox/eat1",
-        "volume": 0.65,
-        "pitch": 0.5
+        "name": "mob/cow/step1",
+        "pitch": 1.5
       },
       {
-        "name": "mob/fox/eat2",
-        "volume": 0.65,
-        "pitch": 0.5
+        "name": "mob/cow/step2",
+        "pitch": 1.5
       },
       {
-        "name": "mob/fox/eat3",
-        "volume": 0.65,
-        "pitch": 0.5
+        "name": "mob/cow/step3",
+        "pitch": 1.5
+      },
+      {
+        "name": "mob/cow/step4",
+        "pitch": 1.5
       }
     ],
-    "subtitle": "nomansland.subtitles.entity.deer.eat"
+    "subtitle": "subtitles.block.generic.footsteps"
   }
 }

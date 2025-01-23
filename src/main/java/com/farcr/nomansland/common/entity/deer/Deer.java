@@ -8,6 +8,7 @@ import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.NMLTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -32,6 +33,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -218,12 +220,6 @@ public class Deer extends Animal implements DeerVariantHolder {
     protected SoundEvent getAmbientSound() {
         return NMLSounds.DEER_AMBIENT.get();
     }
-
-    @Override
-    public SoundEvent getEatingSound(ItemStack stack) {
-        return NMLSounds.DEER_EAT.get();
-    }
-
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
@@ -234,6 +230,14 @@ public class Deer extends Animal implements DeerVariantHolder {
     @Override
     protected SoundEvent getDeathSound() {
         return NMLSounds.DEER_DEATH.get();
+    }
+
+    protected void playStepSound(BlockPos pos, BlockState block) {
+        this.playSound(NMLSounds.DEER_STEP.get(), 0.15F, 1.0F);
+    }
+
+    protected float getSoundVolume() {
+        return 0.4F;
     }
 
     private void setFlag(int flagId, boolean value) {

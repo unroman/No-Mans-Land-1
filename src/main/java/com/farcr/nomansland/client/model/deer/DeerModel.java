@@ -91,11 +91,13 @@ public class DeerModel<T extends Deer> extends QuadrupedModel<T> {
     public void setupAnim(T deer, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(deer, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
+        head.xRot /= 3;
+        head.yRot /= 3;
+        head.xRot = (float) Math.min(Math.abs(head.xRot), Math.PI/4);
+        head.yRot = (float) Math.min(Math.abs(head.yRot), Math.PI*0.0625F);
+
         babyHead.xRot = head.xRot / 2;
         babyHead.yRot = head.yRot / 2;
-
-        head.xRot /= 5;
-        head.yRot /= 5;
 
         leftHindLeg.xRot /= 5;
         rightHindLeg.xRot /= 5;
