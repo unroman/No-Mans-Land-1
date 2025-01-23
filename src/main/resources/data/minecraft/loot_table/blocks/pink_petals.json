@@ -2,20 +2,10 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": [
-                  "minecraft:shears"
-                ]
-              }
-            }
-          ],
           "functions": [
             {
               "add": false,
@@ -28,7 +18,7 @@
                   }
                 }
               ],
-              "count": 1.0,
+              "count": 1,
               "function": "minecraft:set_count"
             },
             {
@@ -42,7 +32,7 @@
                   }
                 }
               ],
-              "count": 2.0,
+              "count": 2,
               "function": "minecraft:set_count"
             },
             {
@@ -56,7 +46,7 @@
                   }
                 }
               ],
-              "count": 3.0,
+              "count": 3,
               "function": "minecraft:set_count"
             },
             {
@@ -70,17 +60,25 @@
                   }
                 }
               ],
-              "count": 4.0,
+              "count": 4,
               "function": "minecraft:set_count"
             },
             {
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "minecraft:pink_petals"
+          "name": "minecraft:pink_petals",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:shears"
+              }
+            }
+          ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "minecraft:blocks/pink_petals"
