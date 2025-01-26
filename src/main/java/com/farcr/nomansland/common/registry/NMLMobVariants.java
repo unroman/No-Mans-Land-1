@@ -47,7 +47,7 @@ public class NMLMobVariants {
     public static final ResourceKey<Registry<PigOverlayVariant>> PIG_OVERLAY_VARIANT_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "mob_variants/pig/overlay"));
 
     public static final DeferredRegister<FrogVariant> FROG_VARIANTS = DeferredRegister.create(BuiltInRegistries.FROG_VARIANT, NoMansLand.MODID);
-    public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_VARIANTS.register("mud", () -> new FrogVariant(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/mud_frog.png")));
+    public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_VARIANTS.register("mud", () -> new FrogVariant(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/frog/mud_frog.png")));
 
     public static ResourceKey<? extends Registry<MobVariant>> getVariantOfType(EntityType<?> entityType) {
         return getVariantKey(entityType.toShortString());
