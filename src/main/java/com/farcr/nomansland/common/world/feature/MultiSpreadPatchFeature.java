@@ -26,8 +26,8 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
 
         BlockPos.MutableBlockPos pos = origin.mutable();
         for (int i = 0; i < tries; i++) {
-            int x = (int) (origin.getX() + random.nextGaussian() * xzSpread);
-            int z = (int) (origin.getZ() + random.nextGaussian() * xzSpread);
+            int x = (int) (origin.getX() + Math.clamp(random.nextGaussian(), -2, 2) * xzSpread);
+            int z = (int) (origin.getZ() + Math.clamp(random.nextGaussian(), -2, 2) * xzSpread);
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 

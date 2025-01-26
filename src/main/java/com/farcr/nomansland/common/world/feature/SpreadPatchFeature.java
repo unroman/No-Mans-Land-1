@@ -28,8 +28,8 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
 
         BlockPos.MutableBlockPos pos = origin.mutable();
         for (int i = 0; i < tries; i++) {
-            int x = (int) (origin.getX() + random.nextGaussian() * xzSpread);
-            int z = (int) (origin.getZ() + random.nextGaussian() * xzSpread);
+            int x = (int) (origin.getX() + Math.clamp(random.nextGaussian(), -2, 2) * xzSpread);
+            int z = (int) (origin.getZ() + Math.clamp(random.nextGaussian(), -2, 2) * xzSpread);
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 
@@ -38,35 +38,10 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
 
             float distanceFromOriginXZ = Mth.sqrt((x - origin.getX())*(x - origin.getX()) + (z - origin.getZ())*(z - origin.getZ()));
 
-            if (distanceFromOriginXZ < 1.5*16 && shouldPlace(level, random, pos)) {
+            if (distanceFromOriginXZ < 1.5*16) {
                 config.feature().value().place(level, context.chunkGenerator(), random, pos);
             }
         }
         return true;
-    }
-
-    // determines if we should place at a block - if it's not yet loaded, we don't place anything there!!
-    // also does some dithering so that it'll smoothly fade if it encounters an unloaded chunk,
-    // rather than a really ugly hard cutoff
-    // .
-    // this might be really laggy. give it a try to make sure it's not.
-    private boolean shouldPlace(WorldGenLevel level, RandomSource random, BlockPos pos) {
-        // exit early if this chunk doesn't yet exist
-        if (!level.hasChunkAt(pos) || !level.isAreaLoaded(pos, 1)) {
-            return false;
-        }
-
-        // dithering
-        int successfulTries = 0;
-        BlockPos.MutableBlockPos checkPos = pos.mutable();
-        for (int i = 0; i < 8; i++) {
-            checkPos.offset((int) (random.nextGaussian() * 4), 0, (int) (random.nextGaussian() * 4));
-            if (level.hasChunkAt(pos) && level.isAreaLoaded(pos, 1)) {
-                successfulTries++;
-            }
-        }
-
-        // totally arbitrary threshold
-        return successfulTries > 5;
     }
 }
