@@ -308,7 +308,7 @@
   "item.nomansland.raw_venison": "Raw Venison",
   "item.nomansland.cooked_venison": "Cooked Venison",
   "item.nomansland.resin": "Resin",
-  "item.nomansland.resin_oil_bottle": "Resin Oil Bottle",
+  "item.nomansland.resin_oil_bottle.effect.flammable": "Resin Oil Bottle",
   "item.nomansland.firebomb": "Firebomb",
   "item.nomansland.explosive": "Explosive",
   "nomansland.subtitles.block.spike_trap.extend": "Spikes extend",
@@ -334,5 +334,6 @@
   "death.attack.nomansland.spike_skewer": "%1$s was skewered by a spike trap",
   "death.attack.nomansland.spike_skewer.player": "%1$s was skewered by a spike trap while fighting %2$s",
   "entity.nomansland.explosive": "Explosive",
-  "entity.nomansland.firebomb": "Firebomb"
+  "entity.nomansland.firebomb": "Firebomb",
+  "effect.nomansland.flammable": "Flammable"
 }
