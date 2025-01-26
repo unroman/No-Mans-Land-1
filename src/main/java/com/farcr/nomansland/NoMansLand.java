@@ -36,6 +36,8 @@ public class NoMansLand {
         NMLDataSerializers.ENTITY_DATA_SERIALIZERS.register(modEventBus);
         NMLFogModifiers.FOG_MODIFIERS.register(modEventBus);
         NMLMobVariants.FROG_VARIANTS.register(modEventBus);
+        NMLEffects.MOB_EFFECTS.register(modEventBus);
+        NMLPotions.POTIONS.register(modEventBus);
         NMLBiomePlacements.register();
 
         modEventBus.addListener(NMLItems::addCreative);
