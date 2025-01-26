@@ -1,6 +1,7 @@
 {
   "values": [
     "#c:is_river",
-    "#c:is_desert"
+    "#c:is_desert",
+    "#c:is_snowy"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_snowy",
+  "features": [
+    "nomansland:pond_common_snowy"
+  ],
+  "step": "local_modifications"
+}
