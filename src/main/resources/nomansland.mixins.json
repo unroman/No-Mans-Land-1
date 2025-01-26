@@ -18,6 +18,7 @@
     "ServerLevelMixin",
     "SnowAndFreezeFeatureMixin",
     "SpreadingSnowyDirtBlockMixin",
+    "SteepMaterialConditionMixin",
     "ThrownPotionMixin",
     "TreeFeatureMixin",
     "VineBlockMixin",
