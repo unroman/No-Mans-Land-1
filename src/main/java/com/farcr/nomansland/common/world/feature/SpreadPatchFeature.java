@@ -28,8 +28,8 @@ public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
 
         BlockPos.MutableBlockPos pos = origin.mutable();
         for (int i = 0; i < tries; i++) {
-            int x = (int) (origin.getX() + Math.clamp(random.nextGaussian(), -2, 2) * xzSpread);
-            int z = (int) (origin.getZ() + Math.clamp(random.nextGaussian(), -2, 2) * xzSpread);
+            int x = (int) (origin.getX() + (Math.clamp(random.nextGaussian(), -8, 8) / 4) * xzSpread);
+            int z = (int) (origin.getZ() + (Math.clamp(random.nextGaussian(), -8, 8) / 4) * xzSpread);
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 
