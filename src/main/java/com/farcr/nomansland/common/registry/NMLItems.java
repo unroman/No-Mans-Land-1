@@ -333,7 +333,7 @@ public class NMLItems {
             insertAfter(event, Items.CHERRY_LEAVES, NMLBlocks.PALE_CHERRY_LEAVES);
             insertAfter(event, Items.CHERRY_SAPLING, NMLBlocks.PALE_CHERRY_SAPLING);
             insertBefore(event, Items.GRAVEL, NMLBlocks.SILT);
-            insertAfter(event, NMLBlocks.SILT, NMLBlocks.SILT_PATH);
+            insertBefore(event, Items.GRAVEL, NMLBlocks.SILT_PATH);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);
             NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(colony -> insertAfter(event, Items.RED_MUSHROOM, colony));
@@ -347,7 +347,6 @@ public class NMLItems {
             insertAfter(event, Items.SNOW, NMLBlocks.SNOWY_GRASS_PATH);
             insertAfter(event, Items.MYCELIUM, NMLBlocks.MYCELIUM_PATH);
             insertAfter(event, Items.PODZOL, NMLBlocks.PODZOL_PATH);
-            insertAfter(event, NMLBlocks.SILT, NMLBlocks.SILT_PATH);
             insertBefore(event, Items.DIRT, NMLBlocks.DIRT_PATH);
             insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.QUARTZITE_CLUSTER);
             insertAfter(event, Items.AMETHYST_CLUSTER, NMLBlocks.LARGE_QUARTZITE_BUD);
