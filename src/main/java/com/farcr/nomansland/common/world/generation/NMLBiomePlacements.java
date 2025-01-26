@@ -4,11 +4,15 @@ import com.farcr.nomansland.common.registry.NMLBiomes;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.biome.sub.BiomeParameterTargets;
 import com.terraformersmc.biolith.api.biome.sub.CriterionBuilder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 
@@ -70,7 +74,6 @@ public class NMLBiomePlacements {
                 NMLBiomes.BOG,
                 0.05
         );
-
         BiomePlacement.addSubOverworld(
                 Biomes.SWAMP,
                 NMLBiomes.BOG,
@@ -124,6 +127,12 @@ public class NMLBiomePlacements {
 
         edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE, BiomeParameterTargets.HUMIDITY);
         clearingBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_CLEARING);
+
+        BiomePlacement.addSubOverworld(
+                NMLBiomes.MAPLE_FOREST,
+                NMLBiomes.MAPLE_GROVE,
+                allOf(neighbor(Tags.Biomes.IS_SNOWY), not(NEAR_INTERIOR))
+        );
     }
 
     public static void transitionalBiome(ResourceKey<Biome> mainBiome, ResourceKey<Biome> secondaryBiome, ResourceKey<Biome> transitionalBiome) {

@@ -12,8 +12,10 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -24,6 +26,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -81,7 +84,9 @@ public class NMLItems {
     public static final DeferredItem<Item> RESIN = registerItem("resin",
             () -> new FuelItem(new Item.Properties(), 1000));
     public static final DeferredItem<Item> RESIN_OIL_BOTTLE = registerItem("resin_oil_bottle",
-            () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE)));
+            () -> new ResinOilBottleItem(new Item.Properties()
+                    .craftRemainder(Items.GLASS_BOTTLE)
+                    .component(DataComponents.POTION_CONTENTS, new PotionContents(NMLPotions.FLAMMABLE))));
 
     public static final DeferredItem<Item> SCONCE_TORCH = registerItem("sconce_torch",
             () -> new StandingAndWallBlockItem(NMLBlocks.SCONCE_TORCH.get(), NMLBlocks.SCONCE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
@@ -448,12 +453,12 @@ public class NMLItems {
         if (tab == CreativeModeTabs.COMBAT) {
             insertAfter(event, Items.WIND_CHARGE, NMLItems.FIREBOMB);
             insertBefore(event, Items.TNT, NMLItems.EXPLOSIVE);
-            insertAfter(event, Items.EGG, NMLItems.RESIN_OIL_BOTTLE);
+            event.insertAfter(Items.EGG.getDefaultInstance(), PotionContents.createItemStack(NMLItems.RESIN_OIL_BOTTLE.get(), NMLPotions.FLAMMABLE), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (tab == CreativeModeTabs.INGREDIENTS) {
             insertAfter(event, Items.HONEYCOMB, NMLItems.RESIN);
-            insertAfter(event, NMLItems.RESIN, NMLItems.RESIN_OIL_BOTTLE);
+            event.insertAfter(NMLItems.RESIN.toStack(), PotionContents.createItemStack(NMLItems.RESIN_OIL_BOTTLE.get(), NMLPotions.FLAMMABLE), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
