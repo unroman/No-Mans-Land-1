@@ -9,6 +9,9 @@
     "nomansland:pale_cherry_leaves": {
       "chance": 0.3
     },
+    "nomansland:frosted_leaves": {
+      "chance": 0.1
+    },
     "nomansland:red_maple_leaves": {
       "chance": 0.3
     },
@@ -48,11 +51,38 @@
     "nomansland:oat_grass": {
       "chance": 0.3
     },
+    "nomansland:tall_beachgrass": {
+      "chance": 0.4
+    },
+    "nomansland:short_beachgrass": {
+      "chance": 0.2
+    },
+    "nomansland:mycelium_sprouts": {
+      "chance": 0.2
+    },
+    "nomansland:mycelium_growths": {
+      "chance": 0.4
+    },
     "nomansland:fiddlehead": {
       "chance": 0.3
     },
     "nomansland:cattail": {
       "chance": 0.65
+    },
+    "nomansland:reeds": {
+      "chance": 0.65
+    },
+    "nomansland:duckweed": {
+      "chance": 0.3
+    },
+    "nomansland:water_mosaic": {
+      "chance": 0.3
+    },
+    "nomansland:cave_weeds": {
+      "chance": 0.15
+    },
+    "nomansland:beard_moss": {
+      "chance": 0.4
     },
     "nomansland:aconite": {
       "chance": 0.65
@@ -98,6 +128,30 @@
     },
     "nomansland:blue_flowerbed": {
       "chance": 0.65
+    },
+    "nomansland:pickleweed": {
+      "chance": 0.5
+    },
+    "nomansland:shelf_mushroom": {
+      "chance": 0.4
+    },
+    "nomansland:field_mushroom": {
+      "chance": 0.2
+    },
+    "nomansland:field_mushroom_colony": {
+      "chance": 0.8
+    },
+    "nomansland:pear": {
+      "chance": 0.4
+    },
+    "nomansland:syruped_pear": {
+      "chance": 0.4
+    },
+    "nomansland:honeyed_apple": {
+      "chance": 0.4
+    },
+    "nomansland:walnuts": {
+      "chance": 0.2
     }
   }
 }
