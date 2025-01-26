@@ -195,16 +195,29 @@
   "entity.deer.ambient": {
     "sounds": [
       {
-        "name": "nomansland:entity/deer/bleat1",
-        "volume": 0.5
+        "name": "mob/fox/idle1",
+        "volume": 0.8,
+        "pitch": 0.4
       },
       {
-        "name": "nomansland:entity/deer/bleat2",
-        "volume": 0.5
+        "name": "mob/fox/idle2",
+        "pitch": 0.4
       },
       {
-        "name": "nomansland:entity/deer/bleat3",
-        "volume": 0.5
+        "name": "mob/fox/idle3",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle4",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle5",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle6",
+        "pitch": 0.4
       }
     ],
     "subtitle": "nomansland.subtitles.entity.deer.ambient"
@@ -212,12 +225,14 @@
   "entity.deer.death": {
     "sounds": [
       {
-        "name": "nomansland:entity/deer/death1",
-        "volume": 1
+        "name": "mob/fox/death1",
+        "volume": 0.9,
+        "pitch": 0.4
       },
       {
-        "name": "nomansland:entity/deer/death2",
-        "volume": 1
+        "name": "mob/fox/death2",
+        "volume": 0.9,
+        "pitch": 0.4
       }
     ],
     "subtitle": "nomansland.subtitles.entity.deer.death"
@@ -225,24 +240,29 @@
   "entity.deer.hurt": {
     "sounds": [
       {
-        "name": "nomansland:entity/deer/hurt1",
-        "volume": 1.25,
-        "pitch": 0.8
+        "name": "mob/fox/hurt1",
+        "volume": 0.75,
+        "pitch": 0.4
       },
       {
-        "name": "nomansland:entity/deer/hurt2",
-        "volume": 1.25,
-        "pitch": 0.8
+        "name": "mob/fox/hurt2",
+        "volume": 0.75,
+        "pitch": 0.4
       },
       {
-        "name": "nomansland:entity/deer/hurt3",
-        "volume": 1.25,
-        "pitch": 0.8
+        "name": "mob/fox/hurt3",
+        "volume": 0.75,
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/hurt4",
+        "volume": 0.75,
+        "pitch": 0.4
       }
     ],
     "subtitle": "nomansland.subtitles.entity.deer.hurt"
   },
-  "entity.deer.eat": {
+  "entity.deer.step": {
     "sounds": [
       {
         "name": "mob/cow/step1",

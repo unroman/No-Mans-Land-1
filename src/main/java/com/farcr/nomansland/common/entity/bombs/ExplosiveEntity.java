@@ -75,7 +75,7 @@ public class ExplosiveEntity extends ThrowableBombEntity {
     protected void explode() {
         Level level = this.level();
 
-        level.explode(this, Explosion.getDefaultDamageSource(level, this), (ExplosionDamageCalculator) null, this.getX(), this.getY(0.0625), this.getZ(), 2.5F, false, Level.ExplosionInteraction.TNT);
+        level.explode(this, Explosion.getDefaultDamageSource(level, this), null, this.getX(), this.getY(0.0625), this.getZ(), 3F, false, Level.ExplosionInteraction.TNT);
         // Light nearby campfires on fire
         BlockPos.withinManhattan(this.blockPosition(), 6, 4, 6).forEach(pos -> {
             BlockState state = level.getBlockState(pos);

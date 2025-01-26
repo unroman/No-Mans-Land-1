@@ -232,9 +232,9 @@ public class Deer extends Animal implements DeerVariantHolder {
         return NMLSounds.DEER_DEATH.get();
     }
 
-    protected void playStepSound(BlockPos pos, BlockState block) {
-        this.playSound(NMLSounds.DEER_STEP.get(), 0.15F, 1.0F);
-    }
+//    protected void playStepSound(BlockPos pos, BlockState block) {
+//        this.playSound(NMLSounds.DEER_STEP.get(), 0.15F, 1.0F);
+//    }
 
     protected float getSoundVolume() {
         return 0.4F;
