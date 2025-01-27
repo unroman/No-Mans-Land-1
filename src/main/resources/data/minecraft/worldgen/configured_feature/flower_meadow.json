@@ -24,7 +24,7 @@
             "slow_scale": 1.0,
             "states": [
               {
-                "Name": "minecraft:thistle"
+                "Name": "nomansland:thistle"
               },
               {
                 "Name": "minecraft:poppy"
