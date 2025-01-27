@@ -146,6 +146,11 @@ public class NMLBlocks {
     public static final DeferredBlock<FlowerPotBlock> POTTED_ACONITE = BLOCKS.register("potted_aconite",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.ACONITE,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).noOcclusion()));
+    public static final DeferredBlock<FlowerBlock> THISTLE = registerBlock("thistle",
+            () -> new FlowerBlock(MobEffects.SATURATION, 3, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_THISTLE = BLOCKS.register("potted_thistle",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.THISTLE,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).noOcclusion()));
     public static final DeferredBlock<FlowerBlock> BLUE_LUPINE = registerBlock("blue_lupine",
             () -> new FlowerBlock(MobEffects.ABSORPTION, 5, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
     public static final DeferredBlock<FlowerPotBlock> POTTED_BLUE_LUPINE = BLOCKS.register("potted_blue_lupine",

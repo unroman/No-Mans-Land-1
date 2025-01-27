@@ -55,6 +55,8 @@ public class NMLItems {
             () -> new Item(new Item.Properties().food(NMLFoods.RAW_VENISON)));
     public static final DeferredItem<Item> COOKED_VENISON = registerItem("cooked_venison",
             () -> new Item(new Item.Properties().food(NMLFoods.COOKED_VENISON)));
+    public static final Optional<DeferredItem<Item>> SEARED_VENISON = Mods.FARMERSDELIGHT.runIfInstalled(() ->
+            registerItem("seared_venison", () -> new Item(new Item.Properties().food(NMLFoods.SEARED_VENISON))));
 
     public static final DeferredItem<Item> BILLHOOK_BASS = registerItem("billhook_bass",
             () -> new Item(new Item.Properties().food(NMLFoods.BILLHOOK_BASS)));
