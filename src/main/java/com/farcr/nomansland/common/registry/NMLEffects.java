@@ -16,5 +16,5 @@ public class NMLEffects {
             DeferredRegister.create(Registries.MOB_EFFECT, NoMansLand.MODID);
 
     public static final DeferredHolder<MobEffect, MobEffect> FLAMMABLE = MOB_EFFECTS.register("flammable",
-            () -> new FlammableEffect(MobEffectCategory.HARMFUL, 4796183));
+            () -> new FlammableEffect(MobEffectCategory.NEUTRAL, 4796183));
 }
