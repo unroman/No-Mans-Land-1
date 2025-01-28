@@ -146,7 +146,7 @@ dependencies {
     localRuntime "maven.modrinth:nbt-autocomplete:McjFDyOt"
     localRuntime "maven.modrinth:cyanide:v4LiMGGH"
 
-    localRuntime "curse.maven:emi-580555:5872513"
+//    localRuntime "curse.maven:emi-580555:5872513"
 
     localRuntime "me.djtheredstoner:DevAuth-neoforge:1.2.1"
 }

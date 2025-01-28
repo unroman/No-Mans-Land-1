@@ -1,7 +1,13 @@
 package com.farcr.nomansland.common.effect;
 
 import com.farcr.nomansland.common.registry.NMLEffects;
+import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.data.tags.DamageTypeTags;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
@@ -15,7 +21,7 @@ import net.neoforged.neoforge.common.Tags;
 
 public class FlammableEffect extends MobEffect {
     public FlammableEffect(MobEffectCategory category, int color) {
-        super(category, color);
+        super(category, color, ParticleTypes.FLAME);
     }
 
     @Override
@@ -27,22 +33,25 @@ public class FlammableEffect extends MobEffect {
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
         MobEffectInstance flammableEffectInstance = livingEntity.getEffect(NMLEffects.FLAMMABLE);
         if (flammableEffectInstance != null) {
-            DamageSource damageSource = livingEntity.getLastDamageSource();
-            if (damageSource != null && (livingEntity.isOnFire() || livingEntity.level().getBlockState(livingEntity.blockPosition()).is(BlockTags.FIRE)) && (damageSource.is(DamageTypes.IN_FIRE) || damageSource.is(DamageTypes.ON_FIRE))) {
-                livingEntity.hurt(livingEntity.getLastDamageSource(), 10 + amplifier*4);
-                livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + flammableEffectInstance.getDuration());
-                livingEntity.removeEffect(NMLEffects.FLAMMABLE);
-            }
-
-            boolean inWaterOrRain = livingEntity.isInWaterOrRain();
-
-            livingEntity.setDiscardFriction(inWaterOrRain);
-
-            if (inWaterOrRain) {
-                flammableEffectInstance.mapDuration(duration -> duration-1);
+            if (livingEntity.isInWaterOrRain() && livingEntity instanceof ServerPlayer) {
+                flammableEffectInstance.update(new MobEffectInstance(flammableEffectInstance.getEffect(), flammableEffectInstance.getDuration() - 100, flammableEffectInstance.getAmplifier()));
             }
         }
 
         return super.applyEffectTick(livingEntity, amplifier);
+    }
+
+    @Override
+    public void onMobHurt(LivingEntity livingEntity, int amplifier, DamageSource damageSource, float amount) {
+        MobEffectInstance flammableEffectInstance = livingEntity.getEffect(NMLEffects.FLAMMABLE);
+        if (flammableEffectInstance != null) {
+            if ((livingEntity.isOnFire() || livingEntity.level().getBlockState(livingEntity.blockPosition()).is(BlockTags.FIRE)) && (damageSource.is(DamageTypes.IN_FIRE) || damageSource.is(DamageTypes.ON_FIRE))) {
+                livingEntity.hurt(damageSource, 10 + amplifier*4);
+                livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + flammableEffectInstance.getDuration());
+                livingEntity.removeEffect(NMLEffects.FLAMMABLE);
+            }
+        }
+
+        super.onMobHurt(livingEntity, amplifier, damageSource, amount);
     }
 }

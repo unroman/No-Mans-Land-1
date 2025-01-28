@@ -1,5 +1,6 @@
 package com.farcr.nomansland.client.ambience.fogmodifiers;
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.client.ambience.FogModifierHandler;
 
 public class FogLooksGoodNowModifier extends FogModifier {
@@ -10,6 +11,6 @@ public class FogLooksGoodNowModifier extends FogModifier {
 
     @Override
     public boolean active(FogModifierHandler.FogContext context) {
-        return true;
+        return NMLConfig.FOG_MODIFIERS.get();
     }
 }

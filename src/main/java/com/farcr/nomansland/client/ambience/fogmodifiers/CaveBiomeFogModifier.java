@@ -1,5 +1,6 @@
 package com.farcr.nomansland.client.ambience.fogmodifiers;
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.client.ambience.FogModifierHandler;
 import net.neoforged.neoforge.common.Tags;
 
@@ -16,6 +17,6 @@ public class CaveBiomeFogModifier extends FogModifier {
 
     @Override
     public boolean active(FogModifierHandler.FogContext context) {
-        return context.biome().is(Tags.Biomes.IS_UNDERGROUND);
+        return context.biome().is(Tags.Biomes.IS_UNDERGROUND) && NMLConfig.FOG_MODIFIERS.get();
     }
 }

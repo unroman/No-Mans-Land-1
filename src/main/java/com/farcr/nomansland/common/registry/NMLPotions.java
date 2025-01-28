@@ -11,5 +11,5 @@ public class NMLPotions {
     public static final DeferredRegister<Potion> POTIONS =
             DeferredRegister.create(Registries.POTION, NoMansLand.MODID);
 
-    public static final DeferredHolder<Potion, Potion> FLAMMABLE = POTIONS.register("flammable", () -> new Potion(new MobEffectInstance(NMLEffects.FLAMMABLE, 100, 0)));
+    public static final DeferredHolder<Potion, Potion> FLAMMABLE = POTIONS.register("flammable", () -> new Potion(new MobEffectInstance(NMLEffects.FLAMMABLE, 2400, 0)));
 }
