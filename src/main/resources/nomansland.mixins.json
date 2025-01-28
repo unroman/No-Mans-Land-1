@@ -11,6 +11,7 @@
     "DispenserBlockMixin",
     "EntityMixin",
     "FallLocationMixin",
+    "IBlockExtensionMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
     "MobMixin",

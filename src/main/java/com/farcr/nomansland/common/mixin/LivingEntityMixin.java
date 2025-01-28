@@ -35,9 +35,4 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
             ci.cancel();
         }
     }
-
-    @Redirect(method = "handleOnClimbable", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;isScaffolding(Lnet/minecraft/world/entity/LivingEntity;)Z"))
-    private boolean handleOnClimbable(BlockState instance, LivingEntity livingEntity) {
-        return instance.is(Blocks.SCAFFOLDING) || instance.is(NMLBlocks.WOODEN_SCAFFOLDING);
-    }
 }
