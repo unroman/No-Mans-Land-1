@@ -23,7 +23,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BeardMossBlock extends Block implements BonemealableBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
-    protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
     public BeardMossBlock(BlockBehaviour.Properties properties) {
         super(properties);

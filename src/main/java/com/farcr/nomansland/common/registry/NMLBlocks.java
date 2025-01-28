@@ -117,7 +117,7 @@ public class NMLBlocks {
     public static final DeferredBlock<WaterSurfacePlant> WATER_MOSAIC = BLOCKS.register("water_mosaic",
             () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<BeardMossBlock> BEARD_MOSS = registerBlock("beard_moss",
-            () -> new BeardMossBlock(Block.Properties.of().mapColor(MapColor.PLANT).instabreak().sound(SoundType.MOSS).noOcclusion().noCollission()));
+            () -> new BeardMossBlock(Block.Properties.of().mapColor(MapColor.PLANT).instabreak().sound(SoundType.MOSS).noOcclusion().noCollission().offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final DeferredBlock<LeavesBlock> YELLOW_BIRCH_LEAVES = registerBlock("yellow_birch_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_LEAVES).isViewBlocking((s, g, p) -> false).isSuffocating(((s, g, p) -> false))));
     public static final DeferredBlock<SaplingBlock> YELLOW_BIRCH_SAPLING = registerBlock("yellow_birch_sapling",

@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "nomansland:duckweed"
+            "tag": "nomansland:alternative_moss"
         },
         "C": {
-            "item": "minecraft:cobblestone"
+            "item": "nomansland:cobblestone_bricks"
         }
     },
     "result": {
-        "id": "minecraft:mossy_cobblestone",
+        "id": "nomansland:mossy_cobblestone_bricks",
         "count": 1
     }
 }
