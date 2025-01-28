@@ -45,6 +45,8 @@
   "block.nomansland.olivine_tiles": "Олівінові кахлі",
   "block.nomansland.aconite": "Тоя",
   "block.nomansland.potted_aconite": "Тоя в горщику",
+  "block.nomansland.thistle": "Thistle",
+  "block.nomansland.potted_thistle": "Potted Thistle",
   "block.nomansland.autumn_crocus": "Пізньоцвіт",
   "block.nomansland.potted_autumn_crocus": "Пізньоцвіт у горщику",
   "block.nomansland.wild_mint": "Дика м'ята",
@@ -307,8 +309,9 @@
   "item.nomansland.horse_steak": "Конячий стейк",
   "item.nomansland.raw_venison": "Сира оленина",
   "item.nomansland.cooked_venison": "Смажена оленина",
+  "item.nomansland.seared_venison": "Seared Venison",
   "item.nomansland.resin": "Смола",
-  "item.nomansland.resin_oil_bottle": "Пляшка смоляної олії",
+  "item.nomansland.resin_oil_bottle.effect.flammable": "Resin Oil Bottle",
   "item.nomansland.firebomb": "Запальна бомба",
   "item.nomansland.explosive": "Вибухівка",
   "nomansland.subtitles.block.spike_trap.extend": "Шипи висуваються",
@@ -334,5 +337,6 @@
   "death.attack.nomansland.spike_skewer": "%1$s було нанизано шипастою пасткою",
   "death.attack.nomansland.spike_skewer.player": "%1$s було нанизано шипастою пасткою під час битви з %2$s",
   "entity.nomansland.explosive": "Explosive",
-  "entity.nomansland.firebomb": "Firebomb"
+  "entity.nomansland.firebomb": "Firebomb",
+  "effect.nomansland.flammable": "Flammable"
 }
