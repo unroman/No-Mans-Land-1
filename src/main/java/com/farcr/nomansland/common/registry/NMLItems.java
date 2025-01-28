@@ -24,6 +24,7 @@ import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import vectorwing.farmersdelight.common.registry.ModEffects;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -57,7 +58,7 @@ public class NMLItems {
             () -> new Item(new Item.Properties().food(NMLFoods.COOKED_VENISON)));
     public static final Optional<DeferredItem<Item>> SEARED_VENISON = Mods.FARMERSDELIGHT.runIfInstalled(() ->
             registerItem("seared_venison", () -> new Item(new Item.Properties().food(NMLFoods.SEARED_VENISON))));
-
+//TODO: TOOLTIP ^^^
     public static final DeferredItem<Item> BILLHOOK_BASS = registerItem("billhook_bass",
             () -> new Item(new Item.Properties().food(NMLFoods.BILLHOOK_BASS)));
     public static final DeferredItem<Item> COOKED_BILLHOOK_BASS = registerItem("cooked_billhook_bass",

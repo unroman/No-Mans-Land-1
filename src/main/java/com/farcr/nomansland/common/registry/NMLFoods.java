@@ -1,8 +1,11 @@
 package com.farcr.nomansland.common.registry;
 
+import com.farcr.nomansland.integration.Mods;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Items;
 import vectorwing.farmersdelight.common.effect.NourishmentEffect;
+import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class NMLFoods {
     public static final FoodProperties MASHED_POTATOES_WITH_MUSHROOMS = new FoodProperties.Builder().nutrition(10).saturationModifier(0.9f).usingConvertsTo(Items.BOWL).build();
@@ -17,7 +20,8 @@ public class NMLFoods {
     public static final FoodProperties RAW_VENISON = new FoodProperties.Builder().nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties COOKED_VENISON = new FoodProperties.Builder().nutrition(6).saturationModifier(0.8f).build();
 //TODO: GIVE NOURISHMENT
-    public static final FoodProperties SEARED_VENISON = new FoodProperties.Builder().nutrition(12).saturationModifier(0.9f).usingConvertsTo(Items.BOWL).build();
+    public static final FoodProperties SEARED_VENISON = Mods.FARMERSDELIGHT.isLoaded() ? new FoodProperties.Builder().nutrition(12).saturationModifier(0.9f).usingConvertsTo(Items.BOWL)
+        .effect(new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0), 1.0f).build(): null;
 
     public static final FoodProperties BILLHOOK_BASS = new FoodProperties.Builder().nutrition(3).saturationModifier(0.1F).build();
     public static final FoodProperties COOKED_BILLHOOK_BASS = new FoodProperties.Builder().nutrition(7).saturationModifier(0.8F).build();
