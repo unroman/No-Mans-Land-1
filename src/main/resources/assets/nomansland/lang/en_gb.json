@@ -45,6 +45,8 @@
   "block.nomansland.olivine_tiles": "Olivine Tiles",
   "block.nomansland.aconite": "Aconite",
   "block.nomansland.potted_aconite": "Potted Aconite",
+  "block.nomansland.thistle": "Thistle",
+  "block.nomansland.potted_thistle": "Potted Thistle",
   "block.nomansland.autumn_crocus": "Autumn Crocus",
   "block.nomansland.potted_autumn_crocus": "Potted Autumn Crocus",
   "block.nomansland.wild_mint": "Wild Mint",
@@ -307,8 +309,9 @@
   "item.nomansland.horse_steak": "Horse Steak",
   "item.nomansland.raw_venison": "Raw Venison",
   "item.nomansland.cooked_venison": "Cooked Venison",
+  "item.nomansland.seared_venison": "Seared Venison",
   "item.nomansland.resin": "Resin",
-  "item.nomansland.resin_oil_bottle": "Resin Oil Bottle",
+  "item.nomansland.resin_oil_bottle.effect.flammable": "Resin Oil Bottle",
   "item.nomansland.firebomb": "Firebomb",
   "item.nomansland.explosive": "Explosive",
   "nomansland.subtitles.block.spike_trap.extend": "Spikes extend",
@@ -334,5 +337,6 @@
   "death.attack.nomansland.spike_skewer": "%1$s was skewered by a spike trap",
   "death.attack.nomansland.spike_skewer.player": "%1$s was skewered by a spike trap while fighting %2$s",
   "entity.nomansland.explosive": "Explosive",
-  "entity.nomansland.firebomb": "Firebomb"
+  "entity.nomansland.firebomb": "Firebomb",
+  "effect.nomansland.flammable": "Flammable"
 }
