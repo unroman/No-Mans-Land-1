@@ -45,6 +45,8 @@
   "block.nomansland.olivine_tiles": "Piastrelle olivine",
   "block.nomansland.aconite": "Aconito",
   "block.nomansland.potted_aconite": "Aconito in un vaso",
+  "block.nomansland.thistle": "Thistle",
+  "block.nomansland.potted_thistle": "Potted Thistle",
   "block.nomansland.autumn_crocus": "Colchico d'autunno",
   "block.nomansland.potted_autumn_crocus": "Colchico d'autunno in un vaso",
   "block.nomansland.wild_mint": "Menta selvaggia",
@@ -307,8 +309,9 @@
   "item.nomansland.horse_steak": "Bistecca equina",
   "item.nomansland.raw_venison": "Carne di cervo cruda",
   "item.nomansland.cooked_venison": "Carne di cervo cotta",
+  "item.nomansland.seared_venison": "Seared Venison",
   "item.nomansland.resin": "Resina",
-  "item.nomansland.resin_oil_bottle": "Bottiglia d'olio di resina",
+  "item.nomansland.resin_oil_bottle.effect.flammable": "Resin Oil Bottle",
   "item.nomansland.firebomb": "Bomba incendiaria",
   "item.nomansland.explosive": "Esplosivo",
   "nomansland.subtitles.block.spike_trap.extend": "Spikes extend",
@@ -334,5 +337,6 @@
   "death.attack.nomansland.spike_skewer": "%1$s è stato/a impalato da una trappola di spine",
   "death.attack.nomansland.spike_skewer.player": "%1$s è stato/a impalato da una trappola di spine mentre combatteva %2$s",
   "entity.nomansland.explosive": "Explosive",
-  "entity.nomansland.firebomb": "Firebomb"
+  "entity.nomansland.firebomb": "Firebomb",
+  "effect.nomansland.flammable": "Flammable"
 }
