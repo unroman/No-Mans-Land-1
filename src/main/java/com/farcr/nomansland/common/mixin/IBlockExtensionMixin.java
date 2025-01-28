@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(IBlockExtension.class)
 public class IBlockExtensionMixin {
-    @Inject(method = "isScaffolding", at = @At("RETURN"))
+    @Inject(method = "isScaffolding", at = @At("RETURN"), cancellable = true)
     private void isScaffolding(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         if (state.is(NMLBlocks.WOODEN_SCAFFOLDING)) cir.setReturnValue(true);
     }
