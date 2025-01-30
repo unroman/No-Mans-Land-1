@@ -4,15 +4,12 @@ import com.farcr.nomansland.common.registry.NMLBiomes;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.biome.sub.BiomeParameterTargets;
 import com.terraformersmc.biolith.api.biome.sub.CriterionBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 

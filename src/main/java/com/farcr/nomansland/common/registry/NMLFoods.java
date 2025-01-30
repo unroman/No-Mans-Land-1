@@ -4,7 +4,6 @@ import com.farcr.nomansland.integration.Mods;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Items;
-import vectorwing.farmersdelight.common.effect.NourishmentEffect;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class NMLFoods {

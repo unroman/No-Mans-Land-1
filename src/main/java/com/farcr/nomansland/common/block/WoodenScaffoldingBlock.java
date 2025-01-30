@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -74,5 +75,10 @@ public class WoodenScaffoldingBlock extends ScaffoldingBlock {
     // more like isTwink
     private boolean isBottom(BlockGetter level, BlockPos pos, int distance) {
         return distance > 0 && !level.getBlockState(pos.below()).is(this);
+    }
+
+    @Override
+    public boolean isScaffolding(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
+        return true;
     }
 }

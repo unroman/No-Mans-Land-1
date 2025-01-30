@@ -2,8 +2,6 @@ package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.blockentity.*;
-import com.farcr.nomansland.integration.FDIntegration;
-import com.farcr.nomansland.integration.Mods;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -43,7 +41,4 @@ public class NMLBlockEntities {
     public static final Supplier<BlockEntityType<RemainsBlockEntity>> REMAINS =
             BLOCK_ENTITIES.register("remains", () ->
                     BlockEntityType.Builder.of(RemainsBlockEntity::new, NMLBlocks.REMAINS.get()).build(null));
-
-    public static final Supplier<BlockEntityType<?>> CABINET = Mods.FARMERSDELIGHT.isLoaded() ?
-            BLOCK_ENTITIES.register("nml_cabinets", FDIntegration.cabinetBlockEntity()) : null;
 }

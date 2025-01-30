@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
 public class NMLSignBlockEntity extends SignBlockEntity {
     public NMLSignBlockEntity(BlockPos pos, BlockState state) {

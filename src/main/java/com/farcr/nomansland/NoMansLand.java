@@ -3,6 +3,8 @@ package com.farcr.nomansland;
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
+import com.farcr.nomansland.integration.FDIntegration;
+import com.farcr.nomansland.integration.Mods;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -39,6 +41,8 @@ public class NoMansLand {
         NMLEffects.MOB_EFFECTS.register(modEventBus);
         NMLPotions.POTIONS.register(modEventBus);
         NMLBiomePlacements.register();
+
+        if (Mods.FARMERSDELIGHT.isLoaded()) FDIntegration.register();
 
         modEventBus.addListener(NMLItems::addCreative);
         modEventBus.addListener(this::commonSetup);

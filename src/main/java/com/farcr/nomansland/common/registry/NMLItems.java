@@ -12,7 +12,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
@@ -24,11 +23,8 @@ import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import vectorwing.farmersdelight.common.registry.ModEffects;
 
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class NMLItems {
@@ -56,9 +52,7 @@ public class NMLItems {
             () -> new Item(new Item.Properties().food(NMLFoods.RAW_VENISON)));
     public static final DeferredItem<Item> COOKED_VENISON = registerItem("cooked_venison",
             () -> new Item(new Item.Properties().food(NMLFoods.COOKED_VENISON)));
-    public static final Optional<DeferredItem<Item>> SEARED_VENISON = Mods.FARMERSDELIGHT.runIfInstalled(() ->
-            registerItem("seared_venison", () -> new Item(new Item.Properties().food(NMLFoods.SEARED_VENISON))));
-//TODO: TOOLTIP ^^^
+
     public static final DeferredItem<Item> BILLHOOK_BASS = registerItem("billhook_bass",
             () -> new Item(new Item.Properties().food(NMLFoods.BILLHOOK_BASS)));
     public static final DeferredItem<Item> COOKED_BILLHOOK_BASS = registerItem("cooked_billhook_bass",
@@ -157,7 +151,6 @@ public class NMLItems {
             () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Item.Properties()));
-    public static final Optional<DeferredItem<Item>> FIELD_MUSHROOM_COLONY = Mods.FARMERSDELIGHT.runIfInstalled(() -> registerItem("field_mushroom_colony", FDIntegration.fieldMushroomColonyItem()));
     public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
             () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Item.Properties()));
 
@@ -203,7 +196,7 @@ public class NMLItems {
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_DOOR);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE_GATE);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE);
-            NMLBlocks.PINE_CABINET.ifPresent(cabinet -> insertAfter(event, Items.SPRUCE_BUTTON, cabinet));
+            if (Mods.FARMERSDELIGHT.isLoaded()) insertAfter(event, Items.SPRUCE_BUTTON, FDIntegration.PINE_CABINET);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.TRIMMED_PINE_PLANKS);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BOOKSHELF);
             insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_SLAB);
@@ -220,7 +213,7 @@ public class NMLItems {
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_DOOR);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE_GATE);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE);
-            NMLBlocks.WALNUT_CABINET.ifPresent(cabinet -> insertAfter(event, Items.DARK_OAK_BUTTON, cabinet));
+            if (Mods.FARMERSDELIGHT.isLoaded()) insertAfter(event, Items.DARK_OAK_BUTTON, FDIntegration.WALNUT_CABINET);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.TRIMMED_WALNUT_PLANKS);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BOOKSHELF);
             insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_SLAB);
@@ -240,7 +233,7 @@ public class NMLItems {
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_SLAB);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BOOKSHELF);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.TRIMMED_MAPLE_PLANKS);
-            NMLBlocks.MAPLE_CABINET.ifPresent(cabinet -> insertBefore(event, Items.DARK_OAK_LOG, cabinet));
+            if (Mods.FARMERSDELIGHT.isLoaded()) insertBefore(event, Items.DARK_OAK_LOG, FDIntegration.MAPLE_CABINET);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE_GATE);
             insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_DOOR);
@@ -257,7 +250,7 @@ public class NMLItems {
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_SLAB);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BOOKSHELF);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.TRIMMED_WILLOW_PLANKS);
-            NMLBlocks.WILLOW_CABINET.ifPresent(cabinet -> insertBefore(event, Items.MANGROVE_LOG, cabinet));
+            if (Mods.FARMERSDELIGHT.isLoaded()) insertBefore(event, Items.MANGROVE_LOG, FDIntegration.WILLOW_CABINET);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE_GATE);
             insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_DOOR);
@@ -339,7 +332,7 @@ public class NMLItems {
             insertBefore(event, Items.GRAVEL, NMLBlocks.SILT_PATH);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);
-            NMLBlocks.FIELD_MUSHROOM_COLONY.ifPresent(colony -> insertAfter(event, Items.RED_MUSHROOM, colony));
+            if (Mods.FARMERSDELIGHT.isLoaded()) insertAfter(event, Items.RED_MUSHROOM, FDIntegration.FIELD_MUSHROOM_COLONY);
             insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.SHELF_MUSHROOM_BLOCK);
             insertAfter(event, Items.RED_MUSHROOM_BLOCK, NMLBlocks.FIELD_MUSHROOM_BLOCK);
             insertAfter(event, Items.SPRUCE_LEAVES, NMLBlocks.FROSTED_LEAVES);

@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
+import com.farcr.nomansland.integration.FDIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,6 +15,6 @@ public class NMLCabinetBlockEntity extends CabinetBlockEntity {
 
     @Override
     public BlockEntityType<?> getType() {
-        return NMLBlockEntities.CABINET.get();
+        return FDIntegration.CABINET.get();
     }
 }

@@ -1,23 +1,15 @@
 package com.farcr.nomansland.common.effect;
 
 import com.farcr.nomansland.common.registry.NMLEffects;
-import com.farcr.nomansland.common.registry.NMLParticleTypes;
-import com.farcr.nomansland.data.tags.DamageTypeTags;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.Tags;
 
 public class FlammableEffect extends MobEffect {
     public FlammableEffect(MobEffectCategory category, int color) {

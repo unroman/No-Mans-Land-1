@@ -17,6 +17,7 @@
     "ProjectileMixin",
     "ServerLevelMixin",
     "SnowAndFreezeFeatureMixin",
+    "SnowyDirtBlockMixin",
     "SpreadingSnowyDirtBlockMixin",
     "ThrownPotionMixin",
     "TreeFeatureMixin",

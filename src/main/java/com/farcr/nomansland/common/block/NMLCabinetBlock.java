@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.block;
 
 import com.farcr.nomansland.common.blockentity.NMLCabinetBlockEntity;
-import com.farcr.nomansland.common.registry.NMLBlockEntities;
+import com.farcr.nomansland.integration.FDIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -41,6 +41,6 @@ public class NMLCabinetBlock extends CabinetBlock {
 
     @Override @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return NMLBlockEntities.CABINET.get().create(pos, state);
+        return FDIntegration.CABINET.get().create(pos, state);
     }
 }

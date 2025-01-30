@@ -141,9 +141,6 @@
     "nomansland:field_mushroom": {
       "chance": 0.2
     },
-    "nomansland:field_mushroom_colony": {
-      "chance": 0.8
-    },
     "nomansland:pear": {
       "chance": 0.4
     },
