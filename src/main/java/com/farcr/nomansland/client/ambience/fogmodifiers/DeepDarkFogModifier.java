@@ -17,6 +17,6 @@ public class DeepDarkFogModifier extends FogModifier {
 
     @Override
     public boolean active(FogModifierHandler.FogContext context) {
-        return context.biome().is(Biomes.DEEP_DARK) && NMLConfig.FOG_MODIFIERS.get();
+        return context.biome().is(Biomes.DEEP_DARK) && NMLConfig.FOG_MODIFIERS.get() && NMLConfig.DEEP_DARK_FOG_MODIFIER.get();
     }
 }

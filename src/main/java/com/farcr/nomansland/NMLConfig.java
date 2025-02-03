@@ -27,6 +27,9 @@ public class NMLConfig {
     public static ModConfigSpec CLIENT_CONFIG;
     public static final String CATEGORY_FOG_MODIFIERS = "fog_modifiers";
     public static ModConfigSpec.BooleanValue FOG_MODIFIERS;
+    public static ModConfigSpec.BooleanValue CAVE_BIOME_FOG_MODIFIER;
+    public static ModConfigSpec.BooleanValue DEEP_DARK_FOG_MODIFIER;
+    public static ModConfigSpec.BooleanValue FOGGY_BIOME_FOG_MODIFIER;
 
     static {
 
@@ -87,6 +90,15 @@ public class NMLConfig {
         FOG_MODIFIERS = CLIENT_BUILDER
                 .comment("If the custom fog modifiers are enabled")
                 .define("fogModifiers", true);
+        CAVE_BIOME_FOG_MODIFIER = CLIENT_BUILDER
+                .comment("If the cave biome fog modifier is enabled")
+                .define("caveBiomeFogModifier", true);
+        DEEP_DARK_FOG_MODIFIER = CLIENT_BUILDER
+                .comment("If the deep dark fog modifier is enabled")
+                .define("deepDarkFogModifier", true);
+        FOGGY_BIOME_FOG_MODIFIER = CLIENT_BUILDER
+                .comment("If the foggy biome fog modifier is enabled")
+                .define("foggyBiomeFogModifier", true);
         CLIENT_BUILDER.pop();
 
         CLIENT_CONFIG = CLIENT_BUILDER.build();

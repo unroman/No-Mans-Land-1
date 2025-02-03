@@ -17,6 +17,6 @@ public class CaveBiomeFogModifier extends FogModifier {
 
     @Override
     public boolean active(FogModifierHandler.FogContext context) {
-        return context.biome().is(Tags.Biomes.IS_UNDERGROUND) && NMLConfig.FOG_MODIFIERS.get();
+        return context.biome().is(Tags.Biomes.IS_UNDERGROUND) && NMLConfig.FOG_MODIFIERS.get() && NMLConfig.CAVE_BIOME_FOG_MODIFIER.get();
     }
 }

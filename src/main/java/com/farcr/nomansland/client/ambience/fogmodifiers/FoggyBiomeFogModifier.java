@@ -12,6 +12,6 @@ public class FoggyBiomeFogModifier extends FogModifier {
 
     @Override
     public boolean active(FogModifierHandler.FogContext context) {
-        return context.biome().is(NMLTags.HAS_DENSE_FOG) && NMLConfig.FOG_MODIFIERS.get();
+        return context.biome().is(NMLTags.HAS_DENSE_FOG) && NMLConfig.FOG_MODIFIERS.get() && NMLConfig.FOGGY_BIOME_FOG_MODIFIER.get();
     }
 }

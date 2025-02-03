@@ -136,7 +136,7 @@ public class FogModifierHandler {
 
         float startMul = AmbienceHandler.FOG_MODIFIER_HANDLER.getFogStartMultiplier(partialTicks);
         float endMul = AmbienceHandler.FOG_MODIFIER_HANDLER.getFogEndMultiplier(partialTicks);
-        float renderDistance = Minecraft.getInstance().options.renderDistance().get() * 16.0F;
+        float renderDistance = Minecraft.getInstance().options.getEffectiveRenderDistance() * 16.0F;
         float startAdd = AmbienceHandler.FOG_MODIFIER_HANDLER.getFogStartAddend(partialTicks) * renderDistance;
         float endAdd = AmbienceHandler.FOG_MODIFIER_HANDLER.getFogEndAddend(partialTicks) * renderDistance;
 
