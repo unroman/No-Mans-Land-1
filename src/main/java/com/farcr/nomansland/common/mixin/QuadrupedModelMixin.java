@@ -17,7 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(QuadrupedModel.class)
 public class QuadrupedModelMixin<T extends Entity> {
+
     @Shadow @Final protected ModelPart head;
+
     @Unique
     protected ModelPart root;
 

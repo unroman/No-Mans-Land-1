@@ -109,17 +109,17 @@ public class Deer extends Animal implements DeerVariantHolder {
         super.registerGoals();
 //        drinkGoal = new DeerDrinkWaterGoal(this);
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(0, new PanicGoal(this, 1.5));
-        goalSelector.addGoal(2, new BreedGoal(this, 1.5));
+        goalSelector.addGoal(0, new PanicGoal(this, 1.75));
+        goalSelector.addGoal(2, new BreedGoal(this, 1.25));
         goalSelector.addGoal(3, new FollowParentGoal(this, 1.5));
         goalSelector.addGoal(4, new DeerShedAntlersGoal(this));
 //        goalSelector.addGoal(4, drinkGoal);
         goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Monster.class, 12, 1.25, 1.5));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, 12, 1.25, 1.5, player -> !player.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player)));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Villager.class, 12, 1.25, 1.5));
-        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, LivingEntity.class, 12, 1.25, 1.5, livingEntity -> livingEntity instanceof  NeutralMob));
-        goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Monster.class, 12, 1.5, 1.75));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, 12, 1.5, 1.75, player -> !player.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player)));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Villager.class, 12, 1.5, 1.75));
+        goalSelector.addGoal(5, new AvoidEntityGoal<>(this, LivingEntity.class, 12, 1.5, 1.75, livingEntity -> livingEntity instanceof  NeutralMob));
+        goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 12));
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
 

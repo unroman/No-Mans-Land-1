@@ -39,7 +39,6 @@ public class NoMansLand {
         NMLFogModifiers.FOG_MODIFIERS.register(modEventBus);
         NMLMobVariants.FROG_VARIANTS.register(modEventBus);
         NMLEffects.MOB_EFFECTS.register(modEventBus);
-        NMLPotions.POTIONS.register(modEventBus);
         NMLBiomePlacements.register();
 
         if (Mods.FARMERSDELIGHT.isLoaded()) FDIntegration.register();

@@ -119,9 +119,9 @@ repositories {
 }
 
 dependencies {
-    implementation("foundry.veil:veil-neoforge-$minecraft_version:$veil_version") {
-        exclude group: "maven.modrinth"
-    }
+//    implementation("foundry.veil:veil-neoforge-$minecraft_version:$veil_version") {
+//        exclude group: "maven.modrinth"
+//    }
 
     // Required dependencies
     implementation "com.terraformersmc:biolith-neoforge:$bt_version"

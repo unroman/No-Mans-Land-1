@@ -1,19 +1,32 @@
 package com.farcr.nomansland.common.effect;
 
+import com.farcr.nomansland.common.registry.NMLDamageTypes;
 import com.farcr.nomansland.common.registry.NMLEffects;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class FlammableEffect extends MobEffect {
-    public FlammableEffect(MobEffectCategory category, int color) {
-        super(category, color, ParticleTypes.FLAME);
+    public FlammableEffect(MobEffectCategory category, int color, ParticleOptions particleOptions) {
+        super(category, color, particleOptions);
     }
 
     @Override
@@ -26,7 +39,9 @@ public class FlammableEffect extends MobEffect {
         MobEffectInstance flammableEffectInstance = livingEntity.getEffect(NMLEffects.FLAMMABLE);
         if (flammableEffectInstance != null) {
             if (livingEntity.isInWaterOrRain() && livingEntity instanceof ServerPlayer) {
-                flammableEffectInstance.update(new MobEffectInstance(flammableEffectInstance.getEffect(), flammableEffectInstance.getDuration() - 100, flammableEffectInstance.getAmplifier()));
+                livingEntity.removeEffect(NMLEffects.FLAMMABLE);
+                int durationLost = livingEntity.isUnderWater() ? 4 : 2;
+                if (flammableEffectInstance.getDuration() > durationLost) livingEntity.addEffect(new MobEffectInstance(NMLEffects.FLAMMABLE, flammableEffectInstance.getDuration() - durationLost, flammableEffectInstance.getAmplifier()));
             }
         }
 
@@ -35,12 +50,34 @@ public class FlammableEffect extends MobEffect {
 
     @Override
     public void onMobHurt(LivingEntity livingEntity, int amplifier, DamageSource damageSource, float amount) {
+        Level level = livingEntity.level();
+
         MobEffectInstance flammableEffectInstance = livingEntity.getEffect(NMLEffects.FLAMMABLE);
-        if (flammableEffectInstance != null) {
-            if ((livingEntity.isOnFire() || livingEntity.level().getBlockState(livingEntity.blockPosition()).is(BlockTags.FIRE)) && (damageSource.is(DamageTypes.IN_FIRE) || damageSource.is(DamageTypes.ON_FIRE))) {
-                livingEntity.hurt(damageSource, 10 + amplifier*4);
-                livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + flammableEffectInstance.getDuration());
-                livingEntity.removeEffect(NMLEffects.FLAMMABLE);
+        if (flammableEffectInstance != null && damageSource.is(DamageTypeTags.IS_FIRE)) {
+            livingEntity.hurt(NMLDamageTypes.getSimpleDamageSource(level, DamageTypes.ON_FIRE), 10 + amplifier*4);
+            livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + flammableEffectInstance.getDuration());
+            livingEntity.removeEffect(NMLEffects.FLAMMABLE);
+
+            FireBlock delegate = (FireBlock) Blocks.FIRE;
+
+            if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
+                var positions = BlockPos.betweenClosedStream(livingEntity.getBoundingBox().move(-2, 0, -2).inflate(2, 0, 2))
+                        .map(BlockPos::immutable).distinct().collect(Collectors.toCollection(ArrayList::new));
+                Collections.shuffle(positions);
+
+                for (BlockPos pos : positions) {
+                    if (level.isRaining() && delegate.isNearRain(level, pos)) {
+                        continue;
+                    }
+
+                    for (Direction d : Direction.values()) {
+                        if (BaseFireBlock.canBePlacedAt(level, pos, d)) {
+                            BlockState state = BaseFireBlock.getState(level, pos);
+                            level.setBlock(pos, state, 3);
+                        }
+                    }
+                    break;
+                }
             }
         }
 
