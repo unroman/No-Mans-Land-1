@@ -28,6 +28,7 @@ public class NMLFlammables {
         fireBlock.setFlammable(NMLBlocks.CATTAIL.get(), 30, 60);
         fireBlock.setFlammable(NMLBlocks.REEDS.get(), 30, 60);
         fireBlock.setFlammable(NMLBlocks.CAVE_WEEDS.get(), 30, 60);
+        fireBlock.setFlammable(NMLBlocks.SHELF_MUSHROOM_BLOCK.get(), 30, 60);
 
         fireBlock.setFlammable(NMLBlocks.PINE_PLANKS.get(), 5, 20);
         fireBlock.setFlammable(NMLBlocks.PINE_STAIRS.get(), 5, 20);
