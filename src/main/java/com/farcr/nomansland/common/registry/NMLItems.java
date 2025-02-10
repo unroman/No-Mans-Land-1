@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.Block;
@@ -33,133 +34,133 @@ import java.util.function.Supplier;
 public class NMLItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(NoMansLand.MODID);
     public static final DeferredItem<Item> NO_MANS_GLOBE = ITEMS.register("no_mans_globe",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Properties()));
     public static final DeferredItem<Item> TRINKET = ITEMS.register("trinket",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Properties()));
     public static LinkedHashSet<DeferredItem<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
     //Foods
     public static final DeferredItem<Item> MASHED_POTATOES_WITH_MUSHROOMS = registerItem("mashed_potatoes_with_mushrooms",
-            () -> new Item(new Item.Properties().food(NMLFoods.MASHED_POTATOES_WITH_MUSHROOMS).stacksTo(1)));
+            () -> new Item(new Properties().food(NMLFoods.MASHED_POTATOES_WITH_MUSHROOMS).stacksTo(1)));
     public static final DeferredItem<Item> GRILLED_MUSHROOMS = registerItem("grilled_mushrooms",
-            () -> new Item(new Item.Properties().food(NMLFoods.GRILLED_MUSHROOMS)));
+            () -> new Item(new Properties().food(NMLFoods.GRILLED_MUSHROOMS)));
 
     public static final DeferredItem<Item> FROG_LEG = registerItem("frog_leg",
-            () -> new Item(new Item.Properties().food(NMLFoods.FROG_LEG)));
+            () -> new Item(new Properties().food(NMLFoods.FROG_LEG)));
     public static final DeferredItem<Item> COOKED_FROG_LEG = registerItem("cooked_frog_leg",
-            () -> new Item(new Item.Properties().food(NMLFoods.COOKED_FROG_LEG)));
+            () -> new Item(new Properties().food(NMLFoods.COOKED_FROG_LEG)));
     public static final DeferredItem<Item> RAW_HORSE = registerItem("raw_horse",
-            () -> new Item(new Item.Properties().food(NMLFoods.RAW_HORSE)));
+            () -> new Item(new Properties().food(NMLFoods.RAW_HORSE)));
     public static final DeferredItem<Item> HORSE_STEAK = registerItem("horse_steak",
-            () -> new Item(new Item.Properties().food(NMLFoods.HORSE_STEAK)));
+            () -> new Item(new Properties().food(NMLFoods.HORSE_STEAK)));
     public static final DeferredItem<Item> RAW_VENISON = registerItem("raw_venison",
-            () -> new Item(new Item.Properties().food(NMLFoods.RAW_VENISON)));
+            () -> new Item(new Properties().food(NMLFoods.RAW_VENISON)));
     public static final DeferredItem<Item> COOKED_VENISON = registerItem("cooked_venison",
-            () -> new Item(new Item.Properties().food(NMLFoods.COOKED_VENISON)));
+            () -> new Item(new Properties().food(NMLFoods.COOKED_VENISON)));
 
     public static final DeferredItem<Item> BILLHOOK_BASS = registerItem("billhook_bass",
-            () -> new Item(new Item.Properties().food(NMLFoods.BILLHOOK_BASS)));
+            () -> new Item(new Properties().food(NMLFoods.BILLHOOK_BASS)));
     public static final DeferredItem<Item> COOKED_BILLHOOK_BASS = registerItem("cooked_billhook_bass",
-            () -> new Item(new Item.Properties().food(NMLFoods.COOKED_BILLHOOK_BASS)));
+            () -> new Item(new Properties().food(NMLFoods.COOKED_BILLHOOK_BASS)));
 //    public static final DeferredItem<Item> CAVE_CARP = registerItem("cave_carp",
-//            () -> new Item(new Item.Properties().food(NMLFoods.CAVE_CARP)));
+//            () -> new Item(new Properties().food(NMLFoods.CAVE_CARP)));
 
     public static final DeferredItem<Item> PEAR = registerItem("pear",
-            () -> new Item(new Item.Properties().food(NMLFoods.PEAR)));
+            () -> new Item(new Properties().food(NMLFoods.PEAR)));
     public static final DeferredItem<Item> SYRUPED_PEAR = registerItem("syruped_pear",
-            () -> new MapleFoodItem(new Item.Properties().food(NMLFoods.SYRUPED_PEAR)));
+            () -> new MapleFoodItem(new Properties().food(NMLFoods.SYRUPED_PEAR)));
     public static final DeferredItem<Item> PANCAKE = registerItem("pancake",
-            () -> new MapleFoodItem(new Item.Properties().food(NMLFoods.PANCAKE)));
+            () -> new MapleFoodItem(new Properties().food(NMLFoods.PANCAKE)));
     public static final DeferredItem<Item> PEAR_COBBLER = registerItem("pear_cobbler",
-            () -> new Item(new Item.Properties().food(NMLFoods.PEAR_COBBLER)));
+            () -> new Item(new Properties().food(NMLFoods.PEAR_COBBLER)));
     //TODO: FD compat pear juice and cobbler slice
     public static final DeferredItem<Item> HONEYED_APPLE = registerItem("honeyed_apple",
-            () -> new HoneyFoodItem(new Item.Properties().food(NMLFoods.HONEYED_APPLE)));
+            () -> new HoneyFoodItem(new Properties().food(NMLFoods.HONEYED_APPLE)));
     public static final DeferredItem<Item> WALNUTS = registerItem("walnuts",
-            () -> new Item(new Item.Properties().food(NMLFoods.WALNUTS)));
+            () -> new Item(new Properties().food(NMLFoods.WALNUTS)));
 
     //Materials
     public static final DeferredItem<Item> MAPLE_SYRUP_BOTTLE = registerItem("maple_syrup_bottle",
-            () -> new MapleSyrupBottleItem(new Item.Properties().food(NMLFoods.MAPLE_SYRUP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
+            () -> new MapleSyrupBottleItem(new Properties().food(NMLFoods.MAPLE_SYRUP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 
     public static final DeferredItem<Item> RESIN = registerItem("resin",
-            () -> new FuelItem(new Item.Properties(), 1000));
+            () -> new FuelItem(new Properties(), 1000));
 
     public static final DeferredItem<Item> RESIN_OIL_BOTTLE = registerItem("resin_oil_bottle",
-            () -> new ResinOilBottleItem(new Item.Properties()
+            () -> new ResinOilBottleItem(new Properties()
                     .craftRemainder(Items.GLASS_BOTTLE)
                     .component(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), List.of(new MobEffectInstance(NMLEffects.FLAMMABLE, 2400))))));
 
     public static final DeferredItem<Item> SCONCE_TORCH = registerItem("sconce_torch",
-            () -> new StandingAndWallBlockItem(NMLBlocks.SCONCE_TORCH.get(), NMLBlocks.SCONCE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+            () -> new StandingAndWallBlockItem(NMLBlocks.SCONCE_TORCH.get(), NMLBlocks.SCONCE_WALL_TORCH.get(), new Properties(), Direction.DOWN));
     public static final DeferredItem<Item> SCONCE_SOUL_TORCH = registerItem("sconce_soul_torch",
-            () -> new StandingAndWallBlockItem(NMLBlocks.SCONCE_SOUL_TORCH.get(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+            () -> new StandingAndWallBlockItem(NMLBlocks.SCONCE_SOUL_TORCH.get(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), new Properties(), Direction.DOWN));
 
     public static final DeferredItem<Item> FIREBOMB = registerItem("firebomb",
-            () -> new FirebombItem(new Item.Properties().stacksTo(8)));
+            () -> new FirebombItem(new Properties().stacksTo(8)));
     public static final DeferredItem<Item> EXPLOSIVE = registerItem("explosive",
-            () -> new ExplosiveItem(new Item.Properties().stacksTo(8)));
+            () -> new ExplosiveItem(new Properties().stacksTo(8)));
 
     public static final DeferredItem<Item> WOODEN_SCAFFOLDING = registerItem("wooden_scaffolding",
-            () -> new ScaffoldingBlockItem(NMLBlocks.WOODEN_SCAFFOLDING.get(), new Item.Properties()));
+            () -> new ScaffoldingBlockItem(NMLBlocks.WOODEN_SCAFFOLDING.get(), new Properties()));
 
     public static final DeferredItem<Item> BILLHOOK_BASS_BUCKET = registerItem("billhook_bass_bucket",
             () -> new MobBucketItem(NMLEntities.BILLHOOK_BASS.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
-                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
+                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 
     public static final DeferredItem<Item> BILLHOOK_BASS_SPAWN_EGG = registerItem("billhook_bass_spawn_egg",
-            () -> new DeferredSpawnEggItem(NMLEntities.BILLHOOK_BASS, 6443553, 11236417, new Item.Properties()));
+            () -> new DeferredSpawnEggItem(NMLEntities.BILLHOOK_BASS, 6443553, 11236417, new Properties()));
 
     public static final DeferredItem<Item> DEER_SPAWN_EGG = registerItem("deer_spawn_egg",
-            () -> new DeferredSpawnEggItem(NMLEntities.DEER, 8412743, 12828347, new Item.Properties()));
+            () -> new DeferredSpawnEggItem(NMLEntities.DEER, 8412743, 12828347, new Properties()));
 
 //    public static final DeferredItem<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
 //            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
-//                    (new Item.Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
+//                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 
     public static final DeferredItem<Item> PINE_SIGN = registerItem("pine_sign",
-            () -> new SignItem(new Item.Properties().stacksTo(16), NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get()));
     public static final DeferredItem<Item> PINE_HANGING_SIGN = registerItem("pine_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> PINE_BOAT = registerItem("pine_boat",
-            () -> new BoatItem(false, BoatEntity.Type.PINE, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(false, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> PINE_CHEST_BOAT = registerItem("pine_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.PINE, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(true, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> MAPLE_SIGN = registerItem("maple_sign",
-            () -> new SignItem(new Item.Properties().stacksTo(16), NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get()));
     public static final DeferredItem<Item> MAPLE_HANGING_SIGN = registerItem("maple_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> MAPLE_BOAT = registerItem("maple_boat",
-            () -> new BoatItem(false, BoatEntity.Type.MAPLE, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(false, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> MAPLE_CHEST_BOAT = registerItem("maple_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.MAPLE, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(true, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
 //    public static final DeferredItem<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
-//            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Item.Properties()));
+//            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Properties()));
 
     public static final DeferredItem<Item> WALNUT_SIGN = registerItem("walnut_sign",
-            () -> new SignItem(new Item.Properties().stacksTo(16), NMLBlocks.WALNUT_SIGN.get(), NMLBlocks.WALNUT_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WALNUT_SIGN.get(), NMLBlocks.WALNUT_WALL_SIGN.get()));
     public static final DeferredItem<Item> WALNUT_HANGING_SIGN = registerItem("walnut_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WALNUT_BOAT = registerItem("walnut_boat",
-            () -> new BoatItem(false, BoatEntity.Type.WALNUT, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(false, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WALNUT_CHEST_BOAT = registerItem("walnut_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.WALNUT, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(true, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> WILLOW_SIGN = registerItem("willow_sign",
-            () -> new SignItem(new Item.Properties().stacksTo(16), NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()));
     public static final DeferredItem<Item> WILLOW_HANGING_SIGN = registerItem("willow_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WILLOW_BOAT = registerItem("willow_boat",
-            () -> new BoatItem(false, BoatEntity.Type.WILLOW, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(false, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WILLOW_CHEST_BOAT = registerItem("willow_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
 
-    public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Item.Properties()));
+    public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Properties()));
     public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
-            () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Item.Properties()));
+            () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Properties()));
 
     public static final DeferredItem<Item> WATER_MOSAIC = registerItem("water_mosaic",
-            () -> new PlaceOnWaterBlockItem(NMLBlocks.WATER_MOSAIC.get(), new Item.Properties()));
+            () -> new PlaceOnWaterBlockItem(NMLBlocks.WATER_MOSAIC.get(), new Properties()));
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();

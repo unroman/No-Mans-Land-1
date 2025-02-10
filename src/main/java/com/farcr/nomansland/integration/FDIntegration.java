@@ -6,12 +6,14 @@ import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLFoods;
 import com.farcr.nomansland.common.registry.NMLItems;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
+import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 
 import java.util.function.Supplier;
@@ -51,8 +53,7 @@ public class FDIntegration {
             () -> new MushroomColonyItem(FIELD_MUSHROOM_COLONY.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> SEARED_VENISON = registerItem("seared_venison",
-            () -> new Item(new Item.Properties().food(NMLFoods.SEARED_VENISON)));
-//TODO: TOOLTIP ^^^
+            () -> new ConsumableItem(new Item.Properties().food(NMLFoods.SEARED_VENISON).craftRemainder(Items.BOWL).stacksTo(16), true));
 
     public static void register() {
     }
