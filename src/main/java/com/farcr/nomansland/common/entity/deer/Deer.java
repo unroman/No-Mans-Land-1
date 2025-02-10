@@ -4,6 +4,7 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
 import com.farcr.nomansland.common.registry.NMLSounds;
@@ -163,7 +164,15 @@ public class Deer extends Animal implements DeerVariantHolder {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        setVariant((Holder<DeerVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/base")));
+        Holder<DeerVariant> variant;
+        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+            variant = (Holder<DeerVariant>) variantGroupData.variant;
+        } else {
+            variant = (Holder<DeerVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/base"));
+            spawnGroupData = new VariantGroupData(variant);
+        }
+
+        setVariant(variant);
         setAntlersVariant((Holder<DeerAntlersVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/antlers")));
         setPatternVariant((Holder<DeerPatternVariant>) NMLMobVariants.getVariantForSpawn(this, NMLMobVariants.getVariantKey("deer/pattern")));
 

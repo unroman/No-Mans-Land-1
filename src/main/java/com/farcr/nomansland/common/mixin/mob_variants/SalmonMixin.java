@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.SalmonVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
@@ -57,7 +58,15 @@ public abstract class SalmonMixin extends MobMixin implements VariantHolder<Hold
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         if (spawnType != MobSpawnType.BUCKET) {
-            this.setVariant((Holder<SalmonVariant>) NMLMobVariants.getVariantForSpawn(((Salmon) (Object) this)));
+            Holder<SalmonVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<SalmonVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<SalmonVariant>) NMLMobVariants.getVariantForSpawn(((Salmon) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
+
+            this.setVariant(variant);
         }
     }
 

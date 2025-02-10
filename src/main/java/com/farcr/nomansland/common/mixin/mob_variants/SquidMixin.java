@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.GlowSquidVariant;
 import com.farcr.nomansland.common.entity.mob_variant.SquidVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.mixinduck.GlowSquidDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
@@ -72,10 +73,28 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if (this.getType() == EntityType.GLOW_SQUID)
-            this.noMansLand$setGlowSquidVariant((Holder<GlowSquidVariant>) NMLMobVariants.getVariantForSpawn(((GlowSquid) (Object) this)));
-        else
-            this.setVariant((Holder<SquidVariant>) NMLMobVariants.getVariantForSpawn(((Squid) (Object) this)));    }
+        if (this.getType() == EntityType.GLOW_SQUID) {
+            Holder<GlowSquidVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<GlowSquidVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<GlowSquidVariant>) NMLMobVariants.getVariantForSpawn(((GlowSquid) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
+
+            this.noMansLand$setGlowSquidVariant(variant);
+        } else {
+            Holder<SquidVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<SquidVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<SquidVariant>) NMLMobVariants.getVariantForSpawn(((Squid) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
+
+            this.setVariant(variant);
+        }
+    }
 
     @Override
     public Holder<SquidVariant> getVariant() {

@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.BeeVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
@@ -59,7 +60,15 @@ public abstract class BeeMixin extends MobMixin implements VariantHolder<Holder<
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        this.setVariant((Holder<BeeVariant>) NMLMobVariants.getVariantForSpawn(((Bee) (Object) this)));
+        Holder<BeeVariant> variant;
+        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+            variant = (Holder<BeeVariant>) variantGroupData.variant;
+        } else {
+            variant = (Holder<BeeVariant>) NMLMobVariants.getVariantForSpawn(((Bee) (Object) this));
+            spawnGroupData = new VariantGroupData(variant);
+        }
+
+        this.setVariant(variant);
     }
 
     @Override

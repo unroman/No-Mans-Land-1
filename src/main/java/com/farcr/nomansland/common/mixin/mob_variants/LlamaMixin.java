@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.mob_variant.LlamaGroupData;
 import com.farcr.nomansland.common.entity.mob_variant.LlamaVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.mixinduck.LlamaDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
@@ -64,11 +64,11 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         Holder<LlamaVariant> llama$variant;
-        if (spawnGroupData instanceof LlamaGroupData llamaGroupData) {
-            llama$variant = llamaGroupData.variant;
+        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+            llama$variant = (Holder<LlamaVariant>) variantGroupData.variant;
         } else {
             llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this), NMLMobVariants.getVariantKey("llama"));
-            spawnGroupData = new LlamaGroupData(llama$variant);
+            spawnGroupData = new VariantGroupData(llama$variant);
         }
 
         this.noMansLand$setLlamaVariant(llama$variant);

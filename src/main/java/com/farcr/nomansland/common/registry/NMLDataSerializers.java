@@ -36,4 +36,5 @@ public class NMLDataSerializers {
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<SheepVariant>>> SHEEP_VARIANT = ENTITY_DATA_SERIALIZERS.register("sheep_variant", () -> EntityDataSerializer.forValueType(SheepVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<TurtleVariant>>> TURTLE_VARIANT = ENTITY_DATA_SERIALIZERS.register("turtle_variant", () -> EntityDataSerializer.forValueType(TurtleVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<BeeVariant>>> BEE_VARIANT = ENTITY_DATA_SERIALIZERS.register("bee_variant", () -> EntityDataSerializer.forValueType(BeeVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<RabbitVariant>>> RABBIT_VARIANT = ENTITY_DATA_SERIALIZERS.register("rabbit_variant", () -> EntityDataSerializer.forValueType(RabbitVariant.STREAM_CODEC));
 }

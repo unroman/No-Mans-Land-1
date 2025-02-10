@@ -55,7 +55,7 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
             }
         } else {
             int i;
-            if (sheep.hasCustomName() && "jeb_".equals(sheep.getName().getString())) {
+            if (sheep.hasCustomName() && sheep.getName().getString().equals("jeb_")) {
                 int k = sheep.tickCount / 25 + sheep.getId();
                 int l = DyeColor.values().length;
                 int i1 = k % l;

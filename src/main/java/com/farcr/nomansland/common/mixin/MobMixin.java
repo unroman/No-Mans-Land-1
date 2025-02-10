@@ -31,7 +31,7 @@ public abstract class MobMixin extends LivingEntityMixin {
     protected void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
     }
 
-    @Inject(method = "finalizeSpawn", at = @At("RETURN"))
+    @Inject(method = "finalizeSpawn", at = @At("RETURN"), cancellable = true)
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
     }
 }

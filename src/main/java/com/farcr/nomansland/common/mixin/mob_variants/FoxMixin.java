@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.FoxVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
@@ -60,7 +61,15 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        this.noMansLand$setFoxVariant((Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this)));
+        Holder<FoxVariant> variant;
+        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+            variant = (Holder<FoxVariant>) variantGroupData.variant;
+        } else {
+            variant = (Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this));
+            spawnGroupData = new VariantGroupData(variant);
+        }
+
+        this.noMansLand$setFoxVariant(variant);
     }
 
     @Override

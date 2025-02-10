@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.CowVariant;
 import com.farcr.nomansland.common.entity.mob_variant.MooshroomVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.mixinduck.MooshroomDuck;
 import com.farcr.nomansland.common.registry.NMLBlocks;
@@ -75,10 +76,27 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if (this.getType() == EntityType.MOOSHROOM)
-            this.noMansLand$setMooshroomVariant((Holder<MooshroomVariant>) NMLMobVariants.getVariantForSpawn(((MushroomCow) (Object) this)));
-        else
-            this.setVariant((Holder<CowVariant>) NMLMobVariants.getVariantForSpawn(((Cow) (Object) this)));
+        if (this.getType() == EntityType.MOOSHROOM) {
+            Holder<MooshroomVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<MooshroomVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<MooshroomVariant>) NMLMobVariants.getVariantForSpawn(((MushroomCow) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
+
+            this.noMansLand$setMooshroomVariant(variant);
+        } else {
+            Holder<CowVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<CowVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<CowVariant>) NMLMobVariants.getVariantForSpawn(((Cow) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
+
+            this.setVariant(variant);
+        }
     }
 
     @Override

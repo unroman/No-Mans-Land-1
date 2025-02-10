@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.PigOverlayVariant;
 import com.farcr.nomansland.common.entity.mob_variant.PigVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.mixinduck.PigDuck;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
@@ -74,7 +75,15 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        this.setVariant((Holder<PigVariant>) NMLMobVariants.getVariantForSpawn((Pig) (Object) this, NMLMobVariants.getVariantKey("pig/base")));
+        Holder<PigVariant> variant;
+        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+            variant = (Holder<PigVariant>) variantGroupData.variant;
+        } else {
+            variant = (Holder<PigVariant>) NMLMobVariants.getVariantForSpawn((Pig) (Object) this, NMLMobVariants.getVariantKey("pig/base"));
+            spawnGroupData = new VariantGroupData(variant);
+        }
+
+        this.setVariant(variant);
         this.noMansLand$setPigOverlayVariant((Holder<PigOverlayVariant>) NMLMobVariants.getVariantForSpawn((Pig) (Object) this, NMLMobVariants.getVariantKey("pig/overlay")));
     }
 

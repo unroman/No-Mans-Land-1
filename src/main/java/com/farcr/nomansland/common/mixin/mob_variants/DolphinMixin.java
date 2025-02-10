@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.DolphinVariant;
+import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.registry.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.NMLMobVariants;
@@ -56,7 +57,15 @@ public abstract class DolphinMixin extends MobMixin implements VariantHolder<Hol
 
     @Override
     protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        this.setVariant((Holder<DolphinVariant>) NMLMobVariants.getVariantForSpawn(((Dolphin) (Object) this)));
+        Holder<DolphinVariant> variant;
+        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+            variant = (Holder<DolphinVariant>) variantGroupData.variant;
+        } else {
+            variant = (Holder<DolphinVariant>) NMLMobVariants.getVariantForSpawn(((Dolphin) (Object) this));
+            spawnGroupData = new VariantGroupData(variant);
+        }
+
+        this.setVariant(variant);
     }
 
     @Override
