@@ -20,7 +20,7 @@ public class NMLFoods {
     public static final FoodProperties COOKED_VENISON = new FoodProperties.Builder().nutrition(6).saturationModifier(0.8f).build();
 //TODO: GIVE NOURISHMENT
     public static final FoodProperties SEARED_VENISON = Mods.FARMERSDELIGHT.isLoaded() ? new FoodProperties.Builder().nutrition(12).saturationModifier(0.9f).usingConvertsTo(Items.BOWL)
-        .effect(new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0), 1.0f).build(): null;
+        .effect(new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0, true, false), 1.0f).build(): null;
 
     public static final FoodProperties BILLHOOK_BASS = new FoodProperties.Builder().nutrition(3).saturationModifier(0.1F).build();
     public static final FoodProperties COOKED_BILLHOOK_BASS = new FoodProperties.Builder().nutrition(7).saturationModifier(0.8F).build();
