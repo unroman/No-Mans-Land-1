@@ -178,6 +178,7 @@ public class NMLItems {
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_SLAB);
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICK_STAIRS);
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.MOSSY_COBBLESTONE_BRICKS);
+            insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.CRACKED_COBBLESTONE_BRICKS);
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_WALL);
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_SLAB);
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_STAIRS);

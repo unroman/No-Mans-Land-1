@@ -276,6 +276,8 @@ public class NMLBlocks {
             () -> new SlabBlock(ofFullCopy(NMLBlocks.COBBLESTONE_BRICKS.get())));
     public static final DeferredBlock<WallBlock> COBBLESTONE_BRICK_WALL = registerBlock("cobblestone_brick_wall",
             () -> new WallBlock(ofFullCopy(NMLBlocks.COBBLESTONE_BRICKS.get())));
+    public static final DeferredBlock<Block> CRACKED_COBBLESTONE_BRICKS = registerBlock("cracked_cobblestone_bricks",
+            () -> new Block(ofFullCopy(NMLBlocks.COBBLESTONE_BRICKS.get())));
     public static final DeferredBlock<Block> MOSSY_COBBLESTONE_BRICKS = registerBlock("mossy_cobblestone_bricks",
             () -> new Block(ofFullCopy(Blocks.MOSSY_COBBLESTONE)));
     public static final DeferredBlock<StairBlock> MOSSY_COBBLESTONE_BRICK_STAIRS = registerBlock("mossy_cobblestone_brick_stairs",
