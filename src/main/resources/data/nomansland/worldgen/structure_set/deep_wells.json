@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "nomansland:deep_well",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 7014,
+    "separation": 5,
+    "spacing": 16,
+    "type": "minecraft:random_spread"
+  }
+}
