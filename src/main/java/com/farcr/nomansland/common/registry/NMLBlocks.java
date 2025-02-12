@@ -257,8 +257,16 @@ public class NMLBlocks {
     //Tiles
     public static final DeferredBlock<Block> MUNDANE_TILES = registerBlock("mundane_tiles",
             () -> new Block(ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> MUNDANE_TILE_STAIRS = registerBlock("mundane_tile_stairs",
+            () -> new StairBlock(MUNDANE_TILES.get().defaultBlockState(), ofFullCopy(NMLBlocks.MUNDANE_TILES.get())));
+    public static final DeferredBlock<SlabBlock> MUNDANE_TILE_SLAB = registerBlock("mundane_tile_slab",
+            () -> new SlabBlock(ofFullCopy(NMLBlocks.MUNDANE_TILES.get())));
     public static final DeferredBlock<Block> EARTHEN_TILES = registerBlock("earthen_tiles",
             () -> new Block(ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> EARTHEN_TILE_STAIRS = registerBlock("earthen_tile_stairs",
+            () -> new StairBlock(EARTHEN_TILES.get().defaultBlockState(), ofFullCopy(NMLBlocks.EARTHEN_TILES.get())));
+    public static final DeferredBlock<SlabBlock> EARTHEN_TILE_SLAB = registerBlock("earthen_tile_slab",
+            () -> new SlabBlock(ofFullCopy(NMLBlocks.MUNDANE_TILES.get())));
     //Stone
     public static final DeferredBlock<Block> FADED_STONE_BRICKS = registerBlock("faded_stone_bricks",
             () -> new Block(ofFullCopy(Blocks.STONE_BRICKS)));

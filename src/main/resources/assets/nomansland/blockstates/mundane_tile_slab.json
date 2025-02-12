@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nomansland:block/building/mundane_tile_slab"
+    },
+    "type=double": {
+      "model": "nomansland:block/building/mundane_tiles"
+    },
+    "type=top": {
+      "model": "nomansland:block/building/mundane_tile_slab_top"
+    }
+  }
+}

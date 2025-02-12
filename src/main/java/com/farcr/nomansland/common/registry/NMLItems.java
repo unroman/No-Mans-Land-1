@@ -184,8 +184,12 @@ public class NMLItems {
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICK_STAIRS);
             insertAfter(event, Items.MOSSY_COBBLESTONE_WALL, NMLBlocks.COBBLESTONE_BRICKS);
 
+            insertAfter(event, Items.SMOOTH_STONE_SLAB, NMLBlocks.MUNDANE_TILE_SLAB);
+            insertAfter(event, Items.SMOOTH_STONE_SLAB, NMLBlocks.MUNDANE_TILE_STAIRS);
             insertAfter(event, Items.SMOOTH_STONE_SLAB, NMLBlocks.MUNDANE_TILES);
             insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILES);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILE_STAIRS);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILE_SLAB);
 
             insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_WALL);
             insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_SLAB);

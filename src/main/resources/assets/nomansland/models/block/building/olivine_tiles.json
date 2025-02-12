@@ -1,6 +1,0 @@
-{
-  "parent": "nomansland:block/cube_tiles",
-  "textures": {
-    "all": "nomansland:block/building/olivine_tiles"
-  }
-}
