@@ -3,7 +3,7 @@
   "start_pool": "nomansland:deep_well/entrance",
   "size": 10,
   "max_distance_from_center": 64,
-  "biomes": "#minecraft:is_overworld",
+  "biomes": "#nomansland:has_structure/classic_structure",
   "step": "surface_structures",
   "liquid_settings": "ignore_waterlogging",
   "terrain_adaptation": "beard_thin",
