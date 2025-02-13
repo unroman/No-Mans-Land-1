@@ -2,7 +2,7 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 1,
+      "weight": 10,
       "element": {
         "location": "nomansland:deep_well/entrance",
         "processors": "nomansland:deep_well",
@@ -11,7 +11,7 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 10,
       "element": {
         "location": "nomansland:deep_well/entrance_roofed",
         "processors": "nomansland:deep_well",
@@ -20,7 +20,7 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 5,
       "element": {
         "location": "nomansland:deep_well/entrance_fence",
         "processors": "nomansland:deep_well",
@@ -29,7 +29,7 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 5,
       "element": {
         "location": "nomansland:deep_well/entrance_grate",
         "processors": "nomansland:deep_well",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 7,
       "element": {
         "location": "nomansland:deep_well/entrance_ruined",
         "processors": "nomansland:deep_well",
