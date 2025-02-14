@@ -1,6 +1,7 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.worldgen;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.registry.NMLRegistries;
 import com.farcr.nomansland.common.world.feature.decorator.BoulderDecorator;
 import com.farcr.nomansland.common.world.feature.decorator.BoulderDecoratorType;
 import com.farcr.nomansland.common.world.feature.decorator.ClusterOnStoneBoulderDecorator;

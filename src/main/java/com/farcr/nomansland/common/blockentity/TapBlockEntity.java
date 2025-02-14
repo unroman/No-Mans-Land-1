@@ -2,8 +2,8 @@ package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.block.cauldrons.NMLCauldronBlock;
-import com.farcr.nomansland.common.registry.NMLBlockEntities;
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;

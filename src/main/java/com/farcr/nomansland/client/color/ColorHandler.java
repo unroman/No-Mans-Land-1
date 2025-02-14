@@ -1,7 +1,7 @@
 package com.farcr.nomansland.client.color;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.FoliageColor;

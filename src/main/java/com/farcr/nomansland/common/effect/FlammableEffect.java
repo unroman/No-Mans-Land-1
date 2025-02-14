@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.effect;
 
 import com.farcr.nomansland.common.registry.NMLDamageTypes;
-import com.farcr.nomansland.common.registry.NMLEffects;
+import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;

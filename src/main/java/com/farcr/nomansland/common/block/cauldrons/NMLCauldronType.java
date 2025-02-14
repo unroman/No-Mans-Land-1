@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLItems;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;

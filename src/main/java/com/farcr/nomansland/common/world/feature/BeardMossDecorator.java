@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.world.feature;
 
 import com.farcr.nomansland.common.block.BeardMossBlock;
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLTreeDecoratorTypes;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.worldgen.NMLTreeDecoratorTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

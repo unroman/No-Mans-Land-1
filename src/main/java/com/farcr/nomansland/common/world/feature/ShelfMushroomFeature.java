@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.world.feature;
 
 import com.farcr.nomansland.common.block.ShelfMushroomBlock;
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

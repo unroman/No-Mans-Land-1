@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.generation;
 
-import com.farcr.nomansland.common.registry.NMLBiomes;
+import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.biome.sub.BiomeParameterTargets;
 import com.terraformersmc.biolith.api.biome.sub.CriterionBuilder;

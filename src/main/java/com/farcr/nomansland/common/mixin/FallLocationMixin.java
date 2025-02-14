@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.world.damagesource.FallLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;

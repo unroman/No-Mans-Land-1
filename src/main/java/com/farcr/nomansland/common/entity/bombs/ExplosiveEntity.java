@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.entity.bombs;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLEntities;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;

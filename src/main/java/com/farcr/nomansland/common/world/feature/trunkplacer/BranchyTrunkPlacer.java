@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.trunkplacer;
 
-import com.farcr.nomansland.common.registry.NMLTrunkPlacerTypes;
+import com.farcr.nomansland.common.registry.worldgen.NMLTrunkPlacerTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;

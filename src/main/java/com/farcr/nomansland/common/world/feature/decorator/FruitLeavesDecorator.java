@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.decorator;
 
-import com.farcr.nomansland.common.registry.NMLTreeDecoratorTypes;
+import com.farcr.nomansland.common.registry.worldgen.NMLTreeDecoratorTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.blockentity;
 
-import com.farcr.nomansland.common.registry.NMLBlockEntities;
+import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;

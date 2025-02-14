@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.block;
 
 import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
-import com.farcr.nomansland.common.registry.NMLBlockEntities;
+import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;

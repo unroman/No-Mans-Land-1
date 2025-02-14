@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.block.torches;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;

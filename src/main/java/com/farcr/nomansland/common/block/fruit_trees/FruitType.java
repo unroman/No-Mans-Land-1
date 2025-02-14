@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.block.fruit_trees;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLItems;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

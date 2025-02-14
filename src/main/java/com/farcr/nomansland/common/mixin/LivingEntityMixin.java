@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.mixinduck.LivingEntityDuck;
-import com.farcr.nomansland.common.registry.NMLEffects;
+import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;

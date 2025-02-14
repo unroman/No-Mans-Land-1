@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.entity.mob_variant.deer;
 
 import com.farcr.nomansland.common.entity.mob_variant.MobVariant;
-import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;

@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.integration.Mods;
 import net.minecraft.world.effect.MobEffectInstance;

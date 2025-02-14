@@ -1,15 +1,10 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.common.entity.mob_variant.ChickenVariant;
 import com.farcr.nomansland.common.entity.mob_variant.RabbitVariant;
 import com.farcr.nomansland.common.mixinduck.RabbitDuck;
-import net.minecraft.client.renderer.entity.ChickenRenderer;
 import net.minecraft.client.renderer.entity.RabbitRenderer;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.VariantHolder;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Rabbit;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

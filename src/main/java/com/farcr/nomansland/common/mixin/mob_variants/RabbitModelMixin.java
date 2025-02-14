@@ -1,15 +1,12 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
-import com.farcr.nomansland.client.model.vanilla.NMLChickenModel;
 import com.farcr.nomansland.client.model.vanilla.NMLRabbitModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.RabbitModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Rabbit;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

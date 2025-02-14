@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.entity;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLEntities;
-import com.farcr.nomansland.common.registry.NMLItems;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.entities.NMLEntities;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

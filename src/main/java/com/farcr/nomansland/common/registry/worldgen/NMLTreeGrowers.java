@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.worldgen;
 
 import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.registries.Registries;

@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.event;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLTags;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

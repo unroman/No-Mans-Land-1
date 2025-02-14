@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.item;
 
-import com.farcr.nomansland.common.registry.NMLEffects;
+import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;

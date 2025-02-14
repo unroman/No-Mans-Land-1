@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.block;
 
 import com.farcr.nomansland.NMLConfig;
-import com.farcr.nomansland.common.registry.NMLDamageTypes;
 import com.farcr.nomansland.common.registry.NMLSounds;
+import com.farcr.nomansland.common.registry.NMLDamageTypes;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

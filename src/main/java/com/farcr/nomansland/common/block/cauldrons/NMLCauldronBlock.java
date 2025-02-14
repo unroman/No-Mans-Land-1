@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
 import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.NMLTags;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.cauldron.CauldronInteraction;

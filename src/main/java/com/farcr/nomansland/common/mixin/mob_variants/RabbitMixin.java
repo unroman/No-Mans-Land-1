@@ -1,15 +1,12 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.mob_variant.FoxVariant;
-import com.farcr.nomansland.common.entity.mob_variant.RabbitVariant;
 import com.farcr.nomansland.common.entity.mob_variant.RabbitVariant;
 import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
-import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.mixinduck.RabbitDuck;
-import com.farcr.nomansland.common.registry.NMLDataSerializers;
-import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.entities.NMLDataSerializers;
+import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -21,8 +18,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.VariantHolder;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;

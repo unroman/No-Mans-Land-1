@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.blocks;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;

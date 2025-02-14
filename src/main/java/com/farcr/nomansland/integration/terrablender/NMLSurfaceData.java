@@ -1,6 +1,6 @@
 //package com.farcr.nomansland.integration.terrablender;
 //
-//import com.farcr.nomansland.common.registry.NMLBiomes;
+//import com.farcr.nomansland.common.registry.world.NMLBiomes;
 //import net.minecraft.world.level.biome.Biomes;
 //import net.minecraft.world.level.block.Block;
 //import net.minecraft.world.level.block.Blocks;

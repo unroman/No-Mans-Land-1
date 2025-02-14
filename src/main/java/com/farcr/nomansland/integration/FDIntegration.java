@@ -2,9 +2,9 @@ package com.farcr.nomansland.integration;
 
 import com.farcr.nomansland.common.block.NMLCabinetBlock;
 import com.farcr.nomansland.common.blockentity.NMLCabinetBlockEntity;
-import com.farcr.nomansland.common.registry.NMLBlocks;
-import com.farcr.nomansland.common.registry.NMLFoods;
-import com.farcr.nomansland.common.registry.NMLItems;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.items.NMLFoods;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -18,10 +18,10 @@ import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 
 import java.util.function.Supplier;
 
-import static com.farcr.nomansland.common.registry.NMLBlockEntities.BLOCK_ENTITIES;
-import static com.farcr.nomansland.common.registry.NMLBlocks.BLOCKS;
-import static com.farcr.nomansland.common.registry.NMLBlocks.registerBlock;
-import static com.farcr.nomansland.common.registry.NMLItems.registerItem;
+import static com.farcr.nomansland.common.registry.blocks.NMLBlockEntities.BLOCK_ENTITIES;
+import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.BLOCKS;
+import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.registerBlock;
+import static com.farcr.nomansland.common.registry.items.NMLItems.registerItem;
 
 public class FDIntegration {
 

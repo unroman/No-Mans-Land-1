@@ -3,7 +3,7 @@ package com.farcr.nomansland.common.mixin.mob_variants;
 import com.farcr.nomansland.common.entity.BillhookBass;
 import com.farcr.nomansland.common.entity.mob_variant.MobVariant;
 import com.farcr.nomansland.common.mixin.EntityMixin;
-import com.farcr.nomansland.common.registry.NMLMobVariants;
+import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;

@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.NMLConfig;
-import com.farcr.nomansland.common.registry.NMLBlockEntities;
+import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Skeleton;

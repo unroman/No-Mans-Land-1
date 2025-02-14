@@ -1,6 +1,6 @@
 //package com.farcr.nomansland.integration.terrablender;
 //
-//import com.farcr.nomansland.common.registry.NMLBiomes;
+//import com.farcr.nomansland.common.registry.world.NMLBiomes;
 //import com.mojang.datafixers.util.Pair;
 //import net.minecraft.core.Registry;
 //import net.minecraft.resources.ResourceKey;

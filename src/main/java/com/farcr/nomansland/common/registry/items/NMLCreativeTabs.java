@@ -1,6 +1,7 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;

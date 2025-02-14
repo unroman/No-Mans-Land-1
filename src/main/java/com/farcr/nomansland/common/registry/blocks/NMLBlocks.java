@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.blocks;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.*;
@@ -14,6 +14,8 @@ import com.farcr.nomansland.common.block.signs.StandingSignBlock;
 import com.farcr.nomansland.common.block.signs.WallHangingSignBlock;
 import com.farcr.nomansland.common.block.signs.WallSignBlock;
 import com.farcr.nomansland.common.block.torches.*;
+import com.farcr.nomansland.common.registry.items.NMLItems;
+import com.farcr.nomansland.common.registry.worldgen.NMLTreeGrowers;
 import com.farcr.nomansland.common.world.tree.HugeMushrooms;
 import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleTypes;

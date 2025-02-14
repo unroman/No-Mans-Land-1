@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

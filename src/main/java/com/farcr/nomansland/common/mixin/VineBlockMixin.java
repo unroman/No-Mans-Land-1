@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.mixin;
 
-import com.farcr.nomansland.common.registry.NMLBlocks;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.Util;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;

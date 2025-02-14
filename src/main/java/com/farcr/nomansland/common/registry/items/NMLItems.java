@@ -1,9 +1,12 @@
-package com.farcr.nomansland.common.registry;
+package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.entities.NMLEffects;
+import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.integration.FDIntegration;
 import com.farcr.nomansland.integration.Mods;
 import com.google.common.collect.Sets;

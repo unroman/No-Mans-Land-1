@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.world.feature.foliageplacer;
 
-import com.farcr.nomansland.common.registry.NMLFoliagePlacerTypes;
+import com.farcr.nomansland.common.registry.worldgen.NMLFoliagePlacerTypes;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
