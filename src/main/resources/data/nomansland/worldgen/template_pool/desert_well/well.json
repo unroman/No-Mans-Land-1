@@ -31,7 +31,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "nomansland:desert_well/small_roof_1",
+        "location": "nomansland:desert_well/small_roofed_1",
         "processors": "nomansland:desert_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -40,7 +40,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "nomansland:desert_well/small_roof_2",
+        "location": "nomansland:desert_well/small_roofed_2",
         "processors": "nomansland:desert_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -49,12 +49,65 @@
     {
       "weight": 1,
       "element": {
-        "location": "nomansland:desert_well/small_roof_3",
+        "location": "nomansland:desert_well/small_roofed_3",
+        "processors": "nomansland:desert_well",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "nomansland:desert_well/medium_1",
+        "processors": "nomansland:desert_well",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "nomansland:desert_well/medium_2",
+        "processors": "nomansland:desert_well",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "nomansland:desert_well/medium_3",
+        "processors": "nomansland:desert_well",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "nomansland:desert_well/medium_roofed_1",
+        "processors": "nomansland:desert_well",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "nomansland:desert_well/medium_roofed_2",
+        "processors": "nomansland:desert_well",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "nomansland:desert_well/medium_roofed_3",
         "processors": "nomansland:desert_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     }
-
   ]
 }

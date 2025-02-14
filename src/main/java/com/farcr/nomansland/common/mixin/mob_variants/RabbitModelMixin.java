@@ -12,6 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Rabbit;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RabbitModel.class)
 public class RabbitModelMixin<T extends Entity> {
 
+    @Shadow private float jumpRotation;
     @Unique
     protected ModelPart root;
 
@@ -34,13 +36,15 @@ public class RabbitModelMixin<T extends Entity> {
         cir.setReturnValue(NMLRabbitModel.createBodyLayer());
     }
 
-    @Inject(method = "setupAnim*", at = @At("TAIL"))
+    @Inject(method = "setupAnim*", at = @At("TAIL"), cancellable = true)
     private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        NMLRabbitModel.setupAnim((Rabbit) entity, root, limbSwing, limbSwing, ageInTicks, netHeadYaw, headPitch);
+        NMLRabbitModel.setupAnim((Rabbit) entity, root, limbSwing, limbSwing, ageInTicks, netHeadYaw, headPitch, this.jumpRotation);
+        ci.cancel();
     }
 
-    @Inject(method = "renderToBuffer", at = @At("HEAD"))
+    @Inject(method = "renderToBuffer", at = @At("HEAD"), cancellable = true)
     private void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color, CallbackInfo ci) {
         NMLRabbitModel.renderToBuffer(root, poseStack, buffer, packedLight, packedOverlay, color);
+        ci.cancel();
     }
 }

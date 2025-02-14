@@ -15,7 +15,7 @@
           },
           "input_predicate": {
             "block": "minecraft:sand",
-            "probability": 0.5,
+            "probability": 0.3,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {

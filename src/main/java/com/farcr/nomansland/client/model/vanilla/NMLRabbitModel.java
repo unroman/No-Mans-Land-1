@@ -43,23 +43,24 @@ public class NMLRabbitModel {
 
         return LayerDefinition.create(meshdefinition, 32, 32);    }
 
-    public static void setupAnim(Rabbit rabbit, ModelPart root, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public static void setupAnim(Rabbit rabbit, ModelPart root, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float jumpRotation) {
         ModelPart head = root.getChild("head");
-//        ModelPart body = root.getChild("body");
-//        ModelPart nose = root.getChild("nose");
-//        ModelPart body = root.getChild("body");
-//        ModelPart body = root.getChild("body");
-//        ModelPart body = root.getChild("body");
+        ModelPart rightEar = root.getChild("ear_right");
+        ModelPart leftEar = root.getChild("ear_left");
+        ModelPart leftRearFoot = root.getChild("left_hind_foot");
+        ModelPart rightRearFoot = root.getChild("right_hind_foot");
+        ModelPart leftFrontLeg = root.getChild("body");
+        ModelPart rightFrontLeg = root.getChild("body");
 //
 //
         float f = ageInTicks - (float) rabbit.tickCount;
         head.xRot = headPitch * 0.017453292F;
-//        rightEar.xRot = headPitch * 0.017453292F;
-//        leftEar.xRot = headPitch * 0.017453292F;
-//        head.yRot = netHeadYaw * 0.017453292F;
-////        rightEar.yRot = 0.2617994F;
-////        leftEar.yRot = 0.2617994F;
-//        jumpRotation = Mth.sin(rabbit.getJumpCompletion(f) * 3.1415927F);
+        rightEar.xRot = headPitch * 0.017453292F;
+        leftEar.xRot = headPitch * 0.017453292F;
+        head.yRot = netHeadYaw * 0.017453292F;
+        rightEar.yRot = 0.2617994F;
+        leftEar.yRot = 0.2617994F;
+        jumpRotation = Mth.sin(rabbit.getJumpCompletion(f) * 3.1415927F);
 //        leftHaunch.xRot = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
 //        rightHaunch.xRot = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
 //        leftRearFoot.xRot = this.jumpRotation * 50.0F * 0.017453292F;
