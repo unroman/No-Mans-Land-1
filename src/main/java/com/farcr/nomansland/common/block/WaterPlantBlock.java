@@ -46,7 +46,12 @@ public class WaterPlantBlock extends TallFlowerBlock implements SimpleWaterlogge
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        return super.getStateForPlacement(pContext).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+        BlockState stateForPlacement = super.getStateForPlacement(pContext);
+        if (stateForPlacement == null)
+            return null;
+        if (stateForPlacement.hasProperty(WATERLOGGED))
+            return stateForPlacement.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+        return stateForPlacement;
     }
 
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
