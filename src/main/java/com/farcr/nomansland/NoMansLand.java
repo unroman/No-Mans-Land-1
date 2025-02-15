@@ -54,6 +54,7 @@ public class NoMansLand {
         NMLMobVariants.FROG_VARIANTS.register(modEventBus);
         NMLEffects.MOB_EFFECTS.register(modEventBus);
         NMLBiomePlacements.register();
+        NMLStructureProcessorTypes.STRUCTURE_PROCESSOR_TYPES.register(modEventBus);
 
         if (Mods.FARMERSDELIGHT.isLoaded()) FDIntegration.register();
 

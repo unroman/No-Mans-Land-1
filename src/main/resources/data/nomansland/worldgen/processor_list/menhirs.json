@@ -4,11 +4,11 @@
       "rules": [
         {
           "output_state": {
-            "Name": "minecraft:coarse_dirt"
+            "Name": "minecraft:air"
           },
           "input_predicate": {
-            "block": "minecraft:red_concrete",
-            "probability": 1.0,
+            "block": "minecraft:lily_pad",
+            "probability": 0.5,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {
@@ -20,8 +20,8 @@
             "Name": "minecraft:air"
           },
           "input_predicate": {
-            "block": "minecraft:cobweb",
-            "probability": 0.9,
+            "block": "nomansland:pebbles",
+            "probability": 0.5,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {
@@ -40,6 +40,19 @@
       "prefix": "cracked",
       "chance": 0.2,
       "processor_type": "nomansland:prefix"
+    },
+    {
+      "processor_type": "nomansland:candles"
+    },
+    {
+      "block": "nomansland:cattail",
+      "chance": 0.25,
+      "processor_type": "nomansland:tall_block_remover"
+    },
+    {
+      "block": "nomansland:reeds",
+      "chance": 0.25,
+      "processor_type": "nomansland:tall_block_remover"
     }
   ]
 }

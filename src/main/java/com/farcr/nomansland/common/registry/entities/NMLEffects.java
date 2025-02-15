@@ -2,7 +2,10 @@ package com.farcr.nomansland.common.registry.entities;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.effect.FlammableEffect;
+import com.farcr.nomansland.common.registry.NMLParticleTypes;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -14,5 +17,5 @@ public class NMLEffects {
             DeferredRegister.create(Registries.MOB_EFFECT, NoMansLand.MODID);
 
     public static final DeferredHolder<MobEffect, MobEffect> FLAMMABLE = MOB_EFFECTS.register("flammable",
-            () -> new FlammableEffect(MobEffectCategory.NEUTRAL, 4796183, ParticleTypes.RAID_OMEN));
+            () -> new FlammableEffect(MobEffectCategory.NEUTRAL, 4796183, ParticleTypes.FLAME));
 }

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 public class FlammableEffect extends MobEffect {
     public FlammableEffect(MobEffectCategory category, int color, ParticleOptions particleOptions) {
-        super(category, color, particleOptions);
+        super(category, color);
     }
 
     @Override
@@ -60,25 +60,25 @@ public class FlammableEffect extends MobEffect {
 
             FireBlock delegate = (FireBlock) Blocks.FIRE;
 
-            if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
-                var positions = BlockPos.betweenClosedStream(livingEntity.getBoundingBox().move(-2, 0, -2).inflate(2, 0, 2))
-                        .map(BlockPos::immutable).distinct().collect(Collectors.toCollection(ArrayList::new));
-                Collections.shuffle(positions);
-
-                for (BlockPos pos : positions) {
-                    if (level.isRaining() && delegate.isNearRain(level, pos)) {
-                        continue;
-                    }
-
-                    for (Direction d : Direction.values()) {
-                        if (BaseFireBlock.canBePlacedAt(level, pos, d)) {
-                            BlockState state = BaseFireBlock.getState(level, pos);
-                            level.setBlock(pos, state, 3);
-                        }
-                    }
-                    break;
-                }
-            }
+//            if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
+//                var positions = BlockPos.betweenClosedStream(livingEntity.getBoundingBox().move(-2, 0, -2).inflate(2, 0, 2))
+//                        .map(BlockPos::immutable).distinct().collect(Collectors.toCollection(ArrayList::new));
+//                Collections.shuffle(positions);
+//
+//                for (BlockPos pos : positions) {
+//                    if (level.isRaining() && delegate.isNearRain(level, pos)) {
+//                        continue;
+//                    }
+//
+//                    for (Direction d : Direction.values()) {
+//                        if (BaseFireBlock.canBePlacedAt(level, pos, d)) {
+//                            BlockState state = BaseFireBlock.getState(level, pos);
+//                            level.setBlock(pos, state, 3);
+//                        }
+//                    }
+//                    break;
+//                }
+//            }
         }
 
         super.onMobHurt(livingEntity, amplifier, damageSource, amount);

@@ -40,7 +40,7 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
 
     @ModifyVariable(method = "travel", at = @At("STORE"), ordinal = 0)
     public float friction(float value) {
-            if (hasEffect(NMLEffects.FLAMMABLE)) value += 0.05F;
+            if (hasEffect(NMLEffects.FLAMMABLE)) value = 0.9898F;
         return value;
     }
 }

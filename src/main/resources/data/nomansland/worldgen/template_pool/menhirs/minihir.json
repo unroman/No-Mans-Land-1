@@ -2,55 +2,53 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 10,
+      "weight": 1,
       "element": {
-        "location": "nomansland:deep_well/stairs",
-        "processors": "nomansland:deep_well",
+        "location": "nomansland:minihirs/menhir_1",
+        "processors": "nomansland:menhirs",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 5,
+      "weight": 1,
       "element": {
-        "location": "nomansland:deep_well/stairs_ruined",
-        "processors": "nomansland:deep_well",
+        "location": "nomansland:minihirs/menhir_2",
+        "processors": "nomansland:menhirs",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 5,
+      "weight": 1,
       "element": {
-        "location": "nomansland:deep_well/stairs_ruined_scaffold",
-        "processors": "nomansland:deep_well",
+        "location": "nomansland:minihirs/menhir_3",
+        "processors": "nomansland:menhirs",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 3,
+      "weight": 1,
       "element": {
-        "location": "nomansland:deep_well/stairs_collapsed",
-        "processors": "nomansland:deep_well",
+        "location": "nomansland:minihirs/menhir_4",
+        "processors": "nomansland:menhirs",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
-    },
-    {
-      "weight": 5,
+    },    {
+      "weight": 1,
       "element": {
-        "location": "nomansland:deep_well/stairs_flooded",
-        "processors": "nomansland:deep_well",
+        "location": "nomansland:minihirs/menhir_5",
+        "processors": "nomansland:menhirs",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
-    },
-    {
-      "weight": 7,
+    },    {
+      "weight": 1,
       "element": {
-        "location": "nomansland:deep_well/stairs_short",
-        "processors": "nomansland:deep_well",
+        "location": "nomansland:minihirs/menhir_6",
+        "processors": "nomansland:menhirs",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

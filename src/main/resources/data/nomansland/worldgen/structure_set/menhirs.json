@@ -1,0 +1,22 @@
+{
+  "structures": [
+    {
+      "structure": "nomansland:grand_menhir",
+      "weight": 1
+    },
+    {
+      "structure": "nomansland:menhir",
+      "weight": 1
+    },
+    {
+      "structure": "nomansland:minihir",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 7481,
+    "separation": 18,
+    "spacing": 46,
+    "type": "minecraft:random_spread"
+  }
+}

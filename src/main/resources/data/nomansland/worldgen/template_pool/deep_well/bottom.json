@@ -5,7 +5,7 @@
       "weight": 10,
       "element": {
         "location": "nomansland:deep_well/bottom",
-        "processors": "nomansland:mossy_blocks",
+        "processors": "nomansland:deep_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -14,7 +14,7 @@
       "weight": 7,
       "element": {
         "location": "nomansland:deep_well/bottom_dry",
-        "processors": "nomansland:mossy_blocks",
+        "processors": "nomansland:deep_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -23,7 +23,7 @@
       "weight": 3,
       "element": {
         "location": "nomansland:deep_well/bottom_spikes",
-        "processors": "nomansland:mossy_blocks",
+        "processors": "nomansland:deep_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -32,7 +32,7 @@
       "weight": 3,
       "element": {
         "location": "nomansland:deep_well/bottom_fake",
-        "processors": "nomansland:mossy_blocks",
+        "processors": "nomansland:deep_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -41,7 +41,7 @@
       "weight": 5,
       "element": {
         "location": "nomansland:deep_well/bottom_aqueduct",
-        "processors": "nomansland:mossy_blocks",
+        "processors": "nomansland:deep_well",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
