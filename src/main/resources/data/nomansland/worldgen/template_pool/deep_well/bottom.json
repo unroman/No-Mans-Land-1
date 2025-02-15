@@ -2,7 +2,7 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 10,
+      "weight": 20,
       "element": {
         "location": "nomansland:deep_well/bottom",
         "processors": "nomansland:deep_well",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "weight": 5,
+      "weight": 15,
       "element": {
         "location": "nomansland:deep_well/bottom_aqueduct",
         "processors": "nomansland:deep_well",
