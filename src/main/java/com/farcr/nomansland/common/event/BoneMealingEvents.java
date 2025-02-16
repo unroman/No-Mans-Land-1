@@ -10,8 +10,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -49,17 +52,88 @@ public class BoneMealingEvents {
                 while (mutable.getY() > level.getMinBuildHeight()) {
                     BlockState state2 = level.getBlockState(mutable);
                     if (state2.is(BlockTags.REPLACEABLE)) {
-                        SoundType soundtype = state.getSoundType(level, pos, player);
-                        level.playSound(player, mutable, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                        stack.consume(1, player);
-                        level.setBlockAndUpdate(mutable, Blocks.LADDER.defaultBlockState().setValue(LadderBlock.FACING, ladderFacing));
-                        event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
-                        event.setCanceled(true);
-                        break;
+                        if (state.canSurvive(level, mutable)) {
+                            SoundType soundtype = state.getSoundType(level, pos, player);
+                            level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                            stack.consume(1, player);
+                            level.setBlockAndUpdate(mutable, Blocks.LADDER.defaultBlockState().setValue(LadderBlock.FACING, ladderFacing));
+                            event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                            event.setCanceled(true);
+                            break;
+                        }
                     } else if (!state2.is(Blocks.LADDER)) {
                         break;
                     }
                     mutable.move(Direction.DOWN);
+                }
+            }
+        }
+
+        // Rail Placement
+        if (event.getFace() == Direction.UP && stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator()) {
+            Direction playerDir = player.getDirection();
+            RailShape railShape = null;
+            if (state.hasProperty(RailBlock.SHAPE))
+                railShape = state.getValue(RailBlock.SHAPE);
+            else if (state.hasProperty(PoweredRailBlock.SHAPE))
+                railShape = state.getValue(PoweredRailBlock.SHAPE);
+            else if (state.hasProperty(DetectorRailBlock.SHAPE))
+                railShape = state.getValue(DetectorRailBlock.SHAPE);
+            if (railShape != null) {
+                int railCount = 0;
+                for (Direction direction : Direction.Plane.HORIZONTAL) {
+                    if (level.getBlockState(pos.relative(direction)).is(BlockTags.RAILS))
+                        railCount++;
+                }
+                boolean matchingShape = switch (playerDir) {
+                    case Direction.NORTH -> railShape == RailShape.NORTH_SOUTH || railShape == RailShape.NORTH_WEST || railShape == RailShape.NORTH_EAST || railShape == RailShape.ASCENDING_NORTH || railShape == RailShape.ASCENDING_SOUTH || (railCount <= 1 && (railShape == RailShape.EAST_WEST || railShape == RailShape.SOUTH_EAST || railShape == RailShape.SOUTH_WEST));
+                    case Direction.SOUTH -> railShape == RailShape.NORTH_SOUTH || railShape == RailShape.SOUTH_WEST || railShape == RailShape.SOUTH_EAST || railShape == RailShape.ASCENDING_NORTH || railShape == RailShape.ASCENDING_SOUTH || (railCount <= 1 && (railShape == RailShape.EAST_WEST || railShape == RailShape.NORTH_EAST || railShape == RailShape.NORTH_WEST));
+                    case Direction.EAST -> railShape == RailShape.EAST_WEST || railShape == RailShape.NORTH_EAST || railShape == RailShape.SOUTH_EAST || railShape == RailShape.ASCENDING_EAST || railShape == RailShape.ASCENDING_WEST || (railCount <= 1 && (railShape == RailShape.NORTH_SOUTH || railShape == RailShape.NORTH_WEST || railShape == RailShape.SOUTH_WEST));
+                    case Direction.WEST -> railShape == RailShape.EAST_WEST || railShape == RailShape.NORTH_WEST || railShape == RailShape.SOUTH_WEST || railShape == RailShape.ASCENDING_EAST || railShape == RailShape.ASCENDING_WEST || (railCount <= 1 && (railShape == RailShape.NORTH_SOUTH || railShape == RailShape.NORTH_EAST || railShape == RailShape.SOUTH_EAST));
+                    default -> false;
+                };
+                if (matchingShape) {
+                    RailShape placedShape = switch (playerDir) {
+                        case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
+                        case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
+                        default -> null;
+                    };
+                    BlockPos.MutableBlockPos mutable = pos.relative(playerDir).mutable();
+                    int MAX_RAIL_PLACEMENT_DISTANCE = 128;
+                    for (int i = 0; i < MAX_RAIL_PLACEMENT_DISTANCE; i++) {
+                        BlockState state2 = level.getBlockState(mutable);
+                        if (state2.is(BlockTags.REPLACEABLE)) {
+                            BlockState state3 = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
+                            if (state3.hasProperty(RailBlock.SHAPE))
+                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
+                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
+                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
+                            if (state3.canSurvive(level, mutable)) {
+                                SoundType soundtype = state3.getSoundType(level, mutable, player);
+                                level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                stack.consume(1, player);
+                                level.setBlockAndUpdate(mutable, state3);
+                                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                                event.setCanceled(true);
+                                break;
+                            }
+                        } else if (!state2.is(BlockTags.RAILS)) {
+                            break;
+                        } else {
+                            RailShape offsetShape = null;
+                            if (state2.hasProperty(RailBlock.SHAPE))
+                                offsetShape = state2.getValue(RailBlock.SHAPE);
+                            else if (state2.hasProperty(PoweredRailBlock.SHAPE))
+                                offsetShape = state2.getValue(PoweredRailBlock.SHAPE);
+                            else if (state2.hasProperty(DetectorRailBlock.SHAPE))
+                                offsetShape = state2.getValue(DetectorRailBlock.SHAPE);
+                            if (offsetShape != null && offsetShape != placedShape)
+                                break;
+                        }
+                        mutable.move(playerDir);
+                    }
                 }
             }
         }
