@@ -9,6 +9,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,6 +40,29 @@ public class BoneMealingEvents {
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
+
+        // Ladder Placement
+        if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator()) {
+            Direction ladderFacing = state.getValue(LadderBlock.FACING);
+            if (ladderFacing == event.getFace()) {
+                BlockPos.MutableBlockPos mutable = pos.below().mutable();
+                while (mutable.getY() > level.getMinBuildHeight()) {
+                    BlockState state2 = level.getBlockState(mutable);
+                    if (state2.is(BlockTags.REPLACEABLE)) {
+                        SoundType soundtype = state.getSoundType(level, pos, player);
+                        level.playSound(player, mutable, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                        stack.consume(1, player);
+                        level.setBlockAndUpdate(mutable, Blocks.LADDER.defaultBlockState().setValue(LadderBlock.FACING, ladderFacing));
+                        event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                        event.setCanceled(true);
+                        break;
+                    } else if (!state2.is(Blocks.LADDER)) {
+                        break;
+                    }
+                    mutable.move(Direction.DOWN);
+                }
+            }
+        }
 
         //Sugarcane Cutting
         if (event.getFace() != Direction.DOWN && stack.is(Items.SHEARS) && state.is(Blocks.SUGAR_CANE) && !player.isSpectator()) {
