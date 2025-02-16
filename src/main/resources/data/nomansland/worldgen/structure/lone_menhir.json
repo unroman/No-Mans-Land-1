@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "start_pool": "nomansland:menhirs/minihir",
+  "start_pool": "nomansland:menhirs/lone_menhir",
   "size": 10,
   "max_distance_from_center": 64,
   "biomes": "#nomansland:has_structure/classic_structure",
