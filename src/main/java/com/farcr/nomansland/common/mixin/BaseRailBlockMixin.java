@@ -1,10 +1,10 @@
 package com.farcr.nomansland.common.mixin;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BaseRailBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.RailShape;
@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BaseRailBlock.class)
 public abstract class BaseRailBlockMixin extends Block {
+    @Unique
+    private final static int MAX_DISTANCE_FOR_RAIL_SUPPORT = 5;
 
     public BaseRailBlockMixin(Properties properties) {
         super(properties);
@@ -25,9 +27,34 @@ public abstract class BaseRailBlockMixin extends Block {
     @Shadow @Deprecated public abstract Property<RailShape> getShapeProperty();
 
     @Unique
+    private static boolean no_Mans_Land$floatingRails(BlockPos pos, LevelReader level, RailShape shape, Direction direction) {
+        for (int i = 1; i < MAX_DISTANCE_FOR_RAIL_SUPPORT; i++) {
+            BlockState blockState = level.getBlockState(pos.relative(direction, i));
+            RailShape offsetShape;
+            if (blockState.hasProperty(RailBlock.SHAPE))
+                offsetShape = blockState.getValue(RailBlock.SHAPE);
+            else if (blockState.hasProperty(PoweredRailBlock.SHAPE))
+                offsetShape = blockState.getValue(PoweredRailBlock.SHAPE);
+            else if (blockState.hasProperty(DetectorRailBlock.SHAPE))
+                offsetShape = blockState.getValue(DetectorRailBlock.SHAPE);
+            else
+                return true;
+            if (canSupportRigidBlock(level, pos.relative(direction, i).below()))
+                return false;
+            if (offsetShape != shape)
+                return true;
+        }
+        return true;
+    }
+
+    @Unique
     private static boolean no_Mans_Land$shouldBeRemovedOverride(BlockPos pos, LevelReader level, RailShape shape) {
         if (!canSupportRigidBlock(level, pos.below())) {
-            return true;
+            return switch (shape) {
+                case NORTH_SOUTH -> no_Mans_Land$floatingRails(pos, level, shape, Direction.NORTH) && no_Mans_Land$floatingRails(pos, level, shape, Direction.SOUTH);
+                case EAST_WEST -> no_Mans_Land$floatingRails(pos, level, shape, Direction.EAST) && no_Mans_Land$floatingRails(pos, level, shape, Direction.WEST);
+                default -> true;
+            };
         } else {
             return switch (shape) {
                 case ASCENDING_EAST -> !canSupportRigidBlock(level, pos.east());
