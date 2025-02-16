@@ -31,6 +31,11 @@ public class NMLConfig {
     public static ModConfigSpec.BooleanValue DEEP_DARK_FOG_MODIFIER;
     public static ModConfigSpec.BooleanValue FOGGY_BIOME_FOG_MODIFIER;
 
+    public static final String CATEGORY_BULK_PLACEMENT = "bulk_placement";
+    public static ModConfigSpec.IntValue MAX_LADDER_PLACEMENT_LENGTH;
+    public static ModConfigSpec.IntValue MAX_RAIL_PLACMENT_LENGTH;
+    public static ModConfigSpec.IntValue MAX_FLOATING_RAILS;
+
     static {
 
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
@@ -73,6 +78,18 @@ public class NMLConfig {
         SKEWERING_DAMAGE = COMMON_BUILDER
                 .comment("The damage dealt to an entity when an active spike is pushed into it.")
                 .defineInRange("skeweringDamage", 12.0, 0, Double.MAX_VALUE);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.push(CATEGORY_BULK_PLACEMENT);
+        MAX_LADDER_PLACEMENT_LENGTH = COMMON_BUILDER
+                .comment("The maximum distance ladders can be placed like scaffolding. 0 to disable.")
+                .defineInRange("maxLadderPlacementLength", 0, 0, Integer.MAX_VALUE);
+        MAX_RAIL_PLACMENT_LENGTH = COMMON_BUILDER
+                .comment("The maximum distance rails can be placed like scaffolding.")
+                .defineInRange("maxRailPlacementLength", 24, 1, Integer.MAX_VALUE);
+        MAX_FLOATING_RAILS = COMMON_BUILDER
+                .comment("The maximum distance rails can be from a supported block before breaking.")
+                .defineInRange("maxFloatingRails", 5, 1, Integer.MAX_VALUE);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_MISC);

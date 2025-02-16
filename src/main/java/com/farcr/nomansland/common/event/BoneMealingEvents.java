@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.event;
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
@@ -49,7 +50,7 @@ public class BoneMealingEvents {
             Direction ladderFacing = state.getValue(LadderBlock.FACING);
             if (ladderFacing == event.getFace()) {
                 BlockPos.MutableBlockPos mutable = pos.below().mutable();
-                while (mutable.getY() > level.getMinBuildHeight()) {
+                for (int i = 0; NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get() != 0 ? i < NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get() : mutable.getY() > level.getMinBuildHeight(); i++) {
                     BlockState state2 = level.getBlockState(mutable);
                     if (state2.is(BlockTags.REPLACEABLE)) {
                         if (state.canSurvive(level, mutable)) {
@@ -99,8 +100,7 @@ public class BoneMealingEvents {
                         default -> null;
                     };
                     BlockPos.MutableBlockPos mutable = pos.relative(playerDir).mutable();
-                    int MAX_RAIL_PLACEMENT_DISTANCE = 128;
-                    for (int i = 0; i < MAX_RAIL_PLACEMENT_DISTANCE; i++) {
+                    for (int i = 0; i < NMLConfig.MAX_RAIL_PLACMENT_LENGTH.get(); i++) {
                         BlockState state2 = level.getBlockState(mutable);
                         if (state2.is(BlockTags.REPLACEABLE)) {
                             BlockState state3 = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();

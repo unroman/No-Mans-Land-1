@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.mixin;
 
+import com.farcr.nomansland.NMLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -17,8 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BaseRailBlock.class)
 public abstract class BaseRailBlockMixin extends Block {
-    @Unique
-    private final static int MAX_DISTANCE_FOR_RAIL_SUPPORT = 5;
 
     public BaseRailBlockMixin(Properties properties) {
         super(properties);
@@ -28,7 +27,7 @@ public abstract class BaseRailBlockMixin extends Block {
 
     @Unique
     private static boolean no_Mans_Land$floatingRails(BlockPos pos, LevelReader level, RailShape shape, Direction direction) {
-        for (int i = 1; i < MAX_DISTANCE_FOR_RAIL_SUPPORT; i++) {
+        for (int i = 1; i <= NMLConfig.MAX_FLOATING_RAILS.get(); i++) {
             BlockState blockState = level.getBlockState(pos.relative(direction, i));
             RailShape offsetShape;
             if (blockState.hasProperty(RailBlock.SHAPE))

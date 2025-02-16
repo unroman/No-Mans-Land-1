@@ -17,6 +17,7 @@
     "LivingEntityMixin",
     "MobMixin",
     "ProjectileMixin",
+    "RailStateMixin",
     "ServerLevelMixin",
     "SnowAndFreezeFeatureMixin",
     "SnowyDirtBlockMixin",
