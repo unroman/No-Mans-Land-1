@@ -2,15 +2,15 @@
   "structures": [
     {
       "structure": "nomansland:grand_menhir",
-      "weight": 1
+      "weight": 3
     },
     {
       "structure": "nomansland:menhir",
-      "weight": 1
+      "weight": 4
     },
     {
-      "structure": "nomansland:minihir",
-      "weight": 1
+      "structure": "nomansland:lone_menhir",
+      "weight": 2
     }
   ],
   "placement": {

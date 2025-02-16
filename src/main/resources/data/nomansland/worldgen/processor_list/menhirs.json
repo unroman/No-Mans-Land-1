@@ -8,7 +8,7 @@
           },
           "input_predicate": {
             "block": "minecraft:lily_pad",
-            "probability": 0.5,
+            "probability": 0.75,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {
@@ -21,7 +21,7 @@
           },
           "input_predicate": {
             "block": "nomansland:pebbles",
-            "probability": 0.5,
+            "probability": 0.75,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {
@@ -46,12 +46,12 @@
     },
     {
       "block": "nomansland:cattail",
-      "chance": 0.25,
+      "chance": 0.35,
       "processor_type": "nomansland:tall_block_remover"
     },
     {
       "block": "nomansland:reeds",
-      "chance": 0.25,
+      "chance": 0.35,
       "processor_type": "nomansland:tall_block_remover"
     }
   ]
