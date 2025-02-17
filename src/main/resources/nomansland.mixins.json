@@ -43,7 +43,8 @@
     "mob_variants.SalmonMixin",
     "mob_variants.SheepMixin",
     "mob_variants.SquidMixin",
-    "mob_variants.TurtleMixin"
+    "mob_variants.TurtleMixin",
+    "mob_variants.ZombieMixin"
   ],
   "client": [
     "HierarchicalModelMixin",
@@ -60,9 +61,12 @@
     "mob_variants.CowModelMixin",
     "mob_variants.CowRendererMixin",
     "mob_variants.DolphinRendererMixin",
+    "mob_variants.DrownedOuterLayerMixin",
+    "mob_variants.DrownedRendererMixin",
     "mob_variants.FoxRendererMixin",
     "mob_variants.GlowSquidRendererMixin",
     "mob_variants.GoatRendererMixin",
+    "mob_variants.HuskRendererMixin",
     "mob_variants.LlamaRendererMixin",
     "mob_variants.MushroomCowMushroomLayerMixin",
     "mob_variants.MushroomCowRendererMixin",
@@ -77,7 +81,8 @@
     "mob_variants.SheepRendererMixin",
     "mob_variants.SquidModelMixin",
     "mob_variants.SquidRendererMixin",
-    "mob_variants.TurtleRendererMixin"
+    "mob_variants.TurtleRendererMixin",
+    "mob_variants.ZombieRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

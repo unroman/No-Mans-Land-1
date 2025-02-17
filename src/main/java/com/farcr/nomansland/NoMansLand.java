@@ -106,5 +106,8 @@ public class NoMansLand {
         event.dataPackRegistry(NMLMobVariants.GLOW_SQUID_VARIANT_KEY, GlowSquidVariant.DIRECT_CODEC, GlowSquidVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.BEE_VARIANT_KEY, BeeVariant.DIRECT_CODEC, BeeVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.RABBIT_VARIANT_KEY, RabbitVariant.DIRECT_CODEC, RabbitVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.ZOMBIE_VARIANT_KEY, ZombieVariant.DIRECT_CODEC, ZombieVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.HUSK_VARIANT_KEY, HuskVariant.DIRECT_CODEC, HuskVariant.DIRECT_CODEC);
+        event.dataPackRegistry(NMLMobVariants.DROWNED_VARIANT_KEY, DrownedVariant.DIRECT_CODEC, DrownedVariant.DIRECT_CODEC);
     }
 }

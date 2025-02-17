@@ -1,0 +1,5 @@
+{
+  "texture": "minecraft:entity/zombie/drowned",
+  "weight": 1,
+  "outer_layer_texture": "minecraft:entity/zombie/drowned_outer_layer"
+}
