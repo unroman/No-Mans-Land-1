@@ -42,34 +42,35 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
 
         ResourceLocation furTexture = (sheep.isBaby() ? ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().babyFurTexture() : ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().furTexture()).withPath((path) -> "textures/" + path + ".png");
 
-        boolean j;
-        if (sheep.isInvisible()) {
-            Minecraft minecraft = Minecraft.getInstance();
-            j = minecraft.shouldEntityAppearGlowing(sheep);
-            if (j) {
-                this.getParentModel().copyPropertiesTo(this.model);
-                this.model.prepareMobModel(sheep, limbSwing, limbSwingAmount, partialTicks);
-                this.model.setupAnim(sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-                VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.outline(furTexture));
-                this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, LivingEntityRenderer.getOverlayCoords(sheep, 0.0F), -16777216);
-            }
-        } else {
-            int i;
-            if (sheep.hasCustomName() && sheep.getName().getString().equals("jeb_")) {
-                int k = sheep.tickCount / 25 + sheep.getId();
-                int l = DyeColor.values().length;
-                int i1 = k % l;
-                int j1 = (k + 1) % l;
-                float f = ((float)(sheep.tickCount % 25) + partialTicks) / 25.0F;
-                int k1 = Sheep.getColor(DyeColor.byId(i1));
-                int l1 = Sheep.getColor(DyeColor.byId(j1));
-                i = FastColor.ARGB32.lerp(f, k1, l1);
+        if (!sheep.isSheared()) {
+            if (sheep.isInvisible()) {
+                Minecraft minecraft = Minecraft.getInstance();
+                if (minecraft.shouldEntityAppearGlowing(sheep)) {
+                    this.getParentModel().copyPropertiesTo(this.model);
+                    this.model.prepareMobModel(sheep, limbSwing, limbSwingAmount, partialTicks);
+                    this.model.setupAnim(sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+                    VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.outline(furTexture));
+                    this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, LivingEntityRenderer.getOverlayCoords(sheep, 0.0F), -16777216);
+                }
             } else {
-                i = Sheep.getColor(sheep.getColor());
-            }
+                int i;
+                if (sheep.hasCustomName() && sheep.getName().getString().equals("jeb_")) {
+                    int k = sheep.tickCount / 25 + sheep.getId();
+                    int l = DyeColor.values().length;
+                    int i1 = k % l;
+                    int j1 = (k + 1) % l;
+                    float f = ((float) (sheep.tickCount % 25) + partialTicks) / 25.0F;
+                    int k1 = Sheep.getColor(DyeColor.byId(i1));
+                    int l1 = Sheep.getColor(DyeColor.byId(j1));
+                    i = FastColor.ARGB32.lerp(f, k1, l1);
+                } else {
+                    i = Sheep.getColor(sheep.getColor());
+                }
 
-            coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, furTexture, poseStack, buffer, packedLight, sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, i);
+                coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, furTexture, poseStack, buffer, packedLight, sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, i);
+            }
         }
+
         ci.cancel();
     }
 

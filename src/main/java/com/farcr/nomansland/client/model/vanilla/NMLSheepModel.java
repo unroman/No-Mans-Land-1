@@ -7,65 +7,62 @@ import net.minecraft.world.entity.animal.Sheep;
 
 public class NMLSheepModel {
     public static LayerDefinition createBodyLayer() {
-        MeshDefinition meshdefinition = new MeshDefinition();
-        PartDefinition partdefinition = meshdefinition.getRoot();
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 0, 0, 0), PartPose.offset(0, 0, 0));
+		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition bodyAdult = body.addOrReplaceChild("body_adult", CubeListBuilder.create().texOffs(0, 0).addBox(-4, -4, -7, 8, 8, 14), PartPose.offset(0, 12, 0));
+		PartDefinition body_adult = body.addOrReplaceChild("body_adult", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -12.0F, -1.0F));
 
-        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 22).addBox(-2, -5, -7, 4, 5, 8), PartPose.offsetAndRotation(0, -8, -5.5F, 0, 0, 0));
+		PartDefinition sheared_tail = body_adult.addOrReplaceChild("sheared_tail", CubeListBuilder.create().texOffs(0, 3).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, 7.0F));
 
-        head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(0, 0).addBox(-2, -1, 0, 2, 2, 1), PartPose.offsetAndRotation(-2, -3.8F, -0.7F, -0.425F, 0, 0));
+		PartDefinition body_wool = body_adult.addOrReplaceChild("body_wool", CubeListBuilder.create().texOffs(45, 1).addBox(-4.5F, -4.5F, -7.0F, 9.0F, 9.0F, 15.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0, -1, 0, 2, 2, 1).mirror(false), PartPose.offsetAndRotation(2, -3.8F, -0.7F, -0.425F, 0, 0));
+		PartDefinition tail_wool = body_wool.addOrReplaceChild("tail_wool", CubeListBuilder.create().texOffs(52, 9).addBox(-1.0F, -1.5F, 0.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.2F)), PartPose.offset(0.0F, -2.3F, 8.3F));
 
-        head.addOrReplaceChild("right_horn", CubeListBuilder.create().texOffs(0, 7).addBox(-0.5F, -1, 0, 1, 2, 3), PartPose.offset(-1.5F, -4, 1));
+		PartDefinition body_baby = body.addOrReplaceChild("body_baby", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -2.5F, -4.0F, 5.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -13, 0.0F));
 
-        head.addOrReplaceChild("left_horn", CubeListBuilder.create().texOffs(0, 7).addBox(-0.5F, -1, 0, 1, 2, 3), PartPose.offset(1.5F, -4, 1));
+		PartDefinition tail_baby = body_baby.addOrReplaceChild("tail_baby", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.5F, 4.0F));
 
-        bodyAdult.addOrReplaceChild("sheared_tail", CubeListBuilder.create().texOffs(0, 3).addBox(-1, -1, 0, 2, 2, 2), PartPose.offset(0, -3, 7));
+		PartDefinition right_front_leg_baby = body_baby.addOrReplaceChild("right_front_leg_baby", CubeListBuilder.create().texOffs(14, 13).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.5F, 2.5F, -3.0F));
 
-        PartDefinition rightFrontLeg = partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(30, 0).mirror().addBox(-1.5F, 0, -1.5F, 3, 8, 3).mirror(false), PartPose.offset(-2.4F, 16, -4.4F));
+		PartDefinition left_front_leg_baby = body_baby.addOrReplaceChild("left_front_leg_baby", CubeListBuilder.create().texOffs(14, 13).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5F, 2.5F, -3.0F));
 
-        rightFrontLeg.addOrReplaceChild("right_front_leg_wool", CubeListBuilder.create().texOffs(78, 0).addBox(-2, -1, -2, 4, 4, 4), PartPose.offset(0, 0, 0));
+		PartDefinition right_hind_leg_baby = body_baby.addOrReplaceChild("right_hind_leg_baby", CubeListBuilder.create().texOffs(22, 13).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.5F, 2.5F, 3.0F));
 
-        PartDefinition leftFrontLeg = partdefinition.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(42, 0).mirror().addBox(-1.5F, 0, -1.5F, 3, 8, 3).mirror(false), PartPose.offset(2.4F, 16, -4.4F));
+		PartDefinition left_hind_leg_baby = body_baby.addOrReplaceChild("left_hind_leg_baby", CubeListBuilder.create().texOffs(22, 13).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5F, 2.5F, 3.0F));
 
-        leftFrontLeg.addOrReplaceChild("left_front_leg_wool", CubeListBuilder.create().texOffs(78, 8).addBox(-2, -1, -2, 4, 4, 4), PartPose.offset(0, 0, 0));
+		PartDefinition head_baby = body.addOrReplaceChild("head_baby", CubeListBuilder.create().texOffs(0, 13).addBox(-1.5F, -1.0778F, -3.0015F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -16F, -5.5F, -0.6981F, 0.0F, 0.0F));
 
-        PartDefinition rightHindLeg = partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(24, 22).mirror().addBox(-1.5F, -2, -1.5F, 3, 10, 3).mirror(false), PartPose.offset(-2.4F, 16, 5.4F));
+		PartDefinition right_ear_baby = head_baby.addOrReplaceChild("right_ear_baby", CubeListBuilder.create().texOffs(0, 4).mirror().addBox(-1.5F, -1.0F, -0.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, 0.0829F, -1.693F, 0.6981F, 0.0F, 0.0F));
 
-        rightHindLeg.addOrReplaceChild("right_hind_leg_wool", CubeListBuilder.create().texOffs(48, 25).addBox(-2, -1, -2, 4, 4, 4), PartPose.offset(0, 0, 0));
+		PartDefinition left_ear_baby = head_baby.addOrReplaceChild("left_ear_baby", CubeListBuilder.create().texOffs(0, 4).addBox(-0.75F, -1.0F, -0.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, 0.0829F, -1.693F, 0.6981F, 0.0F, 0.0F));
 
-        PartDefinition leftHindLeg = partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(36, 22).mirror().addBox(-1.5F, -2, -1.5F, 3, 10, 3).mirror(false), PartPose.offset(2.4F, 16, 5.4F));
+		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(94, 0).addBox(-2.0F, -3.0F, -1.0F, 4.0F, 6.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 22).addBox(-3.0F, -3.0F, -5.0F, 6.0F, 7.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 33).addBox(-3.0F, -4.0F, -5.0F, 6.0F, 8.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offsetAndRotation(0.0F, 11.0F, -8.0F, -0.2738F, 0.0F, 0.0F));
 
-        leftHindLeg.addOrReplaceChild("left_hind_leg_wool", CubeListBuilder.create().texOffs(64, 25).addBox(-2, -1, -2, 4, 4, 4), PartPose.offset(0, 0, 0));
+		PartDefinition right_ear = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -1.0F, 0.0F, 3.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, -0.9F, -3.0F));
 
-        PartDefinition bodyWool = bodyAdult.addOrReplaceChild("body_wool", CubeListBuilder.create().texOffs(45, 1).addBox(-4.5F, -4.5F, -7, 9, 9, 15, new CubeDeformation(0.25F)), PartPose.offset(0, 0, 0));
+		PartDefinition left_ear = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, -0.5F, 3.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(3.0F, -0.9F, -2.5F));
 
-        bodyWool.addOrReplaceChild("tail_wool", CubeListBuilder.create().texOffs(52, 9).addBox(-1, -1.5F, 0, 2, 5, 2, new CubeDeformation(0.2F)), PartPose.offset(0, -2.3F, 8.3F));
+		PartDefinition right_front_leg = partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(30, 0).mirror().addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-2.4F, 16.0F, -5.5F));
 
-        // Baby
-        PartDefinition bodyBaby = body.addOrReplaceChild("body_baby", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -2.5F, -4, 5, 5, 8), PartPose.offset(0, 10.6F, 0));
+		PartDefinition right_front_leg_wool = right_front_leg.addOrReplaceChild("right_front_leg_wool", CubeListBuilder.create().texOffs(78, 0).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        bodyBaby.addOrReplaceChild("tail_baby", CubeListBuilder.create().texOffs(0, 0).addBox(-1, -1, 0, 2, 2, 2), PartPose.offset(0, -1.5F, 4));
+		PartDefinition left_front_leg = partdefinition.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(42, 0).mirror().addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.4F, 16.0F, -5.5F));
 
-        PartDefinition headBaby = body.addOrReplaceChild("head_baby", CubeListBuilder.create().texOffs(0, 13).addBox(-1.5F, -1.0778F, -3.0015F, 3, 5, 3), PartPose.offsetAndRotation(0, 0, -5, 0, 0, 0));
+		PartDefinition left_front_leg_wool = left_front_leg.addOrReplaceChild("left_front_leg_wool", CubeListBuilder.create().texOffs(78, 8).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        headBaby.addOrReplaceChild("right_ear_baby", CubeListBuilder.create().texOffs(0, 4).mirror().addBox(-1.5F, -1, -0.5F, 2, 2, 1).mirror(false), PartPose.offsetAndRotation(-2, 0.0829F, -1.693F, 0.425F, 0, 0));
+		PartDefinition right_hind_leg = partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(24, 22).mirror().addBox(-1.5F, -2.0F, -1.5F, 3.0F, 10.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-2.4F, 16.0F, 5.5F));
 
-        headBaby.addOrReplaceChild("left_ear_baby", CubeListBuilder.create().texOffs(0, 4).addBox(-0.75F, -1, -0.5F, 2, 2, 1), PartPose.offsetAndRotation(2, 0.0829F, -1.693F, 0.425F, 0, 0));
+		PartDefinition right_hind_leg_wool = right_hind_leg.addOrReplaceChild("right_hind_leg_wool", CubeListBuilder.create().texOffs(48, 25).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-       bodyBaby.addOrReplaceChild("right_front_leg_baby", CubeListBuilder.create().texOffs(14, 13).mirror().addBox(-1, 0, -1, 2, 4, 2).mirror(false), PartPose.offset(-1.5F, 2.5F, -3));
+		PartDefinition left_hind_leg = partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(36, 22).mirror().addBox(-1.5F, -2.0F, -1.5F, 3.0F, 10.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.4F, 16.0F, 5.5F));
 
-        bodyBaby.addOrReplaceChild("left_front_leg_baby", CubeListBuilder.create().texOffs(14, 13).addBox(-1, 0, -1, 2, 4, 2), PartPose.offset(1.5F, 2.5F, -2));
+		PartDefinition left_hind_leg_wool = left_hind_leg.addOrReplaceChild("left_hind_leg_wool", CubeListBuilder.create().texOffs(64, 25).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        bodyBaby.addOrReplaceChild("right_hind_leg_baby", CubeListBuilder.create().texOffs(22, 13).mirror().addBox(-1, 0, -1, 2, 4, 2).mirror(false), PartPose.offset(-1.5F, 2.5F, 3));
-
-        bodyBaby.addOrReplaceChild("left_hind_leg_baby", CubeListBuilder.create().texOffs(22, 13).addBox(-1, 0, -1, 2, 4, 2), PartPose.offset(1.5F, 2.5F, 2));
-
-        return LayerDefinition.create(meshdefinition, 128, 64);
+		return LayerDefinition.create(meshdefinition, 128, 64);
     }
 
     public static void setupAnim(Sheep sheep, ModelPart root, float ageInTicks, float headXRot) {
@@ -90,7 +87,7 @@ public class NMLSheepModel {
         boolean baby = sheep.isBaby();
         boolean sheared = sheep.isSheared();
 
-        head.xRot = headXRot + 0.69F;
+        head.xRot = headXRot - 0.1569F;
 
         headBaby.xScale = 2;
         headBaby.yScale = 2;
@@ -99,8 +96,8 @@ public class NMLSheepModel {
         bodyBaby.yScale = 2;
         bodyBaby.zScale = 2;
 
-        headBaby.xRot = headXRot - 0.425F;
-        headBaby.y = head.y - 0.5F;
+        headBaby.xRot = headXRot - 0.5412F;
+        headBaby.y = head.y - 27;
         headBaby.yRot = head.yRot / 2;
 
         bodyAdult.visible = !baby;

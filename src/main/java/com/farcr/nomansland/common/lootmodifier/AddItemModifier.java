@@ -17,10 +17,10 @@ import javax.annotation.Nonnull;
 public class AddItemModifier extends LootModifier {
 
     public static MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(
-            builder -> codecStart(builder).and(builder.group(
+            instance -> codecStart(instance).and(instance.group(
                     BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter((m) -> m.addedItem),
                     Codec.INT.optionalFieldOf("count", 1).forGetter((m) -> m.count)
-            )).apply(builder, AddItemModifier::new));
+            )).apply(instance, AddItemModifier::new));
 
     private final Item addedItem;
     private final int count;

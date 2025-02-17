@@ -6,6 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -60,25 +62,28 @@ public class FlammableEffect extends MobEffect {
 
             FireBlock delegate = (FireBlock) Blocks.FIRE;
 
-//            if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
-//                var positions = BlockPos.betweenClosedStream(livingEntity.getBoundingBox().move(-2, 0, -2).inflate(2, 0, 2))
-//                        .map(BlockPos::immutable).distinct().collect(Collectors.toCollection(ArrayList::new));
-//                Collections.shuffle(positions);
-//
-//                for (BlockPos pos : positions) {
-//                    if (level.isRaining() && delegate.isNearRain(level, pos)) {
-//                        continue;
-//                    }
-//
-//                    for (Direction d : Direction.values()) {
-//                        if (BaseFireBlock.canBePlacedAt(level, pos, d)) {
-//                            BlockState state = BaseFireBlock.getState(level, pos);
-//                            level.setBlock(pos, state, 3);
-//                        }
-//                    }
-//                    break;
-//                }
-//            }
+            if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
+                var positions = BlockPos.betweenClosedStream(livingEntity.getBoundingBox().move(-1.5, 0, -1.5).inflate(1.5, 0, 1.5))
+                        .map(BlockPos::immutable).distinct().collect(Collectors.toCollection(ArrayList::new));
+                Collections.shuffle(positions);
+
+                for (BlockPos pos : positions) {
+                    if (level.isRaining() && delegate.isNearRain(level, pos)) {
+                        continue;
+                    }
+
+                    for (Direction d : Direction.values()) {
+                        if (BaseFireBlock.canBePlacedAt(level, pos, d)) {
+                            BlockState state = BaseFireBlock.getState(level, pos);
+                            level.setBlock(pos, state, 3);
+                        }
+                    }
+
+                    if (level.random.nextFloat() < 0.2) break;
+                }
+
+                level.playSound(null, livingEntity.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS);
+            }
         }
 
         super.onMobHurt(livingEntity, amplifier, damageSource, amount);

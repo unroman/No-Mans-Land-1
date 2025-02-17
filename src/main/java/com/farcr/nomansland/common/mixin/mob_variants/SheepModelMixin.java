@@ -28,7 +28,7 @@ public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
 
     @Inject(method = "prepareMobModel(Lnet/minecraft/world/entity/animal/Sheep;FFF)V", at = @At("HEAD"), cancellable = true)
     private void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick, CallbackInfo ci) {
-        head.y = 8.0F + entity.getHeadEatPositionScale(partialTick) * 7.0F;
+        head.y = 11 + entity.getHeadEatPositionScale(partialTick) * 7.0F;
         noMansLand$headXRot = entity.getHeadEatAngleScale(partialTick);
         ci.cancel();
     }
