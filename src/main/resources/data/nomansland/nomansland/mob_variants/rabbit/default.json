@@ -1,5 +1,5 @@
 {
-  "texture": "nomansland:entity/mob_variant/rabbit/rabbit_brown",
+  "texture": "nomansland:entity/mob_variants/rabbit/rabbit_brown",
   "weight": 1,
-  "baby_texture": "nomansland:entity/mob_variant/rabbit/rabbit_brown"
+  "baby_texture": "nomansland:entity/mob_variants/rabbit/rabbit_brown"
 }

@@ -68,6 +68,7 @@
     "mob_variants.MushroomCowRendererMixin",
     "mob_variants.PigModelMixin",
     "mob_variants.PigRendererMixin",
+    "mob_variants.RabbitModelMixin",
     "mob_variants.RabbitRendererMixin",
     "mob_variants.SaddleLayerMixin",
     "mob_variants.SalmonRendererMixin",

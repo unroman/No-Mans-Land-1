@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.client.model.vanilla.NMLRabbitModel;
+import com.farcr.nomansland.client.model.vanilla.NMLSheepModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.RabbitModel;
@@ -33,15 +34,8 @@ public class RabbitModelMixin<T extends Entity> {
         cir.setReturnValue(NMLRabbitModel.createBodyLayer());
     }
 
-    @Inject(method = "setupAnim*", at = @At("TAIL"), cancellable = true)
-    private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        NMLRabbitModel.setupAnim((Rabbit) entity, root, limbSwing, limbSwing, ageInTicks, netHeadYaw, headPitch, this.jumpRotation);
-        ci.cancel();
-    }
-
-    @Inject(method = "renderToBuffer", at = @At("HEAD"), cancellable = true)
-    private void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color, CallbackInfo ci) {
-        NMLRabbitModel.renderToBuffer(root, poseStack, buffer, packedLight, packedOverlay, color);
-        ci.cancel();
+    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Rabbit;FFFFF)V", at = @At("TAIL"))
+    private void setupAnim(Rabbit entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+        NMLRabbitModel.setupAnim(entity, root, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
     }
 }
