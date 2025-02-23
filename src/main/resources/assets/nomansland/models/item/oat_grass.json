@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nomansland:block/plants/oat_grass"
+    "layer0": "nomansland:block/plants/oat_grass",
+    "layer1": "nomansland:block/plants/oat_grass_overlay"
   }
 }

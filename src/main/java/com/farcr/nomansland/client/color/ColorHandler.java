@@ -18,7 +18,9 @@ public class ColorHandler {
     public static void registerItemColorHandlers(RegisterColorHandlersEvent.Item event) {
         event.register((state, tintIndex) -> GrassColor.get(0.5D, 1),
                 NMLBlocks.GRASS_SPROUTS.get(),
-                NMLBlocks.FIDDLEHEAD.get(),
+                NMLBlocks.FIDDLEHEAD.get());
+
+        event.register((state, tintIndex) -> tintIndex == 0 ? GrassColor.get(0.5D, 1) : 0xFFFFFF,
                 NMLBlocks.OAT_GRASS.get());
 
 //        event.register((state, tintIndex) -> {
