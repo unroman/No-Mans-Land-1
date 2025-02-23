@@ -35,6 +35,9 @@ public class NMLFeatures {
     public static final Supplier<Feature<FallenTreeFeatureConfiguration>> FALLEN_TREE = FEATURES.register("fallen_tree",
             () -> new FallenTreeFeature(FallenTreeFeatureConfiguration.CODEC));
 
+    public static final Supplier<Feature<FoliageCircleFeatureConfiguration>> FOLIAGE_CIRCLE = FEATURES.register("foliage_circle",
+            () -> new FoliageCircleFeature(FoliageCircleFeatureConfiguration.CODEC));
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_APPLE_01 = register("oak_apple_01");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_APPLE_05 = register("oak_apple_05");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FANCY_OAK_APPLE_01 = register("fancy_oak_apple_01");
