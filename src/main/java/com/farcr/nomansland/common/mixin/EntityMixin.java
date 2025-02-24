@@ -1,23 +1,24 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -89,6 +90,13 @@ public abstract class EntityMixin {
 
     @Shadow public abstract BlockState getBlockStateOn();
 
+    @Shadow public float fallDistance;
+
+    @Shadow public abstract Vec3 position();
+
+    @Unique @Nullable
+    private Vec3 startingToFallPosition;
+
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(EntityType<?> entityType, Level level, CallbackInfo ci) {
         if (entityType == EntityType.COW) dimensions = getDimensions(getPose()) == null ?  entityType.getDimensions() : getDimensions(getPose());
@@ -97,5 +105,30 @@ public abstract class EntityMixin {
     @Inject(method = "getOnPosLegacy", at = @At("RETURN"), cancellable = true)
     private void getOnPosLegacy(CallbackInfoReturnable<BlockPos> cir) {
         cir.setReturnValue(getBlockStateOn().is(NMLBlocks.SPIKE_TRAP) ? getOnPos() : getOnPos(0.2F));
+    }
+
+    @Inject(method = "resetFallDistance", at = @At("HEAD"))
+    private void resetFallDistance(CallbackInfo ci) {
+        if (((Entity) (Object) this) instanceof LivingEntity livingEntity && livingEntity.getHealth() > 0 && startingToFallPosition != null && !livingEntity.getPassengers().isEmpty()) {
+            livingEntity.getPassengers().forEach(entity -> {
+                if (entity instanceof ServerPlayer player && player.getHealth() > 0) {
+                    CriteriaTriggers.FALL_FROM_HEIGHT.trigger(player, this.startingToFallPosition);
+                }
+            });
+        }
+
+        startingToFallPosition = null;
+    }
+
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void tick(CallbackInfo ci) {
+        trackStartFallingPosition();
+    }
+
+    @Unique
+    private void trackStartFallingPosition() {
+        if (fallDistance > 0.0F && startingToFallPosition == null) {
+            startingToFallPosition = position();
+        }
     }
 }

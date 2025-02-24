@@ -40,10 +40,9 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
     @Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/Sheep;FFFFFF)V", at = @At("HEAD"), cancellable = true)
     private void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, Sheep sheep, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
 
-        ResourceLocation furTexture = (sheep.isBaby() ? ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().babyFurTexture() : ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().furTexture()).withPath((path) -> "textures/" + path + ".png");
+        ResourceLocation furTexture = (sheep.isBaby() ? ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().babyFurTexture() : sheep.isSheared() ? ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().shearedFurTexture() : ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().furTexture()).withPath((path) -> "textures/" + path + ".png");
 
-        if (!sheep.isSheared()) {
-            if (sheep.isInvisible()) {
+        if (sheep.isInvisible()) {
                 Minecraft minecraft = Minecraft.getInstance();
                 if (minecraft.shouldEntityAppearGlowing(sheep)) {
                     this.getParentModel().copyPropertiesTo(this.model);
@@ -68,7 +67,6 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
                 }
 
                 coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, furTexture, poseStack, buffer, packedLight, sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, i);
-            }
         }
 
         ci.cancel();

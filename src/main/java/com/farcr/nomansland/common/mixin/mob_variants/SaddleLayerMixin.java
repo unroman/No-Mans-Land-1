@@ -26,14 +26,15 @@ public abstract class SaddleLayerMixin<T extends Entity & Saddleable, M extends 
 
     @Shadow @Final private ResourceLocation textureLocation;
 
-    @Inject(method = "render", at = @At("HEAD"))
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (livingEntity.isSaddled()) {
             this.getParentModel().copyPropertiesTo(this.model);
             this.model.prepareMobModel(livingEntity, limbSwing, limbSwingAmount, partialTicks);
             this.model.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             poseStack.pushPose();
-            poseStack.scale(1.1F, 0.9F, 1.1F);
+            poseStack.scale(1.05F, 1, 1.05F);
+            poseStack.translate(0, -0.025F, 0);
             VertexConsumer vertexconsumer;
             if (livingEntity.getType() == EntityType.PIG) {
                 ResourceLocation pigTexture = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/pig/saddle.png");
@@ -45,5 +46,6 @@ public abstract class SaddleLayerMixin<T extends Entity & Saddleable, M extends 
             poseStack.popPose();
         }
 
+        ci.cancel();
     }
 }
