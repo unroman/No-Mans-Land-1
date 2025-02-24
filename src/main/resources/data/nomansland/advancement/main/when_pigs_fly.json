@@ -1,0 +1,33 @@
+{
+  "display": {
+    "description": {
+      "translate": "nomansland.advancements.when_pigs_fly.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:saddle"
+    },
+    "title": {
+      "translate": "nomansland.advancements.when_pigs_fly.title"
+    }
+  },
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "fall_with_pig": {
+      "conditions": {
+        "distance": {
+          "y": {
+            "min": 40
+          }
+        },
+        "player": {
+          "vehicle": {
+            "type": "minecraft:pig",
+            "nbt": "{Health: 10.0f}"
+          }
+        }
+      },
+      "trigger": "minecraft:fall_from_height"
+    }
+  }
+}

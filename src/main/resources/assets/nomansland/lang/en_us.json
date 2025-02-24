@@ -342,5 +342,11 @@
   "death.attack.nomansland.spike_skewer.player": "%1$s was skewered by a spike trap while fighting %2$s",
   "entity.nomansland.explosive": "Explosive",
   "entity.nomansland.firebomb": "Firebomb",
-  "effect.nomansland.flammable": "Flammable"
+  "effect.nomansland.flammable": "Flammable",
+  "nomansland.advancements.tap.title": "Tree Juice",
+  "nomansland.advancements.tap.description": "Collect Resin or Maple Syrup with a Tap and a Cauldron",
+  "nomansland.advancements.monster_anchor.title": "Can't Even Die Right",
+  "nomansland.advancements.monster_anchor.description": "Defeat an enemy under the influence of a Monster Anchor",
+  "nomansland.advancements.when_pigs_fly.title": "When Pigs Fly",
+  "nomansland.advancements.when_pigs_fly.description": "Ride a pig down a 40 block fall without it taking damage"
 }
