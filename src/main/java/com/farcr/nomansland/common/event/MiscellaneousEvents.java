@@ -10,10 +10,12 @@ import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -21,15 +23,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.camel.Camel;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SnowyDirtBlock;
-import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -119,6 +121,244 @@ public class MiscellaneousEvents {
                         level.setBlockAndUpdate(posUnder, stateUnder.setValue(SNOWY, true));
                     event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                     event.setCanceled(true);
+                }
+            }
+
+            // Ladder Placement
+            if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator()) {
+                Direction ladderFacing = state.getValue(LadderBlock.FACING);
+                if (ladderFacing == event.getFace()) {
+                    BlockPos.MutableBlockPos mutable = pos.below().mutable();
+                    for (int i = 0; NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get() != 0 ? i < NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get() : mutable.getY() > level.getMinBuildHeight(); i++) {
+                        BlockState state2 = level.getBlockState(mutable);
+                        if (state2.is(BlockTags.REPLACEABLE)) {
+                            if (state.canSurvive(level, mutable)) {
+                                SoundType soundtype = state.getSoundType(level, pos, player);
+                                level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                stack.consume(1, player);
+                                level.setBlockAndUpdate(mutable, Blocks.LADDER.defaultBlockState().setValue(LadderBlock.FACING, ladderFacing));
+                                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                                event.setCanceled(true);
+                                break;
+                            }
+                        } else if (!state2.is(Blocks.LADDER)) {
+                            break;
+                        }
+                        mutable.move(Direction.DOWN);
+                    }
+                }
+            }
+
+            // Rail Placement
+            // This code is terrible and fills me with regrets. Those who dare venture in do so at their own risk
+            if (event.getFace() == Direction.UP && stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator()) {
+                Direction playerDir = player.getDirection();
+                RailShape railShape = null;
+                if (state.hasProperty(RailBlock.SHAPE))
+                    railShape = state.getValue(RailBlock.SHAPE);
+                else if (state.hasProperty(PoweredRailBlock.SHAPE))
+                    railShape = state.getValue(PoweredRailBlock.SHAPE);
+                else if (state.hasProperty(DetectorRailBlock.SHAPE))
+                    railShape = state.getValue(DetectorRailBlock.SHAPE);
+                if (railShape != null) {
+                    int railCount = 0;
+                    for (Direction direction : Direction.Plane.HORIZONTAL) {
+                        if (level.getBlockState(pos.relative(direction)).is(BlockTags.RAILS))
+                            railCount++;
+                    }
+                    RailShape placedShape;
+                    BlockPos.MutableBlockPos mutable = pos.mutable();
+                    for (int i = 0; i < NMLConfig.MAX_RAIL_PLACMENT_LENGTH.get(); i++) {
+                        BlockState state2 = level.getBlockState(mutable);
+                        BlockState state4 = level.getBlockState(mutable.immutable().below());
+                        BlockState state5 = level.getBlockState(mutable.immutable().above());
+                        BlockState state6 = level.getBlockState(mutable.immutable().below(2));
+                        BlockState state7 = level.getBlockState(mutable.immutable().below().relative(playerDir.getOpposite()));
+                        if (state2.is(BlockTags.RAILS)) {
+                            // Continue along the chain
+                            RailShape offsetShape = null;
+                            if (state2.hasProperty(RailBlock.SHAPE))
+                                offsetShape = state2.getValue(RailBlock.SHAPE);
+                            else if (state2.hasProperty(PoweredRailBlock.SHAPE))
+                                offsetShape = state2.getValue(PoweredRailBlock.SHAPE);
+                            else if (state2.hasProperty(DetectorRailBlock.SHAPE))
+                                offsetShape = state2.getValue(DetectorRailBlock.SHAPE);
+
+                            if (offsetShape == null)
+                                break;
+
+                            // The big if chain
+                            // Straights are gone because of woke
+                            // Curves
+                            if (offsetShape == RailShape.NORTH_EAST) {
+                                if (playerDir == Direction.SOUTH) playerDir = Direction.EAST;
+                                else if (playerDir == Direction.WEST) playerDir = Direction.NORTH;
+                            } else if (offsetShape == RailShape.NORTH_WEST) {
+                                if (playerDir == Direction.SOUTH) playerDir = Direction.WEST;
+                                else if (playerDir == Direction.EAST) playerDir = Direction.NORTH;
+                            } else if (offsetShape == RailShape.SOUTH_EAST) {
+                                if (playerDir == Direction.NORTH) playerDir = Direction.EAST;
+                                else if (playerDir == Direction.WEST) playerDir = Direction.SOUTH;
+                            } else if (offsetShape == RailShape.SOUTH_WEST) {
+                                if (playerDir == Direction.NORTH) playerDir = Direction.WEST;
+                                else if (playerDir == Direction.EAST) playerDir = Direction.SOUTH;
+                            }
+                            // Ramps
+                            else if (offsetShape == RailShape.ASCENDING_NORTH) {
+                                if (playerDir == Direction.NORTH) mutable.move(Direction.UP);
+                                else if (playerDir != Direction.SOUTH) break;
+                            } else if (offsetShape == RailShape.ASCENDING_SOUTH) {
+                                if (playerDir == Direction.SOUTH) mutable.move(Direction.UP);
+                                else if (playerDir != Direction.NORTH) break;
+                            } else if (offsetShape == RailShape.ASCENDING_EAST) {
+                                if (playerDir == Direction.EAST) mutable.move(Direction.UP);
+                                else if (playerDir != Direction.WEST) break;
+                            } else if (offsetShape == RailShape.ASCENDING_WEST) {
+                                if (playerDir == Direction.WEST) mutable.move(Direction.UP);
+                                else if (playerDir != Direction.EAST) break;
+                            }
+                            // Edge case
+                            else if (offsetShape != RailShape.EAST_WEST && offsetShape != RailShape.NORTH_SOUTH){
+                                break;
+                            }
+
+                            mutable.move(playerDir);
+                        } else if (state4.is(BlockTags.RAILS)) {
+                            boolean canGoDown = false;
+                            RailShape offsetShape = null;
+                            if (state4.hasProperty(RailBlock.SHAPE))
+                                offsetShape = state4.getValue(RailBlock.SHAPE);
+                            else if (state4.hasProperty(PoweredRailBlock.SHAPE))
+                                offsetShape = state4.getValue(PoweredRailBlock.SHAPE);
+                            else if (state4.hasProperty(DetectorRailBlock.SHAPE))
+                                offsetShape = state4.getValue(DetectorRailBlock.SHAPE);
+
+                            if (offsetShape == null) break;
+
+                            if (offsetShape == RailShape.ASCENDING_NORTH) {
+                                if (playerDir == Direction.SOUTH) {
+                                    mutable.move(Direction.DOWN);
+                                    canGoDown = true;
+                                } else if (playerDir != Direction.NORTH) break;
+                            } else if (offsetShape == RailShape.ASCENDING_SOUTH) {
+                                if (playerDir == Direction.NORTH) {
+                                    mutable.move(Direction.DOWN);
+                                    canGoDown = true;
+                                } else if (playerDir != Direction.SOUTH) break;
+                            } else if (offsetShape == RailShape.ASCENDING_EAST) {
+                                if (playerDir == Direction.WEST) {
+                                    mutable.move(Direction.DOWN);
+                                    canGoDown = true;
+                                } else if (playerDir != Direction.EAST) break;
+                            } else if (offsetShape == RailShape.ASCENDING_WEST) {
+                                if (playerDir == Direction.EAST) {
+                                    mutable.move(Direction.DOWN);
+                                    canGoDown = true;
+                                } else if (playerDir != Direction.WEST) break;
+                            }
+
+                            if (!canGoDown) {
+                                // Lazily copied from below bc i SUCK
+                                if (state2.is(BlockTags.REPLACEABLE)) {
+                                    // Place a rail
+                                    BlockState state3 = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
+                                    placedShape = switch (playerDir) {
+                                        case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
+                                        case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
+                                        default -> null;
+                                    };
+                                    if (state3.hasProperty(RailBlock.SHAPE))
+                                        state3 = state3.setValue(RailBlock.SHAPE, placedShape);
+                                    else if (state3.hasProperty(PoweredRailBlock.SHAPE))
+                                        state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
+                                    else if (state3.hasProperty(DetectorRailBlock.SHAPE))
+                                        state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
+                                    if (state3.canSurvive(level, mutable)) {
+                                        SoundType soundtype = state3.getSoundType(level, mutable, player);
+                                        level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                        stack.consume(1, player);
+                                        level.setBlockAndUpdate(mutable, state3);
+                                        event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                                        event.setCanceled(true);
+                                        break;
+                                    }
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else if (state2.isFaceSturdy(level, mutable, Direction.UP, SupportType.RIGID) && state5.is(BlockTags.REPLACEABLE)) {
+                            // Place a rail above
+                            BlockState state3 = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
+                            placedShape = switch (playerDir) {
+                                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
+                                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
+                                default -> null;
+                            };
+                            if (state3.hasProperty(RailBlock.SHAPE))
+                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
+                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
+                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
+                            if (state3.canSurvive(level, mutable.immutable().above())) {
+                                SoundType soundtype = state3.getSoundType(level, mutable.immutable().above(), player);
+                                level.playSound(player, mutable.immutable().above(), soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                stack.consume(1, player);
+                                level.setBlockAndUpdate(mutable.immutable().above(), state3);
+                                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                                event.setCanceled(true);
+                                break;
+                            }
+                        } else if (state6.isFaceSturdy(level, mutable.immutable().below(2), Direction.UP, SupportType.RIGID) && state7.isFaceSturdy(level, mutable.immutable().below().relative(playerDir.getOpposite()), playerDir, SupportType.RIGID) && state4.is(BlockTags.REPLACEABLE)) {
+                            // Place a rail below
+                            BlockState state3 = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
+                            placedShape = switch (playerDir) {
+                                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
+                                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
+                                default -> null;
+                            };
+                            if (state3.hasProperty(RailBlock.SHAPE))
+                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
+                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
+                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
+                            if (state3.canSurvive(level, mutable.immutable().below())) {
+                                SoundType soundtype = state3.getSoundType(level, mutable.immutable().below(), player);
+                                level.playSound(player, mutable.immutable().below(), soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                stack.consume(1, player);
+                                level.setBlockAndUpdate(mutable.immutable().below(), state3);
+                                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                                event.setCanceled(true);
+                                break;
+                            }
+                        } else if (state2.is(BlockTags.REPLACEABLE)) {
+                            // Place a rail
+                            BlockState state3 = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
+                            placedShape = switch (playerDir) {
+                                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
+                                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
+                                default -> null;
+                            };
+                            if (state3.hasProperty(RailBlock.SHAPE))
+                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
+                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
+                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
+                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
+                            if (state3.canSurvive(level, mutable)) {
+                                SoundType soundtype = state3.getSoundType(level, mutable, player);
+                                level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                stack.consume(1, player);
+                                level.setBlockAndUpdate(mutable, state3);
+                                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                                event.setCanceled(true);
+                                break;
+                            }
+                        } else {
+                            break;
+                        }
+                    }
                 }
             }
         }
