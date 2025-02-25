@@ -1,0 +1,22 @@
+{
+  "structures": [
+    {
+      "structure": "nomansland:drowned_monument",
+      "weight": 3
+    },
+    {
+      "structure": "nomansland:creeper_monument",
+      "weight": 3
+    },
+    {
+      "structure": "nomansland:sniffer_monument",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 7481,
+    "separation": 18,
+    "spacing": 46,
+    "type": "minecraft:random_spread"
+  }
+}

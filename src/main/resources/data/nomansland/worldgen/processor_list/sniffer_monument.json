@@ -1,0 +1,65 @@
+{
+  "processors": [
+    {
+      "rules": [
+        {
+          "output_state": {
+            "Name": "minecraft:suspicious_gravel",
+            "Properties": {
+              "dusted": "0"
+            }
+          },
+          "block_entity_modifier": {
+            "type": "minecraft:append_loot",
+            "loot_table": "nomansland:archaeology/sniffer_monument"
+          },
+          "input_predicate": {
+            "block": "minecraft:gravel",
+            "probability": 0.3,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Name": "minecraft:air"
+          },
+          "input_predicate": {
+            "block": "nomansland:pebbles",
+            "probability": 0.7,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        }
+      ],
+      "processor_type": "minecraft:rule"
+    },
+    {
+      "prefix": "mossy",
+      "chance": 0.6,
+      "processor_type": "nomansland:prefix"
+    },
+    {
+      "prefix": "cracked",
+      "chance": 0.2,
+      "processor_type": "nomansland:prefix"
+    },
+    {
+      "output_state": {
+        "Name": "minecraft:air"
+      },
+      "input_predicate": {
+        "block": "minecraft:moss_carpet",
+        "probability": 0.3,
+        "predicate_type": "minecraft:random_block_match"
+      },
+      "location_predicate": {
+        "predicate_type": "minecraft:always_true"
+      }
+    }
+  ]
+}

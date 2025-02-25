@@ -1,7 +1,9 @@
 package com.farcr.nomansland.common.mixin.mob_variants;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.mob_variant.*;
+import com.farcr.nomansland.common.entity.mob_variant.DrownedVariant;
+import com.farcr.nomansland.common.entity.mob_variant.HuskVariant;
+import com.farcr.nomansland.common.entity.mob_variant.ZombieVariant;
 import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
 import com.farcr.nomansland.common.mixinduck.DrownedDuck;
@@ -19,16 +21,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.VariantHolder;
-import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.entity.animal.Dolphin;
-import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.ServerLevelAccessor;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -110,7 +107,7 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
                 variant = (Holder<DrownedVariant>) NMLMobVariants.getVariantForSpawn(((Drowned) (Object) this));
                 spawnGroupData = new VariantGroupData(variant);
             }
-        } else {
+        } else if (this.getType() == EntityType.ZOMBIE) {
             Holder<ZombieVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
                 variant = (Holder<ZombieVariant>) variantGroupData.variant;

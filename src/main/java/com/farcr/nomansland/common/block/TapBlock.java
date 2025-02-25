@@ -169,21 +169,17 @@ public class TapBlock extends BaseEntityBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        // Ensure only 0.3 of ticks actually cause the function to run
-
-        // Ensure there is a cauldron within 3 blocks under the tap
         BlockPos cauldronPos = getCauldronPos(level, pos);
         if (cauldronPos == null) return;
         BlockState cauldronState = level.getBlockState(cauldronPos);
 
         BlockState stateBehind = getBlockStateBehind(level, pos, state);
 
-        // Fill selected cauldron with resin
         if (stateBehind.is(NMLTags.CONIFEROUS_LOGS)) tryResin(cauldronState, cauldronPos, level, random);
         if (stateBehind.is(NMLBlocks.MAPLE_LOG)) tryMaple(cauldronState, cauldronPos, level, random);
     }
 
-    public void tryResin(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
+    public static void tryResin(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
             if (cauldronState.getBlock() instanceof NMLCauldronBlock cauldron && cauldron.getCauldronBlock() == NMLBlocks.RESIN_CAULDRON
                     && !cauldron.isFull(cauldronState) && random.nextFloat() < 0.1F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
                 cauldron.fillUp(cauldronState, level, cauldronPos);
@@ -193,7 +189,7 @@ public class TapBlock extends BaseEntityBlock {
             }
     }
 
-    public void tryMaple(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
+    public static void tryMaple(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
         if (cauldronState.getBlock() instanceof NMLCauldronBlock cauldron && cauldron.getCauldronBlock() == NMLBlocks.MAPLE_SYRUP_CAULDRON &&
                 !cauldron.isFull(cauldronState) && random.nextFloat() < 0.1F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
             cauldron.fillUp(cauldronState, level, cauldronPos);

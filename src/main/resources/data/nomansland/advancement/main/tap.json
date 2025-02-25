@@ -1,0 +1,81 @@
+{
+  "display": {
+    "icon": {
+      "id": "nomansland:tap"
+    },
+    "title": {
+      "translate": "nomansland.advancements.tap.title"
+    },
+    "description": {
+      "translate": "nomansland.advancements.tap.description"
+    }
+  },
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "harvests_from_cauldron": {
+      "trigger": "minecraft:any_block_use",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:block_state_property",
+                "block": "nomansland:resin_cauldron"
+              },
+              {
+                "condition": "minecraft:block_state_property",
+                "block": "nomansland:maple_syrup_cauldron"
+              },
+              {
+                "condition": "minecraft:block_state_property",
+                "block": "minecraft:cauldron"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "consumed_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:glass_bottle"
+          }
+        ]
+      }
+    },
+    "acquired_resin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "nomansland:resin",
+            "count": 3
+          }
+        ]
+      }
+    },
+    "acquired_maple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "nomansland:maple_syrup_bottle",
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "harvests_from_cauldron"
+    ],
+    [
+      "acquired_maple",
+      "acquired_resin"
+    ]
+  ]
+}

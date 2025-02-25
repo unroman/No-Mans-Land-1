@@ -86,7 +86,7 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
             }
 
             this.noMansLand$setMooshroomVariant(variant);
-        } else {
+        } else if (this.getType() == EntityType.COW) {
             Holder<CowVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
                 variant = (Holder<CowVariant>) variantGroupData.variant;

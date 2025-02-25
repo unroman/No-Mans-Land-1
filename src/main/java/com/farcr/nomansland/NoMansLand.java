@@ -9,7 +9,10 @@ import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.blocks.NMLFlammables;
 import com.farcr.nomansland.common.registry.blocks.NMLPottables;
-import com.farcr.nomansland.common.registry.entities.*;
+import com.farcr.nomansland.common.registry.entities.NMLDataSerializers;
+import com.farcr.nomansland.common.registry.entities.NMLEffects;
+import com.farcr.nomansland.common.registry.entities.NMLEntities;
+import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
 import com.farcr.nomansland.common.registry.items.NMLCreativeTabs;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
@@ -55,6 +58,7 @@ public class NoMansLand {
         NMLEffects.MOB_EFFECTS.register(modEventBus);
         NMLBiomePlacements.register();
         NMLStructureProcessorTypes.STRUCTURE_PROCESSOR_TYPES.register(modEventBus);
+        NMLCriteriaTriggers.TRIGGERS.register(modEventBus);
 
         if (Mods.FARMERSDELIGHT.isLoaded()) FDIntegration.register();
 

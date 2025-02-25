@@ -2,14 +2,17 @@ package com.farcr.nomansland.common.event.listener;
 
 import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
 import com.farcr.nomansland.common.mixinduck.LivingEntityDuck;
+import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEventListener;
@@ -100,24 +103,25 @@ public class AnchorListener implements GameEventListener {
 
     @Override
     public boolean handleGameEvent(ServerLevel level, Holder<GameEvent> gameEvent, GameEvent.Context context, Vec3 pos) {
-        if (gameEvent == GameEvent.ENTITY_DIE) {
-            Entity entity = context.sourceEntity();
-            if (entity instanceof Monster deadEntity && !(entity.getType().getTags().toList().contains(NMLTags.ANCHOR_BLACKLIST))) {
-                if (!deadEntity.wasExperienceConsumed()) {
+        if (gameEvent.is(GameEvent.ENTITY_DIE) && context.sourceEntity() instanceof Monster monster) {
+            if (!(monster.getType().getTags().toList().contains(NMLTags.ANCHOR_BLACKLIST))) {
+                if (!monster.wasExperienceConsumed()) {
                     // Add the entity to the dead entity list
                     this.positionSource.getPosition(level).ifPresent((sourcePos) -> {
                         MonsterAnchorBlockEntity monsterAnchorBlockEntity = (MonsterAnchorBlockEntity) level.getBlockEntity(BlockPos.containing(sourcePos));
-                        monsterAnchorBlockEntity.entityQueue.put(deadEntity, deadEntity.getPosition(0));
+                        monsterAnchorBlockEntity.entityQueue.put(monster, monster.getPosition(0));
                     });
 
                     // Stop the mob from dropping experience and loot
-                    deadEntity.skipDropExperience();
-                    ((LivingEntityDuck) deadEntity).noMansLand$skipDroppingDeathLoot();
+                    monster.skipDropExperience();
+                    ((LivingEntityDuck) monster).noMansLand$skipDroppingDeathLoot();
 
-                    AABB boundingBox = deadEntity.getBoundingBox();
+                    AABB boundingBox = monster.getBoundingBox();
                     processPoints(level, boundingBox, 0.2D).forEach(point -> {
                         level.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, point.y, point.z, 1, 0, 0, 0, 0);
                     });
+
+                    tryAwardAdvancement(level, monster);
                 }
             }
             return true;
@@ -127,5 +131,14 @@ public class AnchorListener implements GameEventListener {
 
     public DeliveryMode getDeliveryMode() {
         return DeliveryMode.BY_DISTANCE;
+    }
+
+    private static void tryAwardAdvancement(Level level, Monster monster) {
+        if (monster.getLastHurtByMob() instanceof ServerPlayer serverplayer) {
+            DamageSource damagesource = monster.getLastDamageSource() == null
+                    ? level.damageSources().playerAttack(serverplayer)
+                    : monster.getLastDamageSource();
+            NMLCriteriaTriggers.KILL_MOB_NEAR_MONSTER_ANCHOR.get().trigger(serverplayer, monster, damagesource);
+        }
     }
 }
