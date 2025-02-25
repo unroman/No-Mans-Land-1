@@ -151,7 +151,7 @@ public class MiscellaneousEvents {
 
             // Rail Placement
             // This code is terrible and fills me with regrets. Those who dare venture in do so at their own risk
-            if (event.getFace() == Direction.UP && stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator()) {
+            if (stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator()) {
                 Direction playerDir = player.getDirection();
                 RailShape railShape = null;
                 if (state.hasProperty(RailBlock.SHAPE))
