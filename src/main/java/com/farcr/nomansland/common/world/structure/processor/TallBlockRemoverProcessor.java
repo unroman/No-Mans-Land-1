@@ -20,6 +20,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TallBlockRemoverProcessor extends StructureProcessor {
@@ -70,6 +71,8 @@ public class TallBlockRemoverProcessor extends StructureProcessor {
 //                }
 //            }
 //        }
+
+        List<StructureTemplate.StructureBlockInfo> finalBlockInfos = new ArrayList<>(List.copyOf(processedBlockInfos));
 
         for (StructureTemplate.StructureBlockInfo originalBlockInfo : originalBlockInfos) {
 //            for (StructureTemplate.StructureBlockInfo processedBlockinfo : processedBlockInfos) {

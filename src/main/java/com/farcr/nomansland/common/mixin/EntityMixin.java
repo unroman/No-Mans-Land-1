@@ -94,6 +94,8 @@ public abstract class EntityMixin {
 
     @Shadow public abstract Vec3 position();
 
+    @Shadow public abstract boolean onGround();
+
     @Unique @Nullable
     private Vec3 startingToFallPosition;
 

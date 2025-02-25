@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.mixinduck.LivingEntityDuck;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends EntityMixin implements LivingEntityDuck {
     @Shadow public abstract float getHealth();
@@ -22,6 +25,8 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
     @Shadow public float yBodyRot;
 
     @Shadow public abstract boolean hasEffect(Holder<MobEffect> effect);
+
+    @Shadow public abstract Optional<BlockPos> getLastClimbablePos();
 
     @Unique
     private boolean nomansland$skipDroppingDeathLoot = false;

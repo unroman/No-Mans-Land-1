@@ -24,11 +24,6 @@
         }
       ],
       "processor_type": "minecraft:rule"
-    },
-    {
-      "block": "minecraft:water",
-      "chance": 0.25,
-      "processor_type": "nomansland:block_remover"
     }
   ]
 }

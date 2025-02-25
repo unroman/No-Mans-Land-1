@@ -84,6 +84,7 @@ public class NMLSheepModel {
         ModelPart leftFrontLegBaby = bodyBaby.getChild("left_front_leg_baby");
         ModelPart rightHindLegBaby = bodyBaby.getChild("right_hind_leg_baby");
         ModelPart leftHindLegBaby = bodyBaby.getChild("left_hind_leg_baby");
+        ModelPart shearedTail = bodyAdult.getChild("sheared_tail");
         boolean baby = sheep.isBaby();
         boolean sheared = sheep.isSheared();
 
@@ -100,19 +101,23 @@ public class NMLSheepModel {
         headBaby.y = head.y - 27;
         headBaby.yRot = head.yRot / 2;
 
+        bodyBaby.visible = baby;
+        headBaby.visible = baby;
+
         bodyAdult.visible = !baby;
         head.visible = !baby;
         leftHindLeg.visible = !baby;
         rightHindLeg.visible = !baby;
         leftFrontLeg.visible = !baby;
         rightFrontLeg.visible = !baby;
+
+        shearedTail.visible = sheared;
+
         leftHindLegWool.visible = !sheared;
         rightHindLegWool.visible = !sheared;
         leftFrontLegWool.visible = !sheared;
         rightFrontLegWool.visible = !sheared;
         bodyWool.visible = !sheared;
-        bodyBaby.visible = baby;
-        headBaby.visible = baby;
 
         rightHindLegBaby.xRot = rightHindLeg.xRot;
         leftHindLegBaby.xRot = leftHindLeg.xRot;

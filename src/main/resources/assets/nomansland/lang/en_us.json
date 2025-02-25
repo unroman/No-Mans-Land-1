@@ -343,10 +343,14 @@
   "entity.nomansland.explosive": "Explosive",
   "entity.nomansland.firebomb": "Firebomb",
   "effect.nomansland.flammable": "Flammable",
-  "nomansland.advancements.tap.title": "Tree Juice",
-  "nomansland.advancements.tap.description": "Collect Resin or Maple Syrup with a Tap and a Cauldron",
-  "nomansland.advancements.monster_anchor.title": "Can't Even Die Right",
-  "nomansland.advancements.monster_anchor.description": "Defeat an enemy under the influence of a Monster Anchor",
+  "nomansland.advancements.use_tap.title": "Tree Juice",
+  "nomansland.advancements.use_tap.description": "Collect Resin or Maple Syrup with a Tap and a Cauldron",
+  "nomansland.advancements.kill_anchored_mob.title": "Can't Even Die Right",
+  "nomansland.advancements.kill_anchored_mob.description": "Defeat an enemy under the influence of a Monster Anchor",
   "nomansland.advancements.when_pigs_fly.title": "When Pigs Fly",
-  "nomansland.advancements.when_pigs_fly.description": "Ride a pig down a 40 block fall without it taking damage"
+  "nomansland.advancements.when_pigs_fly.description": "Ride a pig down a 40 block fall without it taking damage",
+  "nomansland.advancements.find_ancient_city.title": "Blue Hum",
+  "nomansland.advancements.find_ancient_city.description": "Find an Ancient City",
+  "nomansland.advancements.find_mineshaft.title": "To Blisters and Bedrock",
+  "nomansland.advancements.find_mineshaft.description": "Find a Mineshaft"
 }

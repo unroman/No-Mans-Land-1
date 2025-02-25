@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlockRemoverProcessor extends StructureProcessor {
@@ -42,18 +43,22 @@ public class BlockRemoverProcessor extends StructureProcessor {
     @Override
     public List<StructureTemplate.StructureBlockInfo> finalizeProcessing(ServerLevelAccessor serverLevel, BlockPos offset, BlockPos pos, List<StructureTemplate.StructureBlockInfo> originalBlockInfos, List<StructureTemplate.StructureBlockInfo> processedBlockInfos, StructurePlaceSettings settings) {
 
+        List<StructureTemplate.StructureBlockInfo> finalBlockInfos = new ArrayList<>(List.copyOf(processedBlockInfos));
+
         if (settings.getRandom(pos).nextFloat() < chance) {
-            processedBlockInfos.removeIf(blockInfo -> {
+            for (StructureTemplate.StructureBlockInfo blockInfo : processedBlockInfos) {
                 if (block == Blocks.WATER && blockInfo.state().hasProperty(BlockStateProperties.WATERLOGGED)) {
-                    processedBlockInfos.add(new StructureTemplate.StructureBlockInfo(blockInfo.pos(), blockInfo.state().setValue(BlockStateProperties.WATERLOGGED, false), blockInfo.nbt()));
-                    return true;
+                    finalBlockInfos.remove(blockInfo);
+                    finalBlockInfos.add(new StructureTemplate.StructureBlockInfo(blockInfo.pos(), blockInfo.state().setValue(BlockStateProperties.WATERLOGGED, false), blockInfo.nbt()));
                 }
 
-                processedBlockInfos.add(new StructureTemplate.StructureBlockInfo(blockInfo.pos(), Blocks.AIR.defaultBlockState(), blockInfo.nbt()));
-                return blockInfo.state().is(block);
-            }); 
+                if (blockInfo.state().is(block)) {
+                    finalBlockInfos.remove(blockInfo);
+                    finalBlockInfos.add(new StructureTemplate.StructureBlockInfo(blockInfo.pos(), Blocks.AIR.defaultBlockState(), blockInfo.nbt()));
+                }
+            }
         }
 
-        return processedBlockInfos;
+        return finalBlockInfos;
     }
 }

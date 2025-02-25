@@ -1,14 +1,14 @@
 {
   "display": {
     "description": {
-      "translate": "nomansland.advancements.monster_anchor.description"
+      "translate": "nomansland.advancements.kill_anchored_mob.description"
     },
     "frame": "challenge",
     "icon": {
       "id": "nomansland:monster_anchor"
     },
     "title": {
-      "translate": "nomansland.advancements.monster_anchor.title"
+      "translate": "nomansland.advancements.kill_anchored_mob.title"
     }
   },
   "parent": "minecraft:adventure/kill_a_mob",

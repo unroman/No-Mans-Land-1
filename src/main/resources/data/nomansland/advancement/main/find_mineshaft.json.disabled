@@ -1,0 +1,32 @@
+{
+  "display": {
+    "description": {
+      "translate": "nomansland.advancements.find_mineshaft.description"
+    },
+    "icon": {
+      "id": "minecraft:minecart"
+    },
+    "title": {
+      "translate": "nomansland.advancements.find_mineshaft.title"
+    }
+  },
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "in_city": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "nomansland:mineshaft"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  }
+}
