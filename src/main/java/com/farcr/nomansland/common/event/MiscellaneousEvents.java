@@ -125,7 +125,7 @@ public class MiscellaneousEvents {
             }
 
             // Ladder Placement
-            if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator()) {
+            if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator() && !player.isCrouching()) {
                 Direction ladderFacing = state.getValue(LadderBlock.FACING);
                 if (ladderFacing == event.getFace()) {
                     BlockPos.MutableBlockPos mutable = pos.below().mutable();
@@ -151,7 +151,7 @@ public class MiscellaneousEvents {
 
             // Rail Placement
             // This code is terrible and fills me with regrets. Those who dare venture in do so at their own risk
-            if (stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator()) {
+            if (stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator() && !player.isCrouching()) {
                 Direction playerDir = player.getDirection();
                 RailShape railShape = null;
                 if (state.hasProperty(RailBlock.SHAPE))
