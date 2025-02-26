@@ -4,7 +4,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "nomansland:creature_monuments/sniffer_monument",
+        "location": "nomansland:creature_monuments/sniffer",
         "processors": "nomansland:sniffer_monument",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
