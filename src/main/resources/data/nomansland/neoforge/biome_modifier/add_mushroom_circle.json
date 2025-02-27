@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_plains",
+  "features": [
+    "nomansland:field_mushroom_circle"
+  ],
+  "step": "vegetal_decoration"
+}

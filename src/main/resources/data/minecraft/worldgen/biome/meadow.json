@@ -93,7 +93,8 @@
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "nomansland:patch_field_mushroom_extra",
-      "nomansland:clover_patch_meadow"
+      "nomansland:clover_patch_meadow",
+      "nomansland:field_mushroom_circle_meadow"
     ],
     [
       "minecraft:freeze_top_layer"
