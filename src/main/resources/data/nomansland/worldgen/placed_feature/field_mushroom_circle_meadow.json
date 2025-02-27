@@ -2,10 +2,8 @@
   "feature": "nomansland:field_mushroom_circle",
   "placement": [
     {
-      "type": "minecraft:noise_threshold_count",
-      "above_noise": 8,
-      "below_noise": 2,
-      "noise_level": -0.8
+      "type": "minecraft:rarity_filter",
+      "chance": 4
     },
     {
       "type": "minecraft:in_square"
