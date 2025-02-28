@@ -151,10 +151,10 @@
         "weight": 100
       },
       {
-        "type": "minecraft:zombie",
+        "type": "minecraft:husk",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 95
+        "weight": 100
       },
       {
         "type": "minecraft:zombie_villager",
