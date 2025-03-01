@@ -129,6 +129,8 @@ dependencies {
 
     // Optional dependencies
     implementation "maven.modrinth:farmers-delight:1.21.1-$fd_version"
+    implementation "maven.modrinth:the-block-box:0.1.1"
+
 
     compileOnly "mezz.jei:jei-$minecraft_version-common-api:$jei_version"
     compileOnly "mezz.jei:jei-$minecraft_version-neoforge-api:$jei_version"
@@ -165,11 +167,6 @@ tasks.withType(ProcessResources).configureEach {
             mod_authors             : mod_authors,
             mod_description         : mod_description,
             bt_version_range        : bt_version_range,
-            bt_reason               : bt_reason,
-            tb_version_range        : tb_version_range,
-            tb_reason               : tb_reason,
-            fd_version_range        : fd_version_range,
-            fd_reason               : fd_reason
     ]
     inputs.properties replaceProperties
 

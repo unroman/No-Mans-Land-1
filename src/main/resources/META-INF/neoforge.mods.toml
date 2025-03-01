@@ -34,28 +34,20 @@ config="${mod_id}.mixins.json"
     ordering="AFTER"
     side="BOTH"
 
-#[[dependencies.${mod_id}]]
-#    modId="terrablender"
-#    type="required"
-#    reason="${tb_reason}"
-#    versionRange="${tb_version_range}"
-#    ordering="NONE"
-#    side="BOTH"
-
 [[dependencies.${mod_id}]]
-    modId="biolith"
-    type="required"
-    reason="${bt_reason}"
-    versionRange="${bt_version_range}"
+    modId="terrablender"
+    type="discouraged"
+    reason="Terrablender will break some of our biomes especially the Caves biome"
+    versionRange=""
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
-    modId="farmersdelight"
-    type="optional"
-    reason="${fd_reason}"
-    versionRange="${fd_version_range}"
-    ordering="AFTER"
+    modId="biolith"
+    type="required"
+    reason="Required for world generation"
+    versionRange="${bt_version_range}"
+    ordering="NONE"
     side="BOTH"
 
 #[features.${mod_id}]

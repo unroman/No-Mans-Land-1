@@ -22,20 +22,21 @@ import static com.farcr.nomansland.common.registry.blocks.NMLBlockEntities.BLOCK
 import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.BLOCKS;
 import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.registerBlock;
 import static com.farcr.nomansland.common.registry.items.NMLItems.registerItem;
+import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 
 public class FDIntegration {
 
     public static final DeferredBlock<Block> PINE_CABINET = registerBlock("pine_cabinet",
-            () -> new NMLCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+            () -> new NMLCabinetBlock(ofFullCopy(Blocks.BARREL)));
 
     public static final DeferredBlock<Block> MAPLE_CABINET = registerBlock("maple_cabinet",
-            () -> new NMLCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+            () -> new NMLCabinetBlock(ofFullCopy(Blocks.BARREL)));
 
     public static final DeferredBlock<Block> WALNUT_CABINET = registerBlock("walnut_cabinet",
-            () -> new NMLCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+            () -> new NMLCabinetBlock(ofFullCopy(Blocks.BARREL)));
 
     public static final DeferredBlock<Block> WILLOW_CABINET = registerBlock("willow_cabinet",
-            () -> new NMLCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+            () -> new NMLCabinetBlock(ofFullCopy(Blocks.BARREL)));
 
     public static final Supplier<BlockEntityType<?>> CABINET = BLOCK_ENTITIES.register("nml_cabinets",
             () -> BlockEntityType.Builder.of(NMLCabinetBlockEntity::new,
@@ -58,4 +59,3 @@ public class FDIntegration {
     public static void register() {
     }
 }
-

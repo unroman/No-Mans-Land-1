@@ -18,6 +18,7 @@ import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
+import com.farcr.nomansland.integration.BBIntegration;
 import com.farcr.nomansland.integration.FDIntegration;
 import com.farcr.nomansland.integration.Mods;
 import com.mojang.logging.LogUtils;
@@ -61,6 +62,8 @@ public class NoMansLand {
         NMLCriteriaTriggers.TRIGGERS.register(modEventBus);
 
         if (Mods.FARMERSDELIGHT.isLoaded()) FDIntegration.register();
+        if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();
+//        if (Mods.CREATE.isLoaded()) CIntegration.register();
 
         modEventBus.addListener(NMLItems::addCreative);
         modEventBus.addListener(this::commonSetup);
