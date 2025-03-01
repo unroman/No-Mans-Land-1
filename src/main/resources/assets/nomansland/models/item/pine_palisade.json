@@ -1,0 +1,4 @@
+{
+  "parent": "nomansland:block/pine/pine_palisade_post",
+  "gui_light": "front"
+}

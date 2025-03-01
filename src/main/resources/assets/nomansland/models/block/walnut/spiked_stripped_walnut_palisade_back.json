@@ -1,0 +1,9 @@
+{
+  "parent": "blockbox:block/template_spiked_palisade_back",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "core": "nomansland:block/walnut/stripped_walnut_palisade_core",
+    "side": "nomansland:block/walnut/stripped_walnut_palisade_side",
+    "top": "nomansland:block/walnut/stripped_walnut_palisade_top"
+  }
+}

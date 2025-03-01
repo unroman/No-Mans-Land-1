@@ -1,0 +1,8 @@
+{
+  "parent": "blockbox:block/template_spiked_palisade_post",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "side": "nomansland:block/pine/stripped_pine_palisade_side",
+    "top": "nomansland:block/pine/stripped_pine_palisade_top"
+  }
+}

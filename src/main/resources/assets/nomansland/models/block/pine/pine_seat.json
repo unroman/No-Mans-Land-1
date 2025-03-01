@@ -1,0 +1,7 @@
+{
+  "parent": "blockbox:block/template_seat",
+  "textures": {
+    "side": "nomansland:block/pine/pine_seat_side",
+    "top": "nomansland:block/pine/pine_seat_top"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "blockbox:block/template_palisade_post",
+  "textures": {
+    "side": "nomansland:block/willow/willow_palisade_side",
+    "top": "nomansland:block/willow/willow_palisade_top"
+  }
+}

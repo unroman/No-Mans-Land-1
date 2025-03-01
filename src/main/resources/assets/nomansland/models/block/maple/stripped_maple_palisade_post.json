@@ -1,0 +1,7 @@
+{
+  "parent": "blockbox:block/template_palisade_post",
+  "textures": {
+    "side": "nomansland:block/maple/stripped_maple_palisade_side",
+    "top": "nomansland:block/maple/stripped_maple_palisade_top"
+  }
+}
