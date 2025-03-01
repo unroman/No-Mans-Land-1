@@ -3,7 +3,9 @@ package com.farcr.nomansland.integration;
 import net.neoforged.fml.ModList;
 
 public enum Mods {
-    FARMERSDELIGHT;
+    FARMERSDELIGHT,
+    BLOCKBOX,
+    CREATE;
 
     private final String id;
 

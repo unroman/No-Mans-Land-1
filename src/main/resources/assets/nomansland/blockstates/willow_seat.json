@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nomansland:block/willow/willow_seat",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nomansland:block/willow/willow_seat"
+    },
+    "facing=south": {
+      "model": "nomansland:block/willow/willow_seat",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nomansland:block/willow/willow_seat",
+      "y": 270
+    }
+  }
+}
