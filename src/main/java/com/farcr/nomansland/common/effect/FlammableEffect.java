@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 public class FlammableEffect extends MobEffect {
     public FlammableEffect(MobEffectCategory category, int color, ParticleOptions particleOptions) {
         super(category, color);
-        this.particleFactory = p_333517_ -> NMLParticleTypes.RESIN_DROPLET.get();
+        this.particleFactory = p_333517_ -> NMLParticleTypes.OIL.get();
     }
 
     @Override
