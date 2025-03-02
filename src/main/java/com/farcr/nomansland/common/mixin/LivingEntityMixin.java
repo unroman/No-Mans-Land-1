@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
@@ -45,7 +46,12 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
 
     @ModifyVariable(method = "travel", at = @At("STORE"), ordinal = 0)
     public float friction(float value) {
-            if (hasEffect(NMLEffects.FLAMMABLE)) value = 0.9898F;
+        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) value = 0.98F;
         return value;
+    }
+
+    @Inject(method = "getBlockSpeedFactor", at = @At("HEAD"), cancellable = true)
+    private void getBlockSpeedFactor(CallbackInfoReturnable<Float> cir) {
+        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) cir.setReturnValue(0.5F);
     }
 }

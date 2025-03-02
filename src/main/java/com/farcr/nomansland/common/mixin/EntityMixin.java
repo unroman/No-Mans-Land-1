@@ -96,6 +96,10 @@ public abstract class EntityMixin {
 
     @Shadow public abstract boolean onGround();
 
+    @Shadow public abstract boolean isUnderWater();
+
+    @Shadow public abstract boolean isInWater();
+
     @Unique @Nullable
     private Vec3 startingToFallPosition;
 
