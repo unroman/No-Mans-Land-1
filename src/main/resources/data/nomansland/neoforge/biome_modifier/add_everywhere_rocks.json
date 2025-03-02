@@ -1,0 +1,9 @@
+{
+    "type": "neoforge:add_features",
+    "biomes": "#nomansland:classic_soil",
+    "features": [
+      "nomansland:pebbles",
+      "nomansland:stone_boulder"
+    ],
+    "step": "local_modifications"
+  }

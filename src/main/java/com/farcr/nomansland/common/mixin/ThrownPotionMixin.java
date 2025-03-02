@@ -19,19 +19,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ThrownPotionMixin extends ProjectileMixin {
     @Inject(method = "dowseFire", at = @At("TAIL"))
     private void dowseFire(BlockPos pos, CallbackInfo ci) {
-        BlockState state = this.level().getBlockState(pos);
+        BlockState state = level().getBlockState(pos);
         if (state.getBlock() instanceof TorchBlock && !(state.getBlock() instanceof ExtinguishedTorchBlock)) {
-        this.level().gameEvent(this.getOwner(), GameEvent.BLOCK_CHANGE, pos);
-        this.level().playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level().gameEvent(getOwner(), GameEvent.BLOCK_CHANGE, pos);
+        level().playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-        if (state.is(Blocks.TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(Blocks.WALL_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_WALL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(Blocks.SOUL_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(Blocks.SOUL_WALL_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_WALL_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_SOUL_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH)) this.level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(Blocks.TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(Blocks.WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_WALL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(Blocks.SOUL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(Blocks.SOUL_WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_SOUL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
         }
     }
 }

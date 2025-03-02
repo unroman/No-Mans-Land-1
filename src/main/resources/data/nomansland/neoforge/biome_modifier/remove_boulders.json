@@ -1,7 +1,0 @@
-{
-  "type": "neoforge:remove_features",
-  "biomes": "#nomansland:feature_removal/no_boulders",
-  "features": [
-    "nomansland:stone_boulder"
-  ]
-}
