@@ -5,8 +5,10 @@
       "modid": "farmersdelight"
     }
   ],
-  "replace": false,
   "values": [
-    "nomansland:field_mushroom"
+    "nomansland:maple_cabinet",
+    "nomansland:pine_cabinet",
+    "nomansland:walnut_cabinet",
+    "nomansland:willow_cabinet"
   ]
 }

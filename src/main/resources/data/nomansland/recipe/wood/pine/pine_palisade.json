@@ -10,7 +10,7 @@
   "group": "bb_palisades",
   "key": {
     "#": {
-      "item": "nomansland:maple_log"
+      "item": "nomansland:pine_log"
     }
   },
   "pattern": [
@@ -19,6 +19,6 @@
   ],
   "result": {
     "count": 12,
-    "id": "nomansland:maple_palisade"
+    "id": "nomansland:pine_palisade"
   }
 }

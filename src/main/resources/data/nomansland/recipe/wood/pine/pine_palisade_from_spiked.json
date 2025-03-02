@@ -10,11 +10,11 @@
   "group": "bb_palisades",
   "ingredients": [
     {
-      "item": "nomansland:spiked_maple_palisade"
+      "item": "nomansland:spiked_pine_palisade"
     }
   ],
   "result": {
     "count": 1,
-    "id": "nomansland:maple_palisade"
+    "id": "nomansland:pine_palisade"
   }
 }

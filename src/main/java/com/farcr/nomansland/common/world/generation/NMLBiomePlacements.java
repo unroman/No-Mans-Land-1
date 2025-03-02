@@ -23,9 +23,29 @@ public class NMLBiomePlacements {
                         Climate.Parameter.span(-1.5F, 1.5F),
                         Climate.Parameter.span(-1.5F, 1.5F),
                         Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(0.15F, 1.5F),
+                        Climate.Parameter.span(0.15F, 0.5F),
                         Climate.Parameter.span(-1.5F, 1.5F),
                         0.125F));
+
+        BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
+                Climate.parameters(
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(0.6F, 1F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        0.125F));
+
+        BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
+                Climate.parameters(
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(1F, 1.5F),
+                        Climate.Parameter.span(-1.5F, 1.5F),
+                        0F));
 
         // Autumnal Forest
         BiomePlacement.replaceOverworld(
@@ -50,13 +70,13 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 Biomes.GROVE,
                 NMLBiomes.MAPLE_GROVE,
-                allOf(alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST))
+                alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST)
         );
 
         BiomePlacement.addSubOverworld(
                 Biomes.FOREST,
                 NMLBiomes.MAPLE_FOREST,
-                allOf(alternate(NMLBiomes.MAPLE_GROVE, Biomes.GROVE))
+                alternate(NMLBiomes.MAPLE_GROVE, Biomes.GROVE)
         );
 
         // Bog
@@ -74,7 +94,7 @@ public class NMLBiomePlacements {
         BiomePlacement.addSubOverworld(
                 Biomes.SWAMP,
                 NMLBiomes.BOG,
-                allOf(neighbor(Biomes.PLAINS))
+                neighbor(Biomes.PLAINS)
         );
 
         // Bayou
