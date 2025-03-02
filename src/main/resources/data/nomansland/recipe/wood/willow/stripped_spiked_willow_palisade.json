@@ -7,14 +7,14 @@
   ],
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "bb_palisades",
+  "group": "bb_spiked_palisades",
   "ingredients": [
     {
-      "item": "nomansland:spiked_maple_palisade"
+      "item": "nomansland:stripped_willow_palisade"
     }
   ],
   "result": {
     "count": 1,
-    "id": "nomansland:maple_palisade"
+    "id": "nomansland:stripped_spiked_willow_palisade"
   }
 }
