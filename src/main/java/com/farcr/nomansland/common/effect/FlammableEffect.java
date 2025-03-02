@@ -1,14 +1,18 @@
 package com.farcr.nomansland.common.effect;
 
 import com.farcr.nomansland.common.registry.NMLDamageTypes;
+import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
@@ -29,6 +33,7 @@ import java.util.stream.Collectors;
 public class FlammableEffect extends MobEffect {
     public FlammableEffect(MobEffectCategory category, int color, ParticleOptions particleOptions) {
         super(category, color);
+        this.particleFactory = p_333517_ -> NMLParticleTypes.RESIN_DROPLET.get();
     }
 
     @Override
