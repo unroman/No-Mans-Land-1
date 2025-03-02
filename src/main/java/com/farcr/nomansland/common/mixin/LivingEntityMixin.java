@@ -46,12 +46,12 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
 
     @ModifyVariable(method = "travel", at = @At("STORE"), ordinal = 0)
     public float friction(float value) {
-        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) value = 0.98F;
+        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater() && onGround()) value = 0.98F;
         return value;
     }
 
     @Inject(method = "getBlockSpeedFactor", at = @At("HEAD"), cancellable = true)
     private void getBlockSpeedFactor(CallbackInfoReturnable<Float> cir) {
-        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) cir.setReturnValue(0.5F);
+        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) cir.setReturnValue(0.95F);
     }
 }
