@@ -16,9 +16,9 @@ public class FluidSplashingParticle extends TextureSheetParticle {
     private static final RandomSource RANDOM = RandomSource.create();
     private final Supplier<SimpleParticleType> flatParticle;
     public FluidSplashingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet spriteSet, Supplier<SimpleParticleType> flatParticle) {
-        super(level, x, y, z, 0.5 - RANDOM.nextDouble(), ySpeed, 0.5 - RANDOM.nextDouble());
+        super(level, x, y, z, (0.5 - RANDOM.nextDouble()) * 1.25, ySpeed * 0.5, (0.5 - RANDOM.nextDouble()) * 1.25);
         this.setSprite(spriteSet.get(this.random.nextInt(4), 4));
-        this.gravity = 0.01F;
+        this.gravity = 0.02F;
         this.lifetime = (int) (16.0 / (Math.random() * 0.8 + 0.2));
         this.flatParticle = flatParticle;
     }

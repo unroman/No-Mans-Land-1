@@ -83,7 +83,7 @@ public class ThrownOilBottle extends ThrownPotion {
 
             ParticleOptions particleoptions = NMLParticleTypes.OIL_SPLASH.get();
 
-            for(int i2 = 0; i2 < 100; ++i2) {
+            for(int i2 = 0; i2 < 200; ++i2) {
                 double d10 = random.nextDouble() * 4.0;
                 double d15 = random.nextDouble() * Math.PI * 2.0;
                 double d20 = Math.cos(d15) * d10;
