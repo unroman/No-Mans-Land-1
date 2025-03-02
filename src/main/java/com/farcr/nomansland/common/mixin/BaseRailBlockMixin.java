@@ -30,12 +30,9 @@ public abstract class BaseRailBlockMixin extends Block {
         for (int i = 1; i <= NMLConfig.MAX_FLOATING_RAILS.get(); i++) {
             BlockState blockState = level.getBlockState(pos.relative(direction, i));
             RailShape offsetShape;
-            if (blockState.hasProperty(RailBlock.SHAPE))
-                offsetShape = blockState.getValue(RailBlock.SHAPE);
-            else if (blockState.hasProperty(PoweredRailBlock.SHAPE))
-                offsetShape = blockState.getValue(PoweredRailBlock.SHAPE);
-            else if (blockState.hasProperty(DetectorRailBlock.SHAPE))
-                offsetShape = blockState.getValue(DetectorRailBlock.SHAPE);
+            if (blockState.getBlock() instanceof BaseRailBlock) {
+                offsetShape = blockState.getValue(((BaseRailBlock)blockState.getBlock()).getShapeProperty());
+            }
             else
                 return true;
             if (canSupportRigidBlock(level, pos.relative(direction, i).below()))

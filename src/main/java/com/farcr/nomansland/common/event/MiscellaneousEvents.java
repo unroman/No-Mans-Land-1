@@ -9,6 +9,7 @@ import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
 import com.google.common.collect.ImmutableMap;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.features.TreeFeatures;
@@ -47,6 +48,7 @@ import net.neoforged.neoforge.event.level.ExplosionEvent;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.farcr.nomansland.common.block.FrostedGrassBlock.SNOWLOGGED;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
@@ -150,16 +152,12 @@ public class MiscellaneousEvents {
             }
 
             // Rail Placement
-            // This code is terrible and fills me with regrets. Those who dare venture in do so at their own risk
             if (stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator() && !player.isCrouching()) {
                 Direction playerDir = player.getDirection();
                 RailShape railShape = null;
-                if (state.hasProperty(RailBlock.SHAPE))
-                    railShape = state.getValue(RailBlock.SHAPE);
-                else if (state.hasProperty(PoweredRailBlock.SHAPE))
-                    railShape = state.getValue(PoweredRailBlock.SHAPE);
-                else if (state.hasProperty(DetectorRailBlock.SHAPE))
-                    railShape = state.getValue(DetectorRailBlock.SHAPE);
+                if (state.getBlock() instanceof BaseRailBlock) {
+                    railShape = state.getValue(((BaseRailBlock)state.getBlock()).getShapeProperty());
+                }
                 if (railShape != null) {
                     int railCount = 0;
                     for (Direction direction : Direction.Plane.HORIZONTAL) {
@@ -168,21 +166,25 @@ public class MiscellaneousEvents {
                     }
                     RailShape placedShape;
                     BlockPos.MutableBlockPos mutable = pos.mutable();
+                    // Iterate through the rails to find the end of a connected rail segment
                     for (int i = 0; i < NMLConfig.MAX_RAIL_PLACMENT_LENGTH.get(); i++) {
-                        BlockState state2 = level.getBlockState(mutable);
-                        BlockState state4 = level.getBlockState(mutable.immutable().below());
-                        BlockState state5 = level.getBlockState(mutable.immutable().above());
-                        BlockState state6 = level.getBlockState(mutable.immutable().below(2));
-                        BlockState state7 = level.getBlockState(mutable.immutable().below().relative(playerDir.getOpposite()));
-                        if (state2.is(BlockTags.RAILS)) {
-                            // Continue along the chain
+                        // A load of blockpos + blockstates used lower down
+                        BlockPos m = mutable.immutable();
+                        BlockPos mBelow = m.below();
+                        BlockPos mAbove = m.above();
+                        BlockPos mBelow2 = mBelow.below();
+                        BlockPos mSlopeBase = mBelow.relative(playerDir.getOpposite());
+                        BlockState stateBase = level.getBlockState(m);
+                        BlockState stateBelow = level.getBlockState(mBelow);
+                        BlockState stateAbove = level.getBlockState(mAbove);
+                        BlockState stateBelow2 = level.getBlockState(mBelow2);
+                        BlockState stateSlopeBase = level.getBlockState(mSlopeBase);
+                        if (stateBase.is(BlockTags.RAILS)) {
+                            // Continue along the chain normally
                             RailShape offsetShape = null;
-                            if (state2.hasProperty(RailBlock.SHAPE))
-                                offsetShape = state2.getValue(RailBlock.SHAPE);
-                            else if (state2.hasProperty(PoweredRailBlock.SHAPE))
-                                offsetShape = state2.getValue(PoweredRailBlock.SHAPE);
-                            else if (state2.hasProperty(DetectorRailBlock.SHAPE))
-                                offsetShape = state2.getValue(DetectorRailBlock.SHAPE);
+                            if (stateBase.getBlock() instanceof BaseRailBlock) {
+                                offsetShape = stateBase.getValue(((BaseRailBlock)stateBase.getBlock()).getShapeProperty());
+                            }
 
                             if (offsetShape == null)
                                 break;
@@ -203,7 +205,7 @@ public class MiscellaneousEvents {
                                 if (playerDir == Direction.NORTH) playerDir = Direction.WEST;
                                 else if (playerDir == Direction.EAST) playerDir = Direction.SOUTH;
                             }
-                            // Ramps
+                            // Ramps - this doesn't handle ramps down since they're at a different y level
                             else if (offsetShape == RailShape.ASCENDING_NORTH) {
                                 if (playerDir == Direction.NORTH) mutable.move(Direction.UP);
                                 else if (playerDir != Direction.SOUTH) break;
@@ -223,15 +225,14 @@ public class MiscellaneousEvents {
                             }
 
                             mutable.move(playerDir);
-                        } else if (state4.is(BlockTags.RAILS)) {
+                        } else if (stateBelow.is(BlockTags.RAILS)) {
+                            // If we've got rails below, we've likely got a slope and should continue on the chain there
+                            // If it's not connected via a slope there'll be special handling to allow us to chain rails down slopes
                             boolean canGoDown = false;
                             RailShape offsetShape = null;
-                            if (state4.hasProperty(RailBlock.SHAPE))
-                                offsetShape = state4.getValue(RailBlock.SHAPE);
-                            else if (state4.hasProperty(PoweredRailBlock.SHAPE))
-                                offsetShape = state4.getValue(PoweredRailBlock.SHAPE);
-                            else if (state4.hasProperty(DetectorRailBlock.SHAPE))
-                                offsetShape = state4.getValue(DetectorRailBlock.SHAPE);
+                            if (stateBelow.getBlock() instanceof BaseRailBlock) {
+                                offsetShape = stateBelow.getValue(((BaseRailBlock)stateBelow.getBlock()).getShapeProperty());
+                            }
 
                             if (offsetShape == null) break;
 
@@ -258,109 +259,68 @@ public class MiscellaneousEvents {
                             }
 
                             if (!canGoDown) {
-                                // Lazily copied from below bc i SUCK
-                                if (state2.is(BlockTags.REPLACEABLE)) {
-                                    // Place a rail
-                                    BlockState state3 = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
-                                    placedShape = switch (playerDir) {
-                                        case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
-                                        case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
-                                        default -> null;
-                                    };
-                                    if (state3.hasProperty(RailBlock.SHAPE))
-                                        state3 = state3.setValue(RailBlock.SHAPE, placedShape);
-                                    else if (state3.hasProperty(PoweredRailBlock.SHAPE))
-                                        state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
-                                    else if (state3.hasProperty(DetectorRailBlock.SHAPE))
-                                        state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
-                                    if (state3.canSurvive(level, mutable)) {
-                                        SoundType soundtype = state3.getSoundType(level, mutable, player);
-                                        level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                                        stack.consume(1, player);
-                                        level.setBlockAndUpdate(mutable, state3);
+                                // If we don't have a rail below us that we can follow, we just place a rail straight ahead if possible
+                                // This works, somehow
+                                // Mostly just copied and simplified from the logic further down the main if chain
+                                if (stateBase.is(BlockTags.REPLACEABLE)) {
+                                    if (placeRail(mutable.immutable(), stack, playerDir, level, player)) {
                                         event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                                         event.setCanceled(true);
                                         break;
                                     }
                                 } else {
+                                    // If we can't go down a block and can't place a new rail, give up
                                     break;
                                 }
                             }
-                        } else if (state2.isFaceSturdy(level, mutable, Direction.UP, SupportType.RIGID) && state5.is(BlockTags.REPLACEABLE)) {
-                            // Place a rail above
-                            BlockState state3 = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
-                            placedShape = switch (playerDir) {
-                                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
-                                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
-                                default -> null;
-                            };
-                            if (state3.hasProperty(RailBlock.SHAPE))
-                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
-                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
-                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
-                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
-                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
-                            if (state3.canSurvive(level, mutable.immutable().above())) {
-                                SoundType soundtype = state3.getSoundType(level, mutable.immutable().above(), player);
-                                level.playSound(player, mutable.immutable().above(), soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                                stack.consume(1, player);
-                                level.setBlockAndUpdate(mutable.immutable().above(), state3);
+                        } else if (stateBase.isFaceSturdy(level, mutable, Direction.UP, SupportType.RIGID) && stateAbove.is(BlockTags.REPLACEABLE)) {
+                            // If we've got a block in front of us with air above, go up the slope
+                            if (placeRail(mutable.immutable().above(), stack, playerDir, level, player)) {
                                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                                 event.setCanceled(true);
                                 break;
                             }
-                        } else if (state6.isFaceSturdy(level, mutable.immutable().below(2), Direction.UP, SupportType.RIGID) && state7.isFaceSturdy(level, mutable.immutable().below().relative(playerDir.getOpposite()), playerDir, SupportType.RIGID) && state4.is(BlockTags.REPLACEABLE)) {
-                            // Place a rail below
-                            BlockState state3 = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
-                            placedShape = switch (playerDir) {
-                                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
-                                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
-                                default -> null;
-                            };
-                            if (state3.hasProperty(RailBlock.SHAPE))
-                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
-                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
-                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
-                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
-                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
-                            if (state3.canSurvive(level, mutable.immutable().below())) {
-                                SoundType soundtype = state3.getSoundType(level, mutable.immutable().below(), player);
-                                level.playSound(player, mutable.immutable().below(), soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                                stack.consume(1, player);
-                                level.setBlockAndUpdate(mutable.immutable().below(), state3);
+                        } else if (stateBelow2.isFaceSturdy(level, mutable.immutable().below(2), Direction.UP, SupportType.RIGID) && stateSlopeBase.isFaceSturdy(level, mutable.immutable().below().relative(playerDir.getOpposite()), playerDir, SupportType.RIGID) && stateBelow.is(BlockTags.REPLACEABLE)) {
+                            // If we have support below us for a slope down, and support below where the slope would go, place it
+                            if (placeRail(mutable.immutable().below(), stack, playerDir, level, player)) {
                                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                                 event.setCanceled(true);
                                 break;
                             }
-                        } else if (state2.is(BlockTags.REPLACEABLE)) {
-                            // Place a rail
-                            BlockState state3 = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
-                            placedShape = switch (playerDir) {
-                                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
-                                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
-                                default -> null;
-                            };
-                            if (state3.hasProperty(RailBlock.SHAPE))
-                                state3 = state3.setValue(RailBlock.SHAPE, placedShape);
-                            else if (state3.hasProperty(PoweredRailBlock.SHAPE))
-                                state3 = state3.setValue(PoweredRailBlock.SHAPE, placedShape);
-                            else if (state3.hasProperty(DetectorRailBlock.SHAPE))
-                                state3 = state3.setValue(DetectorRailBlock.SHAPE, placedShape);
-                            if (state3.canSurvive(level, mutable)) {
-                                SoundType soundtype = state3.getSoundType(level, mutable, player);
-                                level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                                stack.consume(1, player);
-                                level.setBlockAndUpdate(mutable, state3);
+                        } else if (stateBase.is(BlockTags.REPLACEABLE)) {
+                            // If we're at an empty space and nothing else fits, just plop down a rail
+                            if (placeRail(mutable.immutable(), stack, playerDir, level, player)) {
                                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                                 event.setCanceled(true);
                                 break;
                             }
                         } else {
+                            // No way to place a rail, give up
                             break;
                         }
                     }
                 }
             }
+        }
+
+        private static boolean placeRail(BlockPos position, ItemStack stack, Direction playerDir, Level level, Player player) {
+            BlockState state = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
+            RailShape placedShape = switch (playerDir) {
+                case Direction.NORTH, Direction.SOUTH -> RailShape.NORTH_SOUTH;
+                case Direction.EAST, Direction.WEST -> RailShape.EAST_WEST;
+                default -> null;
+            };
+            if (state.getBlock() instanceof BaseRailBlock) {
+                state = state.setValue(((BaseRailBlock)state.getBlock()).getShapeProperty(), placedShape);
+            }
+            if (state.canSurvive(level, position)) {
+                SoundType soundtype = state.getSoundType(level, position, player);
+                level.playSound(player, position, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                stack.consume(1, player);
+                level.setBlockAndUpdate(position, state);
+                return true;
+            }
+            return false;
         }
 
         @SubscribeEvent
