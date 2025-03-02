@@ -13,7 +13,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
@@ -34,7 +33,7 @@ public class ResinOilBottleItem extends Item implements ProjectileItem {
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SPLASH_POTION_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         ItemStack itemstack = player.getItemInHand(hand);
         if (!level.isClientSide) {
-            ThrownPotion thrownpotion = new ThrownPotion(level, player);
+            ThrownOilBottle thrownpotion = new ThrownOilBottle(level, player);
             thrownpotion.setItem(itemstack);
             thrownpotion.shootFromRotation(player, player.getXRot(), player.getYRot(), -20.0F, 0.5F, 1.0F);
             level.addFreshEntity(thrownpotion);
@@ -55,7 +54,7 @@ public class ResinOilBottleItem extends Item implements ProjectileItem {
     }
 
     public Projectile asProjectile(Level level, Position pos, ItemStack stack, Direction direction) {
-        ThrownPotion thrownpotion = new ThrownPotion(level, pos.x(), pos.y(), pos.z());
+        ThrownOilBottle thrownpotion = new ThrownOilBottle(level, pos.x(), pos.y(), pos.z());
         thrownpotion.setItem(stack);
         return thrownpotion;
     }
