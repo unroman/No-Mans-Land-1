@@ -101,11 +101,9 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!level.isClientSide
-                && entity instanceof LivingEntity livingEntity
-                && livingEntity.isAlive()
+        if (entity instanceof LivingEntity livingEntity && livingEntity.isAlive()
                 && !state.getValue(POWERED)
-                && !(livingEntity instanceof Player player && !player.getAbilities().invulnerable)
+                && !(livingEntity instanceof Player player && player.getAbilities().invulnerable)
                 && (!livingEntity.isShiftKeyDown() || !livingEntity.getPosition(0).equals(livingEntity.getPosition(1))))
             livingEntity.hurt(NMLDamageTypes.getSimpleDamageSource(level, NMLDamageTypes.SPIKE_POKE), NMLConfig.POKING_DAMAGE.get().floatValue());
     }

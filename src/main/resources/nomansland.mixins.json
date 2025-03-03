@@ -22,7 +22,6 @@
     "SnowAndFreezeFeatureMixin",
     "SnowyDirtBlockMixin",
     "SpreadingSnowyDirtBlockMixin",
-    "SteepMaterialConditionMixin",
     "ThrownPotionMixin",
     "TreeFeatureMixin",
     "VineBlockMixin",

@@ -22,8 +22,8 @@ public class BlockRemoverProcessor extends StructureProcessor {
 
     public static final MapCodec<BlockRemoverProcessor> CODEC = RecordCodecBuilder.mapCodec((instance) ->
             instance.group(
-                    BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter((prefixProcessor -> prefixProcessor.block)),
-                    Codec.floatRange(0.0F, 1.0F).fieldOf("chance").forGetter((prefixProcessor) -> prefixProcessor.chance)
+                    BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter(prefixProcessor -> prefixProcessor.block),
+                    Codec.floatRange(0.0F, 1.0F).fieldOf("chance").forGetter(prefixProcessor -> prefixProcessor.chance)
                     )
                     .apply(instance, BlockRemoverProcessor::new));
 
