@@ -4,7 +4,9 @@ import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
 import com.farcr.nomansland.common.entity.BillhookBass;
+import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
+import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
@@ -13,6 +15,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -38,6 +41,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -111,7 +115,7 @@ public class MiscellaneousEvents {
             }
 
             // Snow grassing?
-            if ((stack.is(NMLBlocks.FROSTED_GRASS.asItem()) || stack.is(Blocks.SHORT_GRASS.asItem())) && !player.isSpectator() && state.is(Blocks.SNOW)) {
+            if ((stack.is(NMLBlocks.FROSTED_GRASS.asItem()) || stack.is(Blocks.SHORT_GRASS.asItem())) && !player.isSpectator() && state.is(Blocks.SNOW) && state.getValue(SnowLayerBlock.LAYERS) < 3) {
                 BlockPos posUnder = pos.below();
                 BlockState stateUnder = level.getBlockState(posUnder);
                 if (stateUnder.getBlock() instanceof SnowyDirtBlock || stateUnder.getBlock() == Blocks.DIRT) {
@@ -338,6 +342,9 @@ public class MiscellaneousEvents {
                     if (state.is(Blocks.SOUL_TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_TORCH.get().withPropertiesOf(state), 11);
                     if (state.is(Blocks.SOUL_WALL_TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
                 }
+
+                if (event.getExplosion().getDirectSourceEntity() instanceof ExplosiveEntity explosive && explosive.getOwner() instanceof ServerPlayer serverPlayer && state.is(Tags.Blocks.ORES))
+                    NMLCriteriaTriggers.MINE_ORE_WITH_EXPLOSIVE.get().trigger(serverPlayer, pos);
             });
         }
 
