@@ -19,33 +19,43 @@ public class NMLBiomePlacements {
         // Caves
         BiomePlacement.addOverworld(NMLBiomes.CAVES,
                 Climate.parameters(
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(0.15F, 0.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(0.15F, 0.3F),
+                        Climate.Parameter.span(-2F, 2F),
+                        0.125F));
+
+        BiomePlacement.addOverworld(NMLBiomes.CAVES,
+                Climate.parameters(
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(0.3F, 0.5F),
+                        Climate.Parameter.span(-2F, 2F),
                         0.125F));
 
         BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
                 Climate.parameters(
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(0.6F, 1F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(0.6F, 0.8F),
+                        Climate.Parameter.span(-2F, 2F),
                         0.125F));
 
         BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
                 Climate.parameters(
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        Climate.Parameter.span(1F, 1.5F),
-                        Climate.Parameter.span(-1.5F, 1.5F),
-                        0F));
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        Climate.Parameter.span(0.8F, 2F),
+                        Climate.Parameter.span(-2F, 2F),
+                        0.075F));
 
         // Autumnal Forest
         BiomePlacement.replaceOverworld(
