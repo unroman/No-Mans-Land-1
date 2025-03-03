@@ -58,39 +58,21 @@ public class TallBlockRemoverProcessor extends StructureProcessor {
 
     @Override
     public List<StructureTemplate.StructureBlockInfo> finalizeProcessing(ServerLevelAccessor serverLevel, BlockPos offset, BlockPos pos, List<StructureTemplate.StructureBlockInfo> originalBlockInfos, List<StructureTemplate.StructureBlockInfo> processedBlockInfos, StructurePlaceSettings settings) {
-
-//        for (StructureTemplate.StructureBlockInfo processedBlockinfo : processedBlockInfos) {
-//            BlockState state = processedBlockinfo.state();
-//            if (state.is(block) && state.hasProperty(DoublePlantBlock.HALF)) {
-//                for (StructureTemplate.StructureBlockInfo processedBlockinfo1 : processedBlockInfos) {
-//                    if (processedBlockinfo1.pos() == processedBlockinfo.pos().relative(state.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN, 1) && !processedBlockinfo1.state().is(block)) {
-//                        finalBlockInfos.remove(processedBlockinfo);
-//                        finalBlockInfos.add(new StructureTemplate.StructureBlockInfo(processedBlockinfo.pos(), state.getValue(BlockStateProperties.WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), processedBlockinfo.nbt()));
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
         List<StructureTemplate.StructureBlockInfo> finalBlockInfos = new ArrayList<>(List.copyOf(processedBlockInfos));
 
-        for (StructureTemplate.StructureBlockInfo originalBlockInfo : originalBlockInfos) {
-//            for (StructureTemplate.StructureBlockInfo processedBlockinfo : processedBlockInfos) {
-//                if (originalBlockInfo.equals(processedBlockinfo)) continue;
-
-                BlockState state = originalBlockInfo.state();
-                if (!state.is(block) || (state.hasProperty(DoublePlantBlock.HALF) && state.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER))
-                    continue;
-
-
-                if (!serverLevel.getBlockState(originalBlockInfo.pos().offset(offset).below()).is(block)) {
-                    processedBlockInfos.remove(originalBlockInfo);
-                    processedBlockInfos.add(new StructureTemplate.StructureBlockInfo(originalBlockInfo.pos(), Blocks.RED_CONCRETE.defaultBlockState(), originalBlockInfo.nbt()));
-                    break;
+        for (StructureTemplate.StructureBlockInfo blockInfo : processedBlockInfos) {
+            BlockState state = blockInfo.state();
+            if (state.is(block) && state.hasProperty(DoublePlantBlock.HALF) && state.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER) {
+                for (StructureTemplate.StructureBlockInfo blockInfo1 : processedBlockInfos) {
+                    if (blockInfo.pos().equals(blockInfo1.pos().above()) && !blockInfo1.state().is(block)) {
+                        finalBlockInfos.remove(blockInfo);
+                        finalBlockInfos.add(new StructureTemplate.StructureBlockInfo(blockInfo.pos(), Blocks.AIR.defaultBlockState(), blockInfo.nbt()));
+                        break;
+                    }
                 }
-//            }
+            }
         }
 
-        return processedBlockInfos;
+        return finalBlockInfos;
     }
 }
