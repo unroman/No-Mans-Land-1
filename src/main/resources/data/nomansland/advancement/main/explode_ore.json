@@ -1,0 +1,19 @@
+{
+  "display": {
+    "description": {
+      "translate": "nomansland.advancements.explode_ore.description"
+    },
+    "icon": {
+      "id": "nomansland:explosive"
+    },
+    "title": {
+      "translate": "nomansland.advancements.explode_ore.title"
+    }
+  },
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "mine_ore_with_explosive": {
+      "trigger": "nomansland:mine_ore_with_explosive"
+    }
+  }
+}
