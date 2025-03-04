@@ -1,13 +1,13 @@
 {
   "display": {
+    "description": {
+      "translate": "nomansland.advancements.use_tap.description"
+    },
     "icon": {
       "id": "nomansland:tap"
     },
     "title": {
       "translate": "nomansland.advancements.use_tap.title"
-    },
-    "description": {
-      "translate": "nomansland.advancements.use_tap.description"
     }
   },
   "parent": "minecraft:husbandry/root",

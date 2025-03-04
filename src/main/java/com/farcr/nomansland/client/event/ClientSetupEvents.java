@@ -105,6 +105,9 @@ public class ClientSetupEvents {
         event.registerSpriteSet(NMLParticleTypes.OIL.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.OIL_FLAT));
+        event.registerSpriteSet(NMLParticleTypes.OIL_SPLASH.get(), sprites
+                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
+                -> new FluidSplashingParticle(clientLevel, d, e, f, g, h, i, sprites, NMLParticleTypes.OIL_FLAT));
         event.registerSpriteSet(NMLParticleTypes.OIL_FLAT.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new FluidLandParticle(clientLevel, d, e, f, sprites));

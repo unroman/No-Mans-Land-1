@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.critereon.DefaultBlockInteractionTrigger;
 import net.minecraft.advancements.critereon.DistanceTrigger;
 import net.minecraft.advancements.critereon.KilledTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,4 +15,6 @@ public class NMLCriteriaTriggers {
 
     public static final DeferredHolder<CriterionTrigger<?>, KilledTrigger> KILL_MOB_NEAR_MONSTER_ANCHOR = TRIGGERS.register("kill_mob_near_monster_anchor", KilledTrigger::new);
     public static final DeferredHolder<CriterionTrigger<?>, DistanceTrigger> CLIMB_UP_HEIGHT = TRIGGERS.register("climb_up_height", DistanceTrigger::new);
+    public static final DeferredHolder<CriterionTrigger<?>, KilledTrigger> IGNITE_FLAMMABLE_ENTITY = TRIGGERS.register("ignite_flammable_entity", KilledTrigger::new);
+    public static final DeferredHolder<CriterionTrigger<?>, DefaultBlockInteractionTrigger> MINE_ORE_WITH_EXPLOSIVE = TRIGGERS.register("mine_ore_with_explosive", DefaultBlockInteractionTrigger::new);
 }

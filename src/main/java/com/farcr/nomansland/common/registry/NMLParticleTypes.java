@@ -25,6 +25,8 @@ public class NMLParticleTypes {
 
     public static final Supplier<SimpleParticleType> OIL = register("oil");
 
+    public static final Supplier<SimpleParticleType> OIL_SPLASH = register("oil_splash");
+
     public static final Supplier<SimpleParticleType> OIL_FLAT = register("oil_flat");
     
     public static final Supplier<SimpleParticleType> RESIN_OIL_BUBBLE = register("resin_oil_bubble");

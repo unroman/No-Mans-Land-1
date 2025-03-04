@@ -81,9 +81,9 @@ public class ThrownOilBottle extends ThrownPotion {
                 serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.SPLASH_POTION)), vec3.x, vec3.y, vec3.z, 0, random.nextGaussian() * 0.15, random.nextDouble() * 0.2, random.nextGaussian() * 0.15, 1);
             }
 
-            ParticleOptions particleoptions = NMLParticleTypes.OIL.get();
+            ParticleOptions particleoptions = NMLParticleTypes.OIL_SPLASH.get();
 
-            for(int i2 = 0; i2 < 100; ++i2) {
+            for(int i2 = 0; i2 < 200; ++i2) {
                 double d10 = random.nextDouble() * 4.0;
                 double d15 = random.nextDouble() * Math.PI * 2.0;
                 double d20 = Math.cos(d15) * d10;
