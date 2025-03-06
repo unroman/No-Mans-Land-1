@@ -5,7 +5,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "nomansland:cattail",
+          "block": "nomansland:reeds",
           "condition": "minecraft:block_state_property",
           "properties": {
             "half": "lower"

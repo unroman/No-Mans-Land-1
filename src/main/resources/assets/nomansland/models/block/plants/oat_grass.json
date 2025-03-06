@@ -1,5 +1,5 @@
 {
-  "render_type": "minecraft:translucent",
+  "render_type": "minecraft:cutout",
   "ambientocclusion": false,
   "textures": {
     "oats": "nomansland:block/plants/oat_grass_overlay",

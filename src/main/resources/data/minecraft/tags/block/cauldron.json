@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "nomansland:honey_cauldron",
+    "nomansland:maple_syrup_cauldron",
+    "nomansland:milk_cauldron",
+    "nomansland:resin_cauldron",
+    "nomansland:resin_oil_cauldron"
+  ]
+}

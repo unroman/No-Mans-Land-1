@@ -34,7 +34,11 @@
     "nomansland:mundane_tile_stairs",
     "nomansland:mundane_tile_slab",
     "nomansland:tap",
+    "nomansland:honey_cauldron",
+    "nomansland:maple_syrup_cauldron",
+    "nomansland:milk_cauldron",
     "nomansland:resin_cauldron",
+    "nomansland:resin_oil_cauldron",
     "nomansland:spike_trap",
     "nomansland:monster_anchor"
   ]
