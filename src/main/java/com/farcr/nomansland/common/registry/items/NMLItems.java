@@ -329,6 +329,7 @@ public class NMLItems {
             insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.ACONITE);
             insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.WILD_MINT);
             insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.AUTUMN_CROCUS);
+            insertAfter(event, Items.LILY_OF_THE_VALLEY, NMLBlocks.THISTLE);
             insertAfter(event, Items.SPORE_BLOSSOM, NMLBlocks.RAFFLESIA);
             insertAfter(event, Items.DEAD_BUSH, NMLBlocks.BARREL_CACTUS);
             insertAfter(event, Items.DEAD_BUSH, NMLBlocks.SUCCULENT);
