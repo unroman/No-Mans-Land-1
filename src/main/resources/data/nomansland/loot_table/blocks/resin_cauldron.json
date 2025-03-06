@@ -1,0 +1,105 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cauldron"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "nomansland:resin_cauldron",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "level": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "name": "nomansland:resin"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "nomansland:resin_cauldron",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "level": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 6
+            }
+          ],
+          "name": "nomansland:resin"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "nomansland:resin_cauldron",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "level": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 9
+            }
+          ],
+          "name": "nomansland:resin"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "nomansland:blocks/resin_cauldron"
+}
