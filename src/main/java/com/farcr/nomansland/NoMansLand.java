@@ -19,9 +19,9 @@ import com.farcr.nomansland.common.registry.worldgen.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
 import com.farcr.nomansland.integration.BBIntegration;
+import com.farcr.nomansland.integration.CIntegration;
 import com.farcr.nomansland.integration.FDIntegration;
 import com.farcr.nomansland.integration.Mods;
-import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -29,12 +29,10 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
-import org.slf4j.Logger;
 
 @Mod(NoMansLand.MODID)
 public class NoMansLand {
     public static final String MODID = "nomansland";
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     public NoMansLand(IEventBus modEventBus, ModContainer modContainer) {
 
@@ -61,11 +59,16 @@ public class NoMansLand {
         NMLStructureProcessorTypes.STRUCTURE_PROCESSOR_TYPES.register(modEventBus);
         NMLCriteriaTriggers.TRIGGERS.register(modEventBus);
 
-        if (Mods.FARMERSDELIGHT.isLoaded()) FDIntegration.register();
+        if (Mods.FARMERSDELIGHT.isLoaded()) {
+            FDIntegration.register();
+            modEventBus.addListener(FDIntegration::addBlockEntities);
+        }
+
         if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();
-//        if (Mods.CREATE.isLoaded()) CIntegration.register();
+        if (Mods.CREATE.isLoaded()) CIntegration.register();
 
         modEventBus.addListener(NMLItems::addCreative);
+        modEventBus.addListener(NMLBlockEntities::addBlockEntities);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerRegistries);
         modEventBus.addListener(this::registerDatapackRegistries);
@@ -83,14 +86,14 @@ public class NoMansLand {
         });
     }
 
-    public void registerRegistries(final NewRegistryEvent event) {
+    private void registerRegistries(final NewRegistryEvent event) {
         event.register(NMLRegistries.POND_DECORATOR_TYPE);
         event.register(NMLRegistries.BOULDER_DECORATOR_TYPE);
         event.register(NMLRegistries.FALLEN_TREE_DECORATOR_TYPE);
         event.register(NMLRegistries.FOG_MODIFIERS);
     }
 
-    public void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
+    private void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.PIG_OVERLAY_VARIANT_KEY, PigOverlayVariant.DIRECT_CODEC, PigOverlayVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);

@@ -24,12 +24,12 @@ public class QuadrupedModelMixin<T extends Entity> {
     protected ModelPart root;
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void init(ModelPart root, boolean scaleHead, float babyYHeadOffset, float babyZHeadOffset, float babyHeadScale, float babyBodyScale, int bodyYOffset, CallbackInfo ci) {
+    private void nml$init(ModelPart root, boolean scaleHead, float babyYHeadOffset, float babyZHeadOffset, float babyHeadScale, float babyBodyScale, int bodyYOffset, CallbackInfo ci) {
         this.root = root;
     }
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
-    private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void nml$setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (entity instanceof Pig pig)
             NMLPigModel.setupAnim(pig, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
         if (entity instanceof Cow cow)

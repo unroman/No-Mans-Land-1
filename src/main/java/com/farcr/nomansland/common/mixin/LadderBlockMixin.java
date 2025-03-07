@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LadderBlock.class)
 public class LadderBlockMixin {
     @Inject(method = "canAttachTo", at = @At("HEAD"), cancellable = true)
-    protected void injected(BlockGetter blockReader, BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
+    protected void nml$canAttachTo(BlockGetter blockReader, BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 
         BlockPos.MutableBlockPos mutable = pos.mutable();
         BlockPos.MutableBlockPos mutableL = pos.relative(direction).mutable();
@@ -43,7 +43,7 @@ public class LadderBlockMixin {
     }
 
     @Inject(method = "updateShape", at = @At("HEAD"), cancellable = true)
-    protected void injected2(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos, CallbackInfoReturnable<BlockState> cir) {
+    protected void nml$updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos, CallbackInfoReturnable<BlockState> cir) {
         if (!state.canSurvive(level, currentPos)) {
             cir.setReturnValue(Blocks.AIR.defaultBlockState());
         }

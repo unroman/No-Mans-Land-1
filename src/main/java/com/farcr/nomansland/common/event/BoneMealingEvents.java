@@ -77,7 +77,7 @@ public class BoneMealingEvents {
 
                 for (BlockPos blockPos : BlockPos.betweenClosed(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3)) {
                     Block block = level.getBlockState(blockPos).getBlock();
-                    if (level.random.nextFloat() <= 0.3F && state.canSurvive(level, blockPos) && level.isEmptyBlock(blockPos)) {
+                    if (level.random.nextFloat() < 0.3F && state.canSurvive(level, blockPos) && level.isEmptyBlock(blockPos)) {
                         BlockPos particlePosition = blockPos.above();
                         level.setBlockAndUpdate(blockPos, state);
                         spawnParticles(level, particlePosition);

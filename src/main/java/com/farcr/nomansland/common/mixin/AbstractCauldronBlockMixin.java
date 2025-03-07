@@ -29,7 +29,7 @@ import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 public class AbstractCauldronBlockMixin {
 
     @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
-    private void injected(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<ItemInteractionResult> cir) {
+    private void addCustomNMLCauldrons(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<ItemInteractionResult> cir) {
         if (state.getBlock() instanceof CauldronBlock) {
             if (player.isHolding(Items.HONEY_BOTTLE)) {
                 player.setItemInHand(hand, ItemUtils.createFilledResult(player.getItemInHand(hand), player, new ItemStack(Items.GLASS_BOTTLE)));

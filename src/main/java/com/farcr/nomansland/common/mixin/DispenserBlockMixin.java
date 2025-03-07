@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DispenserBlock.class)
 public class DispenserBlockMixin {
     @Inject(method = "dispenseFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/DispenserBlock;getDispenseMethod(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/dispenser/DispenseItemBehavior;"), cancellable = true)
-    public void dispenseFrom(ServerLevel level, BlockState state, BlockPos pos, CallbackInfo ci, @Local DispenserBlockEntity dispenser, @Local BlockSource blockSource, @Local int slot, @Local ItemStack stack) {
+    public void addBombDispensing(ServerLevel level, BlockState state, BlockPos pos, CallbackInfo ci, @Local DispenserBlockEntity dispenser, @Local BlockSource blockSource, @Local int slot, @Local ItemStack stack) {
         if (stack.getItem() instanceof ThrowableBombItem) {
             dispenser.setItem(slot, new BombDispenseBehavior(stack.getItem()).dispense(blockSource, stack));
             ci.cancel();

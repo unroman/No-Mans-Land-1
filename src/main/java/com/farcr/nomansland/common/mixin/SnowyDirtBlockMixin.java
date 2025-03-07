@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SnowyDirtBlockMixin {
 
     @Inject(method = "isSnowySetting", at = @At("RETURN"), cancellable = true)
-    private static void isSnowySetting(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+    private static void isSnowLogged(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (state.hasProperty(FrostedGrassBlock.SNOWLOGGED) && state.getValue(FrostedGrassBlock.SNOWLOGGED)) cir.setReturnValue(true);
     }
 }

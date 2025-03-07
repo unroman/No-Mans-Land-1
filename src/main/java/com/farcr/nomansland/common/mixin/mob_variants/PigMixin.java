@@ -46,13 +46,13 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
     @Unique
     private static final ResourceKey<PigOverlayVariant> DEFAULT_OVERLAY_VARIANT = ResourceKey.create(NMLMobVariants.PIG_OVERLAY_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+    protected void nml$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
         builder.define(DATA_VARIANT_ID, this.registryAccess().registryOrThrow(NMLMobVariants.PIG_VARIANT_KEY).getHolderOrThrow(DEFAULT_VARIANT));
         builder.define(DATA_OVERLAY_VARIANT_ID, this.registryAccess().registryOrThrow(NMLMobVariants.PIG_OVERLAY_VARIANT_KEY).getHolderOrThrow(DEFAULT_OVERLAY_VARIANT));
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void nml$addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         this.getVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
@@ -62,7 +62,7 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void nml$readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.PIG_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.PIG_VARIANT_KEY).getHolder(variant))
@@ -74,7 +74,7 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Override
-    protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         Holder<PigVariant> variant;
         if (spawnGroupData instanceof VariantGroupData variantGroupData) {
             variant = (Holder<PigVariant>) variantGroupData.variant;
@@ -100,8 +100,8 @@ public abstract class PigMixin extends MobMixin implements VariantHolder<Holder<
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
     private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<PigVariant>>) entity).setVariant(random.nextBoolean() ? ((VariantHolder<Holder<PigVariant>>) entity).getVariant() : ((VariantHolder<Holder<PigVariant>>) entity).getVariant());
-        ((PigDuck) entity).noMansLand$setPigOverlayVariant(random.nextBoolean() ? ((PigDuck) entity).noMansLand$getPigOverlayVariant() : ((PigDuck) entity).noMansLand$getPigOverlayVariant());
+        ((VariantHolder<Holder<PigVariant>>) entity).setVariant(random.nextBoolean() ? ((VariantHolder<Holder<PigVariant>>) this).getVariant() : ((VariantHolder<Holder<PigVariant>>) otherParent).getVariant());
+        ((PigDuck) entity).noMansLand$setPigOverlayVariant(random.nextBoolean() ? ((PigDuck) this).noMansLand$getPigOverlayVariant() : ((PigDuck) otherParent).noMansLand$getPigOverlayVariant());
         cir.setReturnValue(entity);
     }
 

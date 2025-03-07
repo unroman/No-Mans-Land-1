@@ -3,6 +3,7 @@
   "package": "com.farcr.nomansland.common.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "nomansland.refmap.json",
+  "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
   "mixins": [
     "AbstractCauldronBlockMixin",
     "BaseRailBlockMixin",
@@ -18,6 +19,7 @@
     "MobMixin",
     "ProjectileMixin",
     "RailStateMixin",
+    "RichSoilBlockMixin",
     "ServerLevelMixin",
     "SnowAndFreezeFeatureMixin",
     "SnowyDirtBlockMixin",
@@ -48,7 +50,6 @@
     "mob_variants.ZombieMixin"
   ],
   "client": [
-    "HierarchicalModelMixin",
     "ItemRendererMixin",
     "LevelRendererMixin",
     "LivingEntityRendererMixin",

@@ -9,10 +9,6 @@ import com.farcr.nomansland.common.block.cauldrons.ResinOilCauldron;
 import com.farcr.nomansland.common.block.fruit_trees.FruitBlock;
 import com.farcr.nomansland.common.block.fruit_trees.FruitLeavesBlock;
 import com.farcr.nomansland.common.block.fruit_trees.FruitType;
-import com.farcr.nomansland.common.block.signs.CeilingHangingSignBlock;
-import com.farcr.nomansland.common.block.signs.StandingSignBlock;
-import com.farcr.nomansland.common.block.signs.WallHangingSignBlock;
-import com.farcr.nomansland.common.block.signs.WallSignBlock;
 import com.farcr.nomansland.common.block.torches.*;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.NMLTreeGrowers;
@@ -78,12 +74,12 @@ public class NMLBlocks {
     public static final DeferredBlock<NMLCauldronBlock> RESIN_CAULDRON = BLOCKS.register("resin_cauldron",
             () -> new NMLCauldronBlock(NMLCauldronType.RESIN));
 
-    public static final DeferredBlock<NMLCauldronBlock> RESIN_OIL_CAULDRON = BLOCKS.register("resin_oil_cauldron", ResinOilCauldron::new);
+    public static final DeferredBlock<ResinOilCauldron> RESIN_OIL_CAULDRON = BLOCKS.register("resin_oil_cauldron", ResinOilCauldron::new);
 
     public static final DeferredBlock<NMLCauldronBlock> HONEY_CAULDRON = BLOCKS.register("honey_cauldron",
             () -> new NMLCauldronBlock(NMLCauldronType.HONEY));
 
-    public static final DeferredBlock<NMLCauldronBlock> MILK_CAULDRON = BLOCKS.register("milk_cauldron", MilkCauldron::new);
+    public static final DeferredBlock<MilkCauldron> MILK_CAULDRON = BLOCKS.register("milk_cauldron", MilkCauldron::new);
 
     public static final DeferredBlock<NMLCauldronBlock> MAPLE_SYRUP_CAULDRON = BLOCKS.register("maple_syrup_cauldron",
             () -> new NMLCauldronBlock(NMLCauldronType.MAPLE));

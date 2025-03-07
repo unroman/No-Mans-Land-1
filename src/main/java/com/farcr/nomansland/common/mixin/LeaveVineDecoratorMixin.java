@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LeaveVineDecorator.class)
 public class LeaveVineDecoratorMixin {
     @Inject(method = "place", at = @At("TAIL"))
-    private void place(TreeDecorator.Context context, CallbackInfo ci) {
+    private void nml$place(TreeDecorator.Context context, CallbackInfo ci) {
         LevelSimulatedReader level = context.level();
         for (BlockPos pos : context.leaves()) {
             for (Direction direction : Direction.Plane.HORIZONTAL) {

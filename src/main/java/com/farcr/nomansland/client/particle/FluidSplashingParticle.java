@@ -5,9 +5,6 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 
 import java.util.function.Supplier;
@@ -52,8 +49,6 @@ public class FluidSplashingParticle extends TextureSheetParticle {
         if (this.onGround) {
             float offset = random.nextInt(-10, 10) * 0.01F;
             if (flatParticle != null) this.level.addParticle(flatParticle.get(), this.x + (offset * Math.random()), this.y, this.z + (offset * Math.random()), 0.0, 0.0, 0.0);
-            float volume = Mth.randomBetween(this.random, 0.3F, 1.0F);
-            this.level.playLocalSound(this.x, this.y, this.z, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, volume, 1.0F, false);
             this.remove();
         }
 

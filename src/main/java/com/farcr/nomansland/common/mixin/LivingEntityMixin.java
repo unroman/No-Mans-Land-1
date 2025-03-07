@@ -38,20 +38,20 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
     }
 
     @Inject(method = "dropAllDeathLoot", at = @At("HEAD"), cancellable = true)
-    private void dropAllDeathLoot(ServerLevel p_level, DamageSource damageSource, CallbackInfo ci) {
+    private void trySkipDroppingDeathLoot(ServerLevel p_level, DamageSource damageSource, CallbackInfo ci) {
         if (this.nomansland$skipDroppingDeathLoot) {
             ci.cancel();
         }
     }
 
     @ModifyVariable(method = "travel", at = @At("STORE"), ordinal = 0)
-    public float friction(float value) {
+    public float tryReduceFriction(float value) {
         if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater() && onGround()) value = 0.98F;
         return value;
     }
 
     @Inject(method = "getBlockSpeedFactor", at = @At("HEAD"), cancellable = true)
-    private void getBlockSpeedFactor(CallbackInfoReturnable<Float> cir) {
+    private void tryReduceBlockSpeedFactor(CallbackInfoReturnable<Float> cir) {
         if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) cir.setReturnValue(0.95F);
     }
 }

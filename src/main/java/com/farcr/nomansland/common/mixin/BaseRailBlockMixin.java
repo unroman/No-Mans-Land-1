@@ -27,7 +27,7 @@ public abstract class BaseRailBlockMixin extends Block {
     @Shadow @Deprecated public abstract Property<RailShape> getShapeProperty();
 
     @Unique
-    private static boolean no_Mans_Land$floatingRails(BlockPos pos, LevelReader level, RailShape shape, Direction direction) {
+    private static boolean nml$floatingRails(BlockPos pos, LevelReader level, RailShape shape, Direction direction) {
         for (int i = 1; i <= NMLConfig.MAX_FLOATING_RAILS.get(); i++) {
             BlockState blockState = level.getBlockState(pos.relative(direction, i));
             RailShape offsetShape;
@@ -45,11 +45,11 @@ public abstract class BaseRailBlockMixin extends Block {
     }
 
     @Unique
-    private static boolean no_Mans_Land$shouldBeRemovedOverride(BlockPos pos, LevelReader level, RailShape shape) {
+    private static boolean nml$shouldBeRemovedOverride(BlockPos pos, LevelReader level, RailShape shape) {
         if (!canSupportRigidBlock(level, pos.below())) {
             return switch (shape) {
-                case NORTH_SOUTH -> no_Mans_Land$floatingRails(pos, level, shape, Direction.NORTH) && no_Mans_Land$floatingRails(pos, level, shape, Direction.SOUTH);
-                case EAST_WEST -> no_Mans_Land$floatingRails(pos, level, shape, Direction.EAST) && no_Mans_Land$floatingRails(pos, level, shape, Direction.WEST);
+                case NORTH_SOUTH -> nml$floatingRails(pos, level, shape, Direction.NORTH) && nml$floatingRails(pos, level, shape, Direction.SOUTH);
+                case EAST_WEST -> nml$floatingRails(pos, level, shape, Direction.EAST) && nml$floatingRails(pos, level, shape, Direction.WEST);
                 default -> true;
             };
         } else {
@@ -64,16 +64,16 @@ public abstract class BaseRailBlockMixin extends Block {
     }
 
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
-    public void injected(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+    public void nml$canSurvive(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         RailShape railshape = null;
         if (state != null && state.hasProperty(this.getShapeProperty())) {
-            railshape = (RailShape) state.getValue(this.getShapeProperty());
+            railshape = state.getValue(this.getShapeProperty());
         }
-        cir.setReturnValue(!no_Mans_Land$shouldBeRemovedOverride(pos, level, railshape));
+        cir.setReturnValue(!nml$shouldBeRemovedOverride(pos, level, railshape));
     }
 
     @Inject(method = "shouldBeRemoved", at = @At("HEAD"), cancellable = true)
-    private static void injected2(BlockPos pos, Level level, RailShape shape, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(no_Mans_Land$shouldBeRemovedOverride(pos, level, shape));
+    private static void nml$shouldBeRemoved(BlockPos pos, Level level, RailShape shape, CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(nml$shouldBeRemovedOverride(pos, level, shape));
     }
 }

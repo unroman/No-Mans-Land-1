@@ -17,12 +17,12 @@ public abstract class ServerPlayerMixin extends LivingEntityMixin {
     private Vec3 startingToTopPosition;
 
     @Inject(method = "tick", at = @At("HEAD"))
-    private void tick(CallbackInfo ci) {
-        this.updateClimbing();
+    private void nml$tick(CallbackInfo ci) {
+        this.nml$updateClimbing();
     }
 
     @Unique
-    public void updateClimbing() {
+    public void nml$updateClimbing() {
         if (level().getBlockState(blockPosition()).is(Blocks.LADDER) && !onGround()) {
             if (startingToTopPosition != null && startingToTopPosition.vectorTo(position()).y > 0) startingToTopPosition = startingToTopPosition.vectorTo(position());
             else startingToTopPosition = position();

@@ -10,12 +10,9 @@ import com.farcr.nomansland.client.model.deer.DeerModel;
 import com.farcr.nomansland.client.particle.*;
 import com.farcr.nomansland.client.renderer.*;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
-import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -52,8 +49,6 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(NMLBlockEntities.NML_SIGN.get(), SignRenderer::new);
-        event.registerBlockEntityRenderer(NMLBlockEntities.NML_HANGING_SIGN.get(), HangingSignRenderer::new);
         event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BillhookBassRenderer::new);
 
         event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);

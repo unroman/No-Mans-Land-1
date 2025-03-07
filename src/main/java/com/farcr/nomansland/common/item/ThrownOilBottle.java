@@ -18,9 +18,7 @@ import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -37,7 +35,9 @@ public class ThrownOilBottle extends ThrownPotion {
     }
 
     @Override
-    protected void onHit(HitResult result) {HitResult.Type hitresult$type = result.getType();
+    protected void onHit(HitResult result) {
+        HitResult.Type hitresult$type = result.getType();
+
         // Copied from Projectile.onHit
         if (hitresult$type == HitResult.Type.ENTITY) {
             EntityHitResult entityhitresult = (EntityHitResult)result;
@@ -48,33 +48,29 @@ public class ThrownOilBottle extends ThrownPotion {
             }
 
             this.onHitEntity(entityhitresult);
-            this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, (BlockState)null));
+            this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, null));
         } else if (hitresult$type == HitResult.Type.BLOCK) {
             BlockHitResult blockhitresult = (BlockHitResult)result;
             this.onHitBlock(blockhitresult);
             BlockPos blockpos = blockhitresult.getBlockPos();
             this.level().gameEvent(GameEvent.PROJECTILE_LAND, blockpos, GameEvent.Context.of(this, this.level().getBlockState(blockpos)));
         }
+
         // Copied from ThrownPotion.onHit
         if (!this.level().isClientSide) {
             ItemStack itemstack = this.getItem();
-            PotionContents potioncontents = (PotionContents)itemstack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
-            if (potioncontents.is(Potions.WATER)) {
-                this.applyWater();
-            } else if (potioncontents.hasEffects()) {
-                if (this.isLingering()) {
+            PotionContents potioncontents = itemstack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+            if (potioncontents.hasEffects()) {
+                if (this.isLingering())
                     this.makeAreaOfEffectCloud(potioncontents);
-                } else {
+                else
                     this.applySplash(potioncontents.getAllEffects(), result.getType() == HitResult.Type.ENTITY ? ((EntityHitResult)result).getEntity() : null);
-                }
             }
-            this.discard();
 
             // Copied from LevelRenderer.levelEvent
             ServerLevel serverLevel = (ServerLevel) level();
             double d24;
             double d25;
-            float f1;
             Vec3 vec3 = Vec3.atBottomCenterOf(this.blockPosition());
 
             for(int j = 0; j < 8; ++j) {
@@ -93,6 +89,8 @@ public class ThrownOilBottle extends ThrownPotion {
             }
 
             serverLevel.playSound(null, this.blockPosition(), SoundEvents.SPLASH_POTION_BREAK, SoundSource.NEUTRAL, 1.0F, random.nextFloat() * 0.1F + 0.9f);
+
+            this.discard();
         }
     }
 }

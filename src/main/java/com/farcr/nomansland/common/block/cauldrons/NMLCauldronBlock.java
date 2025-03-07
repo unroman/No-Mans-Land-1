@@ -47,7 +47,6 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
     private final Holder<Item> containedItem;
     private final Supplier<? extends SimpleParticleType> particleType;
     private final boolean sticky;
-    private final int boilingTime = 0;
 
     public NMLCauldronBlock(NMLCauldronType cauldronType) {
         super(Biome.Precipitation.NONE, CauldronInteraction.EMPTY, BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON));
@@ -67,13 +66,13 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
         level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(newState));
     }
 
-    @Override
-    protected boolean canReceiveStalactiteDrip(Fluid pFluid) {
-        return false;
+    public int getLevel(BlockState state) {
+        return state.getValue(LEVEL);
     }
 
     @Override
-    public void handlePrecipitation(BlockState pState, Level pLevel, BlockPos pPos, Biome.Precipitation pPrecipitation) {
+    protected boolean canReceiveStalactiteDrip(Fluid fluid) {
+        return false;
     }
 
     @Override
@@ -108,7 +107,7 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (containedItem != null) {
-            if (player.isHolding(containedItem.value()) && (player.isCreative() || player.getItemInHand(hand).getCount() >= 3) && state.getValue(LEVEL) < 3) {
+            if (player.isHolding(containedItem.value()) && (player.isCreative() || player.getItemInHand(hand).getCount() >= 3) && ((AbstractCauldronBlock) state.getBlock()).isFull(state)) {
                 if (!player.isCreative())
                     player.setItemInHand(hand, new ItemStack(player.getItemInHand(hand).getItemHolder(), player.getItemInHand(hand).getCount() - 3));
                 player.awardStat(Stats.USE_CAULDRON);
@@ -160,16 +159,18 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
 
     @Override
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!level.isClientSide && entity.isOnFire() && this.isEntityInsideContent(state, pos, entity)) {
+        if (!level.isClientSide && entity.isOnFire() && isEntityInsideContent(state, pos, entity)) {
             entity.clearFire();
             level.playSound(entity, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1, 1);
         }
-        if (entity instanceof LivingEntity && sticky && state.getValue(LEVEL) > 1 && entity.getY() > pos.getY()+.6) {
+
+        if (entity instanceof LivingEntity && sticky && ((NMLCauldronBlock) state.getBlock()).getLevel(state) > 1 && entity.getY() > pos.getY()+.6) {
             level.playSound(null, pos, NMLSounds.STICKY_CAULDRON_SLIDE.get(), SoundSource.BLOCKS, 1, 1);
             entity.makeStuckInBlock(state, new Vec3(.9, .9, .9));
         }
+
         BlockState stateUnder = level.getBlockState(pos.below());
-        if (cauldronBlock == NMLBlocks.RESIN_CAULDRON && entity instanceof ItemEntity item && item.getItem().is(NMLTags.MAKES_RESIN_OIL) && (stateUnder.is(BlockTags.FIRE) || stateUnder.is(BlockTags.CAMPFIRES)) && state.getValue(LEVEL) > 1 && entity.getY()<=pos.getY()+0.3) {
+        if (cauldronBlock == NMLBlocks.RESIN_CAULDRON && entity instanceof ItemEntity item && item.getItem().is(NMLTags.MAKES_RESIN_OIL) && (stateUnder.is(BlockTags.FIRE) || stateUnder.is(BlockTags.CAMPFIRES)) && ((NMLCauldronBlock) state.getBlock()).getLevel(state) > 1 && entity.getY()<=pos.getY()+0.3) {
             entity.remove(Entity.RemovalReason.KILLED);
             level.playSound(null, pos, NMLSounds.HONEYCOMB_CONSUMED.get(), SoundSource.BLOCKS, 1, 0.5F);
             level.setBlockAndUpdate(pos, NMLBlocks.RESIN_OIL_CAULDRON.get().withPropertiesOf(state));

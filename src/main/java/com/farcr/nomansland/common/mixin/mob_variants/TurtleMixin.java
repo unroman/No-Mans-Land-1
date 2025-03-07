@@ -40,19 +40,19 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
     private static final ResourceKey<TurtleVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.TURTLE_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+    protected void nml$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
         builder.define(DATA_VARIANT_ID, this.registryAccess().registryOrThrow(NMLMobVariants.TURTLE_VARIANT_KEY).getHolderOrThrow(DEFAULT_VARIANT));
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void nml$addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         this.getVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void nml$readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.TURTLE_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.TURTLE_VARIANT_KEY).getHolder(variant))
@@ -60,7 +60,7 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
     }
 
     @Override
-    protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         Holder<TurtleVariant> variant;
         if (spawnGroupData instanceof VariantGroupData variantGroupData) {
             variant = (Holder<TurtleVariant>) variantGroupData.variant;

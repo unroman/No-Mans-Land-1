@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public class BaseSpawnerMixin {
 
     @ModifyArg(method = "clientTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addParticle(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V", ordinal = 1), index = 0)
-    private ParticleOptions injected(ParticleOptions particle) {
+    private ParticleOptions tryTurnSpawnerFlameMalevolent(ParticleOptions particle) {
         if (NMLConfig.MALEVOLENT_SPAWNER.get()) {
             return NMLParticleTypes.MALEVOLENT_FLAME.get();
         }

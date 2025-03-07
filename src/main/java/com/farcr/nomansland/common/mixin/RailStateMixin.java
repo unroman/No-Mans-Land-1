@@ -40,7 +40,7 @@ public abstract class RailStateMixin {
     @Shadow public abstract boolean hasConnection(BlockPos pos);
 
     @Inject(method = "place", at = @At("HEAD"), cancellable = true)
-    public void injected(boolean powered, boolean alwaysPlace, RailShape shape, CallbackInfoReturnable<RailState> cir) {
+    public void nml$place(boolean powered, boolean alwaysPlace, RailShape shape, CallbackInfoReturnable<RailState> cir) {
         BlockPos blockpos = this.pos.north();
         BlockPos blockpos1 = this.pos.south();
         BlockPos blockpos2 = this.pos.west();
@@ -84,7 +84,7 @@ public abstract class RailStateMixin {
     }
 
     @Inject(method = "connectTo", at = @At("HEAD"), cancellable = true)
-    public void injected2(RailState state, CallbackInfo ci) {
+    public void nml$connectTo(RailState state, CallbackInfo ci) {
         this.connections.add(state.pos);
         BlockPos blockpos = this.pos.north();
         BlockPos blockpos1 = this.pos.south();

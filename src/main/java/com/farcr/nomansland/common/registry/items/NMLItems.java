@@ -165,7 +165,7 @@ public class NMLItems {
     public static final DeferredItem<Item> WATER_MOSAIC = registerItem("water_mosaic",
             () -> new PlaceOnWaterBlockItem(NMLBlocks.WATER_MOSAIC.get(), new Properties()));
 
-    public static void addCreative(BuildCreativeModeTabContentsEvent event) {
+    public static void addCreative(final BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
 
         //Note about the methods "addBefore and addAfter"

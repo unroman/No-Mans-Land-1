@@ -21,6 +21,13 @@ public class NMLConfig {
     public static ModConfigSpec.DoubleValue FALLING_DAMAGE;
     public static ModConfigSpec.DoubleValue IMPALING_DAMAGE;
     public static ModConfigSpec.DoubleValue SKEWERING_DAMAGE;
+    public static final String CATEGORY_BOMBS = "bombs";
+    public static ModConfigSpec.DoubleValue EXPLOSIVE_STRENGTH;
+    public static ModConfigSpec.DoubleValue FIREBOMB_STRENGTH;
+    public static final String CATEGORY_BULK_PLACEMENT = "bulk_placement";
+    public static ModConfigSpec.IntValue MAX_LADDER_PLACEMENT_LENGTH;
+    public static ModConfigSpec.IntValue MAX_RAIL_PLACMENT_LENGTH;
+    public static ModConfigSpec.IntValue MAX_FLOATING_RAILS;
     public static final String CATEGORY_MISC = "miscellaneous";
     public static ModConfigSpec.DoubleValue BURIED_SPAWNING_CHANCE;
 
@@ -31,11 +38,6 @@ public class NMLConfig {
     public static ModConfigSpec.BooleanValue DEEP_DARK_FOG_MODIFIER;
     public static ModConfigSpec.BooleanValue FOGGY_BIOME_FOG_MODIFIER;
 
-    public static final String CATEGORY_BULK_PLACEMENT = "bulk_placement";
-    public static ModConfigSpec.IntValue MAX_LADDER_PLACEMENT_LENGTH;
-    public static ModConfigSpec.IntValue MAX_RAIL_PLACMENT_LENGTH;
-    public static ModConfigSpec.IntValue MAX_FLOATING_RAILS;
-
     static {
 
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
@@ -43,18 +45,19 @@ public class NMLConfig {
         COMMON_BUILDER.push(CATEGORY_OVERRIDES);
         GRASS_SPREADS = COMMON_BUILDER.comment("If grass or mycelium spread to nearby dirt.").define("grassSpreads", true);
         MYCELIUM_SPREADS = COMMON_BUILDER.define("myceliumSpreads", true);
-        MALEVOLENT_SPAWNER = COMMON_BUILDER.comment("If monster spawners should produce malevolent fire instead of regular fire (like monster anchors).")
+        MALEVOLENT_SPAWNER = COMMON_BUILDER.comment("If monster spawners should produce malevolent (red) flames instead of regular flames.")
                 .define("malevolentSpawner", true);
         TRAMPLING = COMMON_BUILDER.comment("If players and mobs can trample farmland").define("allowTrampling", false);
-        TORCH_EXTINGUISHING = COMMON_BUILDER.comment("If torches can be extinguished manually like campfires").define("torchExtinguishing", true);
+        TORCH_EXTINGUISHING = COMMON_BUILDER.comment("If torches can be extinguished through interactions like campfires.").define("torchExtinguishing", true);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_TAP);
+        COMMON_BUILDER.comment("Time is calculated in ticks. 20 ticks make 1 second.");
         FILLING_SPEED_MULTIPLIER = COMMON_BUILDER
-                .comment("Multiplier on how fast taps should fill up cauldrons with resin. Set it to 0.0 to disable this.")
+                .comment("Multiplier on how fast taps should fill up cauldrons with resin. Set to 0.0 to disable.")
                 .defineInRange("fillingSpeedMultiplier", 1.0, 0, 10);
         TICKS_TO_FILL_CAULDRON = COMMON_BUILDER
-                .comment("The time it takes to fill a cauldron with honey using a tap. 20 ticks make one second.")
+                .comment("The time it takes to fill a cauldron with honey using a tap.")
                 .defineInRange("ticksToFillCauldron", 80, 1, 400);
         COMMON_BUILDER.pop();
 
@@ -80,9 +83,18 @@ public class NMLConfig {
                 .defineInRange("skeweringDamage", 12.0, 0, Double.MAX_VALUE);
         COMMON_BUILDER.pop();
 
+        COMMON_BUILDER.push(CATEGORY_BOMBS);
+        EXPLOSIVE_STRENGTH = COMMON_BUILDER
+                .comment("The radius of explosives' explosion.")
+                .defineInRange("maxLadderPlacementLength", 3.0, 0.25, Double.MAX_VALUE);
+        FIREBOMB_STRENGTH = COMMON_BUILDER
+                .comment("The radius of firebombs' explosion.")
+                .defineInRange("maxRailPlacementLength", 2.0, 0.25, Double.MAX_VALUE);
+        COMMON_BUILDER.pop();
+
         COMMON_BUILDER.push(CATEGORY_BULK_PLACEMENT);
         MAX_LADDER_PLACEMENT_LENGTH = COMMON_BUILDER
-                .comment("The maximum distance ladders can be placed like scaffolding. 0 to disable.")
+                .comment("The maximum distance ladders can be placed like scaffolding. Set to 0 to disable.")
                 .defineInRange("maxLadderPlacementLength", 0, 0, Integer.MAX_VALUE);
         MAX_RAIL_PLACMENT_LENGTH = COMMON_BUILDER
                 .comment("The maximum distance rails can be placed like scaffolding.")
@@ -97,7 +109,6 @@ public class NMLConfig {
                 .comment("The chance a buried is spawned upon brushing a remains block.")
                 .defineInRange("buriedSpawningChance", 0.05, 0, 1);
         COMMON_BUILDER.pop();
-
 
         COMMON_CONFIG = COMMON_BUILDER.build();
 

@@ -181,7 +181,7 @@ public class TapBlock extends BaseEntityBlock {
 
     public static void tryResin(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
             if (cauldronState.getBlock() instanceof NMLCauldronBlock cauldron && cauldron.getCauldronBlock() == NMLBlocks.RESIN_CAULDRON
-                    && !cauldron.isFull(cauldronState) && random.nextFloat() < 0.1F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
+                    && !cauldron.isFull(cauldronState) && random.nextFloat() < 0.03F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
                 cauldron.fillUp(cauldronState, level, cauldronPos);
             } else if (cauldronState.getBlock() instanceof CauldronBlock) {
                 level.setBlockAndUpdate(cauldronPos, NMLBlocks.RESIN_CAULDRON.get().defaultBlockState());
@@ -191,7 +191,7 @@ public class TapBlock extends BaseEntityBlock {
 
     public static void tryMaple(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
         if (cauldronState.getBlock() instanceof NMLCauldronBlock cauldron && cauldron.getCauldronBlock() == NMLBlocks.MAPLE_SYRUP_CAULDRON &&
-                !cauldron.isFull(cauldronState) && random.nextFloat() < 0.1F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
+                !cauldron.isFull(cauldronState) && random.nextFloat() < 0.03F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
             cauldron.fillUp(cauldronState, level, cauldronPos);
         } else if (cauldronState.getBlock() instanceof CauldronBlock) {
             level.setBlockAndUpdate(cauldronPos, NMLBlocks.MAPLE_SYRUP_CAULDRON.get().defaultBlockState());
@@ -204,17 +204,17 @@ public class TapBlock extends BaseEntityBlock {
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         BlockState stateBehind = getBlockStateBehind(level, pos, state);
         if (stateBehind.is(NMLTags.CONIFEROUS_LOGS)) {
-            if (random.nextFloat() <= 0.05F) {
+            if (random.nextFloat() < 0.05F) {
                 spawnDrippingParticles(level, pos, state, NMLParticleTypes.RESIN_DROPLET.get());
             }
         }
         if (stateBehind.hasProperty(HONEY_LEVEL) && stateBehind.getValue(HONEY_LEVEL) > 0) {
-            if (random.nextFloat() <= (0.05F * stateBehind.getValue(HONEY_LEVEL))) {
+            if (random.nextFloat() < (0.05F * stateBehind.getValue(HONEY_LEVEL))) {
                 spawnDrippingParticles(level, pos, state, ParticleTypes.FALLING_HONEY);
             }
         }
         if (stateBehind.is(NMLBlocks.MAPLE_LOG)) {
-            if (random.nextFloat() <= 0.05F) {
+            if (random.nextFloat() < 0.05F) {
                 spawnDrippingParticles(level, pos, state, NMLParticleTypes.MAPLE_SYRUP_DROPLET.get());
             }
         }

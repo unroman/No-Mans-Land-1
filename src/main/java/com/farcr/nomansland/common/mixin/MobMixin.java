@@ -20,18 +20,18 @@ public abstract class MobMixin extends LivingEntityMixin {
     @Shadow public abstract boolean isPersistenceRequired();
 
     @Inject(method = "defineSynchedData", at = @At("TAIL"))
-    protected void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+    protected void nml$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("RETURN"))
-    protected void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void nml$addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("RETURN"))
-    protected void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void nml$readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
     }
 
     @Inject(method = "finalizeSpawn", at = @At("RETURN"), cancellable = true)
-    protected void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
     }
 }

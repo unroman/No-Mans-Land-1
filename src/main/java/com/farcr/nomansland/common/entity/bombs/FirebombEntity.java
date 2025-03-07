@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.entity.bombs;
 
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import net.minecraft.core.BlockPos;
@@ -81,7 +82,8 @@ public class FirebombEntity extends ThrowableBombEntity {
     protected void explode() {
         Level level = this.level();
 
-        level.explode(this, this.getX(), this.getY(0.0625), this.getZ(), 2.0F, Level.ExplosionInteraction.NONE);
+        level.explode(this, this.getX(), this.getY(0.0625), this.getZ(), NMLConfig.FIREBOMB_STRENGTH.get().floatValue(), Level.ExplosionInteraction.NONE);
+
         // Light nearby campfires on fire
         BlockPos.withinManhattan(this.blockPosition(), 6, 4, 6).forEach(pos -> {
             BlockState state = level.getBlockState(pos);

@@ -1,9 +1,12 @@
 package com.farcr.nomansland.common.registry.blocks;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.blockentity.*;
+import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
+import com.farcr.nomansland.common.blockentity.RemainsBlockEntity;
+import com.farcr.nomansland.common.blockentity.TapBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -11,24 +14,6 @@ import java.util.function.Supplier;
 public class NMLBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, NoMansLand.MODID);
-
-    public static final Supplier<BlockEntityType<NMLSignBlockEntity>> NML_SIGN =
-            BLOCK_ENTITIES.register("nml_sign", () ->
-                    BlockEntityType.Builder.of(NMLSignBlockEntity::new,
-                            NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get(),
-                            NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get(),
-                            NMLBlocks.WALNUT_SIGN.get(), NMLBlocks.WALNUT_WALL_SIGN.get(),
-                            NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()
-                    ).build(null));
-
-    public static final Supplier<BlockEntityType<NMLHangingSignBlockEntity>> NML_HANGING_SIGN =
-            BLOCK_ENTITIES.register("nml_hanging_sign", () ->
-                    BlockEntityType.Builder.of(NMLHangingSignBlockEntity::new,
-                            NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(),
-                            NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(),
-                            NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(),
-                            NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get()
-                    ).build(null));
 
     public static final Supplier<BlockEntityType<TapBlockEntity>> TAP =
             BLOCK_ENTITIES.register("tap", () ->
@@ -41,4 +26,22 @@ public class NMLBlockEntities {
     public static final Supplier<BlockEntityType<RemainsBlockEntity>> REMAINS =
             BLOCK_ENTITIES.register("remains", () ->
                     BlockEntityType.Builder.of(RemainsBlockEntity::new, NMLBlocks.REMAINS.get()).build(null));
+
+    public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
+        event.modify(
+                BlockEntityType.SIGN,
+                NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get(),
+                NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get(),
+                NMLBlocks.WALNUT_SIGN.get(), NMLBlocks.WALNUT_WALL_SIGN.get(),
+                NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()
+        );
+
+        event.modify(
+                BlockEntityType.HANGING_SIGN,
+                NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(),
+                NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(),
+                NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(),
+                NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get()
+        );
+    }
 }

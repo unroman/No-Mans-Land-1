@@ -24,7 +24,7 @@ public abstract class ServerLevelMixin {
     * This mixin snowlogs grass when it's snowing
     */
     @Inject(method = "tickPrecipitation", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;setBlockAndUpdate(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z", ordinal = 2, shift = At.Shift.BEFORE), cancellable = true)
-    private void tickPrecipitation(BlockPos pos, CallbackInfo ci) {
+    private void nml$tickPrecipitation(BlockPos pos, CallbackInfo ci) {
         ServerLevel level = this.getLevel();
         pos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, pos);
         BlockState state = level.getBlockState(pos);
