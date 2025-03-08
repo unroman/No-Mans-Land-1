@@ -5,6 +5,7 @@ import com.farcr.nomansland.client.model.vanilla.NMLPigModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Pig;
 import org.spongepowered.asm.mixin.Final;
@@ -30,9 +31,9 @@ public class QuadrupedModelMixin<T extends Entity> {
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
     private void nml$setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        if (entity instanceof Pig pig)
-            NMLPigModel.setupAnim(pig, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
-        if (entity instanceof Cow cow)
-            NMLCowModel.setupAnim(cow, root);
+        if (entity.getType() == EntityType.PIG)
+            NMLPigModel.setupAnim((Pig) entity, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
+        if (entity.getType() == EntityType.COW)
+            NMLCowModel.setupAnim((Cow) entity, root);
     }
 }

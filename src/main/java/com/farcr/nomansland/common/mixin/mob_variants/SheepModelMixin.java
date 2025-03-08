@@ -4,6 +4,7 @@ import com.farcr.nomansland.client.model.vanilla.NMLSheepModel;
 import com.farcr.nomansland.common.mixin.QuadrupedModelMixin;
 import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Sheep;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,13 +24,15 @@ public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Sheep;FFFFF)V", at = @At("TAIL"))
     private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        NMLSheepModel.setupAnim(entity, root, ageInTicks, noMansLand$headXRot);
+        if (entity.getType() == EntityType.SHEEP) NMLSheepModel.setupAnim(entity, root, ageInTicks, noMansLand$headXRot);
     }
 
     @Inject(method = "prepareMobModel(Lnet/minecraft/world/entity/animal/Sheep;FFF)V", at = @At("HEAD"), cancellable = true)
     private void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick, CallbackInfo ci) {
-        head.y = 11 + entity.getHeadEatPositionScale(partialTick) * 7.0F;
-        noMansLand$headXRot = entity.getHeadEatAngleScale(partialTick);
-        ci.cancel();
+        if (entity.getType() == EntityType.SHEEP) {
+            head.y = 11 + entity.getHeadEatPositionScale(partialTick) * 7.0F;
+            noMansLand$headXRot = entity.getHeadEatAngleScale(partialTick);
+            ci.cancel();
+        }
     }
 }

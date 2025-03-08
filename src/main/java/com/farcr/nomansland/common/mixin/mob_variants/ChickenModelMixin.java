@@ -5,6 +5,7 @@ import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Chicken;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,6 +32,6 @@ public class ChickenModelMixin<T extends Entity> {
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
     private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        NMLChickenModel.setupAnim((Chicken) entity, root, limbSwing, limbSwing, ageInTicks, netHeadYaw, headPitch);
+        if (entity.getType() == EntityType.CHICKEN) NMLChickenModel.setupAnim((Chicken) entity, root, limbSwing, limbSwing, ageInTicks, netHeadYaw, headPitch);
     }
 }
