@@ -79,7 +79,7 @@ public class BoneMealingEvents {
                     Block block = level.getBlockState(blockPos).getBlock();
                     if (level.random.nextFloat() < 0.3F && state.canSurvive(level, blockPos) && level.isEmptyBlock(blockPos)) {
                         BlockPos particlePosition = blockPos.above();
-                        level.setBlockAndUpdate(blockPos, state);
+                        if (!level.isClientSide) level.setBlockAndUpdate(blockPos, state);
                         spawnParticles(level, particlePosition);
                     }
                 }
@@ -116,7 +116,7 @@ public class BoneMealingEvents {
                             vineState = vineState.setValue(booleanproperty, canSupportAtFace(level, bp, d));
                         }
                         if (vineState != Blocks.VINE.defaultBlockState()) {
-                            level.setBlockAndUpdate(bp, vineState);
+                            if (!level.isClientSide) level.setBlockAndUpdate(bp, vineState);
                             spawnParticles(level, bp);
                         }
                     }
@@ -163,12 +163,12 @@ public class BoneMealingEvents {
                     BlockState newState = NMLBlocks.SHELF_MUSHROOM_BLOCK.get().defaultBlockState()
                             .setValue(SlabBlock.TYPE, level.random.nextBoolean() ? SlabType.BOTTOM : SlabType.TOP);
 
-                    level.setBlockAndUpdate(pos, newState);
+                    if (!level.isClientSide) level.setBlockAndUpdate(pos, newState);
                     if (sidePos != null) {
-                        level.setBlockAndUpdate(sidePos, newState);
+                        if (!level.isClientSide) level.setBlockAndUpdate(sidePos, newState);
                         sendParticles(serverLevel, sidePos);
                         if (level.isEmptyBlock(sidePos.relative(facing.getOpposite()))) {
-                            level.setBlockAndUpdate(sidePos.relative(facing.getOpposite()), newState);
+                            if (!level.isClientSide) level.setBlockAndUpdate(sidePos.relative(facing.getOpposite()), newState);
                             sendParticles(serverLevel, sidePos.relative(facing.getOpposite()));
                         }
                     }
@@ -196,7 +196,7 @@ public class BoneMealingEvents {
                 Block newBlock = level.getBlockState(bp.relative(d)).getBlock();
                 if (level.random.nextFloat() < .3F && block == Blocks.DIRT.defaultBlockState() && newBlock instanceof SpreadingSnowyDirtBlock && !level.getBlockState(bp.above()).isSolid()) {
                     BlockPos particlePosition = bp.above();
-                    level.setBlockAndUpdate(bp, state);
+                    if (!level.isClientSide) level.setBlockAndUpdate(bp, state);
                     spawnParticles(level, particlePosition);
                 }
             }

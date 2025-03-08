@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.VariantHolder;
@@ -57,16 +58,18 @@ public abstract class SalmonMixin extends MobMixin implements VariantHolder<Hold
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if (spawnType != MobSpawnType.BUCKET) {
-            Holder<SalmonVariant> variant;
-            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-                variant = (Holder<SalmonVariant>) variantGroupData.variant;
-            } else {
-                variant = (Holder<SalmonVariant>) NMLMobVariants.getVariantForSpawn(((Salmon) (Object) this));
-                spawnGroupData = new VariantGroupData(variant);
-            }
+        if (this.getType() == EntityType.SALMON) {
+            if (spawnType != MobSpawnType.BUCKET) {
+                Holder<SalmonVariant> variant;
+                if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                    variant = (Holder<SalmonVariant>) variantGroupData.variant;
+                } else {
+                    variant = (Holder<SalmonVariant>) NMLMobVariants.getVariantForSpawn(((Salmon) (Object) this));
+                    spawnGroupData = new VariantGroupData(variant);
+                }
 
-            this.setVariant(variant);
+                this.setVariant(variant);
+            }
         }
     }
 

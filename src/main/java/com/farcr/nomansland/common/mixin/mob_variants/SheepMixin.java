@@ -14,10 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.VariantHolder;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,15 +57,17 @@ public abstract class SheepMixin extends MobMixin implements VariantHolder<Holde
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Holder<SheepVariant> variant;
-        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-            variant = (Holder<SheepVariant>) variantGroupData.variant;
-        } else {
-            variant = (Holder<SheepVariant>) NMLMobVariants.getVariantForSpawn(((Sheep) (Object) this));
-            spawnGroupData = new VariantGroupData(variant);
-        }
+        if (this.getType() == EntityType.SHEEP) {
+            Holder<SheepVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<SheepVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<SheepVariant>) NMLMobVariants.getVariantForSpawn(((Sheep) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
 
-        this.setVariant(variant);
+            this.setVariant(variant);
+        }
     }
 
     @Override

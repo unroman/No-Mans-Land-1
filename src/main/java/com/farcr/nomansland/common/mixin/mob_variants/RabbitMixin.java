@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.Rabbit;
@@ -60,15 +61,17 @@ public abstract class RabbitMixin extends MobMixin implements RabbitDuck {
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Holder<RabbitVariant> variant;
-        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-            variant = (Holder<RabbitVariant>) variantGroupData.variant;
-        } else {
-            variant = (Holder<RabbitVariant>) NMLMobVariants.getVariantForSpawn(((Rabbit) (Object) this));
-            spawnGroupData = new VariantGroupData(variant);
-        }
+        if (this.getType() == EntityType.RABBIT) {
+            Holder<RabbitVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<RabbitVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<RabbitVariant>) NMLMobVariants.getVariantForSpawn(((Rabbit) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
 
-        this.noMansLand$setRabbitVariant(variant);
+            this.noMansLand$setRabbitVariant(variant);
+        }
     }
 
     @Override

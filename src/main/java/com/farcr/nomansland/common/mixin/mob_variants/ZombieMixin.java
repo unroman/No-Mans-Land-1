@@ -107,6 +107,8 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
                 variant = (Holder<DrownedVariant>) NMLMobVariants.getVariantForSpawn(((Drowned) (Object) this));
                 spawnGroupData = new VariantGroupData(variant);
             }
+
+            this.noMansLand$setDrownedVariant(variant);
         } else if (this.getType() == EntityType.ZOMBIE) {
             Holder<ZombieVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {

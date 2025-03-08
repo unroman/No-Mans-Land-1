@@ -83,7 +83,7 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
             }
 
             this.noMansLand$setGlowSquidVariant(variant);
-        } else {
+        } else if (this.getType() == EntityType.SQUID) {
             Holder<SquidVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
                 variant = (Holder<SquidVariant>) variantGroupData.variant;

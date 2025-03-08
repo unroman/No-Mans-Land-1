@@ -14,10 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.VariantHolder;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -61,15 +58,17 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Holder<TurtleVariant> variant;
-        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-            variant = (Holder<TurtleVariant>) variantGroupData.variant;
-        } else {
-            variant = (Holder<TurtleVariant>) NMLMobVariants.getVariantForSpawn(((Turtle) (Object) this));
-            spawnGroupData = new VariantGroupData(variant);
-        }
+        if (this.getType() == EntityType.TURTLE) {
+            Holder<TurtleVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<TurtleVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<TurtleVariant>) NMLMobVariants.getVariantForSpawn(((Turtle) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
 
-        this.setVariant(variant);
+            this.setVariant(variant);
+        }
     }
 
     @Override

@@ -14,10 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.VariantHolder;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -61,7 +58,8 @@ public abstract class GoatMixin extends MobMixin implements VariantHolder<Holder
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Holder<GoatVariant> variant;
+        if (this.getType() == EntityType.GOAT) {
+            Holder<GoatVariant> variant;
         if (spawnGroupData instanceof VariantGroupData variantGroupData) {
             variant = (Holder<GoatVariant>) variantGroupData.variant;
         } else {
@@ -69,7 +67,9 @@ public abstract class GoatMixin extends MobMixin implements VariantHolder<Holder
             spawnGroupData = new VariantGroupData(variant);
         }
 
-        this.setVariant(variant);    }
+        this.setVariant(variant);
+        }
+    }
 
     @Override
     public Holder<GoatVariant> getVariant() {

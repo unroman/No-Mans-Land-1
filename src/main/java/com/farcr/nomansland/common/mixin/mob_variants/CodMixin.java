@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.VariantHolder;
@@ -57,16 +58,18 @@ public abstract class CodMixin extends MobMixin implements VariantHolder<Holder<
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if (spawnType != MobSpawnType.BUCKET) {
-            Holder<CodVariant> variant;
-            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-                variant = (Holder<CodVariant>) variantGroupData.variant;
-            } else {
-                variant = (Holder<CodVariant>) NMLMobVariants.getVariantForSpawn(((Cod) (Object) this));
-                spawnGroupData = new VariantGroupData(variant);
-            }
+        if (this.getType() == EntityType.COD) {
+            if (spawnType != MobSpawnType.BUCKET) {
+                Holder<CodVariant> variant;
+                if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                    variant = (Holder<CodVariant>) variantGroupData.variant;
+                } else {
+                    variant = (Holder<CodVariant>) NMLMobVariants.getVariantForSpawn(((Cod) (Object) this));
+                    spawnGroupData = new VariantGroupData(variant);
+                }
 
-            this.setVariant(variant);
+                this.setVariant(variant);
+            }
         }
     }
 

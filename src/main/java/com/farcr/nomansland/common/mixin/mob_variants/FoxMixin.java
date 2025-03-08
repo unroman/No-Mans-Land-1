@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.Fox;
@@ -61,15 +62,17 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Holder<FoxVariant> variant;
-        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-            variant = (Holder<FoxVariant>) variantGroupData.variant;
-        } else {
-            variant = (Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this));
-            spawnGroupData = new VariantGroupData(variant);
-        }
+        if (this.getType() == EntityType.FOX) {
+            Holder<FoxVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<FoxVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<FoxVariant>) NMLMobVariants.getVariantForSpawn(((Fox) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
 
-        this.noMansLand$setFoxVariant(variant);
+            this.noMansLand$setFoxVariant(variant);
+        }
     }
 
     @Override

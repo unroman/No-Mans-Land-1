@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.horse.Llama;
@@ -63,15 +64,17 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
 
     @Override
     protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        Holder<LlamaVariant> llama$variant;
-        if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-            llama$variant = (Holder<LlamaVariant>) variantGroupData.variant;
-        } else {
-            llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this), NMLMobVariants.getVariantKey("llama"));
-            spawnGroupData = new VariantGroupData(llama$variant);
-        }
+        if (this.getType() == EntityType.LLAMA) {
+            Holder<LlamaVariant> llama$variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                llama$variant = (Holder<LlamaVariant>) variantGroupData.variant;
+            } else {
+                llama$variant = (Holder<LlamaVariant>) NMLMobVariants.getVariantForSpawn(((Llama) (Object) this), NMLMobVariants.getVariantKey("llama"));
+                spawnGroupData = new VariantGroupData(llama$variant);
+            }
 
-        this.noMansLand$setLlamaVariant(llama$variant);
+            this.noMansLand$setLlamaVariant(llama$variant);
+        }
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
