@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(TurtleRenderer.class)
 public class TurtleRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
         cir.setReturnValue(((VariantHolder<Holder<TurtleVariant>>)entity).getVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
     }
 }

@@ -47,7 +47,25 @@ config="${mod_id}.mixins.json"
     type="required"
     reason="Required for world generation"
     versionRange="${bt_version_range}"
-    ordering="NONE"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="create"
+    type="optional"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="farmersdelight"
+    type="optional"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="blockbox"
+    type="optional"
+    ordering="AFTER"
     side="BOTH"
 
 #[features.${mod_id}]

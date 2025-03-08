@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CowModel.class)
 public class CowModelMixin {
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
-    private static void createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
+    private static void nml$createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLCowModel.createBodyLayer());
     }
 }

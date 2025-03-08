@@ -30,10 +30,10 @@ public abstract class AbstractFishMixin extends EntityMixin implements VariantHo
 
     @Inject(method = "saveToBucketTag", at = @At("TAIL"))
     private void saveToBucketTag(ItemStack stack, CallbackInfo ci) {
-        if (this.getTags().contains("variant")) {
+        if (this.getTags().contains("Variant")) {
             CustomData.update(DataComponents.BUCKET_ENTITY_DATA, stack, (data) -> {
                 this.getVariant().unwrapKey().ifPresent((variant) -> {
-                    data.putString("variant", variant.location().toString());
+                    data.putString("Variant", variant.location().toString());
                 });
             });
         }
@@ -41,11 +41,11 @@ public abstract class AbstractFishMixin extends EntityMixin implements VariantHo
 
     @Inject(method = "loadFromBucketTag", at = @At("TAIL"))
     private void loadFromBucketTag(CompoundTag tag, CallbackInfo ci) {
-            if (tag.contains("variant")) {
+            if (tag.contains("Variant")) {
                 Optional<Registry<MobVariant>> optionalRegistry = this.registryAccess().registry(NMLMobVariants.getVariantOfType(this.getType()));
                 if (optionalRegistry.isPresent()) {
                     Registry<? extends MobVariant> registry = optionalRegistry.get();
-                    this.setVariant(registry.holders().filter(v -> v.unwrapKey().get().location().toString().equals(tag.getString("variant"))).findAny().get());
+                    this.setVariant(registry.holders().filter(v -> v.unwrapKey().get().location().toString().equals(tag.getString("Variant"))).findAny().get());
                 }
             }
     }

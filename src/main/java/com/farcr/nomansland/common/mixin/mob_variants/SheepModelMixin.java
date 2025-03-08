@@ -18,17 +18,17 @@ public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
     @Unique
     private float noMansLand$headXRot;
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
-    private static void createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
+    private static void nml$createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLSheepModel.createBodyLayer());
     }
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Sheep;FFFFF)V", at = @At("TAIL"))
-    private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void nml$setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (entity.getType() == EntityType.SHEEP) NMLSheepModel.setupAnim(entity, root, ageInTicks, noMansLand$headXRot);
     }
 
     @Inject(method = "prepareMobModel(Lnet/minecraft/world/entity/animal/Sheep;FFF)V", at = @At("HEAD"), cancellable = true)
-    private void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick, CallbackInfo ci) {
+    private void nml$prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick, CallbackInfo ci) {
         if (entity.getType() == EntityType.SHEEP) {
             head.y = 11 + entity.getHeadEatPositionScale(partialTick) * 7.0F;
             noMansLand$headXRot = entity.getHeadEatAngleScale(partialTick);

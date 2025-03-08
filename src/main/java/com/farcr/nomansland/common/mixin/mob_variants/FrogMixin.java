@@ -24,7 +24,7 @@ public abstract class FrogMixin extends EntityMixin {
     public abstract void setVariant(Holder<FrogVariant> variant);
 
     @Inject(at = @At("TAIL"), method = "finalizeSpawn")
-    private void finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnType, SpawnGroupData pSpawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    private void finalizeSpawnVariant(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnType, SpawnGroupData pSpawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         Holder<Biome> holder = pLevel.getBiome(this.blockPosition());
         if (holder.is(NMLTags.SPAWNS_MUD_FROGS)) setVariant(NMLMobVariants.MUD);
     }

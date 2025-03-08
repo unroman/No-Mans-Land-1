@@ -37,19 +37,19 @@ public abstract class CodMixin extends MobMixin implements VariantHolder<Holder<
     private static final ResourceKey<CodVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.COD_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
     @Override
-    protected void nml$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+    protected void defineVariantData(SynchedEntityData.Builder builder, CallbackInfo ci) {
         builder.define(DATA_VARIANT_ID, this.registryAccess().registryOrThrow(NMLMobVariants.COD_VARIANT_KEY).getHolderOrThrow(DEFAULT_VARIANT));
     }
 
     @Override
-    protected void nml$addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void addVariantData(CompoundTag compound, CallbackInfo ci) {
         this.getVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
 
     @Override
-    protected void nml$readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    protected void readVariantData(CompoundTag compound, CallbackInfo ci) {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.COD_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.COD_VARIANT_KEY).getHolder(variant))
@@ -57,7 +57,7 @@ public abstract class CodMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Override
-    protected void nml$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    protected void finalizeSpawnVariant(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         if (this.getType() == EntityType.COD) {
             if (spawnType != MobSpawnType.BUCKET) {
                 Holder<CodVariant> variant;

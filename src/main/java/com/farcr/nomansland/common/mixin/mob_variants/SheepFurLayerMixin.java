@@ -39,7 +39,7 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
     }
 
     @Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/Sheep;FFFFFF)V", at = @At("HEAD"), cancellable = true)
-    private void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, Sheep sheep, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void nml$render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, Sheep sheep, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
 
         if (sheep.getType() == EntityType.SHEEP) {
             ResourceLocation furTexture = (sheep.isBaby() ? ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().babyFurTexture() : sheep.isSheared() ? ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().shearedFurTexture() : ((VariantHolder<Holder<SheepVariant>>) sheep).getVariant().value().furTexture()).withPath((path) -> "textures/" + path + ".png");
@@ -68,7 +68,7 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
                     i = Sheep.getColor(sheep.getColor());
                 }
 
-                coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, furTexture, poseStack, buffer, packedLight, sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, i);
+                nml$coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, furTexture, poseStack, buffer, packedLight, sheep, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, i);
             }
 
             ci.cancel();
@@ -76,18 +76,18 @@ public abstract class SheepFurLayerMixin extends RenderLayerMixin<Sheep, SheepMo
     }
 
     @Unique
-    private static <T extends LivingEntity> void coloredCutoutModelCopyLayerRender(EntityModel<T> modelParent, EntityModel<T> model, ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float partialTick, int color) {
+    private static <T extends LivingEntity> void nml$coloredCutoutModelCopyLayerRender(EntityModel<T> modelParent, EntityModel<T> model, ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float partialTick, int color) {
         if (!entity.isInvisible()) {
             modelParent.copyPropertiesTo(model);
             model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTick);
             model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            renderColoredCutoutModel(model, textureLocation, poseStack, buffer, packedLight, entity, color);
+            nml$renderColoredCutoutModel(model, textureLocation, poseStack, buffer, packedLight, entity, color);
         }
 
     }
 
     @Unique
-    private static <T extends LivingEntity> void renderColoredCutoutModel(EntityModel<T> model, ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource buffer, int packedLight, T entity, int color) {
+    private static <T extends LivingEntity> void nml$renderColoredCutoutModel(EntityModel<T> model, ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource buffer, int packedLight, T entity, int color) {
         VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(textureLocation));
         model.renderToBuffer(poseStack, vertexconsumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), color);
     }

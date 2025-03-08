@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ChickenRenderer.class)
 public abstract class ChickenRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
         ChickenVariant variant = ((VariantHolder<Holder<ChickenVariant>>)entity).getVariant().value();
         Chicken chicken = (Chicken) entity;
         ResourceLocation texture = chicken.isBaby() ? variant.babyTexture() : variant.texture();

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PigModel.class)
 public class PigModelMixin {
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
-    private static void createBodyLayer(CubeDeformation cubeDeformation, CallbackInfoReturnable<LayerDefinition> cir) {
+    private static void nml$createBodyLayer(CubeDeformation cubeDeformation, CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLPigModel.createBodyLayer());
     }
 }

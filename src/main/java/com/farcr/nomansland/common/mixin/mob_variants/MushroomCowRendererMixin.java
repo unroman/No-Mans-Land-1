@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MushroomCowRenderer.class)
 public class MushroomCowRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
         MooshroomVariant variant = ((MooshroomDuck) entity).noMansLand$getMooshroomVariant().value();
         MushroomCow mooshroom = (MushroomCow) entity;
         ResourceLocation texture = mooshroom.isBaby() ? variant.babyTexture() : variant.texture();

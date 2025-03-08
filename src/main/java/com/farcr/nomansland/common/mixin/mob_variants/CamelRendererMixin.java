@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CamelRenderer.class)
 public abstract class CamelRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
         CamelVariant variant = ((VariantHolder<Holder<CamelVariant>>)entity).getVariant().value();
         Camel camel = (Camel) entity;
         ResourceLocation texture = camel.isBaby() ? variant.babyTexture() : variant.texture();

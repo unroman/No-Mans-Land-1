@@ -27,7 +27,7 @@ public abstract class SaddleLayerMixin<T extends Entity & Saddleable, M extends 
     @Shadow @Final private ResourceLocation textureLocation;
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
-    public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    public void nml$render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (livingEntity.isSaddled()) {
             this.getParentModel().copyPropertiesTo(this.model);
             this.model.prepareMobModel(livingEntity, limbSwing, limbSwingAmount, partialTicks);

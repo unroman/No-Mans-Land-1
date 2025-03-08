@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BeeRenderer.class)
 public abstract class BeeRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/animal/Bee;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Bee entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Bee entity, CallbackInfoReturnable<ResourceLocation> cir) {
         BeeVariant variant = ((VariantHolder<Holder<BeeVariant>>)entity).getVariant().value();
         ResourceLocation texture;
 

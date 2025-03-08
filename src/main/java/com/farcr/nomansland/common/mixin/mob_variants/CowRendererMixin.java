@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CowRenderer.class)
 public abstract class CowRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
         CowVariant variant = ((VariantHolder<Holder<CowVariant>>)entity).getVariant().value();
         Cow cow = (Cow) entity;
         ResourceLocation texture = cow.isBaby() ? variant.babyTexture() : variant.texture();

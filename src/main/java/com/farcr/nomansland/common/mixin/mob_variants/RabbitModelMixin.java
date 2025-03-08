@@ -27,12 +27,12 @@ public class RabbitModelMixin<T extends Entity> {
     }
 
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
-    private static void createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
+    private static void nml$createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLRabbitModel.createBodyLayer());
     }
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Rabbit;FFFFF)V", at = @At("TAIL"))
-    private void setupAnim(Rabbit entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void nml$setupAnim(Rabbit entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         NMLRabbitModel.setupAnim(entity, root, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
     }
 }

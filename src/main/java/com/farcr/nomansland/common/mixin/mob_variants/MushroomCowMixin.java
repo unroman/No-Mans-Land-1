@@ -36,7 +36,7 @@ public abstract class MushroomCowMixin extends CowMixin {
     @Shadow @Nullable private UUID lastLightningBoltUUID;
 
     @Inject(method = "thunderHit", at = @At("HEAD"), cancellable = true)
-    private void thunderHit(ServerLevel level, LightningBolt lightning, CallbackInfo ci) {
+    private void thunderRandomisesVariant(ServerLevel level, LightningBolt lightning, CallbackInfo ci) {
         UUID uuid = lightning.getUUID();
         if (!uuid.equals(this.lastLightningBoltUUID)) {
             Registry<MooshroomVariant> registry = this.registryAccess().registryOrThrow(NMLMobVariants.MOOSHROOM_VARIANT_KEY);
@@ -54,7 +54,7 @@ public abstract class MushroomCowMixin extends CowMixin {
     }
 
     @Inject(method = "shear", at = @At("HEAD"), cancellable = true)
-    private void shear(SoundSource category, CallbackInfo ci) {
+    private void nml$shear(SoundSource category, CallbackInfo ci) {
         this.level().playSound(null, (LivingEntity)(Object)this, SoundEvents.MOOSHROOM_SHEAR, category, 1.0F, 1.0F);
         if (!this.level().isClientSide()) {
             if (!EventHooks.canLivingConvert((LivingEntity)(Object)this, EntityType.COW, (timer) -> {

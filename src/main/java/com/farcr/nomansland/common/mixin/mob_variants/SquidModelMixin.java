@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SquidModel.class)
 public class SquidModelMixin<T extends Entity> {
-
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
     private static void createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLSquidModel.createBodyLayer());

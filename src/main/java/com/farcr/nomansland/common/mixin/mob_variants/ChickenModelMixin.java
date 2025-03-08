@@ -26,12 +26,12 @@ public class ChickenModelMixin<T extends Entity> {
     }
 
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
-    private static void createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
+    private static void nml$createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLChickenModel.createBodyLayer());
     }
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
-    private void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void nml$setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (entity.getType() == EntityType.CHICKEN) NMLChickenModel.setupAnim((Chicken) entity, root, limbSwing, limbSwing, ageInTicks, netHeadYaw, headPitch);
     }
 }

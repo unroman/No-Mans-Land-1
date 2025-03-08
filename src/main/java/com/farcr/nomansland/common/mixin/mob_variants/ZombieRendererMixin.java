@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AbstractZombieRenderer.class)
 public class ZombieRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Zombie;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Zombie entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Zombie entity, CallbackInfoReturnable<ResourceLocation> cir) {
         if (entity.getType() == EntityType.ZOMBIE)
             cir.setReturnValue(((VariantHolder<Holder<ZombieVariant>>)entity).getVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
     }

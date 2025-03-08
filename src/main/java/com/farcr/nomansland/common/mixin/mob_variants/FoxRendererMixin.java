@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FoxRenderer.class)
 public class FoxRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
-    private void getTextureLocation(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
         FoxVariant variant = ((FoxDuck)entity).noMansLand$getFoxVariant().value();
         Fox fox = (Fox) entity;
         ResourceLocation texture = fox.isSleeping() ? variant.sleepingTexture() : variant.texture();
