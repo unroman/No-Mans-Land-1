@@ -36,23 +36,12 @@
         ]
       }
     },
-    "consumed_bottle": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:glass_bottle"
-          }
-        ]
-      }
-    },
     "acquired_resin": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "nomansland:resin",
-            "count": 3
+            "items": "nomansland:resin"
           }
         ]
       }
@@ -62,8 +51,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nomansland:maple_syrup_bottle",
-            "count": 1
+            "items": "nomansland:maple_syrup_bottle"
           }
         ]
       }

@@ -95,8 +95,7 @@ dependencies {
     jarJar(implementation("com.moulberry:mixinconstraints:1.0.7") {
                 exclude group: "org.slf4j",
                         module: "slf4j-api"
-            }
-    )
+    })
 
     implementation "maven.modrinth:farmers-delight:1.21.1-1.2.4a"
     implementation "maven.modrinth:the-block-box:0.1.1"

@@ -10,7 +10,7 @@
       "translate": "nomansland.advancements.ignite_flammable_enemy.title"
     }
   },
-  "parent": "minecraft:adventure/kill_a_mob",
+  "parent": "minecraft:adventure/root",
   "criteria": {
     "ignite_flammable_entity": {
       "trigger": "nomansland:ignite_flammable_entity"
