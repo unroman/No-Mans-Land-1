@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:mossy_cobblestone"
+  },
+  "result": {
+    "id": "nomansland:mossy_cobblestone_bricks"
+  }
+}

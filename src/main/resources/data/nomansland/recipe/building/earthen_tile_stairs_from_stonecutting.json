@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nomansland:earthen_tiles"
+  },
+  "result": {
+    "id": "nomansland:earthen_tile_stairs"
+  }
+}
