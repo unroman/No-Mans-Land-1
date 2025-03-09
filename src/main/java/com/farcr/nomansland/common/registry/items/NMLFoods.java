@@ -2,6 +2,7 @@ package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.integration.Mods;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Items;
 import vectorwing.farmersdelight.common.registry.ModEffects;
@@ -29,7 +30,8 @@ public class NMLFoods {
 
     public static final FoodProperties PEAR = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3f).build();
     public static final FoodProperties SYRUPED_PEAR = new FoodProperties.Builder().nutrition(6).saturationModifier(0.4f).build();
-    public static final FoodProperties PEAR_COBBLER = new FoodProperties.Builder().nutrition(8).saturationModifier(0.5f).build();
+    public static final FoodProperties PEAR_COBBLER_SLICE = new FoodProperties.Builder().nutrition(8).saturationModifier(0.5f).build();
+    public static final FoodProperties PEAR_JUICE = new FoodProperties.Builder().alwaysEdible().effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600, 0), 1.0F).build();
     public static final FoodProperties PANCAKE = new FoodProperties.Builder().nutrition(8).saturationModifier(0.5f).build();
 
     public static final FoodProperties HONEYED_APPLE = new FoodProperties.Builder().nutrition(6).saturationModifier(0.4f).build();

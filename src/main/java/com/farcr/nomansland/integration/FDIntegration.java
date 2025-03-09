@@ -3,6 +3,7 @@ package com.farcr.nomansland.integration;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLFoods;
 import com.farcr.nomansland.common.registry.items.NMLItems;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -10,9 +11,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
+import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
+import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
+import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
@@ -43,6 +47,18 @@ public class FDIntegration {
 
     public static final DeferredItem<Item> SEARED_VENISON = registerItem("seared_venison",
             () -> new ConsumableItem(new Item.Properties().food(NMLFoods.SEARED_VENISON).craftRemainder(Items.BOWL).stacksTo(16), true));
+
+    public static final DeferredItem<Item> PEAR_COBBLER_SLICE = registerItem("pear_cobbler_slice",
+            () -> new Item(new Item.Properties().food(FoodValues.PIE_SLICE)));
+
+    public static final DeferredBlock<Block> PEAR_COBBLER = BLOCKS.register("pear_cobbler",
+            () -> new PieBlock(ofFullCopy(Blocks.CAKE), PEAR_COBBLER_SLICE));
+
+    public static final DeferredItem<Item> PEAR_COBBLER_ITEM = registerItem("pear_cobbler",
+            () -> new BlockItem(PEAR_COBBLER.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> PEAR_JUICE = registerItem("pear_juice",
+            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PEAR)));
 
     public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         event.modify(

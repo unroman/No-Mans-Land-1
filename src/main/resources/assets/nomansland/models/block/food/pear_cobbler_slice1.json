@@ -1,0 +1,10 @@
+{
+  "parent": "farmersdelight:block/pie_slice1",
+  "textures": {
+    "particle": "nomansland:block/food/pear_cobbler_top",
+    "bottom": "farmersdelight:block/pie_bottom",
+    "inner": "nomansland:block/food/pear_cobbler_inner",
+    "side": "farmersdelight:block/pie_side",
+    "top": "nomansland:block/food/pear_cobbler_top"
+  }
+}

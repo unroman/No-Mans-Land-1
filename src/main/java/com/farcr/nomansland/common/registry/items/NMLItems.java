@@ -73,9 +73,6 @@ public class NMLItems {
             () -> new MapleFoodItem(new Properties().food(NMLFoods.SYRUPED_PEAR)));
     public static final DeferredItem<Item> PANCAKE = registerItem("pancake",
             () -> new MapleFoodItem(new Properties().food(NMLFoods.PANCAKE)));
-    public static final DeferredItem<Item> PEAR_COBBLER = registerItem("pear_cobbler",
-            () -> new Item(new Properties().food(NMLFoods.PEAR_COBBLER)));
-    //TODO: FD compat pear juice and cobbler slice
     public static final DeferredItem<Item> HONEYED_APPLE = registerItem("honeyed_apple",
             () -> new HoneyFoodItem(new Properties().food(NMLFoods.HONEYED_APPLE)));
     public static final DeferredItem<Item> WALNUTS = registerItem("walnuts",
@@ -432,7 +429,11 @@ public class NMLItems {
             insertAfter(event, Items.COOKED_RABBIT, NMLItems.COOKED_FROG_LEG);
             insertAfter(event, Items.COOKED_RABBIT, NMLItems.FROG_LEG);
             insertAfter(event, Items.HONEY_BOTTLE, NMLItems.MAPLE_SYRUP_BOTTLE);
-            insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PEAR_COBBLER);
+            if (Mods.FARMERSDELIGHT.isLoaded()) {
+                insertAfter(event, Items.HONEY_BOTTLE, FDIntegration.PEAR_JUICE);
+                insertAfter(event, Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_ITEM);
+                insertAfter(event, Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_SLICE);
+            }
             insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PANCAKE);
             insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.SYRUPED_PEAR);
             insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.PEAR);
