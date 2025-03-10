@@ -23,8 +23,8 @@ import static net.minecraft.world.level.block.StairBlock.WATERLOGGED;
 public class TapBlockEntity extends BlockEntity {
     public int timeEmptying;
 
-    public TapBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(NMLBlockEntities.TAP.get(), pPos, pBlockState);
+    public TapBlockEntity(BlockPos pos, BlockState state) {
+        super(NMLBlockEntities.TAP.get(), pos, state);
         this.timeEmptying = 0;
     }
 

@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class DrownedRendererMixin {
     @Inject(method = "getTextureLocation", at = @At("RETURN"), cancellable = true)
     private void getTextureLocationFromVariant(Zombie entity, CallbackInfoReturnable<ResourceLocation> cir) {
-        cir.setReturnValue(((DrownedDuck)entity).noMansLand$getDrownedVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
+        cir.setReturnValue(((DrownedDuck)entity).nml$getDrownedVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
     }
 }

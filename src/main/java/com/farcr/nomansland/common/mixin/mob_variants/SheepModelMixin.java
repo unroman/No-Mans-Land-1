@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SheepModel.class)
 public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
     @Unique
-    private float noMansLand$headXRot;
+    private float nml$headXRot;
     @Inject(method = "createBodyLayer", at = @At("RETURN"), cancellable = true)
     private static void nml$createBodyLayer(CallbackInfoReturnable<LayerDefinition> cir) {
         cir.setReturnValue(NMLSheepModel.createBodyLayer());
@@ -24,14 +24,14 @@ public class SheepModelMixin<T extends Sheep> extends QuadrupedModelMixin<T> {
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/Sheep;FFFFF)V", at = @At("TAIL"))
     private void nml$setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        if (entity.getType() == EntityType.SHEEP) NMLSheepModel.setupAnim(entity, root, ageInTicks, noMansLand$headXRot);
+        if (entity.getType() == EntityType.SHEEP) NMLSheepModel.setupAnim(entity, root, ageInTicks, nml$headXRot);
     }
 
     @Inject(method = "prepareMobModel(Lnet/minecraft/world/entity/animal/Sheep;FFF)V", at = @At("HEAD"), cancellable = true)
     private void nml$prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick, CallbackInfo ci) {
         if (entity.getType() == EntityType.SHEEP) {
             head.y = 11 + entity.getHeadEatPositionScale(partialTick) * 7.0F;
-            noMansLand$headXRot = entity.getHeadEatAngleScale(partialTick);
+            nml$headXRot = entity.getHeadEatAngleScale(partialTick);
             ci.cancel();
         }
     }

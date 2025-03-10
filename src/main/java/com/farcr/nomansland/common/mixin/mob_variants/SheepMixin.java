@@ -81,9 +81,13 @@ public abstract class SheepMixin extends MobMixin implements VariantHolder<Holde
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<SheepVariant>>) entity).setVariant((Holder<SheepVariant>) NMLMobVariants.getOffspringWithVariant(((Sheep) (Object) this), otherParent));
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.SHEEP) {
+            ((VariantHolder<Holder<SheepVariant>>) entity).setVariant((Holder<SheepVariant>) NMLMobVariants.getOffspringWithVariant(((Sheep) (Object) this), otherParent));
+
+            cir.setReturnValue(entity);
+        }
     }
 }

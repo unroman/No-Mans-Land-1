@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface PigDuck {
 
-    Holder<PigOverlayVariant> noMansLand$getPigOverlayVariant();
+    Holder<PigOverlayVariant> nml$getPigOverlayVariant();
 
-    void noMansLand$setPigOverlayVariant(Holder<PigOverlayVariant> pigOverlayVariantHolder);
+    void nml$setPigOverlayVariant(Holder<PigOverlayVariant> pigOverlayVariantHolder);
 }

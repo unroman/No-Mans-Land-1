@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface DrownedDuck {
 
-    Holder<DrownedVariant> noMansLand$getDrownedVariant();
+    Holder<DrownedVariant> nml$getDrownedVariant();
 
-    void noMansLand$setDrownedVariant(Holder<DrownedVariant> drownedVariantHolder);
+    void nml$setDrownedVariant(Holder<DrownedVariant> drownedVariantHolder);
 }

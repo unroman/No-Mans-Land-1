@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface RabbitDuck {
 
-    Holder<RabbitVariant> noMansLand$getRabbitVariant();
+    Holder<RabbitVariant> nml$getRabbitVariant();
 
-    void noMansLand$setRabbitVariant(Holder<RabbitVariant> rabbitVariantHolder);
+    void nml$setRabbitVariant(Holder<RabbitVariant> rabbitVariantHolder);
 }

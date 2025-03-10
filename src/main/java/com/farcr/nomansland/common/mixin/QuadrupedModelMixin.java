@@ -33,7 +33,7 @@ public class QuadrupedModelMixin<T extends Entity> {
     private void nml$setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (entity.getType() == EntityType.PIG)
             NMLPigModel.setupAnim((Pig) entity, root, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
-        if (entity.getType() == EntityType.COW)
+        if (entity.getType() == EntityType.COW || entity.getType() == EntityType.MOOSHROOM)
             NMLCowModel.setupAnim((Cow) entity, root);
     }
 }

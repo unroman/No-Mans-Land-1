@@ -67,8 +67,8 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
     @Override
     protected void addVariantData(CompoundTag compound, CallbackInfo ci) {
         this.getVariant().unwrapKey().ifPresent((variant) -> compound.putString(VARIANT_KEY, variant.location().toString()));
-        this.noMansLand$getHuskVariant().unwrapKey().ifPresent((variant) -> compound.putString(HUSK_VARIANT_KEY, variant.location().toString()));
-        this.noMansLand$getDrownedVariant().unwrapKey().ifPresent((variant) -> compound.putString(DROWNED_VARIANT_KEY, variant.location().toString()));
+        this.nml$getHuskVariant().unwrapKey().ifPresent((variant) -> compound.putString(HUSK_VARIANT_KEY, variant.location().toString()));
+        this.nml$getDrownedVariant().unwrapKey().ifPresent((variant) -> compound.putString(DROWNED_VARIANT_KEY, variant.location().toString()));
     }
 
     @Override
@@ -80,11 +80,11 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(HUSK_VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.HUSK_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.HUSK_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setHuskVariant);
+                .ifPresent(this::nml$setHuskVariant);
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(DROWNED_VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.DROWNED_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.DROWNED_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setDrownedVariant);
+                .ifPresent(this::nml$setDrownedVariant);
     }
 
     @Override
@@ -98,7 +98,7 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
                 spawnGroupData = new VariantGroupData(variant);
             }
 
-            this.noMansLand$setHuskVariant(variant);
+            this.nml$setHuskVariant(variant);
         } else if (this.getType() == EntityType.DROWNED) {
             Holder<DrownedVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
@@ -108,7 +108,7 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
                 spawnGroupData = new VariantGroupData(variant);
             }
 
-            this.noMansLand$setDrownedVariant(variant);
+            this.nml$setDrownedVariant(variant);
         } else if (this.getType() == EntityType.ZOMBIE) {
             Holder<ZombieVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
@@ -133,22 +133,22 @@ public abstract class ZombieMixin extends MobMixin implements VariantHolder<Hold
     }
 
     @Override
-    public Holder<HuskVariant> noMansLand$getHuskVariant() {
+    public Holder<HuskVariant> nml$getHuskVariant() {
         return this.entityData.get(DATA_HUSK_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setHuskVariant(Holder<HuskVariant> huskVariantHolder) {
+    public void nml$setHuskVariant(Holder<HuskVariant> huskVariantHolder) {
         this.entityData.set(DATA_HUSK_VARIANT_ID, huskVariantHolder);
     }
 
     @Override
-    public Holder<DrownedVariant> noMansLand$getDrownedVariant() {
+    public Holder<DrownedVariant> nml$getDrownedVariant() {
         return this.entityData.get(DATA_DROWNED_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setDrownedVariant(Holder<DrownedVariant> drownedVariantHolder) {
+    public void nml$setDrownedVariant(Holder<DrownedVariant> drownedVariantHolder) {
         this.entityData.set(DATA_DROWNED_VARIANT_ID, drownedVariantHolder);
     }
 }

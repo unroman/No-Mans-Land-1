@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.item;
+package com.farcr.nomansland.common.entity;
 
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import net.minecraft.core.BlockPos;
@@ -26,6 +26,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class ThrownOilBottle extends ThrownPotion {
+
     public ThrownOilBottle(Level level, double x, double y, double z) {
         super(level, x, y, z);
     }

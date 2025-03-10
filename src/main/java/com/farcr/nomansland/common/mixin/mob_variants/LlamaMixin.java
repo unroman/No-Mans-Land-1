@@ -49,7 +49,7 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
 
     @Override
     protected void addVariantData(CompoundTag compound, CallbackInfo ci) {
-        this.noMansLand$getLlamaVariant().unwrapKey().ifPresent((variant) -> {
+        this.nml$getLlamaVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
@@ -59,7 +59,7 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.LLAMA_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.LLAMA_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setLlamaVariant);
+                .ifPresent(this::nml$setLlamaVariant);
     }
 
     @Override
@@ -73,24 +73,28 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
                 spawnGroupData = new VariantGroupData(llama$variant);
             }
 
-            this.noMansLand$setLlamaVariant(llama$variant);
+            this.nml$setLlamaVariant(llama$variant);
         }
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((LlamaDuck) entity).noMansLand$setLlamaVariant((Holder<LlamaVariant>) NMLMobVariants.getOffspringWithVariant(((Llama) (Object) this), otherParent));
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.LLAMA) {
+            ((LlamaDuck) entity).nml$setLlamaVariant((Holder<LlamaVariant>) NMLMobVariants.getOffspringWithVariant(((Llama) (Object) this), otherParent));
+
+            cir.setReturnValue(entity);
+        }
     }
 
     @Override
-    public Holder<LlamaVariant> noMansLand$getLlamaVariant() {
+    public Holder<LlamaVariant> nml$getLlamaVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setLlamaVariant(Holder<LlamaVariant> llamaVariantHolder) {
+    public void nml$setLlamaVariant(Holder<LlamaVariant> llamaVariantHolder) {
         this.entityData.set(DATA_VARIANT_ID, llamaVariantHolder);
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface GlowSquidDuck {
 
-    Holder<GlowSquidVariant> noMansLand$getGlowSquidVariant();
+    Holder<GlowSquidVariant> nml$getGlowSquidVariant();
 
-    void noMansLand$setGlowSquidVariant(Holder<GlowSquidVariant> glowSquidVariantHolder);
+    void nml$setGlowSquidVariant(Holder<GlowSquidVariant> glowSquidVariantHolder);
 }

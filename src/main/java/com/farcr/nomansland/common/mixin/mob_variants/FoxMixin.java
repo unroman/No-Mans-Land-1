@@ -47,7 +47,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
 
     @Override
     protected void addVariantData(CompoundTag compound, CallbackInfo ci) {
-        this.noMansLand$getFoxVariant().unwrapKey().ifPresent((variant) -> {
+        this.nml$getFoxVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
@@ -57,7 +57,7 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.FOX_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.FOX_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setFoxVariant);
+                .ifPresent(this::nml$setFoxVariant);
     }
 
     @Override
@@ -71,27 +71,31 @@ public abstract class FoxMixin extends MobMixin implements FoxDuck {
                 spawnGroupData = new VariantGroupData(variant);
             }
 
-            this.noMansLand$setFoxVariant(variant);
+            this.nml$setFoxVariant(variant);
         }
     }
 
     @Override
-    public Holder<FoxVariant> noMansLand$getFoxVariant() {
+    public Holder<FoxVariant> nml$getFoxVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setFoxVariant(Holder<FoxVariant> foxVariantHolder) {
+    public void nml$setFoxVariant(Holder<FoxVariant> foxVariantHolder) {
         this.entityData.set(DATA_VARIANT_ID, foxVariantHolder);
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((FoxDuck) entity).noMansLand$setFoxVariant(
-                random.nextBoolean() ?
-                ((FoxDuck) this).noMansLand$getFoxVariant() :
-                ((FoxDuck) otherParent).noMansLand$getFoxVariant());
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.FOX) {
+            ((FoxDuck) entity).nml$setFoxVariant(
+                    random.nextBoolean() ?
+                            ((FoxDuck) this).nml$getFoxVariant() :
+                            ((FoxDuck) otherParent).nml$getFoxVariant());
+
+            cir.setReturnValue(entity);
+        }
     }
 }

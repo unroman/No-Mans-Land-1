@@ -14,6 +14,6 @@ public class GlowSquidRendererMixin {
 
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/GlowSquid;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     private void getTextureLocationFromVariant(GlowSquid glowSquid, CallbackInfoReturnable<ResourceLocation> cir) {
-        cir.setReturnValue(((GlowSquidDuck) glowSquid).noMansLand$getGlowSquidVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
+        cir.setReturnValue(((GlowSquidDuck) glowSquid).nml$getGlowSquidVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
     }
 }

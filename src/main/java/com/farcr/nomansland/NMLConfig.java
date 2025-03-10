@@ -43,12 +43,20 @@ public class NMLConfig {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
         COMMON_BUILDER.push(CATEGORY_OVERRIDES);
-        GRASS_SPREADS = COMMON_BUILDER.comment("If grass or mycelium spread to nearby dirt.").define("grassSpreads", true);
-        MYCELIUM_SPREADS = COMMON_BUILDER.define("myceliumSpreads", true);
-        MALEVOLENT_SPAWNER = COMMON_BUILDER.comment("If monster spawners should produce malevolent (red) flames instead of regular flames.")
+        GRASS_SPREADS = COMMON_BUILDER
+                .comment("If grass or mycelium spread to nearby dirt.")
+                .define("grassSpreads", true);
+        MYCELIUM_SPREADS = COMMON_BUILDER
+                .define("myceliumSpreads", true);
+        MALEVOLENT_SPAWNER = COMMON_BUILDER
+                .comment("If monster spawners should produce malevolent (red) flames instead of regular flames.")
                 .define("malevolentSpawner", true);
-        TRAMPLING = COMMON_BUILDER.comment("If players and mobs can trample farmland").define("allowTrampling", false);
-        TORCH_EXTINGUISHING = COMMON_BUILDER.comment("If torches can be extinguished through interactions like campfires.").define("torchExtinguishing", true);
+        TRAMPLING = COMMON_BUILDER
+                .comment("If players and mobs can trample farmland")
+                .define("allowTrampling", false);
+        TORCH_EXTINGUISHING = COMMON_BUILDER
+                .comment("If torches can be extinguished through interactions like campfires.")
+                .define("torchExtinguishing", true);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_TAP);

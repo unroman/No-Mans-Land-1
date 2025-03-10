@@ -9,8 +9,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class ExplosiveItem extends ThrowableBombItem
-{
+public class ExplosiveItem extends ThrowableBombItem {
+
     public ExplosiveItem(Item.Properties properties) {
         super(properties);
     }

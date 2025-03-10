@@ -57,6 +57,7 @@ import static com.farcr.nomansland.common.block.FrostedGrassBlock.SNOWLOGGED;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 @SuppressWarnings("unused")
 public class MiscellaneousEvents {
+
     @EventBusSubscriber(modid = NoMansLand.MODID)
     public static class NeoForgeEvents {
         @SubscribeEvent

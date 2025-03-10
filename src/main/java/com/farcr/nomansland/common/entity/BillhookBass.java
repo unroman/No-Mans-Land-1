@@ -119,7 +119,7 @@ public class BillhookBass extends AbstractFish implements VariantHolder<Holder<B
 
     @Override
     public boolean killedEntity(ServerLevel level, LivingEntity entity) {
-        if (entity instanceof AbstractFish) ((LivingEntityDuck) entity).noMansLand$skipDroppingDeathLoot();
+        if (entity instanceof AbstractFish) ((LivingEntityDuck) entity).nml$skipDroppingDeathLoot();
         if (entity.getType() == EntityType.PUFFERFISH) addEffect(new MobEffectInstance(MobEffects.POISON, 12000));
         return super.killedEntity(level, entity);
     }

@@ -57,7 +57,7 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
         this.getVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
-        this.noMansLand$getMooshroomVariant().unwrapKey().ifPresent((variant) -> {
+        this.nml$getMooshroomVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(MOOSHROOM_VARIANT_KEY, variant.location().toString());
         });
     }
@@ -71,22 +71,12 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(MOOSHROOM_VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.MOOSHROOM_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.MOOSHROOM_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setMooshroomVariant);
+                .ifPresent(this::nml$setMooshroomVariant);
     }
 
     @Override
     protected void finalizeSpawnVariant(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if (this.getType() == EntityType.MOOSHROOM) {
-            Holder<MooshroomVariant> variant;
-            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
-                variant = (Holder<MooshroomVariant>) variantGroupData.variant;
-            } else {
-                variant = (Holder<MooshroomVariant>) NMLMobVariants.getVariantForSpawn(((MushroomCow) (Object) this));
-                spawnGroupData = new VariantGroupData(variant);
-            }
-
-            this.noMansLand$setMooshroomVariant(variant);
-        } else if (this.getType() == EntityType.COW) {
+        if (this.getType() == EntityType.COW) {
             Holder<CowVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
                 variant = (Holder<CowVariant>) variantGroupData.variant;
@@ -96,6 +86,16 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
             }
 
             this.setVariant(variant);
+        } else if (this.getType() == EntityType.MOOSHROOM) {
+            Holder<MooshroomVariant> variant;
+            if (spawnGroupData instanceof VariantGroupData variantGroupData) {
+                variant = (Holder<MooshroomVariant>) variantGroupData.variant;
+            } else {
+                variant = (Holder<MooshroomVariant>) NMLMobVariants.getVariantForSpawn(((MushroomCow) (Object) this));
+                spawnGroupData = new VariantGroupData(variant);
+            }
+
+            this.nml$setMooshroomVariant(variant);
         }
     }
 
@@ -110,7 +110,7 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Override
-    public BlockState noMansLand$getMushroomBlock(Holder<MooshroomVariant> mooshroomVariantHolder) {
+    public BlockState nml$getMushroomBlock(Holder<MooshroomVariant> mooshroomVariantHolder) {
         return switch(mooshroomVariantHolder.unwrapKey().get().location().toString()) {
             default -> Blocks.AIR.defaultBlockState();
             case "nomansland:default" -> Blocks.RED_MUSHROOM.defaultBlockState();
@@ -120,15 +120,14 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    protected void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        if (entity.getType() == EntityType.COW)
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.COW) {
             ((VariantHolder<Holder<CowVariant>>) entity).setVariant((Holder<CowVariant>) NMLMobVariants.getOffspringWithVariant(((Cow) (Object) this), otherParent));
-        else ((MooshroomDuck) entity).noMansLand$setMooshroomVariant(
-                random.nextBoolean() ?
-                ((MooshroomDuck) this).noMansLand$getMooshroomVariant() :
-                ((MooshroomDuck) otherParent).noMansLand$getMooshroomVariant());
-        cir.setReturnValue(entity);
+
+            cir.setReturnValue(entity);
+        }
     }
 
     @Inject(method = "getDefaultDimensions", at = @At("HEAD"), cancellable = true)
@@ -137,12 +136,12 @@ public abstract class CowMixin extends MobMixin implements VariantHolder<Holder<
     }
 
     @Override
-    public Holder<MooshroomVariant> noMansLand$getMooshroomVariant() {
+    public Holder<MooshroomVariant> nml$getMooshroomVariant() {
         return this.entityData.get(DATA_MOOSHROOM_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setMooshroomVariant(Holder<MooshroomVariant> mooshroomVariantHolder) {
+    public void nml$setMooshroomVariant(Holder<MooshroomVariant> mooshroomVariantHolder) {
         this.entityData.set(DATA_MOOSHROOM_VARIANT_ID, mooshroomVariantHolder);
     }
 }

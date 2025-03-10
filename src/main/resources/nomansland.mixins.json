@@ -9,6 +9,7 @@
     "BaseRailBlockMixin",
     "BaseSpawnerMixin",
     "BiomeMixin",
+    "BlockBehaviourMixin",
     "BlockEntityAccessor",
     "DispenserBlockMixin",
     "EntityMixin",

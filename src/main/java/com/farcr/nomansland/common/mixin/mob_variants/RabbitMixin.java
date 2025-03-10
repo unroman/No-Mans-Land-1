@@ -46,7 +46,7 @@ public abstract class RabbitMixin extends MobMixin implements RabbitDuck {
 
     @Override
     protected void addVariantData(CompoundTag compound, CallbackInfo ci) {
-        this.noMansLand$getRabbitVariant().unwrapKey().ifPresent((variant) -> {
+        this.nml$getRabbitVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
     }
@@ -56,7 +56,7 @@ public abstract class RabbitMixin extends MobMixin implements RabbitDuck {
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.RABBIT_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.RABBIT_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setRabbitVariant);
+                .ifPresent(this::nml$setRabbitVariant);
     }
 
     @Override
@@ -70,27 +70,31 @@ public abstract class RabbitMixin extends MobMixin implements RabbitDuck {
                 spawnGroupData = new VariantGroupData(variant);
             }
 
-            this.noMansLand$setRabbitVariant(variant);
+            this.nml$setRabbitVariant(variant);
         }
     }
 
     @Override
-    public Holder<RabbitVariant> noMansLand$getRabbitVariant() {
+    public Holder<RabbitVariant> nml$getRabbitVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setRabbitVariant(Holder<RabbitVariant> rabbitVariantHolder) {
+    public void nml$setRabbitVariant(Holder<RabbitVariant> rabbitVariantHolder) {
         this.entityData.set(DATA_VARIANT_ID, rabbitVariantHolder);
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((RabbitDuck) entity).noMansLand$setRabbitVariant(
-                random.nextBoolean() ?
-                        ((RabbitDuck) this).noMansLand$getRabbitVariant() :
-                        ((RabbitDuck) otherParent).noMansLand$getRabbitVariant());
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.RABBIT) {
+            ((RabbitDuck) entity).nml$setRabbitVariant(
+                    random.nextBoolean() ?
+                            ((RabbitDuck) this).nml$getRabbitVariant() :
+                            ((RabbitDuck) otherParent).nml$getRabbitVariant());
+
+            cir.setReturnValue(entity);
+        }
     }
 }

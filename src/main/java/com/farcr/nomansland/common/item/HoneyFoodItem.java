@@ -17,6 +17,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 public class HoneyFoodItem extends Item {
+
     public HoneyFoodItem(Properties properties) {
         super(properties);
     }

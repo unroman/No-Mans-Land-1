@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class RabbitRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
-        RabbitVariant variant = ((RabbitDuck)entity).noMansLand$getRabbitVariant().value();
+        RabbitVariant variant = ((RabbitDuck)entity).nml$getRabbitVariant().value();
         Rabbit rabbit = (Rabbit) entity;
         ResourceLocation texture = rabbit.isBaby() ? variant.babyTexture() : variant.texture();
         cir.setReturnValue(texture.withPath((path) -> "textures/" + path + ".png"));

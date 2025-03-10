@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class BoatItem extends Item {
+
     private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     private final BoatEntity.Type type;
     private final boolean hasChest;

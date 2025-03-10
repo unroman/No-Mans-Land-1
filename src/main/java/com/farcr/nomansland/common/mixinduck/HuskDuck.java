@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface HuskDuck {
 
-    Holder<HuskVariant> noMansLand$getHuskVariant();
+    Holder<HuskVariant> nml$getHuskVariant();
 
-    void noMansLand$setHuskVariant(Holder<HuskVariant> huskVariantHolder);
+    void nml$setHuskVariant(Holder<HuskVariant> huskVariantHolder);
 }

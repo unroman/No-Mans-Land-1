@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface FoxDuck {
 
-    Holder<FoxVariant> noMansLand$getFoxVariant();
+    Holder<FoxVariant> nml$getFoxVariant();
 
-    void noMansLand$setFoxVariant(Holder<FoxVariant> foxVariantHolder);
+    void nml$setFoxVariant(Holder<FoxVariant> foxVariantHolder);
 }

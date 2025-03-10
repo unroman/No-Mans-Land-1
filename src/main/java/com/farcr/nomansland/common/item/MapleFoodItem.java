@@ -17,6 +17,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 public class MapleFoodItem extends Item {
+
     public MapleFoodItem(Properties properties) {
         super(properties);
     }

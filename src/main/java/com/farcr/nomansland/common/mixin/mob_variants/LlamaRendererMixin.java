@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class LlamaRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     private void getTextureLocationFromVariant(Entity entity, CallbackInfoReturnable<ResourceLocation> cir) {
-        LlamaVariant variant = ((LlamaDuck)entity).noMansLand$getLlamaVariant().value();
+        LlamaVariant variant = ((LlamaDuck)entity).nml$getLlamaVariant().value();
         Llama llama = (Llama) entity;
         ResourceLocation texture = llama.isBaby() ? variant.babyTexture() : variant.texture();
         cir.setReturnValue(texture.withPath((path) -> "textures/" + path + ".png"));

@@ -28,7 +28,7 @@ public abstract class DrownedOuterLayerMixin<T extends Drowned> extends RenderLa
 
     @Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/monster/Drowned;FFFFFF)V", at = @At("HEAD"), cancellable = true)
     private void nml$render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        nml$coloredCutoutModelCopyLayerRender(this.getParentModel(), model, ((DrownedDuck)livingEntity).noMansLand$getDrownedVariant().value().outerLayerTexture().withPath((path) -> "textures/" + path + ".png"), poseStack, buffer, packedLight, livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
+        nml$coloredCutoutModelCopyLayerRender(this.getParentModel(), model, ((DrownedDuck)livingEntity).nml$getDrownedVariant().value().outerLayerTexture().withPath((path) -> "textures/" + path + ".png"), poseStack, buffer, packedLight, livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
         ci.cancel();
     }
 

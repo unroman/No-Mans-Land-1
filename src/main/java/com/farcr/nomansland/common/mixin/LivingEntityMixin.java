@@ -33,7 +33,7 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
     private boolean nomansland$skipDroppingDeathLoot = false;
 
     @Override
-    public void noMansLand$skipDroppingDeathLoot() {
+    public void nml$skipDroppingDeathLoot() {
         this.nomansland$skipDroppingDeathLoot = true;
     }
 

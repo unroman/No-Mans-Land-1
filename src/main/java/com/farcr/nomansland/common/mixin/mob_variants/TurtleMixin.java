@@ -82,9 +82,13 @@ public abstract class TurtleMixin extends MobMixin implements VariantHolder<Hold
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<TurtleVariant>>) entity).setVariant((Holder<TurtleVariant>) NMLMobVariants.getOffspringWithVariant(((Turtle) (Object) this), otherParent));
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.TURTLE) {
+            ((VariantHolder<Holder<TurtleVariant>>) entity).setVariant((Holder<TurtleVariant>) NMLMobVariants.getOffspringWithVariant(((Turtle) (Object) this), otherParent));
+
+            cir.setReturnValue(entity);
+        }
     }
 }

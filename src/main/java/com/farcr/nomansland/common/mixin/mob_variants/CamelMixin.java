@@ -81,9 +81,13 @@ public abstract class CamelMixin extends MobMixin implements VariantHolder<Holde
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<CamelVariant>>) entity).setVariant((Holder<CamelVariant>) NMLMobVariants.getOffspringWithVariant(((Camel) (Object) this), otherParent));
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.CAMEL) {
+            ((VariantHolder<Holder<CamelVariant>>) entity).setVariant((Holder<CamelVariant>) NMLMobVariants.getOffspringWithVariant(((Camel) (Object) this), otherParent));
+
+            cir.setReturnValue(entity);
+        }
     }
 }

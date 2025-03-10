@@ -6,9 +6,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public interface MooshroomDuck {
 
-    Holder<MooshroomVariant> noMansLand$getMooshroomVariant();
+    Holder<MooshroomVariant> nml$getMooshroomVariant();
 
-    BlockState noMansLand$getMushroomBlock(Holder<MooshroomVariant> mooshroomVariantHolder);
+    BlockState nml$getMushroomBlock(Holder<MooshroomVariant> mooshroomVariantHolder);
 
-    void noMansLand$setMooshroomVariant(Holder<MooshroomVariant> mooshroomVariantHolder);
+    void nml$setMooshroomVariant(Holder<MooshroomVariant> mooshroomVariantHolder);
 }

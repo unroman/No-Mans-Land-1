@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class HuskRendererMixin {
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Zombie;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     private void getTextureLocationFromVariant(Zombie entity, CallbackInfoReturnable<ResourceLocation> cir) {
-        cir.setReturnValue(((HuskDuck)entity).noMansLand$getHuskVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
+        cir.setReturnValue(((HuskDuck)entity).nml$getHuskVariant().value().texture().withPath((path) -> "textures/" + path + ".png"));
     }
 }

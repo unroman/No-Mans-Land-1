@@ -28,6 +28,7 @@ import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 @EventBusSubscriber(modid = NoMansLand.MODID)
 @SuppressWarnings("unused")
 public class PathMakingEvents {
+
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         Level level = event.getLevel();

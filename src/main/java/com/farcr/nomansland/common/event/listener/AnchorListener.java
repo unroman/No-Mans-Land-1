@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnchorListener implements GameEventListener {
+
     private final BlockState state;
     private final PositionSource positionSource;
 
@@ -32,8 +33,7 @@ public class AnchorListener implements GameEventListener {
         this.positionSource = pPositionSource;
     }
 
-    // Get all the points on all the faces of a bounding box depending on the resolution and process them
-    public static List<Vec3> processPoints(ServerLevel level, AABB boundingBox, double step) {
+    public static List<Vec3> processPoints(AABB boundingBox, double step) {
         double minX = boundingBox.minX;
         double minY = boundingBox.minY;
         double minZ = boundingBox.minZ;
@@ -114,10 +114,10 @@ public class AnchorListener implements GameEventListener {
 
                     // Stop the mob from dropping experience and loot
                     monster.skipDropExperience();
-                    ((LivingEntityDuck) monster).noMansLand$skipDroppingDeathLoot();
+                    ((LivingEntityDuck) monster).nml$skipDroppingDeathLoot();
 
                     AABB boundingBox = monster.getBoundingBox();
-                    processPoints(level, boundingBox, 0.2D).forEach(point -> {
+                    processPoints(boundingBox, 0.2).forEach(point -> {
                         level.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, point.y, point.z, 1, 0, 0, 0, 0);
                     });
 

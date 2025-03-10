@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.item;
 
+import com.farcr.nomansland.common.entity.ThrownOilBottle;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
@@ -25,6 +26,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class ResinOilBottleItem extends Item implements ProjectileItem {
+
     public ResinOilBottleItem(Properties properties) {
         super(properties);
     }

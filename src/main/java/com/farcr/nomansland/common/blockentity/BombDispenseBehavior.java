@@ -21,15 +21,15 @@ public class BombDispenseBehavior extends DefaultDispenseItemBehavior {
         if (bomb instanceof ThrowableBombItem throwableBombItem) {
             this.throwableBombItem = throwableBombItem;
         } else {
-            String var10002 = String.valueOf(bomb);
-            throw new IllegalArgumentException(var10002 + " not instance of " + ThrowableBombItem.class.getSimpleName());
+            String name = String.valueOf(bomb);
+            throw new IllegalArgumentException(name + " not instance of " + ThrowableBombItem.class.getSimpleName());
         }
     }
 
-    public ItemStack execute(BlockSource blockSource, ItemStack item) {
-        Level level = blockSource.level();
-        Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
-        Position position = DispenserBlock.getDispensePosition(blockSource, 0.7, new Vec3(0.0, 0.1, 0.0));
+    public ItemStack execute(BlockSource source, ItemStack item) {
+        Level level = source.level();
+        Direction direction = source.state().getValue(DispenserBlock.FACING);
+        Position position = DispenserBlock.getDispensePosition(source, 0.7, new Vec3(0.0, 0.1, 0.0));
         ThrowableBombEntity bomb = throwableBombItem.createBomb(level, BlockPos.containing(position));
         bomb.shoot(direction.getStepX(), direction.getStepY(), direction.getStepZ(), 0.5F, 6);
         level.addFreshEntity(bomb);
@@ -37,7 +37,7 @@ public class BombDispenseBehavior extends DefaultDispenseItemBehavior {
         return item;
     }
 
-    protected void playSound(BlockSource blockSource) {
-        blockSource.level().levelEvent(1002, blockSource.pos(), 0);
+    protected void playSound(BlockSource source) {
+        source.level().levelEvent(1002, source.pos(), 0);
     }
 }

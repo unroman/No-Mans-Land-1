@@ -54,7 +54,7 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
         this.getVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(VARIANT_KEY, variant.location().toString());
         });
-        this.noMansLand$getGlowSquidVariant().unwrapKey().ifPresent((variant) -> {
+        this.nml$getGlowSquidVariant().unwrapKey().ifPresent((variant) -> {
             compound.putString(GLOWING_VARIANT_KEY, variant.location().toString());
         });
     }
@@ -68,7 +68,7 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
         Optional.ofNullable(ResourceLocation.tryParse(compound.getString(GLOWING_VARIANT_KEY)))
                 .map((string) -> ResourceKey.create(NMLMobVariants.GLOW_SQUID_VARIANT_KEY, string))
                 .flatMap((variant) -> this.registryAccess().registryOrThrow(NMLMobVariants.GLOW_SQUID_VARIANT_KEY).getHolder(variant))
-                .ifPresent(this::noMansLand$setGlowSquidVariant);
+                .ifPresent(this::nml$setGlowSquidVariant);
     }
 
     @Override
@@ -82,7 +82,7 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
                 spawnGroupData = new VariantGroupData(variant);
             }
 
-            this.noMansLand$setGlowSquidVariant(variant);
+            this.nml$setGlowSquidVariant(variant);
         } else if (this.getType() == EntityType.SQUID) {
             Holder<SquidVariant> variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
@@ -107,12 +107,12 @@ public abstract class SquidMixin extends MobMixin implements VariantHolder<Holde
     }
 
     @Override
-    public Holder<GlowSquidVariant> noMansLand$getGlowSquidVariant() {
+    public Holder<GlowSquidVariant> nml$getGlowSquidVariant() {
         return this.entityData.get(DATA_GLOWING_VARIANT_ID);
     }
 
     @Override
-    public void noMansLand$setGlowSquidVariant(Holder<GlowSquidVariant> glowSquidVariantHolder) {
+    public void nml$setGlowSquidVariant(Holder<GlowSquidVariant> glowSquidVariantHolder) {
         this.entityData.set(DATA_GLOWING_VARIANT_ID, glowSquidVariantHolder);
     }
 }

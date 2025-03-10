@@ -81,9 +81,13 @@ public abstract class ChickenMixin extends MobMixin implements VariantHolder<Hol
     }
 
     @Inject(method = "getBreedOffspring*", at = @At("RETURN"), cancellable = true)
-    private void getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
-        AgeableMob entity = (AgeableMob) this.getType().create(this.level());
-        ((VariantHolder<Holder<ChickenVariant>>) entity).setVariant((Holder<ChickenVariant>) NMLMobVariants.getOffspringWithVariant(((Chicken) (Object) this), otherParent));
-        cir.setReturnValue(entity);
+    private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
+        AgeableMob entity = (AgeableMob) getType().create(level());
+
+        if (entity.getType() == EntityType.CHICKEN) {
+            ((VariantHolder<Holder<ChickenVariant>>) entity).setVariant((Holder<ChickenVariant>) NMLMobVariants.getOffspringWithVariant(((Chicken) (Object) this), otherParent));
+
+            cir.setReturnValue(entity);
+        }
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 
 public interface LlamaDuck {
 
-    Holder<LlamaVariant> noMansLand$getLlamaVariant();
+    Holder<LlamaVariant> nml$getLlamaVariant();
 
-    void noMansLand$setLlamaVariant(Holder<LlamaVariant> llamaVariantHolder);
+    void nml$setLlamaVariant(Holder<LlamaVariant> llamaVariantHolder);
 }

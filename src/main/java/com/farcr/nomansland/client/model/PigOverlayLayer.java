@@ -23,7 +23,7 @@ public class PigOverlayLayer extends RenderLayer<Pig, PigModel<Pig>> {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, Pig pig, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        ResourceLocation overlayTexture = (pig.isBaby() ? ((PigDuck) pig).noMansLand$getPigOverlayVariant().value().babyTexture() : ((PigDuck) pig).noMansLand$getPigOverlayVariant().value().texture()).withPath((path) -> "textures/" + path + ".png");
+        ResourceLocation overlayTexture = (pig.isBaby() ? ((PigDuck) pig).nml$getPigOverlayVariant().value().babyTexture() : ((PigDuck) pig).nml$getPigOverlayVariant().value().texture()).withPath((path) -> "textures/" + path + ".png");
         if (!pig.isInvisible()) {
             VertexConsumer vertexconsumer = bufferSource.getBuffer(RenderType.entityTranslucent(overlayTexture));
             getParentModel().renderToBuffer(poseStack, vertexconsumer, packedLight, LivingEntityRenderer.getOverlayCoords(pig, 0.0F));
