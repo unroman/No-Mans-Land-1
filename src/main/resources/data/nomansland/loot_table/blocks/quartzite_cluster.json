@@ -14,7 +14,7 @@
                   "condition": "minecraft:match_tool",
                   "predicate": {
                     "predicates": {
-                      "minecraft:enchantments": [
+                      "enchantments": [
                         {
                           "enchantments": "minecraft:silk_touch",
                           "levels": {
@@ -48,7 +48,7 @@
                       "function": "minecraft:set_count"
                     },
                     {
-                      "enchantment": "minecraft:fortune",
+                      "enchantments": "minecraft:fortune",
                       "formula": "minecraft:ore_drops",
                       "function": "minecraft:apply_bonus"
                     }
