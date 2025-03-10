@@ -113,8 +113,6 @@ dependencies {
     localRuntime "maven.modrinth:nbt-autocomplete:McjFDyOt"
     localRuntime "maven.modrinth:cyanide:v4LiMGGH"
     localRuntime "maven.modrinth:moonlight:neoforge_1.21-2.17.32"
-    localRuntime "maven.modrinth:yungs-api:1.21.1-NeoForge-5.1.4"
-    localRuntime "maven.modrinth:yungs-better-mineshafts:1.21.1-NeoForge-5.1.1"
     localRuntime "me.djtheredstoner:DevAuth-neoforge:1.2.1"
 }
 
