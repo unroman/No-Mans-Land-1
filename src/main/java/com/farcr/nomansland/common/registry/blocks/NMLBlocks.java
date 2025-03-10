@@ -249,7 +249,7 @@ public class NMLBlocks {
             () -> new PathBlock(ofFullCopy(Blocks.RED_SAND), Blocks.RED_SAND, true));
     //Dungeon
     public static final DeferredBlock<RemainsBlock> REMAINS = BLOCKS.register("remains",
-            () -> new RemainsBlock(Blocks.COARSE_DIRT, SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY)));
+            () -> new RemainsBlock(Blocks.COARSE_DIRT, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED));
     public static final DeferredBlock<MonsterAnchorBlock> MONSTER_ANCHOR = registerBlock("monster_anchor",
             () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(SoundType.TRIAL_SPAWNER).noOcclusion()));
     //Tiles

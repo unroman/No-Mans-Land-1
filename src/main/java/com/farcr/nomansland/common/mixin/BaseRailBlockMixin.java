@@ -80,7 +80,9 @@ public abstract class BaseRailBlockMixin extends BlockBehaviourMixin {
             railshape = state.getValue(this.getShapeProperty());
         }
 
-        cir.setReturnValue(!nml$shouldBeRemovedOverride(pos, level, railshape));
+        if (railshape != null) {
+            cir.setReturnValue(!nml$shouldBeRemovedOverride(pos, level, railshape));
+        }
     }
 
     @Inject(method = "shouldBeRemoved", at = @At("HEAD"), cancellable = true)
