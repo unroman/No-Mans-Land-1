@@ -22,19 +22,19 @@ public class MapleFoodItem extends Item {
         super(properties);
     }
 
-    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        super.finishUsingItem(pStack, pLevel, pEntityLiving);
-        if (pEntityLiving instanceof ServerPlayer serverplayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, pStack);
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+        super.finishUsingItem(stack, level, livingEntity);
+        if (livingEntity instanceof ServerPlayer serverplayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, stack);
             serverplayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!pLevel.isClientSide) {
-            pEntityLiving.removeEffect(MobEffects.HUNGER);
-            pEntityLiving.removeEffect(MobEffects.WEAKNESS);
-            pEntityLiving.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+        if (!level.isClientSide) {
+            livingEntity.removeEffect(MobEffects.HUNGER);
+            livingEntity.removeEffect(MobEffects.WEAKNESS);
+            livingEntity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
         }
-        return pStack;
+        return stack;
     }
     public UseAnim getUseAnimation(ItemStack pStack) {
         return UseAnim.EAT;
@@ -44,7 +44,7 @@ public class MapleFoodItem extends Item {
         return SoundEvents.GENERIC_EAT;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        return ItemUtils.startUsingInstantly(pLevel, pPlayer, pHand);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        return ItemUtils.startUsingInstantly(level, player, usedHand);
     }
 }
