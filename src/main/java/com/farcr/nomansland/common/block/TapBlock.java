@@ -63,6 +63,16 @@ public class TapBlock extends BaseEntityBlock {
         return AABBS.get(state.getValue(FACING));
     }
 
+    @Override
+    protected BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    protected BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
     public static BlockState getBlockStateBehind(Level level, BlockPos pos, BlockState state) {
         return level.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
     }
@@ -156,10 +166,6 @@ public class TapBlock extends BaseEntityBlock {
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         return facing.getOpposite() == state.getValue(FACING) && !state.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, level, currentPos, facingPos);
-    }
-
-    public BlockState rotate(BlockState state, Rotation pRotation) {
-        return state.setValue(FACING, pRotation.rotate(state.getValue(FACING)));
     }
 
     @Override

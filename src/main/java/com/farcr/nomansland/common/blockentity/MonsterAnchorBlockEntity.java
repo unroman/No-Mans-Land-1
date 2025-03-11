@@ -67,8 +67,10 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                 level.playSound(null, pos, NMLSounds.ANCHOR_DEACTIVATES.get(), SoundSource.BLOCKS, 1, 0.75F);
                 level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, false));
                 level.gameEvent(GameEvent.BLOCK_DEACTIVATE, pos, GameEvent.Context.of(state));
-            } else if (monsterAnchor.timeIdle % 5 == 0)
+            } else if (monsterAnchor.timeIdle % 5 == 0) {
                 serverLevel.sendParticles(ParticleTypes.SMOKE, pos.getX() + 0.5 + random.nextInt(0, 3) * 0.01 - random.nextInt(0, 3) * 0.01, pos.getY() + 0.2, pos.getZ() + 0.5 + random.nextInt(0, 3) * 0.01 - random.nextInt(0, 3) * 0.01, 3, 0, 0, 0, 0);
+                monsterAnchor.timeIdle = 0;
+            }
             return;
         }
 

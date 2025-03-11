@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.event.listener;
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
 import com.farcr.nomansland.common.mixinduck.LivingEntityDuck;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
@@ -28,9 +29,9 @@ public class AnchorListener implements GameEventListener {
     private final BlockState state;
     private final PositionSource positionSource;
 
-    public AnchorListener(BlockState pBlockState, PositionSource pPositionSource) {
-        this.state = pBlockState;
-        this.positionSource = pPositionSource;
+    public AnchorListener(BlockState state, PositionSource positionSource) {
+        this.state = state;
+        this.positionSource = positionSource;
     }
 
     public static List<Vec3> processPoints(AABB boundingBox, double step) {
@@ -98,12 +99,12 @@ public class AnchorListener implements GameEventListener {
     }
 
     public int getListenerRadius() {
-        return 5;
+        return NMLConfig.RESURRECTION_RADIUS.get();
     }
 
     @Override
     public boolean handleGameEvent(ServerLevel level, Holder<GameEvent> gameEvent, GameEvent.Context context, Vec3 pos) {
-        if (gameEvent.is(GameEvent.ENTITY_DIE) && context.sourceEntity() instanceof Monster monster) {
+        if (GameEvent.ENTITY_DIE.is(gameEvent) && context.sourceEntity() instanceof Monster monster) {
             if (!(monster.getType().getTags().toList().contains(NMLTags.ANCHOR_BLACKLIST))) {
                 if (!monster.wasExperienceConsumed()) {
                     // Add the entity to the dead entity list

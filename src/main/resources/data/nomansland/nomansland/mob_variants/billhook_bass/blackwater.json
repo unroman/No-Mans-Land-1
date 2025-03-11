@@ -1,5 +1,5 @@
 {
   "texture": "nomansland:entity/billhook_bass/billhook_bass_blackwater",
   "weight": 1,
-  "biomes":"minecraft:mangrove_swamp"
+  "biomes":"#nomansland:entity/spawns_blackwater_bass"
 }

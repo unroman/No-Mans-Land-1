@@ -76,13 +76,11 @@ public abstract class BaseRailBlockMixin extends BlockBehaviourMixin {
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
     private void nml$canSurvive(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         RailShape railshape = null;
-        if (state != null && state.hasProperty(this.getShapeProperty())) {
+        if (state != null && state.hasProperty(this.getShapeProperty()))
             railshape = state.getValue(this.getShapeProperty());
-        }
 
-        if (railshape != null) {
+        if (railshape != null)
             cir.setReturnValue(!nml$shouldBeRemovedOverride(pos, level, railshape));
-        }
     }
 
     @Inject(method = "shouldBeRemoved", at = @At("HEAD"), cancellable = true)

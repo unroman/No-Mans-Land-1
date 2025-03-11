@@ -24,8 +24,6 @@ public class PineFoliagePlacer extends FoliagePlacer {
     private final IntProvider numSmallCanopies;
     private final FloatProvider leafProbability;
 
-    public Set<BlockPos> leafPositions;
-    public Set<BlockPos> probLeafPositions;
 
     public PineFoliagePlacer(IntProvider radius, IntProvider offset, IntProvider offsetIncrease, IntProvider numSmallCanopies, FloatProvider leafProbability) {
         super(radius, offset);
@@ -39,38 +37,40 @@ public class PineFoliagePlacer extends FoliagePlacer {
     }
 
     protected void createFoliage(@NotNull LevelSimulatedReader level, @NotNull FoliageSetter blockSetter, @NotNull RandomSource random, @NotNull TreeConfiguration config, int maxFreeTreeHeight, @NotNull FoliageAttachment attachment, int foliageHeight, int foliageRadius, int foliageOffset) {
-        this.leafPositions = Sets.newHashSet();
-        this.probLeafPositions = Sets.newHashSet();
+        Set<BlockPos> leafPositions = Sets.newHashSet();
+        Set<BlockPos> probLeafPositions = Sets.newHashSet();
 
         int numCanopies = (foliageHeight - 5) / 2;
         // Add tree topper
         for (int di = 0; di < 4; di++) {
             Direction d = Direction.from2DDataValue(di);
-            this.leafPositions.add(attachment.pos().below(2).relative(d));
-            this.leafPositions.add(attachment.pos().below(2).relative(d).relative(d.getClockWise()));
-            this.leafPositions.add(attachment.pos().below().relative(d));
-            this.probLeafPositions.add(attachment.pos().below().relative(d).relative(d.getClockWise()));
-            this.leafPositions.add(attachment.pos().relative(d));
+            leafPositions.add(attachment.pos().below(2).relative(d));
+            leafPositions.add(attachment.pos().below(2).relative(d).relative(d.getClockWise()));
+            leafPositions.add(attachment.pos().below().relative(d));
+            probLeafPositions.add(attachment.pos().below().relative(d).relative(d.getClockWise()));
+            leafPositions.add(attachment.pos().relative(d));
         }
-        this.leafPositions.add(attachment.pos());
-        this.leafPositions.add(attachment.pos().above());
-        this.leafPositions.add(attachment.pos().above(2));
-        this.probLeafPositions.add(attachment.pos().above(3));
+        leafPositions.add(attachment.pos());
+        leafPositions.add(attachment.pos().above());
+        leafPositions.add(attachment.pos().above(2));
+        probLeafPositions.add(attachment.pos().above(3));
 
         int numSmallCanopiesSampled = numSmallCanopies.sample(random);
         for (int i = 0; i < (Math.min(numCanopies, numSmallCanopiesSampled)); i++) {
-            placeLayer(attachment.pos().below(4 + 2*i), foliageRadius);
+            Set<BlockPos> layerPositions = placeLayer(attachment.pos().below(4 + 2*i), foliageRadius);
+            leafPositions.addAll(layerPositions);
         }
         if (numCanopies >= numSmallCanopiesSampled) {
             for (int i = 0; i < numCanopies - numSmallCanopiesSampled; i++) {
-                placeLayer(attachment.pos().below(4 + 2*numSmallCanopiesSampled + 2*i), foliageRadius + offsetIncrease.sample(random));
+                Set<BlockPos> layerPositions = placeLayer(attachment.pos().below(4 + 2*numSmallCanopiesSampled + 2*i), foliageRadius + offsetIncrease.sample(random));
+                leafPositions.addAll(layerPositions);
             }
         }
 
-        this.leafPositions.add(attachment.pos().below(3 + 2*numCanopies).north());
-        this.leafPositions.add(attachment.pos().below(3 + 2*numCanopies).east());
-        this.leafPositions.add(attachment.pos().below(3 + 2*numCanopies).south());
-        this.leafPositions.add(attachment.pos().below(3 + 2*numCanopies).west());
+        leafPositions.add(attachment.pos().below(3 + 2*numCanopies).north());
+        leafPositions.add(attachment.pos().below(3 + 2*numCanopies).east());
+        leafPositions.add(attachment.pos().below(3 + 2*numCanopies).south());
+        leafPositions.add(attachment.pos().below(3 + 2*numCanopies).west());
 
         // Place the foliage
         for (BlockPos leafPos : leafPositions) {
@@ -85,17 +85,19 @@ public class PineFoliagePlacer extends FoliagePlacer {
 
 
 
-    private void placeLayer(BlockPos localOrigin, int size) {
+    private Set<BlockPos> placeLayer(BlockPos localOrigin, int size) {
+        Set<BlockPos> leafPositions = Sets.newHashSet();
         for (int x = -size; x <= size; x++) {
             for (int z = -size; z <= size; z++) {
                 if (Math.abs(x) + Math.abs(z) < size + 2) {
-                    this.leafPositions.add(localOrigin.offset(x, 0, z));
+                    leafPositions.add(localOrigin.offset(x, 0, z));
                 }
                 if (Math.abs(x) + Math.abs(z) < size) {
-                    this.leafPositions.add(localOrigin.offset(x, 1, z));
+                    leafPositions.add(localOrigin.offset(x, 1, z));
                 }
             }
         }
+        return leafPositions;
     }
 
     public int foliageHeight(@NotNull RandomSource random, int height, @NotNull TreeConfiguration config) {
