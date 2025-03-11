@@ -15,6 +15,7 @@ public class NMLConfig {
     public static ModConfigSpec.DoubleValue FILLING_SPEED_MULTIPLIER;
     public static ModConfigSpec.IntValue TICKS_TO_FILL_CAULDRON;
     public static final String CATEGORY_ANCHOR = "monster_anchor";
+    public static ModConfigSpec.IntValue RESURRECTION_RADIUS;
     public static ModConfigSpec.IntValue TICKS_BETWEEN_RESURRECTIONS;
     public static final String CATEGORY_SPIKE = "spike";
     public static ModConfigSpec.DoubleValue POKING_DAMAGE;
@@ -70,6 +71,9 @@ public class NMLConfig {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_ANCHOR);
+        RESURRECTION_RADIUS = COMMON_BUILDER
+                .comment("The radius around the monster anchor where monsters are anchored.")
+                .defineInRange("resurrectionRadius", 5, 1, 50);
         TICKS_BETWEEN_RESURRECTIONS = COMMON_BUILDER
                 .comment("The time between each resurrection from a monster anchor.")
                 .defineInRange("ticksBetweenResurrections", 80, 78, 400);
