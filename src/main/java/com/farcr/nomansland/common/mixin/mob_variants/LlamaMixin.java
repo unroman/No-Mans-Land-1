@@ -4,6 +4,7 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.LlamaVariant;
 import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
+import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.mixinduck.LlamaDuck;
 import com.farcr.nomansland.common.registry.entities.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
@@ -38,7 +39,7 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
     @Unique
     private static final EntityDataAccessor<Holder<LlamaVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Llama.class, NMLDataSerializers.LLAMA_VARIANT.get());
     @Unique
-    private static final String VARIANT_KEY = "Variant";
+    private static final String VARIANT_KEY = "LLamaVariant";
     @Unique
     private static final ResourceKey<LlamaVariant> DEFAULT_VARIANT = ResourceKey.create(NMLMobVariants.LLAMA_VARIANT_KEY, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "default"));
 
@@ -64,7 +65,7 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
 
     @Override
     protected void finalizeSpawnVariant(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if (this.getType() == EntityType.LLAMA) {
+        if (this.getType() == EntityType.LLAMA || this.getType() == EntityType.TRADER_LLAMA) {
             Holder<LlamaVariant> llama$variant;
             if (spawnGroupData instanceof VariantGroupData variantGroupData) {
                 llama$variant = (Holder<LlamaVariant>) variantGroupData.variant;
@@ -81,8 +82,11 @@ public abstract class LlamaMixin extends MobMixin implements LlamaDuck {
     private void getOffspringVariant(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<AgeableMob> cir) {
         AgeableMob entity = (AgeableMob) getType().create(level());
 
-        if (entity.getType() == EntityType.LLAMA) {
-            ((LlamaDuck) entity).nml$setLlamaVariant((Holder<LlamaVariant>) NMLMobVariants.getOffspringWithVariant(((Llama) (Object) this), otherParent));
+        if (entity.getType() == EntityType.LLAMA || this.getType() == EntityType.TRADER_LLAMA) {
+            ((LlamaDuck) entity).nml$setLlamaVariant(
+                    random.nextBoolean() ?
+                            ((LlamaDuck) this).nml$getLlamaVariant() :
+                            ((LlamaDuck) otherParent).nml$getLlamaVariant());;
 
             cir.setReturnValue(entity);
         }
