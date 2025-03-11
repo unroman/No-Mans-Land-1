@@ -1,5 +1,5 @@
 {
   "texture": "nomansland:entity/mob_variants/squid/squid_deep",
   "weight": 1,
-  "biomes": "#c:is_deep_ocean"
+  "biomes": "#nomansland:entity/spawns_deep_squid"
 }

@@ -1,5 +1,5 @@
 {
   "texture": "nomansland:entity/billhook_bass/billhook_bass_largemouth",
   "weight": 1,
-  "biomes":"nomansland:bog"
+  "biomes":"#nomansland:entity/spawns_largemouth_bass"
 }
