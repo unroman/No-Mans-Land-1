@@ -20,7 +20,7 @@
     "MobMixin",
     "ProjectileMixin",
     "RailStateMixin",
-    "RichSoilBlockMixin",
+    "integration.RichSoilBlockMixin",
     "ServerLevelMixin",
     "SnowAndFreezeFeatureMixin",
     "SnowyDirtBlockMixin",
@@ -51,7 +51,6 @@
     "mob_variants.ZombieMixin"
   ],
   "client": [
-    "ItemRendererMixin",
     "LevelRendererMixin",
     "LivingEntityRendererMixin",
     "QuadrupedModelMixin",

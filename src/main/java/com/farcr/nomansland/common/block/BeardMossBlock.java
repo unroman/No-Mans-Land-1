@@ -82,7 +82,7 @@ public class BeardMossBlock extends Block implements BonemealableBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (random.nextFloat() < 0.05) {
+        if (random.nextFloat() < 0.03) {
             level.addParticle(ParticleTypes.DRIPPING_WATER,
                     pos.getX() + 0.5 + (double) random.nextInt(-50, 50) / 100,
                     pos.getY() + 0.5 + (double) random.nextInt(-50, 50) / 100,

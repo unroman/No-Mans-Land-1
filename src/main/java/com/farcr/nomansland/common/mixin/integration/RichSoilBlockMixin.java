@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.mixin;
+package com.farcr.nomansland.common.mixin.integration;
 
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.integration.FDIntegration;
