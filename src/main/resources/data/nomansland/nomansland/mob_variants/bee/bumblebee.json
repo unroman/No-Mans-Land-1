@@ -4,5 +4,5 @@
   "nectar_texture": "nomansland:entity/mob_variants/bee/bumblebee_nectar",
   "angry_nectar_texture": "nomansland:entity/mob_variants/bee/bumblebee_angry_nectar",
   "stinger_texture": "nomansland:entity/mob_variants/bee/bumblebee_stinger",
-  "biomes": "#nomansland:spawns_bumblebees"
+  "biomes": "#nomansland:entity/spawns_bumblebees"
 }

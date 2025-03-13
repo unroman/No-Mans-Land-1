@@ -5,24 +5,6 @@
       "state": {
         "Name": "minecraft:bee_nest",
         "Properties": {
-          "honey_level": "1"
-        }
-      }
-    },
-    {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:bee_nest",
-        "Properties": {
-          "honey_level": "2"
-        }
-      }
-    },
-    {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:bee_nest",
-        "Properties": {
           "honey_level": "3"
         }
       }
@@ -42,24 +24,6 @@
         "Name": "minecraft:bee_nest",
         "Properties": {
           "honey_level": "5"
-        }
-      }
-    },
-    {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:beehive",
-        "Properties": {
-          "honey_level": "1"
-        }
-      }
-    },
-    {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:beehive",
-        "Properties": {
-          "honey_level": "2"
         }
       }
     },
