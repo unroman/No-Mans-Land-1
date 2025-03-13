@@ -31,5 +31,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "minecraft:blocks/earthen_tile_slab"
+  "random_sequence": "nomansland:blocks/earthen_tile_slab"
 }

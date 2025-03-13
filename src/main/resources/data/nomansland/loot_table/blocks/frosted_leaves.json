@@ -68,7 +68,7 @@
           "conditions": [
             {
               "condition": "minecraft:table_bonus",
-              "enchantments": "minecraft:fortune",
+              "enchantment": "minecraft:fortune",
               "chances": [
                 0.02,
                 0.022222223,
@@ -112,5 +112,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "nomansland:blocks/frosted_leaves"
 }

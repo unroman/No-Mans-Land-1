@@ -40,32 +40,32 @@ public class ExplosiveEntity extends ThrowableBombEntity {
 
     private void spawnParticles(ParticleOptions particle, int amount) {
         for (int i = 0; i < amount; i++) {
-            double theta = this.random.nextFloat() * 2 * Math.PI;
-            double alpha = this.random.nextFloat() * 2 * Math.PI;
+            double theta = random.nextFloat() * 2 * Math.PI;
+            double alpha = random.nextFloat() * 2 * Math.PI;
             double cos = Math.cos(alpha);
-            double xVelocity = Math.sin(theta) * cos * (this.random.nextFloat() * 0.3 + 0.7);
-            double yVelocity = cos * Math.cos(theta) * (this.random.nextFloat() * 0.3 + 0.7);
-            double zVelocity = Math.sin(alpha) * (this.random.nextFloat() * 0.3 + 0.7);
-            this.level().addParticle(particle, this.getX(), this.getY(), this.getZ(), xVelocity * 0.6, yVelocity * 0.6, zVelocity * 0.6);
+            double xVelocity = Math.sin(theta) * cos * (random.nextFloat() * 0.3 + 0.7);
+            double yVelocity = cos * Math.cos(theta) * (random.nextFloat() * 0.3 + 0.7);
+            double zVelocity = Math.sin(alpha) * (random.nextFloat() * 0.3 + 0.7);
+            level().addParticle(particle, getX(), getY(), getZ(), xVelocity * 0.6, yVelocity * 0.6, zVelocity * 0.6);
         }
     }
 
     @Override
     public void handleEntityEvent(byte b) {
         if (b == 0) {
-            this.spawnParticles(ParticleTypes.SMOKE, 320);
+            spawnParticles(ParticleTypes.SMOKE, 320);
 
             for (int i = 0; i < 40; i++) {
-                double theta = this.random.nextFloat() * 2 * Math.PI;
-                double alpha = this.random.nextFloat() * 2 * Math.PI;
+                double theta = random.nextFloat() * 2 * Math.PI;
+                double alpha = random.nextFloat() * 2 * Math.PI;
                 double cos = Math.cos(alpha);
-                double xVelocity = Math.sin(theta) * cos * (this.random.nextFloat() * 0.3 + 0.7);
-                double yVelocity = cos * Math.cos(theta) * (this.random.nextFloat() * 0.3 + 0.7);
-                double zVelocity = Math.sin(alpha) * (this.random.nextFloat() * 0.3 + 0.7);
-                this.level().addParticle(ParticleTypes.FLAME, false, this.getX(), this.getY(), this.getZ(), xVelocity * 0.1, yVelocity * 0.1, zVelocity * 0.1);
+                double xVelocity = Math.sin(theta) * cos * (random.nextFloat() * 0.3 + 0.7);
+                double yVelocity = cos * Math.cos(theta) * (random.nextFloat() * 0.3 + 0.7);
+                double zVelocity = Math.sin(alpha) * (random.nextFloat() * 0.3 + 0.7);
+                level().addParticle(ParticleTypes.FLAME, false, getX(), getY(), getZ(), xVelocity * 0.1, yVelocity * 0.1, zVelocity * 0.1);
             }
         } else if (b == 1) {
-            this.spawnParticles(ParticleTypes.SMOKE, 400);
+            spawnParticles(ParticleTypes.SMOKE, 400);
         } else {
             super.handleEntityEvent(b);
         }
@@ -73,12 +73,12 @@ public class ExplosiveEntity extends ThrowableBombEntity {
 
     @Override
     protected void explode() {
-        Level level = this.level();
+        Level level = level();
 
-        level.explode(this, Explosion.getDefaultDamageSource(level, this), null, this.getX(), this.getY(0.0625), this.getZ(), NMLConfig.EXPLOSIVE_STRENGTH.get().floatValue(), false, Level.ExplosionInteraction.TNT);
+        level.explode(this, Explosion.getDefaultDamageSource(level, this), null, getX(), getY(0.0625), getZ(), NMLConfig.EXPLOSIVE_STRENGTH.get().floatValue(), false, Level.ExplosionInteraction.TNT);
 
         // Light nearby campfires on fire
-        BlockPos.withinManhattan(this.blockPosition(), 6, 4, 6).forEach(pos -> {
+        BlockPos.withinManhattan(blockPosition(), 6, 4, 6).forEach(pos -> {
             BlockState state = level.getBlockState(pos);
             if (state.is(BlockTags.CAMPFIRES) && state.hasProperty(CampfireBlock.LIT) && !state.getValue(CampfireBlock.LIT)) {
                 level.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, true));
@@ -107,39 +107,39 @@ public class ExplosiveEntity extends ThrowableBombEntity {
             }
 
         });
-        level.broadcastEntityEvent(this, (byte) (this.isInWater() ? 1 : 0));
-        this.discard();
+        level.broadcastEntityEvent(this, (byte) (isInWater() ? 1 : 0));
+        discard();
     }
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
-        Vec3 pos = this.position();
+        Vec3 pos = position();
         Vec3 resultPos = result.getLocation();
         Vec3 dir = pos.vectorTo(resultPos).normalize();
-        this.setDeltaMovement(Vec3.ZERO);
-        this.setPos(new Vec3(resultPos.x - dir.x * this.getBbWidth() * 0.01, resultPos.y - dir.y * this.getBbHeight() * 0.01, resultPos.z - dir.z * this.getBbWidth() * 0.01));
-        this.setNoGravity(true);
-        if (!this.shouldFuse()) {
-            this.startFuse(100);
+        setDeltaMovement(Vec3.ZERO);
+        setPos(new Vec3(resultPos.x - dir.x * getBbWidth() * 0.01, resultPos.y - dir.y * getBbHeight() * 0.01, resultPos.z - dir.z * getBbWidth() * 0.01));
+        setNoGravity(true);
+        if (!shouldFuse()) {
+            startFuse(100);
         }
-        this.hitPos = result.getBlockPos();
+        hitPos = result.getBlockPos();
     }
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
-        this.setDeltaMovement(this.getDeltaMovement().scale(-0.1));
-        if (!this.shouldFuse()) {
-            this.startFuse(100);
+        setDeltaMovement(getDeltaMovement().scale(-0.1));
+        if (!shouldFuse()) {
+            startFuse(100);
         }
     }
 
     @Override
     public void tick() {
-        if (this.hitPos != null && this.level().getBlockState(this.hitPos).getCollisionShape(this.level(), this.hitPos).isEmpty()) {
-            this.hitPos = null;
-            this.setNoGravity(false);
+        if (hitPos != null && level().getBlockState(hitPos).getCollisionShape(level(), hitPos).isEmpty()) {
+            hitPos = null;
+            setNoGravity(false);
         }
 
         super.tick();

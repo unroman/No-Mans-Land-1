@@ -23,15 +23,15 @@
                       "condition": "minecraft:match_tool",
                       "predicate": {
                         "predicates": {
-                        "enchantments": [
-                          {
-                            "enchantments": "minecraft:silk_touch",
-                            "levels": {
-                              "min": 1
+                          "enchantments": [
+                            {
+                              "enchantment": "minecraft:silk_touch",
+                              "levels": {
+                                "min": 1
+                              }
                             }
-                          }
-                        ]
-                      }
+                          ]
+                        }
                       }
                     }
                   ]
@@ -53,7 +53,7 @@
                     0.1
                   ],
                   "condition": "minecraft:table_bonus",
-                  "enchantments": "minecraft:fortune"
+                  "enchantment": "minecraft:fortune"
                 }
               ],
               "name": "nomansland:autumnal_oak_sapling"
@@ -82,7 +82,7 @@
                 "predicate": {
                   "enchantments": [
                     {
-                      "enchantments": "minecraft:silk_touch",
+                      "enchantment": "minecraft:silk_touch",
                       "levels": {
                         "min": 1
                       }
@@ -107,7 +107,7 @@
                 0.1
               ],
               "condition": "minecraft:table_bonus",
-              "enchantments": "minecraft:fortune"
+              "enchantment": "minecraft:fortune"
             }
           ],
           "functions": [
@@ -148,7 +148,7 @@
                 "predicate": {
                   "enchantments": [
                     {
-                      "enchantments": "minecraft:silk_touch",
+                      "enchantment": "minecraft:silk_touch",
                       "levels": {
                         "min": 1
                       }
@@ -176,7 +176,7 @@
                 0.0375
               ],
               "condition": "minecraft:table_bonus",
-              "enchantments": "minecraft:fortune"
+              "enchantment": "minecraft:fortune"
             }
           ],
           "name": "nomansland:pear"
@@ -184,5 +184,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "minecraft:blocks/oak_leaves"
 }

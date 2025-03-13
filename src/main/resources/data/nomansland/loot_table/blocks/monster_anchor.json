@@ -1,4 +1,4 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "minecraft:blocks/spawner"
+  "random_sequence": "nomansland:blocks/monster_anchor"
 }

@@ -47,32 +47,32 @@ public class FirebombEntity extends ThrowableBombEntity {
 
     private void spawnParticles(ParticleOptions particle, int amount) {
         for (int i = 0; i < amount; i++) {
-            double theta = this.random.nextFloat() * 2 * Math.PI;
-            double alpha = this.random.nextFloat() * 2 * Math.PI;
+            double theta = random.nextFloat() * 2 * Math.PI;
+            double alpha = random.nextFloat() * 2 * Math.PI;
             double cos = Math.cos(alpha);
-            double xVelocity = Math.sin(theta) * cos * (this.random.nextFloat() * 0.3 + 0.7);
-            double yVelocity = cos * Math.cos(theta) * (this.random.nextFloat() * 0.3 + 0.7);
-            double zVelocity = Math.sin(alpha) * (this.random.nextFloat() * 0.3 + 0.7);
-            this.level().addParticle(particle, this.getX(), this.getY(), this.getZ(), xVelocity * 0.6, yVelocity * 0.6, zVelocity * 0.6);
+            double xVelocity = Math.sin(theta) * cos * (random.nextFloat() * 0.3 + 0.7);
+            double yVelocity = cos * Math.cos(theta) * (random.nextFloat() * 0.3 + 0.7);
+            double zVelocity = Math.sin(alpha) * (random.nextFloat() * 0.3 + 0.7);
+            level().addParticle(particle, getX(), getY(), getZ(), xVelocity * 0.6, yVelocity * 0.6, zVelocity * 0.6);
         }
     }
 
     @Override
     public void handleEntityEvent(byte b) {
         if (b == 0) {
-            this.spawnParticles(ParticleTypes.SMOKE, 320);
+            spawnParticles(ParticleTypes.SMOKE, 320);
 
             for (int i = 0; i < 40; i++) {
-                double theta = this.random.nextFloat() * 2 * Math.PI;
-                double alpha = this.random.nextFloat() * 2 * Math.PI;
+                double theta = random.nextFloat() * 2 * Math.PI;
+                double alpha = random.nextFloat() * 2 * Math.PI;
                 double cos = Math.cos(alpha);
-                double xVelocity = Math.sin(theta) * cos * (this.random.nextFloat() * 0.3 + 0.7);
-                double yVelocity = cos * Math.cos(theta) * (this.random.nextFloat() * 0.3 + 0.7);
-                double zVelocity = Math.sin(alpha) * (this.random.nextFloat() * 0.3 + 0.7);
-                this.level().addParticle(ParticleTypes.FLAME, false, this.getX(), this.getY(), this.getZ(), xVelocity * 0.1, yVelocity * 0.1, zVelocity * 0.1);
+                double xVelocity = Math.sin(theta) * cos * (random.nextFloat() * 0.3 + 0.7);
+                double yVelocity = cos * Math.cos(theta) * (random.nextFloat() * 0.3 + 0.7);
+                double zVelocity = Math.sin(alpha) * (random.nextFloat() * 0.3 + 0.7);
+                level().addParticle(ParticleTypes.FLAME, false, getX(), getY(), getZ(), xVelocity * 0.1, yVelocity * 0.1, zVelocity * 0.1);
             }
         } else if (b == 1) {
-            this.spawnParticles(ParticleTypes.SMOKE, 400);
+            spawnParticles(ParticleTypes.SMOKE, 400);
         } else {
             super.handleEntityEvent(b);
         }
@@ -80,12 +80,12 @@ public class FirebombEntity extends ThrowableBombEntity {
 
     @Override
     protected void explode() {
-        Level level = this.level();
+        Level level = level();
 
-        level.explode(this, this.getX(), this.getY(0.0625), this.getZ(), NMLConfig.FIREBOMB_STRENGTH.get().floatValue(), Level.ExplosionInteraction.NONE);
+        level.explode(this, getX(), getY(0.0625), getZ(), NMLConfig.FIREBOMB_STRENGTH.get().floatValue(), Level.ExplosionInteraction.NONE);
 
         // Light nearby campfires on fire
-        BlockPos.withinManhattan(this.blockPosition(), 6, 4, 6).forEach(pos -> {
+        BlockPos.withinManhattan(blockPosition(), 6, 4, 6).forEach(pos -> {
             BlockState state = level.getBlockState(pos);
             if (state.is(BlockTags.CAMPFIRES) && state.hasProperty(CampfireBlock.LIT) && !state.getValue(CampfireBlock.LIT)) {
                 level.setBlock(pos, state.setValue(CampfireBlock.LIT, true), 3);
@@ -114,16 +114,16 @@ public class FirebombEntity extends ThrowableBombEntity {
             }
 
         });
-        level.broadcastEntityEvent(this, (byte) (this.isInWater() ? 1 : 0));
-        this.discard();
+        level.broadcastEntityEvent(this, (byte) (isInWater() ? 1 : 0));
+        discard();
     }
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
 
-        if (!this.level().isClientSide()) {
-            this.explode();
+        if (!level().isClientSide()) {
+            explode();
         }
     }
 
@@ -131,30 +131,30 @@ public class FirebombEntity extends ThrowableBombEntity {
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
 
-        Vec3 motion = this.getDeltaMovement();
+        Vec3 motion = getDeltaMovement();
         if (motion.lengthSqr() < 0.1) {
-            this.setDeltaMovement(Vec3.ZERO);
-            this.setOnGround(true);
+            setDeltaMovement(Vec3.ZERO);
+            setOnGround(true);
             return;
         }
 
         Direction direction = result.getDirection();
         switch (direction.getAxis()) {
-            case X -> this.setDeltaMovement(
+            case X -> setDeltaMovement(
                     -motion.x() * HORIZONTAL_RESTITUTION,
                     motion.y(),
                     motion.z()
             );
             case Y ->
-                    this.setDeltaMovement(motion.x() * VERTICAL_RESTITUTION, -motion.y() * VERTICAL_RESTITUTION, motion.z() * VERTICAL_RESTITUTION);
-            case Z -> this.setDeltaMovement(
+                    setDeltaMovement(motion.x() * VERTICAL_RESTITUTION, -motion.y() * VERTICAL_RESTITUTION, motion.z() * VERTICAL_RESTITUTION);
+            case Z -> setDeltaMovement(
                     motion.x(),
                     motion.y(),
                     -motion.z() * HORIZONTAL_RESTITUTION
             );
         }
-        if (!this.shouldFuse()) {
-            this.startFuse(30);
+        if (!shouldFuse()) {
+            startFuse(30);
         }
     }
 

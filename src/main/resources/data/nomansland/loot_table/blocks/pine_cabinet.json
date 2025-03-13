@@ -8,7 +8,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
@@ -20,7 +20,7 @@
           "name": "nomansland:pine_cabinet"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "nomansland:blocks/pine_cabinet"

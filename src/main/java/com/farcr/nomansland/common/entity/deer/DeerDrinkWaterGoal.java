@@ -41,20 +41,20 @@ public class DeerDrinkWaterGoal  extends Goal {
                         }
                     }
                     if (blockpos != null) {
-                        this.path = mob.getNavigation().createPath(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0);
+                        path = mob.getNavigation().createPath(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0);
                         break;
                     }
                 }
             }
         }
 
-        return this.path != null;
+        return path != null;
     }
 
     public void start() {
         drinkAnimationTick = this.adjustedTickDelay(mob.getRandom().nextInt(40, 120));
-        level.broadcastEntityEvent(this.mob, (byte)10);
-        this.mob.getNavigation().moveTo(this.path, 1);
+        level.broadcastEntityEvent(mob, (byte)10);
+        mob.getNavigation().moveTo(path, 1);
     }
 
     public boolean canContinueToUse() {

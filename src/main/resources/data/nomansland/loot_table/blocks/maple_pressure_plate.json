@@ -17,5 +17,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "minecraft:blocks/maple_pressure_plate"
+  "random_sequence": "nomansland:blocks/maple_pressure_plate"
 }

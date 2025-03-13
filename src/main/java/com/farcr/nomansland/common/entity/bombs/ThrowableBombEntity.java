@@ -44,80 +44,80 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
 
     @Override
     protected void updateRotation() {
-        Vec3 deltaMovement = this.getDeltaMovement();
+        Vec3 deltaMovement = getDeltaMovement();
         double distanceSq = deltaMovement.horizontalDistanceSqr();
         double distance = Math.sqrt(distanceSq);
-        this.setXRot(lerpRotation(this.xRotO, (float) (Mth.atan2(deltaMovement.y, distance) * 180.0F / (float) Math.PI)));
+        setXRot(lerpRotation(xRotO, (float) (Mth.atan2(deltaMovement.y, distance) * 180.0F / (float) Math.PI)));
         if (distanceSq > 0.01) {
-            this.setYRot(lerpRotation(this.yRotO, (float) (Mth.atan2(deltaMovement.x, deltaMovement.z) * 180.0F / (float) Math.PI)));
+            setYRot(lerpRotation(yRotO, (float) (Mth.atan2(deltaMovement.x, deltaMovement.z) * 180.0F / (float) Math.PI)));
         }
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("Fuse", this.fuse);
-        compound.putInt("MaxFuse", this.maxFuse);
+        compound.putInt("Fuse", fuse);
+        compound.putInt("MaxFuse", maxFuse);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.fuse = compound.getInt("Fuse");
-        this.maxFuse = compound.getInt("MaxFuse");
-        this.entityData.set(DATA_SHOULD_FUSE_ID, this.maxFuse >= 0);
+        fuse = compound.getInt("Fuse");
+        maxFuse = compound.getInt("MaxFuse");
+        entityData.set(DATA_SHOULD_FUSE_ID, maxFuse >= 0);
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        Level level = this.level();
+        Level level = level();
         if (level.isClientSide()) {
-            this.oFuse = this.fuse;
-            this.oRoll = this.roll;
+            oFuse = fuse;
+            oRoll = roll;
 
-            if (this.shouldFuse()) {
-                this.fuse++;
-                if (this.fuse >= this.maxFuse) {
-                    this.fuse = this.maxFuse;
+            if (shouldFuse()) {
+                fuse++;
+                if (fuse >= maxFuse) {
+                    fuse = maxFuse;
                 }
             }
 
-            double distance = this.getDeltaMovement().lengthSqr();
+            double distance = getDeltaMovement().lengthSqr();
             if (distance > 0.01) {
-                this.roll += Math.sqrt(distance) * 45;
+                roll += Math.sqrt(distance) * 45;
             }
 
-            if (!this.onGround()) {
-                level.addParticle(this.getParticle(), this.getX(), this.getY() + this.getBbHeight(), this.getZ(), 0, 0, 0);
+            if (!onGround()) {
+                level.addParticle(getParticle(), getX(), getY() + getBbHeight(), getZ(), 0, 0, 0);
             }
         } else {
-            if (this.shouldFuse()) {
-                this.fuse++;
-                if (this.fuse >= this.maxFuse) {
-                    this.explode();
+            if (shouldFuse()) {
+                fuse++;
+                if (fuse >= maxFuse) {
+                    explode();
                 }
             }
 
-            if (level.getBlockState(this.blockPosition()).is(NMLTags.BOMB_EXPLODE)) {
-                this.explode();
+            if (level.getBlockState(blockPosition()).is(NMLTags.BOMB_EXPLODE)) {
+                explode();
             }
         }
     }
 
     public boolean shouldFuse() {
-        return this.entityData.get(DATA_SHOULD_FUSE_ID);
+        return entityData.get(DATA_SHOULD_FUSE_ID);
     }
 
     public int getMaxFuse() {
-        return this.maxFuse;
+        return maxFuse;
     }
 
     public void startFuse(int maxFuse) {
-        this.maxFuse = maxFuse;
-        this.entityData.set(DATA_SHOULD_FUSE_ID, maxFuse >= 0);
-        this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.TNT_PRIMED, SoundSource.PLAYERS, 1.0F, 1.0F);
+        maxFuse = maxFuse;
+        entityData.set(DATA_SHOULD_FUSE_ID, maxFuse >= 0);
+        level().playSound(null, getX(), getY(), getZ(), SoundEvents.TNT_PRIMED, SoundSource.PLAYERS, 1.0F, 1.0F);
     }
 
     protected abstract void explode();
@@ -125,10 +125,10 @@ public abstract class ThrowableBombEntity extends ThrowableProjectile {
     protected abstract ParticleOptions getParticle();
 
     public float getRoll(float partialTicks) {
-        return Mth.lerp(partialTicks, this.oRoll, this.roll);
+        return Mth.lerp(partialTicks, oRoll, roll);
     }
 
     public float getSwelling(float partialTicks) {
-        return Mth.lerp(partialTicks, this.oFuse, this.fuse) / (float) (this.getMaxFuse() - 2);
+        return Mth.lerp(partialTicks, oFuse, fuse) / (float) (getMaxFuse() - 2);
     }
 }

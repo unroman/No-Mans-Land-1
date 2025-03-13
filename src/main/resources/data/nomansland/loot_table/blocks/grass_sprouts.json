@@ -54,5 +54,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/grass"
+  "random_sequence": "nomansland:blocks/grass_sprouts"
 }
