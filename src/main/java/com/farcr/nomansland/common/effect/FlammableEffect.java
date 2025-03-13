@@ -59,7 +59,7 @@ public class FlammableEffect extends MobEffect {
         if (flammableEffectInstance != null && (damageSource.is(NMLTags.IGNITES_FLAMMABLE) || (damageSource.getWeaponItem() != null && damageSource.getWeaponItem().is(NMLTags.FIRESTARTERS)))) {
             if (damageSource.getEntity() instanceof ServerPlayer serverPlayer) NMLCriteriaTriggers.IGNITE_FLAMMABLE_ENTITY.get().trigger(serverPlayer, livingEntity, damageSource);
 
-            livingEntity.hurt(NMLDamageTypes.getSimpleDamageSource(level, DamageTypes.ON_FIRE), 6 + amplifier*4);
+            livingEntity.hurt(NMLDamageTypes.getSimpleDamageSource(level, NMLDamageTypes.COMBUST), 6 + amplifier*4);
             livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + flammableEffectInstance.getDuration());
             livingEntity.removeEffect(NMLEffects.FLAMMABLE);
 

@@ -342,6 +342,8 @@
   "death.attack.nomansland.spike_poke.player": "%1$s got stuck in a spike trap while fighting %2$s",
   "death.attack.nomansland.spike_skewer": "%1$s was skewered by a spike trap",
   "death.attack.nomansland.spike_skewer.player": "%1$s was skewered by a spike trap while fighting %2$s",
+  "death.attack.nomansland.combust": "%1$s faced immolation",
+  "death.attack.nomansland.combust.player": "%1$s was immolated by %2$s",
   "entity.nomansland.explosive": "Explosive",
   "entity.nomansland.firebomb": "Firebomb",
   "effect.nomansland.flammable": "Flammable",
