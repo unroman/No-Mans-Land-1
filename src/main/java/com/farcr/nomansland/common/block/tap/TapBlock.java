@@ -1,18 +1,14 @@
-package com.farcr.nomansland.common.block;
+package com.farcr.nomansland.common.block.tap;
 
-import com.farcr.nomansland.NMLConfig;
-import com.farcr.nomansland.common.block.cauldrons.NMLCauldronBlock;
 import com.farcr.nomansland.common.blockentity.TapBlockEntity;
-import com.farcr.nomansland.common.registry.NMLParticleTypes;
-import com.farcr.nomansland.common.registry.NMLTags;
+import com.farcr.nomansland.common.registry.NMLRegistries;
 import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
-import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -29,15 +25,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
-import static net.minecraft.world.level.block.BeehiveBlock.HONEY_LEVEL;
+import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 
 public class TapBlock extends BaseEntityBlock {
     public static final MapCodec<TapBlock> CODEC = simpleCodec(TapBlock::new);
@@ -119,6 +117,7 @@ public class TapBlock extends BaseEntityBlock {
                 break;
             }
         }
+
         if (level.isClientSide) level.addParticle(particleType, x, y, z, 0, 0,0);
         else ((ServerLevel) (level)).sendParticles(particleType, x, y, z, 1, 0, 0,0,0);
     }
@@ -180,48 +179,54 @@ public class TapBlock extends BaseEntityBlock {
         BlockState cauldronState = level.getBlockState(cauldronPos);
 
         BlockState stateBehind = getBlockStateBehind(level, pos, state);
+        List<Holder.Reference<TapInteraction>> allTapInteractions = level.registryAccess().registryOrThrow(NMLRegistries.TAP_INTERACTION_KEY).holders().filter(tapInteractionReference -> tapInteractionReference.value().particleType().isPresent()).toList();
 
-        if (stateBehind.is(NMLTags.CONIFEROUS_LOGS)) tryResin(cauldronState, cauldronPos, level, random);
-        if (stateBehind.is(NMLBlocks.MAPLE_LOG)) tryMaple(cauldronState, cauldronPos, level, random);
-    }
-
-    public static void tryResin(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
-            if (cauldronState.getBlock() instanceof NMLCauldronBlock cauldron && cauldron.getCauldronBlock() == NMLBlocks.RESIN_CAULDRON
-                    && !cauldron.isFull(cauldronState) && random.nextFloat() < 0.03F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
-                cauldron.fillUp(cauldronState, level, cauldronPos);
-            } else if (cauldronState.getBlock() instanceof CauldronBlock) {
-                level.setBlockAndUpdate(cauldronPos, NMLBlocks.RESIN_CAULDRON.get().defaultBlockState());
-                level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));
+        for (Holder.Reference<TapInteraction> tapInteractionReference : allTapInteractions) {
+            boolean hasBlock = false;
+            for (BlockStateProvider blockStateProvider : tapInteractionReference.value().sources()) {
+                if (stateBehind == blockStateProvider.getState(level.random, pos.relative(state.getValue(FACING).getOpposite()))) {
+                    hasBlock = true;
+                    break;
+                }
             }
+
+            if (hasBlock && random.nextFloat() < 0.03F * tapInteractionReference.value().rate()) {
+                tryFill(cauldronState, cauldronPos, level, random, tapInteractionReference.value());
+                break;
+            }
+        }
     }
 
-    public static void tryMaple(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random) {
-        if (cauldronState.getBlock() instanceof NMLCauldronBlock cauldron && cauldron.getCauldronBlock() == NMLBlocks.MAPLE_SYRUP_CAULDRON &&
-                !cauldron.isFull(cauldronState) && random.nextFloat() < 0.03F * NMLConfig.FILLING_SPEED_MULTIPLIER.get()) {
-            cauldron.fillUp(cauldronState, level, cauldronPos);
-        } else if (cauldronState.getBlock() instanceof CauldronBlock) {
-            level.setBlockAndUpdate(cauldronPos, NMLBlocks.MAPLE_SYRUP_CAULDRON.get().defaultBlockState());
-            level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));
+    public static void tryFill(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random, TapInteraction tapInteraction) {
+        if (cauldronState.getBlock() == tapInteraction.cauldron() && cauldronState.getBlock() instanceof LayeredCauldronBlock cauldron && !cauldron.isFull(cauldronState)) {
+            BlockState newState = cauldronState.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1);
+            level.setBlockAndUpdate(cauldronPos, newState);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(newState));
+        } else if (cauldronState.is(Blocks.CAULDRON)) {
+            level.setBlockAndUpdate(cauldronPos, tapInteraction.cauldron().defaultBlockState());
+            level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(tapInteraction.cauldron().defaultBlockState()));
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+
+        List<Holder.Reference<TapInteraction>> allTapInteractions = level.registryAccess().registryOrThrow(NMLRegistries.TAP_INTERACTION_KEY).holders().filter(tapInteractionReference -> tapInteractionReference.value().particleType().isPresent()).toList();
         BlockState stateBehind = getBlockStateBehind(level, pos, state);
-        if (stateBehind.is(NMLTags.CONIFEROUS_LOGS)) {
-            if (random.nextFloat() < 0.05F) {
-                spawnDrippingParticles(level, pos, state, NMLParticleTypes.RESIN_DROPLET.get());
+
+        for (Holder.Reference<TapInteraction> tapInteractionReference : allTapInteractions) {
+            boolean hasBlock = false;
+            for (BlockStateProvider blockStateProvider : tapInteractionReference.value().sources()) {
+                if (stateBehind == blockStateProvider.getState(level.random, pos.relative(state.getValue(FACING).getOpposite()))) {
+                    hasBlock = true;
+                    break;
+                }
             }
-        }
-        if (stateBehind.hasProperty(HONEY_LEVEL) && stateBehind.getValue(HONEY_LEVEL) > 0) {
-            if (random.nextFloat() < (0.05F * stateBehind.getValue(HONEY_LEVEL))) {
-                spawnDrippingParticles(level, pos, state, ParticleTypes.FALLING_HONEY);
-            }
-        }
-        if (stateBehind.is(NMLBlocks.MAPLE_LOG)) {
-            if (random.nextFloat() < 0.05F) {
-                spawnDrippingParticles(level, pos, state, NMLParticleTypes.MAPLE_SYRUP_DROPLET.get());
+
+            if (hasBlock && random.nextFloat() < 0.05F) {
+                spawnDrippingParticles(level, pos, state, (SimpleParticleType) tapInteractionReference.value().particleType().get());
+                break;
             }
         }
     }

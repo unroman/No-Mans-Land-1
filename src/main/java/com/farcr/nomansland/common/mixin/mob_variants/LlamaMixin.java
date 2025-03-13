@@ -4,7 +4,6 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.mob_variant.LlamaVariant;
 import com.farcr.nomansland.common.entity.mob_variant.group.VariantGroupData;
 import com.farcr.nomansland.common.mixin.MobMixin;
-import com.farcr.nomansland.common.mixinduck.FoxDuck;
 import com.farcr.nomansland.common.mixinduck.LlamaDuck;
 import com.farcr.nomansland.common.registry.entities.NMLDataSerializers;
 import com.farcr.nomansland.common.registry.entities.NMLMobVariants;

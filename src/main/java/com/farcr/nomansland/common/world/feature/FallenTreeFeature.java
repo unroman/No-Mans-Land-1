@@ -29,7 +29,7 @@ public class FallenTreeFeature extends Feature<FallenTreeFeatureConfiguration> {
         RandomSource random = context.random();
         FallenTreeFeatureConfiguration config = context.config();
 
-        // Scan for nearby log blocks
+        // Scan for nearby sources blocks
         Map<Block, Integer> logScan = new HashMap<>();
         BlockPos.MutableBlockPos posMutable = origin.mutable();
         for (int x = -10; x <= 10; x++) {
@@ -51,7 +51,7 @@ public class FallenTreeFeature extends Feature<FallenTreeFeatureConfiguration> {
         if (logScan.isEmpty())
             return false;
 
-        // Figure out what log block to use
+        // Figure out what sources block to use
         int totalBlockCount = logScan.values().stream().mapToInt(i -> i).sum();
         Block blockChoice = null;
         for (Map.Entry<Block, Integer> i : logScan.entrySet()) {

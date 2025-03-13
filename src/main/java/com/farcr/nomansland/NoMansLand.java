@@ -1,5 +1,6 @@
 package com.farcr.nomansland;
 
+import com.farcr.nomansland.common.block.tap.TapInteraction;
 import com.farcr.nomansland.common.entity.mob_variant.*;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerAntlersVariant;
 import com.farcr.nomansland.common.entity.mob_variant.deer.DeerPatternVariant;
@@ -94,6 +95,8 @@ public class NoMansLand {
     }
 
     private void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
+        event.dataPackRegistry(NMLRegistries.TAP_INTERACTION_KEY, TapInteraction.DIRECT_CODEC, TapInteraction.DIRECT_CODEC);
+
         event.dataPackRegistry(NMLMobVariants.PIG_VARIANT_KEY, PigVariant.DIRECT_CODEC, PigVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.PIG_OVERLAY_VARIANT_KEY, PigOverlayVariant.DIRECT_CODEC, PigOverlayVariant.DIRECT_CODEC);
         event.dataPackRegistry(NMLMobVariants.CHICKEN_VARIANT_KEY, ChickenVariant.DIRECT_CODEC, ChickenVariant.DIRECT_CODEC);

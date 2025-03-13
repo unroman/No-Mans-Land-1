@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-import static com.farcr.nomansland.common.block.TapBlock.*;
+import static com.farcr.nomansland.common.block.tap.TapBlock.*;
 import static net.minecraft.world.level.block.BeehiveBlock.HONEY_LEVEL;
 import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 import static net.minecraft.world.level.block.StairBlock.WATERLOGGED;

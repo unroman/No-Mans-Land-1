@@ -1,0 +1,25 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:spruce_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "nomansland:pine_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  ],
+  "cauldron": "nomansland:resin_cauldron",
+  "rate": 1,
+  "particle": "nomansland:resin_droplet"
+}

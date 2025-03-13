@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "nomansland:maple_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  ],
+  "cauldron": "nomansland:maple_syrup_cauldron",
+  "rate": 1,
+  "particle": "nomansland:maple_syrup_droplet"
+}
