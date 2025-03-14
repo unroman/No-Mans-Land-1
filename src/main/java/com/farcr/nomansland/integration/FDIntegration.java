@@ -58,7 +58,7 @@ public class FDIntegration {
             () -> new BlockItem(PEAR_COBBLER.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> PEAR_JUICE = registerItem("pear_juice",
-            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PEAR)));
+            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PEAR_JUICE)));
 
     public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         event.modify(

@@ -66,9 +66,4 @@ public class MapleSyrupBottleItem extends Item {
     public SoundEvent getEatingSound() {
         return SoundEvents.HONEY_DRINK;
     }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        return ItemUtils.startUsingInstantly(level, player, hand);
-    }
 }
