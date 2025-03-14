@@ -5,6 +5,7 @@
       "modid": "blockbox"
     }
   ],
+  "replace": false,
   "values": [
     "nomansland:maple_seat",
     "nomansland:pine_seat",

@@ -5,6 +5,7 @@
       "modid": "farmersdelight"
     }
   ],
+  "replace": false,
   "values": [
     "nomansland:maple_cabinet",
     "nomansland:pine_cabinet",
