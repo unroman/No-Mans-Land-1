@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -13,14 +13,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "enchantments": [
-                      {
-                        "enchantments": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
+                    "predicates": {
+                      "enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
                         }
-                      }
-                    ]
+                      ]
+                    }
                   }
                 }
               ],
@@ -37,10 +39,10 @@
                         0.1,
                         0.14285715,
                         0.25,
-                        1.0
+                        1
                       ],
                       "condition": "minecraft:table_bonus",
-                      "enchantments": "minecraft:fortune"
+                      "enchantment": "minecraft:fortune"
                     }
                   ],
                   "name": "minecraft:flint"
@@ -59,7 +61,7 @@
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "nomansland:blocks/gravel_path"

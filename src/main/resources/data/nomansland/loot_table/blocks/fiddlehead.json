@@ -28,7 +28,7 @@
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",
-                  "enchantments": "minecraft:fortune",
+                  "enchantment": "minecraft:fortune",
                   "formula": "minecraft:uniform_bonus_count",
                   "parameters": {
                     "bonusMultiplier": 2
@@ -42,7 +42,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "minecraft:hoes"
+                    "items": "#minecraft:hoes"
                   }
                 },
                 {

@@ -28,7 +28,7 @@
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",
-                  "enchantments": "minecraft:fortune",
+                  "enchantment": "minecraft:fortune",
                   "formula": "minecraft:uniform_bonus_count",
                   "parameters": {
                     "bonusMultiplier": 2
@@ -61,17 +61,19 @@
                     "items": "#minecraft:shovels"
                   }
                 },
-              {
-                "condition": "minecraft:block_state_property",
-                "block": "nomansland:frosted_grass",
-                "properties": {"snowlogged": "true"}
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-],
-"random_sequence": "minecraft:blocks/grass"
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "nomansland:frosted_grass",
+                  "properties": {
+                    "snowlogged": "true"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "nomansland:blocks/frosted_grass"
 }

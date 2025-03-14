@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -44,11 +44,11 @@
                   "functions": [
                     {
                       "add": false,
-                      "count": 4.0,
+                      "count": 4,
                       "function": "minecraft:set_count"
                     },
                     {
-                      "enchantments": "minecraft:fortune",
+                      "enchantment": "minecraft:fortune",
                       "formula": "minecraft:ore_drops",
                       "function": "minecraft:apply_bonus"
                     }
@@ -60,7 +60,7 @@
                   "functions": [
                     {
                       "add": false,
-                      "count": 2.0,
+                      "count": 2,
                       "function": "minecraft:set_count"
                     },
                     {
@@ -74,7 +74,7 @@
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "nomansland:blocks/quartzite_cluster"

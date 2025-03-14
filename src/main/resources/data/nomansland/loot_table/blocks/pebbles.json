@@ -40,10 +40,10 @@
                         0.5,
                         0.65,
                         0.8,
-                        1.0
+                        1
                       ],
                       "condition": "minecraft:table_bonus",
-                      "enchantments": "minecraft:fortune"
+                      "enchantment": "minecraft:fortune"
                     }
                   ],
                   "name": "minecraft:flint"

@@ -5,6 +5,7 @@
       "modid": "blockbox"
     }
   ],
+  "replace": false,
   "values": [
     "nomansland:spiked_maple_palisade",
     "nomansland:spiked_pine_palisade",
