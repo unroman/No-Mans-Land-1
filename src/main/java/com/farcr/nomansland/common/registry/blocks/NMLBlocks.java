@@ -47,27 +47,27 @@ public class NMLBlocks {
     public static final DeferredBlock<SconceTorchBlock> SCONCE_TORCH = BLOCKS.register("sconce_torch",
             () -> new SconceTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.TORCH).sound(SoundType.LANTERN)));
     public static final DeferredBlock<ExtinguishedSconceTorchBlock> EXTINGUISHED_SCONCE_TORCH = BLOCKS.register("extinguished_sconce_torch",
-            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY), NMLBlocks.SCONCE_TORCH.get()));
+            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_TORCH.get()));
     public static final DeferredBlock<SconceWallTorchBlock> SCONCE_WALL_TORCH = BLOCKS.register("sconce_wall_torch",
-            () -> new SconceWallTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.WALL_TORCH).sound(SoundType.LANTERN)));
+            () -> new SconceWallTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_TORCH)));
     public static final DeferredBlock<ExtinguishedSconceWallTorchBlock> EXTINGUISHED_SCONCE_WALL_TORCH = BLOCKS.register("extinguished_sconce_wall_torch",
-            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY), NMLBlocks.SCONCE_WALL_TORCH.get(), ParticleTypes.FLAME));
+            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_WALL_TORCH.get(), ParticleTypes.FLAME));
     public static final DeferredBlock<SconceTorchBlock> SCONCE_SOUL_TORCH = BLOCKS.register("sconce_soul_torch",
             () -> new SconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_TORCH).sound(SoundType.LANTERN)));
     public static final DeferredBlock<ExtinguishedSconceTorchBlock> EXTINGUISHED_SCONCE_SOUL_TORCH = BLOCKS.register("extinguished_sconce_soul_torch",
-            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY), NMLBlocks.SCONCE_SOUL_TORCH.get()));
+            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_TORCH.get()));
     public static final DeferredBlock<SconceWallTorchBlock> SCONCE_SOUL_WALL_TORCH = BLOCKS.register("sconce_soul_wall_torch",
-            () -> new SconceWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_WALL_TORCH).sound(SoundType.LANTERN)));
+            () -> new SconceWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_SOUL_TORCH)));
     public static final DeferredBlock<ExtinguishedSconceWallTorchBlock> EXTINGUISHED_SCONCE_SOUL_WALL_TORCH = BLOCKS.register("extinguished_sconce_soul_wall_torch",
-            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), ParticleTypes.SOUL_FIRE_FLAME));
+            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), ParticleTypes.SOUL_FIRE_FLAME));
     public static final DeferredBlock<ExtinguishedTorchBlock> EXTINGUISHED_TORCH = BLOCKS.register("extinguished_torch",
-            () -> new ExtinguishedTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), Blocks.TORCH));
+            () -> new ExtinguishedTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.TORCH));
     public static final DeferredBlock<ExtinguishedWallTorchBlock> EXTINGUISHED_WALL_TORCH = BLOCKS.register("extinguished_wall_torch",
-            () -> new ExtinguishedWallTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), Blocks.WALL_TORCH));
+            () -> new ExtinguishedWallTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.WALL_TORCH));
     public static final DeferredBlock<ExtinguishedTorchBlock> EXTINGUISHED_SOUL_TORCH = BLOCKS.register("extinguished_soul_torch",
-            () -> new ExtinguishedTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), Blocks.SOUL_TORCH));
+            () -> new ExtinguishedTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.SOUL_TORCH));
     public static final DeferredBlock<ExtinguishedWallTorchBlock> EXTINGUISHED_SOUL_WALL_TORCH = BLOCKS.register("extinguished_soul_wall_torch",
-            () -> new ExtinguishedWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), Blocks.SOUL_WALL_TORCH));
+            () -> new ExtinguishedWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.SOUL_WALL_TORCH));
 
     public static final DeferredBlock<WoodenScaffoldingBlock> WOODEN_SCAFFOLDING = BLOCKS.register("wooden_scaffolding",
             () -> new WoodenScaffoldingBlock(Block.Properties.ofFullCopy(Blocks.SCAFFOLDING).noCollission().sound(SoundType.CHERRY_WOOD)));
@@ -218,7 +218,7 @@ public class NMLBlocks {
     public static final DeferredBlock<AmethystBlock> QUARTZITE = registerBlock("quartzite",
             () -> new AmethystBlock(of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.3F).sound(SoundType.NETHER_GOLD_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<BuddingQuartziteBlock> BUDDING_QUARTZITE = registerBlock("budding_quartzite",
-            () -> new BuddingQuartziteBlock(of().mapColor(MapColor.TERRACOTTA_WHITE).randomTicks().strength(1.3F).sound(SoundType.NETHER_GOLD_ORE).requiresCorrectToolForDrops().pushReaction(PushReaction.DESTROY)));
+            () -> new BuddingQuartziteBlock(of().mapColor(MapColor.TERRACOTTA_WHITE).randomTicks().strength(1.3F).sound(SoundType.NETHER_GOLD_ORE).pushReaction(PushReaction.DESTROY).noLootTable()));
     public static final DeferredBlock<AmethystClusterBlock> QUARTZITE_CLUSTER = registerBlock("quartzite_cluster",
             () -> new AmethystClusterBlock(7, 3, of().mapColor(MapColor.TERRACOTTA_WHITE).forceSolidOn().noOcclusion().randomTicks().sound(SoundType.NETHER_GOLD_ORE).strength(1.3F).lightLevel((p_152632_) -> 5).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<AmethystClusterBlock> SMALL_QUARTZITE_BUD = registerBlock("small_quartzite_bud",
@@ -394,11 +394,11 @@ public class NMLBlocks {
     public static final DeferredBlock<StandingSignBlock> PINE_SIGN = BLOCKS.register("pine_sign",
             () -> new StandingSignBlock(NMLWoodTypes.PINE, ofFullCopy(Blocks.OAK_SIGN)));
     public static final DeferredBlock<WallSignBlock> PINE_WALL_SIGN = BLOCKS.register("pine_wall_sign",
-            () -> new WallSignBlock(NMLWoodTypes.PINE, ofFullCopy(Blocks.OAK_WALL_SIGN)));
+            () -> new WallSignBlock(NMLWoodTypes.PINE, ofFullCopy(Blocks.OAK_WALL_SIGN).lootFrom(PINE_SIGN)));
     public static final DeferredBlock<CeilingHangingSignBlock> PINE_HANGING_SIGN = BLOCKS.register("pine_hanging_sign",
             () -> new CeilingHangingSignBlock(NMLWoodTypes.PINE, ofFullCopy(Blocks.OAK_HANGING_SIGN)));
     public static final DeferredBlock<WallHangingSignBlock> PINE_HANGING_WALL_SIGN = BLOCKS.register("pine_wall_hanging_sign",
-            () -> new WallHangingSignBlock(NMLWoodTypes.PINE, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+            () -> new WallHangingSignBlock(NMLWoodTypes.PINE, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).lootFrom(PINE_HANGING_SIGN)));
 
     //Maple
     public static final DeferredBlock<Block> MAPLE_PLANKS = registerBlock("maple_planks",
@@ -449,11 +449,11 @@ public class NMLBlocks {
     public static final DeferredBlock<StandingSignBlock> MAPLE_SIGN = BLOCKS.register("maple_sign",
             () -> new StandingSignBlock(NMLWoodTypes.MAPLE, ofFullCopy(Blocks.OAK_SIGN)));
     public static final DeferredBlock<WallSignBlock> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign",
-            () -> new WallSignBlock(NMLWoodTypes.MAPLE, ofFullCopy(Blocks.OAK_WALL_SIGN)));
+            () -> new WallSignBlock(NMLWoodTypes.MAPLE, ofFullCopy(Blocks.OAK_WALL_SIGN).lootFrom(MAPLE_SIGN)));
     public static final DeferredBlock<CeilingHangingSignBlock> MAPLE_HANGING_SIGN = BLOCKS.register("maple_hanging_sign",
             () -> new CeilingHangingSignBlock(NMLWoodTypes.MAPLE, ofFullCopy(Blocks.OAK_HANGING_SIGN)));
     public static final DeferredBlock<WallHangingSignBlock> MAPLE_HANGING_WALL_SIGN = BLOCKS.register("maple_wall_hanging_sign",
-            () -> new WallHangingSignBlock(NMLWoodTypes.MAPLE, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+            () -> new WallHangingSignBlock(NMLWoodTypes.MAPLE, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).lootFrom(MAPLE_HANGING_SIGN)));
 
     //Walnut
     public static final DeferredBlock<Block> WALNUT_PLANKS = registerBlock("walnut_planks",
@@ -496,11 +496,11 @@ public class NMLBlocks {
     public static final DeferredBlock<StandingSignBlock> WALNUT_SIGN = BLOCKS.register("walnut_sign",
             () -> new StandingSignBlock(NMLWoodTypes.WALNUT, ofFullCopy(Blocks.OAK_SIGN)));
     public static final DeferredBlock<WallSignBlock> WALNUT_WALL_SIGN = BLOCKS.register("walnut_wall_sign",
-            () -> new WallSignBlock(NMLWoodTypes.WALNUT, ofFullCopy(Blocks.OAK_WALL_SIGN)));
+            () -> new WallSignBlock(NMLWoodTypes.WALNUT, ofFullCopy(Blocks.OAK_WALL_SIGN).lootFrom(WALNUT_SIGN)));
     public static final DeferredBlock<CeilingHangingSignBlock> WALNUT_HANGING_SIGN = BLOCKS.register("walnut_hanging_sign",
             () -> new CeilingHangingSignBlock(NMLWoodTypes.WALNUT, ofFullCopy(Blocks.OAK_HANGING_SIGN)));
     public static final DeferredBlock<WallHangingSignBlock> WALNUT_HANGING_WALL_SIGN = BLOCKS.register("walnut_wall_hanging_sign",
-            () -> new WallHangingSignBlock(NMLWoodTypes.WALNUT, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+            () -> new WallHangingSignBlock(NMLWoodTypes.WALNUT, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).lootFrom(WALNUT_HANGING_SIGN)));
 
 //Willow
     public static final DeferredBlock<Block> WILLOW_PLANKS = registerBlock("willow_planks",
@@ -543,11 +543,11 @@ public class NMLBlocks {
     public static final DeferredBlock<StandingSignBlock> WILLOW_SIGN = BLOCKS.register("willow_sign",
             () -> new StandingSignBlock(NMLWoodTypes.WILLOW, ofFullCopy(Blocks.OAK_SIGN)));
     public static final DeferredBlock<WallSignBlock> WILLOW_WALL_SIGN = BLOCKS.register("willow_wall_sign",
-            () -> new WallSignBlock(NMLWoodTypes.WILLOW, ofFullCopy(Blocks.OAK_WALL_SIGN)));
+            () -> new WallSignBlock(NMLWoodTypes.WILLOW, ofFullCopy(Blocks.OAK_WALL_SIGN).lootFrom(WILLOW_SIGN)));
     public static final DeferredBlock<CeilingHangingSignBlock> WILLOW_HANGING_SIGN = BLOCKS.register("willow_hanging_sign",
             () -> new CeilingHangingSignBlock(NMLWoodTypes.WILLOW, ofFullCopy(Blocks.OAK_HANGING_SIGN)));
     public static final DeferredBlock<WallHangingSignBlock> WILLOW_HANGING_WALL_SIGN = BLOCKS.register("willow_wall_hanging_sign",
-            () -> new WallHangingSignBlock(NMLWoodTypes.WILLOW, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+            () -> new WallHangingSignBlock(NMLWoodTypes.WILLOW, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).lootFrom(WILLOW_HANGING_SIGN)));
 
     public static final DeferredBlock<TapBlock> TAP = registerBlock("tap",
             () -> new TapBlock(of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().noOcclusion().strength(2.0F).randomTicks().pushReaction(PushReaction.DESTROY)));

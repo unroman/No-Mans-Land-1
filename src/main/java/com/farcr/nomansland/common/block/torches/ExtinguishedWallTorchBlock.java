@@ -75,6 +75,11 @@ public class ExtinguishedWallTorchBlock extends WallTorchBlock {
 
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return litBlock.getCloneItemStack(state, target, level, pos, player);
+        return litBlock.asItem().getDefaultInstance();
+    }
+
+    @Override
+    public String getDescriptionId() {
+        return litBlock.getDescriptionId();
     }
 }
