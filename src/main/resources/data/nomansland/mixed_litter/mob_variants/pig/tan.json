@@ -1,0 +1,5 @@
+{
+  "type": "mixed_litter:pig",
+  "texture": "nomansland:entity/mob_variants/pig/pig_tan",
+  "baby_texture": "nomansland:entity/mob_variants/pig/pig_tan_baby"
+}

@@ -1,13 +1,16 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
+import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,39 +33,43 @@ public class ResinOilCauldron extends NMLCauldronBlock {
 
     @Override
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity.isOnFire() && this.isEntityInsideContent(state, pos, entity) && entity.getY() < pos.getY() + 0.6) {
-            entity.setRemainingFireTicks(entity.getRemainingFireTicks()+50*state.getValue(LEVEL));
-            level.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
-            for (int i = 0; i <= state.getValue(LEVEL)*50; i++) {
-                level.addParticle(ParticleTypes.FLAME,
-                        entity.getX() + level.random.nextInt(-10, 10) * 0.005,
-                        entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i*0.2,
-                        entity.getZ() + level.random.nextInt(-10, 10) * 0.01,
-                        level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL)*0.2, level.random.nextInt(-10, 10) * 0.005);
-                level.addParticle(ParticleTypes.SMALL_FLAME,
-                        entity.getX() + level.random.nextInt(-10, 10) * 0.005,
-                        entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i*0.2,
-                        entity.getZ() + level.random.nextInt(-10, 10) * 0.005,
-                        level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL)*0.2, level.random.nextInt(-10, 10) * 0.005);
-                level.addParticle(ParticleTypes.SMOKE,
-                        entity.getX() + level.random.nextInt(-10, 10) * 0.005,
-                        entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i*0.2,
-                        entity.getZ() + level.random.nextInt(-10, 10) * 0.005,
-                        level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL)*0.2, level.random.nextInt(-10, 10) * 0.005);
-                level.addParticle(ParticleTypes.LARGE_SMOKE,
-                        entity.getX() + level.random.nextInt(-10, 10) * 0.005,
-                        entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i*0.2,
-                        entity.getZ() + level.random.nextInt(-10, 10) * 0.005,
-                        level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL)*0.2, level.random.nextInt(-10, 10) * 0.005);
+        if (entity instanceof LivingEntity livingEntity) {
+            livingEntity.addEffect(new MobEffectInstance(NMLEffects.FLAMMABLE, 100));
+
+            if (entity.isOnFire() && this.isEntityInsideContent(state, pos, entity) && entity.getY() < pos.getY() + 0.6) {
+                entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 50 * state.getValue(LEVEL));
+                level.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
+                for (int i = 0; i <= state.getValue(LEVEL) * 50; i++) {
+                    level.addParticle(ParticleTypes.FLAME,
+                            entity.getX() + level.random.nextInt(-10, 10) * 0.005,
+                            entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i * 0.2,
+                            entity.getZ() + level.random.nextInt(-10, 10) * 0.01,
+                            level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL) * 0.2, level.random.nextInt(-10, 10) * 0.005);
+                    level.addParticle(ParticleTypes.SMALL_FLAME,
+                            entity.getX() + level.random.nextInt(-10, 10) * 0.005,
+                            entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i * 0.2,
+                            entity.getZ() + level.random.nextInt(-10, 10) * 0.005,
+                            level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL) * 0.2, level.random.nextInt(-10, 10) * 0.005);
+                    level.addParticle(ParticleTypes.SMOKE,
+                            entity.getX() + level.random.nextInt(-10, 10) * 0.005,
+                            entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i * 0.2,
+                            entity.getZ() + level.random.nextInt(-10, 10) * 0.005,
+                            level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL) * 0.2, level.random.nextInt(-10, 10) * 0.005);
+                    level.addParticle(ParticleTypes.LARGE_SMOKE,
+                            entity.getX() + level.random.nextInt(-10, 10) * 0.005,
+                            entity.getY() + 0.7 + level.random.nextInt(-10, 10) * 0.05 - i * 0.2,
+                            entity.getZ() + level.random.nextInt(-10, 10) * 0.005,
+                            level.random.nextInt(-10, 10) * 0.005, state.getValue(LEVEL) * 0.2, level.random.nextInt(-10, 10) * 0.005);
+                }
+
+                entity.hurt(entity.damageSources().inFire(), state.getValue(LEVEL) * 3);
+                level.playSound(entity, pos, SoundEvents.GENERIC_BURN, SoundSource.BLOCKS, state.getValue(LEVEL) * 0.5F, 0.5F);
+                level.playSound(entity, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, state.getValue(LEVEL) * 0.5F, 0.5F);
+
+                // burn blocks above it
+
+                // place a big fire particle on each side of the cauldron (size depending on how many layers the cauldron had)
             }
-
-            entity.hurt(entity.damageSources().inFire(), state.getValue(LEVEL)*3);
-            level.playSound(entity, pos, SoundEvents.GENERIC_BURN, SoundSource.BLOCKS, state.getValue(LEVEL)*0.5F, 0.5F);
-            level.playSound(entity, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, state.getValue(LEVEL)*0.5F, 0.5F);
-
-            // burn blocks above it
-
-            // place a big fire particle on each side of the cauldron (size depending on how many layers the cauldron had)
         }
     }
 }

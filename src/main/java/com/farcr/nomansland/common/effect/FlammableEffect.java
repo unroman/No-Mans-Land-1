@@ -11,7 +11,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,6 +21,8 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.entity.EntityTypeTest;
+import net.minecraft.world.phys.AABB;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -66,8 +67,14 @@ public class FlammableEffect extends MobEffect {
             FireBlock delegate = (FireBlock) Blocks.FIRE;
 
             if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
-                var positions = BlockPos.betweenClosedStream(livingEntity.getBoundingBox().inflate(1.5, 0, 1.5))
+                AABB boundingBox = livingEntity.getBoundingBox().inflate(1.5, 0, 1.5);
+                var positions = BlockPos.betweenClosedStream(boundingBox)
                         .map(BlockPos::immutable).distinct().collect(Collectors.toCollection(ArrayList::new));
+
+                level.getEntities(EntityTypeTest.forClass(LivingEntity.class), boundingBox, entity -> entity.hasEffect(NMLEffects.FLAMMABLE)).forEach(entity ->{
+                    entity.hurt(entity.damageSources().onFire(), 2);
+                    entity.setRemainingFireTicks(100);
+                });
 
                 for (BlockPos pos : positions) {
                     if (level.random.nextFloat() < 0.8) continue;

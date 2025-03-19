@@ -190,7 +190,7 @@ public class TapBlock extends BaseEntityBlock {
                 }
             }
 
-            if (hasBlock && random.nextFloat() < 0.03F * tapInteractionReference.value().rate()) {
+            if (hasBlock && random.nextFloat() < 0.05F * tapInteractionReference.value().rate()) {
                 tryFill(cauldronState, cauldronPos, level, random, tapInteractionReference.value());
                 break;
             }

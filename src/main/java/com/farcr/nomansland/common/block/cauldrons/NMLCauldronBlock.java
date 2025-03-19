@@ -107,7 +107,7 @@ public class NMLCauldronBlock extends LayeredCauldronBlock {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (containedItem != null) {
-            if (player.isHolding(containedItem.value()) && (player.isCreative() || player.getItemInHand(hand).getCount() >= 3) && ((AbstractCauldronBlock) state.getBlock()).isFull(state)) {
+            if (player.isHolding(containedItem.value()) && (player.isCreative() || player.getItemInHand(hand).getCount() >= 3) && !((AbstractCauldronBlock) state.getBlock()).isFull(state)) {
                 if (!player.isCreative())
                     player.setItemInHand(hand, new ItemStack(player.getItemInHand(hand).getItemHolder(), player.getItemInHand(hand).getCount() - 3));
                 player.awardStat(Stats.USE_CAULDRON);

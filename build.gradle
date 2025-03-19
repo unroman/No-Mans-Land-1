@@ -84,6 +84,7 @@ repositories {
     maven { url "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
     maven { url 'https://maven.terraformersmc.com/' }
     maven { url "https://cursemaven.com" }
+    flatDir { dirs 'libs' }
 }
 
 dependencies {
@@ -92,6 +93,7 @@ dependencies {
 //    }
 
     implementation "com.terraformersmc:biolith-neoforge:$bt_version"
+    implementation "dev.tazer:mixed_litter:$ml_version"
     jarJar(implementation("com.moulberry:mixinconstraints:1.0.7") {
                 exclude group: "org.slf4j",
                         module: "slf4j-api"
@@ -131,6 +133,7 @@ tasks.withType(ProcessResources).configureEach {
             mod_authors             : mod_authors,
             mod_description         : mod_description,
             bt_version_range        : bt_version_range,
+            ml_version_range        : ml_version_range,
     ]
     inputs.properties replaceProperties
 

@@ -1,6 +1,6 @@
 package com.farcr.nomansland.client.model;
 
-import com.farcr.nomansland.common.entity.BillhookBass;
+import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

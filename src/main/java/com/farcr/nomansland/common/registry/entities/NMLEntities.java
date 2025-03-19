@@ -1,9 +1,9 @@
 package com.farcr.nomansland.common.registry.entities;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.BillhookBass;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.entity.ChestBoatEntity;
+import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;

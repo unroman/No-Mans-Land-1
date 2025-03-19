@@ -20,6 +20,7 @@ config="${mod_id}.mixins.json"
 
 #[[accessTransformers]]
 #file="META-INF/accesstransformer.cfg"
+
 [[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"
@@ -35,19 +36,27 @@ config="${mod_id}.mixins.json"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
-    modId="terrablender"
-    type="discouraged"
-    reason="Terrablender will break some of our biomes especially the Caves biome"
-    versionRange=""
-    ordering="NONE"
-    side="BOTH"
-
-[[dependencies.${mod_id}]]
     modId="biolith"
     type="required"
     reason="Required for world generation"
     versionRange="${bt_version_range}"
     ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="mixed_litter"
+    type="required"
+    reason="Required for mob variants"
+    versionRange="${ml_version_range}"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="terrablender"
+    type="discouraged"
+    reason="Terrablender will break some of our biomes especially the Caves biome"
+    versionRange=""
+    ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]

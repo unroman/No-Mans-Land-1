@@ -19,7 +19,7 @@ import java.util.Optional;
 public record TapInteraction(List<BlockStateProvider> sources, Block cauldron, float rate, Optional<ParticleType<?>> particleType) {
 
     public static final Codec<TapInteraction> DIRECT_CODEC = RecordCodecBuilder.create((record) -> record.group(
-                    Codec.list(BlockStateProvider.CODEC).fieldOf("sources").forGetter(TapInteraction::sources),
+                    BlockStateProvider.CODEC.listOf().fieldOf("sources").forGetter(TapInteraction::sources),
                     BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cauldron").forGetter(TapInteraction::cauldron),
                     Codec.floatRange(0, 10F).fieldOf("rate").forGetter(TapInteraction::rate),
                     BuiltInRegistries.PARTICLE_TYPE.byNameCodec().optionalFieldOf("particle").forGetter(TapInteraction::particleType))

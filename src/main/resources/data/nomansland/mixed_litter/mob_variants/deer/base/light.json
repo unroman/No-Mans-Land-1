@@ -1,0 +1,5 @@
+{
+  "type": "nomansland:deer",
+  "texture": "nomansland:entity/deer/deer_light_brown",
+  "baby_texture": "nomansland:entity/deer/deer_baby"
+}
