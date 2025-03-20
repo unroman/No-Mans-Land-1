@@ -8,6 +8,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,7 +36,7 @@ public class LogBlock extends RotatedPillarBlock {
 
     @Override
     public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
-        if (context.getItemInHand().getItem() instanceof AxeItem) {
+        if (itemAbility.equals(ItemAbilities.AXE_STRIP)) {
             if (state.is(NMLBlocks.PINE_LOG.get())) {
                 return NMLBlocks.STRIPPED_PINE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
@@ -58,6 +59,14 @@ public class LogBlock extends RotatedPillarBlock {
 
             if (state.is(NMLBlocks.WALNUT_WOOD.get())) {
                 return NMLBlocks.STRIPPED_WALNUT_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+            }
+
+            if (state.is(NMLBlocks.WILLOW_LOG.get())) {
+                return NMLBlocks.STRIPPED_WILLOW_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+            }
+
+            if (state.is(NMLBlocks.WILLOW_WOOD.get())) {
+                return NMLBlocks.STRIPPED_WILLOW_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
         }
 
