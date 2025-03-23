@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nomansland:dross_tiles"
+  },
+  "result": {
+    "id": "nomansland:dross_tile_stairs"
+  }
+}

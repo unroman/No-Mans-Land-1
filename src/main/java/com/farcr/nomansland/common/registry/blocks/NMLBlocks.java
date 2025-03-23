@@ -231,6 +231,8 @@ public class NMLBlocks {
             () -> new Block(of().mapColor(MapColor.TERRACOTTA_GRAY).sound(SoundType.ROOTED_DIRT).strength(0.6F)));
     public static final DeferredBlock<PathBlock> SILT_PATH = registerBlock("silt_path",
             () -> new PathBlock(ofFullCopy(NMLBlocks.SILT.get()), NMLBlocks.SILT.get(), false));
+    public static final DeferredBlock<Block> COARSE_SILT = registerBlock("silt",
+            () -> new Block(ofFullCopy(NMLBlocks.SILT.get())));
     //Paths
     public static final DeferredBlock<PathBlock> DIRT_PATH = registerBlock("dirt_path",
             () -> new PathBlock(ofFullCopy(Blocks.DIRT), Blocks.DIRT, false));
@@ -261,11 +263,25 @@ public class NMLBlocks {
     public static final DeferredBlock<SlabBlock> MUNDANE_TILE_SLAB = registerBlock("mundane_tile_slab",
             () -> new SlabBlock(ofFullCopy(NMLBlocks.MUNDANE_TILES.get())));
     public static final DeferredBlock<Block> EARTHEN_TILES = registerBlock("earthen_tiles",
-            () -> new Block(ofFullCopy(Blocks.STONE_BRICKS)));
+            () -> new Block(ofFullCopy(Blocks.PACKED_MUD)));
     public static final DeferredBlock<StairBlock> EARTHEN_TILE_STAIRS = registerBlock("earthen_tile_stairs",
             () -> new StairBlock(EARTHEN_TILES.get().defaultBlockState(), ofFullCopy(NMLBlocks.EARTHEN_TILES.get())));
     public static final DeferredBlock<SlabBlock> EARTHEN_TILE_SLAB = registerBlock("earthen_tile_slab",
-            () -> new SlabBlock(ofFullCopy(NMLBlocks.MUNDANE_TILES.get())));
+            () -> new SlabBlock(ofFullCopy(NMLBlocks.EARTHEN_TILES.get())));
+
+    public static final DeferredBlock<Block> DROSS_TILES = registerBlock("dross_tiles",
+            () -> new Block(ofFullCopy(Blocks.PACKED_MUD)));
+    public static final DeferredBlock<StairBlock> DROSS_TILE_STAIRS = registerBlock("dross_tile_stairs",
+            () -> new StairBlock(DROSS_TILES.get().defaultBlockState(), ofFullCopy(NMLBlocks.DROSS_TILES.get())));
+    public static final DeferredBlock<SlabBlock> DROSS_TILE_SLAB = registerBlock("dross_tile_slab",
+            () -> new SlabBlock(ofFullCopy(NMLBlocks.DROSS_TILES.get())));
+
+    public static final DeferredBlock<Block> SILT_BRICKS = registerBlock("silt_bricks",
+            () -> new Block(ofFullCopy(Blocks.PACKED_MUD)));
+    public static final DeferredBlock<StairBlock> SILT_BRICK_STAIRS = registerBlock("silt_brick_stairs",
+            () -> new StairBlock(SILT_BRICKS.get().defaultBlockState(), ofFullCopy(NMLBlocks.SILT_BRICKS.get())));
+    public static final DeferredBlock<SlabBlock> SILT_BRICK_SLAB = registerBlock("silt_brick_slab",
+            () -> new SlabBlock(ofFullCopy(NMLBlocks.SILT_BRICKS.get())));
     //Stone
     public static final DeferredBlock<Block> FADED_STONE_BRICKS = registerBlock("faded_stone_bricks",
             () -> new Block(ofFullCopy(Blocks.STONE_BRICKS)));

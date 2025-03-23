@@ -7,18 +7,18 @@
   "key": {
     "#": [
       {
-        "item": "minecraft:coarse_dirt"
+        "item": "nomansland:silt"
       },
       {
-        "item": "nomansland:coarse_silt"
+        "item": "nomansland:coarse_dilt"
       }
     ],
     "P": {
-      "item": "minecraft:brick"
+      "item": "minecraft:polished_tuff"
     }
   },
   "result": {
-    "id": "nomansland:coarse_bricks",
-    "count": 2
+    "id": "nomansland:dross_tiles",
+    "count": 4
   }
 }

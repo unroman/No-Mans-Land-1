@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#H",
+    "H#"
+  ],
+  "key": {
+    "#": {
+      "item": "nomansland:silt"
+    },
+    "H": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "id": "nomansland:coarse_silt",
+    "count": 4
+  }
+}

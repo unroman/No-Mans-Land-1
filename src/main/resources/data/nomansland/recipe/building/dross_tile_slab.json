@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "tile_slab",
+  "key": {
+    "#": {
+      "item": "nomansland:dross_tiles"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "nomansland:dross_tile_slab"
+  },
+  "show_notification": true
+}

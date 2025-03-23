@@ -190,6 +190,12 @@ public class NMLItems {
             insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILES);
             insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILE_STAIRS);
             insertBefore(event, Items.PACKED_MUD, NMLBlocks.EARTHEN_TILE_SLAB);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.DROSS_TILES);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.DROSS_TILE_STAIRS);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.DROSS_TILE_SLAB);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.SILT_BRICKS);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.SILT_BRICK_STAIRS);
+            insertBefore(event, Items.PACKED_MUD, NMLBlocks.SILT_BRICK_SLAB);
 
             insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_WALL);
             insertAfter(event, Items.BRICK_WALL, NMLBlocks.MOSSY_COARSE_BRICK_SLAB);
@@ -340,6 +346,7 @@ public class NMLItems {
             insertAfter(event, Items.CHERRY_LEAVES, NMLBlocks.PALE_CHERRY_LEAVES);
             insertAfter(event, Items.CHERRY_SAPLING, NMLBlocks.PALE_CHERRY_SAPLING);
             insertBefore(event, Items.GRAVEL, NMLBlocks.SILT);
+            insertBefore(event, Items.GRAVEL, NMLBlocks.COARSE_SILT);
             insertBefore(event, Items.GRAVEL, NMLBlocks.SILT_PATH);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.SHELF_MUSHROOM);
             insertAfter(event, Items.RED_MUSHROOM, NMLBlocks.FIELD_MUSHROOM);

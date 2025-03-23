@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "tile_stairs",
+  "key": {
+    "#": {
+      "item": "nomansland:silt_bricks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "nomansland:silt_brick_stairs"
+  },
+  "show_notification": true
+}

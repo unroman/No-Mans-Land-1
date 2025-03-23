@@ -6,7 +6,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:gravel"
+      "item": "minecraft:clay_ball"
     },
     "A": {
       "item": "minecraft:mud"
@@ -14,6 +14,6 @@
   },
   "result": {
     "id": "nomansland:silt",
-    "count": 4
+    "count": 3
   }
 }

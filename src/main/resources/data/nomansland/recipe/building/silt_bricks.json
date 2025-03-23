@@ -1,24 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#P",
-    "P#"
+    "##",
+    "##"
   ],
   "key": {
     "#": [
       {
-        "item": "minecraft:coarse_dirt"
+        "item": "nomansland:silt"
       },
       {
         "item": "nomansland:coarse_silt"
       }
-    ],
-    "P": {
-      "item": "minecraft:brick"
-    }
+    ]
   },
   "result": {
-    "id": "nomansland:coarse_bricks",
-    "count": 2
+    "id": "nomansland:silt_bricks",
+    "count": 4
   }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "nomansland:block/tiles_cube",
+  "textures": {
+    "side": "nomansland:block/building/dross_tiles",
+    "side_alt": "nomansland:block/building/dross_tiles_alt"
+  }
+}
