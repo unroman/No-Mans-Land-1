@@ -114,8 +114,8 @@ dependencies {
     implementation "maven.modrinth:the-block-box:0.1.1"
     implementation "maven.modrinth:create:1.21.1-6.0.4"
     implementation "maven.modrinth:jade:15.10.0+neoforge"
-    implementation "maven.modrinth:serene-seasons:SPj5bJoM"
-    implementation "maven.modrinth:glitchcore:8wmCpbQ2"
+    compileOnly "maven.modrinth:serene-seasons:SPj5bJoM"
+    compileOnly "maven.modrinth:glitchcore:8wmCpbQ2"
 
     compileOnly "mezz.jei:jei-$minecraft_version-common-api:$jei_version"
     compileOnly "mezz.jei:jei-$minecraft_version-neoforge-api:$jei_version"

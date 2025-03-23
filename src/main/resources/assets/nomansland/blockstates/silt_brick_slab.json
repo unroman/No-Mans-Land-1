@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nomansland:block/building/silt_brick_slab"
+    },
+    "type=double": {
+      "model": "nomansland:block/building/silt_bricks"
+    },
+    "type=top": {
+      "model": "nomansland:block/building/silt_brick_slab_top"
+    }
+  }
+}
