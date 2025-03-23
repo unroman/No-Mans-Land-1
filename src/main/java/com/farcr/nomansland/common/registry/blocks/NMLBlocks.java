@@ -226,7 +226,7 @@ public class NMLBlocks {
             () -> new Block(of().mapColor(MapColor.TERRACOTTA_GRAY).sound(SoundType.ROOTED_DIRT).strength(0.6F)));
     public static final DeferredBlock<PathBlock> SILT_PATH = registerBlock("silt_path",
             () -> new PathBlock(ofFullCopy(NMLBlocks.SILT.get()), NMLBlocks.SILT.get(), false));
-    public static final DeferredBlock<Block> COARSE_SILT = registerBlock("silt",
+    public static final DeferredBlock<Block> COARSE_SILT = registerBlock("coarse_silt",
             () -> new Block(ofFullCopy(NMLBlocks.SILT.get())));
     //Paths
     public static final DeferredBlock<PathBlock> DIRT_PATH = registerBlock("dirt_path",
