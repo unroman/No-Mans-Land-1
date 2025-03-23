@@ -11,6 +11,15 @@ public class NMLConfig {
     public static ModConfigSpec.BooleanValue MALEVOLENT_SPAWNER;
     public static ModConfigSpec.BooleanValue TRAMPLING;
     public static ModConfigSpec.BooleanValue TORCH_EXTINGUISHING;
+    public static final String CATEGORY_BIOMES = "biomes";
+    public static ModConfigSpec.BooleanValue BIOMES;
+    public static ModConfigSpec.BooleanValue CAVES_BIOMES;
+    public static ModConfigSpec.BooleanValue MAPLE_BIOMES;
+    public static ModConfigSpec.BooleanValue AUTUMNAL_FOREST;
+    public static ModConfigSpec.BooleanValue OLD_GROWTH_BIOMES;
+    public static ModConfigSpec.BooleanValue BOG;
+    public static ModConfigSpec.BooleanValue BAYOU;
+    public static ModConfigSpec.BooleanValue DARK_SWAMP;
     public static final String CATEGORY_TAP = "tap";
     public static ModConfigSpec.DoubleValue FILLING_SPEED_MULTIPLIER;
     public static ModConfigSpec.IntValue TICKS_TO_FILL_CAULDRON;
@@ -60,6 +69,33 @@ public class NMLConfig {
                 .define("torchExtinguishing", true);
         COMMON_BUILDER.pop();
 
+        COMMON_BUILDER.push(CATEGORY_BIOMES);
+        BIOMES = COMMON_BUILDER
+                .comment("If any custom biomes are enabled")
+                .define("biomes", true);
+        CAVES_BIOMES = COMMON_BUILDER
+                .comment("If the generic caves biomes are enabled")
+                .define("genericCavesBiomes", true);
+        AUTUMNAL_FOREST = COMMON_BUILDER
+                .comment("If the autumnal forest is enabled")
+                .define("autumnal", true);
+        MAPLE_BIOMES = COMMON_BUILDER
+                .comment("If the maple biomes are enabled")
+                .define("mapleBiomes", true);
+        OLD_GROWTH_BIOMES = COMMON_BUILDER
+                .comment("If the old growth biomes are enabled")
+                .define("oldGrowthBiomes", true);
+        DARK_SWAMP = COMMON_BUILDER
+                .comment("If the dark swamp is enabled")
+                .define("darkSwamp", true);
+        BAYOU = COMMON_BUILDER
+                .comment("If the bayou is enabled")
+                .define("bayou", true);
+        BOG = COMMON_BUILDER
+                .comment("If the bog is enabled")
+                .define("bog", true);
+        COMMON_BUILDER.pop();
+
         COMMON_BUILDER.push(CATEGORY_TAP);
         COMMON_BUILDER.comment("Time is calculated in ticks. 20 ticks make 1 second.");
         FILLING_SPEED_MULTIPLIER = COMMON_BUILDER
@@ -105,20 +141,22 @@ public class NMLConfig {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_BULK_PLACEMENT);
+        COMMON_BUILDER.comment("Set to 0 to disable any feature.");
         MAX_LADDER_PLACEMENT_LENGTH = COMMON_BUILDER
-                .comment("The maximum distance ladders can be placed like scaffolding. Set to 0 to disable.")
-                .defineInRange("maxLadderPlacementLength", 0, 0, Integer.MAX_VALUE);
+                .comment("The maximum distance ladders can be placed like scaffolding.")
+                .defineInRange("maxLadderPlacementLength", 8, 0, Integer.MAX_VALUE);
         MAX_RAIL_PLACMENT_LENGTH = COMMON_BUILDER
                 .comment("The maximum distance rails can be placed like scaffolding.")
-                .defineInRange("maxRailPlacementLength", 24, 1, Integer.MAX_VALUE);
+                .defineInRange("maxRailPlacementLength", 24, 0, Integer.MAX_VALUE);
         MAX_FLOATING_RAILS = COMMON_BUILDER
                 .comment("The maximum distance rails can be from a supported block before breaking.")
-                .defineInRange("maxFloatingRails", 5, 1, Integer.MAX_VALUE);
+                .defineInRange("maxFloatingRails", 5, 0, Integer.MAX_VALUE);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_MISC);
         BURIED_SPAWNING_CHANCE = COMMON_BUILDER
                 .comment("The chance a buried is spawned upon brushing a remains block.")
+                .comment("This chance is multiplied by 4 when the block is broken and by 10 when the block falls.")
                 .defineInRange("buriedSpawningChance", 0.05, 0, 1);
         COMMON_BUILDER.pop();
 
@@ -128,11 +166,11 @@ public class NMLConfig {
 
         CLIENT_BUILDER.push(CATEGORY_FOG_MODIFIERS);
         FOG_MODIFIERS = CLIENT_BUILDER
-                .comment("If the custom fog modifiers are enabled")
+                .comment("If any custom fog modifiers are enabled")
                 .define("fogModifiers", true);
         CAVE_BIOME_FOG_MODIFIER = CLIENT_BUILDER
-                .comment("If the cave biome fog modifier is enabled")
-                .define("caveBiomeFogModifier", true);
+                .comment("If the caves biome fog modifier is enabled")
+                .define("cavesBiomeFogModifier", true);
         DEEP_DARK_FOG_MODIFIER = CLIENT_BUILDER
                 .comment("If the deep dark fog modifier is enabled")
                 .define("deepDarkFogModifier", true);
