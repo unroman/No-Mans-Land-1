@@ -23,11 +23,12 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
         int tries = config.tries();
         int xzSpread = config.xzSpread();
         int ySpread = config.ySpread();
+        double sparseness = config.sparseness();
 
         BlockPos.MutableBlockPos pos = origin.mutable();
         for (int i = 0; i < tries; i++) {
-            int x = (int) (origin.getX() + (Math.clamp(random.nextGaussian(), -4, 4)) * xzSpread);
-            int z = (int) (origin.getZ() + (Math.clamp(random.nextGaussian(), -4, 4)) * xzSpread);
+            int x = (int) (origin.getX() + (Math.clamp(random.nextGaussian(), -sparseness, sparseness) / sparseness) * xzSpread);
+            int z = (int) (origin.getZ() + (Math.clamp(random.nextGaussian(), -sparseness, sparseness) / sparseness) * xzSpread);
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 

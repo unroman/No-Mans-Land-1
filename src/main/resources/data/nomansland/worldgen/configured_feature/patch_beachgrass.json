@@ -2,8 +2,9 @@
 	"type": "nomansland:multispread_patch",
 	"config": {
 		"tries": 1024,
-		"xz_spread": 4,
+		"xz_spread": 12,
 		"y_spread": 3,
+		"sparseness": 3,
 		"features": [
 		
 			{

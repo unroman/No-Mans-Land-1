@@ -17,8 +17,8 @@ public class NMLFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, NoMansLand.MODID);
 
-    public static final Supplier<Feature<RandomPatchConfiguration>> SPREAD_PATCH = FEATURES.register("spread_patch",
-            () -> new SpreadPatchFeature(RandomPatchConfiguration.CODEC));
+    public static final Supplier<Feature<SpreadPatchConfiguration>> SPREAD_PATCH = FEATURES.register("spread_patch",
+            () -> new SpreadPatchFeature(SpreadPatchConfiguration.CODEC));
 
     public static final Supplier<Feature<MultiSpreadPatchConfiguration>> MULTISPREAD_PATCH = FEATURES.register("multispread_patch",
             () -> new MultiSpreadPatchFeature(MultiSpreadPatchConfiguration.CODEC));
