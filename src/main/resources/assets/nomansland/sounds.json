@@ -120,7 +120,7 @@
         "pitch": 1.1
       }
     ],
-    "subtitle": "nomansland.subtitles.item.honeycomb.consumed"
+    "subtitle": "nomansland.subtitles.item.generic.consumed"
   },
   "entity.billhook_bass.ambient": {
     "sounds": []
@@ -359,5 +359,25 @@
       }
     ],
     "subtitle": "nomansland.subtitles.particle.droplet.fall"
+  },
+  "item.resin.consumed": {
+    "sounds": [
+      "block/honeyblock/break1",
+      "block/honeyblock/break2",
+      "block/honeyblock/break3",
+      "block/honeyblock/break4",
+      "block/honeyblock/break5"
+    ],
+    "subtitle": "nomansland.subtitles.item.generic.consumed"
+  },
+  "item.bomb.primed": {
+    "sounds": [
+      {
+        "name": "item/crossbow/loading_end",
+        "pitch": 1.3
+      },
+      "item/crossbow/loading_end"
+    ],
+    "subtitle": "nomansland.subtitles.item.bomb.primed"
   }
 }

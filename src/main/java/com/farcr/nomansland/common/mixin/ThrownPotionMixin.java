@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ThrownPotion.class)
 public abstract class ThrownPotionMixin extends ProjectileMixin {
+
     @Inject(method = "dowseFire", at = @At("TAIL"))
     private void extinguishTorches(BlockPos pos, CallbackInfo ci) {
         BlockState state = level().getBlockState(pos);

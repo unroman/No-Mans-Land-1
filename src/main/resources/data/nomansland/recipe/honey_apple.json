@@ -1,0 +1,12 @@
+{
+  "type": "nomansland:cauldron_interaction",
+  "cauldron": "nomansland:milk_cauldron",
+  "ingredient": {
+    "item": "minecraft:apple"
+  },
+  "cost": 2,
+  "result": {
+    "count": 1,
+    "id": "minecraft:bone_meal"
+  }
+}

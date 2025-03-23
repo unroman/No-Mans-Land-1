@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LadderBlock.class)
 public class LadderBlockMixin {
+
     @Inject(method = "canAttachTo", at = @At("HEAD"), cancellable = true)
     protected void nml$canAttachTo(BlockGetter blockReader, BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 

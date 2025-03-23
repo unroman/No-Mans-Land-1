@@ -1,5 +1,5 @@
 {
   "type": "mixed_litter:husk",
   "texture": "nomansland:entity/mob_variants/zombie/red_husk",
-  "biomes": "#c:is_badlands"
+  "biomes": "#nomansland:spawns_red_sand_husks"
 }

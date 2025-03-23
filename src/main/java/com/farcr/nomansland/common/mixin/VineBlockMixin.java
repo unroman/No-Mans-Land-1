@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(VineBlock.class)
 public class VineBlockMixin {
+
     @Redirect(method = "randomTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Direction;getRandom(Lnet/minecraft/util/RandomSource;)Lnet/minecraft/core/Direction;"))
     private Direction getRandom(RandomSource random) {
         Direction direction = Util.getRandom(Direction.values(), random);

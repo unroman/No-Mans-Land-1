@@ -21,6 +21,7 @@ import java.util.List;
 
 @Mixin(RailState.class)
 public abstract class RailStateMixin {
+
     @Shadow @Final private Level level;
 
     @Shadow private BlockState state;

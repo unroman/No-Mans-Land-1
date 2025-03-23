@@ -72,7 +72,7 @@ public class ThrownOilBottle extends ThrownPotion {
             ServerLevel serverLevel = (ServerLevel) level();
             double d24;
             double d25;
-            Vec3 vec3 = Vec3.atBottomCenterOf(this.blockPosition());
+            Vec3 vec3 = this.position();
 
             for(int j = 0; j < 8; ++j) {
                 serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.SPLASH_POTION)), vec3.x, vec3.y, vec3.z, 0, random.nextGaussian() * 0.15, random.nextDouble() * 0.2, random.nextGaussian() * 0.15, 1);

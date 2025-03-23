@@ -21,6 +21,7 @@ import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends EntityMixin implements LivingEntityDuck {
+
     @Shadow public abstract float getHealth();
 
     @Shadow public float yBodyRot;

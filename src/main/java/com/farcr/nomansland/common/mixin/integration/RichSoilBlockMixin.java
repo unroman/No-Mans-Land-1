@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.mixin.integration;
 
+import com.farcr.nomansland.common.integration.FDIntegration;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
-import com.farcr.nomansland.integration.FDIntegration;
 import com.moulberry.mixinconstraints.annotations.IfModLoaded;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

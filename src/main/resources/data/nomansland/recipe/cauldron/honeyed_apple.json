@@ -1,0 +1,10 @@
+{
+  "type": "nomansland:cauldron_interaction",
+  "cauldron": "nomansland:honey_cauldron",
+  "ingredient": {
+    "item": "minecraft:apple"
+  },
+  "result": {
+    "id": "nomansland:honeyed_apple"
+  }
+}

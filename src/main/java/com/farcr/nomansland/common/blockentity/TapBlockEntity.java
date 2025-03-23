@@ -1,16 +1,13 @@
 package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.NMLConfig;
-import com.farcr.nomansland.common.block.cauldrons.NMLCauldronBlock;
+import com.farcr.nomansland.common.block.cauldrons.FourLayeredCauldronBlock;
 import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AbstractCauldronBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -39,9 +36,9 @@ public class TapBlockEntity extends BlockEntity {
         BlockPos posBehind = pos.relative(state.getValue(FACING).getOpposite());
         Block cauldronBlock = cauldronState.getBlock();
 
-        if (stateBehind.hasProperty(WATERLOGGED) && stateBehind.getValue(WATERLOGGED)) {
+        if ((stateBehind.hasProperty(WATERLOGGED) && stateBehind.getValue(WATERLOGGED)) || stateBehind.is(Blocks.WATER_CAULDRON)) {
             spawnDrippingParticles(level, pos, state, ParticleTypes.FALLING_WATER);
-            if (cauldronFound && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (!(cauldronBlock instanceof LayeredCauldronBlock) || cauldronState.is(Blocks.WATER_CAULDRON))) {
+            if (cauldronFound && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (cauldronBlock instanceof CauldronBlock || cauldronState.is(Blocks.WATER_CAULDRON))) {
                 tap.timeEmptying++;
                 if (tap.timeEmptying > NMLConfig.TICKS_TO_FILL_CAULDRON.get()) {
                     if (cauldronState.hasProperty(LEVEL))
@@ -57,13 +54,13 @@ public class TapBlockEntity extends BlockEntity {
 
         if (!cauldronFound) return;
 
-        if (stateBehind.hasProperty(HONEY_LEVEL) && stateBehind.getValue(HONEY_LEVEL) == 5 && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (!(cauldronBlock instanceof LayeredCauldronBlock) || cauldronState.is(NMLBlocks.HONEY_CAULDRON))) {
+        if (stateBehind.hasProperty(HONEY_LEVEL) && stateBehind.getValue(HONEY_LEVEL) == 5 && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (cauldronBlock instanceof CauldronBlock || cauldronState.is(NMLBlocks.HONEY_CAULDRON))) {
             tap.timeEmptying++;
             if (tap.timeEmptying < NMLConfig.TICKS_TO_FILL_CAULDRON.get()) spawnDrippingParticles(level, pos, state, ParticleTypes.FALLING_HONEY);
             else {
                 tap.timeEmptying = 0;
-                if (cauldronState.hasProperty(LEVEL))
-                    level.setBlockAndUpdate(cauldronPos, cauldronState.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1));
+                if (cauldronState.hasProperty(FourLayeredCauldronBlock.LEVEL))
+                    level.setBlockAndUpdate(cauldronPos, cauldronState.setValue(FourLayeredCauldronBlock.LEVEL, cauldronState.getValue(FourLayeredCauldronBlock.LEVEL) + 1));
                 else level.setBlockAndUpdate(cauldronPos, NMLBlocks.HONEY_CAULDRON.get().defaultBlockState());
                 BlockPos beehivePos = pos.relative(state.getValue(FACING).getOpposite());
                 level.setBlockAndUpdate(beehivePos, stateBehind.setValue(HONEY_LEVEL, 0));
@@ -72,24 +69,53 @@ public class TapBlockEntity extends BlockEntity {
             }
         }
 
-        if ((stateBehind.hasProperty(LEVEL) || stateBehind.is(Blocks.LAVA_CAULDRON)) && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (stateBehind.is(cauldronBlock) || cauldronState.is(Blocks.CAULDRON)) && !stateBehind.is(Blocks.POWDER_SNOW_CAULDRON)) {
+        if ((stateBehind.is(Blocks.LAVA_CAULDRON) || stateBehind.is(Blocks.WATER_CAULDRON)) && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (cauldronBlock instanceof CauldronBlock || cauldronState.is(stateBehind.getBlock()))) {
             tap.timeEmptying++;
             if (tap.timeEmptying < NMLConfig.TICKS_TO_FILL_CAULDRON.get()) {
-                spawnDrippingParticles(level, pos, state, stateBehind.getBlock() instanceof NMLCauldronBlock nmlCauldronBlock ? nmlCauldronBlock.getParticleType() : stateBehind.is(Blocks.LAVA_CAULDRON) ? ParticleTypes.FALLING_LAVA : ParticleTypes.FALLING_WATER);
+                spawnDrippingParticles(level, pos, state, stateBehind.is(Blocks.LAVA_CAULDRON) ? ParticleTypes.FALLING_LAVA : ParticleTypes.FALLING_WATER);
             } else {
                 tap.timeEmptying = 0;
                 if (stateBehind.is(Blocks.LAVA_CAULDRON)) {
                     level.setBlockAndUpdate(posBehind, Blocks.CAULDRON.defaultBlockState());
                     level.setBlockAndUpdate(cauldronPos, Blocks.LAVA_CAULDRON.defaultBlockState());
-                }
-                else {
+                } else {
                     LayeredCauldronBlock.lowerFillLevel(stateBehind, level, posBehind);
-                    if (cauldronState.hasProperty(LEVEL)) level.setBlockAndUpdate(cauldronPos, stateBehind.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1));
-                    else level.setBlockAndUpdate(cauldronPos, stateBehind.getBlock().defaultBlockState());
+                    level.setBlockAndUpdate(cauldronPos, stateBehind.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1));
                 }
+
                 level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));
                 level.gameEvent(GameEvent.BLOCK_CHANGE, posBehind, GameEvent.Context.of(stateBehind));
             }
         }
+
+        if (stateBehind.getBlock() instanceof FourLayeredCauldronBlock fourLayeredCauldronBlock && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState)) {
+            tap.timeEmptying++;
+            if (tap.timeEmptying < NMLConfig.TICKS_TO_FILL_CAULDRON.get())
+                spawnDrippingParticles(level, pos, state, fourLayeredCauldronBlock.particleType.get());
+            else {
+                tap.timeEmptying = 0;
+                FourLayeredCauldronBlock.lowerFillLevel(stateBehind, level, posBehind);
+                if (cauldronState.hasProperty(FourLayeredCauldronBlock.LEVEL))
+                    level.setBlockAndUpdate(cauldronPos, stateBehind.setValue(FourLayeredCauldronBlock.LEVEL, cauldronState.getValue(FourLayeredCauldronBlock.LEVEL) + 1));
+                else level.setBlockAndUpdate(cauldronPos, stateBehind.getBlock().defaultBlockState());
+                level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));
+                level.gameEvent(GameEvent.BLOCK_CHANGE, posBehind, GameEvent.Context.of(stateBehind));
+            }
+        }
+
+//        if (stateBehind.is(NMLBlocks.HONEY_CAULDRON) || stateBehind.is(NMLBlocks.MILK_CAULDRON)) {
+//            tap.timeEmptying++;
+//            if (tap.timeEmptying < NMLConfig.TICKS_TO_FILL_CAULDRON.get())
+//                spawnDrippingParticles(level, pos, state, stateBehind.is(NMLBlocks.HONEY_CAULDRON) ? ParticleTypes.FALLING_HONEY : NMLParticleTypes.MILK_DROPLET.get());
+//            else {
+//                tap.timeEmptying = 0;
+//                FourLayeredCauldronBlock.lowerFillLevel(stateBehind, level, posBehind);
+//                if (cauldronState.hasProperty(FourLayeredCauldronBlock.LEVEL))
+//                    level.setBlockAndUpdate(cauldronPos, stateBehind.setValue(FourLayeredCauldronBlock.LEVEL, cauldronState.getValue(FourLayeredCauldronBlock.LEVEL) + 1));
+//                else level.setBlockAndUpdate(cauldronPos, stateBehind.getBlock().defaultBlockState());
+//                level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));
+//                level.gameEvent(GameEvent.BLOCK_CHANGE, posBehind, GameEvent.Context.of(stateBehind));
+//            }
+//        }
     }
 }

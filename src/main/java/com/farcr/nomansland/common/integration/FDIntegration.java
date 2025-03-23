@@ -1,4 +1,4 @@
-package com.farcr.nomansland.integration;
+package com.farcr.nomansland.common.integration;
 
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLFoods;

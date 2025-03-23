@@ -30,6 +30,7 @@ import java.util.function.Predicate;
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = NoMansLand.MODID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class ClientEvents {
+
     @SubscribeEvent
     public static void addSectionGeometryEvent(AddSectionGeometryEvent event) {
         BlockPos origin = event.getSectionOrigin();

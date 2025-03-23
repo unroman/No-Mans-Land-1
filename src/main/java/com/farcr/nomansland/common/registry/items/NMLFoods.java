@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.registry.items;
 
-import com.farcr.nomansland.integration.Mods;
+import com.farcr.nomansland.common.integration.Mods;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;

@@ -1,0 +1,10 @@
+{
+  "type": "nomansland:cauldron_interaction",
+  "cauldron": "nomansland:maple_syrup_cauldron",
+  "ingredient": {
+    "item": "nomansland:pear"
+  },
+  "result": {
+    "id": "nomansland:syruped_pear"
+  }
+}

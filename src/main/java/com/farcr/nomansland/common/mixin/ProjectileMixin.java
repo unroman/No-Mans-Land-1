@@ -9,5 +9,6 @@ import javax.annotation.Nullable;
 
 @Mixin(Projectile.class)
 public abstract class ProjectileMixin extends EntityMixin {
+
     @Shadow @Nullable public abstract Entity getOwner();
 }

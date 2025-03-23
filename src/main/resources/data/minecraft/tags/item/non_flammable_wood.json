@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "nomansland:trimmed_crimson_planks",
+    "nomansland:trimmed_warped_planks",
+    "nomansland:crimson_bookshelf",
+    "nomansland:warped_bookshelf"
+  ]
+}

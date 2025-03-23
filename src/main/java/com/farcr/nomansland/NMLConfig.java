@@ -83,25 +83,25 @@ public class NMLConfig {
         COMMON_BUILDER.comment("Damage is dealt in hit points. 2 hit points make 1 heart.");
         POKING_DAMAGE = COMMON_BUILDER
                 .comment("The continuous damage dealt to an entity as it stands on an active spike.")
-                .defineInRange("pokingDamage", 1.5, 0, Double.MAX_VALUE);
+                .defineInRange("pokingDamage", 1.5, 0, Integer.MAX_VALUE);
         FALLING_DAMAGE = COMMON_BUILDER
                 .comment("The added damage dealt to an entity when it falls on a spike from any height.")
-                .defineInRange("fallingDamage", 2.0, 0, Double.MAX_VALUE);
+                .defineInRange("fallingDamage", 2.0, 0, Integer.MAX_VALUE);
         IMPALING_DAMAGE = COMMON_BUILDER
                 .comment("The damage dealt to an entity when an adjacent spike is activated.")
-                .defineInRange("impalingDamage", 12.0, 0, Double.MAX_VALUE);
+                .defineInRange("impalingDamage", 12.0, 0, Integer.MAX_VALUE);
         SKEWERING_DAMAGE = COMMON_BUILDER
                 .comment("The damage dealt to an entity when an active spike is pushed into it.")
-                .defineInRange("skeweringDamage", 12.0, 0, Double.MAX_VALUE);
+                .defineInRange("skeweringDamage", 12.0, 0, Integer.MAX_VALUE);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_BOMBS);
         EXPLOSIVE_STRENGTH = COMMON_BUILDER
                 .comment("The radius of explosives' explosion.")
-                .defineInRange("maxLadderPlacementLength", 3.0, 0.25, Double.MAX_VALUE);
+                .defineInRange("explosiveExplosionRadius", 3.0, 0, Integer.MAX_VALUE);
         FIREBOMB_STRENGTH = COMMON_BUILDER
                 .comment("The radius of firebombs' explosion.")
-                .defineInRange("maxRailPlacementLength", 2.0, 0.25, Double.MAX_VALUE);
+                .defineInRange("firebombExplosionRadius", 2.0, 0, Integer.MAX_VALUE);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_BULK_PLACEMENT);

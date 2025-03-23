@@ -18,6 +18,7 @@ import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 
 @Mixin(value = ServerLevel.class)
 public abstract class ServerLevelMixin {
+
     @Shadow public abstract ServerLevel getLevel();
 
     /**

@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Wolf.class)
 public class WolfMixin {
+
     @Inject(method = "registerGoals", at = @At("TAIL"))
     private void targetDeerGoal(CallbackInfo ci) {
         ((Wolf) (Object) this).goalSelector.addGoal(5, new NonTameRandomTargetGoal<>(((Wolf) (Object) this), Deer.class, false, target -> true));

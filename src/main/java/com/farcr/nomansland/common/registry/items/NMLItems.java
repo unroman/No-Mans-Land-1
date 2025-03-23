@@ -2,13 +2,13 @@ package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.BoatEntity;
+import com.farcr.nomansland.common.integration.FDIntegration;
+import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
-import com.farcr.nomansland.integration.FDIntegration;
-import com.farcr.nomansland.integration.Mods;
 import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -487,6 +487,8 @@ public class NMLItems {
             insertAfter(event, Items.CREEPER_SPAWN_EGG, NMLItems.DEER_SPAWN_EGG);
             insertAfter(event, Items.BEE_SPAWN_EGG, NMLItems.BILLHOOK_BASS_SPAWN_EGG);
         }
+
+        if (Mods.CREATE.isLoaded()) event.remove(Mods.CREATE.getItem("honeyed_apple").getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
     private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {

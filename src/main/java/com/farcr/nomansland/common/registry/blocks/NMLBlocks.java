@@ -2,10 +2,7 @@ package com.farcr.nomansland.common.registry.blocks;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.*;
-import com.farcr.nomansland.common.block.cauldrons.MilkCauldron;
-import com.farcr.nomansland.common.block.cauldrons.NMLCauldronBlock;
-import com.farcr.nomansland.common.block.cauldrons.NMLCauldronType;
-import com.farcr.nomansland.common.block.cauldrons.ResinOilCauldron;
+import com.farcr.nomansland.common.block.cauldrons.*;
 import com.farcr.nomansland.common.block.fruit_trees.FruitBlock;
 import com.farcr.nomansland.common.block.fruit_trees.FruitLeavesBlock;
 import com.farcr.nomansland.common.block.fruit_trees.FruitType;
@@ -16,6 +13,7 @@ import com.farcr.nomansland.common.registry.worldgen.NMLTreeGrowers;
 import com.farcr.nomansland.common.world.tree.HugeMushrooms;
 import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
@@ -72,18 +70,15 @@ public class NMLBlocks {
     public static final DeferredBlock<WoodenScaffoldingBlock> WOODEN_SCAFFOLDING = BLOCKS.register("wooden_scaffolding",
             () -> new WoodenScaffoldingBlock(Block.Properties.ofFullCopy(Blocks.SCAFFOLDING).noCollission().sound(SoundType.CHERRY_WOOD)));
 
-    public static final DeferredBlock<NMLCauldronBlock> RESIN_CAULDRON = BLOCKS.register("resin_cauldron",
-            () -> new NMLCauldronBlock(NMLCauldronType.RESIN));
+    public static final DeferredBlock<ResinCauldron> RESIN_CAULDRON = BLOCKS.register("resin_cauldron", ResinCauldron::new);
 
-    public static final DeferredBlock<ResinOilCauldron> RESIN_OIL_CAULDRON = BLOCKS.register("resin_oil_cauldron", ResinOilCauldron::new);
+    public static final DeferredBlock<ResinOilCauldron> RESIN_OIL_CAULDRON = BLOCKS.register("resin_oil_cauldron", (ResourceLocation particleType) -> new ResinOilCauldron());
 
-    public static final DeferredBlock<NMLCauldronBlock> HONEY_CAULDRON = BLOCKS.register("honey_cauldron",
-            () -> new NMLCauldronBlock(NMLCauldronType.HONEY));
+    public static final DeferredBlock<HoneyCauldron> HONEY_CAULDRON = BLOCKS.register("honey_cauldron", HoneyCauldron::new);
 
-    public static final DeferredBlock<MilkCauldron> MILK_CAULDRON = BLOCKS.register("milk_cauldron", MilkCauldron::new);
+    public static final DeferredBlock<MilkCauldron> MILK_CAULDRON = BLOCKS.register("milk_cauldron", (ResourceLocation particleType) -> new MilkCauldron());
 
-    public static final DeferredBlock<NMLCauldronBlock> MAPLE_SYRUP_CAULDRON = BLOCKS.register("maple_syrup_cauldron",
-            () -> new NMLCauldronBlock(NMLCauldronType.MAPLE));
+    public static final DeferredBlock<MapleSyrupCauldron> MAPLE_SYRUP_CAULDRON = BLOCKS.register("maple_syrup_cauldron", MapleSyrupCauldron::new);
 
 
     //Plants and Other Natural Decorations

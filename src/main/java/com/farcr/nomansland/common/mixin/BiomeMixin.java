@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.moulberry.mixinconstraints.annotations.IfModAbsent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static com.farcr.nomansland.common.block.FrostedGrassBlock.SNOWLOGGED;
 
+@IfModAbsent("sereneseasons")
 @Mixin(Biome.class)
 public class BiomeMixin {
 

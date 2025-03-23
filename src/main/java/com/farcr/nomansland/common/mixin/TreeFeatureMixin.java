@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TreeFeature.class)
 public class TreeFeatureMixin {
+
     @Inject(method = "isAirOrLeaves", at = @At("HEAD"), cancellable = true)
     private static void isReplaceableByTrees(LevelSimulatedReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (level.isStateAtPosition(pos, state -> state.is(BlockTags.REPLACEABLE_BY_TREES))) cir.setReturnValue(true);

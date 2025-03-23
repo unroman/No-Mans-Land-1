@@ -29,6 +29,7 @@ import java.util.Set;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
+
     @Shadow public abstract void playSound(SoundEvent sound, float volume, float pitch);
 
     @Shadow public abstract double getY();

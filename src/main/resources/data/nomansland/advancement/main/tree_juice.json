@@ -26,10 +26,6 @@
               {
                 "condition": "minecraft:block_state_property",
                 "block": "nomansland:maple_syrup_cauldron"
-              },
-              {
-                "condition": "minecraft:block_state_property",
-                "block": "minecraft:cauldron"
               }
             ]
           }

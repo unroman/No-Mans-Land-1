@@ -2,6 +2,11 @@
   "values": [
     "minecraft:mushroom_fields",
     "#c:is_snowy",
+    "#c:is_desert",
+    "#c:is_beach",
+    "#c:is_ocean",
+    "minecraft:badlands",
+    "minecraft:eroded_badlands",
     "minecraft:frozen_river"
   ]
 }

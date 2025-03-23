@@ -1,5 +1,5 @@
 {
   "type": "mixed_litter:husk",
   "texture": "nomansland:entity/mob_variants/zombie/silt_husk",
-  "biomes": "#c:is_cave"
+  "biomes": "#nomansland:spawns_silt_husks"
 }

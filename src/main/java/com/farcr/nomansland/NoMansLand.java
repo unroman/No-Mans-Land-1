@@ -1,6 +1,10 @@
 package com.farcr.nomansland;
 
 import com.farcr.nomansland.common.block.tap.TapInteraction;
+import com.farcr.nomansland.common.integration.BBIntegration;
+import com.farcr.nomansland.common.integration.CIntegration;
+import com.farcr.nomansland.common.integration.FDIntegration;
+import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
@@ -14,10 +18,6 @@ import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
-import com.farcr.nomansland.integration.BBIntegration;
-import com.farcr.nomansland.integration.CIntegration;
-import com.farcr.nomansland.integration.FDIntegration;
-import com.farcr.nomansland.integration.Mods;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -51,9 +51,12 @@ public class NoMansLand {
         NMLMobVariants.FROG_VARIANTS.register(modEventBus);
         NMLMobVariants.MOB_VARIANT_TYPES.register(modEventBus);
         NMLEffects.MOB_EFFECTS.register(modEventBus);
-        NMLBiomePlacements.register();
         NMLStructureProcessorTypes.STRUCTURE_PROCESSOR_TYPES.register(modEventBus);
         NMLCriteriaTriggers.TRIGGERS.register(modEventBus);
+        NMLRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        NMLRecipeSerializers.RECIPE_TYPES.register(modEventBus);
+        NMLFluids.FLUID_TYPES.register(modEventBus);
+        NMLFluids.FLUIDS.register(modEventBus);
 
         if (Mods.FARMERSDELIGHT.isLoaded()) {
             FDIntegration.register();
@@ -76,6 +79,7 @@ public class NoMansLand {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            if (NMLConfig.BIOMES.get()) NMLBiomePlacements.register();
             NMLSurfaceRules.register();
             NMLFlammables.register();
             NMLPottables.register();

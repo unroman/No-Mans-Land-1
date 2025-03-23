@@ -30,14 +30,6 @@ public class NMLFlammables {
         fireBlock.setFlammable(NMLBlocks.CAVE_WEEDS.get(), 30, 60);
         fireBlock.setFlammable(NMLBlocks.SHELF_MUSHROOM_BLOCK.get(), 30, 60);
 
-        fireBlock.setFlammable(NMLBlocks.PINE_PLANKS.get(), 5, 20);
-        fireBlock.setFlammable(NMLBlocks.PINE_STAIRS.get(), 5, 20);
-        fireBlock.setFlammable(NMLBlocks.PINE_SLAB.get(), 5, 20);
-        fireBlock.setFlammable(NMLBlocks.PINE_FENCE.get(), 5, 20);
-        fireBlock.setFlammable(NMLBlocks.PINE_LEAVES.get(), 30, 60);
-        fireBlock.setFlammable(NMLBlocks.PINE_BOOKSHELF.get(), 30, 20);
-        fireBlock.setFlammable(NMLBlocks.TRIMMED_PINE_PLANKS.get(), 5, 20);
-
         fireBlock.setFlammable(NMLBlocks.MAPLE_PLANKS.get(), 5, 20);
         fireBlock.setFlammable(NMLBlocks.MAPLE_STAIRS.get(), 5, 20);
         fireBlock.setFlammable(NMLBlocks.MAPLE_SLAB.get(), 5, 20);
@@ -46,6 +38,14 @@ public class NMLFlammables {
         fireBlock.setFlammable(NMLBlocks.RED_MAPLE_LEAVES.get(), 30, 60);
         fireBlock.setFlammable(NMLBlocks.MAPLE_BOOKSHELF.get(), 30, 20);
         fireBlock.setFlammable(NMLBlocks.TRIMMED_MAPLE_PLANKS.get(), 5, 20);
+
+        fireBlock.setFlammable(NMLBlocks.PINE_PLANKS.get(), 5, 20);
+        fireBlock.setFlammable(NMLBlocks.PINE_STAIRS.get(), 5, 20);
+        fireBlock.setFlammable(NMLBlocks.PINE_SLAB.get(), 5, 20);
+        fireBlock.setFlammable(NMLBlocks.PINE_FENCE.get(), 5, 20);
+        fireBlock.setFlammable(NMLBlocks.PINE_LEAVES.get(), 30, 60);
+        fireBlock.setFlammable(NMLBlocks.PINE_BOOKSHELF.get(), 30, 20);
+        fireBlock.setFlammable(NMLBlocks.TRIMMED_PINE_PLANKS.get(), 5, 20);
 
         fireBlock.setFlammable(NMLBlocks.WALNUT_PLANKS.get(), 5, 20);
         fireBlock.setFlammable(NMLBlocks.WALNUT_STAIRS.get(), 5, 20);

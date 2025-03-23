@@ -5,7 +5,6 @@
   "refmap": "nomansland.refmap.json",
   "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
   "mixins": [
-    "AbstractCauldronBlockMixin",
     "AbstractFishMixin",
     "BaseRailBlockMixin",
     "BaseSpawnerMixin",
@@ -29,10 +28,13 @@
     "TreeFeatureMixin",
     "VineBlockMixin",
     "WolfMixin",
-    "integration.RichSoilBlockMixin"
+    "integration.RichSoilBlockMixin",
+    "integration.SeasonHooksMixin",
+    "integration.VanillaFluidTargetsMixin"
   ],
   "client": [
-    "LevelRendererMixin"
+    "client.LevelRendererMixin",
+    "client.SkinManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

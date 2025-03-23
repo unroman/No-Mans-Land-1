@@ -9,6 +9,7 @@ import com.farcr.nomansland.client.model.MooseModel;
 import com.farcr.nomansland.client.model.deer.DeerModel;
 import com.farcr.nomansland.client.particle.*;
 import com.farcr.nomansland.client.renderer.*;
+import com.farcr.nomansland.common.registry.NMLFluids;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import net.minecraft.client.model.BoatModel;
@@ -23,6 +24,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = NoMansLand.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -77,6 +80,22 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
+    static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_RESIN_OIL = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "block/fluid/resin_oil");
+            private static final ResourceLocation FLOWING_RESIN_OIL = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "block/fluid/flowing_resin_oil");
+
+            public ResourceLocation getStillTexture() {
+                return STILL_RESIN_OIL;
+            }
+
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_RESIN_OIL;
+            }
+        }, NMLFluids.RESIN_OIL_TYPE.get());
+    }
+
+    @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(NMLParticleTypes.PALE_CHERRY_LEAVES.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
@@ -120,5 +139,11 @@ public class ClientSetupEvents {
         event.registerSpriteSet(NMLParticleTypes.MALEVOLENT_FLAME.get(), sprites
                 -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
                 -> new FlameParticle(clientLevel, d, e, f, g, h, i, sprites));
+        event.registerSpriteSet(NMLParticleTypes.MILK_DROPLET.get(), sprites
+                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
+                -> new FluidFallingParticle(clientLevel, d, e, f, sprites, NMLParticleTypes.MILK_DROPLET_FLAT));
+        event.registerSpriteSet(NMLParticleTypes.MILK_DROPLET_FLAT.get(), sprites
+                -> (simpleParticleType, clientLevel, d, e, f, g, h, i)
+                -> new FluidLandParticle(clientLevel, d, e, f, sprites));
     }
 }

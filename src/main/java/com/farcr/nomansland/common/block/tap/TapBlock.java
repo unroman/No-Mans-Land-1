@@ -47,8 +47,8 @@ public class TapBlock extends BaseEntityBlock {
             Direction.EAST, Block.box(0.0D, 3.0D, 6.0D, 6.0D, 8.0D, 10.0D)
     ));
 
-    public TapBlock(Properties pProperties) {
-        super(pProperties);
+    public TapBlock(Properties properties) {
+        super(properties);
 
     }
 

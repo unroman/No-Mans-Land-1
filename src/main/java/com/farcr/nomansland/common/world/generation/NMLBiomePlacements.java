@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.world.generation;
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.biome.sub.BiomeParameterTargets;
@@ -16,150 +17,157 @@ import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 public class NMLBiomePlacements {
     public static void register() {
 
-        // Caves
-        BiomePlacement.addOverworld(NMLBiomes.CAVES,
-                Climate.parameters(
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(0.15F, 0.3F),
-                        Climate.Parameter.span(-2F, 2F),
-                        0.15F));
+        if (NMLConfig.CAVES_BIOMES.get()) {
+            BiomePlacement.addOverworld(NMLBiomes.CAVES,
+                    Climate.parameters(
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(0.15F, 0.3F),
+                            Climate.Parameter.span(-2F, 2F),
+                            0.15F));
 
-        BiomePlacement.addOverworld(NMLBiomes.CAVES,
-                Climate.parameters(
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(0.3F, 0.5F),
-                        Climate.Parameter.span(-2F, 2F),
-                        0.15F));
+            BiomePlacement.addOverworld(NMLBiomes.CAVES,
+                    Climate.parameters(
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(0.3F, 0.5F),
+                            Climate.Parameter.span(-2F, 2F),
+                            0.15F));
 
-        BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
-                Climate.parameters(
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(0.6F, 0.8F),
-                        Climate.Parameter.span(-2F, 2F),
-                        0.15F));
+            BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
+                    Climate.parameters(
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(0.6F, 0.8F),
+                            Climate.Parameter.span(-2F, 2F),
+                            0.15F));
 
-        BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
-                Climate.parameters(
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        Climate.Parameter.span(0.8F, 2F),
-                        Climate.Parameter.span(-2F, 2F),
-                        0.1F));
+            BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
+                    Climate.parameters(
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            Climate.Parameter.span(0.8F, 2F),
+                            Climate.Parameter.span(-2F, 2F),
+                            0.1F));
+        }
 
-        // Autumnal Forest
-        BiomePlacement.replaceOverworld(
-                Biomes.FOREST,
-                NMLBiomes.AUTUMNAL_FOREST,
-                0.2
-        );
+        if (NMLConfig.AUTUMNAL_FOREST.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.FOREST,
+                    NMLBiomes.AUTUMNAL_FOREST,
+                    0.2
+            );
+        }
 
-        // Maple Forest & Grove
-        BiomePlacement.replaceOverworld(
-                Biomes.FOREST,
-                NMLBiomes.MAPLE_FOREST,
-                0.2
-        );
+        if (NMLConfig.MAPLE_BIOMES.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.FOREST,
+                    NMLBiomes.MAPLE_FOREST,
+                    0.2
+            );
 
-        BiomePlacement.replaceOverworld(
-                Biomes.GROVE,
-                NMLBiomes.MAPLE_GROVE,
-                0.2
-        );
+            BiomePlacement.replaceOverworld(
+                    Biomes.GROVE,
+                    NMLBiomes.MAPLE_GROVE,
+                    0.2
+            );
 
-        BiomePlacement.addSubOverworld(
-                Biomes.GROVE,
-                NMLBiomes.MAPLE_GROVE,
-                alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST)
-        );
+            BiomePlacement.addSubOverworld(
+                    Biomes.GROVE,
+                    NMLBiomes.MAPLE_GROVE,
+                    alternate(NMLBiomes.MAPLE_FOREST, Biomes.FOREST)
+            );
 
-        BiomePlacement.addSubOverworld(
-                Biomes.FOREST,
-                NMLBiomes.MAPLE_FOREST,
-                alternate(NMLBiomes.MAPLE_GROVE, Biomes.GROVE)
-        );
+            BiomePlacement.addSubOverworld(
+                    Biomes.FOREST,
+                    NMLBiomes.MAPLE_FOREST,
+                    alternate(NMLBiomes.MAPLE_GROVE, Biomes.GROVE)
+            );
 
-        // Bog
-        BiomePlacement.replaceOverworld(
-                Biomes.SWAMP,
-                NMLBiomes.BOG,
-                0.2
-        );
+            BiomePlacement.addSubOverworld(
+                    NMLBiomes.MAPLE_FOREST,
+                    NMLBiomes.MAPLE_GROVE,
+                    allOf(neighbor(Tags.Biomes.IS_SNOWY), not(NEAR_INTERIOR))
+            );
+        }
 
-        BiomePlacement.replaceOverworld(
-                Biomes.MANGROVE_SWAMP,
-                NMLBiomes.BOG,
-                0.05
-        );
-        BiomePlacement.addSubOverworld(
-                Biomes.SWAMP,
-                NMLBiomes.BOG,
-                neighbor(Biomes.PLAINS)
-        );
+        if (NMLConfig.BOG.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.SWAMP,
+                    NMLBiomes.BOG,
+                    0.2
+            );
 
-        // Bayou
-        BiomePlacement.replaceOverworld(
-                Biomes.MANGROVE_SWAMP,
-                NMLBiomes.BAYOU,
-                0.4
-        );
+            BiomePlacement.replaceOverworld(
+                    Biomes.MANGROVE_SWAMP,
+                    NMLBiomes.BOG,
+                    0.05
+            );
+            BiomePlacement.addSubOverworld(
+                    Biomes.SWAMP,
+                    NMLBiomes.BOG,
+                    neighbor(Biomes.PLAINS)
+            );
+        }
 
-        BiomePlacement.replaceOverworld(
-                Biomes.JUNGLE,
-                NMLBiomes.BAYOU,
-                0.1
-        );
+        if (NMLConfig.BAYOU.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.MANGROVE_SWAMP,
+                    NMLBiomes.BAYOU,
+                    0.4
+            );
 
-        transitionalBiome(
-                Biomes.SWAMP,
-                Biomes.JUNGLE,
-                NMLBiomes.BAYOU
-        );
+            BiomePlacement.replaceOverworld(
+                    Biomes.JUNGLE,
+                    NMLBiomes.BAYOU,
+                    0.1
+            );
 
-        // Dark Swamp
-        transitionalBiome(
-                Biomes.SWAMP,
-                Biomes.DARK_FOREST,
-                NMLBiomes.DARK_SWAMP
-        );
+            transitionalBiome(
+                    Biomes.SWAMP,
+                    Biomes.JUNGLE,
+                    NMLBiomes.BAYOU
+            );
+        }
 
-        BiomePlacement.replaceOverworld(
-                Biomes.DARK_FOREST,
-                NMLBiomes.DARK_SWAMP,
-                0.1
-        );
+        if (NMLConfig.DARK_SWAMP.get()) {
+            transitionalBiome(
+                    Biomes.SWAMP,
+                    Biomes.DARK_FOREST,
+                    NMLBiomes.DARK_SWAMP
+            );
 
-        // Old Growth Forest
-        BiomePlacement.replaceOverworld(
-                Biomes.DARK_FOREST,
-                NMLBiomes.OLD_GROWTH_FOREST,
-                0.3
-        );
+            BiomePlacement.replaceOverworld(
+                    Biomes.DARK_FOREST,
+                    NMLBiomes.DARK_SWAMP,
+                    0.1
+            );
+        }
 
-        BiomePlacement.replaceOverworld(
-                Biomes.OLD_GROWTH_BIRCH_FOREST,
-                NMLBiomes.OLD_GROWTH_FOREST,
-                0.2
-        );
+        if (NMLConfig.OLD_GROWTH_BIOMES.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.DARK_FOREST,
+                    NMLBiomes.OLD_GROWTH_FOREST,
+                    0.3
+            );
 
-        edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE, BiomeParameterTargets.HUMIDITY);
-        clearingBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_CLEARING);
+            BiomePlacement.replaceOverworld(
+                    Biomes.OLD_GROWTH_BIRCH_FOREST,
+                    NMLBiomes.OLD_GROWTH_FOREST,
+                    0.2
+            );
 
-        BiomePlacement.addSubOverworld(
-                NMLBiomes.MAPLE_FOREST,
-                NMLBiomes.MAPLE_GROVE,
-                allOf(neighbor(Tags.Biomes.IS_SNOWY), not(NEAR_INTERIOR))
-        );
+            edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE, BiomeParameterTargets.HUMIDITY);
+            clearingBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_CLEARING);
+        }
     }
 
     public static void transitionalBiome(ResourceKey<Biome> mainBiome, ResourceKey<Biome> secondaryBiome, ResourceKey<Biome> transitionalBiome) {

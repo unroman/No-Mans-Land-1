@@ -15,23 +15,22 @@ public class TrimmedPlankBlock extends Block {
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
 
-    public TrimmedPlankBlock(BlockBehaviour.Properties pProperties) {
-        super(pProperties);
+    public TrimmedPlankBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(UP);
-        pBuilder.add(DOWN);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(UP);
+        builder.add(DOWN);
     }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        if (pFacing == Direction.UP) {
-            return pState.setValue(UP, !pFacingState.is(this));
-        } else if (pFacing == Direction.DOWN) {
-            return pState.setValue(DOWN, !pFacingState.is(this));
-        }
-        return pState;
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (direction == Direction.UP)
+            return state.setValue(UP, !neighborState.is(this));
+        else if (direction == Direction.DOWN)
+            return state.setValue(DOWN, !neighborState.is(this));
+        return state;
     }
 }

@@ -6,7 +6,9 @@ import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
+import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
+import com.farcr.nomansland.common.registry.NMLFluids;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
@@ -41,6 +43,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
@@ -48,12 +51,14 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
+import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import static com.farcr.nomansland.common.block.FrostedGrassBlock.SNOWLOGGED;
+import static com.farcr.nomansland.common.block.cauldrons.FourLayeredCauldronBlock.LEVEL;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 @SuppressWarnings("unused")
 public class MiscellaneousEvents {
@@ -131,11 +136,11 @@ public class MiscellaneousEvents {
             }
 
             // Ladder Placement
-            if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator() && !player.isCrouching()) {
+            if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator() && !player.isCrouching() && !player.isFakePlayer()) {
                 Direction ladderFacing = state.getValue(LadderBlock.FACING);
                 if (ladderFacing == event.getFace()) {
                     BlockPos.MutableBlockPos mutable = pos.below().mutable();
-                    for (int i = 0; NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get() != 0 ? i < NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get() : mutable.getY() > level.getMinBuildHeight(); i++) {
+                    for (int i = 0; i < NMLConfig.MAX_LADDER_PLACEMENT_LENGTH.get(); i++) {
                         BlockState state2 = level.getBlockState(mutable);
                         if (state2.is(BlockTags.REPLACEABLE)) {
                             if (state.canSurvive(level, mutable)) {
@@ -156,7 +161,7 @@ public class MiscellaneousEvents {
             }
 
             // Rail Placement
-            if (stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator() && !player.isCrouching()) {
+            if (stack.is(ItemTags.RAILS) && state.is(BlockTags.RAILS) && !player.isSpectator() && !player.isCrouching() && !player.isFakePlayer()) {
                 Direction playerDir = player.getDirection();
                 RailShape railShape = null;
                 if (state.getBlock() instanceof BaseRailBlock) {
@@ -171,7 +176,7 @@ public class MiscellaneousEvents {
                     RailShape placedShape;
                     BlockPos.MutableBlockPos mutable = pos.mutable();
                     // Iterate through the rails to find the end of a connected rail segment
-                    for (int i = 0; i < NMLConfig.MAX_RAIL_PLACMENT_LENGTH.get(); i++) {
+                    for (int i = 0; i <= NMLConfig.MAX_RAIL_PLACMENT_LENGTH.get(); i++) {
                         // A load of blockpos + blockstates used lower down
                         BlockPos m = mutable.immutable();
                         BlockPos mBelow = m.below();
@@ -434,7 +439,7 @@ public class MiscellaneousEvents {
     @EventBusSubscriber(modid = NoMansLand.MODID, bus = EventBusSubscriber.Bus.MOD)
     public static class ModEventBusEvents {
         @SubscribeEvent
-        public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
+        public static void entityAttributeEvent(final EntityAttributeCreationEvent event) {
             //    TODO: BURIED AND MOOSE
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
 //            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
@@ -443,11 +448,19 @@ public class MiscellaneousEvents {
         }
 
         @SubscribeEvent
-        public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        public static void registerSpawnPlacements(final RegisterSpawnPlacementsEvent event) {
             event.register(NMLEntities.BILLHOOK_BASS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BillhookBass::checkSurfaceWaterAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
             event.register(NMLEntities.DEER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Deer::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
             event.register(EntityType.CAMEL, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Camel::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
             event.register(EntityType.HUSK, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        }
+
+        @SubscribeEvent
+        public static void registerCauldronFluidContent(final RegisterCauldronFluidContentEvent event) {
+            event.register(NMLBlocks.MILK_CAULDRON.get(), NeoForgeMod.MILK.get(), 1000, LEVEL);
+            event.register(NMLBlocks.RESIN_OIL_CAULDRON.get(), NMLFluids.RESIN_OIL.get(), 1000, LEVEL);
+            if (Mods.CREATE.isLoaded())
+                event.register(NMLBlocks.HONEY_CAULDRON.get(), Mods.CREATE.getFluid("honey"), 1000, LEVEL);
         }
     }
 }

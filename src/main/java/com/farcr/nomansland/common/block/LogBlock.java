@@ -3,7 +3,6 @@ package com.farcr.nomansland.common.block;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;

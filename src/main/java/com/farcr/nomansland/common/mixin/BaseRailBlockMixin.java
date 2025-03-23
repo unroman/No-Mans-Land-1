@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.mixin;
 import com.farcr.nomansland.NMLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -70,7 +72,9 @@ public abstract class BaseRailBlockMixin extends BlockBehaviourMixin {
 
     @Override
     protected void getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (!canSupportRigidBlock(level, pos.below())) cir.setReturnValue(getShape(state, level, pos, context));
+        if (!state.getValue(getShapeProperty()).isAscending())
+            if (!(context instanceof EntityCollisionContext entityCollisionContext && entityCollisionContext.getEntity() != null && entityCollisionContext.getEntity() instanceof AbstractMinecart))
+                cir.setReturnValue(getShape(state, level, pos, context));
     }
 
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)

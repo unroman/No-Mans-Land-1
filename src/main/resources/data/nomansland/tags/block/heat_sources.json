@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#minecraft:fire",
+    "#minecraft:campfires",
+    "minecraft:magma_block",
+    {
+      "id": "#create:passive_boiler_heaters",
+      "required": false
+    }
+  ]
+}

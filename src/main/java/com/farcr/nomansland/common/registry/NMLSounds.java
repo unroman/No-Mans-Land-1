@@ -30,6 +30,8 @@ public class NMLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> DEER_STEP = registerSound("entity.deer.step");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> DROPLET_FALLS = registerSound("particle.droplet.fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_CONSUMED = registerSound("item.resin.consumed");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BOMB_PRIMED = registerSound("item.bomb.primed");
 
     private static DeferredHolder<SoundEvent, SoundEvent> registerSound(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name)));
