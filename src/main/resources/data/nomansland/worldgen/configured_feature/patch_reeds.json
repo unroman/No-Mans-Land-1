@@ -27,7 +27,8 @@
       ]
     },
     "tries": 520,
-    "xz_spread": 5,
-    "y_spread": 3
+    "xz_spread": 15,
+    "y_spread": 3,
+    "sparseness": 3
   }
 }

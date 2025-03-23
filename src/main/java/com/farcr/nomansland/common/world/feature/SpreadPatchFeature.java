@@ -7,29 +7,29 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 
 //Thank you greatest cappin for helping with this
-public class SpreadPatchFeature extends Feature<RandomPatchConfiguration> {
-    public SpreadPatchFeature(Codec<RandomPatchConfiguration> codec) {
+public class SpreadPatchFeature extends Feature<SpreadPatchConfiguration> {
+    public SpreadPatchFeature(Codec<SpreadPatchConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<RandomPatchConfiguration> context) {
+    public boolean place(FeaturePlaceContext<SpreadPatchConfiguration> context) {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
         RandomSource random = context.random();
-        RandomPatchConfiguration config = context.config();
+        SpreadPatchConfiguration config = context.config();
 
         int tries = config.tries();
         int xzSpread = config.xzSpread();
         int ySpread = config.ySpread();
+        double sparseness = config.sparseness();
 
         BlockPos.MutableBlockPos pos = origin.mutable();
         for (int i = 0; i < tries; i++) {
-            int x = (int) (origin.getX() + (Math.clamp(random.nextGaussian(), -8, 8) / 4) * xzSpread);
-            int z = (int) (origin.getZ() + (Math.clamp(random.nextGaussian(), -8, 8) / 4) * xzSpread);
+            int x = (int) (origin.getX() + (Math.clamp(random.nextGaussian(), -sparseness, sparseness) / sparseness) * xzSpread);
+            int z = (int) (origin.getZ() + (Math.clamp(random.nextGaussian(), -sparseness, sparseness) / sparseness) * xzSpread);
             int y = origin.getY() + random.nextInt(-ySpread, ySpread);
             pos.set(x, y, z);
 
