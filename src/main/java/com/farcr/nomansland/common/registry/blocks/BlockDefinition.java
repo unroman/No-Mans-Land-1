@@ -31,4 +31,8 @@ public record BlockDefinition<T extends Block>(@NotNull DeferredBlock<T> block, 
     public ResourceLocation getId() {
         return block.getId();
     }
+
+    public String name() {
+        return block.getRegisteredName();
+    }
 }

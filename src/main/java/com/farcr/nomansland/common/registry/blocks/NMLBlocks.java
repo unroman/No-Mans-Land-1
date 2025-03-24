@@ -44,40 +44,40 @@ public class NMLBlocks {
     public static List<BlockDefinition<?>> BLOCK_DEFINITIONS = new ArrayList<>();
 
     public static final BlockDefinition<VineBlock> CUT_VINE = registerBlockNoItem("cut_vine",
-            () -> new VineBlock(of().mapColor(MapColor.PLANT).replaceable().noCollission().strength(0.2F).sound(SoundType.VINE).ignitedByLava().pushReaction(PushReaction.DESTROY)), new BlockProperties(new OtherShearsBlockLootType(()->Blocks.VINE)));
+            () -> new VineBlock(of().mapColor(MapColor.PLANT).replaceable().noCollission().strength(0.2F).sound(SoundType.VINE).ignitedByLava().pushReaction(PushReaction.DESTROY)), new BlockProperties(new OtherShearsBlockLootType(() -> Blocks.VINE), false));
     public static final BlockDefinition<CutSugarCaneBlock> CUT_SUGAR_CANE = registerBlockNoItem("cut_sugar_cane",
-            () -> new CutSugarCaneBlock(of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), new BlockProperties(new OtherBlockLootType(()->Blocks.SUGAR_CANE)));
+            () -> new CutSugarCaneBlock(of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), new BlockProperties(new OtherBlockLootType(() -> Blocks.SUGAR_CANE), false));
 
     //Decorations
     public static final BlockDefinition<SconceTorchBlock> SCONCE_TORCH = registerBlockNoItem("sconce_torch",
-            () -> new SconceTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.TORCH).sound(SoundType.LANTERN)), new BlockProperties(new SelfBlockLootType()));
+            () -> new SconceTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.TORCH).sound(SoundType.LANTERN)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<ExtinguishedSconceTorchBlock> EXTINGUISHED_SCONCE_TORCH = registerBlockNoItem("extinguished_sconce_torch",
-            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_TORCH.get()));
+            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_TORCH.get()), true);
     public static final BlockDefinition<SconceWallTorchBlock> SCONCE_WALL_TORCH = registerBlockNoItem("sconce_wall_torch",
-            () -> new SconceWallTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_TORCH.block())));
+            () -> new SconceWallTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_TORCH.block())), true);
     public static final BlockDefinition<ExtinguishedSconceWallTorchBlock> EXTINGUISHED_SCONCE_WALL_TORCH = registerBlockNoItem("extinguished_sconce_wall_torch",
-            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_WALL_TORCH.get(), ParticleTypes.FLAME));
+            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_WALL_TORCH.get(), ParticleTypes.FLAME), true);
     public static final BlockDefinition<SconceTorchBlock> SCONCE_SOUL_TORCH = registerBlockNoItem("sconce_soul_torch",
-            () -> new SconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_TORCH).sound(SoundType.LANTERN)), new BlockProperties(new SelfBlockLootType()));
+            () -> new SconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_TORCH).sound(SoundType.LANTERN)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<ExtinguishedSconceTorchBlock> EXTINGUISHED_SCONCE_SOUL_TORCH = registerBlockNoItem("extinguished_sconce_soul_torch",
-            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_TORCH.get()));
+            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_TORCH.get()), true);
     public static final BlockDefinition<SconceWallTorchBlock> SCONCE_SOUL_WALL_TORCH = registerBlockNoItem("sconce_soul_wall_torch",
-            () -> new SconceWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_SOUL_TORCH.block())));
+            () -> new SconceWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_SOUL_TORCH.block())), true);
     public static final BlockDefinition<ExtinguishedSconceWallTorchBlock> EXTINGUISHED_SCONCE_SOUL_WALL_TORCH = registerBlockNoItem("extinguished_sconce_soul_wall_torch",
-            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), ParticleTypes.SOUL_FIRE_FLAME));
+            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), ParticleTypes.SOUL_FIRE_FLAME), true);
     public static final BlockDefinition<ExtinguishedTorchBlock> EXTINGUISHED_TORCH = registerBlockNoItem("extinguished_torch",
-            () -> new ExtinguishedTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.TORCH));
+            () -> new ExtinguishedTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.TORCH), true);
     public static final BlockDefinition<ExtinguishedWallTorchBlock> EXTINGUISHED_WALL_TORCH = registerBlockNoItem("extinguished_wall_torch",
-            () -> new ExtinguishedWallTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.WALL_TORCH));
+            () -> new ExtinguishedWallTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.WALL_TORCH), true);
     public static final BlockDefinition<ExtinguishedTorchBlock> EXTINGUISHED_SOUL_TORCH = registerBlockNoItem("extinguished_soul_torch",
-            () -> new ExtinguishedTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.SOUL_TORCH));
+            () -> new ExtinguishedTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.SOUL_TORCH), true);
     public static final BlockDefinition<ExtinguishedWallTorchBlock> EXTINGUISHED_SOUL_WALL_TORCH = registerBlockNoItem("extinguished_soul_wall_torch",
-            () -> new ExtinguishedWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.SOUL_WALL_TORCH));
+            () -> new ExtinguishedWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.SOUL_WALL_TORCH), true);
 
     public static final BlockDefinition<WoodenScaffoldingBlock> WOODEN_SCAFFOLDING = registerBlockNoItem("wooden_scaffolding",
-            () -> new WoodenScaffoldingBlock(Block.Properties.ofFullCopy(Blocks.SCAFFOLDING).noCollission().sound(SoundType.CHERRY_WOOD)), new BlockProperties(new SelfBlockLootType()));
+            () -> new WoodenScaffoldingBlock(Block.Properties.ofFullCopy(Blocks.SCAFFOLDING).noCollission().sound(SoundType.CHERRY_WOOD)), new BlockProperties(new SelfBlockLootType(), false));
 
-    public static final BlockDefinition<ResinCauldron> RESIN_CAULDRON = registerBlockNoItem("resin_cauldron", ResinCauldron::new);
+    public static final BlockDefinition<ResinCauldron> RESIN_CAULDRON = registerBlockNoItem("resin_cauldron", ResinCauldron::new, true);
 
     public static final BlockDefinition<ResinOilCauldron> RESIN_OIL_CAULDRON = registerBlockNoItem("resin_oil_cauldron", ResinOilCauldron::new, BlockProperties.cauldron());
 
@@ -98,27 +98,27 @@ public class NMLBlocks {
     public static final BlockDefinition<DesertFoliageBlock> TALL_BEACHGRASS = registerBlock("tall_beachgrass",
             () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.SAND).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<DesertFoliageBlock> DRIED_GRASS = registerBlock("dried_grass",
-            () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).offsetType(OffsetType.XZ)), new BlockProperties(new ShearsBlockLootType()));
+            () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).offsetType(OffsetType.XZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<FrostedGrassBlock> FROSTED_GRASS = registerBlock("frosted_grass",
             () -> new FrostedGrassBlock(of().mapColor(MapColor.SNOW).replaceable().noCollission().instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ).ignitedByLava().pushReaction(PushReaction.DESTROY)));
     public static final BlockDefinition<SimpleFoliageBlock> FIDDLEHEAD = registerBlock("fiddlehead",
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.FERN).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<SimpleFoliageBlock> MYCELIUM_SPROUTS = registerBlock("mycelium_sprouts",
-            () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType()));
+            () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<CaveFoliageBlock> CAVE_WEEDS = registerBlock("cave_weeds",
             () -> new CaveFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.TERRACOTTA_GRAY).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<SimpleFoliageBlock> MYCELIUM_GROWTHS = registerBlock("mycelium_growths",
-            () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType()));
+            () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(MapColor.COLOR_PURPLE).offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<WaterPlantBlock> CATTAIL = registerBlock("cattail",
             () -> new WaterPlantBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<WaterPlantBlock> REEDS = registerBlock("reeds",
             () -> new WaterPlantBlock(Block.Properties.ofFullCopy(Blocks.TALL_GRASS).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<WaterSurfacePlant> DUCKWEED = registerBlockNoItem("duckweed",
-            () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType()));
+            () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<WaterSurfacePlant> WATER_MOSAIC = registerBlockNoItem("water_mosaic",
-            () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType()));
+            () -> new WaterSurfacePlant(Block.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission().offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<BeardMossBlock> BEARD_MOSS = registerBlock("beard_moss",
-            () -> new BeardMossBlock(Block.Properties.of().mapColor(MapColor.PLANT).instabreak().sound(SoundType.MOSS).noOcclusion().noCollission().offsetType(OffsetType.XZ)), new BlockProperties(new ShearsBlockLootType()));
+            () -> new BeardMossBlock(Block.Properties.of().mapColor(MapColor.PLANT).instabreak().sound(SoundType.MOSS).noOcclusion().noCollission().offsetType(OffsetType.XZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<LeavesBlock> YELLOW_BIRCH_LEAVES = registerBlock("yellow_birch_leaves",
             () -> new LeavesBlock(ofFullCopy(Blocks.BIRCH_LEAVES).isViewBlocking((s, g, p) -> false).isSuffocating(((s, g, p) -> false))));
     public static final BlockDefinition<SaplingBlock> YELLOW_BIRCH_SAPLING = registerBlock("yellow_birch_sapling",
@@ -190,12 +190,12 @@ public class NMLBlocks {
     public static final BlockDefinition<FlatFlowerBlock> RAFFLESIA = registerBlock("rafflesia",
             () -> new FlatFlowerBlock(MobEffects.HUNGER, 60, ofFullCopy(Blocks.POPPY)), BlockProperties.smallFlower());
     public static final BlockDefinition<DesertFoliageBlock> BARREL_CACTUS = registerBlock("barrel_cactus",
-            () -> new DesertFoliageBlock(of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.BIG_DRIPLEAF).offsetType(OffsetType.XZ).pushReaction(PushReaction.DESTROY)), new BlockProperties(new SelfBlockLootType()));
+            () -> new DesertFoliageBlock(of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.BIG_DRIPLEAF).offsetType(OffsetType.XZ).pushReaction(PushReaction.DESTROY)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<FlowerPotBlock> POTTED_BARREL_CACTUS = registerBlockNoItem("potted_barrel_cactus",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.BARREL_CACTUS.block(),
                     ofFullCopy(Blocks.POTTED_POPPY).noOcclusion()), BlockProperties.flowerPot(BARREL_CACTUS));
     public static final BlockDefinition<DesertFoliageBlock> SUCCULENT = registerBlock("succulent",
-            () -> new DesertFoliageBlock(of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.FLOWERING_AZALEA).offsetType(OffsetType.XZ).pushReaction(PushReaction.DESTROY)), new BlockProperties(new SelfBlockLootType()));
+            () -> new DesertFoliageBlock(of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.FLOWERING_AZALEA).offsetType(OffsetType.XZ).pushReaction(PushReaction.DESTROY)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<FlowerPotBlock> POTTED_SUCCULENT = registerBlockNoItem("potted_succulent",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.SUCCULENT.block(),
                     ofFullCopy(Blocks.POTTED_POPPY).noOcclusion()), BlockProperties.flowerPot(SUCCULENT));
@@ -215,7 +215,7 @@ public class NMLBlocks {
     public static final BlockDefinition<GroundPickupBlock> PEBBLES = registerBlock("pebbles",
             () -> new GroundPickupBlock(of().mapColor(MapColor.STONE).noCollission().instabreak().sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
     public static final BlockDefinition<GroundPickupBlock> SEASHELLS = registerBlock("seashells",
-            () -> new GroundPickupBlock(of().mapColor(MapColor.NONE).noCollission().instabreak().sound(SoundType.CALCITE).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ)), new BlockProperties(new SelfBlockLootType()));
+            () -> new GroundPickupBlock(of().mapColor(MapColor.NONE).noCollission().instabreak().sound(SoundType.CALCITE).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ)), new BlockProperties(new SelfBlockLootType(), false));
     //Underground
     public static final BlockDefinition<AmethystBlock> QUARTZITE = registerBlock("quartzite",
             () -> new AmethystBlock(of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.3F).sound(SoundType.NETHER_GOLD_ORE).requiresCorrectToolForDrops()));
@@ -254,7 +254,7 @@ public class NMLBlocks {
             () -> new PathBlock(ofFullCopy(Blocks.RED_SAND), Blocks.RED_SAND, true), BlockProperties.simplePath(Blocks.RED_SAND));
     //Dungeon
     public static final BlockDefinition<RemainsBlock> REMAINS = registerBlockNoItem("remains",
-            () -> new RemainsBlock(Blocks.COARSE_DIRT, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED));
+            () -> new RemainsBlock(Blocks.COARSE_DIRT, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), false);
     public static final BlockDefinition<MonsterAnchorBlock> MONSTER_ANCHOR = registerBlock("monster_anchor",
             () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(SoundType.TRIAL_SPAWNER).noOcclusion()));
     //Tiles
@@ -420,9 +420,9 @@ public class NMLBlocks {
                     ofFullCopy(Blocks.POTTED_OAK_SAPLING).noOcclusion()), BlockProperties.flowerPot(WILLOW_SAPLING));
 
     public static final BlockDefinition<TapBlock> TAP = registerBlock("tap",
-            () -> new TapBlock(of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().noOcclusion().strength(2.0F).randomTicks().pushReaction(PushReaction.DESTROY)), new BlockProperties(new SelfBlockLootType()));
+            () -> new TapBlock(of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().noOcclusion().strength(2.0F).randomTicks().pushReaction(PushReaction.DESTROY)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<SpikeTrapBlock> SPIKE_TRAP = registerBlock("spike_trap",
-            () -> new SpikeTrapBlock(of().mapColor(MapColor.METAL).strength(1.5F, 6.0F).requiresCorrectToolForDrops().noOcclusion()), new BlockProperties(new SelfBlockLootType()));
+            () -> new SpikeTrapBlock(of().mapColor(MapColor.METAL).strength(1.5F, 6.0F).requiresCorrectToolForDrops().noOcclusion()), new BlockProperties(new SelfBlockLootType(), false));
 
 
     //Storage
@@ -439,13 +439,13 @@ public class NMLBlocks {
 //    public static final BlockDefinition<Block> CAVE_CARP_BARREL = registerBlock("cave_carp_barrel",
 //            () -> new Block(ofFullCopy(NMLBlocks.COD_BARREL.get())));
     public static final BlockDefinition<Block> APPLE_CRATE = registerBlock("apple_crate",
-            () -> new Block(ofFullCopy(Blocks.BARREL)), new BlockProperties(new SelfBlockLootType()));
+            () -> new Block(ofFullCopy(Blocks.BARREL)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<Block> PEAR_CRATE = registerBlock("pear_crate",
-            () -> new Block(ofFullCopy(Blocks.BARREL)), new BlockProperties(new SelfBlockLootType()));
+            () -> new Block(ofFullCopy(Blocks.BARREL)), new BlockProperties(new SelfBlockLootType(), false));
 
     //Mushrooms
     public static final BlockDefinition<SurfaceMushroomBlock> FIELD_MUSHROOM = registerBlockNoItem("field_mushroom",
-            () -> new SurfaceMushroomBlock((HugeMushrooms.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))), new BlockProperties(new SelfBlockLootType()));
+            () -> new SurfaceMushroomBlock((HugeMushrooms.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<FlowerPotBlock> POTTED_FIELD_MUSHROOM = registerBlockNoItem("potted_field_mushroom",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.FIELD_MUSHROOM.block(),
                     ofFullCopy(Blocks.POTTED_RED_MUSHROOM).noOcclusion()), BlockProperties.flowerPot(FIELD_MUSHROOM));
@@ -467,7 +467,7 @@ public class NMLBlocks {
                     .pushReaction(PushReaction.DESTROY)
                     .offsetType(OffsetType.XYZ)
                     .dynamicShape()
-                    ,FruitType.APPLE_OAK));
+                    ,FruitType.APPLE_OAK), true);
 
     public static final BlockDefinition<Block> APPLE_FRUIT_LEAVES = registerBlock("apple_fruit_leaves",
             () -> new FruitLeavesBlock(ofFullCopy(Blocks.OAK_LEAVES).isViewBlocking((s, g, p) -> false).isSuffocating(((s, g, p) -> false)), FruitType.APPLE_OAK));
@@ -481,7 +481,7 @@ public class NMLBlocks {
                     .pushReaction(PushReaction.DESTROY)
                     .offsetType(OffsetType.XYZ)
                     .dynamicShape()
-                    ,FruitType.PEAR_AUTUMNAL_OAK));
+                    ,FruitType.PEAR_AUTUMNAL_OAK), true);
 
     public static final BlockDefinition<Block> PEAR_FRUIT_LEAVES = registerBlock("pear_fruit_leaves",
             () -> new FruitLeavesBlock(ofFullCopy(NMLBlocks.AUTUMNAL_OAK_LEAVES.get()).isViewBlocking((s, g, p) -> false).isSuffocating(((s, g, p) -> false)), FruitType.PEAR_AUTUMNAL_OAK));
@@ -496,9 +496,9 @@ public class NMLBlocks {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Block> BlockDefinition<T> registerBlockNoItem(String name, Supplier<? extends Block> block) {
+    public static <T extends Block> BlockDefinition<T> registerBlockNoItem(String name, Supplier<? extends Block> block, boolean customLang) {
         DeferredBlock<Block> deferred = BLOCKS.register(name, block);
-        BlockDefinition<T> definition = new BlockDefinition<>((DeferredBlock<T>) deferred, new BlockProperties(new CustomBlockLootType()));
+        BlockDefinition<T> definition = new BlockDefinition<>((DeferredBlock<T>) deferred, new BlockProperties(new CustomBlockLootType(), customLang));
         BLOCK_DEFINITIONS.add(definition);
         return definition;
     }
@@ -516,7 +516,7 @@ public class NMLBlocks {
     public static <T extends Block> BlockDefinition<T> registerBlock(String name, Supplier<? extends Block> block) {
         DeferredBlock<Block> deferred = BLOCKS.register(name, block);
         CREATIVE_TAB_ITEMS.add(registerBlockItem(name, deferred));
-        BlockDefinition<T> definition = new BlockDefinition<>((DeferredBlock<T>) deferred, new BlockProperties(new CustomBlockLootType()));
+        BlockDefinition<T> definition = new BlockDefinition<>((DeferredBlock<T>) deferred, new BlockProperties(new CustomBlockLootType(), false));
         BLOCK_DEFINITIONS.add(definition);
         return definition;
     }
@@ -581,11 +581,11 @@ public class NMLBlocks {
             SIGN = registerBlockNoItem(name + "_sign",
                     () -> new StandingSignBlock(woodType, ofFullCopy(Blocks.OAK_SIGN)), BlockProperties.sign());
             WALL_SIGN = registerBlockNoItem(name + "_wall_sign",
-                    () -> new WallSignBlock(woodType, ofFullCopy(Blocks.OAK_WALL_SIGN).lootFrom(SIGN.block())));
+                    () -> new WallSignBlock(woodType, ofFullCopy(Blocks.OAK_WALL_SIGN).lootFrom(SIGN.block())), true);
             HANGING_SIGN = registerBlockNoItem(name + "_hanging_sign",
                     () -> new CeilingHangingSignBlock(woodType, ofFullCopy(Blocks.OAK_HANGING_SIGN)), BlockProperties.hangingSign());
             HANGING_WALL_SIGN = registerBlockNoItem(name + "_wall_hanging_sign",
-                    () -> new WallHangingSignBlock(woodType, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).lootFrom(HANGING_SIGN.block())));
+                    () -> new WallHangingSignBlock(woodType, ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).lootFrom(HANGING_SIGN.block())), true);
         }
 
         public BlockDefinition<Block> planks() { return PLANKS; }

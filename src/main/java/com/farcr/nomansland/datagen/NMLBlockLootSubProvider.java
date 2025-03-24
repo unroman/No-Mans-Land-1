@@ -36,10 +36,11 @@ public class NMLBlockLootSubProvider extends BlockLootSubProvider {
         //add(NMLBlocks.FIELD_MUSHROOM.get(), dropSelf(NMLBlocks.FIELD_MUSHROOM.get()));
         //dropSelf(NMLBlocks.FIELD_MUSHROOM.get());
 
-        for (BlockDefinition<?> def : NMLBlocks.BLOCK_DEFINITIONS) {
-            BlockProperties properties = def.properties();
-            DeferredBlock<?> block = def.block();
+        for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
+            BlockProperties properties = definition.properties();
+            DeferredBlock<?> block = definition.block();
             BlockLootType lootType = properties.loot();
+
             if (lootType instanceof SelfBlockLootType)
                 dropSelf(block.get());
             else if (lootType instanceof OtherBlockLootType otherBlockLootType)

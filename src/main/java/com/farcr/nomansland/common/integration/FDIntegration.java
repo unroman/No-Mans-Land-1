@@ -40,7 +40,7 @@ public class FDIntegration {
             () -> new CabinetBlock(ofFullCopy(Blocks.BARREL)));
 
     public static final BlockDefinition<Block> FIELD_MUSHROOM_COLONY = registerBlockNoItem("field_mushroom_colony",
-            () -> new MushroomColonyBlock(NMLItems.FIELD_MUSHROOM, Block.Properties.ofFullCopy(NMLBlocks.FIELD_MUSHROOM.get())));
+            () -> new MushroomColonyBlock(NMLItems.FIELD_MUSHROOM, Block.Properties.ofFullCopy(NMLBlocks.FIELD_MUSHROOM.get())), false);
 
     public static final DeferredItem<Item> FIELD_MUSHROOM_COLONY_ITEM = registerItem("field_mushroom_colony",
             () -> new MushroomColonyItem(FIELD_MUSHROOM_COLONY.get(), new Item.Properties()));
@@ -52,7 +52,7 @@ public class FDIntegration {
             () -> new Item(new Item.Properties().food(FoodValues.PIE_SLICE)));
 
     public static final BlockDefinition<Block> PEAR_COBBLER = registerBlockNoItem("pear_cobbler",
-            () -> new PieBlock(ofFullCopy(Blocks.CAKE), PEAR_COBBLER_SLICE));
+            () -> new PieBlock(ofFullCopy(Blocks.CAKE), PEAR_COBBLER_SLICE), false);
 
     public static final DeferredItem<Item> PEAR_COBBLER_ITEM = registerItem("pear_cobbler",
             () -> new BlockItem(PEAR_COBBLER.get(), new Item.Properties()));
