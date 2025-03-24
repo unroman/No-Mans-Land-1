@@ -252,7 +252,7 @@ public class NMLBlocks {
             () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(SoundType.TRIAL_SPAWNER).noOcclusion()));
     public static final DeferredBlock<WardingEffigyBlock> WARDING_EFFIGY = registerBlock("warding_effigy",
             () -> new WardingEffigyBlock(of()
-                    .strength(0.4F)
+                    .strength(1.5F)
                     .noOcclusion()
                     .pushReaction(PushReaction.DESTROY)
                     .sound(SoundType.CHERRY_WOOD)
