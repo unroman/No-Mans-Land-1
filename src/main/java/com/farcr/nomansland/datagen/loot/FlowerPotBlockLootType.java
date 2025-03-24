@@ -12,7 +12,7 @@ public class FlowerPotBlockLootType extends BlockLootType {
         this.plant = plant;
     }
 
-    ItemLike getPlant() {
+    public ItemLike getPlant() {
         return plant.get();
     }
 }

@@ -1,9 +1,6 @@
-package com.farcr.nomansland.common.event;
+package com.farcr.nomansland.datagen;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.datagen.loot.NMLBlockLootSubProvider;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,6 +10,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = NoMansLand.MODID)
 public class DataGenEvents {
     @SubscribeEvent

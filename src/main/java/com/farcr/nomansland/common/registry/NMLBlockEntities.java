@@ -1,9 +1,10 @@
-package com.farcr.nomansland.common.registry.blocks;
+package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
 import com.farcr.nomansland.common.blockentity.RemainsBlockEntity;
 import com.farcr.nomansland.common.blockentity.TapBlockEntity;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;

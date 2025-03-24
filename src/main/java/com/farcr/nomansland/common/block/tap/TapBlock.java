@@ -1,8 +1,8 @@
 package com.farcr.nomansland.common.block.tap;
 
 import com.farcr.nomansland.common.blockentity.TapBlockEntity;
+import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.NMLRegistries;
-import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.MapCodec;

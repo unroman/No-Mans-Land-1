@@ -14,12 +14,10 @@ import com.farcr.nomansland.common.world.tree.HugeMushrooms;
 import com.farcr.nomansland.datagen.loot.*;
 import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,10 +28,9 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.apache.commons.compress.utils.Lists;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.function.Supplier;
@@ -44,7 +41,7 @@ import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.of
 public class NMLBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(NoMansLand.MODID);
     public static LinkedHashSet<DeferredHolder<Item, BlockItem>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
-    public static List<BlockDefinition> BLOCK_DEFINITIONS = Lists.newArrayList();
+    public static List<BlockDefinition<?>> BLOCK_DEFINITIONS = new ArrayList<>();
 
     public static final BlockDefinition<VineBlock> CUT_VINE = registerBlockNoItem("cut_vine",
             () -> new VineBlock(of().mapColor(MapColor.PLANT).replaceable().noCollission().strength(0.2F).sound(SoundType.VINE).ignitedByLava().pushReaction(PushReaction.DESTROY)), new BlockProperties(new OtherShearsBlockLootType(()->Blocks.VINE)));
@@ -528,152 +525,26 @@ public class NMLBlocks {
         return NMLItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public record BlockDefinition<T extends Block>(@NotNull DeferredBlock<T> block, @NotNull BlockProperties properties) {
-        public ItemStack toStack() {
-            return block.toStack();
-        }
-
-        public ItemStack toStack(int count) {
-            return block.toStack(count);
-        }
-
-        public Item asItem() {
-            return block.asItem();
-        }
-
-        public T get() {
-            return block.get();
-        }
-
-        public T value() {
-            return block.value();
-        }
-
-        public ResourceLocation getId() {
-            return block.getId();
-        }
-    }
-
-    public record BlockProperties (BlockLootType loot) {
-        // MISC
-        public static BlockProperties simplePath(Block block) {
-            return new BlockProperties(new OtherBlockLootType(() -> block));
-        } // paths
-        public static BlockProperties simplePath(BlockDefinition<?> block) {
-            return new BlockProperties(new OtherBlockLootType(() -> block.block().get()));
-        } // paths
-        public static BlockProperties path() {
-            return new BlockProperties(new CustomBlockLootType());
-        } // paths
-        public static BlockProperties fishBarrel() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // fish_barrel
-        public static BlockProperties dirtLike() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // shovel
-        public static BlockProperties cauldron() {
-            return new BlockProperties(new OtherBlockLootType(()->Blocks.CAULDRON));
-        } // cauldrons
-
-        // PLANTS
-        public static BlockProperties smallFlower() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // small_flowers
-        public static BlockProperties flowerbed() {
-            return new BlockProperties(new ShearsBlockLootType());
-        } // small_flowers
-        public static BlockProperties sapling() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // saplings
-        public static BlockProperties flowerPot(BlockDefinition<?> plant) {
-            return new BlockProperties(new FlowerPotBlockLootType(() -> plant.block().get()));
-        } // flower_pots
-
-        // STONE
-        public static BlockProperties stoneLike() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // pickaxe
-        public static BlockProperties stoneLikeStairs() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // pickaxe, stairs
-        public static BlockProperties stoneLikeSlab() {
-            return new BlockProperties(new SlabBlockLootType());
-        } // pickaxe, slabs
-        public static BlockProperties stoneLikeWall() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // pickaxe, walls
-
-        // WOOD
-        public static BlockProperties log() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // no easily-defined tags - logs are weird!
-        public static BlockProperties planks() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // planks
-        public static BlockProperties woodenButton(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // wooden_buttons
-        public static BlockProperties woodenDoor(BlockDefinition<?> planks) {
-            return new BlockProperties(new DoorBlockLootType());
-        } // wooden_doors
-        public static BlockProperties woodenFence(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // wooden_fences
-        public static BlockProperties fenceGate(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // fence_gates
-        public static BlockProperties woodenPressurePlate(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // wooden_pressure_plates
-        public static BlockProperties woodenSlab(BlockDefinition<?> planks) {
-            return new BlockProperties(new SlabBlockLootType());
-        } // wooden_slabs
-        public static BlockProperties woodenStairs(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // wooden_stairs
-        public static BlockProperties woodenTrapdoor(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // wooden_trapdoors
-        public static BlockProperties bookshelf(BlockDefinition<?> planks) {
-            return new BlockProperties(new BookshelfBlockLootType());
-        } // bookshelves
-        public static BlockProperties bookshelf(Block planks) {
-            return new BlockProperties(new BookshelfBlockLootType());
-        } // bookshelves
-        public static BlockProperties trimmedPlanks(BlockDefinition<?> planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // trimmed_planks
-        public static BlockProperties trimmedPlanks(Block planks) {
-            return new BlockProperties(new SelfBlockLootType());
-        } // trimmed_planks
-        public static BlockProperties sign() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // hard to determine
-        public static BlockProperties hangingSign() {
-            return new BlockProperties(new SelfBlockLootType());
-        } // also hard to determine
-    }
-
     public static class Woodset {
-        final BlockDefinition<Block> PLANKS;
-        final BlockDefinition<Block> STAIRS;
-        final BlockDefinition<Block> SLAB;
-        final BlockDefinition<Block> TRIMMED_PLANKS;
-        final BlockDefinition<Block> LOG;
-        final BlockDefinition<Block> WOOD;
-        final BlockDefinition<Block> STRIPPED_LOG;
-        final BlockDefinition<Block> STRIPPED_WOOD;
-        final BlockDefinition<Block> FENCE;
-        final BlockDefinition<Block> FENCE_GATE;
-        final BlockDefinition<Block> BUTTON;
-        final BlockDefinition<Block> PRESSURE_PLATE;
-        final BlockDefinition<Block> DOOR;
-        final BlockDefinition<Block> TRAPDOOR;
-        final BlockDefinition<Block> BOOKSHELF;
-        final BlockDefinition<StandingSignBlock> SIGN;
-        final BlockDefinition<WallSignBlock> WALL_SIGN;
-        final BlockDefinition<CeilingHangingSignBlock> HANGING_SIGN;
-        final BlockDefinition<WallHangingSignBlock> HANGING_WALL_SIGN;
+        private final BlockDefinition<Block> PLANKS;
+        private final BlockDefinition<Block> STAIRS;
+        private final BlockDefinition<Block> SLAB;
+        private final BlockDefinition<Block> TRIMMED_PLANKS;
+        private final BlockDefinition<Block> LOG;
+        private final BlockDefinition<Block> WOOD;
+        private final BlockDefinition<Block> STRIPPED_LOG;
+        private final BlockDefinition<Block> STRIPPED_WOOD;
+        private final BlockDefinition<Block> FENCE;
+        private final BlockDefinition<Block> FENCE_GATE;
+        private final BlockDefinition<Block> BUTTON;
+        private final BlockDefinition<Block> PRESSURE_PLATE;
+        private final BlockDefinition<Block> DOOR;
+        private final BlockDefinition<Block> TRAPDOOR;
+        private final BlockDefinition<Block> BOOKSHELF;
+        private final BlockDefinition<StandingSignBlock> SIGN;
+        private final BlockDefinition<WallSignBlock> WALL_SIGN;
+        private final BlockDefinition<CeilingHangingSignBlock> HANGING_SIGN;
+        private final BlockDefinition<WallHangingSignBlock> HANGING_WALL_SIGN;
 
         public Woodset(WoodType woodType, BlockSetType blockSetType, String name) {
             PLANKS = registerBlock(name + "_planks",

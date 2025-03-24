@@ -1,6 +1,5 @@
 package com.farcr.nomansland.datagen.loot;
 
-import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
@@ -13,7 +12,7 @@ public class OtherBlockLootType extends BlockLootType {
         this.block = block;
     }
 
-    ItemLike getBlock() {
+    public ItemLike getBlock() {
         return block.get();
     }
 }

@@ -12,7 +12,7 @@ public class OtherShearsBlockLootType extends BlockLootType {
         this.block = block;
     }
 
-    ItemLike getBlock() {
+    public ItemLike getBlock() {
         return block.get();
     }
 }
