@@ -1,0 +1,96 @@
+{
+  "variants": {
+    "effigies=1,facing=north": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy"
+      }
+    ],
+    "effigies=1,facing=east": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy",
+        "y": 90
+      }
+    ],
+    "effigies=1,facing=west": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy",
+        "y": 270
+      }
+    ],
+    "effigies=1,facing=south": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy",
+        "y": 180
+      }
+    ],
+    "effigies=2,facing=north": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_2"
+      }
+    ],
+    "effigies=2,facing=east": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_2",
+        "y": 90
+      }
+    ],
+    "effigies=2,facing=west": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_2",
+        "y": 270
+      }
+    ],
+    "effigies=2,facing=south": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_2",
+        "y": 180
+      }
+    ],
+    "effigies=3,facing=north": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_3"
+      }
+    ],
+    "effigies=3,facing=east": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_3",
+        "y": 90
+      }
+    ],
+    "effigies=3,facing=west": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_3",
+        "y": 270
+      }
+    ],
+    "effigies=3,facing=south": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_3",
+        "y": 180
+      }
+    ],
+    "effigies=4,facing=north": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_4"
+      }
+    ],
+    "effigies=4,facing=east": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_4",
+        "y": 90
+      }
+    ],
+    "effigies=4,facing=west": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_4",
+        "y": 270
+      }
+    ],
+    "effigies=4,facing=south": [
+      {
+        "model": "nomansland:block/dungeon/warding_effigy_4",
+        "y": 180
+      }
+    ]
+  }
+}

@@ -87,6 +87,7 @@ public class NMLItems {
 
     public static final DeferredItem<Item> RESIN_OIL_BOTTLE = registerItem("resin_oil_bottle",
             () -> new ResinOilBottleItem(new Properties()
+                    .stacksTo(16)
                     .craftRemainder(Items.GLASS_BOTTLE)
                     .component(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), List.of(new MobEffectInstance(NMLEffects.FLAMMABLE, 2400))))));
 
@@ -463,6 +464,7 @@ public class NMLItems {
             insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_CHEST_BOAT);
             insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_BOAT);
             insertAfter(event, Items.SALMON_BUCKET, NMLItems.BILLHOOK_BASS_BUCKET);
+            insertAfter(event, Items.SALMON_BUCKET, NMLBlocks.WARDING_EFFIGY);
 //            insertAfter(event, Items.TROPICAL_FISH_BUCKET, NMLItems.CAVE_CARP_BUCKET);
             if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), Items.BUNDLE.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }

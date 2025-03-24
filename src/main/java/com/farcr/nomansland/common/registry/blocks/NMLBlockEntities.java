@@ -4,6 +4,7 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
 import com.farcr.nomansland.common.blockentity.RemainsBlockEntity;
 import com.farcr.nomansland.common.blockentity.TapBlockEntity;
+import com.farcr.nomansland.common.blockentity.WardingEffigyBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
@@ -22,6 +23,10 @@ public class NMLBlockEntities {
     public static final Supplier<BlockEntityType<MonsterAnchorBlockEntity>> MONSTER_ANCHOR =
             BLOCK_ENTITIES.register("monster_anchor", () ->
                     BlockEntityType.Builder.of(MonsterAnchorBlockEntity::new, NMLBlocks.MONSTER_ANCHOR.get()).build(null));
+
+    public static final Supplier<BlockEntityType<WardingEffigyBlockEntity>> WARDING_EFFIGY =
+            BLOCK_ENTITIES.register("warding_effigy", () ->
+                    BlockEntityType.Builder.of(WardingEffigyBlockEntity::new, NMLBlocks.WARDING_EFFIGY.get()).build(null));
 
     public static final Supplier<BlockEntityType<RemainsBlockEntity>> REMAINS =
             BLOCK_ENTITIES.register("remains", () ->
