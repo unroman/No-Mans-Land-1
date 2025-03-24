@@ -1,21 +1,15 @@
 package com.farcr.nomansland.common.blockentity;
 
-import com.farcr.nomansland.common.block.WardingEffigyBlock;
 import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
 import com.farcr.nomansland.common.saved_data.WardedSpacesData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.BlockPositionSource;
-import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.saveddata.SavedData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static com.farcr.nomansland.common.block.WardingEffigyBlock.getRange;
 

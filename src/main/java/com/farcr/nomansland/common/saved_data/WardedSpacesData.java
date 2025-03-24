@@ -8,7 +8,7 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
 
 public class WardedSpacesData extends SavedData {
     public static final String NAME = "warded_spaces";
@@ -66,5 +66,20 @@ public class WardedSpacesData extends SavedData {
         }
 
         return false;
+    }
+
+    public Optional<BlockPos> getAffectingEffigyAt(BlockPos pos) {
+        if (positions.contains(pos)) return Optional.of(pos);
+
+        BlockPos closestEffigy = null;
+        for (BlockPos wardedPos : positions) {
+            if (wardedPos.distToCenterSqr(pos.getX(), pos.getY(), pos.getZ()) <= Mth.square(ranges.get(positions.indexOf(wardedPos)))) {
+                if (closestEffigy == null) closestEffigy = wardedPos;
+                else if (wardedPos.distToCenterSqr(pos.getX(), pos.getY(), pos.getZ()) < closestEffigy.distToCenterSqr(pos.getX(), pos.getY(), pos.getZ()))
+                    closestEffigy = wardedPos;
+            }
+        }
+
+        return Optional.ofNullable(closestEffigy);
     }
 }
