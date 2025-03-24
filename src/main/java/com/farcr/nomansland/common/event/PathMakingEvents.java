@@ -70,17 +70,17 @@ public class PathMakingEvents {
                 stack.hurtAndBreak(1, player, stack.getEquipmentSlot());
 
                 BlockState pathState = ImmutableMap.ofEntries(
-                        Map.entry(Blocks.GRAVEL, NMLBlocks.GRAVEL_PATH),
-                        Map.entry(Blocks.SAND, NMLBlocks.SAND_PATH),
-                        Map.entry(Blocks.RED_SAND, NMLBlocks.RED_SAND_PATH),
+                        Map.entry(Blocks.GRAVEL, NMLBlocks.GRAVEL_PATH.block()),
+                        Map.entry(Blocks.SAND, NMLBlocks.SAND_PATH.block()),
+                        Map.entry(Blocks.RED_SAND, NMLBlocks.RED_SAND_PATH.block()),
                         Map.entry(Blocks.GRASS_BLOCK, Blocks.DIRT_PATH.defaultBlockState().getBlockHolder()),
-                        Map.entry(Blocks.MYCELIUM, NMLBlocks.MYCELIUM_PATH),
-                        Map.entry(Blocks.PODZOL, NMLBlocks.PODZOL_PATH),
-                        Map.entry(Blocks.DIRT, NMLBlocks.DIRT_PATH),
-                        Map.entry(Blocks.COARSE_DIRT, NMLBlocks.DIRT_PATH),
-                        Map.entry(Blocks.ROOTED_DIRT, NMLBlocks.DIRT_PATH),
-                        Map.entry(Blocks.SNOW_BLOCK, NMLBlocks.SNOW_PATH),
-                        Map.entry(NMLBlocks.SILT.get(), NMLBlocks.SILT_PATH)
+                        Map.entry(Blocks.MYCELIUM, NMLBlocks.MYCELIUM_PATH.block()),
+                        Map.entry(Blocks.PODZOL, NMLBlocks.PODZOL_PATH.block()),
+                        Map.entry(Blocks.DIRT, NMLBlocks.DIRT_PATH.block()),
+                        Map.entry(Blocks.COARSE_DIRT, NMLBlocks.DIRT_PATH.block()),
+                        Map.entry(Blocks.ROOTED_DIRT, NMLBlocks.DIRT_PATH.block()),
+                        Map.entry(Blocks.SNOW_BLOCK, NMLBlocks.SNOW_PATH.block()),
+                        Map.entry(NMLBlocks.SILT.get(), NMLBlocks.SILT_PATH.block())
                 ).get(state.getBlock()).value().defaultBlockState();
 
                 if ((state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.ROOTED_DIRT) || state.is(Blocks.GRASS_BLOCK)) && level.getBlockState(pos.above()).is(Blocks.SNOW)) level.setBlockAndUpdate(pos, NMLBlocks.SNOWY_GRASS_PATH.get().defaultBlockState());

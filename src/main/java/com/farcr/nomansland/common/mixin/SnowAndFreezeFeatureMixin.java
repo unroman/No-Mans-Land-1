@@ -42,7 +42,7 @@ public class SnowAndFreezeFeatureMixin {
                 }
 
                 if (biome.shouldSnow(worldgenlevel, blockpos$mutableblockpos)) {
-                    if (worldgenlevel.getBlockState(blockpos$mutableblockpos).is(NMLBlocks.FROSTED_GRASS)) {
+                    if (worldgenlevel.getBlockState(blockpos$mutableblockpos).is(NMLBlocks.FROSTED_GRASS.block())) {
                         worldgenlevel.setBlock(blockpos$mutableblockpos, NMLBlocks.FROSTED_GRASS.get().defaultBlockState().setValue(SNOWLOGGED, true), 2);
                     } else worldgenlevel.setBlock(blockpos$mutableblockpos, Blocks.SNOW.defaultBlockState(), 2);                    BlockState blockstate = worldgenlevel.getBlockState(blockpos$mutableblockpos1);
                     if (blockstate.hasProperty(SnowyDirtBlock.SNOWY)) {

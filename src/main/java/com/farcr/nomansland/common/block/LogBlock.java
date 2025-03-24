@@ -36,37 +36,15 @@ public class LogBlock extends RotatedPillarBlock {
     @Override
     public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
         if (itemAbility.equals(ItemAbilities.AXE_STRIP)) {
-            if (state.is(NMLBlocks.PINE_LOG.get())) {
-                return NMLBlocks.STRIPPED_PINE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.PINE_WOOD.get())) {
-                return NMLBlocks.STRIPPED_PINE_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.MAPLE_LOG.get())) {
-                return NMLBlocks.STRIPPED_MAPLE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.MAPLE_WOOD.get())) {
-                return NMLBlocks.STRIPPED_MAPLE_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.WALNUT_LOG.get())) {
-                return NMLBlocks.STRIPPED_WALNUT_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.WALNUT_WOOD.get())) {
-                return NMLBlocks.STRIPPED_WALNUT_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.WILLOW_LOG.get())) {
-                return NMLBlocks.STRIPPED_WILLOW_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if (state.is(NMLBlocks.WILLOW_WOOD.get())) {
-                return NMLBlocks.STRIPPED_WILLOW_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
+            BlockState checkedState;
+            checkedState = NMLBlocks.PINE.checkLogStripping(state);
+            if (checkedState != null) return checkedState;
+            checkedState = NMLBlocks.MAPLE.checkLogStripping(state);
+            if (checkedState != null) return checkedState;
+            checkedState = NMLBlocks.WALNUT.checkLogStripping(state);
+            if (checkedState != null) return checkedState;
+            checkedState = NMLBlocks.WILLOW.checkLogStripping(state);
+            if (checkedState != null) return checkedState;
         }
 
         return super.getToolModifiedState(state, context, itemAbility, simulate);

@@ -30,18 +30,18 @@ public class NMLBlockEntities {
     public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         event.modify(
                 BlockEntityType.SIGN,
-                NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get(),
-                NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get(),
-                NMLBlocks.WALNUT_SIGN.get(), NMLBlocks.WALNUT_WALL_SIGN.get(),
-                NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()
+                NMLBlocks.MAPLE.sign().get(), NMLBlocks.MAPLE.wallSign().get(),
+                NMLBlocks.PINE.sign().get(), NMLBlocks.PINE.wallSign().get(),
+                NMLBlocks.WALNUT.sign().get(), NMLBlocks.WALNUT.wallSign().get(),
+                NMLBlocks.WILLOW.sign().get(), NMLBlocks.WILLOW.wallSign().get()
         );
 
         event.modify(
                 BlockEntityType.HANGING_SIGN,
-                NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(),
-                NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(),
-                NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(),
-                NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get()
+                NMLBlocks.MAPLE.hangingSign().get(), NMLBlocks.MAPLE.hangingWallSign().get(),
+                NMLBlocks.PINE.hangingSign().get(), NMLBlocks.PINE.hangingWallSign().get(),
+                NMLBlocks.WALNUT.hangingSign().get(), NMLBlocks.WALNUT.hangingWallSign().get(),
+                NMLBlocks.WILLOW.hangingSign().get(), NMLBlocks.WILLOW.hangingWallSign().get()
         );
     }
 }

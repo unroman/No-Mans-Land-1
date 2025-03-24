@@ -118,18 +118,18 @@ public class NMLItems {
 //                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 
     public static final DeferredItem<Item> PINE_SIGN = registerItem("pine_sign",
-            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.PINE_SIGN.get(), NMLBlocks.PINE_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.PINE.sign().get(), NMLBlocks.PINE.wallSign().get()));
     public static final DeferredItem<Item> PINE_HANGING_SIGN = registerItem("pine_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.PINE.hangingSign().get(), NMLBlocks.PINE.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> PINE_BOAT = registerItem("pine_boat",
             () -> new BoatItem(false, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> PINE_CHEST_BOAT = registerItem("pine_chest_boat",
             () -> new BoatItem(true, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> MAPLE_SIGN = registerItem("maple_sign",
-            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.MAPLE.sign().get(), NMLBlocks.MAPLE.wallSign().get()));
     public static final DeferredItem<Item> MAPLE_HANGING_SIGN = registerItem("maple_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.MAPLE.hangingSign().get(), NMLBlocks.MAPLE.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> MAPLE_BOAT = registerItem("maple_boat",
             () -> new BoatItem(false, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> MAPLE_CHEST_BOAT = registerItem("maple_chest_boat",
@@ -138,18 +138,18 @@ public class NMLItems {
 //            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Properties()));
 
     public static final DeferredItem<Item> WALNUT_SIGN = registerItem("walnut_sign",
-            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WALNUT_SIGN.get(), NMLBlocks.WALNUT_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WALNUT.sign().get(), NMLBlocks.WALNUT.wallSign().get()));
     public static final DeferredItem<Item> WALNUT_HANGING_SIGN = registerItem("walnut_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.WALNUT.hangingSign().get(), NMLBlocks.WALNUT.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WALNUT_BOAT = registerItem("walnut_boat",
             () -> new BoatItem(false, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WALNUT_CHEST_BOAT = registerItem("walnut_chest_boat",
             () -> new BoatItem(true, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> WILLOW_SIGN = registerItem("willow_sign",
-            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()));
+            () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WILLOW.sign().get(), NMLBlocks.WILLOW.wallSign().get()));
     public static final DeferredItem<Item> WILLOW_HANGING_SIGN = registerItem("willow_hanging_sign",
-            () -> new HangingSignItem(NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
+            () -> new HangingSignItem(NMLBlocks.WILLOW.hangingSign().get(), NMLBlocks.WILLOW.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WILLOW_BOAT = registerItem("willow_boat",
             () -> new BoatItem(false, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WILLOW_CHEST_BOAT = registerItem("willow_chest_boat",
@@ -206,73 +206,73 @@ public class NMLItems {
             insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICK_STAIRS);
             insertAfter(event, Items.BRICK_WALL, NMLBlocks.COARSE_BRICKS);
 
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BUTTON);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_PRESSURE_PLATE);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_TRAPDOOR);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_DOOR);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE_GATE);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_FENCE);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.button());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.pressurePlate());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.trapdoor());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.door());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.fenceGate());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.fence());
             if (Mods.FARMERSDELIGHT.isLoaded()) insertAfter(event, Items.SPRUCE_BUTTON, FDIntegration.PINE_CABINET);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.TRIMMED_PINE_PLANKS);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_BOOKSHELF);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_SLAB);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_STAIRS);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_PLANKS);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.STRIPPED_PINE_WOOD);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.STRIPPED_PINE_LOG);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_WOOD);
-            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE_LOG);
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.trimmedPlanks());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.bookshelf());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.slab());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.stairs());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.planks());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.strippedWood());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.strippedLog());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.wood());
+            insertAfter(event, Items.SPRUCE_BUTTON, NMLBlocks.PINE.log());
 
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BUTTON);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_PRESSURE_PLATE);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_TRAPDOOR);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_DOOR);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE_GATE);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_FENCE);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.button());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.pressurePlate());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.trapdoor());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.door());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.fenceGate());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.fence());
             if (Mods.FARMERSDELIGHT.isLoaded()) insertAfter(event, Items.DARK_OAK_BUTTON, FDIntegration.WALNUT_CABINET);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.TRIMMED_WALNUT_PLANKS);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_BOOKSHELF);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_SLAB);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_STAIRS);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_PLANKS);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.STRIPPED_WALNUT_WOOD);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.STRIPPED_WALNUT_LOG);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_WOOD);
-            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT_LOG);
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.trimmedPlanks());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.bookshelf());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.slab());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.stairs());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.planks());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.strippedWood());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.strippedLog());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.wood());
+            insertAfter(event, Items.DARK_OAK_BUTTON, NMLBlocks.WALNUT.log());
 
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_LOG);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_WOOD);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.STRIPPED_MAPLE_LOG);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.STRIPPED_MAPLE_WOOD);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_PLANKS);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_STAIRS);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_SLAB);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BOOKSHELF);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.TRIMMED_MAPLE_PLANKS);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.log());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.wood());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.strippedLog());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.strippedWood());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.planks());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.stairs());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.slab());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.bookshelf());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.trimmedPlanks());
             if (Mods.FARMERSDELIGHT.isLoaded()) insertBefore(event, Items.DARK_OAK_LOG, FDIntegration.MAPLE_CABINET);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_FENCE_GATE);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_DOOR);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_TRAPDOOR);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_PRESSURE_PLATE);
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_BUTTON);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.fence());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.fenceGate());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.door());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.trapdoor());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.pressurePlate());
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.button());
 
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_LOG);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_WOOD);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.STRIPPED_WILLOW_LOG);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.STRIPPED_WILLOW_WOOD);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_PLANKS);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_STAIRS);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_SLAB);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BOOKSHELF);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.TRIMMED_WILLOW_PLANKS);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.log());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.wood());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.strippedLog());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.strippedWood());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.planks());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.stairs());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.slab());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.bookshelf());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.trimmedPlanks());
             if (Mods.FARMERSDELIGHT.isLoaded()) insertBefore(event, Items.MANGROVE_LOG, FDIntegration.WILLOW_CABINET);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_FENCE_GATE);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_DOOR);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_TRAPDOOR);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_PRESSURE_PLATE);
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_BUTTON);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.fence());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.fenceGate());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.door());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.trapdoor());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.pressurePlate());
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.button());
 
             insertAfter(event, Items.OAK_SLAB, NMLBlocks.TRIMMED_OAK_PLANKS);
             insertAfter(event, Items.OAK_SLAB, Items.BOOKSHELF.getDefaultInstance().getItemHolder());
@@ -379,21 +379,21 @@ public class NMLItems {
 
 //            event.accept(NMLBlocks.REMAINS);
 
-            insertAfter(event, Items.SPRUCE_LOG, NMLBlocks.PINE_LOG);
+            insertAfter(event, Items.SPRUCE_LOG, NMLBlocks.PINE.log());
             insertAfter(event, Items.SPRUCE_LEAVES, NMLBlocks.PINE_LEAVES);
             insertAfter(event, Items.SPRUCE_SAPLING, NMLBlocks.PINE_SAPLING);
 
-            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE_LOG);
+            insertBefore(event, Items.DARK_OAK_LOG, NMLBlocks.MAPLE.log());
             insertBefore(event, Items.DARK_OAK_LEAVES, NMLBlocks.MAPLE_LEAVES);
             insertBefore(event, Items.DARK_OAK_SAPLING, NMLBlocks.MAPLE_SAPLING);
             insertBefore(event, Items.DARK_OAK_LEAVES, NMLBlocks.RED_MAPLE_LEAVES);
             insertBefore(event, Items.DARK_OAK_SAPLING, NMLBlocks.RED_MAPLE_SAPLING);
 
-            insertAfter(event, Items.DARK_OAK_LOG, NMLBlocks.WALNUT_LOG);
+            insertAfter(event, Items.DARK_OAK_LOG, NMLBlocks.WALNUT.log());
             insertAfter(event, Items.DARK_OAK_LEAVES, NMLBlocks.WALNUT_LEAVES);
             insertAfter(event, Items.DARK_OAK_SAPLING, NMLBlocks.WALNUT_SAPLING);
 
-            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW_LOG);
+            insertBefore(event, Items.MANGROVE_LOG, NMLBlocks.WILLOW.log());
             insertBefore(event, Items.MANGROVE_LEAVES, NMLBlocks.WILLOW_LEAVES);
             insertBefore(event, Items.MANGROVE_PROPAGULE, NMLBlocks.WILLOW_SAPLING);
 
@@ -405,14 +405,14 @@ public class NMLItems {
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.CHERRY_BOOKSHELF);
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.BAMBOO_BOOKSHELF);
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.MANGROVE_BOOKSHELF);
-            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WILLOW_BOOKSHELF);
-            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WALNUT_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WILLOW.bookshelf());
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.WALNUT.bookshelf());
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.DARK_OAK_BOOKSHELF);
-            insertAfter(event, Items.BOOKSHELF, NMLBlocks.MAPLE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.MAPLE.bookshelf());
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.ACACIA_BOOKSHELF);
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.JUNGLE_BOOKSHELF);
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.BIRCH_BOOKSHELF);
-            insertAfter(event, Items.BOOKSHELF, NMLBlocks.PINE_BOOKSHELF);
+            insertAfter(event, Items.BOOKSHELF, NMLBlocks.PINE.bookshelf());
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.SPRUCE_BOOKSHELF);
             insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_HANGING_SIGN);
             insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_SIGN);
@@ -501,6 +501,10 @@ public class NMLItems {
         if (existingStack != null && newStack != null) event.insertBefore(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
+    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, NMLBlocks.BlockDefinition<?> definition) {
+        insertBefore(event, existingEntry, definition.block());
+    }
+
     private static void insertAfter(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {
         ItemStack existingStack = null;
         ItemStack newStack = null;
@@ -509,6 +513,10 @@ public class NMLItems {
         if (newEntry.value() instanceof Item item) newStack = item.getDefaultInstance();
         if (newEntry.value() instanceof Block block) newStack = block.asItem().getDefaultInstance();
         if (existingStack != null && newStack != null) event.insertAfter(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
+    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Object existingEntry, NMLBlocks.BlockDefinition<?> definition) {
+        insertAfter(event, existingEntry, definition.block());
     }
 
     @SuppressWarnings("unchecked")

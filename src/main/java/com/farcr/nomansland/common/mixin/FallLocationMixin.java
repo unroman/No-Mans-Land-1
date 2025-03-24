@@ -13,6 +13,6 @@ public class FallLocationMixin {
 
     @Inject(method = "blockToFallLocation", at = @At("HEAD"), cancellable = true)
     private static void addWoodenScaffolding(BlockState state, CallbackInfoReturnable<FallLocation> cir) {
-        if (state.is(NMLBlocks.WOODEN_SCAFFOLDING)) cir.setReturnValue(FallLocation.SCAFFOLDING);
+        if (state.is(NMLBlocks.WOODEN_SCAFFOLDING.block())) cir.setReturnValue(FallLocation.SCAFFOLDING);
     }
 }

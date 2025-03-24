@@ -405,8 +405,8 @@ public class MiscellaneousEvents {
                 while (it.hasNext()) {
                     BlockPos bp = it.next();
                     BlockState state = level.getBlockState(bp);
-                    if (apple && state.is(NMLBlocks.APPLE_FRUIT)) fruit++;
-                    if (pear && state.is(NMLBlocks.PEAR_FRUIT)) fruit++;
+                    if (apple && state.is(NMLBlocks.APPLE_FRUIT.block())) fruit++;
+                    if (pear && state.is(NMLBlocks.PEAR_FRUIT.block())) fruit++;
                 }
                 if (fruit >= 12) {
                     if (regularOakFeatures.contains(feature)) event.setFeature(NMLFeatures.OAK_APPLE_05);

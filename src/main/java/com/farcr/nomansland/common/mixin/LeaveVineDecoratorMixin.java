@@ -26,7 +26,7 @@ public class LeaveVineDecoratorMixin {
                     for (int i = 0; i < 10; i++) {
                         BlockPos pos2 = pos1.below(i);
                         if (level.isStateAtPosition(pos2, state -> state.is(Blocks.VINE))) continue;
-                        if (level.isStateAtPosition(pos2, state -> state.is(NMLBlocks.CUT_VINE))) break;
+                        if (level.isStateAtPosition(pos2, state -> state.is(NMLBlocks.CUT_VINE.block()))) break;
                         context.setBlock(pos2.above(), NMLBlocks.CUT_VINE.get().defaultBlockState().setValue(VineBlock.getPropertyForFace(direction.getOpposite()), true));
                         break;
                     }
