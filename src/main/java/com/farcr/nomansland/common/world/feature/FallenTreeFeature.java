@@ -37,7 +37,7 @@ public class FallenTreeFeature extends Feature<FallenTreeFeatureConfiguration> {
                 for (int z = -10; z <= 10; z++) {
                     posMutable.set(origin.offset(x, y, z));
                     BlockState blockState = level.getBlockState(posMutable);
-                    if (blockState.is(BlockTags.LOGS)) {
+                    if (blockState.is(BlockTags.LOGS) && blockState.hasProperty(RotatedPillarBlock.AXIS)) {
                         if (logScan.containsKey(blockState.getBlock())) {
                             logScan.put(blockState.getBlock(), logScan.get(blockState.getBlock()) + 1);
                         } else {

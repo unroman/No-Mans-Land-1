@@ -9,16 +9,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BrushableBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-
-import java.util.Random;
 
 public class RemainsBlockEntity extends BrushableBlockEntity {
-    public RemainsBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(pPos, pBlockState);
-//        ((BlockEntityAccessor) this).setType(NMLBlockEntities.REMAINS.get());
+    public RemainsBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state);
     }
 
     @Override
@@ -27,27 +24,31 @@ public class RemainsBlockEntity extends BrushableBlockEntity {
     }
 
     @Override
-    public void brushingCompleted(Player pPlayer) {
+    public BlockEntityType<?> getType() {
+        return super.getType();
+    }
+
+    @Override
+    public void brushingCompleted(Player player) {
         if (level != null && level.getServer() != null) {
             Block remainsBlockState = this.getBlockState().getBlock();
             if (remainsBlockState instanceof BrushableBlock) {
-                float a = new Random().nextFloat();
-                if (a < NMLConfig.BURIED_SPAWNING_CHANCE.get()) {
+                if (level.random.nextFloat() < NMLConfig.BURIED_SPAWNING_CHANCE.get()) {
                     //TODO: When Buried is readded/worked on, replace SKELETON with BURIED
                     Skeleton buried = EntityType.SKELETON.create(level);
                     if (buried != null) {
-                        Vec3 playerPosition = pPlayer.getPosition(1);
                         BlockPos spawningPosition = worldPosition.relative(this.getHitDirection());
                         if (level.getBlockState(spawningPosition) == Blocks.AIR.defaultBlockState())
                             buried.moveTo(spawningPosition.getCenter());
                         else
-                            buried.moveTo((playerPosition.x + worldPosition.getX()) / 2, (playerPosition.y + worldPosition.getY()) / 2, (playerPosition.z + worldPosition.getZ()) / 2);
+                            buried.moveTo((player.getX() + worldPosition.getX()) / 2, (player.getY() + worldPosition.getY()) / 2, (player.getZ() + worldPosition.getZ()) / 2);
                         level.addFreshEntity(buried);
                         buried.spawnAnim();
                     }
                 }
             }
         }
-        super.brushingCompleted(pPlayer);
+
+        super.brushingCompleted(player);
     }
 }

@@ -70,7 +70,7 @@ public class FruitLeavesBlock extends LeavesBlock {
     public void rot(Level level, BlockPos pos, BlockState state) {
         int distance = state.getValue(DISTANCE);
         boolean waterlogged = state.getValue(WATERLOGGED);
-        level.setBlockAndUpdate(pos.below(), Blocks.AIR.defaultBlockState());
+        if (level.getBlockState(pos.below()).getBlock() instanceof FruitBlock) level.setBlockAndUpdate(pos.below(), Blocks.AIR.defaultBlockState());
         level.setBlockAndUpdate(pos, leaves.value().defaultBlockState().setValue(DISTANCE, distance).setValue(WATERLOGGED, waterlogged));
     }
 }

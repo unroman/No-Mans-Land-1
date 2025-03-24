@@ -47,8 +47,8 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
     public SpikeTrapBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false))
-                .setValue(FACING, Direction.UP).setValue(POWERED, Boolean.valueOf(true)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE)
+                .setValue(FACING, Direction.UP).setValue(POWERED, Boolean.TRUE));
     }
 
     @Override
@@ -95,7 +95,7 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getClickedFace()).setValue(POWERED, FALSE);
+        return this.defaultBlockState().setValue(FACING, context.getClickedFace());
     }
 
     @Override

@@ -42,6 +42,7 @@ public class ResinOilBottleItem extends Item implements ProjectileItem {
         }
 
         player.awardStat(Stats.ITEM_USED.get(this));
+        player.getCooldowns().addCooldown(this, 20);
         itemstack.consume(1, player);
         return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
     }
