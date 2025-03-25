@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#A",
+    "A#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:quartz"
+    },
+    "A": {
+      "item": "minecraft:calcite"
+    }
+  },
+  "result": {
+    "id": "nomansland:quartzite",
+    "count": 3
+  }
+}
