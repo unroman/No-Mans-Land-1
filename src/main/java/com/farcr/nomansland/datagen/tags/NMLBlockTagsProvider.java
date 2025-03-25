@@ -1,6 +1,5 @@
 package com.farcr.nomansland.datagen.tags;
 
-import com.farcr.nomansland.common.registry.blocks.BlockDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.google.common.collect.Maps;
 import net.minecraft.core.HolderLookup;
