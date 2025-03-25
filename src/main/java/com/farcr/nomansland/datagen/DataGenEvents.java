@@ -1,6 +1,8 @@
 package com.farcr.nomansland.datagen;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.datagen.tags.NMLBlockTagsProvider;
+import com.farcr.nomansland.datagen.tags.NMLItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -35,6 +37,10 @@ public class DataGenEvents {
                         lookupProvider
                 )
         );
+
+        // Tags
+        generator.addProvider(server, new NMLBlockTagsProvider(packOutput, lookupProvider, NoMansLand.MODID, event.getExistingFileHelper()));
+        //generator.addProvider(server, new NMLItemTagsProvider(packOutput, lookupProvider));
 
         // Lang
         generator.addProvider(
