@@ -1,7 +1,6 @@
 package com.farcr.nomansland.datagen;
 
-import com.farcr.nomansland.common.registry.blocks.BlockDefinition;
-import com.farcr.nomansland.common.registry.blocks.BlockProperties;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.datagen.loot.*;
 import net.minecraft.core.HolderLookup;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.HashSet;
 
@@ -28,35 +26,37 @@ public class NMLBlockLootSubProvider extends BlockLootSubProvider {
     protected Iterable<Block> getKnownBlocks() {
 //        return NMLBlocks.BLOCKS.getEntries().stream().map(e -> (Block)e.value()).toList();
 
-        return NMLBlocks.BLOCK_DEFINITIONS.stream().filter(e -> !(e.properties().loot() instanceof CustomBlockLootType)).map(e -> (Block)e.block().value()).toList();
+        return NMLBlocks.BLOCK_DEFINITIONS.stream()
+                .filter(blockDefinition -> !(blockDefinition.properties().lootType() instanceof CustomBlockLootType))
+                .map(BlockDefinition::block)
+                .toList();
     }
 
     @Override
     protected void generate() {
-        //add(NMLBlocks.FIELD_MUSHROOM.get(), dropSelf(NMLBlocks.FIELD_MUSHROOM.get()));
+        //add(NMLBlocks.FIELD_MUSHROOM, dropSelf(NMLBlocks.FIELD_MUSHROOM.get()));
         //dropSelf(NMLBlocks.FIELD_MUSHROOM.get());
 
         for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
-            BlockProperties properties = definition.properties();
-            DeferredBlock<?> block = definition.block();
-            BlockLootType lootType = properties.loot();
+            Block block = definition.get();
+            BlockLootType lootType = definition.properties().lootType();
 
             if (lootType instanceof SelfBlockLootType)
-                dropSelf(block.get());
+                dropSelf(block);
             else if (lootType instanceof OtherBlockLootType otherBlockLootType)
-                add(block.get(), createSingleItemTable(otherBlockLootType.getBlock()));
+                add(block, createSingleItemTable(otherBlockLootType.getBlock()));
             else if (lootType instanceof ShearsBlockLootType)
-                add(block.get(), createShearsOnlyDrop(block.get()));
+                add(block, createShearsOnlyDrop(block));
             else if (lootType instanceof OtherShearsBlockLootType otherShearsBlockLootType)
-                add(block.get(), createShearsOnlyDrop(otherShearsBlockLootType.getBlock()));
+                add(block, createShearsOnlyDrop(otherShearsBlockLootType.getBlock()));
             else if (lootType instanceof SlabBlockLootType)
-                add(block.get(), createSlabItemTable(block.get()));
+                add(block, createSlabItemTable(block));
             else if (lootType instanceof DoorBlockLootType)
-                add(block.get(), createDoorTable(block.get()));
+                add(block, createDoorTable(block));
             else if (lootType instanceof FlowerPotBlockLootType flowerPotBlockLootType)
-                add(block.get(), createPotFlowerItemTable(flowerPotBlockLootType.getPlant()));
+                add(block, createPotFlowerItemTable(flowerPotBlockLootType.getPlant()));
             else if (lootType instanceof BookshelfBlockLootType)
-                add(block.get(), createSelfDropDispatchTable(block.get(), hasSilkTouch(), this.applyExplosionDecay(block, LootItem.lootTableItem(Items.BOOK).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0f))))));
+                add(block, createSelfDropDispatchTable(block, hasSilkTouch(), this.applyExplosionDecay(block, LootItem.lootTableItem(Items.BOOK).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0f))))));
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.farcr.nomansland.datagen;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.registry.blocks.BlockDefinition;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -16,7 +16,7 @@ public class NMLLanguageProvider extends LanguageProvider {
         for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
 
             if (!definition.properties().customLang()) {
-                addBlock(definition.block(), formatId(definition.name()));
+                add(definition.langKey(), definition.langName());
             }
         }
 
@@ -132,22 +132,5 @@ public class NMLLanguageProvider extends LanguageProvider {
         add("block.nomansland.maple_syrup_cauldron", "Cauldron Filled With Maple Syrup");
         add("block.nomansland.resin_oil_cauldron", "Cauldron Filled With Resin Oil");
         add("block.nomansland.milk_cauldron", "Cauldron Filled With Milk");
-    }
-
-    public static String formatId(String id) {
-        String processed = id.split(":")[1].replace("_", " ");
-
-        String[] words = processed.split(" ");
-        StringBuilder result = new StringBuilder();
-
-        for (String word : words) {
-            if (!word.isEmpty()) {
-                result.append(Character.toUpperCase(word.charAt(0)))
-                        .append(word.substring(1))
-                        .append(" ");
-            }
-        }
-
-        return result.toString().trim();
     }
 }

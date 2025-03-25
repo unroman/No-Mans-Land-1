@@ -1,6 +1,6 @@
 package com.farcr.nomansland.common.integration;
 
-import com.farcr.nomansland.common.registry.blocks.BlockDefinition;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLFoods;
 import com.farcr.nomansland.common.registry.items.NMLItems;

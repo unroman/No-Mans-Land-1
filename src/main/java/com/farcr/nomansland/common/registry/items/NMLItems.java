@@ -1,12 +1,12 @@
 package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.integration.FDIntegration;
 import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
-import com.farcr.nomansland.common.registry.blocks.BlockDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
@@ -502,10 +502,6 @@ public class NMLItems {
         if (existingStack != null && newStack != null) event.insertBefore(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
-    private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, BlockDefinition<?> definition) {
-        insertBefore(event, existingEntry, definition.block());
-    }
-
     private static void insertAfter(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {
         ItemStack existingStack = null;
         ItemStack newStack = null;
@@ -514,10 +510,6 @@ public class NMLItems {
         if (newEntry.value() instanceof Item item) newStack = item.getDefaultInstance();
         if (newEntry.value() instanceof Block block) newStack = block.asItem().getDefaultInstance();
         if (existingStack != null && newStack != null) event.insertAfter(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-    }
-
-    private static void insertAfter(BuildCreativeModeTabContentsEvent event, Object existingEntry, BlockDefinition<?> definition) {
-        insertAfter(event, existingEntry, definition.block());
     }
 
     @SuppressWarnings("unchecked")

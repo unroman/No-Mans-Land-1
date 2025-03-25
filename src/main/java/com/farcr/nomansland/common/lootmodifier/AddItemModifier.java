@@ -26,7 +26,7 @@ public class AddItemModifier extends LootModifier {
     private final int count;
 
     /**
-     * This loot modifier adds an item to the loot table, given the conditions specified.
+     * This lootType modifier adds an item to the lootType table, given the conditions specified.
      */
     protected AddItemModifier(LootItemCondition[] conditionsIn, Item addedItemIn, int count) {
         super(conditionsIn);

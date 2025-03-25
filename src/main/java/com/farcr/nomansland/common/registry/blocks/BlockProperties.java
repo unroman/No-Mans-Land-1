@@ -1,16 +1,17 @@
 package com.farcr.nomansland.common.registry.blocks;
 
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.datagen.loot.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-public record BlockProperties(BlockLootType loot, boolean customLang) {
+public record BlockProperties(BlockLootType lootType, boolean customLang) {
     // MISC
     public static BlockProperties simplePath(Block block) {
         return new BlockProperties(new OtherBlockLootType(() -> block), false);
     } // paths
     public static BlockProperties simplePath(BlockDefinition<?> block) {
-        return new BlockProperties(new OtherBlockLootType(() -> block.block().get()), false);
+        return new BlockProperties(new OtherBlockLootType(block::get), false);
     } // paths
     public static BlockProperties path() {
         return new BlockProperties(new CustomBlockLootType(), false);
@@ -36,7 +37,7 @@ public record BlockProperties(BlockLootType loot, boolean customLang) {
         return new BlockProperties(new SelfBlockLootType(), false);
     } // saplings
     public static BlockProperties flowerPot(BlockDefinition<?> plant) {
-        return new BlockProperties(new FlowerPotBlockLootType(() -> plant.block().get()), false);
+        return new BlockProperties(new FlowerPotBlockLootType(plant::get), false);
     } // flower_pots
 
     // STONE
