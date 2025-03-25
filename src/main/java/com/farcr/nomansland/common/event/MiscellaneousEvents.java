@@ -9,6 +9,7 @@ import com.farcr.nomansland.common.entity.deer.Deer;
 import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
 import com.farcr.nomansland.common.registry.NMLFluids;
+import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
@@ -40,6 +41,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -47,6 +49,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
@@ -111,6 +114,16 @@ public class MiscellaneousEvents {
                 }
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                 event.setCanceled(true);
+            }
+
+            if (state.hasProperty(BlockStateProperties.LIT)) {
+                if (!state.getValue(BlockStateProperties.LIT) && stack.is(NMLTags.FIRESTARTERS) && !stack.is(Items.FLINT_AND_STEEL)) {
+                    level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
+                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+                    level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, true));
+                    event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                    event.setCanceled(true);
+                }
             }
 
             // Grass Frosting

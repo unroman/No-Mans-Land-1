@@ -16,6 +16,8 @@ public class TreeCutterMixin {
 
     @Inject(method = "nonDecayingLeafDistance", at = @At("RETURN"), cancellable = true)
     private static void nonDecayingLeafDistance(BlockState state, CallbackInfoReturnable<Integer> cir) {
-        if (cir.getReturnValue() == -1 && state.is(NMLBlocks.FIELD_MUSHROOM_BLOCK)) cir.setReturnValue(2);
+        if (cir.getReturnValue() == -1) {
+            if (state.is(NMLBlocks.FIELD_MUSHROOM_BLOCK) || state.is(NMLBlocks.SHELF_MUSHROOM_BLOCK)) cir.setReturnValue(2);
+        }
     }
 }
