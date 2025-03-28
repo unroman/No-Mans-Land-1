@@ -18,7 +18,7 @@ public class FogModifierInstance {
     }
 
     public void update(FogModifierHandler.FogContext context) {
-        this.active = this.modifier.active(context);
+        this.active = this.modifier.active(context) && context.darknessFactor() == 0;
     }
 
     public float getFogStartMultiplier() {
