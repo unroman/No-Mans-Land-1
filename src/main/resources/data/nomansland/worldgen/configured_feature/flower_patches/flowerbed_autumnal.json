@@ -50,8 +50,8 @@
         }
       ]
     },
-    "tries": 5020,
-    "xz_spread": 12,
+    "tries": 4020,
+    "xz_spread": 9,
     "y_spread": 3,
     "sparseness": 3
   }
