@@ -20,9 +20,10 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
         RandomSource random = context.random();
         MultiSpreadPatchConfiguration config = context.config();
 
-        int tries = config.tries();
+        float tryDensity = config.tryDensity();
         int xzSpread = config.xzSpread().sample(random);
         int ySpread = config.ySpread().sample(random);
+        int tries = Math.round(xzSpread * xzSpread * ySpread * tryDensity);
         double sparseness = config.sparseness();
 
         BlockPos.MutableBlockPos pos = origin.mutable();

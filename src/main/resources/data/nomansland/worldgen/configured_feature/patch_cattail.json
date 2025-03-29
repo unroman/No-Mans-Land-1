@@ -40,7 +40,7 @@
         }
       ]
     },
-    "tries": 1210,
+    "try_density": 1.5,
     "xz_spread": 16,
     "y_spread": 3,
     "sparseness": 4

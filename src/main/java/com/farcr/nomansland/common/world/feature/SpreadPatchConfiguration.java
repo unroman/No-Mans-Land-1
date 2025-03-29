@@ -8,10 +8,10 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-public record SpreadPatchConfiguration(int tries, IntProvider xzSpread, IntProvider ySpread, float sparseness, Holder<PlacedFeature> feature) implements FeatureConfiguration {
+public record SpreadPatchConfiguration(float tryDensity, IntProvider xzSpread, IntProvider ySpread, float sparseness, Holder<PlacedFeature> feature) implements FeatureConfiguration {
     public static final Codec<SpreadPatchConfiguration> CODEC = RecordCodecBuilder.create(
             record -> record.group(
-                    ExtraCodecs.POSITIVE_INT.fieldOf("tries").orElse(128).forGetter(SpreadPatchConfiguration::tries),
+                    ExtraCodecs.POSITIVE_FLOAT.fieldOf("try_density").orElse(16.0f).forGetter(SpreadPatchConfiguration::tryDensity),
                     IntProvider.codec(0, 16).fieldOf("xz_spread").forGetter(SpreadPatchConfiguration::xzSpread),
                     IntProvider.codec(0, 16).fieldOf("y_spread").forGetter(SpreadPatchConfiguration::ySpread),
                     ExtraCodecs.POSITIVE_FLOAT.fieldOf("sparseness").orElse(1.0f).forGetter(SpreadPatchConfiguration::sparseness),

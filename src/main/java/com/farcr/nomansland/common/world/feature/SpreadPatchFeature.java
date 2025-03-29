@@ -21,9 +21,10 @@ public class SpreadPatchFeature extends Feature<SpreadPatchConfiguration> {
         RandomSource random = context.random();
         SpreadPatchConfiguration config = context.config();
 
-        int tries = config.tries();
+        float tryDensity = config.tryDensity();
         int xzSpread = config.xzSpread().sample(random);
         int ySpread = config.ySpread().sample(random);
+        int tries = Math.round(xzSpread * xzSpread * ySpread * tryDensity);
         double sparseness = config.sparseness();
 
         BlockPos.MutableBlockPos pos = origin.mutable();

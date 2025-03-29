@@ -1,7 +1,7 @@
 {
 	"type": "nomansland:multispread_patch",
 	"config": {
-		"tries": 4600,
+		"try_density": 6.0,
 		"xz_spread": 16,
 		"y_spread": 3,
 		"sparseness": 4,
