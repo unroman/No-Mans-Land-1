@@ -2,7 +2,11 @@
 	"type": "nomansland:multispread_patch",
 	"config": {
 		"try_density": 6.0,
-		"xz_spread": 16,
+		"xz_spread": {
+			"type": "minecraft:uniform",
+			"min_inclusive": 14,
+			"max_inclusive": 18
+		  },
 		"y_spread": 3,
 		"sparseness": 4,
 		"features": [
