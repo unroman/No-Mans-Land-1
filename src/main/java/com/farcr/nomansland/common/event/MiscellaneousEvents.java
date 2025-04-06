@@ -6,6 +6,7 @@ import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
+import com.farcr.nomansland.common.entity.goose.Goose;
 import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
 import com.farcr.nomansland.common.registry.NMLFluids;
@@ -474,6 +475,7 @@ public class MiscellaneousEvents {
 //            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
             event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());
             event.put(NMLEntities.DEER.get(), Deer.createAttributes().build());
+            event.put(NMLEntities.GOOSE.get(), Goose.createAttributes().build());
         }
 
         @SubscribeEvent

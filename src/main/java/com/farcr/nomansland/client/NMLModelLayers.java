@@ -40,4 +40,7 @@ public class NMLModelLayers {
 
     public static final ModelLayerLocation DEER_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "deer"), "main");
+
+    public static final ModelLayerLocation GOOSE_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "goose"), "main");
 }

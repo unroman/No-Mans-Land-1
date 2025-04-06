@@ -283,6 +283,89 @@
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
+  "entity.goose.ambient": {
+    "sounds": [
+      {
+        "name": "mob/fox/idle1",
+        "volume": 0.8,
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle2",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle3",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle4",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle5",
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/idle6",
+        "pitch": 0.4
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.deer.ambient"
+  },
+  "entity.goose.death": {
+    "sounds": [
+      {
+        "name": "mob/fox/death1",
+        "volume": 0.9,
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/death2",
+        "volume": 0.9,
+        "pitch": 0.4
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.goose.death"
+  },
+  "entity.goose.hurt": {
+    "sounds": [
+      {
+        "name": "mob/fox/hurt1",
+        "volume": 0.75,
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/hurt2",
+        "volume": 0.75,
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/hurt3",
+        "volume": 0.75,
+        "pitch": 0.4
+      },
+      {
+        "name": "mob/fox/hurt4",
+        "volume": 0.75,
+        "pitch": 0.4
+      }
+    ],
+    "subtitle": "nomansland.subtitles.entity.goose.hurt"
+  },
+  "entity.goose.step": {
+    "sounds": [
+      {
+        "name": "mob/chicken/step1",
+        "pitch": 0.75
+      },
+      {
+        "name": "mob/chicken/step2",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
   "particle.droplet.fall": {
     "sounds": [
       {

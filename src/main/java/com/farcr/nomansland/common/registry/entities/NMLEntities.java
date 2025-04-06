@@ -7,6 +7,7 @@ import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
+import com.farcr.nomansland.common.entity.goose.Goose;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -40,6 +41,10 @@ public class NMLEntities {
     public static final Supplier<EntityType<Deer>> DEER =
             ENTITIES.register("deer", () -> EntityType.Builder.of(Deer::new, MobCategory.CREATURE)
                     .sized(0.8F, 1.4F).build("deer"));
+
+    public static final Supplier<EntityType<Goose>> GOOSE =
+            ENTITIES.register("goose", () -> EntityType.Builder.of(Goose::new, MobCategory.CREATURE)
+                    .sized(0.8F, 1F).build("goose"));
 
 //    public static final Supplier<EntityType<BuriedEntity>> BURIED =
 //            ENTITIES.register("buried", () -> EntityType.Builder.of(BuriedEntity::new, MobCategory.MONSTER)
