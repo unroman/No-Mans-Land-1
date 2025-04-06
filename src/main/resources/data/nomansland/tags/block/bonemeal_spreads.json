@@ -14,5 +14,8 @@
     "nomansland:short_beachgrass",
     "nomansland:mycelium_sprouts",
     "nomansland:mycelium_growths"
-  ]
+  ],
+  "remove":[
+    "minecraft:torchflower"
+    ]
 }
