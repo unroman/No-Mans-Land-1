@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.block.tap;
 
+import com.farcr.nomansland.common.block.cauldrons.FourLayeredCauldronBlock;
 import com.farcr.nomansland.common.blockentity.TapBlockEntity;
 import com.farcr.nomansland.common.registry.NMLRegistries;
 import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
@@ -191,15 +192,21 @@ public class TapBlock extends BaseEntityBlock {
             }
 
             if (hasBlock && random.nextFloat() < 0.05F * tapInteractionReference.value().rate()) {
-                tryFill(cauldronState, cauldronPos, level, random, tapInteractionReference.value());
+                tryFill(cauldronState, cauldronPos, level, tapInteractionReference.value());
                 break;
             }
         }
     }
 
-    public static void tryFill(BlockState cauldronState, BlockPos cauldronPos, Level level, RandomSource random, TapInteraction tapInteraction) {
-        if (cauldronState.getBlock() == tapInteraction.cauldron() && cauldronState.getBlock() instanceof LayeredCauldronBlock cauldron && !cauldron.isFull(cauldronState)) {
-            BlockState newState = cauldronState.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1);
+    public static void tryFill(BlockState cauldronState, BlockPos cauldronPos, Level level, TapInteraction tapInteraction) {
+        if (cauldronState.getBlock() == tapInteraction.cauldron() && cauldronState.getBlock() instanceof AbstractCauldronBlock cauldron && !cauldron.isFull(cauldronState)) {
+            BlockState newState;
+
+            if (cauldronState.getBlock() instanceof LayeredCauldronBlock)
+                newState = cauldronState.setValue(FourLayeredCauldronBlock.LEVEL, cauldronState.getValue(FourLayeredCauldronBlock.LEVEL) + 1);
+            else
+                newState = cauldronState.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1);
+
             level.setBlockAndUpdate(cauldronPos, newState);
             level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(newState));
         } else if (cauldronState.is(Blocks.CAULDRON)) {

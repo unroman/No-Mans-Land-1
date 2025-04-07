@@ -31,7 +31,7 @@ public class DeerRenderer extends MobRenderer<Deer, DeerModel<Deer>> {
     public @NotNull ResourceLocation getTextureLocation(Deer deer) {
         DeerVariant variant = null;
 
-        for (Holder<MobVariant> animalVariantHolder : getVariants(deer)) {
+        for (Holder<MobVariant> animalVariantHolder : getVariants(deer, deer.level())) {
             if (animalVariantHolder.value() instanceof DeerVariant deerVariant) {
                 variant = deerVariant;
                 break;

@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.registry.items;
 
+import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.integration.FDIntegration;
@@ -494,7 +495,8 @@ public class NMLItems {
             insertAfter(event, Items.CHICKEN_SPAWN_EGG, GOOSE_SPAWN_EGG);
         }
 
-        if (Mods.CREATE.isLoaded()) event.remove(Mods.CREATE.getItem("honeyed_apple").getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        if (Mods.CREATE.isLoaded())
+            event.remove(Mods.CREATE.getItem("honeyed_apple").getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
     private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {

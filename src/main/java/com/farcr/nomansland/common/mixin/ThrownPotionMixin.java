@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
+import com.farcr.nomansland.common.mixin.accessor.ProjectileAccessor;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -16,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ThrownPotion.class)
-public abstract class ThrownPotionMixin extends ProjectileMixin {
+public abstract class ThrownPotionMixin extends EntityMixin implements ProjectileAccessor {
 
     @Inject(method = "dowseFire", at = @At("TAIL"))
     private void extinguishTorches(BlockPos pos, CallbackInfo ci) {

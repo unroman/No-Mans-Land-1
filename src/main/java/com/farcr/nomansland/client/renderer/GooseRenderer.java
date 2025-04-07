@@ -22,7 +22,7 @@ public class GooseRenderer extends MobRenderer<Goose, GooseModel<Goose>> {
     public ResourceLocation getTextureLocation(Goose goose) {
         GooseVariant variant = null;
 
-        for (Holder<MobVariant> animalVariantHolder : getVariants(goose)) {
+        for (Holder<MobVariant> animalVariantHolder : getVariants(goose, goose.level())) {
             if (animalVariantHolder.value() instanceof GooseVariant gooseVariant) {
                 variant = gooseVariant;
                 break;
