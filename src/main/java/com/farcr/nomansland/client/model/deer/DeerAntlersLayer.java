@@ -28,7 +28,7 @@ public class DeerAntlersLayer extends RenderLayer<Deer, DeerModel<Deer>> {
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, Deer deer, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         DeerAntlersVariant variant = null;
 
-        for (Holder<MobVariant> mobVariantHolder : getVariants(deer)) {
+        for (Holder<MobVariant> mobVariantHolder : getVariants(deer, deer.level())) {
             if (mobVariantHolder.value() instanceof DeerAntlersVariant antlersVariant) {
                 variant = antlersVariant;
                 break;

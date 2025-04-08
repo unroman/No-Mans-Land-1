@@ -1,16 +1,17 @@
 package com.farcr.nomansland.common.registry.entities;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.BoatEntity;
-import com.farcr.nomansland.common.entity.ChestBoatEntity;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
 import com.farcr.nomansland.common.entity.goose.Goose;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -19,16 +20,16 @@ public class NMLEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES =
             DeferredRegister.create(Registries.ENTITY_TYPE, NoMansLand.MODID);
 
-    public static final Supplier<EntityType<BoatEntity>> BOAT =
-            ENTITIES.register("boat", () -> EntityType.Builder.<BoatEntity>of(BoatEntity::new, MobCategory.MISC)
-                    .sized(1.375f, 0.5625f).build("boat"));
-    public static final Supplier<EntityType<ChestBoatEntity>> CHEST_BOAT =
-            ENTITIES.register("chest_boat", () -> EntityType.Builder.<ChestBoatEntity>of(ChestBoatEntity::new, MobCategory.MISC)
-                    .sized(1.375f, 0.5625f).build("chest_boat"));
+//    public static final Supplier<EntityType<Boat>> BOAT =
+//            ENTITIES.register("maple_boat", () -> EntityType.Builder.<Boat>of(Boat::new, MobCategory.MISC)
+//                    .sized(1.375f, 0.5625f).build("maple_boat"));
+//    public static final Supplier<EntityType<ChestBoat>> CHEST_BOAT =
+//            ENTITIES.register("maple_chest_boat", () -> EntityType.Builder.<ChestBoat>of(ChestBoat::new, MobCategory.MISC)
+//                    .sized(1.375f, 0.5625f).build("maple_chest_boat"));
 
     public static final Supplier<EntityType<FirebombEntity>> FIREBOMB =
             ENTITIES.register("firebomb", () -> EntityType.Builder.<FirebombEntity>of(FirebombEntity::new, MobCategory.MISC)
-                    .sized(0.375F, 0.375F).clientTrackingRange(4).updateInterval(20).build("fire_bomb"));
+                    .sized(0.375F, 0.375F).clientTrackingRange(4).updateInterval(20).build("firebomb"));
 
     public static final Supplier<EntityType<ExplosiveEntity>> EXPLOSIVE =
             ENTITIES.register("explosive", () -> EntityType.Builder.<ExplosiveEntity>of(ExplosiveEntity::new, MobCategory.MISC)

@@ -1,11 +1,9 @@
 package com.farcr.nomansland.common.registry.items;
 
-import com.farcr.nomansland.NMLConfig;
+import com.farcr.nomansland.NMLEnumParams;
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.integration.FDIntegration;
 import com.farcr.nomansland.common.integration.Mods;
-import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
@@ -127,18 +125,18 @@ public class NMLItems {
     public static final DeferredItem<Item> PINE_HANGING_SIGN = registerItem("pine_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.PINE_HANGING_SIGN.get(), NMLBlocks.PINE_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> PINE_BOAT = registerItem("pine_boat",
-            () -> new BoatItem(false, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> PINE_CHEST_BOAT = registerItem("pine_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> MAPLE_SIGN = registerItem("maple_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.MAPLE_SIGN.get(), NMLBlocks.MAPLE_WALL_SIGN.get()));
     public static final DeferredItem<Item> MAPLE_HANGING_SIGN = registerItem("maple_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.MAPLE_HANGING_SIGN.get(), NMLBlocks.MAPLE_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> MAPLE_BOAT = registerItem("maple_boat",
-            () -> new BoatItem(false, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> MAPLE_CHEST_BOAT = registerItem("maple_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 //    public static final DeferredItem<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
 //            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Properties()));
 
@@ -147,18 +145,18 @@ public class NMLItems {
     public static final DeferredItem<Item> WALNUT_HANGING_SIGN = registerItem("walnut_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.WALNUT_HANGING_SIGN.get(), NMLBlocks.WALNUT_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WALNUT_BOAT = registerItem("walnut_boat",
-            () -> new BoatItem(false, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WALNUT_CHEST_BOAT = registerItem("walnut_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> WILLOW_SIGN = registerItem("willow_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WILLOW_SIGN.get(), NMLBlocks.WILLOW_WALL_SIGN.get()));
     public static final DeferredItem<Item> WILLOW_HANGING_SIGN = registerItem("willow_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.WILLOW_HANGING_SIGN.get(), NMLBlocks.WILLOW_HANGING_WALL_SIGN.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WILLOW_BOAT = registerItem("willow_boat",
-            () -> new BoatItem(false, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WILLOW_CHEST_BOAT = registerItem("willow_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Properties()));
     public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",

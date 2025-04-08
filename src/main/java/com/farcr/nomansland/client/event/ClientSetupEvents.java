@@ -49,9 +49,6 @@ public class ClientSetupEvents {
         event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);
         event.registerEntityRenderer(NMLEntities.GOOSE.get(), GooseRenderer::new);
 
-        event.registerEntityRenderer(NMLEntities.BOAT.get(), context -> new NMLBoatRenderer(context, false));
-        event.registerEntityRenderer(NMLEntities.CHEST_BOAT.get(), context -> new NMLBoatRenderer(context, true));
-
         event.registerEntityRenderer(NMLEntities.FIREBOMB.get(), FirebombRenderer::new);
         event.registerEntityRenderer(NMLEntities.EXPLOSIVE.get(), ExplosiveRenderer::new);
 
@@ -59,18 +56,6 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(NMLModelLayers.PINE_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.PINE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.MAPLE_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.MAPLE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.WALNUT_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.WALNUT_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.WILLOW_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.WILLOW_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
         event.registerLayerDefinition(NMLModelLayers.MOOSE_LAYER, MooseModel::createBodyLayer);
         event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
 

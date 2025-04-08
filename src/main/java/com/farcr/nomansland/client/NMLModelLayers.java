@@ -9,26 +9,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class NMLModelLayers {
 
-    public static final ModelLayerLocation PINE_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "boat/pine"), "main");
-    public static final ModelLayerLocation PINE_CHEST_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "chest_boat/pine"), "main");
-
-    public static final ModelLayerLocation MAPLE_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "boat/maple"), "main");
-    public static final ModelLayerLocation MAPLE_CHEST_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "chest_boat/maple"), "main");
-
-    public static final ModelLayerLocation WALNUT_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "boat/walnut"), "main");
-    public static final ModelLayerLocation WALNUT_CHEST_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "chest_boat/walnut"), "main");
-
-    public static final ModelLayerLocation WILLOW_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "boat/willow"), "main");
-    public static final ModelLayerLocation WILLOW_CHEST_BOAT_LAYER = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "chest_boat/willow"), "main");
-
     public static final ModelLayerLocation BURIED_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "buried"), "main");
 
