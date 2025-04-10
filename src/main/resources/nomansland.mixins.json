@@ -16,7 +16,7 @@
     "LadderBlockMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
-    "accessor.ProjectileAccessor",
+    "ProjectileMixin",
     "RailStateMixin",
     "RandomStrollGoalMixin",
     "ServerLevelMixin",
