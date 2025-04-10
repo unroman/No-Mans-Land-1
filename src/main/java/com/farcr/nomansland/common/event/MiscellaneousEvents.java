@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.event;
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
+import com.farcr.nomansland.common.entity.MooseEntity;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
@@ -472,7 +473,7 @@ public class MiscellaneousEvents {
         public static void entityAttributeEvent(final EntityAttributeCreationEvent event) {
             //    TODO: BURIED AND MOOSE
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
-//            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
+            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
             event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());
             event.put(NMLEntities.DEER.get(), Deer.createAttributes().build());
             event.put(NMLEntities.GOOSE.get(), Goose.createAttributes().build());

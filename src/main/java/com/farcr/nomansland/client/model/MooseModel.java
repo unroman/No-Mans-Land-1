@@ -35,7 +35,7 @@ public class MooseModel<T extends Entity> extends EntityModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition moose = partdefinition.addOrReplaceChild("moose", CubeListBuilder.create(), PartPose.offset(0.0F, -12.0F, -16.0F));
+        PartDefinition moose = partdefinition.addOrReplaceChild("moose", CubeListBuilder.create(), PartPose.offset(0.0F, -12.0F, -10.0F));
 
         PartDefinition head = moose.addOrReplaceChild("head", CubeListBuilder.create().texOffs(24, 65).addBox(-3.0F, -2.0F, -4.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
                 .texOffs(50, 0).addBox(-3.0F, -3.0F, -13.0F, 6.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
@@ -82,10 +82,10 @@ public class MooseModel<T extends Entity> extends EntityModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.xRot = headPitch * ((float) Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.rightHindLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F) * 1.4F * limbSwingAmount;
-        this.leftHindLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.rightFrontLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leftFrontLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F) * 1.4F * limbSwingAmount;
+        this.rightHindLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.leftHindLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.rightFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leftFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
     @Override

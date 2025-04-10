@@ -116,6 +116,10 @@ public class NMLItems {
     public static final DeferredItem<Item> GOOSE_SPAWN_EGG = registerItem("goose_spawn_egg",
             () -> new DeferredSpawnEggItem(NMLEntities.GOOSE, 11773851, 11888408, new Properties()));
 
+    public static final DeferredItem<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
+            () -> new DeferredSpawnEggItem(NMLEntities.MOOSE, 4335898, 2497045, new Properties()));
+    // egg color probably temporary - inverted deer lmao
+
 //    public static final DeferredItem<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
 //            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
 //                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
@@ -488,6 +492,7 @@ public class NMLItems {
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
             insertAfter(event, Blocks.SPAWNER, NMLBlocks.MONSTER_ANCHOR);
+            insertAfter(event, Items.CREEPER_SPAWN_EGG, MOOSE_SPAWN_EGG);
             insertAfter(event, Items.CREEPER_SPAWN_EGG, DEER_SPAWN_EGG);
             insertAfter(event, Items.BEE_SPAWN_EGG, BILLHOOK_BASS_SPAWN_EGG);
             insertAfter(event, Items.CHICKEN_SPAWN_EGG, GOOSE_SPAWN_EGG);
