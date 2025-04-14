@@ -12,6 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -185,8 +186,12 @@ public class TapBlock extends BaseEntityBlock {
         for (Holder.Reference<TapInteraction> tapInteractionReference : allTapInteractions) {
             boolean hasBlock = false;
             for (BlockStateProvider blockStateProvider : tapInteractionReference.value().sources()) {
-                if (stateBehind == blockStateProvider.getState(level.random, pos.relative(state.getValue(FACING).getOpposite()))) {
-                    hasBlock = true;
+                BlockState neededState = blockStateProvider.getState(level.random, pos.relative(state.getValue(FACING).getOpposite()));
+                if (stateBehind == neededState) {
+                    if (neededState.is(BlockTags.LOGS)) {
+                        if (stateBehind == getBlockStateBehind(level, pos.above(), state) && stateBehind == getBlockStateBehind(level, pos.below(), state))
+                            hasBlock = true;
+                    } else hasBlock = true;
                     break;
                 }
             }
@@ -202,7 +207,7 @@ public class TapBlock extends BaseEntityBlock {
         if (cauldronState.getBlock() == tapInteraction.cauldron() && cauldronState.getBlock() instanceof AbstractCauldronBlock cauldron && !cauldron.isFull(cauldronState)) {
             BlockState newState;
 
-            if (cauldronState.getBlock() instanceof LayeredCauldronBlock)
+            if (cauldronState.getBlock() instanceof FourLayeredCauldronBlock)
                 newState = cauldronState.setValue(FourLayeredCauldronBlock.LEVEL, cauldronState.getValue(FourLayeredCauldronBlock.LEVEL) + 1);
             else
                 newState = cauldronState.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1);

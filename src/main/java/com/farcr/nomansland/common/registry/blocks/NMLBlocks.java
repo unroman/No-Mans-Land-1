@@ -9,8 +9,8 @@ import com.farcr.nomansland.common.block.fruit_trees.FruitType;
 import com.farcr.nomansland.common.block.tap.TapBlock;
 import com.farcr.nomansland.common.block.torches.*;
 import com.farcr.nomansland.common.registry.items.NMLItems;
+import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
 import com.farcr.nomansland.common.registry.worldgen.NMLTreeGrowers;
-import com.farcr.nomansland.common.world.tree.HugeMushrooms;
 import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -594,7 +594,7 @@ public class NMLBlocks {
 
     //Mushrooms
     public static final DeferredBlock<SurfaceMushroomBlock> FIELD_MUSHROOM = BLOCKS.register("field_mushroom",
-            () -> new SurfaceMushroomBlock((HugeMushrooms.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))));
+            () -> new SurfaceMushroomBlock((NMLFeatures.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))));
     public static final DeferredBlock<FlowerPotBlock> POTTED_FIELD_MUSHROOM = BLOCKS.register("potted_field_mushroom",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.FIELD_MUSHROOM,
                     ofFullCopy(Blocks.POTTED_RED_MUSHROOM).noOcclusion()));
