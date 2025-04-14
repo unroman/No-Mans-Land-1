@@ -1,17 +1,17 @@
 {
   "variants": {
     "facing=east,half=bottom,shape=inner_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
       "uvlock": true,
-      "y": 180
+      "y": 270
     },
     "facing=east,half=bottom,shape=inner_right": {
       "model": "nomansland:block/building/silt_brick_stairs_inner"
     },
     "facing=east,half=bottom,shape=outer_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
       "uvlock": true,
-      "y": 180
+      "y": 270
     },
     "facing=east,half=bottom,shape=outer_right": {
       "model": "nomansland:block/building/silt_brick_stairs_outer"
@@ -25,10 +25,10 @@
       "x": 180
     },
     "facing=east,half=top,shape=inner_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
       "uvlock": true,
       "x": 180,
-      "y": 180
+      "y": 90
     },
     "facing=east,half=top,shape=outer_left": {
       "model": "nomansland:block/building/silt_brick_stairs_outer",
@@ -36,9 +36,10 @@
       "x": 180
     },
     "facing=east,half=top,shape=outer_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 90
     },
     "facing=east,half=top,shape=straight": {
       "model": "nomansland:block/building/silt_brick_stairs",
@@ -51,9 +52,9 @@
       "y": 180
     },
     "facing=north,half=bottom,shape=inner_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
       "uvlock": true,
-      "y": 180
+      "y": 270
     },
     "facing=north,half=bottom,shape=outer_left": {
       "model": "nomansland:block/building/silt_brick_stairs_outer",
@@ -61,19 +62,20 @@
       "y": 180
     },
     "facing=north,half=bottom,shape=outer_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
       "uvlock": true,
-      "y": 180
+      "y": 270
     },
     "facing=north,half=bottom,shape=straight": {
-      "model": "nomansland:block/building/silt_brick_stairs_alt",
+      "model": "nomansland:block/building/silt_brick_stairs",
       "uvlock": true,
-      "y": 180
+      "y": 270
     },
     "facing=north,half=top,shape=inner_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 270
     },
     "facing=north,half=top,shape=inner_right": {
       "model": "nomansland:block/building/silt_brick_stairs_inner",
@@ -81,9 +83,10 @@
       "x": 180
     },
     "facing=north,half=top,shape=outer_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 270
     },
     "facing=north,half=top,shape=outer_right": {
       "model": "nomansland:block/building/silt_brick_stairs_outer",
@@ -91,33 +94,37 @@
       "x": 180
     },
     "facing=north,half=top,shape=straight": {
-      "model": "nomansland:block/building/silt_brick_stairs_alt",
+      "model": "nomansland:block/building/silt_brick_stairs",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 270
     },
     "facing=south,half=bottom,shape=inner_left": {
       "model": "nomansland:block/building/silt_brick_stairs_inner"
     },
     "facing=south,half=bottom,shape=inner_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
-      "uvlock": true
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
+      "uvlock": true,
+      "y": 90
     },
     "facing=south,half=bottom,shape=outer_left": {
       "model": "nomansland:block/building/silt_brick_stairs_outer"
     },
     "facing=south,half=bottom,shape=outer_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
-      "uvlock": true
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
+      "uvlock": true,
+      "y": 90
     },
     "facing=south,half=bottom,shape=straight": {
-      "model": "nomansland:block/building/silt_brick_stairs_alt",
-      "uvlock": true
+      "model": "nomansland:block/building/silt_brick_stairs",
+      "uvlock": true,
+      "y": 90
     },
     "facing=south,half=top,shape=inner_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
       "uvlock": true,
       "x": 180,
-      "y": 180
+      "y": 90
     },
     "facing=south,half=top,shape=inner_right": {
       "model": "nomansland:block/building/silt_brick_stairs_inner",
@@ -126,10 +133,10 @@
       "y": 180
     },
     "facing=south,half=top,shape=outer_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
       "uvlock": true,
       "x": 180,
-      "y": 180
+      "y": 90
     },
     "facing=south,half=top,shape=outer_right": {
       "model": "nomansland:block/building/silt_brick_stairs_outer",
@@ -138,14 +145,15 @@
       "y": 180
     },
     "facing=south,half=top,shape=straight": {
-      "model": "nomansland:block/building/silt_brick_stairs_alt",
+      "model": "nomansland:block/building/silt_brick_stairs",
       "uvlock": true,
       "x": 180,
-      "y": 180
+      "y": 90
     },
     "facing=west,half=bottom,shape=inner_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
-      "uvlock": true
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
+      "uvlock": true,
+      "y": 90
     },
     "facing=west,half=bottom,shape=inner_right": {
       "model": "nomansland:block/building/silt_brick_stairs_inner",
@@ -153,8 +161,9 @@
       "y": 180
     },
     "facing=west,half=bottom,shape=outer_left": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
-      "uvlock": true
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
+      "uvlock": true,
+      "y": 90
     },
     "facing=west,half=bottom,shape=outer_right": {
       "model": "nomansland:block/building/silt_brick_stairs_outer",
@@ -173,9 +182,10 @@
       "y": 180
     },
     "facing=west,half=top,shape=inner_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_inner_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_inner",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 270
     },
     "facing=west,half=top,shape=outer_left": {
       "model": "nomansland:block/building/silt_brick_stairs_outer",
@@ -184,9 +194,10 @@
       "y": 180
     },
     "facing=west,half=top,shape=outer_right": {
-      "model": "nomansland:block/building/silt_brick_stairs_outer_alt",
+      "model": "nomansland:block/building/silt_brick_stairs_outer",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 270
     },
     "facing=west,half=top,shape=straight": {
       "model": "nomansland:block/building/silt_brick_stairs",

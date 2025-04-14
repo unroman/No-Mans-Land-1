@@ -27,6 +27,7 @@ public class WardedSpacesData extends SavedData {
         ArrayList<Integer> ranges = new ArrayList<>();
         Arrays.stream(tag.getIntArray("ranges")).forEachOrdered(ranges::add);
         WardedSpacesData data = new WardedSpacesData(positions, ranges);
+
         return data;
     }
 
@@ -38,6 +39,7 @@ public class WardedSpacesData extends SavedData {
             tag.putLongArray("positions", positions);
             tag.putIntArray("ranges", ranges);
         }
+
         return tag;
     }
 

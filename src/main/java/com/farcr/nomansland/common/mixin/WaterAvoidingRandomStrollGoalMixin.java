@@ -4,6 +4,7 @@ import com.farcr.nomansland.common.saved_data.WardedSpacesData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class WaterAvoidingRandomStrollGoalMixin extends RandomStrollGoalMixin {
     @Inject(method = "getPosition", at = @At("HEAD"), cancellable = true)
     private void getPosition(CallbackInfoReturnable<Vec3> cir) {
-        if (mob.level() instanceof ServerLevel serverLevel) {
+        if (mob instanceof Monster && mob.level() instanceof ServerLevel serverLevel) {
             WardedSpacesData wardedSpacesData = serverLevel.getDataStorage().computeIfAbsent(new SavedData.Factory<>(
                     () -> new WardedSpacesData(new ArrayList<>(), new ArrayList<>()), WardedSpacesData::load), WardedSpacesData.NAME);
 

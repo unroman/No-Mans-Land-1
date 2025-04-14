@@ -5,6 +5,7 @@ import com.farcr.nomansland.common.entity.billhook_bass.BillhookBassVariant;
 import com.farcr.nomansland.common.entity.deer.DeerAntlersVariant;
 import com.farcr.nomansland.common.entity.deer.DeerPatternVariant;
 import com.farcr.nomansland.common.entity.deer.DeerVariant;
+import com.farcr.nomansland.common.entity.goose.GooseVariant;
 import com.mojang.serialization.MapCodec;
 import dev.tazer.mixed_litter.MLRegistries;
 import dev.tazer.mixed_litter.variants.MobVariant;
@@ -25,6 +26,7 @@ public class NMLMobVariants {
     public static final Supplier<MapCodec<DeerAntlersVariant>> DEER_ANTLERS = register("deer_antlers", DeerAntlersVariant.CODEC);
     public static final Supplier<MapCodec<DeerPatternVariant>> DEER_PATTERN = register("deer_pattern", DeerPatternVariant.CODEC);
     public static final Supplier<MapCodec<BillhookBassVariant>> BILLHOOK_BASS = register("billhook_bass", BillhookBassVariant.CODEC);
+    public static final Supplier<MapCodec<GooseVariant>> GOOSE = register("goose", GooseVariant.CODEC);
 
     private static <P extends MobVariant> DeferredHolder<MapCodec<? extends MobVariant>, MapCodec<P>> register(String name, MapCodec<P> codec) {
         return MOB_VARIANT_TYPES.register(name, () -> codec);

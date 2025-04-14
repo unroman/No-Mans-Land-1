@@ -1,11 +1,13 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.blockentity.BombDispenseBehavior;
+import com.farcr.nomansland.common.blockentity.BonemealDispenseBehavior;
 import com.farcr.nomansland.common.item.ThrowableBombItem;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.DispenserBlockEntity;
@@ -22,6 +24,9 @@ public class DispenserBlockMixin {
     public void addBombDispensing(ServerLevel level, BlockState state, BlockPos pos, CallbackInfo ci, @Local DispenserBlockEntity dispenser, @Local BlockSource blockSource, @Local int slot, @Local ItemStack stack) {
         if (stack.getItem() instanceof ThrowableBombItem) {
             dispenser.setItem(slot, new BombDispenseBehavior(stack.getItem()).dispense(blockSource, stack));
+            ci.cancel();
+        } else if (stack.getItem() instanceof BoneMealItem) {
+            dispenser.setItem(slot, new BonemealDispenseBehavior(stack.getItem()).dispense(blockSource, stack));
             ci.cancel();
         }
     }

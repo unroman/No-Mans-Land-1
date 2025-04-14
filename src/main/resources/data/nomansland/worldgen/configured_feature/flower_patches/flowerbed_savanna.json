@@ -23,8 +23,12 @@
         }
       ]
     },
-    "tries": 4020,
-    "xz_spread": 4,
+    "try_density": 16.0,
+    "xz_spread": {
+			"type": "minecraft:uniform",
+			"min_inclusive": 4,
+			"max_inclusive": 9
+		  },
     "y_spread": 2
   }
 }

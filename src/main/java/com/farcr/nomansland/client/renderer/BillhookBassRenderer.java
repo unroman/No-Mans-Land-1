@@ -48,7 +48,7 @@ public class BillhookBassRenderer extends MobRenderer<BillhookBass, BillhookBass
     public @NotNull ResourceLocation getTextureLocation(BillhookBass billhookBass) {
         BillhookBassVariant variant = null;
 
-        for (Holder<MobVariant> animalVariantHolder : getVariants(billhookBass)) {
+        for (Holder<MobVariant> animalVariantHolder : getVariants(billhookBass, billhookBass.level())) {
             if (animalVariantHolder.value() instanceof BillhookBassVariant billhookBassVariant) {
                 variant = billhookBassVariant;
                 break;

@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.registry.items;
 
+import com.farcr.nomansland.NMLEnumParams;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.entity.BoatEntity;
@@ -115,6 +116,13 @@ public class NMLItems {
     public static final DeferredItem<Item> DEER_SPAWN_EGG = registerItem("deer_spawn_egg",
             () -> new DeferredSpawnEggItem(NMLEntities.DEER, 8412743, 12828347, new Properties()));
 
+    public static final DeferredItem<Item> GOOSE_SPAWN_EGG = registerItem("goose_spawn_egg",
+            () -> new DeferredSpawnEggItem(NMLEntities.GOOSE, 11773851, 11888408, new Properties()));
+
+    public static final DeferredItem<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
+            () -> new DeferredSpawnEggItem(NMLEntities.MOOSE, 4335898, 2497045, new Properties()));
+    // egg color probably temporary - inverted deer lmao
+
 //    public static final DeferredItem<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
 //            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
 //                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
@@ -124,18 +132,18 @@ public class NMLItems {
     public static final DeferredItem<Item> PINE_HANGING_SIGN = registerItem("pine_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.PINE.hangingSign().get(), NMLBlocks.PINE.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> PINE_BOAT = registerItem("pine_boat",
-            () -> new BoatItem(false, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> PINE_CHEST_BOAT = registerItem("pine_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.PINE, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> MAPLE_SIGN = registerItem("maple_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.MAPLE.sign().get(), NMLBlocks.MAPLE.wallSign().get()));
     public static final DeferredItem<Item> MAPLE_HANGING_SIGN = registerItem("maple_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.MAPLE.hangingSign().get(), NMLBlocks.MAPLE.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> MAPLE_BOAT = registerItem("maple_boat",
-            () -> new BoatItem(false, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> MAPLE_CHEST_BOAT = registerItem("maple_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.MAPLE, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 //    public static final DeferredItem<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
 //            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Properties()));
 
@@ -144,18 +152,18 @@ public class NMLItems {
     public static final DeferredItem<Item> WALNUT_HANGING_SIGN = registerItem("walnut_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.WALNUT.hangingSign().get(), NMLBlocks.WALNUT.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WALNUT_BOAT = registerItem("walnut_boat",
-            () -> new BoatItem(false, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WALNUT_CHEST_BOAT = registerItem("walnut_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.WALNUT, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> WILLOW_SIGN = registerItem("willow_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WILLOW.sign().get(), NMLBlocks.WILLOW.wallSign().get()));
     public static final DeferredItem<Item> WILLOW_HANGING_SIGN = registerItem("willow_hanging_sign",
             () -> new HangingSignItem(NMLBlocks.WILLOW.hangingSign().get(), NMLBlocks.WILLOW.hangingWallSign().get(), new Properties().stacksTo(16)));
     public static final DeferredItem<Item> WILLOW_BOAT = registerItem("willow_boat",
-            () -> new BoatItem(false, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
+            () -> new BoatItem(false, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final DeferredItem<Item> WILLOW_CHEST_BOAT = registerItem("willow_chest_boat",
-            () -> new BoatItem(true, BoatEntity.Type.WILLOW, new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FIELD_MUSHROOM = registerItem("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Properties()));
     public static final DeferredItem<Item> DUCKWEED = registerItem("duckweed",
@@ -416,69 +424,69 @@ public class NMLItems {
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.BIRCH_BOOKSHELF);
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.PINE.bookshelf());
             insertAfter(event, Items.BOOKSHELF, NMLBlocks.SPRUCE_BOOKSHELF);
-            insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_HANGING_SIGN);
-            insertAfter(event, Items.SPRUCE_HANGING_SIGN, NMLItems.PINE_SIGN);
-            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, NMLItems.WALNUT_HANGING_SIGN);
-            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, NMLItems.WALNUT_SIGN);
-            insertBefore(event, Items.DARK_OAK_SIGN, NMLItems.MAPLE_SIGN);
-            insertBefore(event, Items.DARK_OAK_SIGN, NMLItems.MAPLE_HANGING_SIGN);
-            insertBefore(event, Items.MANGROVE_SIGN, NMLItems.WILLOW_SIGN);
-            insertBefore(event, Items.MANGROVE_SIGN, NMLItems.WILLOW_HANGING_SIGN);
-            insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_SOUL_TORCH);
-            insertAfter(event, Items.REDSTONE_TORCH, NMLItems.SCONCE_TORCH);
+            insertAfter(event, Items.SPRUCE_HANGING_SIGN, PINE_HANGING_SIGN);
+            insertAfter(event, Items.SPRUCE_HANGING_SIGN, PINE_SIGN);
+            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, WALNUT_HANGING_SIGN);
+            insertAfter(event, Items.DARK_OAK_HANGING_SIGN, WALNUT_SIGN);
+            insertBefore(event, Items.DARK_OAK_SIGN, MAPLE_SIGN);
+            insertBefore(event, Items.DARK_OAK_SIGN, MAPLE_HANGING_SIGN);
+            insertBefore(event, Items.MANGROVE_SIGN, WILLOW_SIGN);
+            insertBefore(event, Items.MANGROVE_SIGN, WILLOW_HANGING_SIGN);
+            insertAfter(event, Items.REDSTONE_TORCH, SCONCE_SOUL_TORCH);
+            insertAfter(event, Items.REDSTONE_TORCH, SCONCE_TORCH);
             insertAfter(event, Items.CAULDRON, NMLBlocks.TAP);
-            insertBefore(event, Items.SCAFFOLDING, NMLItems.WOODEN_SCAFFOLDING);
+            insertBefore(event, Items.SCAFFOLDING, WOODEN_SCAFFOLDING);
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
-            insertAfter(event, Items.COOKED_BEEF, NMLItems.HORSE_STEAK);
-            insertAfter(event, Items.COOKED_BEEF, NMLItems.RAW_HORSE);
-            insertAfter(event, Items.COOKED_MUTTON, NMLItems.COOKED_VENISON);
-            insertAfter(event, Items.COOKED_MUTTON, NMLItems.RAW_VENISON);
-            insertAfter(event, Items.COOKED_RABBIT, NMLItems.COOKED_FROG_LEG);
-            insertAfter(event, Items.COOKED_RABBIT, NMLItems.FROG_LEG);
-            insertAfter(event, Items.HONEY_BOTTLE, NMLItems.MAPLE_SYRUP_BOTTLE);
+            insertAfter(event, Items.COOKED_BEEF, HORSE_STEAK);
+            insertAfter(event, Items.COOKED_BEEF, RAW_HORSE);
+            insertAfter(event, Items.COOKED_MUTTON, COOKED_VENISON);
+            insertAfter(event, Items.COOKED_MUTTON, RAW_VENISON);
+            insertAfter(event, Items.COOKED_RABBIT, COOKED_FROG_LEG);
+            insertAfter(event, Items.COOKED_RABBIT, FROG_LEG);
+            insertAfter(event, Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE);
             if (Mods.FARMERSDELIGHT.isLoaded()) {
                 insertAfter(event, Items.HONEY_BOTTLE, FDIntegration.PEAR_JUICE);
                 insertAfter(event, Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_ITEM);
                 insertAfter(event, Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_SLICE);
             }
-            insertAfter(event, Items.PUMPKIN_PIE, NMLItems.PANCAKE);
-            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.SYRUPED_PEAR);
-            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, NMLItems.PEAR);
-            insertAfter(event, Items.APPLE, NMLItems.HONEYED_APPLE);
-            insertAfter(event, Items.MELON_SLICE, NMLItems.WALNUTS);
-            insertAfter(event, Items.MUSHROOM_STEW, NMLItems.MASHED_POTATOES_WITH_MUSHROOMS);
-            insertAfter(event, Items.POISONOUS_POTATO, NMLItems.GRILLED_MUSHROOMS);
-            insertAfter(event, Items.COOKED_SALMON, NMLItems.COOKED_BILLHOOK_BASS);
-            insertAfter(event, Items.COOKED_SALMON, NMLItems.BILLHOOK_BASS);
-//            insertAfter(event, Items.TROPICAL_FISH, NMLItems.CAVE_CARP);
+            insertAfter(event, Items.PUMPKIN_PIE, PANCAKE);
+            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, SYRUPED_PEAR);
+            insertAfter(event, Items.ENCHANTED_GOLDEN_APPLE, PEAR);
+            insertAfter(event, Items.APPLE, HONEYED_APPLE);
+            insertAfter(event, Items.MELON_SLICE, WALNUTS);
+            insertAfter(event, Items.MUSHROOM_STEW, MASHED_POTATOES_WITH_MUSHROOMS);
+            insertAfter(event, Items.POISONOUS_POTATO, GRILLED_MUSHROOMS);
+            insertAfter(event, Items.COOKED_SALMON, COOKED_BILLHOOK_BASS);
+            insertAfter(event, Items.COOKED_SALMON, BILLHOOK_BASS);
+//            insertAfter(event, Items.TROPICAL_FISH, CAVE_CARP);
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            insertAfter(event, Items.SPRUCE_CHEST_BOAT, NMLItems.PINE_CHEST_BOAT);
-            insertAfter(event, Items.SPRUCE_CHEST_BOAT, NMLItems.PINE_BOAT);
-            insertBefore(event, Items.DARK_OAK_BOAT, NMLItems.MAPLE_BOAT);
-            insertBefore(event, Items.DARK_OAK_BOAT, NMLItems.MAPLE_CHEST_BOAT);
-            insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_BOAT);
-            insertBefore(event, Items.MANGROVE_BOAT, NMLItems.WILLOW_CHEST_BOAT);
-            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_CHEST_BOAT);
-            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, NMLItems.WALNUT_BOAT);
-            insertAfter(event, Items.SALMON_BUCKET, NMLItems.BILLHOOK_BASS_BUCKET);
+            insertAfter(event, Items.SPRUCE_CHEST_BOAT, PINE_CHEST_BOAT);
+            insertAfter(event, Items.SPRUCE_CHEST_BOAT, PINE_BOAT);
+            insertBefore(event, Items.DARK_OAK_BOAT, MAPLE_BOAT);
+            insertBefore(event, Items.DARK_OAK_BOAT, MAPLE_CHEST_BOAT);
+            insertBefore(event, Items.MANGROVE_BOAT, WILLOW_BOAT);
+            insertBefore(event, Items.MANGROVE_BOAT, WILLOW_CHEST_BOAT);
+            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, WALNUT_CHEST_BOAT);
+            insertAfter(event, Items.DARK_OAK_CHEST_BOAT, WALNUT_BOAT);
+            insertAfter(event, Items.SALMON_BUCKET, BILLHOOK_BASS_BUCKET);
             insertAfter(event, Items.SALMON_BUCKET, NMLBlocks.WARDING_EFFIGY);
-//            insertAfter(event, Items.TROPICAL_FISH_BUCKET, NMLItems.CAVE_CARP_BUCKET);
+//            insertAfter(event, Items.TROPICAL_FISH_BUCKET, CAVE_CARP_BUCKET);
             if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), Items.BUNDLE.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
-            insertAfter(event, Items.WIND_CHARGE, NMLItems.FIREBOMB);
-            insertBefore(event, Items.TNT, NMLItems.EXPLOSIVE);
-            insertAfter(event, Items.EGG, NMLItems.RESIN_OIL_BOTTLE);
+            insertAfter(event, Items.WIND_CHARGE, FIREBOMB);
+            insertBefore(event, Items.TNT, EXPLOSIVE);
+            insertAfter(event, Items.EGG, RESIN_OIL_BOTTLE);
         }
 
         if (tab == CreativeModeTabs.INGREDIENTS) {
-            insertAfter(event, Items.HONEYCOMB, NMLItems.RESIN);
-            insertAfter(event, NMLItems.RESIN, NMLItems.RESIN_OIL_BOTTLE);
+            insertAfter(event, Items.HONEYCOMB, RESIN);
+            insertAfter(event, RESIN, RESIN_OIL_BOTTLE);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
@@ -487,11 +495,14 @@ public class NMLItems {
 
         if (tab == CreativeModeTabs.SPAWN_EGGS) {
             insertAfter(event, Blocks.SPAWNER, NMLBlocks.MONSTER_ANCHOR);
-            insertAfter(event, Items.CREEPER_SPAWN_EGG, NMLItems.DEER_SPAWN_EGG);
-            insertAfter(event, Items.BEE_SPAWN_EGG, NMLItems.BILLHOOK_BASS_SPAWN_EGG);
+            insertAfter(event, Items.CREEPER_SPAWN_EGG, MOOSE_SPAWN_EGG);
+            insertAfter(event, Items.CREEPER_SPAWN_EGG, DEER_SPAWN_EGG);
+            insertAfter(event, Items.BEE_SPAWN_EGG, BILLHOOK_BASS_SPAWN_EGG);
+            insertAfter(event, Items.CHICKEN_SPAWN_EGG, GOOSE_SPAWN_EGG);
         }
 
-        if (Mods.CREATE.isLoaded()) event.remove(Mods.CREATE.getItem("honeyed_apple").getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        if (Mods.CREATE.isLoaded())
+            event.remove(Mods.CREATE.getItem("honeyed_apple").getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
     private static void insertBefore(BuildCreativeModeTabContentsEvent event, Object existingEntry, Holder<?> newEntry) {

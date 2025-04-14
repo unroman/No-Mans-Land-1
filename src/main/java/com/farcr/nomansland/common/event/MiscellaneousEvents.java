@@ -3,12 +3,15 @@ package com.farcr.nomansland.common.event;
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
+import com.farcr.nomansland.common.entity.MooseEntity;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
+import com.farcr.nomansland.common.entity.goose.Goose;
 import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
 import com.farcr.nomansland.common.registry.NMLFluids;
+import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
@@ -40,6 +43,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -47,6 +51,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
@@ -111,6 +116,16 @@ public class MiscellaneousEvents {
                 }
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                 event.setCanceled(true);
+            }
+
+            if (state.hasProperty(BlockStateProperties.LIT)) {
+                if (!state.getValue(BlockStateProperties.LIT) && stack.is(NMLTags.FIRESTARTERS) && !stack.is(Items.FLINT_AND_STEEL)) {
+                    level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
+                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+                    level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, true));
+                    event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+                    event.setCanceled(true);
+                }
             }
 
             // Grass Frosting
@@ -458,9 +473,10 @@ public class MiscellaneousEvents {
         public static void entityAttributeEvent(final EntityAttributeCreationEvent event) {
             //    TODO: BURIED AND MOOSE
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
-//            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
+            event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
             event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());
             event.put(NMLEntities.DEER.get(), Deer.createAttributes().build());
+            event.put(NMLEntities.GOOSE.get(), Goose.createAttributes().build());
         }
 
         @SubscribeEvent
@@ -473,7 +489,7 @@ public class MiscellaneousEvents {
 
         @SubscribeEvent
         public static void registerCauldronFluidContent(final RegisterCauldronFluidContentEvent event) {
-            event.register(NMLBlocks.MILK_CAULDRON.get(), NeoForgeMod.MILK.get(), 1000, LEVEL);
+            if (NeoForgeMod.MILK.isBound()) event.register(NMLBlocks.MILK_CAULDRON.get(), NeoForgeMod.MILK.get(), 1000, LEVEL);
             event.register(NMLBlocks.RESIN_OIL_CAULDRON.get(), NMLFluids.RESIN_OIL.get(), 1000, LEVEL);
             if (Mods.CREATE.isLoaded())
                 event.register(NMLBlocks.HONEY_CAULDRON.get(), Mods.CREATE.getFluid("honey"), 1000, LEVEL);

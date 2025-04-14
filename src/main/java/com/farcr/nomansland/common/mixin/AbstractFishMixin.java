@@ -15,26 +15,4 @@ public abstract class AbstractFishMixin extends EntityMixin {
     private void registerGoals(CallbackInfo ci) {
         ((AbstractFish) (Object) this).goalSelector.addGoal(3, new AvoidEntityGoal<>(((AbstractFish) (Object) this), BillhookBass.class, 5.0F, 1.6, 1.4));
     }
-
-//    @Inject(method = "saveToBucketTag", at = @At("TAIL"))
-//    private void saveToBucketTag(ItemStack stack, CallbackInfo ci) {
-//        if (this.getTags().contains("Variant")) {
-//            CustomData.update(DataComponents.BUCKET_ENTITY_DATA, stack, (data) -> {
-//                this.getVariant().unwrapKey().ifPresent((variant) -> {
-//                    data.putString("Variant", variant.location().toString());
-//                });
-//            });
-//        }
-//    }
-//
-//    @Inject(method = "loadFromBucketTag", at = @At("TAIL"))
-//    private void loadFromBucketTag(CompoundTag tag, CallbackInfo ci) {
-//            if (tag.contains("Variant")) {
-//                Optional<Registry<MobVariant>> optionalRegistry = this.registryAccess().registry(NMLMobVariants.getVariantOfType(this.getType()));
-//                if (optionalRegistry.isPresent()) {
-//                    Registry<? extends MobVariant> registry = optionalRegistry.get();
-//                    this.setVariant(registry.holders().filter(v -> v.unwrapKey().get().location().toString().equals(tag.getString("Variant"))).findAny().get());
-//                }
-//            }
-//    }
 }

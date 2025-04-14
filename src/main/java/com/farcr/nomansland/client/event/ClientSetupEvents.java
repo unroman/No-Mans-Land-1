@@ -5,6 +5,7 @@ import com.farcr.nomansland.client.NMLModelLayers;
 import com.farcr.nomansland.client.ambience.AmbienceHandler;
 import com.farcr.nomansland.client.model.BillhookBassModel;
 import com.farcr.nomansland.client.model.BuriedModel;
+import com.farcr.nomansland.client.model.GooseModel;
 import com.farcr.nomansland.client.model.MooseModel;
 import com.farcr.nomansland.client.model.deer.DeerModel;
 import com.farcr.nomansland.client.particle.*;
@@ -32,15 +33,6 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 public class ClientSetupEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        EntityRenderers.register(NMLEntities.BOAT.get(), context -> new NMLBoatRenderer(context, false));
-        EntityRenderers.register(NMLEntities.CHEST_BOAT.get(), context -> new NMLBoatRenderer(context, true));
-
-//        EntityRenderers.register(NMLEntities.BURIED.get(), BuriedRenderer::new);
-//        EntityRenderers.register(NMLEntities.MOOSE.get(), MooseRenderer::new);
-
-        EntityRenderers.register(NMLEntities.FIREBOMB.get(), FirebombRenderer::new);
-        EntityRenderers.register(NMLEntities.EXPLOSIVE.get(), ExplosiveRenderer::new);
-
         AmbienceHandler.FOG_MODIFIER_HANDLER.fillFogModifiers();
     }
 
@@ -51,32 +43,28 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
-    public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(NMLEntities.BILLHOOK_BASS.get(), BillhookBassRenderer::new);
 
         event.registerEntityRenderer(NMLEntities.DEER.get(), DeerRenderer::new);
+        event.registerEntityRenderer(NMLEntities.GOOSE.get(), GooseRenderer::new);
+        event.registerEntityRenderer(NMLEntities.MOOSE.get(), MooseRenderer::new);
+
+        event.registerEntityRenderer(NMLEntities.FIREBOMB.get(), FirebombRenderer::new);
+        event.registerEntityRenderer(NMLEntities.EXPLOSIVE.get(), ExplosiveRenderer::new);
+
     }
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(NMLModelLayers.PINE_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.PINE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.MAPLE_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.MAPLE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.WALNUT_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.WALNUT_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
-        event.registerLayerDefinition(NMLModelLayers.WILLOW_BOAT_LAYER, BoatModel::createBodyModel);
-        event.registerLayerDefinition(NMLModelLayers.WILLOW_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
         event.registerLayerDefinition(NMLModelLayers.MOOSE_LAYER, MooseModel::createBodyLayer);
         event.registerLayerDefinition(NMLModelLayers.BURIED_LAYER, BuriedModel::createBodyLayer);
 
         event.registerLayerDefinition(NMLModelLayers.BASS_LAYER, BillhookBassModel::createBodyLayer);
 
         event.registerLayerDefinition(NMLModelLayers.DEER_LAYER, DeerModel::createBodyLayer);
+
+        event.registerLayerDefinition(NMLModelLayers.GOOSE_LAYER, GooseModel::createBodyLayer);
     }
 
     @SubscribeEvent

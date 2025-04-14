@@ -10,8 +10,8 @@ import com.farcr.nomansland.common.block.tap.TapBlock;
 import com.farcr.nomansland.common.block.torches.*;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.registry.items.NMLItems;
+import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
 import com.farcr.nomansland.common.registry.worldgen.NMLTreeGrowers;
-import com.farcr.nomansland.common.world.tree.HugeMushrooms;
 import com.farcr.nomansland.datagen.loot.*;
 import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleTypes;
@@ -260,9 +260,10 @@ public class NMLBlocks {
             () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(SoundType.TRIAL_SPAWNER).noOcclusion()));
     public static final BlockDefinition<WardingEffigyBlock> WARDING_EFFIGY = registerBlock("warding_effigy",
             () -> new WardingEffigyBlock(of()
-                    .strength(0.1F)
+                    .strength(1.5F)
                     .noOcclusion()
                     .pushReaction(PushReaction.DESTROY)
+                    .sound(SoundType.CHERRY_WOOD)
             ));
 
     //Tiles
@@ -453,7 +454,7 @@ public class NMLBlocks {
 
     //Mushrooms
     public static final BlockDefinition<SurfaceMushroomBlock> FIELD_MUSHROOM = registerBlockNoItem("field_mushroom",
-            () -> new SurfaceMushroomBlock((HugeMushrooms.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))), new BlockProperties(new SelfBlockLootType(), false));
+            () -> new SurfaceMushroomBlock((NMLFeatures.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<FlowerPotBlock> POTTED_FIELD_MUSHROOM = registerBlockNoItem("potted_field_mushroom",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.FIELD_MUSHROOM,
                     ofFullCopy(Blocks.POTTED_RED_MUSHROOM).noOcclusion()), BlockProperties.flowerPot(FIELD_MUSHROOM));

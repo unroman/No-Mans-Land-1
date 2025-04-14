@@ -164,6 +164,7 @@ public class BoneMealingEvents {
                             .setValue(SlabBlock.TYPE, level.random.nextBoolean() ? SlabType.BOTTOM : SlabType.TOP);
 
                     if (!level.isClientSide) level.setBlockAndUpdate(pos, newState);
+                    if (!player.isCreative()) stack.shrink(1);
                     if (sidePos != null) {
                         if (!level.isClientSide) level.setBlockAndUpdate(sidePos, newState);
                         sendParticles(serverLevel, sidePos);

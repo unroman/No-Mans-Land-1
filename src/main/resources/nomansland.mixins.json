@@ -10,7 +10,6 @@
     "BaseSpawnerMixin",
     "BiomeMixin",
     "BlockBehaviourMixin",
-    "BlockEntityAccessor",
     "DispenserBlockMixin",
     "EntityMixin",
     "FallLocationMixin",
@@ -32,6 +31,7 @@
     "WolfMixin",
     "integration.RichSoilBlockMixin",
     "integration.SeasonHooksMixin",
+    "integration.TreeCutterMixin",
     "integration.VanillaFluidTargetsMixin"
   ],
   "client": [

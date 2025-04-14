@@ -1,6 +1,6 @@
 {
 	"credit": "Made by Farcr",
-	"render_type": "minecraft:cutout",
+	"render_type": "minecraft:translucent",
 	"textures": {
 		"0": "nomansland:block/plants/water_mosaic",
 		"particle": "nomansland:block/plants/water_mosaic"

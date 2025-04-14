@@ -15,11 +15,12 @@ public class NMLConfig {
     public static ModConfigSpec.BooleanValue BIOMES;
     public static ModConfigSpec.BooleanValue CAVES_BIOMES;
     public static ModConfigSpec.BooleanValue MAPLE_BIOMES;
-    public static ModConfigSpec.BooleanValue AUTUMNAL_FOREST;
     public static ModConfigSpec.BooleanValue OLD_GROWTH_BIOMES;
-    public static ModConfigSpec.BooleanValue BOG;
-    public static ModConfigSpec.BooleanValue BAYOU;
+    public static ModConfigSpec.BooleanValue AUTUMNAL_FOREST;
+    public static ModConfigSpec.BooleanValue DARK_TAIGA;
     public static ModConfigSpec.BooleanValue DARK_SWAMP;
+    public static ModConfigSpec.BooleanValue BAYOU;
+    public static ModConfigSpec.BooleanValue BOG;
     public static final String CATEGORY_TAP = "tap";
     public static ModConfigSpec.DoubleValue FILLING_SPEED_MULTIPLIER;
     public static ModConfigSpec.IntValue TICKS_TO_FILL_CAULDRON;
@@ -76,15 +77,18 @@ public class NMLConfig {
         CAVES_BIOMES = COMMON_BUILDER
                 .comment("If the generic caves biomes are enabled")
                 .define("genericCavesBiomes", true);
-        AUTUMNAL_FOREST = COMMON_BUILDER
-                .comment("If the autumnal forest is enabled")
-                .define("autumnal", true);
         MAPLE_BIOMES = COMMON_BUILDER
                 .comment("If the maple biomes are enabled")
                 .define("mapleBiomes", true);
         OLD_GROWTH_BIOMES = COMMON_BUILDER
                 .comment("If the old growth biomes are enabled")
                 .define("oldGrowthBiomes", true);
+        AUTUMNAL_FOREST = COMMON_BUILDER
+                .comment("If the autumnal forest is enabled")
+                .define("autumnal", true);
+        DARK_TAIGA = COMMON_BUILDER
+                .comment("If the dark taiga is enabled")
+                .define("darkTaiga", true);
         DARK_SWAMP = COMMON_BUILDER
                 .comment("If the dark swamp is enabled")
                 .define("darkSwamp", true);

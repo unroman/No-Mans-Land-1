@@ -59,14 +59,6 @@ public class NMLBiomePlacements {
                             0.1F));
         }
 
-        if (NMLConfig.AUTUMNAL_FOREST.get()) {
-            BiomePlacement.replaceOverworld(
-                    Biomes.FOREST,
-                    NMLBiomes.AUTUMNAL_FOREST,
-                    0.2
-            );
-        }
-
         if (NMLConfig.MAPLE_BIOMES.get()) {
             BiomePlacement.replaceOverworld(
                     Biomes.FOREST,
@@ -99,22 +91,50 @@ public class NMLBiomePlacements {
             );
         }
 
-        if (NMLConfig.BOG.get()) {
+        if (NMLConfig.OLD_GROWTH_BIOMES.get()) {
             BiomePlacement.replaceOverworld(
-                    Biomes.SWAMP,
-                    NMLBiomes.BOG,
-                    0.2
+                    Biomes.DARK_FOREST,
+                    NMLBiomes.OLD_GROWTH_FOREST,
+                    0.3
             );
 
             BiomePlacement.replaceOverworld(
-                    Biomes.MANGROVE_SWAMP,
-                    NMLBiomes.BOG,
-                    0.05
+                    Biomes.OLD_GROWTH_BIRCH_FOREST,
+                    NMLBiomes.OLD_GROWTH_FOREST,
+                    0.2
             );
-            BiomePlacement.addSubOverworld(
+
+            edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE, BiomeParameterTargets.HUMIDITY);
+            clearingBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_CLEARING);
+        }
+
+        if (NMLConfig.AUTUMNAL_FOREST.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.FOREST,
+                    NMLBiomes.AUTUMNAL_FOREST,
+                    0.2
+            );
+        }
+
+        if (NMLConfig.DARK_TAIGA.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.TAIGA,
+                    NMLBiomes.DARK_TAIGA,
+                    0.2
+            );
+        }
+
+        if (NMLConfig.DARK_SWAMP.get()) {
+            transitionalBiome(
                     Biomes.SWAMP,
-                    NMLBiomes.BOG,
-                    neighbor(Biomes.PLAINS)
+                    Biomes.DARK_FOREST,
+                    NMLBiomes.DARK_SWAMP
+            );
+
+            BiomePlacement.replaceOverworld(
+                    Biomes.DARK_FOREST,
+                    NMLBiomes.DARK_SWAMP,
+                    0.1
             );
         }
 
@@ -138,35 +158,23 @@ public class NMLBiomePlacements {
             );
         }
 
-        if (NMLConfig.DARK_SWAMP.get()) {
-            transitionalBiome(
+        if (NMLConfig.BOG.get()) {
+            BiomePlacement.replaceOverworld(
                     Biomes.SWAMP,
-                    Biomes.DARK_FOREST,
-                    NMLBiomes.DARK_SWAMP
-            );
-
-            BiomePlacement.replaceOverworld(
-                    Biomes.DARK_FOREST,
-                    NMLBiomes.DARK_SWAMP,
-                    0.1
-            );
-        }
-
-        if (NMLConfig.OLD_GROWTH_BIOMES.get()) {
-            BiomePlacement.replaceOverworld(
-                    Biomes.DARK_FOREST,
-                    NMLBiomes.OLD_GROWTH_FOREST,
-                    0.3
-            );
-
-            BiomePlacement.replaceOverworld(
-                    Biomes.OLD_GROWTH_BIRCH_FOREST,
-                    NMLBiomes.OLD_GROWTH_FOREST,
+                    NMLBiomes.BOG,
                     0.2
             );
 
-            edgeBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_EDGE, BiomeParameterTargets.HUMIDITY);
-            clearingBiome(NMLBiomes.OLD_GROWTH_FOREST, NMLBiomes.OLD_GROWTH_FOREST_CLEARING);
+            BiomePlacement.replaceOverworld(
+                    Biomes.MANGROVE_SWAMP,
+                    NMLBiomes.BOG,
+                    0.05
+            );
+            BiomePlacement.addSubOverworld(
+                    Biomes.SWAMP,
+                    NMLBiomes.BOG,
+                    neighbor(Biomes.PLAINS)
+            );
         }
     }
 
