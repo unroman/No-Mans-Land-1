@@ -124,7 +124,7 @@ public class BonemealDispenseBehavior extends OptionalDispenseItemBehavior {
             }
         }
 
-        if (state.is(NMLBlocks.SHELF_MUSHROOM)) {
+        if (state.is(NMLBlocks.SHELF_MUSHROOM.block())) {
             if (level instanceof  ServerLevel serverLevel) {
                 Direction facing = state.getValue(BaseCoralWallFanBlock.FACING);
                 BlockPos sidePos = level.random.nextBoolean() && level.isEmptyBlock(pos.relative(facing.getClockWise())) ?

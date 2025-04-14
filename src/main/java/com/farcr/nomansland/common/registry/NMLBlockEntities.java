@@ -1,4 +1,4 @@
-package com.farcr.nomansland.common.registry.blocks;
+package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
