@@ -113,7 +113,7 @@ public class AnchorListener implements GameEventListener {
                         monsterAnchorBlockEntity.entityQueue.put(monster, monster.getPosition(0));
                     });
 
-                    // Stop the mob from dropping experience and loot
+                    // Stop the mob from dropping experience and lootType
                     monster.skipDropExperience();
                     ((LivingEntityDuck) monster).nml$skipDroppingDeathLoot();
 

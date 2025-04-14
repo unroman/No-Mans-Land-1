@@ -58,7 +58,7 @@ public class SconceWallTorchBlock extends WallTorchBlock {
     @Override
     protected void onExplosionHit(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> dropConsumer) {
         if (explosion.canTriggerBlocks()) {
-            level.setBlockAndUpdate(pos, state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH) ? NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state) : NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state));
+            level.setBlockAndUpdate(pos, state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH.block()) ? NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state) : NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state));
         }
 
         super.onExplosionHit(state, level, pos, explosion, dropConsumer);

@@ -29,10 +29,10 @@ public abstract class ThrownPotionMixin extends ProjectileMixin {
         if (state.is(Blocks.WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_WALL_TORCH.get().withPropertiesOf(state), 11);
         if (state.is(Blocks.SOUL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_TORCH.get().withPropertiesOf(state), 11);
         if (state.is(Blocks.SOUL_WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_SOUL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_TORCH.get().withPropertiesOf(state), 11);
-        if (state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_TORCH.block())) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_WALL_TORCH.block())) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_WALL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_SOUL_TORCH.block())) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_TORCH.get().withPropertiesOf(state), 11);
+        if (state.is(NMLBlocks.SCONCE_SOUL_WALL_TORCH.block())) level().setBlock(pos, NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH.get().withPropertiesOf(state), 11);
         }
     }
 }

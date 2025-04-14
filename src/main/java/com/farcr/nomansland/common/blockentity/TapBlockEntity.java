@@ -2,7 +2,7 @@ package com.farcr.nomansland.common.blockentity;
 
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.block.cauldrons.FourLayeredCauldronBlock;
-import com.farcr.nomansland.common.registry.blocks.NMLBlockEntities;
+import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -54,7 +54,7 @@ public class TapBlockEntity extends BlockEntity {
 
         if (!cauldronFound) return;
 
-        if (stateBehind.hasProperty(HONEY_LEVEL) && stateBehind.getValue(HONEY_LEVEL) == 5 && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (cauldronBlock instanceof CauldronBlock || cauldronState.is(NMLBlocks.HONEY_CAULDRON))) {
+        if (stateBehind.hasProperty(HONEY_LEVEL) && stateBehind.getValue(HONEY_LEVEL) == 5 && !((AbstractCauldronBlock) cauldronBlock).isFull(cauldronState) && (cauldronBlock instanceof CauldronBlock || cauldronState.is(NMLBlocks.HONEY_CAULDRON.block()))) {
             tap.timeEmptying++;
             if (tap.timeEmptying < NMLConfig.TICKS_TO_FILL_CAULDRON.get()) spawnDrippingParticles(level, pos, state, ParticleTypes.FALLING_HONEY);
             else {

@@ -126,7 +126,7 @@ dependencies {
     localRuntime "maven.modrinth:appleskin:3.0.5+mc1.21"
     localRuntime "maven.modrinth:worldedit:7.3.6"
     localRuntime "maven.modrinth:sodium:mc1.21.1-0.6.9-neoforge"
-    localRuntime "maven.modrinth:nbt-autocomplete:McjFDyOt"
+    //localRuntime "maven.modrinth:nbt-autocomplete:McjFDyOt"
     localRuntime "maven.modrinth:cyanide:v4LiMGGH"
     localRuntime "maven.modrinth:moonlight:neoforge_1.21-2.17.32"
     localRuntime "me.djtheredstoner:DevAuth-neoforge:1.2.1"

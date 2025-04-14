@@ -111,7 +111,7 @@ public abstract class EntityMixin {
 
     @Inject(method = "getOnPosLegacy", at = @At("RETURN"), cancellable = true)
     private void getOnPosLegacy(CallbackInfoReturnable<BlockPos> cir) {
-        cir.setReturnValue(getBlockStateOn().is(NMLBlocks.SPIKE_TRAP) ? getOnPos() : getOnPos(0.2F));
+        cir.setReturnValue(getBlockStateOn().is(NMLBlocks.SPIKE_TRAP.block()) ? getOnPos() : getOnPos(0.2F));
     }
 
     @Inject(method = "resetFallDistance", at = @At("HEAD"))

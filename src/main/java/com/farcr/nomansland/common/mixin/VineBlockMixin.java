@@ -27,14 +27,14 @@ public class VineBlockMixin {
     @Redirect(method = "canSupportAtFace", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
     private boolean canSupportAtFace(BlockState instance, Block block) {
         if (block == NMLBlocks.CUT_VINE.get() && instance.is(Blocks.VINE)) return true;
-        if (instance.is(NMLBlocks.CUT_VINE)) return false;
+        if (instance.is(NMLBlocks.CUT_VINE.block())) return false;
         return instance.is(block);
     }
 
     @Redirect(method = "getUpdatedState", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
     private boolean is(BlockState instance, Block block) {
         if (block == NMLBlocks.CUT_VINE.get() && instance.is(Blocks.VINE)) return true;
-        if (instance.is(NMLBlocks.CUT_VINE)) return false;
+        if (instance.is(NMLBlocks.CUT_VINE.block())) return false;
         return instance.is(block);
     }
 }

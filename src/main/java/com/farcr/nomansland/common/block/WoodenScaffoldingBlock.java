@@ -25,7 +25,7 @@ public class WoodenScaffoldingBlock extends ScaffoldingBlock {
         BlockPos.MutableBlockPos blockpos$mutableblockpos = pos.mutable().move(Direction.DOWN);
         BlockState blockstate = level.getBlockState(blockpos$mutableblockpos);
         int i = 6;
-        if (blockstate.is(NMLBlocks.WOODEN_SCAFFOLDING)) {
+        if (blockstate.is(NMLBlocks.WOODEN_SCAFFOLDING.block())) {
             i = blockstate.getValue(DISTANCE);
         } else if (blockstate.isFaceSturdy(level, blockpos$mutableblockpos, Direction.UP)) {
             return 0;
@@ -33,7 +33,7 @@ public class WoodenScaffoldingBlock extends ScaffoldingBlock {
 
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos.setWithOffset(pos, direction));
-            if (blockstate1.is(NMLBlocks.WOODEN_SCAFFOLDING)) {
+            if (blockstate1.is(NMLBlocks.WOODEN_SCAFFOLDING.block())) {
                 i = Math.min(i, blockstate1.getValue(DISTANCE) + 1);
                 if (i == 1) {
                     break;
