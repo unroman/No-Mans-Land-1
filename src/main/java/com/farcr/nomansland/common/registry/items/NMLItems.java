@@ -2,11 +2,8 @@ package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.NMLEnumParams;
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.definitions.BlockDefinition;
-import com.farcr.nomansland.common.entity.BoatEntity;
 import com.farcr.nomansland.common.integration.FDIntegration;
 import com.farcr.nomansland.common.integration.Mods;
-import com.farcr.nomansland.common.item.BoatItem;
 import com.farcr.nomansland.common.item.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;

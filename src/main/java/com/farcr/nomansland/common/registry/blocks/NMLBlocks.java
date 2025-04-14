@@ -255,7 +255,7 @@ public class NMLBlocks {
             () -> new PathBlock(ofFullCopy(Blocks.RED_SAND), Blocks.RED_SAND, true), BlockProperties.simplePath(Blocks.RED_SAND));
     //Dungeon
     public static final BlockDefinition<RemainsBlock> REMAINS = registerBlockNoItem("remains",
-            () -> new RemainsBlock(Blocks.COARSE_DIRT, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), false);
+            () -> new RemainsBlock(Blocks.COARSE_DIRT, SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY)), false);
     public static final BlockDefinition<MonsterAnchorBlock> MONSTER_ANCHOR = registerBlock("monster_anchor",
             () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(SoundType.TRIAL_SPAWNER).noOcclusion()));
     public static final BlockDefinition<WardingEffigyBlock> WARDING_EFFIGY = registerBlock("warding_effigy",
