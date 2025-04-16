@@ -1,18 +1,15 @@
 package com.farcr.nomansland.common.blockentity;
 
-import com.farcr.nomansland.common.entity.bombs.ThrowableBombEntity;
 import com.farcr.nomansland.common.item.ThrowableBombItem;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +18,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import net.minecraft.world.phys.Vec3;
 
 import static com.farcr.nomansland.common.event.BoneMealingEvents.*;
 import static net.minecraft.world.level.block.VineBlock.getPropertyForFace;

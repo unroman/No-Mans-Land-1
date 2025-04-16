@@ -1,7 +1,6 @@
 package com.farcr.nomansland.common.mixin.integration;
 
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
-import com.moulberry.mixinconstraints.annotations.IfModAbsent;
 import com.moulberry.mixinconstraints.annotations.IfModLoaded;
 import com.simibubi.create.content.kinetics.saw.TreeCutter;
 import net.minecraft.world.level.block.state.BlockState;

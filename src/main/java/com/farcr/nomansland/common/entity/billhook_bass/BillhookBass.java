@@ -115,7 +115,7 @@ public class BillhookBass extends AbstractFish implements NeutralMob {
     }
 
     public ItemStack getBucketItemStack() {
-        return NMLItems.BILLHOOK_BASS_BUCKET.toStack();
+        return NMLItems.BILLHOOK_BASS_BUCKET.stack();
     }
 
     public EntityType<?> getType() {

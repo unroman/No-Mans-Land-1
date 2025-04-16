@@ -7,12 +7,9 @@ import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
 import com.farcr.nomansland.common.entity.deer.Deer;
 import com.farcr.nomansland.common.entity.goose.Goose;
-import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;

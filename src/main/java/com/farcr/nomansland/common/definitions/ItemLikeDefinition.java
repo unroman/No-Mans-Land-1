@@ -8,14 +8,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
-public class ItemLikeDefinition<T extends ItemLike> extends Definition<T, T> implements ItemLike {
+public abstract class ItemLikeDefinition<R extends ItemLike, T extends R> extends Definition<R, T> implements ItemLike {
 
-    protected ItemLikeDefinition(ResourceKey<T> key, boolean customLang) {
+    protected ItemLikeDefinition(ResourceKey<R> key, boolean customLang) {
         super(key, customLang);
-    }
-
-    protected ItemLikeDefinition(ResourceKey<T> key) {
-        this(key, false);
     }
 
     @Override

@@ -1,6 +1,5 @@
-package com.farcr.nomansland.common.registry.blocks;
+package com.farcr.nomansland.common.definitions;
 
-import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.datagen.loot.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;

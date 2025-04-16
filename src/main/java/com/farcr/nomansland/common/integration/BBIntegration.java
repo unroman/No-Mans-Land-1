@@ -10,35 +10,34 @@ import vectorwing.blockbox.common.block.SeatBlock;
 import vectorwing.blockbox.common.block.SpikedPalisadeBlock;
 import vectorwing.blockbox.common.registry.ModBlocks;
 
-import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.registerBlock;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 
 public class BBIntegration {
 
-    public static final BlockDefinition<Block> STRIPPED_SPIKED_MAPLE_PALISADE = registerBlock("stripped_spiked_maple_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> SPIKED_MAPLE_PALISADE = registerBlock("spiked_maple_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_MAPLE_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> STRIPPED_MAPLE_PALISADE = registerBlock("stripped_maple_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_MAPLE_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> MAPLE_PALISADE = registerBlock("maple_palisade", () -> new PalisadeBlock(SPIKED_MAPLE_PALISADE, STRIPPED_MAPLE_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> STRIPPED_SPIKED_MAPLE_PALISADE = NMLBlocks.register("stripped_spiked_maple_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> SPIKED_MAPLE_PALISADE = NMLBlocks.register("spiked_maple_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_MAPLE_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> STRIPPED_MAPLE_PALISADE = NMLBlocks.register("stripped_maple_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_MAPLE_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> MAPLE_PALISADE = NMLBlocks.register("maple_palisade", () -> new PalisadeBlock(SPIKED_MAPLE_PALISADE::block, STRIPPED_MAPLE_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
 
-    public static final BlockDefinition<Block> STRIPPED_SPIKED_PINE_PALISADE = registerBlock("stripped_spiked_pine_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> SPIKED_PINE_PALISADE = registerBlock("spiked_pine_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_PINE_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> STRIPPED_PINE_PALISADE = registerBlock("stripped_pine_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_PINE_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> PINE_PALISADE = registerBlock("pine_palisade", () -> new PalisadeBlock(SPIKED_PINE_PALISADE, STRIPPED_PINE_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> STRIPPED_SPIKED_PINE_PALISADE = NMLBlocks.register("stripped_spiked_pine_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> SPIKED_PINE_PALISADE = NMLBlocks.register("spiked_pine_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_PINE_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> STRIPPED_PINE_PALISADE = NMLBlocks.register("stripped_pine_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_PINE_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> PINE_PALISADE = NMLBlocks.register("pine_palisade", () -> new PalisadeBlock(SPIKED_PINE_PALISADE::block, STRIPPED_PINE_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
 
-    public static final BlockDefinition<Block> STRIPPED_SPIKED_WALNUT_PALISADE = registerBlock("stripped_spiked_walnut_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> SPIKED_WALNUT_PALISADE = registerBlock("spiked_walnut_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_WALNUT_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> STRIPPED_WALNUT_PALISADE = registerBlock("stripped_walnut_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_WALNUT_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> WALNUT_PALISADE = registerBlock("walnut_palisade", () -> new PalisadeBlock(SPIKED_WALNUT_PALISADE, STRIPPED_WALNUT_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> STRIPPED_SPIKED_WALNUT_PALISADE = NMLBlocks.register("stripped_spiked_walnut_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> SPIKED_WALNUT_PALISADE = NMLBlocks.register("spiked_walnut_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_WALNUT_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> STRIPPED_WALNUT_PALISADE = NMLBlocks.register("stripped_walnut_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_WALNUT_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> WALNUT_PALISADE = NMLBlocks.register("walnut_palisade", () -> new PalisadeBlock(SPIKED_WALNUT_PALISADE::block, STRIPPED_WALNUT_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
 
-    public static final BlockDefinition<Block> STRIPPED_SPIKED_WILLOW_PALISADE = registerBlock("stripped_spiked_willow_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> SPIKED_WILLOW_PALISADE = registerBlock("spiked_willow_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_WILLOW_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> STRIPPED_WILLOW_PALISADE = registerBlock("stripped_willow_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_WILLOW_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
-    public static final BlockDefinition<Block> WILLOW_PALISADE = registerBlock("willow_palisade", () -> new PalisadeBlock(SPIKED_WILLOW_PALISADE, STRIPPED_WILLOW_PALISADE, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> STRIPPED_SPIKED_WILLOW_PALISADE = NMLBlocks.register("stripped_spiked_willow_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<SpikedPalisadeBlock> SPIKED_WILLOW_PALISADE = NMLBlocks.register("spiked_willow_palisade", () -> new SpikedPalisadeBlock(STRIPPED_SPIKED_WILLOW_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> STRIPPED_WILLOW_PALISADE = NMLBlocks.register("stripped_willow_palisade", () -> new PalisadeBlock(STRIPPED_SPIKED_WILLOW_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
+    public static final BlockDefinition<PalisadeBlock> WILLOW_PALISADE = NMLBlocks.register("willow_palisade", () -> new PalisadeBlock(SPIKED_WILLOW_PALISADE::block, STRIPPED_WILLOW_PALISADE::block, ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));
 
-    public static final BlockDefinition<Block> MAPLE_SEAT = registerBlock("maple_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.MAPLE.planks().get())));
-    public static final BlockDefinition<Block> PINE_SEAT = registerBlock("pine_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.PINE.planks().get())));
-    public static final BlockDefinition<Block> WALNUT_SEAT = registerBlock("walnut_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.WALNUT.planks().get())));
-    public static final BlockDefinition<Block> WILLOW_SEAT = registerBlock("willow_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.WILLOW.planks().get())));
+    public static final BlockDefinition<SeatBlock> MAPLE_SEAT = NMLBlocks.register("maple_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.MAPLE.planks().block())));
+    public static final BlockDefinition<SeatBlock> PINE_SEAT = NMLBlocks.register("pine_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.PINE.planks().block())));
+    public static final BlockDefinition<SeatBlock> WALNUT_SEAT = NMLBlocks.register("walnut_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.WALNUT.planks().block())));
+    public static final BlockDefinition<SeatBlock> WILLOW_SEAT = NMLBlocks.register("willow_seat", () -> new SeatBlock(ofFullCopy(NMLBlocks.WILLOW.planks().block())));
 
     public static void register() {
     }
