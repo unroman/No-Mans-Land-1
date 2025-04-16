@@ -1,24 +1,24 @@
 package com.farcr.nomansland.datagen.tags;
 
+import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.google.common.collect.Maps;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class NMLBlockTagsProvider extends BlockTagsProvider {
-    public NMLBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, modId, existingFileHelper);
+    public NMLBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, NoMansLand.MODID, existingFileHelper);
     }
 
     @Override
@@ -43,5 +43,12 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
                 tagAppender.add(b);
             }
         }*/
+    }
+
+    @SafeVarargs
+    protected final void addTagsTo(ResourceKey<Block> block, TagKey<Block>... blockTags) {
+        Arrays.stream(blockTags).toList().forEach(blockTag -> {
+            this.tag(blockTag).add(block);
+        });
     }
 }

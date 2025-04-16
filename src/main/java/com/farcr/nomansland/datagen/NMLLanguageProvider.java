@@ -2,7 +2,9 @@ package com.farcr.nomansland.datagen;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
+import com.farcr.nomansland.common.definitions.ItemDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -15,7 +17,14 @@ public class NMLLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
 
-            if (!definition.properties().customLang()) {
+            if (!definition.hasCustomLang()) {
+                add(definition.langKey(), definition.langName());
+            }
+        }
+
+        for (ItemDefinition<?> definition : NMLItems.ITEM_DEFINITIONS) {
+
+            if (!definition.hasCustomLang()) {
                 add(definition.langKey(), definition.langName());
             }
         }

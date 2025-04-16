@@ -1,6 +1,7 @@
 package com.farcr.nomansland.datagen;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.datagen.tags.NMLBiomeTagsProvider;
 import com.farcr.nomansland.datagen.tags.NMLBlockTagsProvider;
 import com.farcr.nomansland.datagen.tags.NMLItemTagsProvider;
 import net.minecraft.core.HolderLookup;
@@ -10,6 +11,8 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.List;
@@ -21,9 +24,11 @@ import java.util.concurrent.CompletableFuture;
 public class DataGenEvents {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+
         boolean server = event.includeServer();
         boolean client = event.includeClient();
 
@@ -39,13 +44,12 @@ public class DataGenEvents {
         );
 
         // Tags
-        generator.addProvider(server, new NMLBlockTagsProvider(packOutput, lookupProvider, NoMansLand.MODID, event.getExistingFileHelper()));
-        //generator.addProvider(server, new NMLItemTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(server, new NMLBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+
+        BlockTagsProvider blockTagsProvider = generator.addProvider(server, new NMLBlockTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(server, new NMLItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 
         // Lang
-        generator.addProvider(
-                client,
-                new NMLLanguageProvider(packOutput)
-        );
+        generator.addProvider(client, new NMLLanguageProvider(packOutput));
     }
 }

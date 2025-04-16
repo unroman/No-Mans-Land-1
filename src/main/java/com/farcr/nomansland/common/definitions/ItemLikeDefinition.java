@@ -9,8 +9,13 @@ import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemLikeDefinition<T extends ItemLike> extends Definition<T, T> implements ItemLike {
+
+    protected ItemLikeDefinition(ResourceKey<T> key, boolean customLang) {
+        super(key, customLang);
+    }
+
     protected ItemLikeDefinition(ResourceKey<T> key) {
-        super(key);
+        this(key, false);
     }
 
     @Override

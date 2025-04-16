@@ -11,17 +11,17 @@ public class BlockDefinition<T extends Block> extends ItemLikeDefinition<T> {
 
     private final BlockProperties properties;
 
-    protected BlockDefinition(ResourceKey<T> key) {
-        this(key, false);
+    protected BlockDefinition(ResourceKey<T> key, boolean customLang, BlockProperties properties) {
+        super(key, customLang);
+        this.properties = properties;
     }
 
     protected BlockDefinition(ResourceKey<T> key, boolean customLang) {
-        this(key, new BlockProperties(new CustomBlockLootType(), customLang));
+        this(key, customLang, BlockProperties.basic());
     }
 
-    protected BlockDefinition(ResourceKey<T> key, BlockProperties properties) {
-        super(key);
-        this.properties = properties;
+    protected BlockDefinition(ResourceKey<T> key) {
+        this(key, false);
     }
 
     public boolean is(Block block) {
@@ -34,15 +34,15 @@ public class BlockDefinition<T extends Block> extends ItemLikeDefinition<T> {
     }
 
     public static BlockDefinition<?> fromHolder(DeferredHolder<Block, ? extends Block> holder) {
-        return new BlockDefinition<>(holder.getKey());
+        return fromHolder(holder, BlockProperties.basic());
     }
 
     public static BlockDefinition<?> fromHolder(DeferredHolder<Block, ? extends Block> holder, BlockProperties properties) {
-        return new BlockDefinition<>(holder.getKey(), properties);
+        return fromHolder(holder, false, properties);
     }
 
-    public static BlockDefinition<?> fromHolder(DeferredHolder<Block, ? extends Block> holder, boolean customLang) {
-        return new BlockDefinition<>(holder.getKey(), customLang);
+    public static BlockDefinition<?> fromHolder(DeferredHolder<Block, ? extends Block> holder, boolean customLang, BlockProperties properties) {
+        return new BlockDefinition<>(holder.getKey(), customLang, properties);
     }
 
     public BlockLootType lootType() {

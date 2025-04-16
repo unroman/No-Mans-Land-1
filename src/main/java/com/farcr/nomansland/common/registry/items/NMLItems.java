@@ -2,6 +2,8 @@ package com.farcr.nomansland.common.registry.items;
 
 import com.farcr.nomansland.NMLEnumParams;
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
+import com.farcr.nomansland.common.definitions.ItemDefinition;
 import com.farcr.nomansland.common.integration.FDIntegration;
 import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.item.*;
@@ -28,6 +30,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +38,8 @@ import java.util.function.Supplier;
 
 public class NMLItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(NoMansLand.MODID);
+    public static List<ItemDefinition<?>> ITEM_DEFINITIONS = new ArrayList<>();
+
     public static final DeferredItem<Item> NO_MANS_GLOBE = ITEMS.register("no_mans_globe",
             () -> new Item(new Properties()));
     public static final DeferredItem<Item> TRINKET = ITEMS.register("trinket",

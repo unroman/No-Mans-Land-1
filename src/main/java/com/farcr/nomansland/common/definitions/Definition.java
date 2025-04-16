@@ -4,9 +4,18 @@ import net.minecraft.resources.ResourceKey;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class Definition<R, T extends R> extends DeferredHolder<R, T> {
-    protected Definition(ResourceKey<R> key) {
+
+    private final boolean customLang;
+
+    protected Definition(ResourceKey<R> key, boolean customLang) {
         super(key);
+        this.customLang = customLang;
     }
+
+    protected Definition(ResourceKey<R> key) {
+        this(key, false);
+    }
+
 
     public String langKey() {
         return getRegisteredName().replaceAll(":", ".");
@@ -27,5 +36,9 @@ public class Definition<R, T extends R> extends DeferredHolder<R, T> {
         }
 
         return result.toString().trim();
+    }
+
+    public boolean hasCustomLang() {
+        return customLang;
     }
 }

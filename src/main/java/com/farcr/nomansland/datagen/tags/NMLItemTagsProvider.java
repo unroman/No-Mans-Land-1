@@ -1,16 +1,25 @@
 package com.farcr.nomansland.datagen.tags;
 
+import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 public class NMLItemTagsProvider extends ItemTagsProvider {
 
-    public NMLItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags) {
-        super(output, lookupProvider, blockTags);
+
+    public NMLItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, blockTags, NoMansLand.MODID, existingFileHelper);
     }
 
     @Override
@@ -34,5 +43,12 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
 //                tagAppender.add(b);
 //            }
 //        }
+    }
+
+    @SafeVarargs
+    protected final void addTagsTo(ResourceKey<Item> item, TagKey<Item>... itemTags) {
+        Arrays.stream(itemTags).toList().forEach(itemTag -> {
+            this.tag(itemTag).add(item);
+        });
     }
 }
