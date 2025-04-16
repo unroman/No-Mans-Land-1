@@ -68,8 +68,6 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
 
     @SafeVarargs
     protected final void addTagsTo(Block block, TagKey<Block>... blockTags) {
-        Arrays.stream(blockTags).toList().forEach(blockTag -> {
-            this.tag(blockTag).add(block);
-        });
+        Arrays.stream(blockTags).toList().forEach(blockTag -> tag(blockTag).add(block));
     }
 }

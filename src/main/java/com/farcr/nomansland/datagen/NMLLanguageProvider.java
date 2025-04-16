@@ -5,7 +5,10 @@ import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.definitions.ItemDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLItems;
+import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class NMLLanguageProvider extends LanguageProvider {
@@ -29,22 +32,19 @@ public class NMLLanguageProvider extends LanguageProvider {
             }
         }
 
+        for (ResourceKey<Biome> biome : NMLBiomes.BIOMES) {
+            add(NMLBiomes.langKey(biome), NMLBiomes.langName(biome));
+        }
+
+        add("item.nomansland.billhook_bass_bucket", "Bucket of Billhook Bass");
+        add("item.nomansland.billhook_bass", "Raw Billhook Bass");
+        add("item.nomansland.no_mans_globe", "No Man's Globe");
+        add("item.nomansland.maple_chest_boat", "Maple Boat with Chest");
+        add("item.nomansland.pine_chest_boat", "Pine Boat with Chest");
+        add("item.nomansland.walnut_chest_boat", "Walnut Boat with Chest");
+        add("item.nomansland.willow_chest_boat", "Willow Boat with Chest");
+        add("item.nomansland.mashed_potatoes_with_mushrooms", "Mashed Potatoes with Mushrooms");
         add("itemGroup.nomansland", "No Man's Land");
-        add("biome.nomansland.old_growth_forest", "Old Growth Forest");
-        add("biome.nomansland.old_growth_forest_clearing", "Old Growth Forest Clearing");
-        add("biome.nomansland.old_growth_forest_edge", "Old Growth Forest Edge");
-        add("biome.nomansland.boreal_forest", "Boreal Forest");
-        add("biome.nomansland.autumnal_forest", "Autumnal Forest");
-        add("biome.nomansland.autumnal_fields", "Autumnal Fields");
-        add("biome.nomansland.maple_forest", "Maple Forest");
-        add("biome.nomansland.maple_grove", "Maple Grove");
-        add("biome.nomansland.dark_swamp", "Dark Swamp");
-        add("biome.nomansland.bog", "Bog");
-        add("biome.nomansland.bayou", "Bayou");
-        add("biome.nomansland.caves", "Caves");
-        add("biome.nomansland.cave_depths", "Cave Depths");
-        add("biome.nomansland.gutter", "Gutter");
-        add("biome.nomansland.jejunum", "Jejunum");
         add("entity.nomansland.buried", "Buried");
         add("entity.nomansland.cave_carp", "Cave Carp");
         add("entity.nomansland.billhook_bass", "Billhook Bass");
@@ -95,10 +95,10 @@ public class NMLLanguageProvider extends LanguageProvider {
         add("nomansland.advancements.find_ancient_city.description", "Find an Ancient City");
         add("nomansland.advancements.find_mineshaft.title", "To Blisters and Bedrock");
         add("nomansland.advancements.find_mineshaft.description", "Find a Mineshaft");
-        add("block.nomansland.resin_cauldron", "Cauldron Filled With Resin");
-        add("block.nomansland.honey_cauldron", "Cauldron Filled With Honey");
-        add("block.nomansland.maple_syrup_cauldron", "Cauldron Filled With Maple Syrup");
-        add("block.nomansland.resin_oil_cauldron", "Cauldron Filled With Resin Oil");
-        add("block.nomansland.milk_cauldron", "Cauldron Filled With Milk");
+        add("block.nomansland.resin_cauldron", "Cauldron Filled with Resin");
+        add("block.nomansland.honey_cauldron", "Cauldron Filled with Honey");
+        add("block.nomansland.maple_syrup_cauldron", "Cauldron Filled with Maple Syrup");
+        add("block.nomansland.resin_oil_cauldron", "Cauldron Filled with Resin Oil");
+        add("block.nomansland.milk_cauldron", "Cauldron Filled with Milk");
     }
 }

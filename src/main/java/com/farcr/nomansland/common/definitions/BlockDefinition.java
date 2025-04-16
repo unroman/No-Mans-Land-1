@@ -9,29 +9,21 @@ public class BlockDefinition<T extends Block> extends ItemLikeDefinition<Block, 
 
     private final BlockProperties properties;
 
-    protected BlockDefinition(ResourceKey<Block> key, boolean customLang, BlockProperties properties) {
-        super(key, customLang);
+    protected BlockDefinition(ResourceKey<Block> key, BlockProperties properties) {
+        super(key, properties.customLang());
         this.properties = properties;
     }
 
-    protected BlockDefinition(ResourceKey<Block> key, boolean customLang) {
-        this(key, customLang, BlockProperties.basic());
-    }
-
     protected BlockDefinition(ResourceKey<Block> key) {
-        this(key, false);
+        this(key, BlockProperties.custom(false));
     }
 
     public static <T extends Block> BlockDefinition<T> fromHolder(DeferredBlock<T> holder) {
-        return fromHolder(holder, BlockProperties.basic());
+        return fromHolder(holder, BlockProperties.custom(false));
     }
 
     public static <T extends Block> BlockDefinition<T> fromHolder(DeferredBlock<T> holder, BlockProperties properties) {
-        return fromHolder(holder, false, properties);
-    }
-
-    public static <T extends Block> BlockDefinition<T> fromHolder(DeferredBlock<T> holder, boolean customLang, BlockProperties properties) {
-        return new BlockDefinition<>(holder.getKey(), customLang, properties);
+        return new BlockDefinition<>(holder.getKey(), properties);
     }
 
     public boolean is(Block block) {

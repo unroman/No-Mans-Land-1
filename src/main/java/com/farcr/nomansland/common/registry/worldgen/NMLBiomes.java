@@ -6,7 +6,12 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NMLBiomes {
+
+    public static List<ResourceKey<Biome>> BIOMES = new ArrayList<>();
 
     //Surface
     public static final ResourceKey<Biome> AUTUMNAL_FOREST = createKey("autumnal_forest");
@@ -33,5 +38,26 @@ public class NMLBiomes {
 
     private static ResourceKey<Biome> createKey(String name) {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+    }
+
+    public static String langKey(ResourceKey<Biome> biome) {
+        return "nomansland.biome." + biome.location().getPath();
+    }
+
+    public static String langName(ResourceKey<Biome> biome) {
+        String processed = biome.location().getPath().replace("_", " ");
+
+        String[] words = processed.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                result.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1))
+                        .append(" ");
+            }
+        }
+
+        return result.toString().trim();
     }
 }

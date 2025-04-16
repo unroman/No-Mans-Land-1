@@ -2,7 +2,6 @@ package com.farcr.nomansland.common.integration;
 
 import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 import vectorwing.blockbox.common.block.PalisadeBlock;
@@ -12,6 +11,7 @@ import vectorwing.blockbox.common.registry.ModBlocks;
 
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 
+@SuppressWarnings("unused")
 public class BBIntegration {
 
     public static final BlockDefinition<SpikedPalisadeBlock> STRIPPED_SPIKED_MAPLE_PALISADE = NMLBlocks.register("stripped_spiked_maple_palisade", () -> new SpikedPalisadeBlock(ModBlocks.PROPERTIES_PALISADE.mapColor(MapColor.WOOD).sound(SoundType.WOOD)));

@@ -35,18 +35,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public class NMLItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(NoMansLand.MODID);
     public static List<ItemDefinition<?>> ITEM_DEFINITIONS = new ArrayList<>();
 
     public static final ItemDefinition<Item> NO_MANS_GLOBE = registerWithoutTab("no_mans_globe",
-            () -> new Item(new Properties()));
+            () -> new Item(new Properties()), true);
     public static final ItemDefinition<Item> TRINKET = registerWithoutTab("trinket",
             () -> new Item(new Properties()));
     public static LinkedHashSet<ItemDefinition<?>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
     //Foods
     public static final ItemDefinition<Item> MASHED_POTATOES_WITH_MUSHROOMS = register("mashed_potatoes_with_mushrooms",
-            () -> new Item(new Properties().food(NMLFoods.MASHED_POTATOES_WITH_MUSHROOMS).stacksTo(1)));
+            () -> new Item(new Properties().food(NMLFoods.MASHED_POTATOES_WITH_MUSHROOMS).stacksTo(1)), true);
     public static final ItemDefinition<Item> GRILLED_MUSHROOMS = register("grilled_mushrooms",
             () -> new Item(new Properties().food(NMLFoods.GRILLED_MUSHROOMS)));
 
@@ -64,11 +65,11 @@ public class NMLItems {
             () -> new Item(new Properties().food(NMLFoods.COOKED_VENISON)));
 
     public static final ItemDefinition<Item> BILLHOOK_BASS = register("billhook_bass",
-            () -> new Item(new Properties().food(NMLFoods.BILLHOOK_BASS)));
+            () -> new Item(new Properties().food(NMLFoods.BILLHOOK_BASS)), true);
     public static final ItemDefinition<Item> COOKED_BILLHOOK_BASS = register("cooked_billhook_bass",
             () -> new Item(new Properties().food(NMLFoods.COOKED_BILLHOOK_BASS)));
 //    public static final ItemDefinition<Item> CAVE_CARP = registerItem("cave_carp",
-//            () -> new Item(new Properties().food(NMLFoods.CAVE_CARP)));
+//            () -> new Item(new Properties().food(NMLFoods.CAVE_CARP)), true);
 
     public static final ItemDefinition<Item> PEAR = register("pear",
             () -> new Item(new Properties().food(NMLFoods.PEAR)));
@@ -109,7 +110,7 @@ public class NMLItems {
 
     public static final ItemDefinition<Item> BILLHOOK_BASS_BUCKET = register("billhook_bass_bucket",
             () -> new MobBucketItem(NMLEntities.BILLHOOK_BASS.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
-                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
+                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)), true);
 
     public static final ItemDefinition<Item> BILLHOOK_BASS_SPAWN_EGG = register("billhook_bass_spawn_egg",
             () -> new DeferredSpawnEggItem(NMLEntities.BILLHOOK_BASS, 6443553, 11236417, new Properties()));
@@ -126,7 +127,7 @@ public class NMLItems {
 
 //    public static final ItemDefinition<Item> CAVE_CARP_BUCKET = registerItem("cave_carp_bucket",
 //            () -> new MobBucketItem(EntityType.PIG, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
-//                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
+//                    (new Properties()).stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)), true);
 
     public static final ItemDefinition<Item> PINE_SIGN = register("pine_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.PINE.sign().get(), NMLBlocks.PINE.wallSign().get()));
@@ -135,7 +136,7 @@ public class NMLItems {
     public static final ItemDefinition<Item> PINE_BOAT = register("pine_boat",
             () -> new BoatItem(false, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final ItemDefinition<Item> PINE_CHEST_BOAT = register("pine_chest_boat",
-            () -> new BoatItem(true, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.PINE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)), true);
 
     public static final ItemDefinition<Item> MAPLE_SIGN = register("maple_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.MAPLE.sign().get(), NMLBlocks.MAPLE.wallSign().get()));
@@ -144,7 +145,7 @@ public class NMLItems {
     public static final ItemDefinition<Item> MAPLE_BOAT = register("maple_boat",
             () -> new BoatItem(false, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final ItemDefinition<Item> MAPLE_CHEST_BOAT = register("maple_chest_boat",
-            () -> new BoatItem(true, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)), true);
 //    public static final ItemDefinition<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
 //            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Properties()));
 
@@ -155,7 +156,7 @@ public class NMLItems {
     public static final ItemDefinition<Item> WALNUT_BOAT = register("walnut_boat",
             () -> new BoatItem(false, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final ItemDefinition<Item> WALNUT_CHEST_BOAT = register("walnut_chest_boat",
-            () -> new BoatItem(true, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.WALNUT_BOAT_TYPE.getValue(), new Properties().stacksTo(1)), true);
 
     public static final ItemDefinition<Item> WILLOW_SIGN = register("willow_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WILLOW.sign().get(), NMLBlocks.WILLOW.wallSign().get()));
@@ -164,7 +165,7 @@ public class NMLItems {
     public static final ItemDefinition<Item> WILLOW_BOAT = register("willow_boat",
             () -> new BoatItem(false, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final ItemDefinition<Item> WILLOW_CHEST_BOAT = register("willow_chest_boat",
-            () -> new BoatItem(true, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
+            () -> new BoatItem(true, NMLEnumParams.WILLOW_BOAT_TYPE.getValue(), new Properties().stacksTo(1)), true);
 
     public static final ItemDefinition<Item> FIELD_MUSHROOM = register("field_mushroom", () -> new BlockItem(NMLBlocks.FIELD_MUSHROOM.get(), new Properties()));
     public static final ItemDefinition<Item> DUCKWEED = register("duckweed",
@@ -311,8 +312,8 @@ public class NMLItems {
             insertBefore(event, Items.AMETHYST_BLOCK, NMLBlocks.QUARTZITE);
         }
 
-        if (tab == CreativeModeTabs.COLORED_BLOCKS) {
-        }
+//        if (tab == CreativeModeTabs.COLORED_BLOCKS) {
+//        }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
             insertAfter(event, Items.SHORT_GRASS, NMLBlocks.FROSTED_GRASS);
@@ -526,16 +527,24 @@ public class NMLItems {
         if (existingStack != null && newStack != null) event.insertAfter(existingStack, newStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
-    public static <T extends Item> ItemDefinition<T> registerWithoutTab(String name, Supplier<T> item) {
+    public static <T extends Item> ItemDefinition<T> registerWithoutTab(String name, Supplier<T> item, boolean customLang) {
         DeferredItem<T> deferred = ITEMS.register(name, item);
-        ItemDefinition<T> definition = ItemDefinition.fromHolder(deferred);
+        ItemDefinition<T> definition = ItemDefinition.fromHolder(deferred, customLang);
         ITEM_DEFINITIONS.add(definition);
         return definition;
     }
 
-    public static <T extends Item> ItemDefinition<T> register(String name, Supplier<T> item) {
-        ItemDefinition<T> definition = registerWithoutTab(name, item);
+    public static <T extends Item> ItemDefinition<T> register(String name, Supplier<T> item, boolean customLang) {
+        ItemDefinition<T> definition = registerWithoutTab(name, item, customLang);
         CREATIVE_TAB_ITEMS.add(definition);
         return definition;
+    }
+
+    public static <T extends Item> ItemDefinition<T> registerWithoutTab(String name, Supplier<T> item) {
+        return registerWithoutTab(name, item, false);
+    }
+
+    public static <T extends Item> ItemDefinition<T> register(String name, Supplier<T> item) {
+        return register(name, item, false);
     }
 }

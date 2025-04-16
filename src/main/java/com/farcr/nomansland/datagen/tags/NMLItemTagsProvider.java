@@ -49,8 +49,6 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
 
     @SafeVarargs
     protected final void addTagsTo(Item item, TagKey<Item>... itemTags) {
-        Arrays.stream(itemTags).toList().forEach(itemTag -> {
-            this.tag(itemTag).add(item);
-        });
+        Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).add(item));
     }
 }

@@ -27,7 +27,7 @@ public class NMLBlockLootSubProvider extends BlockLootSubProvider {
 //        return NMLBlocks.BLOCKS.getEntries().stream().map(e -> (Block)e.value()).toList();
 
         return NMLBlocks.BLOCK_DEFINITIONS.stream()
-                .filter(blockDefinition -> !(blockDefinition.properties().lootType() instanceof CustomBlockLootType))
+                .filter(blockDefinition -> !(blockDefinition.lootType() instanceof CustomBlockLootType))
                 .map(BlockDefinition::block)
                 .toList();
     }
@@ -39,7 +39,7 @@ public class NMLBlockLootSubProvider extends BlockLootSubProvider {
 
         for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
             Block block = definition.get();
-            BlockLootType lootType = definition.properties().lootType();
+            BlockLootType lootType = definition.lootType();
 
             if (lootType instanceof SelfBlockLootType)
                 dropSelf(block);

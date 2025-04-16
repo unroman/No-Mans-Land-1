@@ -34,8 +34,6 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
 
     @SafeVarargs
     protected final void addTagsTo(ResourceKey<Biome> biome, TagKey<Biome>... biomeTags) {
-        Arrays.stream(biomeTags).toList().forEach(biomeTag -> {
-            this.tag(biomeTag).add(biome);
-        });
+        Arrays.stream(biomeTags).toList().forEach(biomeTag -> tag(biomeTag).add(biome));
     }
 }

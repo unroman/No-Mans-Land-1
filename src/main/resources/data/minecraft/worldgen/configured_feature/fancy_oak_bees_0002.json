@@ -20,7 +20,7 @@
         "fruit_provider": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "nomansland:apple_fruit",
+            "Name": "nomansland:apple",
             "Properties": {
               "age": "4"
             }

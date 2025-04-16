@@ -1,6 +1,7 @@
 package com.farcr.nomansland;
 
 import com.farcr.nomansland.common.block.tap.TapInteraction;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.integration.BBIntegration;
 import com.farcr.nomansland.common.integration.CIntegration;
 import com.farcr.nomansland.common.integration.FDIntegration;
@@ -8,7 +9,6 @@ import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.blocks.NMLFlammables;
-import com.farcr.nomansland.common.registry.blocks.NMLPottables;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
@@ -17,6 +17,8 @@ import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -81,7 +83,12 @@ public class NoMansLand {
             if (NMLConfig.BIOMES.get()) NMLBiomePlacements.register();
             NMLSurfaceRules.register();
             NMLFlammables.register();
-            NMLPottables.register();
+
+            for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
+                if (definition.get() instanceof FlowerPotBlock flowerPotBlock) {
+                    flowerPotBlock.getEmptyPot().addPlant(BuiltInRegistries.BLOCK.getKey(flowerPotBlock.getPotted()), () -> flowerPotBlock);
+                }
+            }
         });
     }
 

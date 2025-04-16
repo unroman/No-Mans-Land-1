@@ -6,14 +6,14 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:apple",
+          "name": "nomansland:pear",
           "conditions": [
             {
               "condition": "minecraft:survives_explosion"
             },
             {
               "condition": "minecraft:block_state_property",
-              "block": "nomansland:apple_fruit",
+              "block": "nomansland:pear",
               "properties": {
                 "age": "4"
               }
@@ -23,5 +23,5 @@
       ]
     }
   ],
-  "random_sequence": "nomansland:blocks/apple_fruit"
+  "random_sequence": "nomansland:blocks/pear_fruit"
 }

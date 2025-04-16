@@ -14,8 +14,12 @@ public class ItemDefinition<T extends Item> extends ItemLikeDefinition<Item, T> 
         this(key, false);
     }
 
+    public static <T extends Item> ItemDefinition<T> fromHolder(DeferredItem<T> holder, boolean customLang) {
+        return new ItemDefinition<>(holder.getKey(), customLang);
+    }
+
     public static <T extends Item> ItemDefinition<T> fromHolder(DeferredItem<T> holder) {
-        return new ItemDefinition<>(holder.getKey());
+        return fromHolder(holder, false);
     }
 
     public boolean is(Item item) {
