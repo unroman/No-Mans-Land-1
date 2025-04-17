@@ -50,6 +50,9 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
         addTagsTo(NMLBiomes.MAPLE_FOREST, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD);
         addTagsTo(NMLBiomes.MAPLE_GROVE, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SNOWY, Tags.Biomes.IS_PLATEAU);
         addTagsTo(NMLTags.OLD_GROWTH_FOREST, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_OLD_GROWTH, Tags.Biomes.IS_RARE);
+
+        addTagsTo(NMLBiomes.CAVES, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_CAVE);
+        addTagsTo(NMLBiomes.CAVE_DEPTHS, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_CAVE);
     }
 
     @SafeVarargs
