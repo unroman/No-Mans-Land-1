@@ -9,6 +9,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -50,5 +51,10 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
     @SafeVarargs
     protected final void addTagsTo(Item item, TagKey<Item>... itemTags) {
         Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).add(item));
+    }
+
+    @SafeVarargs
+    protected final void addTagsTo(TagKey<Item> item, TagKey<Item>... itemTags) {
+        Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).addTag(item));
     }
 }

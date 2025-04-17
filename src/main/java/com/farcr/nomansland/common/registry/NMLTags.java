@@ -34,6 +34,7 @@ public class NMLTags {
     public static final TagKey<Block> FISH_BARRELS = createBlockTag("fish_barrels");
     public static final TagKey<EntityType<?>> ANCHOR_BLACKLIST = createEntityTag("anchor_blacklist");
     public static final TagKey<Biome> SPAWNS_MUD_FROGS = createBiomeTag("entity/spawns_mud_frog");
+    public static final TagKey<Biome> OLD_GROWTH_FOREST = createBiomeTag("old_growth_forest");
     public static final TagKey<DamageType> IGNITES_FLAMMABLE = createDamageTypeTag("ignites_flammable");
 
     private static SharedTag createSharedTag(String name) {
