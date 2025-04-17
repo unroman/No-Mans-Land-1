@@ -77,7 +77,7 @@ public class NoMansLand {
         if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();
         if (Mods.CREATE.isLoaded()) CIntegration.register();
 
-        NeoForge.EVENT_BUS.register(new CreativeModeTabEventHandler());
+        modEventBus.register(new CreativeModeTabEventHandler());
         modEventBus.addListener(NMLBlockEntities::addBlockEntities);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerRegistries);
