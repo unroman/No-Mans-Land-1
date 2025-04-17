@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.registry;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.blockentity.MonsterAnchorBlockEntity;
+import com.farcr.nomansland.common.blockentity.anchor.MonsterAnchorBlockEntity;
 import com.farcr.nomansland.common.blockentity.RemainsBlockEntity;
 import com.farcr.nomansland.common.blockentity.TapBlockEntity;
 import com.farcr.nomansland.common.blockentity.WardingEffigyBlockEntity;

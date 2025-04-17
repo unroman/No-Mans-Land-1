@@ -9,7 +9,6 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -25,6 +24,7 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
         super(output, lookupProvider, blockTags, NoMansLand.MODID, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         for (NMLBlocks.Woodset woodset : NMLBlocks.WOODSETS) {
@@ -49,12 +49,12 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
     }
 
     @SafeVarargs
-    protected final void addTagsTo(Item item, TagKey<Item>... itemTags) {
+    protected final void addToTags(Item item, TagKey<Item>... itemTags) {
         Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).add(item));
     }
 
     @SafeVarargs
-    protected final void addTagsTo(TagKey<Item> item, TagKey<Item>... itemTags) {
+    protected final void addToTags(TagKey<Item> item, TagKey<Item>... itemTags) {
         Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).addTag(item));
     }
 }

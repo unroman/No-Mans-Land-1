@@ -15,7 +15,7 @@ public class AmbienceHandler {
 
     @SubscribeEvent
     public static void onTick(ClientTickEvent.Pre event) {
-        Minecraft.getInstance().getProfiler().push("nomansland.ambienceTick");
+        Minecraft.getInstance().getProfiler().push(NoMansLand.MODID + ".ambienceTick");
 
         boolean shouldUpdate = shouldUpdate();
         SURFACE_AMBIENCE_HANDLER.tick(shouldUpdate);

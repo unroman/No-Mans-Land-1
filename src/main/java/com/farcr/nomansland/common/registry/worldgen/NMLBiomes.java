@@ -37,11 +37,13 @@ public class NMLBiomes {
 
 
     private static ResourceKey<Biome> createKey(String name) {
-        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        BIOMES.add(biome);
+        return biome;
     }
 
     public static String langKey(ResourceKey<Biome> biome) {
-        return "nomansland.biome." + biome.location().getPath();
+        return NoMansLand.MODID + ".biome." + biome.location().getPath();
     }
 
     public static String langName(ResourceKey<Biome> biome) {

@@ -23,7 +23,6 @@ import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
-import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.registerNoItem;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 
 @SuppressWarnings("unused")
@@ -41,7 +40,7 @@ public class FDIntegration {
     public static final BlockDefinition<CabinetBlock> WILLOW_CABINET = NMLBlocks.register("willow_cabinet",
             () -> new CabinetBlock(ofFullCopy(Blocks.BARREL)));
 
-    public static final BlockDefinition<MushroomColonyBlock> FIELD_MUSHROOM_COLONY = registerNoItem("field_mushroom_colony",
+    public static final BlockDefinition<MushroomColonyBlock> FIELD_MUSHROOM_COLONY = NMLBlocks.registerNoItem("field_mushroom_colony",
             () -> new MushroomColonyBlock(NMLItems.FIELD_MUSHROOM, Block.Properties.ofFullCopy(NMLBlocks.FIELD_MUSHROOM.get())));
 
     public static final ItemDefinition<MushroomColonyItem> FIELD_MUSHROOM_COLONY_ITEM = NMLItems.register("field_mushroom_colony",
@@ -56,7 +55,7 @@ public class FDIntegration {
     public static final ItemDefinition<Item> PEAR_COBBLER_SLICE = NMLItems.register("pear_cobbler_slice",
             () -> new Item(new Item.Properties().food(FoodValues.PIE_SLICE)));
 
-    public static final BlockDefinition<PieBlock> PEAR_COBBLER = registerNoItem("pear_cobbler",
+    public static final BlockDefinition<PieBlock> PEAR_COBBLER = NMLBlocks.registerNoItem("pear_cobbler",
             () -> new PieBlock(ofFullCopy(Blocks.CAKE), PEAR_COBBLER_SLICE));
 
     public static final ItemDefinition<BlockItem> PEAR_COBBLER_ITEM = NMLItems.register("pear_cobbler",

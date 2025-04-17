@@ -22,13 +22,7 @@ import java.util.Optional;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends EntityMixin implements LivingEntityDuck {
 
-    @Shadow public abstract float getHealth();
-
-    @Shadow public float yBodyRot;
-
     @Shadow public abstract boolean hasEffect(Holder<MobEffect> effect);
-
-    @Shadow public abstract Optional<BlockPos> getLastClimbablePos();
 
     @Unique
     private boolean nomansland$skipDroppingDeathLoot = false;
@@ -47,11 +41,10 @@ public abstract class LivingEntityMixin extends EntityMixin implements LivingEnt
 
     @ModifyVariable(method = "travel", at = @At("STORE"), ordinal = 0)
     public float tryReduceFriction(float value) {
-        if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater() && onGround()) value = 0.98F;
-        return value;
+        return hasEffect(NMLEffects.FLAMMABLE) && !isInWater() && onGround() ? 0.98F : value;
     }
 
-    @Inject(method = "getBlockSpeedFactor", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getBlockSpeedFactor", at = @At("RETURN"), cancellable = true)
     private void tryReduceBlockSpeedFactor(CallbackInfoReturnable<Float> cir) {
         if (hasEffect(NMLEffects.FLAMMABLE) && !isInWater()) cir.setReturnValue(0.95F);
     }

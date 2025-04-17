@@ -17,15 +17,16 @@ public class LadderBlockMixin {
 
     @Inject(method = "canAttachTo", at = @At("HEAD"), cancellable = true)
     protected void nml$canAttachTo(BlockGetter blockReader, BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
-
         BlockPos.MutableBlockPos mutable = pos.mutable();
         BlockPos.MutableBlockPos mutableL = pos.relative(direction).mutable();
         BlockState blockState = blockReader.getBlockState(mutable);
         BlockState ladderState;
+
         if (blockState.isFaceSturdy(blockReader, mutable, direction)) {
             cir.setReturnValue(true);
             return;
         }
+
         while (mutable.getY() < blockReader.getMaxBuildHeight()) {
             mutable.move(Direction.UP);
             mutableL.move(Direction.UP);
@@ -40,6 +41,7 @@ public class LadderBlockMixin {
                 return;
             }
         }
+
         cir.setReturnValue(false);
     }
 

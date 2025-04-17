@@ -1,8 +1,7 @@
-package com.farcr.nomansland.common.blockentity;
+package com.farcr.nomansland.common.blockentity.anchor;
 
 import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.block.MonsterAnchorBlock;
-import com.farcr.nomansland.common.event.listener.AnchorListener;
 import com.farcr.nomansland.common.registry.NMLBlockEntities;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.NMLSounds;
@@ -31,7 +30,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static com.farcr.nomansland.common.event.listener.AnchorListener.processPoints;
+import static com.farcr.nomansland.common.blockentity.anchor.AnchorListener.surroundBoundingBox;
 
 public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventListener.Provider<AnchorListener> {
 
@@ -106,7 +105,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                         if (tempEntity != null) tempEntity.moveTo(spawningPosition);
                         if (tempEntity instanceof Zombie zombie) zombie.setBaby(deadEntity.isBaby());
                         double finalY = y - 1.1;
-                        processPoints(tempEntity.getBoundingBox(), 0.2)
+                        surroundBoundingBox(tempEntity.getBoundingBox(), 0.2)
                                 .forEach(point -> serverLevel.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, spawningPosition.y - finalY, point.z, 1, 0, 0, 0, 0));
                         tempEntity.remove(Entity.RemovalReason.DISCARDED);
                         break;
@@ -152,7 +151,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                         for (double y = 0; y <= 4; y++) {
                             if (level.getBlockState(BlockPos.containing(spawningPosition.relative(Direction.DOWN, y))).isSolid()) {
                                 double finalY = y - 1.1;
-                                processPoints(resurrectedEntity.getBoundingBox(), 0.4)
+                                surroundBoundingBox(resurrectedEntity.getBoundingBox(), 0.4)
                                         .forEach(point -> serverLevel.sendParticles((ParticleOptions) NMLParticleTypes.MALEVOLENT_FLAME.get(), point.x, spawningPosition.y - finalY, point.z, 1, 0, 0, 0, 0.1));
                             }
                         }

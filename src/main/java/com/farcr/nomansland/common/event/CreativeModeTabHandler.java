@@ -14,7 +14,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import static com.farcr.nomansland.common.registry.items.NMLItems.*;
 import static com.farcr.nomansland.common.registry.blocks.NMLBlocks.*;
 
-public class CreativeModeTabEventHandler {
+public class CreativeModeTabHandler {
 
     private BuildCreativeModeTabContentsEvent event;
 

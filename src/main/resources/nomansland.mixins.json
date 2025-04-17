@@ -16,7 +16,6 @@
     "LadderBlockMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
-    "ProjectileMixin",
     "RailStateMixin",
     "RandomStrollGoalMixin",
     "ServerLevelMixin",
@@ -29,8 +28,10 @@
     "VineBlockMixin",
     "WaterAvoidingRandomStrollGoalMixin",
     "WolfMixin",
+    "accessor.ProjectileAccessor",
     "integration.RichSoilBlockMixin",
     "integration.SeasonHooksMixin",
+    "integration.SpoutBlockEntityMixin",
     "integration.TreeCutterMixin",
     "integration.VanillaFluidTargetsMixin"
   ],

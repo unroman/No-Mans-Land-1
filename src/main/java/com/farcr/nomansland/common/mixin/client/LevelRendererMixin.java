@@ -19,6 +19,7 @@ public class LevelRendererMixin {
         if (NMLConfig.MALEVOLENT_SPAWNER.get()) {
             return NMLParticleTypes.MALEVOLENT_FLAME.get();
         }
+
         return particle;
     }
 }

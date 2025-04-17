@@ -58,7 +58,7 @@ public class FogModifierHandler {
     }
 
     public void tick(ClientLevel level, Vec3 playerPos, float undergroundness) {
-        Minecraft.getInstance().getProfiler().push("nomansland.fogModifierTick");
+        Minecraft.getInstance().getProfiler().push(NoMansLand.MODID + ".fogModifierTick");
         // this is just a bunch of lerps, so updated every tick!
         this.tickModifierInterpolation();
         // this is updated less frequently because it gathers a lot of context about the world

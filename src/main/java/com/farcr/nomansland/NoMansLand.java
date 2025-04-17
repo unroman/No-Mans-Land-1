@@ -2,8 +2,7 @@ package com.farcr.nomansland;
 
 import com.farcr.nomansland.common.block.tap.TapInteraction;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
-import com.farcr.nomansland.common.definitions.ItemLikeDefinition;
-import com.farcr.nomansland.common.event.CreativeModeTabEventHandler;
+import com.farcr.nomansland.common.event.CreativeModeTabHandler;
 import com.farcr.nomansland.common.integration.BBIntegration;
 import com.farcr.nomansland.common.integration.CIntegration;
 import com.farcr.nomansland.common.integration.FDIntegration;
@@ -20,25 +19,18 @@ import com.farcr.nomansland.common.registry.worldgen.*;
 import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
 import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 
-import static com.farcr.nomansland.common.registry.items.NMLItems.*;
-
 @Mod(NoMansLand.MODID)
 public class NoMansLand {
+
     public static final String MODID = "nomansland";
 
     public NoMansLand(IEventBus modEventBus, ModContainer modContainer) {
@@ -77,7 +69,7 @@ public class NoMansLand {
         if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();
         if (Mods.CREATE.isLoaded()) CIntegration.register();
 
-        modEventBus.register(new CreativeModeTabEventHandler());
+        modEventBus.register(new CreativeModeTabHandler());
         modEventBus.addListener(NMLBlockEntities::addBlockEntities);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerRegistries);

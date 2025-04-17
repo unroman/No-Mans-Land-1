@@ -16,11 +16,11 @@ public abstract class SteepMaterialConditionMixin extends SurfaceRules.LazyXZCon
 
     @ModifyReturnValue(method = "compute", at = @At(value = "TAIL"))
     private boolean fixMountainBug(boolean original)  {
-        int i = this.context.blockX & 15;
-        int j = this.context.blockZ & 15;
+        int i = context.blockX & 15;
+        int j = context.blockZ & 15;
         int k = Math.max(j - 1, 0);
         int l = Math.min(j + 1, 15);
-        ChunkAccess chunkaccess = this.context.chunk;
+        ChunkAccess chunkaccess = context.chunk;
         int i1 = chunkaccess.getHeight(Heightmap.Types.WORLD_SURFACE_WG, i, k);
         int j1 = chunkaccess.getHeight(Heightmap.Types.WORLD_SURFACE_WG, i, l);
         if (i1 >= j1 + 4) {

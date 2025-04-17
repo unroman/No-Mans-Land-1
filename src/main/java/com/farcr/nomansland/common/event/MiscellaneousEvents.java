@@ -470,7 +470,7 @@ public class MiscellaneousEvents {
     public static class ModEventBusEvents {
         @SubscribeEvent
         public static void entityAttributeEvent(final EntityAttributeCreationEvent event) {
-            //    TODO: BURIED AND MOOSE
+            //    TODO: BURIED
 //            event.put(NMLEntities.BURIED.get(), BuriedEntity.createAttributes().build());
             event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
             event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());

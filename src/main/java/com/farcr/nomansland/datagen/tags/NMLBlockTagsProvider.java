@@ -6,7 +6,6 @@ import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -23,6 +22,7 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
         super(output, lookupProvider, NoMansLand.MODID, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         for (NMLBlocks.Woodset woodset : NMLBlocks.WOODSETS) {
@@ -53,7 +53,7 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
                 NMLBlocks.WILLOW.log().block()
         );
 
-        addTagsTo(NMLBlocks.SILT.block(),
+        addToTags(NMLBlocks.SILT.block(),
                 OVERWORLD_CARVER_REPLACEABLES,
                 LUSH_GROUND_REPLACEABLE,
                 MOSS_REPLACEABLE,
@@ -64,16 +64,16 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
                 BAMBOO_PLANTABLE_ON
         );
 
-        addTagsTo(NMLBlocks.CUT_VINE.get(), MANGROVE_LOGS_CAN_GROW_THROUGH, MANGROVE_ROOTS_CAN_GROW_THROUGH);
+        addToTags(NMLBlocks.CUT_VINE.get(), MANGROVE_LOGS_CAN_GROW_THROUGH, MANGROVE_ROOTS_CAN_GROW_THROUGH);
     }
 
     @SafeVarargs
-    protected final void addTagsTo(Block block, TagKey<Block>... blockTags) {
+    protected final void addToTags(Block block, TagKey<Block>... blockTags) {
         Arrays.stream(blockTags).toList().forEach(blockTag -> tag(blockTag).add(block));
     }
 
     @SafeVarargs
-    protected final void addTagsTo(TagKey<Block> block, TagKey<Block>... blockTags) {
+    protected final void addToTags(TagKey<Block> block, TagKey<Block>... blockTags) {
         Arrays.stream(blockTags).toList().forEach(blockTag -> tag(blockTag).addTag(block));
     }
 }

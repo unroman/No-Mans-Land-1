@@ -21,8 +21,6 @@ import java.util.ArrayList;
 public class RandomStrollGoalMixin {
     @Shadow @Final protected PathfinderMob mob;
 
-    @Shadow protected int interval;
-
     @Inject(method = "getPosition", at = @At("HEAD"), cancellable = true)
     private void getPosition(CallbackInfoReturnable<Vec3> cir) {
         if (mob instanceof Monster && mob.level() instanceof ServerLevel serverLevel) {

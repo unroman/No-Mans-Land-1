@@ -19,6 +19,7 @@ public class LeaveVineDecoratorMixin {
     @Inject(method = "place", at = @At("TAIL"))
     private void nml$place(TreeDecorator.Context context, CallbackInfo ci) {
         LevelSimulatedReader level = context.level();
+
         for (BlockPos pos : context.leaves()) {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
                 BlockPos pos1 = pos.relative(direction);

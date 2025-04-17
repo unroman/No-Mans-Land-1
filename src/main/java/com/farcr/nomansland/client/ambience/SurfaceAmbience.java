@@ -1,5 +1,6 @@
 package com.farcr.nomansland.client.ambience;
 
+import com.farcr.nomansland.NoMansLand;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -25,7 +26,7 @@ public class SurfaceAmbience {
     private final BlockPos.MutableBlockPos samplePos = new BlockPos.MutableBlockPos();
     private final BlockPos.MutableBlockPos iteratorPos = new BlockPos.MutableBlockPos();
     public void tick(boolean shouldUpdate) {
-        minecraft.getProfiler().push("nomansland.surfaceAmbienceTick");
+        minecraft.getProfiler().push(NoMansLand.MODID + ".surfaceAmbienceTick");
 
         prevAboveGroundFactor = aboveGroundFactor;
         if (!shouldUpdate) return;

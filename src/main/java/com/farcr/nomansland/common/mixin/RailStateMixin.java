@@ -30,7 +30,7 @@ public abstract class RailStateMixin {
 
     @Shadow @Final private BaseRailBlock block;
 
-    @Shadow @Final private BlockPos pos;
+    @Shadow @Final public BlockPos pos;
 
     @Shadow @Final private List<BlockPos> connections;
 
@@ -42,18 +42,18 @@ public abstract class RailStateMixin {
 
     @Inject(method = "place", at = @At("HEAD"), cancellable = true)
     public void nml$place(boolean powered, boolean alwaysPlace, RailShape shape, CallbackInfoReturnable<RailState> cir) {
-        BlockPos blockpos = this.pos.north();
-        BlockPos blockpos1 = this.pos.south();
-        BlockPos blockpos2 = this.pos.west();
-        BlockPos blockpos3 = this.pos.east();
-        boolean flag = this.hasNeighborRail(blockpos);
-        boolean flag1 = this.hasNeighborRail(blockpos1);
-        boolean flag2 = this.hasNeighborRail(blockpos2);
-        boolean flag3 = this.hasNeighborRail(blockpos3);
+        BlockPos blockpos = pos.north();
+        BlockPos blockpos1 = pos.south();
+        BlockPos blockpos2 = pos.west();
+        BlockPos blockpos3 = pos.east();
+        boolean flag = hasNeighborRail(blockpos);
+        boolean flag1 = hasNeighborRail(blockpos1);
+        boolean flag2 = hasNeighborRail(blockpos2);
+        boolean flag3 = hasNeighborRail(blockpos3);
         RailShape railshape = null;
         boolean flag4 = flag || flag1;
         boolean flag5 = flag2 || flag3;
-        boolean supported = level.getBlockState(this.pos.below()).isFaceSturdy(level, this.pos.below(), Direction.UP, SupportType.RIGID);
+        boolean supported = level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP, SupportType.RIGID);
         if (flag4 && !supported) {
             railshape = RailShape.NORTH_SOUTH;
         }
@@ -63,17 +63,17 @@ public abstract class RailStateMixin {
         }
 
         if (railshape != null) {
-            this.updateConnections(railshape);
-            this.state = this.state.setValue(this.block.getShapeProperty(), railshape);
-            if (alwaysPlace || this.level.getBlockState(this.pos) != this.state) {
-                this.level.setBlock(this.pos, this.state, 3);
+            updateConnections(railshape);
+            state = state.setValue(block.getShapeProperty(), railshape);
+            if (alwaysPlace || level.getBlockState(pos) != state) {
+                level.setBlock(pos, state, 3);
 
-                for (int i = 0; i < this.connections.size(); i++) {
-                    RailState railstate = this.getRail(this.connections.get(i));
+                for (BlockPos connection : connections) {
+                    RailState railstate = getRail(connection);
                     if (railstate != null) {
                         railstate.removeSoftConnections();
-                        if (railstate.canConnectTo((RailState)(Object)this)) {
-                            railstate.connectTo((RailState)(Object)this);
+                        if (railstate.canConnectTo((RailState) (Object) this)) {
+                            railstate.connectTo((RailState) (Object) this);
                         }
                     }
                 }
@@ -86,15 +86,15 @@ public abstract class RailStateMixin {
 
     @Inject(method = "connectTo", at = @At("HEAD"), cancellable = true)
     public void nml$connectTo(RailState state, CallbackInfo ci) {
-        this.connections.add(state.pos);
-        BlockPos blockpos = this.pos.north();
-        BlockPos blockpos1 = this.pos.south();
-        BlockPos blockpos2 = this.pos.west();
-        BlockPos blockpos3 = this.pos.east();
-        boolean flag = this.hasConnection(blockpos);
-        boolean flag1 = this.hasConnection(blockpos1);
-        boolean flag2 = this.hasConnection(blockpos2);
-        boolean flag3 = this.hasConnection(blockpos3);
+        connections.add(state.pos);
+        BlockPos blockpos = pos.north();
+        BlockPos blockpos1 = pos.south();
+        BlockPos blockpos2 = pos.west();
+        BlockPos blockpos3 = pos.east();
+        boolean flag = hasConnection(blockpos);
+        boolean flag1 = hasConnection(blockpos1);
+        boolean flag2 = hasConnection(blockpos2);
+        boolean flag3 = hasConnection(blockpos3);
         RailShape railshape = null;
         if (flag || flag1) {
             railshape = RailShape.NORTH_SOUTH;
@@ -104,18 +104,18 @@ public abstract class RailStateMixin {
             railshape = RailShape.EAST_WEST;
         }
 
-        boolean supported = level.getBlockState(this.pos.below()).isFaceSturdy(level, this.pos.below(), Direction.UP, SupportType.RIGID);
+        boolean supported = level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP, SupportType.RIGID);
         if (!supported) {
             if (railshape == null) {
                 railshape = RailShape.NORTH_SOUTH;
             }
 
-            if (!this.block.isValidRailShape(railshape)) { // Forge: allow rail block to decide if the new shape is valid
-                this.connections.remove(state.pos);
+            if (!block.isValidRailShape(railshape)) { // Forge: allow rail block to decide if the new shape is valid
+                connections.remove(state.pos);
                 ci.cancel();
             }
-            this.state = this.state.setValue(this.block.getShapeProperty(), railshape);
-            this.level.setBlock(this.pos, this.state, 3);
+            this.state = this.state.setValue(block.getShapeProperty(), railshape);
+            level.setBlock(pos, this.state, 3);
             ci.cancel();;
         }
     }

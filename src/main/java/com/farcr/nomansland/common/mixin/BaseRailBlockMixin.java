@@ -37,9 +37,7 @@ public abstract class BaseRailBlockMixin extends BlockBehaviourMixin {
             RailShape offsetShape;
             if (state.getBlock() instanceof BaseRailBlock) {
                 offsetShape = state.getValue(((BaseRailBlock) state.getBlock()).getShapeProperty());
-            }
-            else
-                return true;
+            } else return true;
             if (canSupportRigidBlock(level, pos.relative(direction, i).below()))
                 return false;
             if (offsetShape != shape)
@@ -80,8 +78,8 @@ public abstract class BaseRailBlockMixin extends BlockBehaviourMixin {
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
     private void nml$canSurvive(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         RailShape railshape = null;
-        if (state != null && state.hasProperty(this.getShapeProperty()))
-            railshape = state.getValue(this.getShapeProperty());
+        if (state != null && state.hasProperty(getShapeProperty()))
+            railshape = state.getValue(getShapeProperty());
 
         if (railshape != null)
             cir.setReturnValue(!nml$shouldBeRemovedOverride(pos, level, railshape));
