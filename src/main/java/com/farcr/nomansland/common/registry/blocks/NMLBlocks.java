@@ -513,7 +513,9 @@ public class NMLBlocks {
     }
 
     public static <T extends Block> BlockDefinition<T> register(String name, Supplier<T> block, BlockProperties properties) {
-        return register(name, block, properties);
+        BlockDefinition<T> definition = registerNoItem(name, block, properties);
+        CREATIVE_TAB_ITEMS.add(registerBlockItem(name, definition));
+        return definition;
     }
 
     public static <T extends Block> BlockDefinition<T> register(String name, Supplier<T> block) {

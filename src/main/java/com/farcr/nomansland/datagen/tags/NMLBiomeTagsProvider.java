@@ -25,7 +25,6 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // Add biomes to tags
         tag(BiomeTags.IS_OVERWORLD).add(
                 NMLBiomes.AUTUMNAL_FOREST,
                 NMLBiomes.BAYOU,
@@ -42,7 +41,6 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
                 NMLBiomes.CAVE_DEPTHS
         );
 
-        // Add tags to biomes
         addTagsTo(NMLBiomes.AUTUMNAL_FOREST, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_TEMPERATE);
         addTagsTo(NMLBiomes.BAYOU, BiomeTags.HAS_SWAMP_HUT, BiomeTags.IS_JUNGLE, Tags.Biomes.IS_SWAMP, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_LUSH, Tags.Biomes.IS_HOT, Tags.Biomes.IS_JUNGLE_TREE, Tags.Biomes.IS_WET);
         addTagsTo(NMLBiomes.BOG, BiomeTags.HAS_SWAMP_HUT, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_CONIFEROUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_WET, Tags.Biomes.IS_WET_OVERWORLD);
@@ -55,8 +53,6 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
         addTagsTo(NMLBiomes.OLD_GROWTH_FOREST_CLEARING, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_OLD_GROWTH, Tags.Biomes.IS_RARE);
 
     }
-
-
 
     @SafeVarargs
     protected final void addTagsTo(ResourceKey<Biome> biome, TagKey<Biome>... biomeTags) {
