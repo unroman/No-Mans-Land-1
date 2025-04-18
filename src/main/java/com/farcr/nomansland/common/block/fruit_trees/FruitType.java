@@ -11,6 +11,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public enum FruitType {
+
     APPLE_OAK(NMLBlocks.APPLE_FRUIT, NMLBlocks.APPLE_FRUIT_LEAVES, Blocks.OAK_LEAVES.defaultBlockState().getBlockHolder(), 3, Items.APPLE.getDefaultInstance().getItemHolder(), new VoxelShape[]{
             Block.box(6, 11, 7, 10, 15, 11),
             Block.box(6, 11, 7, 10, 15, 11),

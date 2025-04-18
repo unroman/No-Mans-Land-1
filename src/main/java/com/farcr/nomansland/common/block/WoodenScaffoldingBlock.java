@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
 public class WoodenScaffoldingBlock extends ScaffoldingBlock {
+
     public WoodenScaffoldingBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 6).setValue(WATERLOGGED, false).setValue(BOTTOM, false));
@@ -52,9 +53,10 @@ public class WoodenScaffoldingBlock extends ScaffoldingBlock {
         return this.defaultBlockState().setValue(WATERLOGGED, $$2.getFluidState($$1).getType() == Fluids.WATER).setValue(DISTANCE, $$3).setValue(BOTTOM, this.isBottom($$2, $$1, $$3));
     }
 
+    @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int i = getDistance(level, pos);
-        BlockState blockstate = state.setValue(DISTANCE, i).setValue(BOTTOM, this.isBottom(level, pos, i));
+        BlockState blockstate = state.setValue(DISTANCE, i).setValue(BOTTOM, isBottom(level, pos, i));
         if (blockstate.getValue(DISTANCE).equals(6)) {
             if (state.getValue(DISTANCE).equals(6)) {
                 FallingBlockEntity.fall(level, pos, blockstate);
@@ -67,12 +69,12 @@ public class WoodenScaffoldingBlock extends ScaffoldingBlock {
 
     }
 
+
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return getDistance(level, pos) < 6;
     }
 
-    // more like isTwink
     private boolean isBottom(BlockGetter level, BlockPos pos, int distance) {
         return distance > 0 && !level.getBlockState(pos.below()).is(this);
     }

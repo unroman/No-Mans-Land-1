@@ -60,6 +60,7 @@ public class NoMansLand {
         NMLRecipeSerializers.RECIPE_TYPES.register(modEventBus);
         NMLFluids.FLUID_TYPES.register(modEventBus);
         NMLFluids.FLUIDS.register(modEventBus);
+        NMLBiomeModifiers.BIOME_MODIFIERS.register(modEventBus);
 
         if (Mods.FARMERSDELIGHT.isLoaded()) {
             FDIntegration.register();
@@ -71,37 +72,9 @@ public class NoMansLand {
 
         modEventBus.register(new CreativeModeTabHandler());
         modEventBus.addListener(NMLBlockEntities::addBlockEntities);
-        modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::registerRegistries);
-        modEventBus.addListener(this::registerDatapackRegistries);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, NMLConfig.COMMON_CONFIG);
         modContainer.registerConfig(ModConfig.Type.CLIENT, NMLConfig.CLIENT_CONFIG);
 
-    }
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            if (NMLConfig.BIOMES.get()) NMLBiomePlacements.register();
-            NMLSurfaceRules.register();
-            NMLFlammables.register();
-
-            for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
-                if (definition.get() instanceof FlowerPotBlock flowerPotBlock) {
-                    flowerPotBlock.getEmptyPot().addPlant(BuiltInRegistries.BLOCK.getKey(flowerPotBlock.getPotted()), () -> flowerPotBlock);
-                }
-            }
-        });
-    }
-
-    private void registerRegistries(final NewRegistryEvent event) {
-        event.register(NMLRegistries.POND_DECORATOR_TYPE);
-        event.register(NMLRegistries.BOULDER_DECORATOR_TYPE);
-        event.register(NMLRegistries.FALLEN_TREE_DECORATOR_TYPE);
-        event.register(NMLRegistries.FOG_MODIFIERS);
-    }
-
-    private void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(NMLRegistries.TAP_INTERACTION_KEY, TapInteraction.DIRECT_CODEC, TapInteraction.DIRECT_CODEC);
     }
 }

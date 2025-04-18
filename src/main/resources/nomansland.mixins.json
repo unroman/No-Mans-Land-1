@@ -13,6 +13,7 @@
     "DispenserBlockMixin",
     "EntityMixin",
     "FallLocationMixin",
+    "FlowerBlockMixin",
     "LadderBlockMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",

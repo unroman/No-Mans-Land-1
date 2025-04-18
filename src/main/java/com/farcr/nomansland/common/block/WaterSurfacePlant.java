@@ -12,6 +12,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WaterSurfacePlant extends BushBlock {
+
     public static final MapCodec<WaterSurfacePlant> CODEC = simpleCodec(WaterSurfacePlant::new);
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.5, 16.0);
     public WaterSurfacePlant(Properties properties) {
@@ -30,8 +31,8 @@ public class WaterSurfacePlant extends BushBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        FluidState fluidstate = level.getFluidState(pos);
-        FluidState fluidstate1 = level.getFluidState(pos.above());
-        return fluidstate.getType() == Fluids.WATER && fluidstate1.getType() == Fluids.EMPTY;
+        FluidState fluidState = level.getFluidState(pos);
+        FluidState fluidStateAbove = level.getFluidState(pos.above());
+        return fluidState.getType() == Fluids.WATER && fluidStateAbove.getType() == Fluids.EMPTY;
     }
 }

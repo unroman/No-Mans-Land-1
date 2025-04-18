@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.neoforge.common.util.TriState;
 
 public class SurfaceMushroomBlock extends MushroomBlock {
+
     public SurfaceMushroomBlock(ResourceKey<ConfiguredFeature<?, ?>> pFeature, Properties pProperties) {
         super(pFeature, pProperties);
     }

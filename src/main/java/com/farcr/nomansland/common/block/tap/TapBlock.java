@@ -40,6 +40,7 @@ import java.util.Map;
 import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 
 public class TapBlock extends BaseEntityBlock {
+
     public static final MapCodec<TapBlock> CODEC = simpleCodec(TapBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(

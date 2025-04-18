@@ -30,6 +30,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.function.BiConsumer;
 
 public class FruitBlock extends BushBlock {
+
     public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
     private final VoxelShape[] shapesByAge;
     private final Holder<Block> fruitLeaves;

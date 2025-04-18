@@ -25,7 +25,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 import static net.minecraft.world.level.block.VineBlock.*;
 
-@EventBusSubscriber(modid = NoMansLand.MODID)
 @SuppressWarnings("unused")
 public class BoneMealingEvents {
 

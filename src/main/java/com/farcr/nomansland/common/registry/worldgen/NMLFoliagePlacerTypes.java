@@ -14,8 +14,10 @@ public class NMLFoliagePlacerTypes {
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES =
             DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, NoMansLand.MODID);
 
-    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<PineFoliagePlacer>> PINE_FOLIAGE_PLACER = register("pine_foliage_placer", PineFoliagePlacer.CODEC);
-    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<CypressFoliagePlacer>> CYPRESS_FOLIAGE_PLACER = register("cypress_foliage_placer", CypressFoliagePlacer.CODEC);
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<PineFoliagePlacer>>
+            PINE_FOLIAGE_PLACER = register("pine_foliage_placer", PineFoliagePlacer.CODEC);
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<CypressFoliagePlacer>>
+            CYPRESS_FOLIAGE_PLACER = register("cypress_foliage_placer", CypressFoliagePlacer.CODEC);
 
     private static <P extends FoliagePlacer> DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<P>> register (String name, MapCodec<P> codec) {
         return FOLIAGE_PLACER_TYPES.register(name, () -> new FoliagePlacerType<>(codec));

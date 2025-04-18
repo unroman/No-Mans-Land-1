@@ -32,7 +32,7 @@ public class VanillaFluidTargetsMixin {
     @Inject(method = "drainBlock", at = @At("RETURN"), cancellable = true)
     private static void drainBlock(Level level, BlockPos pos, BlockState state, boolean simulate, CallbackInfoReturnable<FluidStack> cir) {
         if (cir.getReturnValue() == FluidStack.EMPTY && (state.is(NMLBlocks.MILK_CAULDRON.block()) || state.is(NMLBlocks.HONEY_CAULDRON.block()) || state.is(NMLBlocks.RESIN_OIL_CAULDRON.block()))) {
-            if (!simulate) level.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 3);
+            if (!simulate) level.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
 
             cir.setReturnValue(new FluidStack(state.is(NMLBlocks.RESIN_OIL_CAULDRON.block()) ? NMLFluids.RESIN_OIL.get() : state.is(NMLBlocks.HONEY_CAULDRON.block()) ? Mods.CREATE.getFluid("honey") : NeoForgeMod.MILK.get(), state.getValue(LEVEL) * 250));
         }

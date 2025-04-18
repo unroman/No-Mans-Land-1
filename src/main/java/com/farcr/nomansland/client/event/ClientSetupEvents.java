@@ -65,7 +65,7 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
-    static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_RESIN_OIL = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "block/fluid/resin_oil");
             private static final ResourceLocation FLOWING_RESIN_OIL = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "block/fluid/flowing_resin_oil");

@@ -16,8 +16,10 @@ public class NMLFallenTreeDecoratorTypes {
     public static final DeferredRegister<FallenTreeDecoratorType<?>> FALLEN_TREE_DECORATOR_TYPES =
             DeferredRegister.create(NMLRegistries.FALLEN_TREE_DECORATOR_TYPE, NoMansLand.MODID);
 
-    public static final Supplier<FallenTreeDecoratorType<ClusterTopFallenTreeDecorator>> CLUSTER_TOP = register("cluster_top", ClusterTopFallenTreeDecorator.CODEC);
-    public static final Supplier<FallenTreeDecoratorType<ClusterSideFallenTreeDecorator>> CLUSTER_SIDE = register("cluster_side", ClusterSideFallenTreeDecorator.CODEC);
+    public static final Supplier<FallenTreeDecoratorType<ClusterTopFallenTreeDecorator>>
+            CLUSTER_TOP = register("cluster_top", ClusterTopFallenTreeDecorator.CODEC);
+    public static final Supplier<FallenTreeDecoratorType<ClusterSideFallenTreeDecorator>>
+            CLUSTER_SIDE = register("cluster_side", ClusterSideFallenTreeDecorator.CODEC);
 
     private static <P extends FallenTreeDecorator> DeferredHolder<FallenTreeDecoratorType<?>, FallenTreeDecoratorType<P>> register (String name, MapCodec<P> codec) {
         return FALLEN_TREE_DECORATOR_TYPES.register(name, () -> new FallenTreeDecoratorType<>(codec));

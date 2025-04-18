@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class MonsterAnchorBlock extends BaseEntityBlock {
+
     public static final MapCodec<MonsterAnchorBlock> CODEC = simpleCodec(MonsterAnchorBlock::new);
 
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -38,12 +39,12 @@ public class MonsterAnchorBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        super.createBlockStateDefinition(pBuilder.add(ACTIVE));
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder.add(ACTIVE));
     }
 
     @Override
-    public @NotNull RenderShape getRenderShape(BlockState pState) {
+    public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
@@ -52,8 +53,8 @@ public class MonsterAnchorBlock extends BaseEntityBlock {
         return state.getValue(ACTIVE) ? 4 : 0;
     }
 
-    public boolean hasAnalogOutputSignal(BlockState pState) {
-        return true;
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return state.getValue(ACTIVE);
     }
 
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {

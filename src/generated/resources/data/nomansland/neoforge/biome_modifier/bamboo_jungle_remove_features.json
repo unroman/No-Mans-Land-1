@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "minecraft:bamboo_jungle",
+  "features": "minecraft:patch_pumpkin",
+  "steps": "vegetal_decoration"
+}

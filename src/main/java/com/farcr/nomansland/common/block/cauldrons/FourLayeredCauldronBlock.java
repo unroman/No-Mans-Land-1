@@ -36,6 +36,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class FourLayeredCauldronBlock extends AbstractCauldronBlock {
+
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 1, 4);
     public final Supplier<SimpleParticleType> particleType;
     public FourLayeredCauldronBlock(Supplier<SimpleParticleType> particleType) {

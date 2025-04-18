@@ -61,7 +61,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
             monsterAnchor.timeResurrecting = 0;
             monsterAnchor.timeIdle++;
 
-            // Deactivate the spawner after 10 seconds of inactivity
+            // Deactivate the spawners after 10 seconds of inactivity
             if (state.getValue(MonsterAnchorBlock.ACTIVE)) {
                 level.playSound(null, pos, NMLSounds.ANCHOR_DEACTIVATES.get(), SoundSource.BLOCKS, 1, 0.75F);
                 level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, false));

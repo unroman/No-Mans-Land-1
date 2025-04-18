@@ -22,6 +22,7 @@ import java.util.concurrent.CompletableFuture;
 @SuppressWarnings("unused")
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = NoMansLand.MODID)
 public class DataGenEvents {
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
@@ -51,5 +52,7 @@ public class DataGenEvents {
 
         // Lang
         generator.addProvider(client, new NMLLanguageProvider(packOutput));
+
+        generator.addProvider(server, new NMLDatapackEntriesProvider(packOutput, lookupProvider));
     }
 }

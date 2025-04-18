@@ -102,20 +102,5 @@ public class TapBlockEntity extends BlockEntity {
                 level.gameEvent(GameEvent.BLOCK_CHANGE, posBehind, GameEvent.Context.of(stateBehind));
             }
         }
-
-//        if (stateBehind.is(NMLBlocks.HONEY_CAULDRON) || stateBehind.is(NMLBlocks.MILK_CAULDRON)) {
-//            tap.timeEmptying++;
-//            if (tap.timeEmptying < NMLConfig.TICKS_TO_FILL_CAULDRON.get())
-//                spawnDrippingParticles(level, pos, state, stateBehind.is(NMLBlocks.HONEY_CAULDRON) ? ParticleTypes.FALLING_HONEY : NMLParticleTypes.MILK_DROPLET.get());
-//            else {
-//                tap.timeEmptying = 0;
-//                FourLayeredCauldronBlock.lowerFillLevel(stateBehind, level, posBehind);
-//                if (cauldronState.hasProperty(FourLayeredCauldronBlock.LEVEL))
-//                    level.setBlockAndUpdate(cauldronPos, stateBehind.setValue(FourLayeredCauldronBlock.LEVEL, cauldronState.getValue(FourLayeredCauldronBlock.LEVEL) + 1));
-//                else level.setBlockAndUpdate(cauldronPos, stateBehind.getBlock().defaultBlockState());
-//                level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));
-//                level.gameEvent(GameEvent.BLOCK_CHANGE, posBehind, GameEvent.Context.of(stateBehind));
-//            }
-//        }
     }
 }

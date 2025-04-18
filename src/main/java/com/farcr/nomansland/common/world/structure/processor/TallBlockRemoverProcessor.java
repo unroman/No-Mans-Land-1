@@ -37,7 +37,7 @@ public class TallBlockRemoverProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return NMLStructureProcessorTypes.PREFIX.get();
+        return NMLStructureProcessorTypes.TALL_BLOCK_REMOVER.get();
     }
 
     public TallBlockRemoverProcessor(Block block, float chance) {

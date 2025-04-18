@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 
 
 public class PathBlock extends DirtPathBlock {
+
     public final Block mainBlock;
     public final boolean hasGravity;
 

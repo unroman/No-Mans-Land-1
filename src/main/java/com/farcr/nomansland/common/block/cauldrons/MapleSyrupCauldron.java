@@ -21,6 +21,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class MapleSyrupCauldron extends FourLayeredCauldronBlock {
+
     public MapleSyrupCauldron() {
         super(NMLParticleTypes.MAPLE_SYRUP_DROPLET);
     }

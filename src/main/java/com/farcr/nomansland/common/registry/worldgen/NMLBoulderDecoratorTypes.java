@@ -14,7 +14,8 @@ public class NMLBoulderDecoratorTypes {
     public static final DeferredRegister<BoulderDecoratorType<?>> BOULDER_DECORATOR_TYPES =
             DeferredRegister.create(NMLRegistries.BOULDER_DECORATOR_TYPE, NoMansLand.MODID);
 
-    public static final Supplier<BoulderDecoratorType<ClusterOnStoneBoulderDecorator>> CLUSTER_ON_STONE = register("cluster_on_stone", ClusterOnStoneBoulderDecorator.CODEC);
+    public static final Supplier<BoulderDecoratorType<ClusterOnStoneBoulderDecorator>>
+            CLUSTER_ON_STONE = register("cluster_on_stone", ClusterOnStoneBoulderDecorator.CODEC);
 
     private static <P extends BoulderDecorator> Supplier<BoulderDecoratorType<P>> register (String name, MapCodec<P> codec) {
         return BOULDER_DECORATOR_TYPES.register(name, () -> new BoulderDecoratorType<>(codec));

@@ -20,7 +20,7 @@ import java.util.List;
 
 public class BlockRemoverProcessor extends StructureProcessor {
 
-    public static final MapCodec<BlockRemoverProcessor> CODEC = RecordCodecBuilder.mapCodec((instance) ->
+    public static final MapCodec<BlockRemoverProcessor> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
                     BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter(prefixProcessor -> prefixProcessor.block),
                     Codec.floatRange(0.0F, 1.0F).fieldOf("chance").forGetter(prefixProcessor -> prefixProcessor.chance)
@@ -32,7 +32,7 @@ public class BlockRemoverProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return NMLStructureProcessorTypes.PREFIX.get();
+        return NMLStructureProcessorTypes.BLOCK_REMOVER.get();
     }
 
     public BlockRemoverProcessor(Block block, float chance) {

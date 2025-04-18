@@ -15,6 +15,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.util.TriState;
 
 public class CutSugarCaneBlock extends SugarCaneBlock {
+
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 
     public CutSugarCaneBlock(Properties pProperties) {
