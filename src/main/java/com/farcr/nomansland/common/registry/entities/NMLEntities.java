@@ -1,7 +1,7 @@
 package com.farcr.nomansland.common.registry.entities;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.entity.MooseEntity;
+import com.farcr.nomansland.common.entity.Moose;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.entity.bombs.FirebombEntity;
@@ -49,8 +49,8 @@ public class NMLEntities {
 //            ENTITIES.register("buried", () -> EntityType.Builder.of(BuriedEntity::new, MobCategory.MONSTER)
 //                    .sized(1.0f, 1.0f).clientTrackingRange(8).build("buried"));
 //
-    public static final Supplier<EntityType<MooseEntity>> MOOSE =
-            ENTITIES.register("moose", () -> EntityType.Builder.of(MooseEntity::new, MobCategory.CREATURE)
+    public static final Supplier<EntityType<Moose>> MOOSE =
+            ENTITIES.register("moose", () -> EntityType.Builder.of(Moose::new, MobCategory.CREATURE)
                     .sized(1.5f, 2.5f).build("moose"));
 
 }

@@ -4,7 +4,7 @@ import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.tap.TapInteraction;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
-import com.farcr.nomansland.common.entity.MooseEntity;
+import com.farcr.nomansland.common.entity.Moose;
 import com.farcr.nomansland.common.entity.billhook_bass.BillhookBass;
 import com.farcr.nomansland.common.entity.deer.Deer;
 import com.farcr.nomansland.common.entity.goose.Goose;
@@ -69,7 +69,7 @@ public class CommonSetupEvents {
 
     @SubscribeEvent
     public static void createEntityAttributes(final EntityAttributeCreationEvent event) {
-        event.put(NMLEntities.MOOSE.get(), MooseEntity.createAttributes().build());
+        event.put(NMLEntities.MOOSE.get(), Moose.createAttributes().build());
         event.put(NMLEntities.BILLHOOK_BASS.get(), BillhookBass.createAttributes().build());
         event.put(NMLEntities.DEER.get(), Deer.createAttributes().build());
         event.put(NMLEntities.GOOSE.get(), Goose.createAttributes().build());
