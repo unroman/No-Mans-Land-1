@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.entity;
 
+import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -91,7 +92,7 @@ public class MooseEntity extends Animal implements NeutralMob {
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, true));
 
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.15D));
-        this.goalSelector.addGoal(5, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
+        this.goalSelector.addGoal(5, new TemptGoal(this, 1.2D, Ingredient.of(NMLTags.MOOSE_FOOD), false));
 
         this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.1D));
 
@@ -111,7 +112,7 @@ public class MooseEntity extends Animal implements NeutralMob {
 
     @Override
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.COOKED_BEEF);
+        return pStack.is(NMLTags.MOOSE_FOOD);
     }
 
     @Nullable

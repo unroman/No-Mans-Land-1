@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 public class NMLTags {
     public static final TagKey<Item> FIRESTARTERS = createItemTag("firestarters");
     public static final TagKey<Item> DEER_FOOD = createItemTag("deer_food");
+    public static final TagKey<Item> MOOSE_FOOD = createItemTag("moose_food");
     public static final TagKey<Item> MAKES_RESIN_OIL = createItemTag("makes_resin_oil");
 
     public static final SharedTag MAPLE_LOGS = createSharedTag("maple_logs");
