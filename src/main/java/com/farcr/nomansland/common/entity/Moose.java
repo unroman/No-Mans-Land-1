@@ -2,6 +2,8 @@ package com.farcr.nomansland.common.entity;
 
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -11,6 +13,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -23,7 +27,9 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 
@@ -33,6 +39,7 @@ import java.util.UUID;
 public class Moose extends Animal implements NeutralMob {
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Moose.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(2*20*60, 2*20*60); // figure out how to make this dynamically take day length?
+    private static final EntityDataAccessor<Integer> DATA_PACIFICATION_STAGE = SynchedEntityData.defineId(Moose.class, EntityDataSerializers.INT); // number of carrots fed, or 5 if pacified
     @Nullable
     private UUID persistentAngerTarget;
 
@@ -42,7 +49,7 @@ public class Moose extends Animal implements NeutralMob {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 20D)
+                .add(Attributes.MAX_HEALTH, 40D)
                 .add(Attributes.FOLLOW_RANGE, 20D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.ARMOR_TOUGHNESS, 0.1f)
@@ -54,18 +61,23 @@ public class Moose extends Animal implements NeutralMob {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_REMAINING_ANGER_TIME, 0);
+        builder.define(DATA_PACIFICATION_STAGE, 0);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         this.addPersistentAngerSaveData(compound);
+        compound.putInt("PacificationStage", this.entityData.get(DATA_PACIFICATION_STAGE));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.readPersistentAngerSaveData(this.level(), compound);
+        if (compound.contains("PacificationStage")) {
+            this.entityData.set(DATA_PACIFICATION_STAGE, compound.getInt("PacificationStage"));
+        }
     }
 
     @Override
@@ -107,6 +119,65 @@ public class Moose extends Animal implements NeutralMob {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
         return NMLEntities.MOOSE.get().create(pLevel);
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        Item item = itemstack.getItem();
+        if (!this.level().isClientSide || this.isBaby() && this.isFood(itemstack)) {
+            if (itemstack.is(Items.GOLDEN_CARROT) && this.entityData.get(DATA_PACIFICATION_STAGE) < 5)  {
+                int pacificationStage = this.entityData.get(DATA_PACIFICATION_STAGE);
+                itemstack.consume(1, player);
+                if (pacificationStage < 4) {
+                    this.entityData.set(DATA_PACIFICATION_STAGE, pacificationStage + 1);
+                    this.level().broadcastEntityEvent(this, (byte) 6);
+                } else if (random.nextInt(3) == 0) {
+                    this.entityData.set(DATA_PACIFICATION_STAGE, 5);
+                    this.navigation.stop();
+                    this.setTarget(null);
+                    this.level().broadcastEntityEvent(this, (byte) 7);
+                } else {
+                    this.level().broadcastEntityEvent(this, (byte) 6);
+                }
+                return InteractionResult.SUCCESS;
+            } else {
+                return super.mobInteract(player, hand);
+            }
+        } else {
+            boolean flag = itemstack.is(Items.GOLDEN_CARROT) && this.entityData.get(DATA_PACIFICATION_STAGE) < 5;
+            return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
+        }
+    }
+
+    protected void spawnTamingParticles(boolean tamed) {
+        ParticleOptions particleoptions = ParticleTypes.HEART;
+        if (!tamed) {
+            particleoptions = ParticleTypes.SMOKE;
+        }
+
+        for(int i = 0; i < 7; ++i) {
+            double d0 = this.random.nextGaussian() * 0.02;
+            double d1 = this.random.nextGaussian() * 0.02;
+            double d2 = this.random.nextGaussian() * 0.02;
+            this.level().addParticle(particleoptions, this.getRandomX((double)1.0F), this.getRandomY() + (double)0.5F, this.getRandomZ((double)1.0F), d0, d1, d2);
+        }
+
+    }
+
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == 7) {
+            this.spawnTamingParticles(true);
+        } else if (id == 6) {
+            this.spawnTamingParticles(false);
+        } else {
+            super.handleEntityEvent(id);
+        }
+    }
+
+    public boolean isPacified() {
+        return this.entityData.get(DATA_PACIFICATION_STAGE) == 5;
     }
 
     @Override
