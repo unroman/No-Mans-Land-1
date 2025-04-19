@@ -2,14 +2,19 @@ package com.farcr.nomansland.common.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SimpleFoliageBlock extends BushBlock {
+public class SimpleFoliageBlock extends BushBlock implements BonemealableBlock {
 
     public static final MapCodec<SimpleFoliageBlock> CODEC = simpleCodec(SimpleFoliageBlock::new);
 
@@ -27,5 +32,28 @@ public class SimpleFoliageBlock extends BushBlock {
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return true;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+        int x = blockPos.getX();
+        int y = blockPos.getY();
+        int z = blockPos.getZ();
+
+        for (BlockPos pos : BlockPos.betweenClosed(x - 3, y - 1, z - 3, x + 3, y + 2, z + 3)) {
+            if (randomSource.nextFloat() < 0.3F && blockState.canSurvive(serverLevel, pos) && serverLevel.isEmptyBlock(pos)) {
+                serverLevel.setBlockAndUpdate(pos, blockState);
+            }
+        }
     }
 }

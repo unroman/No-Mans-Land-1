@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#minecraft:small_flowers"
+  ],
+  "remove":[
+    "minecraft:torchflower"
+    ]
+}

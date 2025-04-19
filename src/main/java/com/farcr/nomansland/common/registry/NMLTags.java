@@ -24,8 +24,7 @@ public class NMLTags {
 
 
     public static final TagKey<Block> MUSHROOM_BLOCKS = createBlockTag("mushroom_blocks");
-    public static final TagKey<Block> BONEMEAL_SPREADS = createBlockTag("bonemeal_spreads");
-    public static final TagKey<Block> BONEMEAL_SPREADS_UPWARDS = createBlockTag("bonemeal_spreads_upwards");
+    public static final TagKey<Block> BONEMEALABLE_FLOWERS = createBlockTag("bonemealable_flowers");
     public static final TagKey<Block> CONIFEROUS_LOGS = createBlockTag("coniferous_logs");
     public static final TagKey<Biome> HAS_DENSE_FOG = createBiomeTag("has_dense_fog");
     public static final TagKey<Block> BOMB_EXPLODE = createBlockTag("firebomb_explode");
@@ -36,6 +35,7 @@ public class NMLTags {
     public static final TagKey<EntityType<?>> ANCHOR_BLACKLIST = createEntityTag("anchor_blacklist");
     public static final TagKey<Biome> SPAWNS_MUD_FROGS = createBiomeTag("entity/spawns_mud_frog");
     public static final TagKey<Biome> OLD_GROWTH_FOREST = createBiomeTag("old_growth_forest");
+
     public static final TagKey<Biome> CAVES = createBiomeTag("caves");
     public static final TagKey<DamageType> IGNITES_FLAMMABLE = createDamageTypeTag("ignites_flammable");
 
