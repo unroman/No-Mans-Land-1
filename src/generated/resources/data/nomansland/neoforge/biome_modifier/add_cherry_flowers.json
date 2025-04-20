@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#nomansland:feature_addition/has_cherry_flowers",
+  "features": [
+    "nomansland:flower_patches/flowerbed_white_and_violet",
+    "nomansland:flower_patches/flowers_cherry",
+    "minecraft:patch_sugar_cane",
+    "minecraft:brown_mushroom_normal",
+    "minecraft:patch_waterlily"
+  ],
+  "step": "vegetal_decoration"
+}

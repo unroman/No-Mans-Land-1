@@ -26,6 +26,8 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import org.checkerframework.checker.units.qual.A;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -47,7 +49,29 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                 GenerationStep.Decoration vegetalDecoration = GenerationStep.Decoration.VEGETAL_DECORATION;
 
                 addFeatures(
-                        "cactus",
+                        "white_flowers",
+                        bootstrap,
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(FLOWERBED_WHITE),
+                                placedFeatures.getOrThrow(FLOWERS_BIRCH_FOREST),
+                                placedFeatures.getOrThrow(PATCH_PEONY_AND_LILAC)
+                        )
+                );
+
+                addFeatures(
+                        "cherry_flowers",
+                        bootstrap,
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(FLOWERBED_WHITE_AND_VIOLET),
+                                placedFeatures.getOrThrow(FLOWERS_CHERRY),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_SUGAR_CANE),
+                                placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_WATERLILY)
+                        )
+                );
+
+                addFeatures(
+                        "cactus_features",
                         bootstrap,
                         HolderSet.direct(
                                 placedFeatures.getOrThrow(PATCH_BARREL_CACTUS_DESERT),
@@ -75,7 +99,6 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                                 3048361,
                                 11128544
                         ),
-                        null,
                         null,
                         new AddSpawnsBiomeModifier(
                                 badlands,
@@ -164,12 +187,85 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                         null,
                         null,
                         null,
-                        null,
                         new RemoveFeaturesBiomeModifier(
                                 beach,
                                 HolderSet.direct(
                                         placedFeatures.getOrThrow(VegetationPlacements.PATCH_GRASS_BADLANDS),
                                         placedFeatures.getOrThrow(VegetationPlacements.FLOWER_DEFAULT)
+                                ),
+                                Set.of(vegetalDecoration)
+                        )
+                );
+
+                HolderSet<Biome> birchForest = HolderSet.direct(biomes.getOrThrow(Biomes.BIRCH_FOREST));
+                changeBiome(
+                        "birch_forest",
+                        bootstrap,
+                        new ChangeColorsBiomeModifier(
+                                birchForest,
+                                12906239,
+                                3902136,
+                                2388383,
+                                7715315,
+                                8367967,
+                                6594108
+                        ),
+                        new ChangeSpawnsBiomeModifier(
+                                birchForest,
+                                List.of(
+                                        new SpawnerData(EntityType.SHEEP, 4, 1, 4),
+                                        new SpawnerData(EntityType.CHICKEN, 14, 4, 6),
+                                        new SpawnerData(EntityType.COW, 2, 4, 4)
+                                )
+                        ),
+                        new AddSpawnsBiomeModifier(
+                                birchForest,
+                                List.of(
+                                        new SpawnerData(EntityType.RABBIT, 8, 3, 4)
+                                )
+                        ),
+                        null,
+                        new RemoveFeaturesBiomeModifier(
+                                birchForest,
+                                HolderSet.direct(
+                                        placedFeatures.getOrThrow(VegetationPlacements.FOREST_FLOWERS)
+                                ),
+                                Set.of(vegetalDecoration)
+                        )
+                );
+
+                HolderSet<Biome> cherryGrove = HolderSet.direct(biomes.getOrThrow(Biomes.CHERRY_GROVE));
+                changeBiome(
+                        "cherry_grove",
+                        bootstrap,
+                        new ChangeColorsBiomeModifier(
+                                cherryGrove,
+                                15724287,
+                                3895992,
+                                2388383,
+                                8307162,
+                                9620606,
+                                9098883
+                        ),
+                        new ChangeSpawnsBiomeModifier(
+                                cherryGrove,
+                                List.of(
+                                        new SpawnerData(EntityType.PIG, 4, 1, 8),
+                                        new SpawnerData(EntityType.RABBIT, 8, 2, 6),
+                                        new SpawnerData(EntityType.SHEEP, 8, 2, 4)
+                                )
+                        ),
+                        new AddSpawnsBiomeModifier(
+                                cherryGrove,
+                                List.of(
+                                        new SpawnerData(EntityType.CHICKEN, 4, 2, 6)
+                                )
+                        ),
+                        null,
+                        new RemoveFeaturesBiomeModifier(
+                                cherryGrove,
+                                HolderSet.direct(
+                                        placedFeatures.getOrThrow(VegetationPlacements.TREES_CHERRY)
                                 ),
                                 Set.of(vegetalDecoration)
                         )
@@ -282,11 +378,15 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
         }
     }
 
-    public static void addFeatures(String name, BootstrapContext<BiomeModifier> bootstrap, HolderSet<PlacedFeature> features) {
+    public static void changeBiome(String name, BootstrapContext<BiomeModifier> bootstrap, @Nullable ChangeColorsBiomeModifier changeColors, @Nullable ChangeSpawnsBiomeModifier changeSpawns, @Nullable AddSpawnsBiomeModifier addSpawns, @Nullable RemoveSpawnsBiomeModifier removeSpawns, @Nullable RemoveFeaturesBiomeModifier removeFeatures) {
+        changeBiome(name, bootstrap, changeColors, null, changeSpawns, addSpawns, removeSpawns, removeFeatures);
+    }
+
+    public static void addFeatures(String name, BootstrapContext<BiomeModifier> bootstrap, HolderSet<PlacedFeature> features, GenerationStep.Decoration step) {
         bootstrap.register(
                 ResourceKey.create(
                         NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "add_" + name + "_features")
+                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "add_" + name)
                 ),
                 new AddFeaturesBiomeModifier(
                         bootstrap.lookup(Registries.BIOME).getOrThrow(
@@ -297,8 +397,12 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                                 )
                         ),
                         features,
-                        GenerationStep.Decoration.VEGETAL_DECORATION
+                        step
                 ));
+    }
+
+    public static void addFeatures(String name, BootstrapContext<BiomeModifier> bootstrap, HolderSet<PlacedFeature> features) {
+        addFeatures(name, bootstrap, features, GenerationStep.Decoration.VEGETAL_DECORATION);
     }
 
     public NMLDatapackEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
