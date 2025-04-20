@@ -197,79 +197,79 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                         )
                 );
 
-                HolderSet<Biome> birchForest = HolderSet.direct(biomes.getOrThrow(Biomes.BIRCH_FOREST));
-                changeBiome(
-                        "birch_forest",
-                        bootstrap,
-                        new ChangeColorsBiomeModifier(
-                                birchForest,
-                                12906239,
-                                3902136,
-                                2388383,
-                                7715315,
-                                8367967,
-                                6594108
-                        ),
-                        new ChangeSpawnsBiomeModifier(
-                                birchForest,
-                                List.of(
-                                        new SpawnerData(EntityType.SHEEP, 4, 1, 4),
-                                        new SpawnerData(EntityType.CHICKEN, 14, 4, 6),
-                                        new SpawnerData(EntityType.COW, 2, 4, 4)
-                                )
-                        ),
-                        new AddSpawnsBiomeModifier(
-                                birchForest,
-                                List.of(
-                                        new SpawnerData(EntityType.RABBIT, 8, 3, 4)
-                                )
-                        ),
-                        null,
-                        new RemoveFeaturesBiomeModifier(
-                                birchForest,
-                                HolderSet.direct(
-                                        placedFeatures.getOrThrow(VegetationPlacements.FOREST_FLOWERS)
-                                ),
-                                Set.of(vegetalDecoration)
-                        )
-                );
+//                HolderSet<Biome> birchForest = HolderSet.direct(biomes.getOrThrow(Biomes.BIRCH_FOREST));
+//                changeBiome(
+//                        "birch_forest",
+//                        bootstrap,
+//                        new ChangeColorsBiomeModifier(
+//                                birchForest,
+//                                12906239,
+//                                3902136,
+//                                2388383,
+//                                7715315,
+//                                8367967,
+//                                6594108
+//                        ),
+//                        new ChangeSpawnsBiomeModifier(
+//                                birchForest,
+//                                List.of(
+//                                        new SpawnerData(EntityType.SHEEP, 4, 1, 4),
+//                                        new SpawnerData(EntityType.CHICKEN, 14, 4, 6),
+//                                        new SpawnerData(EntityType.COW, 2, 4, 4)
+//                                )
+//                        ),
+//                        new AddSpawnsBiomeModifier(
+//                                birchForest,
+//                                List.of(
+//                                        new SpawnerData(EntityType.RABBIT, 8, 3, 4)
+//                                )
+//                        ),
+//                        null,
+//                        new RemoveFeaturesBiomeModifier(
+//                                birchForest,
+//                                HolderSet.direct(
+//                                        placedFeatures.getOrThrow(VegetationPlacements.FOREST_FLOWERS)
+//                                ),
+//                                Set.of(vegetalDecoration)
+//                        )
+//                );
 
-                HolderSet<Biome> cherryGrove = HolderSet.direct(biomes.getOrThrow(Biomes.CHERRY_GROVE));
-                changeBiome(
-                        "cherry_grove",
-                        bootstrap,
-                        new ChangeColorsBiomeModifier(
-                                cherryGrove,
-                                15724287,
-                                3895992,
-                                2388383,
-                                8307162,
-                                9620606,
-                                9098883
-                        ),
-                        new ChangeSpawnsBiomeModifier(
-                                cherryGrove,
-                                List.of(
-                                        new SpawnerData(EntityType.PIG, 4, 1, 8),
-                                        new SpawnerData(EntityType.RABBIT, 8, 2, 6),
-                                        new SpawnerData(EntityType.SHEEP, 8, 2, 4)
-                                )
-                        ),
-                        new AddSpawnsBiomeModifier(
-                                cherryGrove,
-                                List.of(
-                                        new SpawnerData(EntityType.CHICKEN, 4, 2, 6)
-                                )
-                        ),
-                        null,
-                        new RemoveFeaturesBiomeModifier(
-                                cherryGrove,
-                                HolderSet.direct(
-                                        placedFeatures.getOrThrow(VegetationPlacements.TREES_CHERRY)
-                                ),
-                                Set.of(vegetalDecoration)
-                        )
-                );
+//                HolderSet<Biome> cherryGrove = HolderSet.direct(biomes.getOrThrow(Biomes.CHERRY_GROVE));
+//                changeBiome(
+//                        "cherry_grove",
+//                        bootstrap,
+//                        new ChangeColorsBiomeModifier(
+//                                cherryGrove,
+//                                15724287,
+//                                3895992,
+//                                2388383,
+//                                8307162,
+//                                9620606,
+//                                9098883
+//                        ),
+//                        new ChangeSpawnsBiomeModifier(
+//                                cherryGrove,
+//                                List.of(
+//                                        new SpawnerData(EntityType.PIG, 4, 1, 8),
+//                                        new SpawnerData(EntityType.RABBIT, 8, 2, 6),
+//                                        new SpawnerData(EntityType.SHEEP, 8, 2, 4)
+//                                )
+//                        ),
+//                        new AddSpawnsBiomeModifier(
+//                                cherryGrove,
+//                                List.of(
+//                                        new SpawnerData(EntityType.CHICKEN, 4, 2, 6)
+//                                )
+//                        ),
+//                        null,
+//                        new RemoveFeaturesBiomeModifier(
+//                                cherryGrove,
+//                                HolderSet.direct(
+//                                        placedFeatures.getOrThrow(VegetationPlacements.TREES_CHERRY)
+//                                ),
+//                                Set.of(vegetalDecoration)
+//                        )
+//                );
 
                 HolderSet<Biome> desert = biomes.getOrThrow(Tags.Biomes.IS_DESERT);
                 changeBiome(
