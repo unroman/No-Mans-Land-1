@@ -48,27 +48,27 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
 
                 GenerationStep.Decoration vegetalDecoration = GenerationStep.Decoration.VEGETAL_DECORATION;
 
-                addFeatures(
-                        "white_flowers",
-                        bootstrap,
-                        HolderSet.direct(
-                                placedFeatures.getOrThrow(FLOWERBED_WHITE),
-                                placedFeatures.getOrThrow(FLOWERS_BIRCH_FOREST),
-                                placedFeatures.getOrThrow(PATCH_PEONY_AND_LILAC)
-                        )
-                );
-
-                addFeatures(
-                        "cherry_flowers",
-                        bootstrap,
-                        HolderSet.direct(
-                                placedFeatures.getOrThrow(FLOWERBED_WHITE_AND_VIOLET),
-                                placedFeatures.getOrThrow(FLOWERS_CHERRY),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_SUGAR_CANE),
-                                placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_WATERLILY)
-                        )
-                );
+//                addFeatures(
+//                        "white_flowers",
+//                        bootstrap,
+//                        HolderSet.direct(
+//                                placedFeatures.getOrThrow(FLOWERBED_WHITE),
+//                                placedFeatures.getOrThrow(FLOWERS_BIRCH_FOREST),
+//                                placedFeatures.getOrThrow(PATCH_PEONY_AND_LILAC)
+//                        )
+//                );
+//
+//                addFeatures(
+//                        "cherry_flowers",
+//                        bootstrap,
+//                        HolderSet.direct(
+//                                placedFeatures.getOrThrow(FLOWERBED_WHITE_AND_VIOLET),
+//                                placedFeatures.getOrThrow(FLOWERS_CHERRY),
+//                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_SUGAR_CANE),
+//                                placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
+//                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_WATERLILY)
+//                        )
+//                );
 
                 addFeatures(
                         "cactus_features",
