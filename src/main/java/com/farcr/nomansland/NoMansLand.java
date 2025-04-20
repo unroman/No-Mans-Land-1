@@ -1,7 +1,5 @@
 package com.farcr.nomansland;
 
-import com.farcr.nomansland.common.block.tap.TapInteraction;
-import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.event.CreativeModeTabHandler;
 import com.farcr.nomansland.common.integration.BBIntegration;
 import com.farcr.nomansland.common.integration.CIntegration;
@@ -9,24 +7,16 @@ import com.farcr.nomansland.common.integration.FDIntegration;
 import com.farcr.nomansland.common.integration.Mods;
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
-import com.farcr.nomansland.common.registry.blocks.NMLFlammables;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
 import com.farcr.nomansland.common.registry.items.NMLCreativeTabs;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
-import com.farcr.nomansland.common.world.generation.NMLBiomePlacements;
-import com.farcr.nomansland.common.world.generation.NMLSurfaceRules;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
-import net.neoforged.neoforge.registries.NewRegistryEvent;
 
 @Mod(NoMansLand.MODID)
 public class NoMansLand {

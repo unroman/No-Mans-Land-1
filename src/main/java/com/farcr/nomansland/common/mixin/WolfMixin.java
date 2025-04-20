@@ -2,11 +2,9 @@ package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.entity.Moose;
 import com.farcr.nomansland.common.entity.deer.Deer;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -1,7 +1,7 @@
 package com.farcr.nomansland.datagen;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.registry.NMLBiomeModifiers;
+import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeColorsBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeMusicBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeSpawnsBiomeModifier;
@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -31,9 +32,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import static net.neoforged.neoforge.common.world.BiomeModifiers.*;
-import static net.minecraft.world.level.biome.MobSpawnSettings.*;
 import static com.farcr.nomansland.common.registry.worldgen.NMLPlacedFeatures.*;
+import static net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
+import static net.neoforged.neoforge.common.world.BiomeModifiers.*;
 
 public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
 
@@ -44,20 +45,22 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                 HolderGetter<EntityType<?>> entityTypes = bootstrap.registryLookup(Registries.ENTITY_TYPE).orElseThrow();
 
                 GenerationStep.Decoration vegetalDecoration = GenerationStep.Decoration.VEGETAL_DECORATION;
-                List<Holder<Biome>> desertAndBadlands = biomes.getOrThrow(BiomeTags.IS_BADLANDS).stream().toList();
-                desertAndBadlands.addAll(biomes.getOrThrow(Tags.Biomes.IS_DESERT).stream().toList());
 
-                addFeatureSet(
-                        "desert",
+                addFeatures(
+                        "cactus",
                         bootstrap,
-                        new AddFeaturesBiomeModifier(
-                                HolderSet.direct(desertAndBadlands),
-                                HolderSet.direct(
-                                        placedFeatures.getOrThrow(PATCH_BARREL_CACTUS_DESERT),
-                                        placedFeatures.getOrThrow(PATCH_SUCCULENT_DESERT),
-                                        placedFeatures.getOrThrow(ALL_TULIPS)
-                                ),
-                                vegetalDecoration
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(PATCH_BARREL_CACTUS_DESERT),
+                                placedFeatures.getOrThrow(PATCH_SUCCULENT_DESERT),
+                                placedFeatures.getOrThrow(ALL_TULIPS)
+                        )
+                );
+
+                addFeatures(
+                        "beachgrass",
+                        bootstrap,
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(PATCH_BEACHGRASS)
                         )
                 );
 
@@ -85,15 +88,6 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                                 badlands,
                                 HolderSet.direct(BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(EntityType.ZOMBIE))
                         ),
-//                        new AddFeaturesBiomeModifier(
-//                                badlands,
-//                                HolderSet.direct(
-//                                        placedFeatures.getOrThrow(PATCH_BARREL_CACTUS_DESERT),
-//                                        placedFeatures.getOrThrow(PATCH_SUCCULENT_DESERT),
-//                                        placedFeatures.getOrThrow(ALL_TULIPS)
-//                                ),
-//                                vegetalDecoration
-//                        ),
                         null
                 );
 
@@ -171,20 +165,55 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                         null,
                         null,
                         null,
-//                        new AddFeaturesBiomeModifier(
-//                                beach,
-//                                HolderSet.direct(
-//                                        placedFeatures.getOrThrow(VegetationPlacements.PATCH_GRASS_NORMAL),
-//                                        placedFeatures.getOrThrow(FLOWERBED_WHITE),
-//                                        placedFeatures.getOrThrow(FLOWERS_WHITE)
-//                                ),
-//                                vegetalDecoration
-//                        ),
                         new RemoveFeaturesBiomeModifier(
                                 beach,
                                 HolderSet.direct(
                                         placedFeatures.getOrThrow(VegetationPlacements.PATCH_GRASS_BADLANDS),
                                         placedFeatures.getOrThrow(VegetationPlacements.FLOWER_DEFAULT)
+                                ),
+                                Set.of(vegetalDecoration)
+                        )
+                );
+
+                HolderSet<Biome> desert = biomes.getOrThrow(Tags.Biomes.IS_DESERT);
+                changeBiome(
+                        "desert",
+                        bootstrap,
+                        new ChangeColorsBiomeModifier(
+                                desert,
+                                15527891,
+                                4106959,
+                                3048361,
+                                12113081,
+                                14663027,
+                                12762457
+                        ),
+                        null,
+                        new ChangeSpawnsBiomeModifier(
+                                desert,
+                                List.of(
+                                        new SpawnerData(EntityType.HUSK, 100, 4, 4),
+                                        new SpawnerData(EntityType.ZOMBIE_VILLAGER, 5, 1, 1),
+                                        new SpawnerData(EntityType.RABBIT, 20, 2, 8)
+                                )
+                        ),
+                        new AddSpawnsBiomeModifier(
+                                desert,
+                                List.of(
+                                        new SpawnerData(EntityType.CAMEL, 20, 2, 8)
+                                )
+                        ),
+                        new RemoveSpawnsBiomeModifier(
+                                desert,
+                                HolderSet.direct(
+                                        BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(EntityType.ZOMBIE)
+                                )
+                        ),
+                        new RemoveFeaturesBiomeModifier(
+                                desert,
+                                HolderSet.direct(
+                                        placedFeatures.getOrThrow(VegetationPlacements.PATCH_SUGAR_CANE_DESERT),
+                                        placedFeatures.getOrThrow(VegetationPlacements.PATCH_PUMPKIN)
                                 ),
                                 Set.of(vegetalDecoration)
                         )
@@ -253,13 +282,23 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
         }
     }
 
-    public static void addFeatureSet(String name, BootstrapContext<BiomeModifier> bootstrap, AddFeaturesBiomeModifier addFeatures) {
+    public static void addFeatures(String name, BootstrapContext<BiomeModifier> bootstrap, HolderSet<PlacedFeature> features) {
         bootstrap.register(
                 ResourceKey.create(
                         NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_feature_set")
+                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "add_" + name + "_features")
                 ),
-                addFeatures);
+                new AddFeaturesBiomeModifier(
+                        bootstrap.lookup(Registries.BIOME).getOrThrow(
+                                TagKey.create(
+                                        Registries.BIOME,
+                                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "feature_addition/has_" + name
+                                        )
+                                )
+                        ),
+                        features,
+                        GenerationStep.Decoration.VEGETAL_DECORATION
+                ));
     }
 
     public NMLDatapackEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

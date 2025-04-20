@@ -1,6 +1,5 @@
 package com.farcr.nomansland.common.block;
 
-import com.farcr.nomansland.common.registry.NMLTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

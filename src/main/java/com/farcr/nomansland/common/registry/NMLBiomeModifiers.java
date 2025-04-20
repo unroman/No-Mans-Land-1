@@ -5,8 +5,6 @@ import com.farcr.nomansland.common.world.biomemodifiers.ChangeColorsBiomeModifie
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeMusicBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeSpawnsBiomeModifier;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;

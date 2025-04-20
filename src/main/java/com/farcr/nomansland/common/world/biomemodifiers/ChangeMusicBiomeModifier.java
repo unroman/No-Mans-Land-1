@@ -1,6 +1,5 @@
 package com.farcr.nomansland.common.world.biomemodifiers;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -10,8 +9,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeSpecialEffectsBuilder;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
-
-import java.util.Optional;
 
 public record ChangeMusicBiomeModifier(HolderSet<Biome> biomes, Music music) implements BiomeModifier {
 
