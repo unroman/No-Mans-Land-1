@@ -18,6 +18,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -68,7 +69,7 @@ public class Moose extends Animal implements NeutralMob {
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         this.addPersistentAngerSaveData(compound);
-        compound.putInt("PacificationStage", this.entityData.get(DATA_PACIFICATION_STAGE));
+        compound.putInt("PacificationStage", getPacificationStage());
     }
 
     @Override
@@ -76,7 +77,7 @@ public class Moose extends Animal implements NeutralMob {
         super.readAdditionalSaveData(compound);
         this.readPersistentAngerSaveData(this.level(), compound);
         if (compound.contains("PacificationStage")) {
-            this.entityData.set(DATA_PACIFICATION_STAGE, compound.getInt("PacificationStage"));
+            setPacificationStage(compound.getInt("PacificationStage"));
         }
     }
 
@@ -118,7 +119,11 @@ public class Moose extends Animal implements NeutralMob {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return NMLEntities.MOOSE.get().create(pLevel);
+        Moose baby = NMLEntities.MOOSE.get().create(pLevel);
+        if (baby != null && isPacified() && ((Moose) pOtherParent).isPacified()) {
+            baby.setPacificationStage(5);
+        }
+        return baby;
     }
 
     @Override
@@ -126,16 +131,17 @@ public class Moose extends Animal implements NeutralMob {
         ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
         if (!this.level().isClientSide || this.isBaby() && this.isFood(itemstack)) {
-            if (itemstack.is(Items.GOLDEN_CARROT) && this.entityData.get(DATA_PACIFICATION_STAGE) < 5)  {
-                int pacificationStage = this.entityData.get(DATA_PACIFICATION_STAGE);
+            if (itemstack.is(Items.GOLDEN_CARROT) && getPacificationStage() < 5)  {
+                int pacificationStage = getPacificationStage();
                 itemstack.consume(1, player);
                 if (pacificationStage < 4) {
-                    this.entityData.set(DATA_PACIFICATION_STAGE, pacificationStage + 1);
+                    setPacificationStage(pacificationStage + 1);
                     this.level().broadcastEntityEvent(this, (byte) 6);
                 } else if (random.nextInt(3) == 0) {
-                    this.entityData.set(DATA_PACIFICATION_STAGE, 5);
+                    setPacificationStage(5);
                     this.navigation.stop();
                     this.setTarget(null);
+                    this.setPersistentAngerTarget(null);
                     this.level().broadcastEntityEvent(this, (byte) 7);
                 } else {
                     this.level().broadcastEntityEvent(this, (byte) 6);
@@ -145,7 +151,7 @@ public class Moose extends Animal implements NeutralMob {
                 return super.mobInteract(player, hand);
             }
         } else {
-            boolean flag = itemstack.is(Items.GOLDEN_CARROT) && this.entityData.get(DATA_PACIFICATION_STAGE) < 5;
+            boolean flag = itemstack.is(Items.GOLDEN_CARROT) && getPacificationStage() < 5;
             return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
         }
     }
@@ -176,8 +182,16 @@ public class Moose extends Animal implements NeutralMob {
         }
     }
 
+    public int getPacificationStage() {
+        return this.entityData.get(DATA_PACIFICATION_STAGE);
+    }
+
+    public void setPacificationStage(int stage) {
+        this.entityData.set(DATA_PACIFICATION_STAGE, stage);
+    }
+
     public boolean isPacified() {
-        return this.entityData.get(DATA_PACIFICATION_STAGE) == 5;
+        return getPacificationStage() == 5;
     }
 
     @Override
@@ -231,5 +245,11 @@ public class Moose extends Animal implements NeutralMob {
     @Override
     public void startPersistentAngerTimer() {
         this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+    }
+
+    @Override
+    public @Nullable LivingEntity getTarget() {
+        if (isPacified()) return null;
+        return super.getTarget();
     }
 }
