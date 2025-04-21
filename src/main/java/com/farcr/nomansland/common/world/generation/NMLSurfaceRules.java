@@ -20,6 +20,9 @@ public class NMLSurfaceRules {
     private static final SurfaceRules.RuleSource SILT = makeStateRule(NMLBlocks.SILT.get());
     private static final SurfaceRules.RuleSource WATER = makeStateRule(Blocks.WATER);
     private static final SurfaceRules.RuleSource GRAVEL = makeStateRule(Blocks.GRAVEL);
+    private static final SurfaceRules.RuleSource SNOW_BLOCK = makeStateRule(Blocks.SNOW_BLOCK);
+    private static final SurfaceRules.RuleSource PACKED_ICE = makeStateRule(Blocks.PACKED_ICE);
+    private static final SurfaceRules.RuleSource ICE = makeStateRule(Blocks.ICE);
 
     public static void register() {
 
@@ -48,6 +51,15 @@ public class NMLSurfaceRules {
         SurfaceRules.RuleSource oldGrowthForest = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.OLD_GROWTH_FOREST),
                 SurfaceRules.ifTrue(surfaceNoiseAbove(1.25), COARSE_DIRT)
+        );
+
+        SurfaceRules.RuleSource frozenWoods = SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(NMLBiomes.FROZEN_WOODS),
+                SurfaceRules.sequence(
+                SurfaceRules.ifTrue(surfaceNoiseAbove(3.5), PACKED_ICE),
+                SurfaceRules.ifTrue(surfaceNoiseAbove(2.25), SNOW_BLOCK),
+                SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), MUD),
+                SurfaceRules.ifTrue(surfaceNoiseAbove(0.5), SILT))
         );
 
         SurfaceRules.RuleSource bog = SurfaceRules.ifTrue(
@@ -106,7 +118,7 @@ public class NMLSurfaceRules {
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
                                 //Surface Biomes
-                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, bog, bayou, darkSwamp, stonyShore))),
+                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, frozenWoods, bog, bayou, darkSwamp, stonyShore))),
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                     SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), SurfaceRules.sequence(
                             // Cave Biomes
