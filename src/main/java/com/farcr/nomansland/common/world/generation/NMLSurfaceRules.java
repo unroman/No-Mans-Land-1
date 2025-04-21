@@ -59,7 +59,8 @@ public class NMLSurfaceRules {
                         // TODO: MAKE THIS DEEPER THAN ONE BLOCK, AND NORMAL ICE ON THE FIRST BLOCK.
 //                SurfaceRules.ifTrue(surfaceNoiseAbove(3.5), PACKED_ICE),
                 SurfaceRules.ifTrue(surfaceNoiseAbove(2.25), SNOW_BLOCK),
-                SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), MUD)
+                SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), MUD),
+                SurfaceRules.ifTrue(surfaceNoiseAbove(1.0), SILT)
         ));
 
         SurfaceRules.RuleSource bog = SurfaceRules.ifTrue(
