@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AnchorListener implements GameEventListener {
 
@@ -94,24 +96,26 @@ public class AnchorListener implements GameEventListener {
     }
 
     public PositionSource getListenerSource() {
-        return this.positionSource;
+        return positionSource;
     }
 
     public int getListenerRadius() {
-        return NMLConfig.RESURRECTION_RADIUS.get();
+        return 16;
     }
 
     @Override
     public boolean handleGameEvent(ServerLevel level, Holder<GameEvent> gameEvent, GameEvent.Context context, Vec3 pos) {
         if (GameEvent.ENTITY_DIE.is(gameEvent) && context.sourceEntity() instanceof Monster monster) {
+            Vec3 sourcePos = positionSource.getPosition(level).orElseThrow();
+            MonsterAnchorBlockEntity monsterAnchorBlockEntity = (MonsterAnchorBlockEntity) Optional.ofNullable(level.getBlockEntity(BlockPos.containing(sourcePos))).orElseThrow();
+
+            if (pos.distanceToSqr(sourcePos) > Mth.square(monsterAnchorBlockEntity.range)) return false;
+
             if (!(monster.getType().getTags().toList().contains(NMLTags.ANCHOR_BLACKLIST))) {
                 if (!monster.wasExperienceConsumed()) {
 
                     // Add the entity to the dead entity list
-                    positionSource.getPosition(level).ifPresent((sourcePos) -> {
-                        MonsterAnchorBlockEntity monsterAnchorBlockEntity = (MonsterAnchorBlockEntity) level.getBlockEntity(BlockPos.containing(sourcePos));
-                        monsterAnchorBlockEntity.entityQueue.put(monster, monster.getPosition(0));
-                    });
+                    monsterAnchorBlockEntity.entityQueue.put(monster, monster.getPosition(0));
 
                     // Stop the mob from dropping experience and loot
                     monster.skipDropExperience();

@@ -33,7 +33,7 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
             tag(ItemTags.PLANKS).add(woodset.planks().item());
             tag(Tags.Items.BOOKSHELVES).add(woodset.bookshelf().item());
             tag(Tags.Items.FENCE_GATES_WOODEN).add(woodset.fenceGate().item());
-            tag(ItemTags.WOODEN_FENCES).add(woodset.fence().item());
+            tag(Tags.Items.FENCES_WOODEN).add(woodset.fence().item());
             tag(ItemTags.WOODEN_STAIRS).add(woodset.stairs().item());
             tag(ItemTags.WOODEN_BUTTONS).add(woodset.button().item());
             tag(ItemTags.WOODEN_DOORS).add(woodset.door().item());

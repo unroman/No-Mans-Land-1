@@ -10,6 +10,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -88,7 +89,24 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                         )
                 );
 
-                HolderSet<Biome> badlands = biomes.getOrThrow(BiomeTags.IS_BADLANDS);
+                addFeatures(
+                        "silt",
+                        bootstrap,
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(ORE_SILT)
+                        ),
+                        GenerationStep.Decoration.UNDERGROUND_ORES
+                );
+
+                removeFeatures(
+                        "dirt_ore",
+                        bootstrap,
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(OrePlacements.ORE_DIRT)
+                        )
+                );
+
+                HolderSet<Biome> badlands = biomes.getOrThrow(Tags.Biomes.IS_BADLANDS);
                 changeBiome(
                         "badlands",
                         bootstrap,
@@ -171,7 +189,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
                         )
                 );
 
-                HolderSet<Biome> beach = biomes.getOrThrow(BiomeTags.IS_BEACH);
+                HolderSet<Biome> beach = biomes.getOrThrow(Tags.Biomes.IS_BEACH);
                 changeBiome(
                         "beach",
                         bootstrap,
@@ -321,7 +339,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_change_color")
+                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/change_color")
                     ),
                     changeColors
             );
@@ -331,7 +349,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_change_music" )
+                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/change_music" )
                     ),
                     changeMusic
             );
@@ -341,7 +359,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_change_spawns" )
+                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/change_spawns" )
                     ),
                     changeSpawns
             );
@@ -351,7 +369,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_add_spawns" )
+                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/add_spawns" )
                     ),
                     addSpawns
             );
@@ -361,7 +379,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_remove_spawns" )
+                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/remove_spawns" )
                     ),
                     removeSpawns
             );
@@ -371,7 +389,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "_remove_features" )
+                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/remove_features" )
                     ),
                     removeFeatures
             );
@@ -403,6 +421,25 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
 
     public static void addFeatures(String name, BootstrapContext<BiomeModifier> bootstrap, HolderSet<PlacedFeature> features) {
         addFeatures(name, bootstrap, features, GenerationStep.Decoration.VEGETAL_DECORATION);
+    }
+
+    public static void removeFeatures(String name, BootstrapContext<BiomeModifier> bootstrap, HolderSet<PlacedFeature> features) {
+        bootstrap.register(
+                ResourceKey.create(
+                        NeoForgeRegistries.Keys.BIOME_MODIFIERS,
+                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "remove_" + name)
+                ),
+                RemoveFeaturesBiomeModifier.allSteps(
+                        bootstrap.lookup(Registries.BIOME).getOrThrow(
+                                TagKey.create(
+                                        Registries.BIOME,
+                                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "feature_removal/no_" + name
+                                        )
+                                )
+                        ),
+                        features
+                )
+        );
     }
 
     public NMLDatapackEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

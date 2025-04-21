@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class NMLPlacedFeatures {
+    public static final ResourceKey<PlacedFeature> ORE_SILT = register("ore_silt");
     public static final ResourceKey<PlacedFeature> PATCH_BARREL_CACTUS_DESERT = register("patch_barrel_cactus_desert");
     public static final ResourceKey<PlacedFeature> PATCH_BEACHGRASS = register("patch_beachgrass");
     public static final ResourceKey<PlacedFeature> PATCH_SUCCULENT_DESERT = register("patch_succulent_desert");

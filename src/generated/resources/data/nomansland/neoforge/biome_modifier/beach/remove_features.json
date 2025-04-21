@@ -1,6 +1,6 @@
 {
   "type": "neoforge:remove_features",
-  "biomes": "#minecraft:is_beach",
+  "biomes": "#c:is_beach",
   "features": [
     "minecraft:patch_grass_badlands",
     "minecraft:flower_default"

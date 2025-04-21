@@ -1,0 +1,5 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "#nomansland:feature_removal/no_dirt_ore",
+  "features": "minecraft:ore_dirt"
+}

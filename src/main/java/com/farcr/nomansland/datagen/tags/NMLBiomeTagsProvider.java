@@ -27,7 +27,7 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(BiomeTags.IS_OVERWORLD).add(
+        tag(Tags.Biomes.IS_OVERWORLD).add(
                 NMLBiomes.AUTUMNAL_FOREST,
                 NMLBiomes.BAYOU,
                 NMLBiomes.BOG,
@@ -37,17 +37,17 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
                 NMLBiomes.MAPLE_GROVE
         );
 
-        tag(BiomeTags.IS_OVERWORLD).addTags(NMLTags.OLD_GROWTH_FOREST, NMLTags.CAVES);
+        tag(Tags.Biomes.IS_OVERWORLD).addTags(NMLTags.OLD_GROWTH_FOREST, NMLTags.CAVES);
         addToTags(NMLTags.CAVES, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_CAVE);
 
-        addToTags(NMLBiomes.AUTUMNAL_FOREST, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_TEMPERATE);
-        addToTags(NMLBiomes.BAYOU, BiomeTags.HAS_SWAMP_HUT, BiomeTags.IS_JUNGLE, Tags.Biomes.IS_SWAMP, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_LUSH, Tags.Biomes.IS_HOT, Tags.Biomes.IS_JUNGLE_TREE, Tags.Biomes.IS_WET);
+        addToTags(NMLBiomes.AUTUMNAL_FOREST, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_TEMPERATE);
+        addToTags(NMLBiomes.BAYOU, BiomeTags.HAS_SWAMP_HUT, Tags.Biomes.IS_JUNGLE, Tags.Biomes.IS_SWAMP, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_LUSH, Tags.Biomes.IS_HOT, Tags.Biomes.IS_JUNGLE_TREE, Tags.Biomes.IS_WET);
         addToTags(NMLBiomes.BOG, BiomeTags.HAS_SWAMP_HUT, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_CONIFEROUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_WET, Tags.Biomes.IS_WET_OVERWORLD);
-        addToTags(NMLBiomes.DARK_SWAMP, BiomeTags.HAS_SWAMP_HUT, BiomeTags.IS_FOREST, Tags.Biomes.IS_SWAMP, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_SPOOKY, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_WET, BiomeTags.HAS_WOODLAND_MANSION);
-        addToTags(NMLBiomes.DARK_TAIGA, BiomeTags.IS_TAIGA, Tags.Biomes.IS_CONIFEROUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SPOOKY);
-        addToTags(NMLBiomes.MAPLE_FOREST, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD);
-        addToTags(NMLBiomes.MAPLE_GROVE, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SNOWY, Tags.Biomes.IS_PLATEAU);
-        addToTags(NMLTags.OLD_GROWTH_FOREST, BiomeTags.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_OLD_GROWTH, Tags.Biomes.IS_RARE);
+        addToTags(NMLBiomes.DARK_SWAMP, BiomeTags.HAS_SWAMP_HUT, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_SWAMP, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_SPOOKY, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_WET, BiomeTags.HAS_WOODLAND_MANSION);
+        addToTags(NMLBiomes.DARK_TAIGA, Tags.Biomes.IS_TAIGA, Tags.Biomes.IS_CONIFEROUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SPOOKY);
+        addToTags(NMLBiomes.MAPLE_FOREST, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD);
+        addToTags(NMLBiomes.MAPLE_GROVE, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SNOWY, Tags.Biomes.IS_PLATEAU);
+        addToTags(NMLTags.OLD_GROWTH_FOREST, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_OLD_GROWTH, Tags.Biomes.IS_RARE);
 
     }
 

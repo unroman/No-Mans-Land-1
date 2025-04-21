@@ -1,6 +1,6 @@
 {
   "type": "nomansland:change_colors",
-  "biomes": "#minecraft:is_badlands",
+  "biomes": "#c:is_badlands",
   "fog_color": 15322281,
   "sky_color": 11128544,
   "water_color": 4106959,

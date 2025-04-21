@@ -1,8 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "#c:is_river",
-  "features": [
-    "nomansland:patch_silt"
-  ],
-  "step": "local_modifications"
-}

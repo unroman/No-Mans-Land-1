@@ -1,5 +1,5 @@
 {
   "type": "neoforge:remove_spawns",
-  "biomes": "#minecraft:is_badlands",
+  "biomes": "#c:is_badlands",
   "entity_types": "minecraft:zombie"
 }

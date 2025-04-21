@@ -7,8 +7,10 @@ import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.NMLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -29,6 +31,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.farcr.nomansland.common.blockentity.anchor.AnchorListener.surroundBoundingBox;
 
@@ -38,6 +41,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
     private final AnchorListener anchorListener;
     public int timeResurrecting;
     public int timeIdle;
+    public int range;
 
     public MonsterAnchorBlockEntity(BlockPos pos, BlockState state) {
         super(NMLBlockEntities.MONSTER_ANCHOR.get(), pos, state);
@@ -45,10 +49,10 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
         this.entityQueue = new LinkedHashMap<>();
         this.timeResurrecting = 0;
         this.timeIdle = 0;
+        this.range = 7;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, MonsterAnchorBlockEntity monsterAnchor) {
-
         ServerLevel serverLevel = (ServerLevel) level;
         LinkedHashMap<LivingEntity, Vec3> entityQueue = monsterAnchor.entityQueue;
         List<LivingEntity> deadEntities = new ArrayList<>(entityQueue.keySet());
@@ -159,6 +163,24 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                 }
             }
         }
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        tag.putInt("TimeIdle", timeIdle);
+        tag.putInt("TimeResurrecting", timeResurrecting);
+        tag.putInt("Range", range);
+
+        super.saveAdditional(tag, registries);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        timeIdle = tag.getInt("TimeIdle");
+        timeResurrecting = tag.getInt("TimeResurrecting");
+        range = Math.min(tag.getInt("Range"), 16);
+
+        super.loadAdditional(tag, registries);
     }
 
     public AnchorListener getListener() {
