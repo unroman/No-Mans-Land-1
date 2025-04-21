@@ -1,11 +1,6 @@
 {
   "values": [
-    "#c:is_windswept",
-    "minecraft:meadow",
-    "minecraft:stony_peaks",
-    "#c:is_mountain",
-    "#c:is_snowy",
-    "minecraft:grove",
-    "minecraft:taiga"
+    "#c:is_cold",
+    "#c:is_mountain/peak"
   ]
 }

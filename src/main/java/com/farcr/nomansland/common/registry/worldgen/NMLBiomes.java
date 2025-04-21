@@ -19,6 +19,8 @@ public class NMLBiomes {
     public static final ResourceKey<Biome> MAPLE_FOREST = createKey("maple_forest");
     public static final ResourceKey<Biome> MAPLE_GROVE = createKey("maple_grove");
 
+    public static final ResourceKey<Biome> FROZEN_WOODS = createKey("frozen_woods");
+
     public static final ResourceKey<Biome> OLD_GROWTH_FOREST = createKey("old_growth_forest");
     public static final ResourceKey<Biome> OLD_GROWTH_FOREST_CLEARING = createKey("old_growth_forest_clearing");
     public static final ResourceKey<Biome> OLD_GROWTH_FOREST_EDGE = createKey("old_growth_forest_edge");

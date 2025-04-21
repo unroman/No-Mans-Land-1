@@ -1,9 +1,5 @@
 {
   "values": [
-    "minecraft:desert",
-    "#c:is_jungle",
-    "#c:is_savanna",
-    "#c:is_badlands",
-    "minecraft:mangrove_swamp"
+    "#c:is_warm"
   ]
 }

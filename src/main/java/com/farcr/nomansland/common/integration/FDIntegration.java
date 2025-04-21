@@ -6,6 +6,7 @@ import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLFoods;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -48,6 +49,14 @@ public class FDIntegration {
 
     public static final FoodProperties SEARED_VENISON_FOOD = new FoodProperties.Builder().nutrition(12).saturationModifier(0.9F).usingConvertsTo(Items.BOWL)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0, true, false), 1.0F).build();
+
+    public static final FoodProperties WITCH_STEW_FOOD = new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0), 0.1F)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 360, 0), 1).build();
+
+
+    public static final FoodProperties PASTA_WITH_PESTO_FOOD = new FoodProperties.Builder().nutrition(14).saturationModifier(0.75F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 6000, 0), 1).build();
 
     public static final ItemDefinition<ConsumableItem> SEARED_VENISON = NMLItems.register("seared_venison",
             () -> new ConsumableItem(new Item.Properties().food(SEARED_VENISON_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
