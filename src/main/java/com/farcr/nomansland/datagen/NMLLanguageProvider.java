@@ -8,6 +8,8 @@ import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -27,7 +29,7 @@ public class NMLLanguageProvider extends LanguageProvider {
 
         for (ItemDefinition<?> definition : NMLItems.ITEM_DEFINITIONS) {
 
-            if (!definition.hasCustomLang()) {
+            if (!definition.hasCustomLang() && !definition.isBlockItem()) {
                 add(definition.langKey(), definition.langName());
             }
         }

@@ -45,7 +45,7 @@ public class NMLBiomes {
     }
 
     public static String langKey(ResourceKey<Biome> biome) {
-        return NoMansLand.MODID + ".biome." + biome.location().getPath();
+        return "biome." + biome.location().toString().replaceAll(":", ".");
     }
 
     public static String langName(ResourceKey<Biome> biome) {

@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.definitions;
 
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -24,6 +25,10 @@ public class ItemDefinition<T extends Item> extends ItemLikeDefinition<Item, T> 
 
     public boolean is(Item item) {
         return get().equals(item);
+    }
+
+    public boolean isBlockItem() {
+        return get() instanceof BlockItem;
     }
 
     @Override
