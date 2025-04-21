@@ -91,6 +91,12 @@ public class NMLBiomePlacements {
             );
         }
 
+        BiomePlacement.replaceOverworld(
+                Biomes.SNOWY_PLAINS,
+                NMLBiomes.FROZEN_WOODS,
+                0.3
+        );
+
         if (NMLConfig.OLD_GROWTH_BIOMES.get()) {
             BiomePlacement.replaceOverworld(
                     Biomes.DARK_FOREST,
