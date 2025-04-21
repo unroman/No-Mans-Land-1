@@ -5,15 +5,15 @@
     "features": [
       {
         "chance": 0.25,
-        "feature": "nomansland:frosted_pine_checked"
+        "feature": "nomansland:large_frosted_pine_checked"
       },
       {
         "chance": 0.25,
-        "feature": "nomansland:frosted_spruce_checked"
+        "feature": "nomansland:frosted_spruce_fancy_checked"
       },
       {
         "chance": 0.25,
-        "feature": "nomansland:frosted_spruce_alt_checked"
+        "feature": "nomansland:large_frosted_spruce_fancy_checked"
       }
     ]
   }

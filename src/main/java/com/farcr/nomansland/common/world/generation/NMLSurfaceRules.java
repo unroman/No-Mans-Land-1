@@ -56,11 +56,11 @@ public class NMLSurfaceRules {
         SurfaceRules.RuleSource frozenWoods = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.FROZEN_WOODS),
                 SurfaceRules.sequence(
-                SurfaceRules.ifTrue(surfaceNoiseAbove(3.5), PACKED_ICE),
+                        // TODO: MAKE THIS DEEPER THAN ONE BLOCK, AND NORMAL ICE ON THE FIRST BLOCK.
+//                SurfaceRules.ifTrue(surfaceNoiseAbove(3.5), PACKED_ICE),
                 SurfaceRules.ifTrue(surfaceNoiseAbove(2.25), SNOW_BLOCK),
-                SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), MUD),
-                SurfaceRules.ifTrue(surfaceNoiseAbove(0.5), SILT))
-        );
+                SurfaceRules.ifTrue(surfaceNoiseAbove(1.5), MUD)
+        ));
 
         SurfaceRules.RuleSource bog = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.BOG),

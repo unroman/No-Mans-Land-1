@@ -34,7 +34,8 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
                 NMLBiomes.DARK_SWAMP,
                 NMLBiomes.DARK_TAIGA,
                 NMLBiomes.MAPLE_FOREST,
-                NMLBiomes.MAPLE_GROVE
+                NMLBiomes.MAPLE_GROVE,
+                NMLBiomes.FROZEN_WOODS
         );
 
         tag(Tags.Biomes.IS_OVERWORLD).addTags(NMLTags.OLD_GROWTH_FOREST, NMLTags.CAVES);
@@ -48,7 +49,7 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
         addToTags(NMLBiomes.MAPLE_FOREST, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD);
         addToTags(NMLBiomes.MAPLE_GROVE, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SNOWY, Tags.Biomes.IS_PLATEAU);
         addToTags(NMLTags.OLD_GROWTH_FOREST, Tags.Biomes.IS_FOREST, Tags.Biomes.IS_DECIDUOUS_TREE, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_OLD_GROWTH, Tags.Biomes.IS_RARE);
-
+        addToTags(NMLBiomes.FROZEN_WOODS, Tags.Biomes.IS_RARE, Tags.Biomes.IS_CONIFEROUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SNOWY, Tags.Biomes.IS_TAIGA, Tags.Biomes.IS_DEAD);
     }
 
     @SafeVarargs
