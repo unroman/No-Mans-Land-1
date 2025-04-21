@@ -103,7 +103,7 @@ public class Moose extends Animal implements NeutralMob {
         this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
 
         this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this,  Player.class, 10, true, false, this::isAngryAt));
-        this.goalSelector.addGoal(3, new MooseChargeAttackGoal(this, 1.5, 2.0, 8));
+        this.goalSelector.addGoal(3, new MooseChargeAttackGoal(this, 1.0, 1.5, 16, 4));
 
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.15D));
         this.goalSelector.addGoal(5, new TemptGoal(this, 1.2D, Ingredient.of(NMLTags.MOOSE_FOOD), false));
@@ -260,15 +260,23 @@ public class Moose extends Animal implements NeutralMob {
         private final double speedModifierFlee;
         private final double speedModifierCharge;
         private final int fleeDistance;
+        private final int extraChargeDistance;
         private Path path;
+        private Vec3 pathNormalized;
         private long lastCanUseCheck;
-        private boolean charging = false;
+        private ChargeState chargeState;
+        private enum ChargeState {
+            FLEE,
+            CHARGE,
+            POSTCHARGE
+        }
 
-        public MooseChargeAttackGoal(PathfinderMob mob, double speedModifierFlee, double speedModifierCharge, int fleeDistance) {
+        public MooseChargeAttackGoal(PathfinderMob mob, double speedModifierFlee, double speedModifierCharge, int fleeDistance, int extraChargeDistance) {
             this.mob = mob;
             this.speedModifierFlee = speedModifierFlee;
             this.speedModifierCharge = speedModifierCharge;
             this.fleeDistance = fleeDistance;
+            this.extraChargeDistance = extraChargeDistance;
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }
 
@@ -277,7 +285,6 @@ public class Moose extends Animal implements NeutralMob {
             if (i - this.lastCanUseCheck < 20L) {
                 return false;
             } else {
-                System.out.println("charge test");
                 this.lastCanUseCheck = i;
                 LivingEntity livingentity = this.mob.getTarget();
                 if (livingentity == null) {
@@ -302,10 +309,12 @@ public class Moose extends Animal implements NeutralMob {
             } else if (!livingentity.isAlive()) {
                 return false;
             } else {
-                if (this.mob.getPosition(0.0f).subtract(livingentity.getPosition(0.0f)).horizontalDistance() > ((float)fleeDistance) * 0.75f && !this.charging) {
-                    this.charging = true;
+                if (this.mob.getPosition(0.0f).subtract(livingentity.getPosition(0.0f)).horizontalDistance() > ((float)fleeDistance) * 0.75f && chargeState == ChargeState.FLEE) {
+                    this.chargeState = ChargeState.CHARGE;
                     this.mob.getLookControl().setLookAt(livingentity, 360.0F, 360.0F);
-                    this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                    Vec3 pathNormalized = livingentity.getPosition(0.0f).subtract(this.mob.getPosition(0.0f)).normalize();
+                    Vec3 newLocation = livingentity.getPosition(0.0f).add(pathNormalized.scale(extraChargeDistance));
+                    this.path = this.mob.getNavigation().createPath(newLocation.x, newLocation.y, newLocation.z, 0);
                     this.mob.getNavigation().moveTo(this.path, this.speedModifierCharge);
                 }
                 return true;
@@ -315,12 +324,11 @@ public class Moose extends Animal implements NeutralMob {
         public void start() {
             this.mob.getNavigation().moveTo(this.path, this.speedModifierFlee);
             this.mob.setAggressive(true);
-            this.charging = false;
+            this.chargeState = ChargeState.FLEE;
         }
 
         public void stop() {
             LivingEntity livingentity = this.mob.getTarget();
-            System.out.println("stop");
             if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
                 this.mob.setTarget((LivingEntity)null);
             }
@@ -335,12 +343,21 @@ public class Moose extends Animal implements NeutralMob {
 
         public void tick() {
             LivingEntity livingentity = this.mob.getTarget();
-            System.out.println(charging);
-            if (livingentity != null && this.charging) {
-                this.mob.getLookControl().setLookAt(livingentity, 360.0F, 360.0F);
-                this.checkAndPerformAttack(livingentity);
-                if (this.mob.getNavigation().isDone()) {
-                    charging = false;
+            if (livingentity != null) {
+                if (this.chargeState == ChargeState.CHARGE) {
+                    this.mob.getLookControl().setLookAt(livingentity, 360.0F, 360.0F);
+                    this.checkAndPerformAttack(livingentity);
+                    if (this.mob.getNavigation().isDone()) {
+                        this.chargeState = ChargeState.FLEE;
+                    }
+                } else if (this.chargeState == ChargeState.FLEE) {
+                    if (this.mob.getNavigation().isDone() && this.mob.getPosition(0.0f).subtract(livingentity.getPosition(0.0f)).horizontalDistance() <= ((float)fleeDistance) * 0.75f) {
+                        Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, this.fleeDistance, 7, livingentity.getPosition(0.0f));
+                        if (vec3 == null)
+                            return;
+                        this.path = this.mob.getNavigation().createPath(vec3.x, vec3.y, vec3.z, 0);
+                        this.mob.getNavigation().moveTo(this.path, this.speedModifierFlee);
+                    }
                 }
             }
         }
@@ -349,13 +366,9 @@ public class Moose extends Animal implements NeutralMob {
             if (this.canPerformAttack(target)) {
                 this.mob.swing(InteractionHand.MAIN_HAND);
                 this.mob.doHurtTarget(target);
-                this.charging = false;
+                this.chargeState = ChargeState.FLEE;
                 int i = 0;
-                Vec3 vec3;
-                do {
-                    i++;
-                    vec3 = DefaultRandomPos.getPosAway(this.mob, this.fleeDistance, 7, target.getPosition(0.0f));
-                } while ((vec3 == null || vec3.subtract(this.mob.position()).horizontalDistance() < ((float)this.fleeDistance) * 0.75) && i < 10);
+                Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, this.fleeDistance, 7, target.getPosition(0.0f));
                 if (vec3 == null)
                     return;
                 this.path = this.mob.getNavigation().createPath(vec3.x, vec3.y, vec3.z, 0);
