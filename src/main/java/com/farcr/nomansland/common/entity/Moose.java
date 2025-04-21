@@ -16,16 +16,14 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -33,8 +31,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.Node;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
+import java.util.EnumSet;
 import java.util.UUID;
 
 public class Moose extends Animal implements NeutralMob {
@@ -101,7 +103,7 @@ public class Moose extends Animal implements NeutralMob {
         this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
 
         this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this,  Player.class, 10, true, false, this::isAngryAt));
-        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, true));
+        this.goalSelector.addGoal(3, new MooseChargeAttackGoal(this, 1.5, 2.0, 8));
 
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.15D));
         this.goalSelector.addGoal(5, new TemptGoal(this, 1.2D, Ingredient.of(NMLTags.MOOSE_FOOD), false));
@@ -251,5 +253,118 @@ public class Moose extends Animal implements NeutralMob {
     public @Nullable LivingEntity getTarget() {
         if (isPacified()) return null;
         return super.getTarget();
+    }
+
+    public class MooseChargeAttackGoal extends Goal {
+        protected final PathfinderMob mob;
+        private final double speedModifierFlee;
+        private final double speedModifierCharge;
+        private final int fleeDistance;
+        private Path path;
+        private long lastCanUseCheck;
+        private boolean charging = false;
+
+        public MooseChargeAttackGoal(PathfinderMob mob, double speedModifierFlee, double speedModifierCharge, int fleeDistance) {
+            this.mob = mob;
+            this.speedModifierFlee = speedModifierFlee;
+            this.speedModifierCharge = speedModifierCharge;
+            this.fleeDistance = fleeDistance;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        public boolean canUse() {
+            long i = this.mob.level().getGameTime();
+            if (i - this.lastCanUseCheck < 20L) {
+                return false;
+            } else {
+                System.out.println("charge test");
+                this.lastCanUseCheck = i;
+                LivingEntity livingentity = this.mob.getTarget();
+                if (livingentity == null) {
+                    return false;
+                } else if (!livingentity.isAlive()) {
+                    return false;
+                } else {
+                    Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, fleeDistance, 7, livingentity.getPosition(0.0f));
+                    if (vec3 == null) {
+                        return false;
+                    }
+                    this.path = this.mob.getNavigation().createPath(vec3.x, vec3.y, vec3.z, 0);
+                    return this.path != null || this.mob.isWithinMeleeAttackRange(livingentity);
+                }
+            }
+        }
+
+        public boolean canContinueToUse() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (livingentity == null) {
+                return false;
+            } else if (!livingentity.isAlive()) {
+                return false;
+            } else {
+                if (this.mob.getPosition(0.0f).subtract(livingentity.getPosition(0.0f)).horizontalDistance() > ((float)fleeDistance) * 0.75f && !this.charging) {
+                    this.charging = true;
+                    this.mob.getLookControl().setLookAt(livingentity, 360.0F, 360.0F);
+                    this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                    this.mob.getNavigation().moveTo(this.path, this.speedModifierCharge);
+                }
+                return true;
+            }
+        }
+
+        public void start() {
+            this.mob.getNavigation().moveTo(this.path, this.speedModifierFlee);
+            this.mob.setAggressive(true);
+            this.charging = false;
+        }
+
+        public void stop() {
+            LivingEntity livingentity = this.mob.getTarget();
+            System.out.println("stop");
+            if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+                this.mob.setTarget((LivingEntity)null);
+            }
+
+            this.mob.setAggressive(false);
+            this.mob.getNavigation().stop();
+        }
+
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        public void tick() {
+            LivingEntity livingentity = this.mob.getTarget();
+            System.out.println(charging);
+            if (livingentity != null && this.charging) {
+                this.mob.getLookControl().setLookAt(livingentity, 360.0F, 360.0F);
+                this.checkAndPerformAttack(livingentity);
+                if (this.mob.getNavigation().isDone()) {
+                    charging = false;
+                }
+            }
+        }
+
+        protected void checkAndPerformAttack(LivingEntity target) {
+            if (this.canPerformAttack(target)) {
+                this.mob.swing(InteractionHand.MAIN_HAND);
+                this.mob.doHurtTarget(target);
+                this.charging = false;
+                int i = 0;
+                Vec3 vec3;
+                do {
+                    i++;
+                    vec3 = DefaultRandomPos.getPosAway(this.mob, this.fleeDistance, 7, target.getPosition(0.0f));
+                } while ((vec3 == null || vec3.subtract(this.mob.position()).horizontalDistance() < ((float)this.fleeDistance) * 0.75) && i < 10);
+                if (vec3 == null)
+                    return;
+                this.path = this.mob.getNavigation().createPath(vec3.x, vec3.y, vec3.z, 0);
+                this.mob.getNavigation().moveTo(this.path, this.speedModifierFlee);
+            }
+        }
+
+        protected boolean canPerformAttack(LivingEntity entity) {
+            return this.mob.isWithinMeleeAttackRange(entity) && this.mob.getSensing().hasLineOfSight(entity);
+        }
     }
 }
