@@ -1,6 +1,5 @@
 package com.farcr.nomansland.common.blockentity.anchor;
 
-import com.farcr.nomansland.NMLConfig;
 import com.farcr.nomansland.common.mixinduck.LivingEntityDuck;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
@@ -105,32 +104,35 @@ public class AnchorListener implements GameEventListener {
 
     @Override
     public boolean handleGameEvent(ServerLevel level, Holder<GameEvent> gameEvent, GameEvent.Context context, Vec3 pos) {
-        if (GameEvent.ENTITY_DIE.is(gameEvent) && context.sourceEntity() instanceof Monster monster) {
+        if (context.sourceEntity() instanceof Monster monster && GameEvent.ENTITY_DIE.is(gameEvent)) {
             Vec3 sourcePos = positionSource.getPosition(level).orElseThrow();
             MonsterAnchorBlockEntity monsterAnchorBlockEntity = (MonsterAnchorBlockEntity) Optional.ofNullable(level.getBlockEntity(BlockPos.containing(sourcePos))).orElseThrow();
 
             if (pos.distanceToSqr(sourcePos) > Mth.square(monsterAnchorBlockEntity.range)) return false;
 
-            if (!(monster.getType().getTags().toList().contains(NMLTags.ANCHOR_BLACKLIST))) {
-                if (!monster.wasExperienceConsumed()) {
+            if (GameEvent.ENTITY_DIE.is(gameEvent)) {
+                if (!(monster.getType().getTags().toList().contains(NMLTags.ANCHOR_BLACKLIST))) {
+                    if (!monster.wasExperienceConsumed()) {
 
-                    // Add the entity to the dead entity list
-                    monsterAnchorBlockEntity.entityQueue.put(monster, monster.getPosition(0));
+                        // Add the entity to the dead entity list
+                        monsterAnchorBlockEntity.entityQueue.put(monster, monster.getPosition(0));
 
-                    // Stop the mob from dropping experience and loot
-                    monster.skipDropExperience();
-                    ((LivingEntityDuck) monster).nml$skipDroppingDeathLoot();
+                        // Stop the mob from dropping experience and loot
+                        monster.skipDropExperience();
+                        ((LivingEntityDuck) monster).nml$skipDroppingDeathLoot();
 
-                    // Surround the bounding box of the monster with embers
-                    AABB boundingBox = monster.getBoundingBox();
-                    surroundBoundingBox(boundingBox, 0.2).forEach(point ->
-                            level.sendParticles(NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, point.y, point.z, 1, 0, 0, 0, 0));
+                        // Surround the bounding box of the monster with embers
+                        AABB boundingBox = monster.getBoundingBox();
+                        surroundBoundingBox(boundingBox, 0.2).forEach(point ->
+                                level.sendParticles(NMLParticleTypes.MALEVOLENT_EMBERS.get(), point.x, point.y, point.z, 1, 0, 0, 0, 0));
 
-                    tryAwardAdvancement(level, monster);
+                        tryAwardAdvancement(level, monster);
+                    }
                 }
+                return true;
             }
-            return true;
         }
+
         return false;
     }
 

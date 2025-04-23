@@ -3,9 +3,7 @@ package com.farcr.nomansland.common.registry.items;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Items;
-import vectorwing.farmersdelight.common.FoodValues;
 
 public class NMLFoods {
     public static final FoodProperties MASHED_POTATOES_WITH_MUSHROOMS = new FoodProperties.Builder().nutrition(10).saturationModifier(0.9F).usingConvertsTo(Items.BOWL).build();

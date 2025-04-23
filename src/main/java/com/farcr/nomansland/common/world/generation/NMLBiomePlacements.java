@@ -91,11 +91,31 @@ public class NMLBiomePlacements {
             );
         }
 
-        BiomePlacement.replaceOverworld(
-                Biomes.SNOWY_PLAINS,
-                NMLBiomes.FROZEN_WOODS,
-                0.3
-        );
+        if (NMLConfig.FROZEN_WOODS.get()) {
+            BiomePlacement.replaceOverworld(
+                    Biomes.SNOWY_PLAINS,
+                    NMLBiomes.FROZEN_WOODS,
+                    0.2
+            );
+
+            BiomePlacement.replaceOverworld(
+                    Biomes.SNOWY_TAIGA,
+                    NMLBiomes.FROZEN_WOODS,
+                    0.2
+            );
+
+            BiomePlacement.addSubOverworld(
+                    Biomes.SNOWY_TAIGA,
+                    NMLBiomes.FROZEN_WOODS,
+                    alternate(NMLBiomes.FROZEN_WOODS, Biomes.SNOWY_PLAINS)
+            );
+
+            BiomePlacement.addSubOverworld(
+                    Biomes.SNOWY_PLAINS,
+                    NMLBiomes.FROZEN_WOODS,
+                    alternate(NMLBiomes.FROZEN_WOODS, Biomes.SNOWY_TAIGA)
+            );
+        }
 
         if (NMLConfig.OLD_GROWTH_BIOMES.get()) {
             BiomePlacement.replaceOverworld(

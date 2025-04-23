@@ -11,9 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
-// The generic parameter is our recipe class.
-// Note: This assumes that simple CauldronInteractionRecipe#getInputState, #getInputItem and #getResult getters
-// are available, which were omitted from the code above.
 public class CauldronInteractionRecipeSerializer implements RecipeSerializer<CauldronInteractionRecipe> {
     public static final MapCodec<CauldronInteractionRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cauldron").forGetter(CauldronInteractionRecipe::inputCauldron),

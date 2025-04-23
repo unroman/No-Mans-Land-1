@@ -19,6 +19,7 @@ public class NMLConfig {
     public static ModConfigSpec.BooleanValue AUTUMNAL_FOREST;
     public static ModConfigSpec.BooleanValue DARK_TAIGA;
     public static ModConfigSpec.BooleanValue DARK_SWAMP;
+    public static ModConfigSpec.BooleanValue FROZEN_WOODS;
     public static ModConfigSpec.BooleanValue BAYOU;
     public static ModConfigSpec.BooleanValue BOG;
     public static final String CATEGORY_TAP = "tap";
@@ -91,6 +92,9 @@ public class NMLConfig {
         DARK_SWAMP = COMMON_BUILDER
                 .comment("If the dark swamp is enabled")
                 .define("darkSwamp", true);
+        FROZEN_WOODS = COMMON_BUILDER
+                .comment("If the frozen woods is enabled")
+                .define("frozenWoods", true);
         BAYOU = COMMON_BUILDER
                 .comment("If the bayou is enabled")
                 .define("bayou", true);

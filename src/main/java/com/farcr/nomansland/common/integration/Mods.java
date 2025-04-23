@@ -10,7 +10,8 @@ import net.neoforged.fml.ModList;
 public enum Mods {
     FARMERSDELIGHT,
     BLOCKBOX,
-    CREATE;
+    CREATE,
+    BOATLOAD;
 
     private final String id;
 

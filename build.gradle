@@ -113,6 +113,9 @@ dependencies {
     implementation "maven.modrinth:brewin-and-chewin:4.2.0+1.21.1-neoforge"
     implementation "maven.modrinth:the-block-box:0.1.1"
     implementation "maven.modrinth:create:1.21.1-6.0.4"
+    implementation "maven.modrinth:blueprint:8.0.3"
+    implementation "maven.modrinth:boatload:6.0.0"
+
     compileOnly "maven.modrinth:jade:15.10.0+neoforge"
     compileOnly "maven.modrinth:serene-seasons:SPj5bJoM"
     compileOnly "maven.modrinth:glitchcore:8wmCpbQ2"
@@ -146,6 +149,7 @@ tasks.withType(ProcessResources).configureEach {
             bt_version_range        : bt_version_range,
             ml_version_range        : ml_version_range,
     ]
+
     inputs.properties replaceProperties
 
     filesMatching(['META-INF/neoforge.mods.toml']) {

@@ -1,6 +1,6 @@
 {
 	"credit": "Made by Farcr",
-	"render_type": "minecraft:translucent",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "nomansland:block/plants/duckweed",
 		"particle": "nomansland:block/plants/duckweed"

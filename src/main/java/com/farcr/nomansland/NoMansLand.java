@@ -1,10 +1,7 @@
 package com.farcr.nomansland;
 
 import com.farcr.nomansland.common.event.CreativeModeTabHandler;
-import com.farcr.nomansland.common.integration.BBIntegration;
-import com.farcr.nomansland.common.integration.CIntegration;
-import com.farcr.nomansland.common.integration.FDIntegration;
-import com.farcr.nomansland.common.integration.Mods;
+import com.farcr.nomansland.common.integration.*;
 import com.farcr.nomansland.common.registry.*;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
@@ -59,6 +56,7 @@ public class NoMansLand {
 
         if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();
         if (Mods.CREATE.isLoaded()) CIntegration.register();
+        if (Mods.BOATLOAD.isLoaded()) BoatloadIntegration.register();
 
         modEventBus.register(new CreativeModeTabHandler());
         modEventBus.addListener(NMLBlockEntities::addBlockEntities);

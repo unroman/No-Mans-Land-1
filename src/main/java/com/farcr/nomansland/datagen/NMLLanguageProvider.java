@@ -8,8 +8,6 @@ import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -45,6 +43,10 @@ public class NMLLanguageProvider extends LanguageProvider {
         add("item.nomansland.pine_chest_boat", "Pine Boat with Chest");
         add("item.nomansland.walnut_chest_boat", "Walnut Boat with Chest");
         add("item.nomansland.willow_chest_boat", "Willow Boat with Chest");
+        add("item.nomansland.maple_furnace_boat", "Maple Boat with Furnace");
+        add("item.nomansland.pine_furnace_boat", "Pine Boat with Furnace");
+        add("item.nomansland.walnut_furnace_boat", "Walnut Boat with Furnace");
+        add("item.nomansland.willow_furnace_boat", "Willow Boat with Furnace");
         add("item.nomansland.mashed_potatoes_with_mushrooms", "Mashed Potatoes with Mushrooms");
         add("itemGroup.nomansland", "No Man's Land");
         add("entity.nomansland.buried", "Buried");

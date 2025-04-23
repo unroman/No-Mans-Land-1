@@ -4,7 +4,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
 
-// Our inputs are a BlockState and an ItemStack.
 public record CauldronInteractionInput(BlockState cauldron, ItemStack stack) implements RecipeInput {
     @Override
     public ItemStack getItem(int slot) {

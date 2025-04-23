@@ -31,7 +31,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static com.farcr.nomansland.common.blockentity.anchor.AnchorListener.surroundBoundingBox;
 
