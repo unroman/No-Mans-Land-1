@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nomansland:block/icicles_0"
+      },
+      {
+        "model": "nomansland:block/icicles_1"
+      },
+      {
+        "model": "nomansland:block/icicles_2"
+      }
+    ]
+  }
+}

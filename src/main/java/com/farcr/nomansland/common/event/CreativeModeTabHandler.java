@@ -206,6 +206,7 @@ public class CreativeModeTabHandler {
             insertAfter(Items.LILY_OF_THE_VALLEY, WILD_MINT);
             insertAfter(Items.LILY_OF_THE_VALLEY, AUTUMN_CROCUS);
             insertAfter(Items.LILY_OF_THE_VALLEY, THISTLE);
+            insertAfter(Items.LILY_OF_THE_VALLEY, STARFLOWER);
             insertAfter(Items.SPORE_BLOSSOM, RAFFLESIA);
             insertAfter(Items.DEAD_BUSH, BARREL_CACTUS);
             insertAfter(Items.DEAD_BUSH, SUCCULENT);
@@ -299,6 +300,7 @@ public class CreativeModeTabHandler {
             insertAfter(Items.REDSTONE_TORCH, NMLItems.SCONCE_TORCH);
             insertAfter(Items.CAULDRON, TAP);
             insertBefore(Items.SCAFFOLDING, NMLItems.WOODEN_SCAFFOLDING);
+            insertAfter(Items.CONDUIT, WARDING_EFFIGY);
         }
 
         if (tab == CreativeModeTabs.FOOD_AND_DRINKS) {
@@ -336,7 +338,7 @@ public class CreativeModeTabHandler {
             insertAfter(Items.DARK_OAK_CHEST_BOAT, WALNUT_CHEST_BOAT);
             insertAfter(Items.DARK_OAK_CHEST_BOAT, WALNUT_BOAT);
             insertAfter(Items.SALMON_BUCKET, BILLHOOK_BASS_BUCKET);
-            insertAfter(Items.SALMON_BUCKET, WARDING_EFFIGY);
+            insertAfter(Items.ELYTRA, WARDING_EFFIGY);
 //            insertAfter(Items.TROPICAL_FISH_BUCKET, CAVE_CARP_BUCKET);
             if (!event.getFlags().contains(FeatureFlags.BUNDLE)) event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), Items.BUNDLE.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }

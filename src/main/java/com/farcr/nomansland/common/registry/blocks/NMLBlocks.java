@@ -154,6 +154,11 @@ public class NMLBlocks {
     public static final BlockDefinition<FlowerPotBlock> POTTED_ACONITE = registerNoItem("potted_aconite",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.ACONITE,
                     ofFullCopy(Blocks.POTTED_POPPY).noOcclusion()), BlockProperties.flowerPot(ACONITE));
+    public static final BlockDefinition<FlowerBlock> STARFLOWER = register("starflower",
+            () -> new FlowerBlock(MobEffects.MOVEMENT_SLOWDOWN, 40, ofFullCopy(Blocks.POPPY)), BlockProperties.smallFlower());
+    public static final BlockDefinition<FlowerPotBlock> POTTED_STARFLOWER = registerNoItem("potted_starflower",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.STARFLOWER,
+                    ofFullCopy(Blocks.POTTED_POPPY).noOcclusion()), BlockProperties.flowerPot(STARFLOWER));
     public static final BlockDefinition<FlowerBlock> THISTLE = register("thistle",
             () -> new FlowerBlock(MobEffects.SATURATION, 3, ofFullCopy(Blocks.POPPY)), BlockProperties.smallFlower());
     public static final BlockDefinition<FlowerPotBlock> POTTED_THISTLE = registerNoItem("potted_thistle",

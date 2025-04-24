@@ -140,8 +140,6 @@ public class NMLItems {
             () -> new BoatItem(false, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)));
     public static final ItemDefinition<Item> MAPLE_CHEST_BOAT = register("maple_chest_boat",
             () -> new BoatItem(true, NMLEnumParams.MAPLE_BOAT_TYPE.getValue(), new Properties().stacksTo(1)), true);
-//    public static final ItemDefinition<Item> MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg",
-//            () -> new SpawnEggItem(NMLEntities.MOOSE.get(), 0x8b4513, 0xa52a2a, new Properties()));
 
     public static final ItemDefinition<Item> WALNUT_SIGN = register("walnut_sign",
             () -> new SignItem(new Properties().stacksTo(16), NMLBlocks.WALNUT.sign().get(), NMLBlocks.WALNUT.wallSign().get()));
