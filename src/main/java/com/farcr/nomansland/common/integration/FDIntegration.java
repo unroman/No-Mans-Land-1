@@ -70,8 +70,20 @@ public class FDIntegration {
     public static final ItemDefinition<BlockItem> PEAR_COBBLER_ITEM = NMLItems.register("pear_cobbler",
             () -> new BlockItem(PEAR_COBBLER.get(), new Item.Properties()));
 
+    public static final ItemDefinition<Item> FRUIT_CAKE_SLICE = NMLItems.register("fruit_cake_slice",
+            () -> new Item(new Item.Properties().food(NMLFoods.FRUIT_CAKE_SLICE)));
+
+    public static final BlockDefinition<PieBlock> FRUIT_CAKE = NMLBlocks.registerNoItem("fruit_cake",
+            () -> new PieBlock(ofFullCopy(Blocks.CAKE), FRUIT_CAKE_SLICE));
+
+    public static final ItemDefinition<BlockItem> FRUIT_CAKE_ITEM = NMLItems.register("fruit_cake",
+            () -> new BlockItem(FRUIT_CAKE.get(), new Item.Properties()));
+
     public static final ItemDefinition<DrinkableItem> PEAR_JUICE = NMLItems.register("pear_juice",
             () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PEAR_JUICE)));
+
+    public static final ItemDefinition<DrinkableItem> PESTO_BOTTLE = NMLItems.register("pesto_bottle",
+            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PESTO_BOTTLE)));
 
     public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         event.modify(
