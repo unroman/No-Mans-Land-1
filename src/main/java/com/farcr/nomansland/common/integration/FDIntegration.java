@@ -58,6 +58,9 @@ public class FDIntegration {
     public static final FoodProperties PASTA_WITH_PESTO_FOOD = new FoodProperties.Builder().nutrition(14).saturationModifier(0.75F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 6000, 0), 1).build();
 
+    public static final ItemDefinition<ConsumableItem> PASTA_WITH_PESTO = NMLItems.register("pasta_with_pesto",
+            () -> new ConsumableItem(new Item.Properties().food(PASTA_WITH_PESTO_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
+
     public static final ItemDefinition<ConsumableItem> SEARED_VENISON = NMLItems.register("seared_venison",
             () -> new ConsumableItem(new Item.Properties().food(SEARED_VENISON_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
