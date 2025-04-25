@@ -7,6 +7,7 @@ import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.entities.NMLEffects;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
 import com.farcr.nomansland.common.registry.entities.NMLMobVariants;
+import com.farcr.nomansland.common.registry.entities.NMLSensors;
 import com.farcr.nomansland.common.registry.items.NMLCreativeTabs;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
@@ -25,6 +26,7 @@ public class NoMansLand {
         NMLItems.ITEMS.register(modEventBus);
         NMLBlocks.BLOCKS.register(modEventBus);
         NMLEntities.ENTITIES.register(modEventBus);
+        NMLSensors.SENSORS.register(modEventBus);
         NMLFeatures.FEATURES.register(modEventBus);
         NMLFoliagePlacerTypes.FOLIAGE_PLACER_TYPES.register(modEventBus);
         NMLTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);

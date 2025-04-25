@@ -2,9 +2,11 @@ package com.farcr.nomansland.common.entity;
 
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.entities.NMLEntities;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -17,6 +19,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -60,6 +63,12 @@ public class Moose extends Animal implements NeutralMob {
     }
 
     @Override
+    protected void sendDebugPackets() {
+        super.sendDebugPackets();
+        DebugPackets.sendEntityBrain(this);
+    }
+
+    @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_REMAINING_ANGER_TIME, 0);
@@ -83,6 +92,28 @@ public class Moose extends Animal implements NeutralMob {
     }
 
     @Override
+    protected Brain.Provider<Moose> brainProvider() {
+        return MooseAI.brainProvider();
+    }
+
+    @Override
+    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
+        return MooseAI.makeBrain(this.brainProvider().makeBrain(dynamic));
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        this.level().getProfiler().push("mooseBrain");
+        ((Brain<Moose>) this.brain).tick((ServerLevel) this.level(), this);
+        this.level().getProfiler().pop();
+        this.level().getProfiler().push("mooseActivityUpdate");
+        MooseAI.updateActivity(this);
+        this.level().getProfiler().pop();
+
+        super.customServerAiStep();
+    }
+
+    /*@Override
     public void aiStep() {
         super.aiStep();
         if (!this.level().isClientSide) {
@@ -115,7 +146,7 @@ public class Moose extends Animal implements NeutralMob {
         this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(7, new ResetUniversalAngerTargetGoal<>(this, false));
 
-    }
+    }*/
 
     @Nullable
     @Override
@@ -251,7 +282,7 @@ public class Moose extends Animal implements NeutralMob {
     @Override
     public @Nullable LivingEntity getTarget() {
         if (isPacified()) return null;
-        return super.getTarget();
+        return this.getTargetFromBrain();
     }
 
     public class MooseChargeAttackGoal extends Goal {
