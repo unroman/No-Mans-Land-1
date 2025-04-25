@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "nomansland:pine_nuts"
+        },
+        {
+            "item": "minecraft:pumpkin_seeds"
+        }
+    ],
+    "result": {
+        "id": "nomansland:trail_mix"
+    }
+}
