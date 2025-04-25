@@ -3,7 +3,6 @@ package com.farcr.nomansland.common.registry.worldgen;
 import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class NMLBiomes {
 
 
     private static ResourceKey<Biome> createKey(String name) {
-        ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME, NoMansLand.location(name));
         BIOMES.add(biome);
         return biome;
     }

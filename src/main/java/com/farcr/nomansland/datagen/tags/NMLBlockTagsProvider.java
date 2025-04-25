@@ -33,6 +33,7 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
             tag(Tags.Blocks.BOOKSHELVES).add(woodset.bookshelf().block());
             tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodset.fenceGate().block());
             tag(Tags.Blocks.FENCES_WOODEN).add(woodset.fence().block());
+            tag(BlockTags.WOODEN_FENCES).add(woodset.fence().block());
             tag(BlockTags.WOODEN_STAIRS).add(woodset.stairs().block());
             tag(BlockTags.WOODEN_BUTTONS).add(woodset.button().block());
             tag(BlockTags.WOODEN_DOORS).add(woodset.door().block());

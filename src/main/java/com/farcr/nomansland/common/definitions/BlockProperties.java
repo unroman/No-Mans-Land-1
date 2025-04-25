@@ -36,7 +36,7 @@ public record BlockProperties(BlockLootType lootType, boolean customLang) {
     } // small_flowers
     public static BlockProperties flowerbed() {
         return new BlockProperties(new ShearsBlockLootType(), false);
-    } // small_flowers
+    } // flowerbeds
     public static BlockProperties sapling() {
         return new BlockProperties(new SelfBlockLootType(), false);
     } // saplings

@@ -36,7 +36,7 @@
     "WaterlilyBlockMixin",
     "WolfMixin",
     "ZombieMixin",
-    "accessor.ProjectileAccessor",
+    "integration.PloughMovementBehaviorMixin",
     "integration.RichSoilBlockMixin",
     "integration.SeasonHooksMixin",
     "integration.SpoutBlockEntityMixin",

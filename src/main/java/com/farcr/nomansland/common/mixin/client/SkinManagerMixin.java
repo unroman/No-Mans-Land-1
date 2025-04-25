@@ -22,7 +22,7 @@ public class SkinManagerMixin {
     @Inject(method = "registerTextures", at = @At("RETURN"), cancellable = true)
     private void registerRewardPlayerSkinTextures(UUID uuid, MinecraftProfileTextures textures, CallbackInfoReturnable<CompletableFuture<PlayerSkin>> cir) {
         final List<String> UUIDS = List.of("961e150b-8c68-430f-8926-1e84f4651599", "4378df24-8433-4b5c-b865-bf635b003ebb", "1341db98-ab30-430a-b7a5-dd3ba14e6eaa");
-        final ResourceLocation CAPE_TEXTURE = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/misc/nml_cape.png");
+        final ResourceLocation CAPE_TEXTURE = NoMansLand.location("textures/misc/nml_cape.png");
 
         if (UUIDS.contains(uuid.toString())) {
             cir.setReturnValue(cir.getReturnValue().thenApply(skin -> {

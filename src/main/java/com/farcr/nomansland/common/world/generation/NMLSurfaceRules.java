@@ -4,7 +4,6 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -115,7 +114,7 @@ public class NMLSurfaceRules {
         );
 
         SurfaceGeneration.addOverworldSurfaceRules(
-                ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "rules/overworld"),
+                NoMansLand.location("rules/overworld"),
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
                                 //Surface Biomes

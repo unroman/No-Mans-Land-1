@@ -4,7 +4,6 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.world.feature.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -56,7 +55,7 @@ public class NMLFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_PINE = register("large_pine");
 
     private static ResourceKey<ConfiguredFeature<?, ?>> register(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location(name));
     }
 
 }

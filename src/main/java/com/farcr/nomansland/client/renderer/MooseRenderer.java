@@ -17,7 +17,7 @@ public class MooseRenderer extends MobRenderer<Moose, MooseModel<Moose>> {
 
     @Override
     public ResourceLocation getTextureLocation(Moose pEntity) {
-        return ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/moose/moose_brown.png");
+        return NoMansLand.location("textures/entity/moose/moose_brown.png");
     }
 
     @Override
