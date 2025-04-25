@@ -25,9 +25,9 @@ public class NoMansLand {
     public NoMansLand(IEventBus modEventBus, ModContainer modContainer) {
 
         NMLItems.ITEMS.register(modEventBus);
+        NMLBlocks.BLOCKS.addAlias(NoMansLand.location("apple_fruit"), NoMansLand.location("apple"));
+        NMLBlocks.BLOCKS.addAlias(NoMansLand.location("pear_fruit"), NoMansLand.location("pear"));
         NMLBlocks.BLOCKS.register(modEventBus);
-//        NMLBlocks.BLOCKS.addAlias(NoMansLand.location("apple_fruit"), NoMansLand.location("apple"));
-//        NMLBlocks.BLOCKS.addAlias(NoMansLand.location("pear_fruit"), NoMansLand.location("pear"));
         NMLEntities.ENTITIES.register(modEventBus);
         NMLSensors.SENSORS.register(modEventBus);
         NMLFeatures.FEATURES.register(modEventBus);
