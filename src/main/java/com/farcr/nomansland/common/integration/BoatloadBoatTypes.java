@@ -4,11 +4,11 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.teamabnormals.boatload.core.api.BoatloadBoatType;
-import net.minecraft.resources.ResourceLocation;
 
 public class BoatloadBoatTypes {
 
-    public static final BoatloadBoatType MAPLE = BoatloadBoatType.register(BoatloadBoatType.create(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "maple"),
+
+    public static final BoatloadBoatType MAPLE = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,
@@ -16,7 +16,7 @@ public class BoatloadBoatTypes {
             BoatloadIntegration.LARGE_MAPLE_BOAT::item
     ));
 
-    public static final BoatloadBoatType PINE = BoatloadBoatType.register(BoatloadBoatType.create(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "maple"),
+    public static final BoatloadBoatType PINE = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,
@@ -24,7 +24,7 @@ public class BoatloadBoatTypes {
             BoatloadIntegration.LARGE_PINE_BOAT::item
     ));
 
-    public static final BoatloadBoatType WALNUT = BoatloadBoatType.register(BoatloadBoatType.create(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "maple"),
+    public static final BoatloadBoatType WALNUT = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,
@@ -32,7 +32,7 @@ public class BoatloadBoatTypes {
             BoatloadIntegration.LARGE_WALNUT_BOAT::item
     ));
 
-    public static final BoatloadBoatType WILLOW = BoatloadBoatType.register(BoatloadBoatType.create(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "maple"),
+    public static final BoatloadBoatType WILLOW = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,

@@ -1,7 +1,6 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
-import com.farcr.nomansland.common.mixin.accessor.ProjectileAccessor;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -17,13 +16,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ThrownPotion.class)
-public abstract class ThrownPotionMixin extends EntityMixin implements ProjectileAccessor {
+public abstract class ThrownPotionMixin extends EntityMixin {
 
     @Inject(method = "dowseFire", at = @At("TAIL"))
     private void extinguishTorches(BlockPos pos, CallbackInfo ci) {
         BlockState state = level().getBlockState(pos);
         if (state.getBlock() instanceof TorchBlock && !(state.getBlock() instanceof ExtinguishedTorchBlock)) {
-        level().gameEvent(invokeGetOwner(), GameEvent.BLOCK_CHANGE, pos);
+        level().gameEvent(((ThrownPotion) (Object) this).getOwner(), GameEvent.BLOCK_CHANGE, pos);
         level().playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
 
         if (state.is(Blocks.TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_TORCH.get().withPropertiesOf(state), 11);

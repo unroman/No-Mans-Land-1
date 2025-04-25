@@ -3,7 +3,6 @@ package com.farcr.nomansland.common.registry;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.definitions.SharedTag;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
@@ -39,22 +38,22 @@ public class NMLTags {
     }
 
     private static TagKey<Item> createItemTag(String name) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return TagKey.create(Registries.ITEM, NoMansLand.location(name));
     }
 
     private static TagKey<Block> createBlockTag(String name) {
-        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return TagKey.create(Registries.BLOCK, NoMansLand.location(name));
     }
 
     private static TagKey<Biome> createBiomeTag(String name) {
-        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return TagKey.create(Registries.BIOME, NoMansLand.location(name));
     }
 
     private static TagKey<EntityType<?>> createEntityTag(String name) {
-        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return TagKey.create(Registries.ENTITY_TYPE, NoMansLand.location(name));
     }
 
     private static TagKey<DamageType> createDamageTypeTag(String name) {
-        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return TagKey.create(Registries.DAMAGE_TYPE, NoMansLand.location(name));
     }
 }
