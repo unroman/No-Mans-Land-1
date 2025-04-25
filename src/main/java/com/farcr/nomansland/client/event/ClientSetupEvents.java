@@ -35,8 +35,8 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerModels(ModelEvent.RegisterAdditional event) {
-        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "entity/firebomb")));
-        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "entity/explosive")));
+        event.register(ModelResourceLocation.standalone(NoMansLand.location("entity/firebomb")));
+        event.register(ModelResourceLocation.standalone(NoMansLand.location("entity/explosive")));
     }
 
     @SubscribeEvent
@@ -67,8 +67,8 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_RESIN_OIL = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "block/fluid/resin_oil");
-            private static final ResourceLocation FLOWING_RESIN_OIL = ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "block/fluid/flowing_resin_oil");
+            private static final ResourceLocation STILL_RESIN_OIL = NoMansLand.location("block/fluid/resin_oil");
+            private static final ResourceLocation FLOWING_RESIN_OIL = NoMansLand.location("block/fluid/flowing_resin_oil");
 
             public ResourceLocation getStillTexture() {
                 return STILL_RESIN_OIL;

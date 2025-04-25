@@ -3,7 +3,6 @@ package com.farcr.nomansland.common.registry.worldgen;
 import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.grower.TreeGrower;
 
 import java.util.Optional;
@@ -15,8 +14,8 @@ public final class NMLTreeGrowers {
             0.1F,
             Optional.empty(),
             Optional.empty(),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "maple"))),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "large_maple"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("maple"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("large_maple"))),
             Optional.empty(),
             Optional.empty()
     );
@@ -26,8 +25,8 @@ public final class NMLTreeGrowers {
             0.1F,
             Optional.empty(),
             Optional.empty(),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "red_maple"))),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "large_red_maple"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("red_maple"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("large_red_maple"))),
             Optional.empty(),
             Optional.empty()
     );
@@ -35,7 +34,7 @@ public final class NMLTreeGrowers {
     public static final TreeGrower PALE_CHERRY = new TreeGrower(
             "pale_cherry",
             Optional.empty(),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "pale_cherry"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("pale_cherry"))),
             Optional.empty()
     );
 
@@ -66,8 +65,8 @@ public final class NMLTreeGrowers {
             0.1F,
             Optional.empty(),
             Optional.empty(),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "walnut"))),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "small_walnut"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("walnut"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("small_walnut"))),
             Optional.empty(),
             Optional.empty()
     );
@@ -75,16 +74,16 @@ public final class NMLTreeGrowers {
     public static final TreeGrower YELLOW_BIRCH = new TreeGrower(
             "yellow_birch",
             Optional.empty(),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "yellow_birch"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("yellow_birch"))),
             Optional.empty()
     );
 
     public static final TreeGrower WILLOW = new TreeGrower(
             "willow",
             0.1F,
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "towering_willow"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("towering_willow"))),
             Optional.empty(),
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "willow"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, NoMansLand.location("willow"))),
             Optional.empty(),
             Optional.empty(),
             Optional.empty()

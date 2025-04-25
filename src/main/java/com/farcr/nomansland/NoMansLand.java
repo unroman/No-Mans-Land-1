@@ -11,6 +11,7 @@ import com.farcr.nomansland.common.registry.entities.NMLSensors;
 import com.farcr.nomansland.common.registry.items.NMLCreativeTabs;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.*;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -24,6 +25,8 @@ public class NoMansLand {
     public NoMansLand(IEventBus modEventBus, ModContainer modContainer) {
 
         NMLItems.ITEMS.register(modEventBus);
+        NMLBlocks.BLOCKS.addAlias(NoMansLand.location("apple_fruit"), NoMansLand.location("apple"));
+        NMLBlocks.BLOCKS.addAlias(NoMansLand.location("pear_fruit"), NoMansLand.location("pear"));
         NMLBlocks.BLOCKS.register(modEventBus);
         NMLEntities.ENTITIES.register(modEventBus);
         NMLSensors.SENSORS.register(modEventBus);
@@ -65,6 +68,9 @@ public class NoMansLand {
 
         modContainer.registerConfig(ModConfig.Type.COMMON, NMLConfig.COMMON_CONFIG);
         modContainer.registerConfig(ModConfig.Type.CLIENT, NMLConfig.CLIENT_CONFIG);
-
+    }
+    
+    public static ResourceLocation location(String path) {
+        return ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, path);
     }
 }

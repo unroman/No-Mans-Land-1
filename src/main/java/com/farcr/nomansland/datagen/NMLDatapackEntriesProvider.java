@@ -15,7 +15,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
@@ -338,7 +337,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/change_color")
+                            NoMansLand.location(name + "/change_color")
                     ),
                     changeColors
             );
@@ -348,7 +347,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/change_music" )
+                            NoMansLand.location(name + "/change_music" )
                     ),
                     changeMusic
             );
@@ -358,7 +357,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/change_spawns" )
+                            NoMansLand.location(name + "/change_spawns" )
                     ),
                     changeSpawns
             );
@@ -368,7 +367,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/add_spawns" )
+                            NoMansLand.location(name + "/add_spawns" )
                     ),
                     addSpawns
             );
@@ -378,7 +377,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/remove_spawns" )
+                            NoMansLand.location(name + "/remove_spawns" )
                     ),
                     removeSpawns
             );
@@ -388,7 +387,7 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
             bootstrap.register(
                     ResourceKey.create(
                             NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name + "/remove_features" )
+                            NoMansLand.location(name + "/remove_features" )
                     ),
                     removeFeatures
             );
@@ -403,13 +402,13 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
         bootstrap.register(
                 ResourceKey.create(
                         NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "add_" + name)
+                        NoMansLand.location("add_" + name)
                 ),
                 new AddFeaturesBiomeModifier(
                         bootstrap.lookup(Registries.BIOME).getOrThrow(
                                 TagKey.create(
                                         Registries.BIOME,
-                                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "feature_addition/has_" + name
+                                        NoMansLand.location("feature_addition/has_" + name
                                         )
                                 )
                         ),
@@ -426,13 +425,13 @@ public class NMLDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
         bootstrap.register(
                 ResourceKey.create(
                         NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "remove_" + name)
+                        NoMansLand.location("remove_" + name)
                 ),
                 RemoveFeaturesBiomeModifier.allSteps(
                         bootstrap.lookup(Registries.BIOME).getOrThrow(
                                 TagKey.create(
                                         Registries.BIOME,
-                                        ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "feature_removal/no_" + name
+                                        NoMansLand.location("feature_removal/no_" + name
                                         )
                                 )
                         ),

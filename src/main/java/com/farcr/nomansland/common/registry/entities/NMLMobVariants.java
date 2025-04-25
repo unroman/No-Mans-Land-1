@@ -10,7 +10,6 @@ import com.mojang.serialization.MapCodec;
 import dev.tazer.mixed_litter.MLRegistries;
 import dev.tazer.mixed_litter.variants.MobVariant;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -20,7 +19,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class NMLMobVariants {
     public static final DeferredRegister<FrogVariant> FROG_VARIANTS = DeferredRegister.create(BuiltInRegistries.FROG_VARIANT, NoMansLand.MODID);
-    public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_VARIANTS.register("mud", () -> new FrogVariant(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "textures/entity/mob_variants/frog/mud_frog.png")));
+    public static final DeferredHolder<FrogVariant, FrogVariant> MUD = FROG_VARIANTS.register("mud", () -> new FrogVariant(NoMansLand.location("textures/entity/mob_variants/frog/mud_frog.png")));
 
     public static final DeferredRegister<MapCodec<? extends MobVariant>> MOB_VARIANT_TYPES = DeferredRegister.create(MLRegistries.ANIMAL_VARIANT_TYPE, NoMansLand.MODID);
     public static final Supplier<MapCodec<DeerVariant>> DEER = register("deer", DeerVariant.CODEC);

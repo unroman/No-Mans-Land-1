@@ -3,7 +3,6 @@ package com.farcr.nomansland.common.registry.worldgen;
 import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class NMLPlacedFeatures {
@@ -23,6 +22,6 @@ public class NMLPlacedFeatures {
 
 
     private static ResourceKey<PlacedFeature> register(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, NoMansLand.location(name));
     }
 }
