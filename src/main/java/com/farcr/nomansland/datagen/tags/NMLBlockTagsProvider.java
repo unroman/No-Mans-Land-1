@@ -1,6 +1,7 @@
 package com.farcr.nomansland.datagen.tags;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.integration.BlueprintIntegration;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.HolderLookup;
@@ -30,7 +31,7 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.CEILING_HANGING_SIGNS).add(woodset.hangingSign().block());
             tag(BlockTags.WALL_HANGING_SIGNS).add(woodset.hangingWallSign().block());
             tag(BlockTags.PLANKS).add(woodset.planks().block());
-            tag(Tags.Blocks.BOOKSHELVES).add(woodset.bookshelf().block());
+            tag(NMLTags.BOOKSHELVES.blockTag()).add(woodset.bookshelf().block());
             tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodset.fenceGate().block());
             tag(Tags.Blocks.FENCES_WOODEN).add(woodset.fence().block());
             tag(BlockTags.WOODEN_FENCES).add(woodset.fence().block());
@@ -44,6 +45,21 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
             tag(Tags.Blocks.STRIPPED_LOGS).add(woodset.strippedLog().block());
             tag(Tags.Blocks.STRIPPED_WOODS).add(woodset.strippedWood().block());
         }
+
+        tag(NMLTags.BOOKSHELVES.blockTag()).add(
+                NMLBlocks.ACACIA_BOOKSHELF.block(),
+                NMLBlocks.BAMBOO_BOOKSHELF.block(),
+                NMLBlocks.BIRCH_BOOKSHELF.block(),
+                NMLBlocks.CHERRY_BOOKSHELF.block(),
+                NMLBlocks.CRIMSON_BOOKSHELF.block(),
+                NMLBlocks.DARK_OAK_BOOKSHELF.block(),
+                NMLBlocks.JUNGLE_BOOKSHELF.block(),
+                NMLBlocks.MANGROVE_BOOKSHELF.block(),
+                NMLBlocks.SPRUCE_BOOKSHELF.block(),
+                NMLBlocks.WARPED_BOOKSHELF.block()
+        );
+
+        addToTags(NMLTags.BOOKSHELVES.blockTag(), Tags.Blocks.BOOKSHELVES, BlockTags.ENCHANTMENT_POWER_PROVIDER, BlueprintIntegration.woodenBookshelves().blockTag());
 
         tag(BlockTags.LOGS_THAT_BURN).addTags(NMLTags.MAPLE_LOGS.blockTag(), NMLTags.PINE_LOGS.blockTag(), NMLTags.WALNUT_LOGS.blockTag(), NMLTags.WILLOW_LOGS.blockTag());
         tag(BlockTags.OVERWORLD_NATURAL_LOGS).add(

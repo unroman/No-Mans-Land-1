@@ -53,6 +53,8 @@ public class NMLConfig {
 
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
+        COMMON_BUILDER.comment("For configuring the mob remodels, go to the mixed litter startup config!");
+
         COMMON_BUILDER.push(CATEGORY_OVERRIDES);
         GRASS_SPREADS = COMMON_BUILDER
                 .comment("If grass or mycelium spread to nearby dirt.")
