@@ -38,10 +38,10 @@ public class IciclesBlock extends Block implements Fallable {
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (state.getValue(TIP_DIRECTION) == Direction.UP) {
-            // TODO: Is the stalagmite damage source ok?
+            // Is the stalagmite damage source ok?
             entity.causeFallDamage(fallDistance + 2.0F, 2.0F, level.damageSources().stalagmite());
-            entity.playSound(SoundEvents.PLAYER_HURT_FREEZE);
-            this.destroy(level, pos, state); // TODO: How do I destroy the block?? This doesn't work
+            entity.playSound(SoundEvents.PLAYER_HURT_FREEZE);  // TODO: Only play this sound when in survival mode
+            this.destroy(level, pos, state); // How do I destroy the block?? This doesn't work
         } else {
             super.fallOn(level, state, pos, entity, fallDistance);
         }
@@ -55,6 +55,7 @@ public class IciclesBlock extends Block implements Fallable {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
+        // TODO: This doesn't really work when you try to place it on sides
         Direction placementDirection = context.getNearestLookingVerticalDirection().getOpposite();
         return this.defaultBlockState().setValue(TIP_DIRECTION, placementDirection);
     }
