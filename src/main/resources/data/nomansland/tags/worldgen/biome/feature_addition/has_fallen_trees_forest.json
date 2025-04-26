@@ -1,4 +1,8 @@
 {
+  "remove":[
+  "#c:is_snowy",
+  "#nomansland:feature_addition/add_fallen_trees_snowy"
+  ],
   "values": [
     "minecraft:cherry_grove",
     "#c:is_forest",
