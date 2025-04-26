@@ -13,7 +13,7 @@
     "experience": 1.0,
     "ingredients": [
       {
-        "item": "nomansland:pesto"
+        "item": "nomansland:pesto_bottle"
       },
       {
         "item": "farmersdelight:raw_pasta"
