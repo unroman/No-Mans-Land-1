@@ -1,0 +1,14 @@
+{
+    "type": "create:cutting",
+    "ingredients": [
+      {
+        "item": "nomansland:pine_wood"
+      }
+    ],
+    "processingTime": 50,
+    "results": [
+      {
+        "item": "nomansland:stripped_pine_wood"
+      }
+    ]
+  }

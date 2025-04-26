@@ -110,11 +110,11 @@ dependencies {
     })
 
     implementation "maven.modrinth:farmers-delight:1.21.1-1.2.7"
-    implementation "maven.modrinth:brewin-and-chewin:4.2.0+1.21.1-neoforge"
-    implementation "maven.modrinth:the-block-box:0.1.1"
-    implementation "maven.modrinth:create:1.21.1-6.0.4"
-    implementation "maven.modrinth:blueprint:8.0.3"
-    implementation "maven.modrinth:boatload:6.0.0"
+    compileOnly "maven.modrinth:brewin-and-chewin:4.2.0+1.21.1-neoforge"
+    compileOnly "maven.modrinth:the-block-box:0.1.1"
+    compileOnly "maven.modrinth:create:1.21.1-6.0.4"
+    compileOnly "maven.modrinth:blueprint:8.0.3"
+    compileOnly "maven.modrinth:boatload:6.0.0"
 
     compileOnly "maven.modrinth:jade:15.10.0+neoforge"
     compileOnly "maven.modrinth:serene-seasons:SPj5bJoM"

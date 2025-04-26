@@ -1,6 +1,7 @@
 package com.farcr.nomansland.datagen.tags;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.integration.BlueprintIntegration;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.HolderLookup;
@@ -31,7 +32,7 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
             tag(ItemTags.SIGNS).add(woodset.sign().item());
             tag(ItemTags.HANGING_SIGNS).add(woodset.hangingSign().item());
             tag(ItemTags.PLANKS).add(woodset.planks().item());
-            tag(Tags.Items.BOOKSHELVES).add(woodset.bookshelf().item());
+            tag(NMLTags.BOOKSHELVES.itemTag()).add(woodset.bookshelf().item());
             tag(Tags.Items.FENCE_GATES_WOODEN).add(woodset.fenceGate().item());
             tag(Tags.Items.FENCES_WOODEN).add(woodset.fence().item());
             tag(ItemTags.WOODEN_FENCES).add(woodset.fence().item());
@@ -45,6 +46,21 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
             tag(Tags.Items.STRIPPED_LOGS).add(woodset.strippedLog().item());
             tag(Tags.Items.STRIPPED_WOODS).add(woodset.strippedWood().item());
         }
+
+        tag(NMLTags.BOOKSHELVES.itemTag()).add(
+                NMLBlocks.ACACIA_BOOKSHELF.item(),
+                NMLBlocks.BAMBOO_BOOKSHELF.item(),
+                NMLBlocks.BIRCH_BOOKSHELF.item(),
+                NMLBlocks.CHERRY_BOOKSHELF.item(),
+                NMLBlocks.CRIMSON_BOOKSHELF.item(),
+                NMLBlocks.DARK_OAK_BOOKSHELF.item(),
+                NMLBlocks.JUNGLE_BOOKSHELF.item(),
+                NMLBlocks.MANGROVE_BOOKSHELF.item(),
+                NMLBlocks.SPRUCE_BOOKSHELF.item(),
+                NMLBlocks.WARPED_BOOKSHELF.item()
+        );
+
+        addToTags(NMLTags.BOOKSHELVES.itemTag(), Tags.Items.BOOKSHELVES, BlueprintIntegration.woodenBookshelves().itemTag());
 
         tag(ItemTags.LOGS_THAT_BURN).addTags(NMLTags.MAPLE_LOGS.itemTag(), NMLTags.PINE_LOGS.itemTag(), NMLTags.WALNUT_LOGS.itemTag(), NMLTags.WILLOW_LOGS.itemTag());
     }

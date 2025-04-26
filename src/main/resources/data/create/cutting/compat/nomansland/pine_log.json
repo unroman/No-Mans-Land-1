@@ -1,0 +1,14 @@
+{
+    "type": "create:cutting",
+    "ingredients": [
+      {
+        "item": "nomansland:pine_log"
+      }
+    ],
+    "processingTime": 50,
+    "results": [
+      {
+        "item": "nomansland:pine_willow_log"
+      }
+    ]
+  }

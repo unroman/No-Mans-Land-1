@@ -1,0 +1,14 @@
+{
+    "type": "create:cutting",
+    "ingredients": [
+      {
+        "item": "nomansland:willow_wood"
+      }
+    ],
+    "processingTime": 50,
+    "results": [
+      {
+        "item": "nomansland:stripped_willow_wood"
+      }
+    ]
+  }

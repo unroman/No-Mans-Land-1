@@ -11,7 +11,8 @@ public enum Mods {
     FARMERSDELIGHT,
     BLOCKBOX,
     CREATE,
-    BOATLOAD;
+    BOATLOAD,
+    BLUEPRINT;
 
     private final String id;
 

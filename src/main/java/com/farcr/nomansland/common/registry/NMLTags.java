@@ -20,7 +20,7 @@ public class NMLTags {
     public static final SharedTag PINE_LOGS = createSharedTag("pine_logs");
     public static final SharedTag WALNUT_LOGS = createSharedTag("walnut_logs");
     public static final SharedTag WILLOW_LOGS = createSharedTag("willow_logs");
-
+    public static final SharedTag BOOKSHELVES = createSharedTag("bookshelves");
 
     public static final TagKey<Block> MUSHROOM_BLOCKS = createBlockTag("mushroom_blocks");
     public static final TagKey<Block> BONEMEALABLE_FLOWERS = createBlockTag("bonemealable_flowers");

@@ -34,9 +34,6 @@ public class NMLBlockLootSubProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        //add(NMLBlocks.FIELD_MUSHROOM, dropSelf(NMLBlocks.FIELD_MUSHROOM.get()));
-        //dropSelf(NMLBlocks.FIELD_MUSHROOM.get());
-
         for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
             Block block = definition.get();
             BlockLootType lootType = definition.lootType();
