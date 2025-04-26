@@ -4,10 +4,11 @@ import com.farcr.nomansland.common.registry.NMLTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +18,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -34,19 +38,20 @@ public class IciclesBlock extends Block implements Fallable {
         );
     }
 
-
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (state.getValue(TIP_DIRECTION) == Direction.UP) {
-            // Is the stalagmite damage source ok?
-            entity.causeFallDamage(fallDistance + 2.0F, 2.0F, level.damageSources().stalagmite());
-            entity.playSound(SoundEvents.PLAYER_HURT_FREEZE);  // TODO: Only play this sound when in survival mode
-            this.destroy(level, pos, state); // How do I destroy the block?? This doesn't work
+            entity.causeFallDamage(fallDistance + 2.0F, 2.0F, level.damageSources().freeze());
+            if (entity instanceof LivingEntity livingEntity) {
+                livingEntity.setTicksFrozen(40);
+                level.destroyBlock(pos, false);
+            }
         } else {
             super.fallOn(level, state, pos, entity, fallDistance);
         }
     }
 
+    // TODO: break icicle when it lands
     @Override
     public void onLand(Level level, BlockPos pos, BlockState state, BlockState replaceableState, FallingBlockEntity fallingBlock) {
 
@@ -55,7 +60,6 @@ public class IciclesBlock extends Block implements Fallable {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        // TODO: This doesn't really work when you try to place it on sides
         Direction placementDirection = context.getNearestLookingVerticalDirection().getOpposite();
         return this.defaultBlockState().setValue(TIP_DIRECTION, placementDirection);
     }
@@ -67,8 +71,17 @@ public class IciclesBlock extends Block implements Fallable {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        boolean belowSupportsIcicle = level.getBlockState(pos.below()).is(NMLTags.SUPPORTS_ICICLE);
-        boolean aboveSupportsIcicle = level.getBlockState(pos.above()).is(NMLTags.SUPPORTS_ICICLE);
+        boolean belowSupportsIcicle = level.getBlockState(pos.below()).is(NMLTags.SUPPORTS_ICICLE) && state.getValue(TIP_DIRECTION) == Direction.UP;
+        boolean aboveSupportsIcicle = level.getBlockState(pos.above()).is(NMLTags.SUPPORTS_ICICLE) && state.getValue(TIP_DIRECTION) == Direction.DOWN;
         return belowSupportsIcicle || aboveSupportsIcicle;
+    }
+
+    @NotNull
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        if (pState.getValue(TIP_DIRECTION) == Direction.UP) {
+            return Block.box(3.0D, 0.0D, 3.0D, 13.0D, 7.0D, 14.0D);
+        }
+        // else, invert y values
+        return Block.box(3.0D, 9.0D, 3.0D, 13.0D, 16.0D, 14.0D);
     }
 }
