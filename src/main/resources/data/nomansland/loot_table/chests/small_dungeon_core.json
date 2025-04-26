@@ -216,6 +216,21 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nomansland:hardtack",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
         }
       ]
     },
