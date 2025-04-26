@@ -1,0 +1,29 @@
+{
+    "neoforge:conditions": [
+      {
+        "type": "neoforge:mod_loaded",
+        "modid": "farmersdelight"
+      }
+    ],
+    "type": "farmersdelight:cooking",
+    "container": {
+      "id": "minecraft:bowl"
+    },
+    "cookingtime": 100,
+    "experience": 1.0,
+    "ingredients": [
+      {
+        "item": "nomansland:pesto"
+      },
+      {
+        "item": "farmersdelight:raw_pasta"
+      },
+      {
+        "tag": "nomansland:edible_mushrooms"
+      }
+    ],
+    "recipe_book_tab": "misc",
+    "result": {
+      "id": "nomansland:pasta_with_pesto"
+    }
+  }
