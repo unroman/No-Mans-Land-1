@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "nomansland:frosted_leaves"
+    "nomansland:frosted_leaves",
+    "minecraft:ice",
+    "minecraft:packed_ice",
+    "minecraft:blue_ice"
   ]
 }

@@ -1,21 +1,29 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:mod_loaded",
-      "modid": "farmersdelight"
-    }
-  ],
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "fd_apple_pie",
-  "key": {
-    "#": {
+  "group": "fruit_cake",
+  "ingredients": [
+    {
+      "item": "nomansland:fruit_cake_slice"
+    },
+    {
+      "item": "nomansland:fruit_cake_slice"
+    },
+    {
+      "item": "nomansland:fruit_cake_slice"
+    },
+    {
+      "item": "nomansland:fruit_cake_slice"
+    },
+    {
+      "item": "nomansland:fruit_cake_slice"
+    },
+    {
+      "item": "nomansland:fruit_cake_slice"
+    },
+    {
       "item": "nomansland:fruit_cake_slice"
     }
-  },
-  "pattern": [
-    "##",
-    "##"
   ],
   "result": {
     "count": 1,

@@ -230,7 +230,7 @@ public class NMLBlocks {
             () -> new GroundPickupBlock(of().mapColor(MapColor.NONE).noCollission().instabreak().sound(SoundType.CALCITE).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ)), new BlockProperties(new SelfBlockLootType(), false));
 
     public static final BlockDefinition<IciclesBlock> ICICLES = register("icicles",
-            () -> new IciclesBlock(of().mapColor(MapColor.ICE).sound(SoundType.GLASS).pushReaction(PushReaction.DESTROY)), BlockProperties.icicles());
+            () -> new IciclesBlock(of().mapColor(MapColor.ICE).sound(SoundType.GLASS).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ).dynamicShape()), BlockProperties.icicles());
 
     //Underground
     public static final BlockDefinition<AmethystBlock> QUARTZITE = register("quartzite",

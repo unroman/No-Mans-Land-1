@@ -7,7 +7,15 @@
         {
           "type": "minecraft:item",
           "name": "nomansland:hardtack",
-          "functions": [],
+          "functions": [
+            {
+            "function": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "min": 1,
+              "max": 4
+            }
+          }],
           "conditions": []
         }
       ],

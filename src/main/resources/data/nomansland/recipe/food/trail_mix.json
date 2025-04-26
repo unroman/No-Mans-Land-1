@@ -6,9 +6,13 @@
         },
         {
             "item": "minecraft:pumpkin_seeds"
+        },
+        {
+            "item": "nomansland:walnuts"
         }
     ],
     "result": {
-        "id": "nomansland:trail_mix"
+        "id": "nomansland:trail_mix",
+        "count": 3
     }
 }
