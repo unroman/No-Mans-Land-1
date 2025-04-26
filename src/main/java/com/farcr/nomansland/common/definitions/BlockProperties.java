@@ -29,6 +29,9 @@ public record BlockProperties(BlockLootType lootType, boolean customLang) {
     public static BlockProperties cauldron() {
         return new BlockProperties(new OtherBlockLootType(()-> Blocks.CAULDRON), true);
     } // cauldrons
+    public static BlockProperties icicles() {
+        return new BlockProperties(new OtherBlockLootType(()-> Blocks.ICE), false);
+    } // icicles
 
     // PLANTS
     public static BlockProperties smallFlower() {

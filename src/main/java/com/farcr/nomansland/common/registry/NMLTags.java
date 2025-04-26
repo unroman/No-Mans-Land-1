@@ -33,6 +33,8 @@ public class NMLTags {
     public static final TagKey<Biome> CAVES = createBiomeTag("caves");
     public static final TagKey<DamageType> IGNITES_FLAMMABLE = createDamageTypeTag("ignites_flammable");
 
+    public static final TagKey<Block> SUPPORTS_ICICLE = createBlockTag("supports_icicle");
+
     private static SharedTag createSharedTag(String name) {
         return new SharedTag(name);
     }

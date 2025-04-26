@@ -1,0 +1,30 @@
+{
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:not",
+            "value": {
+                "type": "neoforge:mod_loaded",
+                "modid": "brewinandchewin"
+            }
+        },
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "farmersdelight"
+        }
+    ],
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "nomansland:pine_nuts"
+        },
+        {
+            "item": "farmersdelight:milk_bottle"
+        },
+        {
+            "item": "minecraft:fern"
+        }
+    ],
+    "result": {
+        "id": "nomansland:pesto_bottle"
+    }
+}

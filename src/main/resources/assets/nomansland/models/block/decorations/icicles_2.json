@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "nomansland:block/icicle_2"
+    "cross": "nomansland:block/icicles_2"
   }
 }

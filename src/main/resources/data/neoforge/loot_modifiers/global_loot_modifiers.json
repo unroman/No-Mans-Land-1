@@ -26,6 +26,8 @@
     "nomansland:chests/warding_effigy_stronghold1",
     "nomansland:chests/warding_effigy_stronghold2",
     "nomansland:chests/warding_effigy_village",
-    "nomansland:chests/warding_effigy_woodland_mansion"
+    "nomansland:chests/warding_effigy_woodland_mansion",
+    "nomansland:chests/hardtack_dungeon1",
+    "nomansland:chests/hardtack_dungeon2"
   ]
 }
