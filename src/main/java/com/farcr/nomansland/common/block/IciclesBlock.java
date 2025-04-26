@@ -4,13 +4,19 @@ import com.farcr.nomansland.common.registry.NMLTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -18,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -51,12 +58,6 @@ public class IciclesBlock extends Block implements Fallable {
         }
     }
 
-    // TODO: break icicle when it lands
-    @Override
-    public void onLand(Level level, BlockPos pos, BlockState state, BlockState replaceableState, FallingBlockEntity fallingBlock) {
-
-    }
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -83,5 +84,48 @@ public class IciclesBlock extends Block implements Fallable {
         }
         // else, invert y values
         return Block.box(3.0D, 9.0D, 3.0D, 13.0D, 16.0D, 14.0D);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (state.getValue(TIP_DIRECTION) == Direction.UP) {
+            level.destroyBlock(pos, false);
+        } else if (!this.canSurvive(state, level, pos)) {
+            FallingBlockEntity fallingBlockEntity = FallingBlockEntity.fall(level, pos, state);
+            fallingBlockEntity.setHurtsEntities(2, 40);
+            fallingBlockEntity.disableDrop();
+        }
+    }
+
+    @NotNull
+    @Override
+    protected BlockState updateShape(BlockState state, Direction p_direction, BlockState neighborState,
+                                              LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+    {
+        if (!this.canSurvive(state, level, pos)) {
+            level.scheduleTick(pos, this, 2);
+        }
+
+        super.updateShape(state, p_direction, neighborState, level, pos, neighborPos);
+        return state;
+    }
+
+    @Override
+    public void onBrokenAfterFall(Level level, BlockPos pos, FallingBlockEntity fallingBlock) {
+        if (!fallingBlock.isSilent() && level instanceof ServerLevel serverLevel) {
+            serverLevel.playSound(fallingBlock, pos, SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
+        }
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        // If entity is moving upwards and icicle is pointed downwards
+        if (entity instanceof LivingEntity livingEntity && !level.isClientSide()) {
+            if (Direction.getNearest(livingEntity.getDeltaMovement()) == Direction.UP && state.getValue(TIP_DIRECTION) == Direction.DOWN) {
+                level.destroyBlock(pos, false);
+                livingEntity.setTicksFrozen(40);
+                livingEntity.hurt(level.damageSources().freeze(), 4.0f);
+            }
+        }
     }
 }
