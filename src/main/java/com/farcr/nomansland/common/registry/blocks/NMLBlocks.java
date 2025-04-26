@@ -228,6 +228,10 @@ public class NMLBlocks {
             () -> new GroundPickupBlock(of().mapColor(MapColor.STONE).noCollission().instabreak().sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
     public static final BlockDefinition<GroundPickupBlock> SEASHELLS = register("seashells",
             () -> new GroundPickupBlock(of().mapColor(MapColor.NONE).noCollission().instabreak().sound(SoundType.CALCITE).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ)), new BlockProperties(new SelfBlockLootType(), false));
+
+    public static final BlockDefinition<IciclesBlock> ICICLES = register("icicles",
+            () -> new IciclesBlock(of().mapColor(MapColor.ICE).sound(SoundType.GLASS).pushReaction(PushReaction.DESTROY)), BlockProperties.icicles());
+
     //Underground
     public static final BlockDefinition<AmethystBlock> QUARTZITE = register("quartzite",
             () -> new AmethystBlock(of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.3F).sound(SoundType.NETHER_GOLD_ORE).requiresCorrectToolForDrops()));

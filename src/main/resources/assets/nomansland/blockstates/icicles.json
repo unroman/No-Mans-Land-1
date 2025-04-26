@@ -1,14 +1,28 @@
 {
   "variants": {
-    "": [
+    "vertical_direction=down": [
       {
-        "model": "nomansland:block/icicles_0"
+        "model": "nomansland:block/decorations/icicles_0"
       },
       {
-        "model": "nomansland:block/icicles_1"
+        "model": "nomansland:block/decorations/icicles_1"
       },
       {
-        "model": "nomansland:block/icicles_2"
+        "model": "nomansland:block/decorations/icicles_2"
+      }
+    ],
+    "vertical_direction=up": [
+      {
+        "model": "nomansland:block/decorations/icicles_0",
+        "x": 180
+      },
+      {
+        "model": "nomansland:block/decorations/icicles_1",
+        "x": 180
+      },
+      {
+        "model": "nomansland:block/decorations/icicles_2",
+        "x": 180
       }
     ]
   }
