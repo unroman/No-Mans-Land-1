@@ -36,7 +36,7 @@ public class NMLFoods {
     public static final FoodProperties WALNUTS = new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).fast().build();
     public static final FoodProperties TRAIL_MIX = new FoodProperties.Builder().nutrition(4).saturationModifier(0.5F).fast().build();
 
-    public static final FoodProperties HARDTACK = new FoodProperties.Builder().nutrition(5).saturationModifier(1.2F).build();
+    public static final FoodProperties HARDTACK = new FoodProperties.Builder().nutrition(5).saturationModifier(0.8F).build();
 
     public static final FoodProperties PINE_NUTS = new FoodProperties.Builder().nutrition(2).saturationModifier(0.4F).fast().build();
     public static final FoodProperties PESTO_BOTTLE = new FoodProperties.Builder().nutrition(3).saturationModifier(1.2F).build();
