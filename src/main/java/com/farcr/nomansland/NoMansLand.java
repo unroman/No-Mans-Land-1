@@ -16,6 +16,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(NoMansLand.MODID)
 public class NoMansLand {
@@ -57,6 +58,7 @@ public class NoMansLand {
         if (Mods.FARMERSDELIGHT.isLoaded()) {
             FDIntegration.register();
             modEventBus.addListener(FDIntegration::addBlockEntities);
+            NeoForge.EVENT_BUS.addListener(FDIntegration::onFruitCakeInteraction);
         }
 
         if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();

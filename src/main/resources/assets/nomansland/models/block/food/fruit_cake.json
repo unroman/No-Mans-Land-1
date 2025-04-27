@@ -1,9 +1,9 @@
 {
-  "parent": "farmersdelight:block/pie",
+  "parent": "minecraft:block/cake",
   "textures": {
-    "particle": "nomansland:block/food/fruit_cake_top",
+    "particle": "nomansland:block/food/fruit_cake_side",
     "bottom": "nomansland:block/food/fruit_cake_bottom",
-    "side": "nomansland:block/food/fruit_cake_side",
-    "top": "nomansland:block/food/fruit_cake_top"
+    "top": "nomansland:block/food/fruit_cake_top",
+    "side": "nomansland:block/food/fruit_cake_side"
   }
 }
