@@ -1,14 +1,17 @@
 package com.farcr.nomansland.datagen.tags;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.block.LogBlock;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.integration.BlueprintIntegration;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -25,6 +28,23 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
+            if (definition.get() instanceof FlowerBlock)
+                tag(BlockTags.SMALL_FLOWERS).add(definition.block());
+            if (definition.get() instanceof WallBlock)
+                tag(BlockTags.WALLS).add(definition.block());
+            if (definition.get() instanceof SaplingBlock)
+                tag(BlockTags.SAPLINGS).add(definition.block());
+            if (definition.get() instanceof AbstractCauldronBlock)
+                tag(BlockTags.CAULDRONS).add(definition.block());
+            if (definition.get() instanceof TorchBlock && !(definition.get() instanceof WallTorchBlock))
+                tag(BlockTags.WALL_POST_OVERRIDE).add(definition.block());
+            if (definition.get() instanceof LeavesBlock)
+                tag(BlockTags.LEAVES).add(definition.block());
+            if (definition.get() instanceof SlabBlock)
+                tag(BlockTags.SLABS).add(definition.block());
+        }
+
         for (NMLBlocks.Woodset woodset : NMLBlocks.WOODSETS) {
             tag(BlockTags.STANDING_SIGNS).add(woodset.sign().block());
             tag(BlockTags.WALL_SIGNS).add(woodset.wallSign().block());
@@ -33,6 +53,7 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.PLANKS).add(woodset.planks().block());
             tag(NMLTags.BOOKSHELVES.blockTag()).add(woodset.bookshelf().block());
             tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodset.fenceGate().block());
+            tag(BlockTags.FENCE_GATES).add(woodset.fenceGate().block());
             tag(Tags.Blocks.FENCES_WOODEN).add(woodset.fence().block());
             tag(BlockTags.WOODEN_FENCES).add(woodset.fence().block());
             tag(BlockTags.WOODEN_STAIRS).add(woodset.stairs().block());
