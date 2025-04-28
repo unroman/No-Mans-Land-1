@@ -1,16 +1,22 @@
 package com.farcr.nomansland.datagen.tags;
 
 import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.block.LogBlock;
+import com.farcr.nomansland.common.definitions.BlockDefinition;
+import com.farcr.nomansland.common.definitions.ItemDefinition;
 import com.farcr.nomansland.common.integration.BlueprintIntegration;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
+import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -28,6 +34,29 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
+            if (definition.hasItem()) {
+                if (definition.get() instanceof FlowerBlock)
+                    tag(ItemTags.SMALL_FLOWERS).add(definition.item());
+                if (definition.get() instanceof WallBlock)
+                    tag(ItemTags.WALLS).add(definition.item());
+                if (definition.get() instanceof SaplingBlock)
+                    tag(ItemTags.SAPLINGS).add(definition.item());
+                if (definition.get() instanceof LeavesBlock)
+                    tag(ItemTags.LEAVES).add(definition.item());
+                if (definition.get() instanceof SlabBlock)
+                    tag(ItemTags.SLABS).add(definition.item());
+
+            }
+        }
+
+        for (ItemDefinition<?> definition : NMLItems.ITEM_DEFINITIONS) {
+            if (definition.hasItem()) {
+                if (definition.get() instanceof BoatItem)
+                    tag(ItemTags.BOATS).add(definition.item());
+            }
+        }
+
         for (NMLBlocks.Woodset woodset : NMLBlocks.WOODSETS) {
             tag(ItemTags.SIGNS).add(woodset.sign().item());
             tag(ItemTags.HANGING_SIGNS).add(woodset.hangingSign().item());

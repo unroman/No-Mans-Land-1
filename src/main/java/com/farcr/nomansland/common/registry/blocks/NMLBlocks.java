@@ -531,7 +531,7 @@ public class NMLBlocks {
         return register(name, block, BlockProperties.custom(false));
     }
 
-    public static <T extends Block> ItemDefinition<BlockItem> registerBlockItem(String name, BlockDefinition<T> blockDefinition) {
+    public static ItemDefinition<BlockItem> registerBlockItem(String name, BlockDefinition<? extends Block> blockDefinition) {
         return NMLItems.registerWithoutTab(name, () -> new BlockItem(blockDefinition.get(), new Item.Properties()));
     }
 

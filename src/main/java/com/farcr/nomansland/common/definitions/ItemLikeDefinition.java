@@ -25,6 +25,10 @@ public abstract class ItemLikeDefinition<R extends ItemLike, T extends R> extend
         return asItem();
     }
 
+    public boolean hasItem() {
+        return get().asItem() != Items.AIR;
+    }
+
     public Ingredient ingredient() {
         return ingredient(1);
     }

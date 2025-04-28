@@ -38,31 +38,24 @@ public class IciclesBlock extends Block implements Fallable {
 
     public IciclesBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(
-            this.stateDefinition
-                    .any()
-                    .setValue(TIP_DIRECTION, Direction.DOWN)
-        );
+        this.registerDefaultState(this.stateDefinition.any().setValue(TIP_DIRECTION, Direction.DOWN));
     }
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (state.getValue(TIP_DIRECTION) == Direction.UP) {
             entity.causeFallDamage(fallDistance + 2.0F, 2.0F, level.damageSources().freeze());
-            if (entity instanceof LivingEntity livingEntity) {
-                livingEntity.setTicksFrozen(40);
-                level.destroyBlock(pos, false);
-            }
-        } else {
-            super.fallOn(level, state, pos, entity, fallDistance);
-        }
+            if (entity instanceof LivingEntity livingEntity) livingEntity.setTicksFrozen(40);
+            level.destroyBlock(pos, false);
+
+        } else super.fallOn(level, state, pos, entity, fallDistance);
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction placementDirection = context.getNearestLookingVerticalDirection().getOpposite();
-        return this.defaultBlockState().setValue(TIP_DIRECTION, placementDirection);
+        return defaultBlockState().setValue(TIP_DIRECTION, placementDirection);
     }
 
     @Override
@@ -72,17 +65,17 @@ public class IciclesBlock extends Block implements Fallable {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        boolean belowSupportsIcicle = level.getBlockState(pos.below()).is(NMLTags.SUPPORTS_ICICLE) && state.getValue(TIP_DIRECTION) == Direction.UP;
         boolean aboveSupportsIcicle = level.getBlockState(pos.above()).is(NMLTags.SUPPORTS_ICICLE) && state.getValue(TIP_DIRECTION) == Direction.DOWN;
-        return belowSupportsIcicle || aboveSupportsIcicle;
+        boolean belowSupportsIcicle = level.getBlockState(pos.below()).is(NMLTags.SUPPORTS_ICICLE) && state.getValue(TIP_DIRECTION) == Direction.UP;
+
+        return aboveSupportsIcicle || belowSupportsIcicle;
     }
 
     @NotNull
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        if (pState.getValue(TIP_DIRECTION) == Direction.UP) {
+        if (pState.getValue(TIP_DIRECTION) == Direction.UP)
             return Block.box(3.0D, 0.0D, 3.0D, 13.0D, 7.0D, 14.0D);
-        }
-        // else, invert y values
+
         return Block.box(3.0D, 9.0D, 3.0D, 13.0D, 16.0D, 14.0D);
     }
 

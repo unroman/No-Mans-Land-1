@@ -141,11 +141,9 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallingDistance) {
-        if (state.getValue(FACING) == Direction.UP && !state.getValue(POWERED)) {
+        if (state.getValue(FACING) == Direction.UP && !state.getValue(POWERED))
             entity.causeFallDamage(fallingDistance + 2.0F, NMLConfig.FALLING_DAMAGE.get().floatValue(), NMLDamageTypes.getSimpleDamageSource(level, NMLDamageTypes.SPIKE_FALL));
-        } else {
-            super.fallOn(level, state, pos, entity, fallingDistance);
-        }
+        else super.fallOn(level, state, pos, entity, fallingDistance);
     }
 
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
