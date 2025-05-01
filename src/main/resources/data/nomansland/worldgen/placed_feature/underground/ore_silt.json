@@ -1,5 +1,5 @@
 {
-  "feature": "nomansland:ore_silt",
+  "feature": "nomansland:underground/ore_silt",
   "placement": [
     {
       "type": "minecraft:count",
