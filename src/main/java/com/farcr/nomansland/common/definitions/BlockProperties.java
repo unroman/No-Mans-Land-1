@@ -30,7 +30,7 @@ public record BlockProperties(BlockLootType lootType, boolean customLang) {
         return new BlockProperties(new OtherBlockLootType(()-> Blocks.CAULDRON), true);
     } // cauldrons
     public static BlockProperties icicles() {
-        return new BlockProperties(new OtherBlockLootType(()-> Blocks.ICE), false);
+        return new BlockProperties(new CustomBlockLootType(), false);
     } // icicles
 
     // PLANTS

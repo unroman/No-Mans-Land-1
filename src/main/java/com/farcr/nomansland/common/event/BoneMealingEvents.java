@@ -1,5 +1,6 @@
 package com.farcr.nomansland.common.event;
 
+import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,9 +17,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SpreadingSnowyDirtBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 @SuppressWarnings("unused")
+@EventBusSubscriber(modid = NoMansLand.MODID)
 public class BoneMealingEvents {
 
     @SubscribeEvent

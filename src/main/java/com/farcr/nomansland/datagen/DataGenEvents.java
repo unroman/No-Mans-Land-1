@@ -53,6 +53,7 @@ public class DataGenEvents {
         // Lang
         generator.addProvider(client, new NMLLanguageProvider(packOutput));
 
-        generator.addProvider(server, new NMLDatapackEntriesProvider(packOutput, lookupProvider));
+//        generator.addProvider(server, new NMLDatapackEntriesProvider(packOutput, lookupProvider));
+        generator.addProvider(server, new NMLBiomeModifiers(packOutput, lookupProvider));
     }
 }

@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:remove_features",
-  "biomes": "#c:is_desert",
-  "features": [
-    "minecraft:patch_sugar_cane_desert",
-    "minecraft:patch_pumpkin"
-  ],
-  "steps": "vegetal_decoration"
-}

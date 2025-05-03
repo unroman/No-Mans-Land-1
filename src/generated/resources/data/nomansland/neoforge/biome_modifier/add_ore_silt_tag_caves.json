@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#nomansland:caves",
+  "features": "nomansland:ore_silt",
+  "step": "vegetal_decoration"
+}
