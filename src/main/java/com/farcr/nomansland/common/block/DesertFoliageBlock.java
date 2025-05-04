@@ -1,5 +1,7 @@
 package com.farcr.nomansland.common.block;
 
+import com.farcr.nomansland.common.registry.NMLTags;
+import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -46,7 +48,7 @@ public class DesertFoliageBlock extends BushBlock implements BonemealableBlock {
 
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        return true;
+        return blockState.is(NMLBlocks.SHORT_BEACHGRASS) || blockState.is(NMLBlocks.TALL_BEACHGRASS);
     }
 
     @Override
