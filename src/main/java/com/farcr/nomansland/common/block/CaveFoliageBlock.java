@@ -44,7 +44,7 @@ public class CaveFoliageBlock extends BushBlock implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return blockState.is(NMLTags.BONEMEALABLE_FLOWERS);
+        return true;
     }
 
     @Override

@@ -1,12 +1,10 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.78'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.86'
 }
 
-tasks.named('wrapper', Wrapper).configure {
-    distributionType = Wrapper.DistributionType.BIN
-}
 
 version = mod_version
 group = mod_group_id
@@ -64,13 +62,15 @@ neoForge {
     }
 
     mods {
-        "${mod_id}" {
+        "$mod_id" {
             sourceSet(sourceSets.main)
         }
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime
@@ -90,10 +90,8 @@ repositories {
         }
     }
     maven { url "https://maven.blamejared.com/" }
-    maven { url "https://repo1.maven.org/maven2" }
     maven { url "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
     maven { url 'https://maven.terraformersmc.com/' }
-    maven { url "https://cursemaven.com" }
     flatDir { dirs 'libs' }
 }
 
@@ -135,19 +133,19 @@ dependencies {
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-            minecraft_version       : minecraft_version,
-            minecraft_version_range : minecraft_version_range,
-            neo_version             : neo_version,
-            neo_version_range       : neo_version_range,
-            loader_version_range    : loader_version_range,
-            mod_id                  : mod_id,
-            mod_name                : mod_name,
-            mod_license             : mod_license,
-            mod_version             : mod_version,
-            mod_authors             : mod_authors,
-            mod_description         : mod_description,
-            bt_version_range        : bt_version_range,
-            ml_version_range        : ml_version_range,
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            bt_version_range       : bt_version_range,
+            ml_version_range       : ml_version_range
     ]
 
     inputs.properties replaceProperties
@@ -170,6 +168,9 @@ publishing {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }
