@@ -45,11 +45,11 @@ public class NMLBiomeModifiers extends DatapackBuiltinEntriesProvider {
                         List.of(PATCH_BARREL_CACTUS_DESERT)
                 );
 
-                setupBiomeTagFeatures(
-                        bootstrap,
-                        NMLTags.CAVES,
-                        List.of(ORE_SILT)
-                );
+//                setupBiomeTagFeatures(
+//                        bootstrap,
+//                        NMLTags.CAVES,
+//                        List.of(ORE_SILT)
+//                );
 
                 processFeatures(bootstrap);
             });
