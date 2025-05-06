@@ -173,6 +173,9 @@ public class NMLItems {
     public static final ItemDefinition<Item> DUCKWEED = register("duckweed",
             () -> new PlaceOnWaterBlockItem(NMLBlocks.DUCKWEED.get(), new Properties()));
 
+    public static final ItemDefinition<Item> FROSTED_GRASS = register("frosted_grass",
+            () -> new FrostedGrassBlockItem(NMLBlocks.FROSTED_GRASS.get(), new Properties()));
+
     public static final ItemDefinition<Item> WATER_MOSAIC = register("water_mosaic",
             () -> new PlaceOnWaterBlockItem(NMLBlocks.WATER_MOSAIC.get(), new Properties()));
 

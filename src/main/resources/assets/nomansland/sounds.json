@@ -311,7 +311,7 @@
         "pitch": 0.4
       }
     ],
-    "subtitle": "nomansland.subtitles.entity.deer.ambient"
+    "subtitle": "nomansland.subtitles.entity.goose.ambient"
   },
   "entity.goose.death": {
     "sounds": [

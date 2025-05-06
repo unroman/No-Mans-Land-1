@@ -177,7 +177,7 @@ public class CreativeModeTabHandler {
 //        }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
-            insertAfter(Items.SHORT_GRASS, FROSTED_GRASS);
+            insertAfter(Items.SHORT_GRASS, NMLItems.FROSTED_GRASS);
             insertAfter(Items.SHORT_GRASS, OAT_GRASS);
             insertAfter(Items.SHORT_GRASS, GRASS_SPROUTS);
             insertAfter(Items.FERN, FIDDLEHEAD);

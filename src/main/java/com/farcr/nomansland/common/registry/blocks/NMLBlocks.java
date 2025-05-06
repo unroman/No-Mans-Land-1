@@ -106,7 +106,7 @@ public class NMLBlocks {
             () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.SAND).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<DesertFoliageBlock> DRIED_GRASS = register("dried_grass",
             () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).offsetType(OffsetType.XZ)), new BlockProperties(new ShearsBlockLootType(), false));
-    public static final BlockDefinition<FrostedGrassBlock> FROSTED_GRASS = register("frosted_grass",
+    public static final BlockDefinition<FrostedGrassBlock> FROSTED_GRASS = registerNoItem("frosted_grass",
             () -> new FrostedGrassBlock(of().mapColor(MapColor.SNOW).replaceable().noCollission().instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ).ignitedByLava().pushReaction(PushReaction.DESTROY)));
     public static final BlockDefinition<SimpleFoliageBlock> FIDDLEHEAD = register("fiddlehead",
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.FERN).offsetType(OffsetType.XYZ)));

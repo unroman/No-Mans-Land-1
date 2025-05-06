@@ -123,21 +123,6 @@ public class MiscellaneousEvents {
             event.setCanceled(true);
         }
 
-        // Snow grassing?
-        if ((stack.is(NMLBlocks.FROSTED_GRASS.asItem()) || stack.is(Blocks.SHORT_GRASS.asItem())) && !player.isSpectator() && state.is(Blocks.SNOW) && state.getValue(SnowLayerBlock.LAYERS) < 3) {
-            BlockPos posUnder = pos.below();
-            BlockState stateUnder = level.getBlockState(posUnder);
-            if (stateUnder.getBlock() instanceof SnowyDirtBlock || stateUnder.getBlock() == Blocks.DIRT) {
-                level.setBlockAndUpdate(pos, NMLBlocks.FROSTED_GRASS.get().defaultBlockState().setValue(SNOWLOGGED, true));
-                stack.consume(1, player);
-                level.playSound(player, pos, SoundEvents.GRASS_PLACE, SoundSource.PLAYERS, 1, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.2F);
-                if (stateUnder.getBlock() instanceof SnowyDirtBlock)
-                    level.setBlockAndUpdate(posUnder, stateUnder.setValue(SNOWY, true));
-                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
-                event.setCanceled(true);
-            }
-        }
-
         // Ladder Placement
         if (stack.is(Items.LADDER) && state.is(Blocks.LADDER) && !player.isSpectator() && !player.isCrouching() && !player.isFakePlayer()) {
             Direction ladderFacing = state.getValue(LadderBlock.FACING);
@@ -150,7 +135,9 @@ public class MiscellaneousEvents {
                             SoundType soundtype = state.getSoundType(level, pos, player);
                             level.playSound(player, mutable, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                             stack.consume(1, player);
-                            level.setBlockAndUpdate(mutable, Blocks.LADDER.defaultBlockState().setValue(LadderBlock.FACING, ladderFacing));
+                            BlockState ladderState = Blocks.LADDER.defaultBlockState().setValue(LadderBlock.FACING, ladderFacing);
+                            level.setBlockAndUpdate(mutable, ladderState);
+                            level.gameEvent(GameEvent.BLOCK_PLACE, pos, GameEvent.Context.of(player, ladderState));
                             event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
                             event.setCanceled(true);
                             break;
