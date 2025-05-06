@@ -20,6 +20,7 @@
     "LadderBlockMixin",
     "LeaveVineDecoratorMixin",
     "LivingEntityMixin",
+    "PatrolSpawnerMixin",
     "RailStateMixin",
     "RandomStrollGoalMixin",
     "ServerLevelMixin",

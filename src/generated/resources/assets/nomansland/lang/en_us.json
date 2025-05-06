@@ -265,6 +265,8 @@
   "block.nomansland.yellow_lupine": "Yellow Lupine",
   "death.attack.nomansland.combust": "%1$s faced immolation",
   "death.attack.nomansland.combust.player": "%1$s was immolated by %2$s",
+  "death.attack.nomansland.icicle_pierce": "%1$s was pierced by an icicle",
+  "death.attack.nomansland.icicle_pierce.player": "%1$s was pierced by an icicle while fighting %2$s",
   "death.attack.nomansland.spike_fall": "%1$s fell for a spike trap",
   "death.attack.nomansland.spike_fall.player": "%1$s fell for a spike trap while fighting %2$s",
   "death.attack.nomansland.spike_impale": "%1$s was impaled in a spike trap",

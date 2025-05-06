@@ -15,7 +15,7 @@ public record SpreadPatchConfiguration(float tryDensity, IntProvider xzSpread, I
                     IntProvider.codec(0, 16).fieldOf("xz_spread").forGetter(SpreadPatchConfiguration::xzSpread),
                     IntProvider.codec(0, 16).fieldOf("y_spread").forGetter(SpreadPatchConfiguration::ySpread),
                     ExtraCodecs.POSITIVE_FLOAT.fieldOf("sparseness").orElse(1.0f).forGetter(SpreadPatchConfiguration::sparseness),
-                    PlacedFeature.CODEC.fieldOf("feature").forGetter(SpreadPatchConfiguration::feature)
+                    PlacedFeature.CODEC.fieldOf("key").forGetter(SpreadPatchConfiguration::feature)
             ).apply(record, SpreadPatchConfiguration::new)
     );
 }

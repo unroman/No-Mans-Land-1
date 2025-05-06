@@ -70,6 +70,8 @@ public class NMLLanguageProvider extends LanguageProvider {
         add("nomansland.subtitles.entity.deer.hurt", "Deer hurts");
         add("nomansland.subtitles.entity.deer.ambient", "Deer bleats");
         add("nomansland.subtitles.particle.droplet.fall", "Droplet falls");
+        add("death.attack.nomansland.icicle_pierce", "%1$s was pierced by an icicle");
+        add("death.attack.nomansland.icicle_pierce.player", "%1$s was pierced by an icicle while fighting %2$s");
         add("death.attack.nomansland.spike_fall", "%1$s fell for a spike trap");
         add("death.attack.nomansland.spike_fall.player", "%1$s fell for a spike trap while fighting %2$s");
         add("death.attack.nomansland.spike_impale", "%1$s was impaled in a spike trap");

@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:beach",
-    "minecraft:desert"
-  ],
-  "features": "nomansland:patch_barrel_cactus_desert",
-  "step": "vegetal_decoration"
-}

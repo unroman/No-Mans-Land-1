@@ -16,6 +16,8 @@ public class NMLDamageTypes {
 
     public static final ResourceKey<DamageType> COMBUST = registerDamageType("combust");
 
+    public static final ResourceKey<DamageType> ICICLE_PIERCE = registerDamageType("icicle_pierce");
+
 
     private static ResourceKey<DamageType> registerDamageType(String name) {
         return ResourceKey.create(Registries.DAMAGE_TYPE, NoMansLand.location(name));

@@ -147,7 +147,7 @@ public class NMLConfig {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push(CATEGORY_BULK_PLACEMENT);
-        COMMON_BUILDER.comment("Set to 0 to disable any feature.");
+        COMMON_BUILDER.comment("Set to 0 to disable any key.");
         MAX_LADDER_PLACEMENT_LENGTH = COMMON_BUILDER
                 .comment("The maximum distance ladders can be placed like scaffolding.")
                 .defineInRange("maxLadderPlacementLength", 8, 0, Integer.MAX_VALUE);
