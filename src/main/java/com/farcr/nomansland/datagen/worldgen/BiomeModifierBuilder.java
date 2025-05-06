@@ -3,15 +3,18 @@ package com.farcr.nomansland.datagen.worldgen;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeColorsBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeMusicBiomeModifier;
+import com.farcr.nomansland.common.world.biomemodifiers.ChangeParticleBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeSpawnsBiomeModifier;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Music;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.biome.AmbientParticleSettings;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -32,6 +35,7 @@ public class BiomeModifierBuilder {
 
     private ChangeColorsBiomeModifier changeColors = null;
     private ChangeMusicBiomeModifier changeMusic = null;
+    private ChangeParticleBiomeModifier changeParticle = null;
     private final List<FeatureWithStep> addedFeatures = new ArrayList<>();
     private RemoveFeaturesBiomeModifier removeFeatures = null;
     private ChangeSpawnsBiomeModifier changeSpawns = null;
@@ -56,6 +60,11 @@ public class BiomeModifierBuilder {
 
     public final BiomeModifierBuilder changeMusic(Music music) {
         this.changeMusic = new ChangeMusicBiomeModifier(biome, music);
+        return this;
+    }
+
+    public final BiomeModifierBuilder changeParticle(ParticleOptions particle, float probability) {
+        this.changeParticle = new ChangeParticleBiomeModifier(biome, new AmbientParticleSettings(particle, probability));
         return this;
     }
 
@@ -100,7 +109,7 @@ public class BiomeModifierBuilder {
 
     public final void build(Map<FeatureWithStep, List<Holder<Biome>>> featureToBiomes) {
 
-        if (addedFeatures != null) {
+        if (!addedFeatures.isEmpty()) {
             addedFeatures.forEach(feature -> featureToBiomes.computeIfAbsent(feature, f -> new ArrayList<>()).add(biome.get(0)));
         }
 
@@ -121,6 +130,16 @@ public class BiomeModifierBuilder {
                             NoMansLand.location(name + "/change_music" )
                     ),
                     changeMusic
+            );
+        }
+
+        if (changeParticle != null) {
+            bootstrap.register(
+                    ResourceKey.create(
+                            NeoForgeRegistries.Keys.BIOME_MODIFIERS,
+                            NoMansLand.location(name + "/change_particle" )
+                    ),
+                    changeParticle
             );
         }
 

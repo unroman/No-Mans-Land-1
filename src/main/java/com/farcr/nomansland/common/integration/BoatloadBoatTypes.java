@@ -16,7 +16,7 @@ public class BoatloadBoatTypes {
             BoatloadIntegration.LARGE_MAPLE_BOAT::item
     ));
 
-    public static final BoatloadBoatType PINE = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
+    public static final BoatloadBoatType PINE = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("pine"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,
@@ -24,7 +24,7 @@ public class BoatloadBoatTypes {
             BoatloadIntegration.LARGE_PINE_BOAT::item
     ));
 
-    public static final BoatloadBoatType WALNUT = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
+    public static final BoatloadBoatType WALNUT = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("walnut"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,
@@ -32,7 +32,7 @@ public class BoatloadBoatTypes {
             BoatloadIntegration.LARGE_WALNUT_BOAT::item
     ));
 
-    public static final BoatloadBoatType WILLOW = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("maple"),
+    public static final BoatloadBoatType WILLOW = BoatloadBoatType.register(BoatloadBoatType.create(NoMansLand.location("willow"),
             NMLBlocks.MAPLE.planks()::item,
             NMLItems.MAPLE_BOAT::item,
             NMLItems.MAPLE_CHEST_BOAT::item,

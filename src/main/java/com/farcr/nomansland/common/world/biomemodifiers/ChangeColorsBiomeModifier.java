@@ -6,6 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeSpecialEffectsBuilder;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
@@ -42,7 +43,7 @@ public record ChangeColorsBiomeModifier(HolderSet<Biome> biomes, Optional<Intege
             waterColor.ifPresent(effectsBuilder::waterColor);
             waterFogColor.ifPresent(effectsBuilder::waterFogColor);
             skyColor.ifPresent(effectsBuilder::skyColor);
-            grassColor.ifPresent(effectsBuilder::grassColorOverride);
+            if (effectsBuilder.getGrassColorModifier() != BiomeSpecialEffects.GrassColorModifier.NONE) grassColor.ifPresent(effectsBuilder::grassColorOverride);
             foliageColor.ifPresent(effectsBuilder::foliageColorOverride);
         }
     }

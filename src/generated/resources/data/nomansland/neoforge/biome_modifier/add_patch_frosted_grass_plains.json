@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:frozen_river",
+    "minecraft:grove"
+  ],
+  "features": "nomansland:patch_frosted_grass_plains",
+  "step": "vegetal_decoration"
+}
