@@ -1,24 +1,38 @@
 package com.farcr.nomansland.common.mixin.integration;
 
+import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.moulberry.mixinconstraints.annotations.IfModLoaded;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
+import com.simibubi.create.content.kinetics.belt.behaviour.BeltProcessingBehaviour;
+import com.simibubi.create.content.kinetics.belt.behaviour.TransportedItemStackHandlerBehaviour;
+import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
+import com.simibubi.create.foundation.advancement.AllAdvancements;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import net.minecraft.world.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @IfModLoaded("create")
 @Mixin(SpoutBlockEntity.class)
 public abstract class SpoutBlockEntityMixin {
-    @Accessor("createdHoneyApple")
-    public abstract void setCreatedHoneyApple(boolean value);
 
-    @Redirect(method = "whenItemHeld", at = @At(value = "FIELD", target = "Lcom/simibubi/create/content/fluids/spout/SpoutBlockEntity;createdHoneyApple:Z", opcode = Opcodes.PUTFIELD))
-    private void countNMLHoneyedApple(SpoutBlockEntity instance, boolean value, @Local ItemStack out) {
-        ((SpoutBlockEntityMixin) (Object) instance).setCreatedHoneyApple(out.is(NMLItems.HONEYED_APPLE) || value);
+    @Shadow protected abstract boolean trackFoods();
+
+    @Shadow private boolean createdHoneyApple;
+
+    @Inject(method = "whenItemHeld", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/fluid/SmartFluidTank;setFluid(Lnet/neoforged/neoforge/fluids/FluidStack;)V", shift = At.Shift.BEFORE))
+    private void countNMLHoneyedApple(TransportedItemStack transported, TransportedItemStackHandlerBehaviour handler, CallbackInfoReturnable<BeltProcessingBehaviour.ProcessingResult> cir, @Local ItemStack out) {
+        if (trackFoods()) {
+            this.createdHoneyApple |= out.is(NMLItems.HONEYED_APPLE);
+        }
     }
 }
