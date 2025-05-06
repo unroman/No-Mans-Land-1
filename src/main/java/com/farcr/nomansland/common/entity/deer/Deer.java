@@ -90,7 +90,6 @@ public class Deer extends Animal {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10)
                 .add(Attributes.JUMP_STRENGTH, 2)
-                .add(Attributes.STEP_HEIGHT, 1 )
                 .add(Attributes.MOVEMENT_SPEED, 0.22);
     }
 

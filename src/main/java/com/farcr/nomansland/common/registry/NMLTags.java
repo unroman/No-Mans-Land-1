@@ -25,6 +25,7 @@ public class NMLTags {
     public static final TagKey<Block> MUSHROOM_BLOCKS = createBlockTag("mushroom_blocks");
     public static final TagKey<Block> BONEMEALABLE_FLOWERS = createBlockTag("bonemealable_flowers");
     public static final TagKey<Biome> HAS_DENSE_FOG = createBiomeTag("has_dense_fog");
+    public static final TagKey<Biome> HAS_CACTUS = createBiomeTag("has_cactus");
     public static final TagKey<Block> BOMB_EXPLODE = createBlockTag("firebomb_explode");
     public static final TagKey<Block> HEAT_SOURCES = createBlockTag("heat_sources");
     public static final TagKey<EntityType<?>> ANCHOR_BLACKLIST = createEntityTag("anchor_blacklist");

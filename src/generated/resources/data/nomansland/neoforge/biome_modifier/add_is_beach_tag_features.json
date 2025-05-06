@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "minecraft:beach",
+  "biomes": "#c:is_beach",
   "features": "nomansland:patch_beachgrass",
   "step": "vegetal_decoration"
 }

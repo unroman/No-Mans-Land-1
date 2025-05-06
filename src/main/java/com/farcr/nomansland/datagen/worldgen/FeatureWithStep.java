@@ -10,7 +10,7 @@ import java.util.List;
 
 public record FeatureWithStep(ResourceKey<PlacedFeature> key, GenerationStep.Decoration step) {
     @SafeVarargs
-    public static List<FeatureWithStep> features(ResourceKey<PlacedFeature>... placedFeatures) {
+    public static List<FeatureWithStep> vegetationFeatures(ResourceKey<PlacedFeature>... placedFeatures) {
         ArrayList<FeatureWithStep> features = new ArrayList<>();
         Arrays.stream(placedFeatures).toList().forEach(key -> {
             features.add(new FeatureWithStep(key, GenerationStep.Decoration.VEGETAL_DECORATION));

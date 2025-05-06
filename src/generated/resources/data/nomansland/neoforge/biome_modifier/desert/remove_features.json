@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "minecraft:desert",
+  "features": [
+    "minecraft:patch_sugar_cane_desert",
+    "minecraft:patch_pumpkin"
+  ]
+}
