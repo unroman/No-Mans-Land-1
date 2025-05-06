@@ -93,9 +93,7 @@ public class CauldronEvents {
 
                 CauldronInteractionInput input = new CauldronInteractionInput(state, stack);
                 Optional<RecipeHolder<CauldronInteractionRecipe>> optional = recipes.getRecipeFor(
-                        NMLRecipeSerializers.CAULDRON_INTERACTION_RECIPE.get(),
-                        input,
-                        level
+                        NMLRecipeSerializers.CAULDRON_INTERACTION_RECIPE.get(), input, level
                 );
 
                 Optional<CauldronInteractionRecipe> recipe = optional

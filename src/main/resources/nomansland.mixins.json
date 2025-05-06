@@ -38,6 +38,7 @@
     "ZombieMixin",
     "integration.PloughMovementBehaviorMixin",
     "integration.RichSoilBlockMixin",
+    "integration.ScaffoldingEventMixin",
     "integration.SeasonHooksMixin",
     "integration.SpoutBlockEntityMixin",
     "integration.TreeCutterMixin",

@@ -1,0 +1,10 @@
+{
+  "values": {
+    "nomansland:wooden_scaffolding": {
+      "burn_time": 50
+    },
+    "nomansland:resin": {
+      "burn_time": 1000
+    }
+  }
+}

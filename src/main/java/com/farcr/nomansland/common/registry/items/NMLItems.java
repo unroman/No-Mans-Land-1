@@ -91,7 +91,7 @@ public class NMLItems {
             () -> new MapleSyrupBottleItem(new Properties().food(NMLFoods.MAPLE_SYRUP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 
     public static final ItemDefinition<Item> RESIN = register("resin",
-            () -> new FuelItem(new Properties(), 1000));
+            () -> new Item(new Properties()));
 
     public static final ItemDefinition<Item> RESIN_OIL_BOTTLE = register("resin_oil_bottle",
             () -> new ResinOilBottleItem(new Properties()
