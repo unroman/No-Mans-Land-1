@@ -17,7 +17,6 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
@@ -42,7 +41,7 @@ public class NMLBiomeModifiers {
         GenerationStep.Decoration vegetalDecoration = GenerationStep.Decoration.VEGETAL_DECORATION;
         GenerationStep.Decoration localModifications = GenerationStep.Decoration.LOCAL_MODIFICATIONS;
 
-        modifyBiome("badlands", Biomes.BADLANDS)
+        modifyBiome(Biomes.BADLANDS)
                 .changeColors(15322281,
                         4106959,
                         3048361,
@@ -55,7 +54,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.ZOMBIE)
                 .build(featureToBiomes);
 
-        modifyBiome("bamboo_jungle", Biomes.BAMBOO_JUNGLE)
+        modifyBiome(Biomes.BAMBOO_JUNGLE)
                 .changeColors(
                         11071699,
                         2403207,
@@ -90,7 +89,7 @@ public class NMLBiomeModifiers {
 
 
 
-        modifyBiome("beach", Biomes.BEACH)
+        modifyBiome(Biomes.BEACH)
                 .changeColors(
                         12906239,
                         3902136,
@@ -105,7 +104,7 @@ public class NMLBiomeModifiers {
                 )
                 .build(featureToBiomes);
 
-        modifyBiome("birch_forest", Biomes.BIRCH_FOREST)
+        modifyBiome(Biomes.BIRCH_FOREST)
                 .changeColors(
                         12906239,
                         3902136,
@@ -125,7 +124,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.RABBIT, 8, 3, 4))
                 .build(featureToBiomes);
 
-        modifyBiome("cherry_grove", Biomes.CHERRY_GROVE)
+        modifyBiome(Biomes.CHERRY_GROVE)
                 .changeColors(
                         15724287,
                         3895992,
@@ -150,7 +149,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.CHICKEN, 4, 2, 6))
                 .build(featureToBiomes);
 
-        modifyBiome("cold_ocean", Biomes.COLD_OCEAN)
+        modifyBiome(Biomes.COLD_OCEAN)
                 .changeColors(
                         12639487,
                         3899064,
@@ -166,7 +165,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN, PATCH_SUGAR_CANE)
                 .build(featureToBiomes);
 
-        modifyBiome("dark_forest", Biomes.DARK_FOREST)
+        modifyBiome(Biomes.DARK_FOREST)
                 .changeColors(
                         12906239,
                         3902136,
@@ -191,7 +190,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.SHEEP, EntityType.COW)
                 .build(featureToBiomes);
         
-        modifyBiome("deep_cold_ocean", Biomes.DEEP_COLD_OCEAN)
+        modifyBiome(Biomes.DEEP_COLD_OCEAN)
                 .changeColors(
                         12639487,
                         3899064,
@@ -207,7 +206,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN, PATCH_SUGAR_CANE)
                 .build(featureToBiomes);
 
-        modifyBiome("deep_dark", Biomes.DEEP_DARK)
+        modifyBiome(Biomes.DEEP_DARK)
                 .changeColors(
                         745045,
                         1327441,
@@ -219,7 +218,7 @@ public class NMLBiomeModifiers {
                 .changeParticle(NMLParticleTypes.SCULK_AMBIENCE.get(), 0.005F)
                 .build(featureToBiomes);
 
-        modifyBiome("deep_frozen_ocean", Biomes.DEEP_FROZEN_OCEAN)
+        modifyBiome(Biomes.DEEP_FROZEN_OCEAN)
                 .changeColors(
                         15200511,
                         4223408,
@@ -235,7 +234,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN, PATCH_SUGAR_CANE)
                 .build(featureToBiomes);
 
-        modifyBiome("deep_lukewarm_ocean", Biomes.DEEP_LUKEWARM_OCEAN)
+        modifyBiome(Biomes.DEEP_LUKEWARM_OCEAN)
                 .changeColors(
                         12711423,
                         3906239,
@@ -251,7 +250,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN)
                 .build(featureToBiomes);
 
-        modifyBiome("deep_ocean", Biomes.DEEP_OCEAN)
+        modifyBiome(Biomes.DEEP_OCEAN)
                 .changeColors(
                         12906239,
                         3902136,
@@ -267,7 +266,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN)
                 .build(featureToBiomes);
 
-        modifyBiome("desert", Biomes.DESERT)
+        modifyBiome(Biomes.DESERT)
                 .changeColors(
                         15200511,
                         4223408,
@@ -288,7 +287,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.ZOMBIE)
                 .build(featureToBiomes);
 
-        modifyBiome("dripstone_caves", Biomes.DRIPSTONE_CAVES)
+        modifyBiome(Biomes.DRIPSTONE_CAVES)
                 .changeColors(
                         4210492,
                         6913929,
@@ -302,7 +301,7 @@ public class NMLBiomeModifiers {
                 // Commented out until NML biomes are converted to modifiers to avoid a feature order cycle
                 .build(featureToBiomes);
 
-        modifyBiome("flower_forest", Biomes.FLOWER_FOREST)
+        modifyBiome(Biomes.FLOWER_FOREST)
                 .changeColors(
                         12906239,
                         3902136,
@@ -327,7 +326,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.FOX, 5, 4, 4))
                 .build(featureToBiomes);
 
-        modifyBiome("forest", Biomes.FOREST)
+        modifyBiome(Biomes.FOREST)
                 .changeColors(
                         12906239,
                         3902136,
@@ -351,7 +350,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, FOREST_FLOWERS)
                 .build(featureToBiomes);
 
-        modifyBiome("frozen_ocean", Biomes.FROZEN_OCEAN)
+        modifyBiome(Biomes.FROZEN_OCEAN)
                 .changeColors(
                         15200511,
                         4220592,
@@ -367,7 +366,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(PATCH_PUMPKIN, PATCH_SUGAR_CANE)
                 .build(featureToBiomes);
 
-        modifyBiome("frozen_peaks", Biomes.FROZEN_PEAKS)
+        modifyBiome(Biomes.FROZEN_PEAKS)
                 .changeColors(
                         15200511,
                         4220592,
@@ -379,7 +378,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.POLAR_BEAR, 1, 1, 2))
                 .build(featureToBiomes);
 
-        modifyBiome("frozen_river", Biomes.FROZEN_RIVER)
+        modifyBiome(Biomes.FROZEN_RIVER)
                 .changeColors(
                         15200511,
                         4220592,
@@ -396,7 +395,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_GRASS_BADLANDS)
                 .build(featureToBiomes);
 
-        modifyBiome("grove", Biomes.GROVE)
+        modifyBiome(Biomes.GROVE)
                 .changeColors(
                         15200511,
                         4220592,
@@ -418,7 +417,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.POLAR_BEAR, 1, 1, 2))
                 .build(featureToBiomes);
 
-        modifyBiome("ice_spikes", Biomes.ICE_SPIKES)
+        modifyBiome(Biomes.ICE_SPIKES)
                 .changeColors(
                         15200511,
                         4220592,
@@ -435,7 +434,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT)
                 .build(featureToBiomes);
 
-        modifyBiome("jagged_peaks", Biomes.JAGGED_PEAKS)
+        modifyBiome(Biomes.JAGGED_PEAKS)
                 .changeColors(
                         15200511,
                         3899064,
@@ -446,7 +445,7 @@ public class NMLBiomeModifiers {
                 )
                 .build(featureToBiomes);
 
-        modifyBiome("jungle", Biomes.JUNGLE)
+        modifyBiome(Biomes.JUNGLE)
                 .changeColors(
                         11071699,
                         2403207,
@@ -474,7 +473,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.SHEEP)
                 .build(featureToBiomes);
 
-        modifyBiome("lukewarm_ocean", Biomes.LUKEWARM_OCEAN)
+        modifyBiome(Biomes.LUKEWARM_OCEAN)
                 .changeColors(
                         12711423,
                         3906239,
@@ -490,7 +489,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN)
                 .build(featureToBiomes);
 
-        modifyBiome("lush_caves", Biomes.LUSH_CAVES)
+        modifyBiome(Biomes.LUSH_CAVES)
                 .changeColors(
                         11071699,
                         5536348,
@@ -502,7 +501,7 @@ public class NMLBiomeModifiers {
                 .addFeatures(FeatureWithStep.vegetationFeatures(feature("underground/patch_duckweed_lush_caves")))
                 .build(featureToBiomes);
 
-        modifyBiome("mangrove_swamp", Biomes.MANGROVE_SWAMP)
+        modifyBiome(Biomes.MANGROVE_SWAMP)
                 .changeColors(
                         11333800,
                         3832426,
@@ -514,7 +513,7 @@ public class NMLBiomeModifiers {
                 .addFeatures(FeatureWithStep.vegetationFeatures(patch("water_mosaic")))
                 .build(featureToBiomes);
 
-        modifyBiome("meadow", Biomes.MEADOW)
+        modifyBiome(Biomes.MEADOW)
                 .changeColors(
                         12639487,
                         3895992,
@@ -536,7 +535,7 @@ public class NMLBiomeModifiers {
                 )
                 .build(featureToBiomes);
 
-        modifyBiome("mushroom_fields", Biomes.MUSHROOM_FIELDS)
+        modifyBiome(Biomes.MUSHROOM_FIELDS)
                 .changeColors(
                         15132415,
                         8616598,
@@ -556,7 +555,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(DISK_SAND, DISK_GRAVEL, PATCH_SUGAR_CANE, PATCH_PUMPKIN)
                 .build(featureToBiomes);
 
-        modifyBiome("ocean", Biomes.OCEAN)
+        modifyBiome(Biomes.OCEAN)
                 .changeColors(
                         12906239,
                         3902136,
@@ -574,7 +573,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN)
                 .build(featureToBiomes);
 
-        modifyBiome("old_growth_birch_forest", Biomes.OLD_GROWTH_BIRCH_FOREST)
+        modifyBiome(Biomes.OLD_GROWTH_BIRCH_FOREST)
                 .changeColors(
                         12906239,
                         3902136,
@@ -602,7 +601,7 @@ public class NMLBiomeModifiers {
                 )
                 .build(featureToBiomes);
 
-        modifyBiome("old_growth_pine_taiga", Biomes.OLD_GROWTH_PINE_TAIGA)
+        modifyBiome(Biomes.OLD_GROWTH_PINE_TAIGA)
                 .changeColors(
                         12639487,
                         3899064,
@@ -631,7 +630,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.COW)
                 .build(featureToBiomes);
 
-        modifyBiome("old_growth_spruce_taiga", Biomes.OLD_GROWTH_SPRUCE_TAIGA)
+        modifyBiome(Biomes.OLD_GROWTH_SPRUCE_TAIGA)
                 .changeColors(
                         12639487,
                         3899064,
@@ -656,7 +655,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.COW)
                 .build(featureToBiomes);
 
-        modifyBiome("plains", Biomes.PLAINS)
+        modifyBiome(Biomes.PLAINS)
                 .changeColors(
                         12906239,
                         3902136,
@@ -679,7 +678,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.CHICKEN)
                 .build(featureToBiomes);
 
-        modifyBiome("river", Biomes.RIVER)
+        modifyBiome(Biomes.RIVER)
                 .changeColors(
                         12906239,
                         3902136,
@@ -696,7 +695,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT, PATCH_GRASS_BADLANDS)
                 .build(featureToBiomes);
 
-        modifyBiome("savanna", Biomes.SAVANNA)
+        modifyBiome(Biomes.SAVANNA)
                 .changeColors(
                         12711423,
                         3906239,
@@ -720,7 +719,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.WOLF, 8, 4, 8))
                 .build(featureToBiomes);
 
-        modifyBiome("savanna_plateau", Biomes.SAVANNA_PLATEAU)
+        modifyBiome(Biomes.SAVANNA_PLATEAU)
                 .changeColors(
                         12711423,
                         3906239,
@@ -744,7 +743,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.ARMADILLO)
                 .build(featureToBiomes);
 
-        modifyBiome("snowy_beach", Biomes.SNOWY_BEACH)
+        modifyBiome(Biomes.SNOWY_BEACH)
                 .changeColors(
                         15200511,
                         4220592,
@@ -761,7 +760,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT)
                 .build(featureToBiomes);
 
-        modifyBiome("snowy_plains", Biomes.SNOWY_PLAINS)
+        modifyBiome(Biomes.SNOWY_PLAINS)
                 .changeColors(
                         15200511,
                         4220592,
@@ -777,7 +776,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT)
                 .build(featureToBiomes);
 
-        modifyBiome("snowy_slopes", Biomes.SNOWY_SLOPES)
+        modifyBiome(Biomes.SNOWY_SLOPES)
                 .changeColors(
                         15200511,
                         4220592,
@@ -788,7 +787,7 @@ public class NMLBiomeModifiers {
                 )
                 .build(featureToBiomes);
 
-        modifyBiome("snowy_taiga", Biomes.SNOWY_TAIGA)
+        modifyBiome(Biomes.SNOWY_TAIGA)
                 .changeColors(
                         15200511,
                         4220592,
@@ -817,7 +816,7 @@ public class NMLBiomeModifiers {
                 .build(featureToBiomes);
 
         // TODO: change downfall to 0.9 from 0.8
-        modifyBiome("sparse_jungle", Biomes.SPARSE_JUNGLE)
+        modifyBiome(Biomes.SPARSE_JUNGLE)
                 .changeColors(
                         13107185,
                         3517088,
@@ -843,7 +842,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.SHEEP)
                 .build(featureToBiomes);
 
-        modifyBiome("stony_peaks", Biomes.STONY_PEAKS)
+        modifyBiome(Biomes.STONY_PEAKS)
                 .changeColors(
                         12906239,
                         3902136,
@@ -856,7 +855,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.GOAT, 7, 1, 3))
                 .build(featureToBiomes);
 
-        modifyBiome("stony_shore", Biomes.STONY_SHORE)
+        modifyBiome(Biomes.STONY_SHORE)
                 .changeColors(
                         12906239,
                         3902136,
@@ -877,7 +876,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.SHEEP, 5, 1, 3))
                 .build(featureToBiomes);
 
-        modifyBiome("sunflower_plains", Biomes.SUNFLOWER_PLAINS)
+        modifyBiome(Biomes.SUNFLOWER_PLAINS)
                 .changeColors(
                         12906239,
                         3902136,
@@ -901,7 +900,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.CHICKEN)
                 .build(featureToBiomes);
 
-        modifyBiome("swamp", Biomes.SWAMP)
+        modifyBiome(Biomes.SWAMP)
                 .changeColors(
                         10996903,
                         5536348,
@@ -921,7 +920,7 @@ public class NMLBiomeModifiers {
                 .build(featureToBiomes);
 
         // TODO: Change temperature from 0.25 to 0.35
-        modifyBiome("taiga", Biomes.TAIGA)
+        modifyBiome(Biomes.TAIGA)
                 .changeColors(
                         12639487,
                         3899064,
@@ -946,7 +945,7 @@ public class NMLBiomeModifiers {
                 .removeSpawns(EntityType.COW)
                 .build(featureToBiomes);
 
-        modifyBiome("warm_ocean", Biomes.WARM_OCEAN)
+        modifyBiome(Biomes.WARM_OCEAN)
                 .changeColors(
                         12711423,
                         4106959,
@@ -962,7 +961,7 @@ public class NMLBiomeModifiers {
                 .removeFeatures(FLOWER_DEFAULT)
                 .build(featureToBiomes);
 
-        modifyBiome("windswept_forest", Biomes.WINDSWEPT_FOREST)
+        modifyBiome(Biomes.WINDSWEPT_FOREST)
                 .changeColors(
                         12639487,
                         3902136,
@@ -987,7 +986,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.GOAT, 3, 2, 4))
                 .build(featureToBiomes);
 
-        modifyBiome("windswept_gravelly_hills", Biomes.WINDSWEPT_GRAVELLY_HILLS)
+        modifyBiome(Biomes.WINDSWEPT_GRAVELLY_HILLS)
                 .changeColors(
                         12639487,
                         3902136,
@@ -1012,7 +1011,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.GOAT, 6, 2, 4))
                 .build(featureToBiomes);
 
-        modifyBiome("windswept_hills", Biomes.WINDSWEPT_HILLS)
+        modifyBiome(Biomes.WINDSWEPT_HILLS)
                 .changeColors(
                         12639487,
                         3902136,
@@ -1037,7 +1036,7 @@ public class NMLBiomeModifiers {
                 .addSpawns(new SpawnerData(EntityType.GOAT, 4, 2, 4))
                 .build(featureToBiomes);
 
-        modifyBiome("windswept_savanna", Biomes.WINDSWEPT_SAVANNA)
+        modifyBiome(Biomes.WINDSWEPT_SAVANNA)
                 .changeColors(
                         12711423,
                         3906239,
@@ -1070,7 +1069,7 @@ public class NMLBiomeModifiers {
         // Below this are NML biomes. They don't need modifiers per se, but it helps avoid feature order cycles.
         // JSON was a mistake.
 
-        modifyBiome("autumnal_forest", NMLBiomes.AUTUMNAL_FOREST)
+        modifyBiome(NMLBiomes.AUTUMNAL_FOREST)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("autumnal_forest"),
                         flowers("autumnal_forest"),
@@ -1084,7 +1083,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("bayou", NMLBiomes.BAYOU)
+        modifyBiome(NMLBiomes.BAYOU)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("bayou"),
                         BAMBOO_LIGHT,
@@ -1104,7 +1103,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("bog", NMLBiomes.BOG)
+        modifyBiome(NMLBiomes.BOG)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("bog"),
                         flowers("bog"),
@@ -1121,7 +1120,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("dark_swamp", NMLBiomes.DARK_SWAMP)
+        modifyBiome(NMLBiomes.DARK_SWAMP)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("dark_swamp"),
                         flowers("maple"),
@@ -1140,7 +1139,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("dark_taiga", NMLBiomes.DARK_TAIGA)
+        modifyBiome(NMLBiomes.DARK_TAIGA)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("dark_taiga"),
                         flowers("dark_taiga"),
@@ -1155,7 +1154,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("frozen_woods", NMLBiomes.FROZEN_WOODS)
+        modifyBiome(NMLBiomes.FROZEN_WOODS)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("frozen"),
                         flowers("frosted"),
@@ -1166,7 +1165,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("maple_forest", NMLBiomes.MAPLE_FOREST)
+        modifyBiome(NMLBiomes.MAPLE_FOREST)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("maple_forest"),
                         flowers("maple"),
@@ -1181,7 +1180,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("maple_grove", NMLBiomes.MAPLE_GROVE)
+        modifyBiome(NMLBiomes.MAPLE_GROVE)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("maple_grove"),
                         flowers("maple"),
@@ -1196,7 +1195,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("old_growth_forest", NMLBiomes.OLD_GROWTH_FOREST)
+        modifyBiome(NMLBiomes.OLD_GROWTH_FOREST)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("old_growth_forest"),
                         patch("grass_old_growth"),
@@ -1211,7 +1210,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("old_growth_forest_clearing", NMLBiomes.OLD_GROWTH_FOREST_CLEARING)
+        modifyBiome(NMLBiomes.OLD_GROWTH_FOREST_CLEARING)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("old_growth_forest_clearing"),
                         patch("grass_old_growth"),
@@ -1226,7 +1225,7 @@ public class NMLBiomeModifiers {
                 ))
                 .build(featureToBiomes);
 
-        modifyBiome("old_growth_forest_edge", NMLBiomes.OLD_GROWTH_FOREST_EDGE)
+        modifyBiome(NMLBiomes.OLD_GROWTH_FOREST_EDGE)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("old_growth_forest_edge"),
                         patch("grass_old_growth"),
@@ -1281,7 +1280,7 @@ public class NMLBiomeModifiers {
         addFeaturesToTag(NMLTags.FeatureAddition.HAS_MUD_PATCH, GenerationStep.Decoration.FLUID_SPRINGS, feature("mud_patch"));
 
         // Extra mushroom stuff
-        addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_CIRCLE, vegetalDecoration, feature("field_mushroom_circle"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FIELD_MUSHROOM_CIRCLE, vegetalDecoration, feature("field_mushroom_circle"));
         addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_FOREST, vegetalDecoration, feature("shelf_mushroom_forest"));
         addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_OLD_GROWTH, vegetalDecoration, feature("shelf_mushroom_old_growth"));
         addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_TAIGA, vegetalDecoration, feature("shelf_mushroom_taiga"));
@@ -1291,8 +1290,8 @@ public class NMLBiomeModifiers {
         processFeatures();
     }
     
-    private BiomeModifierBuilder modifyBiome(String name, ResourceKey<Biome> biome) {
-        return new BiomeModifierBuilder(bootstrap, name, biome);
+    private BiomeModifierBuilder modifyBiome(ResourceKey<Biome> biome) {
+        return new BiomeModifierBuilder(bootstrap, biome);
     }
 
     @SafeVarargs
