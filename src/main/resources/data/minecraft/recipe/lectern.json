@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "B": {
-      "tag": "nomansland:bookshelves"
+      "tag": "c:bookshelves"
     },
     "S": {
       "tag": "minecraft:wooden_slabs"
