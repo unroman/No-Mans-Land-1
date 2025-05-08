@@ -295,7 +295,8 @@ public class NMLBiomeModifiers {
                         7631435
                 )
                 .changeParticle(NMLParticleTypes.CAVE_DUST.get(), 0.01F)
-                .addFeatures(new FeatureWithStep(ORE_SILT, GenerationStep.Decoration.UNDERGROUND_ORES))
+                //.addFeatures(new FeatureWithStep(ORE_SILT, GenerationStep.Decoration.UNDERGROUND_ORES))
+                // Commented out until NML biomes are converted to modifiers to avoid a feature order cycle
                 .build(featureToBiomes);
 
         modifyBiome("flower_forest", Biomes.FLOWER_FOREST)

@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class NMLPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> ORE_SILT = feature("ore_silt");
+    public static final ResourceKey<PlacedFeature> ORE_SILT = feature("underground/ore_silt");
 
     public static ResourceKey<PlacedFeature> patch(String patch) {
         return ResourceKey.create(Registries.PLACED_FEATURE, NoMansLand.location("patch_" + patch));
