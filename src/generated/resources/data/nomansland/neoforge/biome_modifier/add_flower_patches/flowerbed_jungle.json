@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:bamboo_jungle",
-    "minecraft:jungle"
-  ],
-  "features": "nomansland:flower_patches/flowerbed_jungle",
-  "step": "vegetal_decoration"
-}

@@ -31,6 +31,10 @@ public record ChangeColorsBiomeModifier(HolderSet<Biome> biomes, Optional<Intege
         this(biomes, Optional.of(fogColor), Optional.of(waterColor), Optional.of(waterFogColor), Optional.of(skyColor), Optional.of(grassColor), Optional.of(foliageColor));
     }
 
+    public ChangeColorsBiomeModifier(HolderSet<Biome> biomes, int fogColor, int waterColor, int waterFogColor, int skyColor, int foliageColor) {
+        this(biomes, Optional.of(fogColor), Optional.of(waterColor), Optional.of(waterFogColor), Optional.of(skyColor), Optional.empty(), Optional.of(foliageColor));
+    }
+
     public ChangeColorsBiomeModifier(HolderSet<Biome> biomes, int fogColor, int waterColor, int waterFogColor, int skyColor) {
         this(biomes, Optional.of(fogColor), Optional.of(waterColor), Optional.of(waterFogColor), Optional.of(skyColor), Optional.empty(), Optional.empty());
     }

@@ -79,23 +79,7 @@
       "minecraft:spring_lava"
     ],
     [
-      "nomansland:biome_trees/trees_dark_swamp"
-    ],
-    [
       "minecraft:glow_lichen",
-      "nomansland:flower_patches/flowers_maple",
-      "nomansland:flower_patches/flowerbed_red",
-      "nomansland:patch_rose_bush",
-      "minecraft:patch_grass_normal",
-      "minecraft:patch_dead_bush",
-      "minecraft:patch_waterlily",
-      "minecraft:brown_mushroom_swamp",
-      "minecraft:red_mushroom_swamp",
-      "minecraft:brown_mushroom_old_growth",
-      "minecraft:red_mushroom_normal",
-      "nomansland:shelf_mushroom_dark_forest",
-      "minecraft:patch_sugar_cane_swamp",
-      "minecraft:patch_pumpkin",
       "minecraft:seagrass_swamp"
     ],
     [

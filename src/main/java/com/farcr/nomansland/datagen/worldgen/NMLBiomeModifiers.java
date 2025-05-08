@@ -3,13 +3,13 @@ package com.farcr.nomansland.datagen.worldgen;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.NMLTags;
+import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Music;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
@@ -23,8 +23,10 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.*;
 
+import static net.minecraft.data.worldgen.placement.MiscOverworldPlacements.*;
 import static net.minecraft.data.worldgen.placement.VegetationPlacements.*;
 import static com.farcr.nomansland.common.registry.worldgen.NMLPlacedFeatures.*;
+import static net.minecraft.sounds.SoundEvents.*;
 import static net.neoforged.neoforge.common.world.BiomeModifiers.*;
 
 public class NMLBiomeModifiers {
@@ -38,6 +40,7 @@ public class NMLBiomeModifiers {
     
     private void setup() {
         GenerationStep.Decoration vegetalDecoration = GenerationStep.Decoration.VEGETAL_DECORATION;
+        GenerationStep.Decoration localModifications = GenerationStep.Decoration.LOCAL_MODIFICATIONS;
 
         modifyBiome("badlands", Biomes.BADLANDS)
                 .changeColors(15322281,
@@ -62,7 +65,7 @@ public class NMLBiomeModifiers {
                         6203171
                 )
                 .changeMusic(
-                        new Music(SoundEvents.MUSIC_BIOME_JUNGLE, 12000, 24000, false)
+                        new Music(MUSIC_BIOME_JUNGLE, 12000, 24000, false)
                 )
                 .addFeatures(
                         FeatureWithStep.vegetationFeatures(
@@ -387,8 +390,7 @@ public class NMLBiomeModifiers {
                 )
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         flowers("white"),
-                        flowerBed("frosted"),
-                        patch("frosted_grass_plains")
+                        flowerBed("frosted")
                 ))
                 .addSpawns(new SpawnerData(EntityType.POLAR_BEAR, 1, 1, 2))
                 .removeFeatures(FLOWER_DEFAULT, PATCH_GRASS_BADLANDS)
@@ -405,8 +407,7 @@ public class NMLBiomeModifiers {
                 )
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         flowers("white"),
-                        flowerBed("frosted"),
-                        patch("frosted_grass_plains")
+                        flowerBed("frosted")
                 ))
                 .removeFeatures(PATCH_PUMPKIN, PATCH_SUGAR_CANE)
                 .changeSpawns(
@@ -535,8 +536,757 @@ public class NMLBiomeModifiers {
                 )
                 .build(featureToBiomes);
 
-        addFeaturesToTag(Tags.Biomes.IS_BEACH, vegetalDecoration, patch("beachgrass"));
+        modifyBiome("mushroom_fields", Biomes.MUSHROOM_FIELDS)
+                .changeColors(
+                        15132415,
+                        8616598,
+                        5921653,
+                        8898024,
+                        11772555,
+                        10583946
+                )
+                .addFeatures(
+                        FeatureWithStep.vegetationFeatures(
+                                patch("mycelium_growths"),
+                                patch("duckweed_sparse"),
+                                PATCH_DEAD_BUSH,
+                                patch("dried_grass_mycelium")
+                        )
+                )
+                .removeFeatures(DISK_SAND, DISK_GRAVEL, PATCH_SUGAR_CANE, PATCH_PUMPKIN)
+                .build(featureToBiomes);
+
+        modifyBiome("ocean", Biomes.OCEAN)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        9680231,
+                        8960833
+                )
+                .addFeatures(
+                        FeatureWithStep.vegetationFeatures(
+                                flowers("white"),
+                                flowerBed("white")
+                        )
+                )
+                .removeFeatures(FLOWER_DEFAULT, PATCH_PUMPKIN)
+                .build(featureToBiomes);
+
+        modifyBiome("old_growth_birch_forest", Biomes.OLD_GROWTH_BIRCH_FOREST)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        8367967,
+                        6594108
+                )
+                .addFeatures(
+                        FeatureWithStep.vegetationFeatures(
+                                flowers("birch_forest"),
+                                flowerBed("white"),
+                                patch("peony_and_lilac")
+                        )
+                )
+                .removeFeatures(FOREST_FLOWERS, FLOWER_DEFAULT)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 4, 1, 4),
+                        new SpawnerData(EntityType.CHICKEN, 14, 4, 6),
+                        new SpawnerData(EntityType.COW, 2, 4, 4)
+                )
+                .addSpawns(
+                        new SpawnerData(EntityType.RABBIT, 8, 3, 4),
+                        new SpawnerData(EntityType.FOX, 2, 2, 6)
+                )
+                .build(featureToBiomes);
+
+        modifyBiome("old_growth_pine_taiga", Biomes.OLD_GROWTH_PINE_TAIGA)
+                .changeColors(
+                        12639487,
+                        3899064,
+                        2386591,
+                        8431871,
+                        9149532,
+                        8292172
+                )
+                .addFeatures(
+                        FeatureWithStep.vegetationFeatures(
+                                flowers("taiga"),
+                                flowerBed("taiga"),
+                                patch("rose_bush")
+                        )
+                )
+                .removeFeatures(FLOWER_DEFAULT, PATCH_DEAD_BUSH, FOREST_ROCK)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 6, 1, 4),
+                        new SpawnerData(EntityType.PIG, 14, 4, 6),
+                        new SpawnerData(EntityType.CHICKEN, 10, 4, 8),
+                        new SpawnerData(EntityType.WOLF, 9, 2, 4),
+                        new SpawnerData(EntityType.RABBIT, 12, 2, 3),
+                        new SpawnerData(EntityType.ZOMBIE, 95, 4, 4),
+                        new SpawnerData(EntityType.ZOMBIE_VILLAGER, 5, 1, 1)
+                )
+                .removeSpawns(EntityType.COW)
+                .build(featureToBiomes);
+
+        modifyBiome("old_growth_spruce_taiga", Biomes.OLD_GROWTH_SPRUCE_TAIGA)
+                .changeColors(
+                        12639487,
+                        3899064,
+                        2386591,
+                        8431871,
+                        9149532,
+                        8292172
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("taiga"),
+                        flowerBed("taiga"),
+                        patch("rose_bush")
+                ))
+                .removeFeatures(FLOWER_DEFAULT, FOREST_ROCK)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 6, 1, 4),
+                        new SpawnerData(EntityType.PIG, 14, 4, 6),
+                        new SpawnerData(EntityType.CHICKEN, 10, 4, 8),
+                        new SpawnerData(EntityType.WOLF, 9, 2, 4),
+                        new SpawnerData(EntityType.RABBIT, 12, 2, 3)
+                )
+                .removeSpawns(EntityType.COW)
+                .build(featureToBiomes);
+
+        modifyBiome("plains", Biomes.PLAINS)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        9419352,
+                        8960833
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("plains"),
+                        flowerBed("white_and_yellow")
+                ))
+                .removeFeatures(FLOWER_PLAINS)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 16, 4, 8),
+                        new SpawnerData(EntityType.PIG, 4, 2, 4),
+                        new SpawnerData(EntityType.COW, 14, 4, 6)
+                )
+                .addSpawns(new SpawnerData(EntityType.RABBIT, 14, 3, 6))
+                .removeSpawns(EntityType.CHICKEN)
+                .build(featureToBiomes);
+
+        modifyBiome("river", Biomes.RIVER)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        9680231,
+                        8960833
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("white"),
+                        flowerBed("white"),
+                        PATCH_GRASS_NORMAL
+                ))
+                .removeFeatures(FLOWER_DEFAULT, PATCH_GRASS_BADLANDS)
+                .build(featureToBiomes);
+
+        modifyBiome("savanna", Biomes.SAVANNA)
+                .changeColors(
+                        12711423,
+                        3906239,
+                        2979747,
+                        6800872,
+                        13415770,
+                        10067503
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("savanna"),
+                        flowerBed("savanna"),
+                        patch("barrel_cactus_normal"),
+                        patch("succulent_normal")
+                ))
+                .removeFeatures(FLOWER_WARM)
+                .changeSpawns(
+                        new SpawnerData(EntityType.PIG, 4, 4, 4),
+                        new SpawnerData(EntityType.CHICKEN, 4, 4, 4),
+                        new SpawnerData(EntityType.COW, 14, 2, 6)
+                )
+                .addSpawns(new SpawnerData(EntityType.WOLF, 8, 4, 8))
+                .build(featureToBiomes);
+
+        modifyBiome("savanna_plateau", Biomes.SAVANNA_PLATEAU)
+                .changeColors(
+                        12711423,
+                        3906239,
+                        2979747,
+                        6800872,
+                        13415770,
+                        10067503
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("savanna"),
+                        flowerBed("savanna"),
+                        patch("barrel_cactus_normal"),
+                        patch("succulent_normal")
+                ))
+                .removeFeatures(FLOWER_WARM)
+                .changeSpawns(
+                        new SpawnerData(EntityType.PIG, 4, 4, 4),
+                        new SpawnerData(EntityType.CHICKEN, 4, 4, 4),
+                        new SpawnerData(EntityType.COW, 14, 4, 4)
+                )
+                .removeSpawns(EntityType.ARMADILLO)
+                .build(featureToBiomes);
+
+        modifyBiome("snowy_beach", Biomes.SNOWY_BEACH)
+                .changeColors(
+                        15200511,
+                        4220592,
+                        2771621,
+                        10797823,
+                        10205860,
+                        5541228
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("white"),
+                        flowerBed("frosted"),
+                        TREES_WATER
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .build(featureToBiomes);
+
+        modifyBiome("snowy_plains", Biomes.SNOWY_PLAINS)
+                .changeColors(
+                        15200511,
+                        4220592,
+                        2771621,
+                        10797823,
+                        10205860,
+                        5541228
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("frosted"),
+                        flowerBed("frosted")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .build(featureToBiomes);
+
+        modifyBiome("snowy_slopes", Biomes.SNOWY_SLOPES)
+                .changeColors(
+                        15200511,
+                        4220592,
+                        2771621,
+                        7715315,
+                        10205860,
+                        10205860
+                )
+                .build(featureToBiomes);
+
+        modifyBiome("snowy_taiga", Biomes.SNOWY_TAIGA)
+                .changeColors(
+                        15200511,
+                        4220592,
+                        2771621,
+                        10797823,
+                        10205860,
+                        13415770
+                )
+                .changeMusic(new Music(MUSIC_BIOME_OLD_GROWTH_TAIGA, 12000, 24000, false))
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("snowy_taiga"),
+                        flowers("white"),
+                        flowerBed("frosted"),
+                        patch("grass_snowy"),
+                        PATCH_BERRY_COMMON
+                ))
+                .removeFeatures(TREES_TAIGA, FLOWER_DEFAULT, PATCH_GRASS_TAIGA_2, PATCH_BERRY_RARE)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 6, 1, 4),
+                        new SpawnerData(EntityType.CHICKEN, 10, 4, 8),
+                        new SpawnerData(EntityType.RABBIT, 12, 2, 3),
+                        new SpawnerData(EntityType.FOX, 10, 2, 4)
+                )
+                .addSpawns(new SpawnerData(EntityType.POLAR_BEAR, 2, 1, 3))
+                .removeSpawns(EntityType.PIG, EntityType.COW)
+                .build(featureToBiomes);
+
+        // TODO: change downfall to 0.9 from 0.8
+        modifyBiome("sparse_jungle", Biomes.SPARSE_JUNGLE)
+                .changeColors(
+                        13107185,
+                        3517088,
+                        55668872,
+                        7192271,
+                        8174674,
+                        7516981
+                )
+                .changeMusic(new Music(MUSIC_BIOME_JUNGLE, 12000, 24000, false))
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowerBed("jungle"),
+                        patch("hearty_succulent")
+                ))
+                .removeFeatures(PATCH_PUMPKIN)
+                .changeSpawns(
+                        new SpawnerData(EntityType.PIG, 12, 4, 4),
+                        new SpawnerData(EntityType.COW, 10, 4, 4)
+                )
+                .addSpawns(
+                        new SpawnerData(EntityType.PARROT, 10, 1, 2),
+                        new SpawnerData(EntityType.OCELOT, 6, 1, 3)
+                )
+                .removeSpawns(EntityType.SHEEP)
+                .build(featureToBiomes);
+
+        modifyBiome("stony_peaks", Biomes.STONY_PEAKS)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        9620606,
+                        9098883
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(flowers("birch_forest")))
+                .addSpawns(new SpawnerData(EntityType.GOAT, 7, 1, 3))
+                .build(featureToBiomes);
+
+        modifyBiome("stony_shore", Biomes.STONY_SHORE)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        9680231,
+                        8960833
+                )
+                .addFeatures(
+                        new FeatureWithStep(feature("pond_stony_shore"), GenerationStep.Decoration.LOCAL_MODIFICATIONS),
+                        new FeatureWithStep(feature("tuff_boulder"), GenerationStep.Decoration.UNDERGROUND_DECORATION) // later stage to avoid ore generation
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("white"),
+                        flowerBed("white")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .addSpawns(new SpawnerData(EntityType.SHEEP, 5, 1, 3))
+                .build(featureToBiomes);
+
+        modifyBiome("sunflower_plains", Biomes.SUNFLOWER_PLAINS)
+                .changeColors(
+                        12906239,
+                        3902136,
+                        2388383,
+                        7715315,
+                        9943640,
+                        10334529
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("sunflower_plains"),
+                        flowers("sunflower_plains"),
+                        flowerBed("yellow")
+                ))
+                .removeFeatures(TREES_PLAINS, FLOWER_PLAINS)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 16, 4, 8),
+                        new SpawnerData(EntityType.PIG, 4, 2, 4),
+                        new SpawnerData(EntityType.COW, 14, 4, 6)
+                )
+                .addSpawns(new SpawnerData(EntityType.RABBIT, 8, 3, 6))
+                .removeSpawns(EntityType.CHICKEN)
+                .build(featureToBiomes);
+
+        modifyBiome("swamp", Biomes.SWAMP)
+                .changeColors(
+                        10996903,
+                        5536348,
+                        2897190,
+                        7715315,
+                        6975545
+                )
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 6, 4, 4),
+                        new SpawnerData(EntityType.PIG, 16, 4, 4),
+                        new SpawnerData(EntityType.CHICKEN, 6, 4, 4)
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        PATCH_PUMPKIN
+                ))
+                .removeFeatures(PATCH_PUMPKIN)
+                .build(featureToBiomes);
+
+        // TODO: Change temperature from 0.25 to 0.35
+        modifyBiome("taiga", Biomes.TAIGA)
+                .changeColors(
+                        12639487,
+                        3899064,
+                        2386591,
+                        8431871,
+                        8035940,
+                        8292172
+                )
+                .changeMusic(new Music(MUSIC_BIOME_OLD_GROWTH_TAIGA, 12000, 24000, false))
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("taiga"),
+                        flowerBed("taiga"),
+                        patch("rose_bush")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 6, 1, 4),
+                        new SpawnerData(EntityType.PIG, 14, 4, 6),
+                        new SpawnerData(EntityType.CHICKEN, 10, 4, 8),
+                        new SpawnerData(EntityType.RABBIT, 12, 2, 3)
+                )
+                .removeSpawns(EntityType.COW)
+                .build(featureToBiomes);
+
+        modifyBiome("warm_ocean", Biomes.WARM_OCEAN)
+                .changeColors(
+                        12711423,
+                        4106959,
+                        3048361,
+                        6800872,
+                        8174674,
+                        7516981
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        FLOWER_WARM,
+                        flowerBed("jungle")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .build(featureToBiomes);
+
+        modifyBiome("windswept_forest", Biomes.WINDSWEPT_FOREST)
+                .changeColors(
+                        12639487,
+                        3902136,
+                        2388383,
+                        8431871,
+                        9088126,
+                        8032098
+                )
+                .changeMusic(new Music(MUSIC_BIOME_MEADOW, 12000, 24000, false))
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("windswept"),
+                        flowerBed("white_and_violet")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 6, 4, 4),
+                        new SpawnerData(EntityType.PIG, 6, 4, 4),
+                        new SpawnerData(EntityType.CHICKEN, 6, 4, 4),
+                        new SpawnerData(EntityType.COW, 6, 4, 4),
+                        new SpawnerData(EntityType.LLAMA, 8, 4, 6)
+                )
+                .addSpawns(new SpawnerData(EntityType.GOAT, 3, 2, 4))
+                .build(featureToBiomes);
+
+        modifyBiome("windswept_gravelly_hills", Biomes.WINDSWEPT_GRAVELLY_HILLS)
+                .changeColors(
+                        12639487,
+                        3902136,
+                        2388383,
+                        8431871,
+                        9546631,
+                        8032098
+                )
+                .changeMusic(new Music(MUSIC_BIOME_MEADOW, 12000, 24000, false))
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("windswept"),
+                        flowerBed("white_and_violet")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 7, 4, 4),
+                        new SpawnerData(EntityType.PIG, 3, 4, 4),
+                        new SpawnerData(EntityType.CHICKEN, 4, 4, 4),
+                        new SpawnerData(EntityType.COW, 6, 4, 4),
+                        new SpawnerData(EntityType.LLAMA,  7, 4, 6)
+                )
+                .addSpawns(new SpawnerData(EntityType.GOAT, 6, 2, 4))
+                .build(featureToBiomes);
+
+        modifyBiome("windswept_hills", Biomes.WINDSWEPT_HILLS)
+                .changeColors(
+                        12639487,
+                        3902136,
+                        2388383,
+                        8431871,
+                        9088126,
+                        8032098
+                )
+                .changeMusic(new Music(MUSIC_BIOME_MEADOW, 12000, 24000, false))
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        flowers("windswept"),
+                        flowerBed("white_and_violet")
+                ))
+                .removeFeatures(FLOWER_DEFAULT)
+                .changeSpawns(
+                        new SpawnerData(EntityType.SHEEP, 8, 4, 4),
+                        new SpawnerData(EntityType.PIG, 4, 4,4),
+                        new SpawnerData(EntityType.CHICKEN, 5, 4, 4),
+                        new SpawnerData(EntityType.COW, 7, 4, 4),
+                        new SpawnerData(EntityType.LLAMA, 8, 4, 6)
+                )
+                .addSpawns(new SpawnerData(EntityType.GOAT, 4, 2, 4))
+                .build(featureToBiomes);
+
+        modifyBiome("windswept_savanna", Biomes.WINDSWEPT_SAVANNA)
+                .changeColors(
+                        12711423,
+                        3906239,
+                        2979747,
+                        6800872,
+                        12164442,
+                        8558386
+                )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        PATCH_TALL_GRASS,
+                        flowers("savanna"),
+                        flowerBed("savanna"),
+                        PATCH_GRASS_SAVANNA,
+                        patch("barrel_cactus_normal"),
+                        patch("succulent_normal")
+                ))
+                .removeFeatures(TREES_WINDSWEPT_SAVANNA, FLOWER_DEFAULT, PATCH_GRASS_NORMAL)
+                .changeSpawns(
+                        new SpawnerData(EntityType.PIG, 8, 4, 4),
+                        new SpawnerData(EntityType.CHICKEN, 12, 4, 4),
+                        new SpawnerData(EntityType.COW, 5, 4, 4)
+                )
+                .addSpawns(
+                        new SpawnerData(EntityType.GOAT, 6, 4, 4),
+                        new SpawnerData(EntityType.LLAMA, 8, 4, 4)
+                )
+                .removeSpawns(EntityType.SHEEP, EntityType.ARMADILLO)
+                .build(featureToBiomes);
+
+        // Below this are NML biomes. They don't need modifiers per se, but it helps avoid feature order cycles.
+        // JSON was a mistake.
+
+        modifyBiome("autumnal_forest", NMLBiomes.AUTUMNAL_FOREST)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("autumnal_forest"),
+                        flowers("autumnal_forest"),
+                        flowerBed("autumnal"),
+                        PATCH_GRASS_FOREST,
+                        BROWN_MUSHROOM_TAIGA,
+                        RED_MUSHROOM_TAIGA,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN,
+                        patch("pumpkin_autumnal")
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("bayou", NMLBiomes.BAYOU)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("bayou"),
+                        BAMBOO_LIGHT,
+                        FLOWER_WARM,
+                        flowerBed("jungle"),
+                        PATCH_GRASS_JUNGLE,
+                        PATCH_TALL_GRASS_2,
+                        PATCH_DEAD_BUSH,
+                        PATCH_WATERLILY,
+                        patch("water_mosaic"),
+                        BROWN_MUSHROOM_SWAMP,
+                        RED_MUSHROOM_SWAMP,
+                        PATCH_SUGAR_CANE_SWAMP,
+                        VINES,
+                        PATCH_MELON_SPARSE,
+                        patch("hearty_succulent")
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("bog", NMLBiomes.BOG)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("bog"),
+                        flowers("bog"),
+                        flowerBed("red_and_violet"),
+                        PATCH_GRASS_NORMAL,
+                        PATCH_DEAD_BUSH,
+                        PATCH_WATERLILY,
+                        BROWN_MUSHROOM_SWAMP,
+                        RED_MUSHROOM_SWAMP,
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_NORMAL,
+                        PATCH_SUGAR_CANE_SWAMP,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("dark_swamp", NMLBiomes.DARK_SWAMP)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("dark_swamp"),
+                        flowers("maple"),
+                        flowerBed("red"),
+                        patch("rose_bush"),
+                        PATCH_GRASS_NORMAL,
+                        PATCH_DEAD_BUSH,
+                        PATCH_WATERLILY,
+                        BROWN_MUSHROOM_SWAMP,
+                        RED_MUSHROOM_SWAMP,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_NORMAL,
+                        feature("shelf_mushroom_dark_forest"),
+                        PATCH_SUGAR_CANE_SWAMP,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("dark_taiga", NMLBiomes.DARK_TAIGA)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("dark_taiga"),
+                        flowers("dark_taiga"),
+                        flowerBed("violet"),
+                        patch("grass_old_growth"),
+                        PATCH_LARGE_FERN,
+                        patch("large_fern_many"),
+                        BROWN_MUSHROOM_TAIGA,
+                        RED_MUSHROOM_TAIGA,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("frozen_woods", NMLBiomes.FROZEN_WOODS)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("frozen"),
+                        flowers("frosted"),
+                        flowerBed("frosted"),
+                        patch("grass_snowy"),
+                        PATCH_LARGE_FERN,
+                        PATCH_DEAD_BUSH
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("maple_forest", NMLBiomes.MAPLE_FOREST)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("maple_forest"),
+                        flowers("maple"),
+                        flowerBed("red"),
+                        patch("rose_bush"),
+                        PATCH_GRASS_FOREST,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_NORMAL,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("maple_grove", NMLBiomes.MAPLE_GROVE)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("maple_grove"),
+                        flowers("maple"),
+                        flowerBed("red"),
+                        patch("grass_snowy"),
+                        PATCH_LARGE_FERN,
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_TAIGA,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN,
+                        PATCH_BERRY_COMMON
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("old_growth_forest", NMLBiomes.OLD_GROWTH_FOREST)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("old_growth_forest"),
+                        patch("grass_old_growth"),
+                        flowers("maple"),
+                        flowerBed("red"),
+                        patch("rose_bush"),
+                        PATCH_DEAD_BUSH,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("old_growth_forest_clearing", NMLBiomes.OLD_GROWTH_FOREST_CLEARING)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("old_growth_forest_clearing"),
+                        patch("grass_old_growth"),
+                        flowers("maple"),
+                        flowerBed("red"),
+                        patch("rose_bush"),
+                        PATCH_DEAD_BUSH,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        modifyBiome("old_growth_forest_edge", NMLBiomes.OLD_GROWTH_FOREST_EDGE)
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("old_growth_forest_edge"),
+                        patch("grass_old_growth"),
+                        flowers("maple"),
+                        flowerBed("red"),
+                        patch("rose_bush"),
+                        PATCH_DEAD_BUSH,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
+                ))
+                .build(featureToBiomes);
+
+        /* Tag-based feature additions */
+        // Biome category-based broad brushes
         addFeaturesToTag(NMLTags.HAS_CACTUS, vegetalDecoration, patch("barrel_cactus_desert"), patch("succulent_desert"), flowers("all_tulips"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_OVERWORLD_FOLIAGE, vegetalDecoration, patch("grass_sprouts_normal"), patch("roots"), patch("cattail"), patch("reeds"), patch("waterlily_common"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_SWAMP_FOLIAGE, vegetalDecoration, patch("duckweed"), patch("pickleweed"), patch("reeds_swamp"), patch("cattail_swamp"));
+        addFeaturesToTag(NMLTags.IS_SHORELINE, vegetalDecoration, feature("seashells"));
+
+        // Specific foliage patches
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_BEACHGRASS, vegetalDecoration, patch("beachgrass"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_CAVE_WEEDS, vegetalDecoration, feature("underground/patch_cave_weeds"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_CLOVERS, vegetalDecoration, feature("clover_patch"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_DRIED_GRASS, vegetalDecoration, patch("dried_grass"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FERN_PATCH, vegetalDecoration, patch("fern_forest"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FIDDLEHEAD, vegetalDecoration, patch("fiddlehead"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FIELD_MUSHROOM, vegetalDecoration, patch("field_mushroom_normal"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FROSTED_GRASS_FOREST, vegetalDecoration, patch("frosted_grass_forest"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FROSTED_GRASS_PLAINS, vegetalDecoration, patch("frosted_grass_plains"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_ICICLES, vegetalDecoration, patch("icicles"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_OAT_GRASS, vegetalDecoration, feature("oat_grass_patch"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_RAFFLESIA, vegetalDecoration, patch("rafflesia"));
+
+        // Fallen trees
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FALLEN_TREES_DRY, vegetalDecoration, feature("fallen_tree_dry"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FALLEN_TREES_FOREST, vegetalDecoration, feature("fallen_tree_forest"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FALLEN_TREES_JUNGLE, vegetalDecoration, feature("fallen_tree_jungle"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FALLEN_TREES_SNOWY, vegetalDecoration, feature("fallen_tree_snowy"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FALLEN_TREES_SPARSE, vegetalDecoration, feature("fallen_tree_sparse"));
+
+        // Rocks & terrain
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_PEBBLES, localModifications, feature("pebbles"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_FOREST_ROCK, localModifications, FOREST_ROCK);
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_STONE_BOULDER, localModifications, feature("stone_boulder"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_POND_COMMON, localModifications, feature("pond_common"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_POND_COMMON_SNOWY, localModifications, feature("pond_common_snowy"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_POND_SWAMP, localModifications, feature("pond_swamp"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_QUARTZITE_GEODE, localModifications, feature("underground/quartzite_geode"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_NETHER_QUARTZITE_GEODE, localModifications, feature("underground/nether_quartzite_geode"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_MUD_PATCH, GenerationStep.Decoration.FLUID_SPRINGS, feature("mud_patch"));
+
+        // Extra mushroom stuff
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_CIRCLE, vegetalDecoration, feature("field_mushroom_circle"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_FOREST, vegetalDecoration, feature("shelf_mushroom_forest"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_OLD_GROWTH, vegetalDecoration, feature("shelf_mushroom_old_growth"));
+        addFeaturesToTag(NMLTags.FeatureAddition.HAS_SHELF_MUSHROOM_TAIGA, vegetalDecoration, feature("shelf_mushroom_taiga"));
+
+        /* Tag-based feature removals */
         
         processFeatures();
     }

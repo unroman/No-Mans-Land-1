@@ -80,15 +80,7 @@
       "minecraft:spring_lava"
     ],
     [
-      "nomansland:biome_trees/trees_frozen"
-    ],
-    [
-      "minecraft:glow_lichen",
-      "nomansland:flower_patches/flowers_frosted",
-      "nomansland:flower_patches/flowerbed_frosted",
-      "nomansland:patch_grass_snowy",
-      "minecraft:patch_large_fern",
-      "minecraft:patch_dead_bush"
+      "minecraft:glow_lichen"
     ],
     [
       "minecraft:freeze_top_layer"

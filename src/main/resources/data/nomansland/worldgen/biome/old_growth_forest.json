@@ -34,8 +34,7 @@
       "minecraft:lake_lava_surface"
     ],
     [
-      "minecraft:amethyst_geode",
-      "minecraft:forest_rock"
+      "minecraft:amethyst_geode"
     ],
     [
       "minecraft:monster_room",
@@ -80,21 +79,7 @@
       "minecraft:spring_lava"
     ],
     [
-      "nomansland:biome_trees/trees_old_growth_forest"
-    ],
-    [
-      "nomansland:patch_grass_old_growth"
-    ],
-    [
-      "minecraft:glow_lichen",
-      "nomansland:flower_patches/flowers_maple",
-      "nomansland:flower_patches/flowerbed_red",
-      "nomansland:patch_rose_bush",
-      "minecraft:patch_dead_bush",
-      "minecraft:brown_mushroom_old_growth",
-      "minecraft:red_mushroom_old_growth",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "minecraft:glow_lichen"
     ],
     [
       "minecraft:freeze_top_layer"

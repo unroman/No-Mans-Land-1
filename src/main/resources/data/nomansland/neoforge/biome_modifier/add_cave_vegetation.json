@@ -1,8 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "#c:is_underground",
-  "features": [
-    "nomansland:underground/patch_cave_weeds"
-  ],
-  "step": "vegetal_decoration"
-}

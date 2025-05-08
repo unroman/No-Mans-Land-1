@@ -36,6 +36,57 @@ public class NMLTags {
 
     public static final TagKey<Block> SUPPORTS_ICICLE = createBlockTag("supports_icicle");
 
+    public static final TagKey<Biome> CLASSIC_SOIL = createBiomeTag("classic_soil");
+    public static final TagKey<Biome> IS_SHORELINE = createBiomeTag("is_shoreline");
+
+    public static class FeatureAddition {
+        // Broad brushes
+        public static final TagKey<Biome> HAS_OVERWORLD_FOLIAGE = createBiomeTag("feature_addition/has_overworld_foliage");
+        public static final TagKey<Biome> HAS_SWAMP_FOLIAGE = createBiomeTag("feature_addition/has_swamp_foliage");
+
+        // Specific foliage patches
+        public static final TagKey<Biome> HAS_BEACHGRASS = createBiomeTag("feature_addition/has_beachgrass");
+        public static final TagKey<Biome> HAS_CAVE_WEEDS = createBiomeTag("feature_addition/has_cave_weeds");
+        public static final TagKey<Biome> HAS_CLOVERS = createBiomeTag("feature_addition/has_clovers");
+        public static final TagKey<Biome> HAS_DRIED_GRASS = createBiomeTag("feature_addition/has_dried_grass");
+        public static final TagKey<Biome> HAS_FERN_PATCH = createBiomeTag("feature_addition/has_fern_patch");
+        public static final TagKey<Biome> HAS_FIDDLEHEAD = createBiomeTag("feature_addition/has_fiddlehead");
+        public static final TagKey<Biome> HAS_FIELD_MUSHROOM = createBiomeTag("feature_addition/has_field_mushroom");
+        public static final TagKey<Biome> HAS_FROSTED_GRASS_FOREST = createBiomeTag("feature_addition/has_frosted_grass_forest");
+        public static final TagKey<Biome> HAS_FROSTED_GRASS_PLAINS = createBiomeTag("feature_addition/has_frosted_grass_plains");
+        public static final TagKey<Biome> HAS_ICICLES = createBiomeTag("feature_addition/has_icicles");
+        public static final TagKey<Biome> HAS_OAT_GRASS = createBiomeTag("feature_addition/has_oat_grass");
+        public static final TagKey<Biome> HAS_RAFFLESIA = createBiomeTag("feature_addition/has_rafflesia");
+
+        // Fallen trees
+        public static final TagKey<Biome> HAS_FALLEN_TREES_DRY = createBiomeTag("feature_addition/has_fallen_trees_dry");
+        public static final TagKey<Biome> HAS_FALLEN_TREES_FOREST = createBiomeTag("feature_addition/has_fallen_trees_forest");
+        public static final TagKey<Biome> HAS_FALLEN_TREES_JUNGLE = createBiomeTag("feature_addition/has_fallen_trees_jungle");
+        public static final TagKey<Biome> HAS_FALLEN_TREES_SNOWY = createBiomeTag("feature_addition/has_fallen_trees_snowy");
+        public static final TagKey<Biome> HAS_FALLEN_TREES_SPARSE = createBiomeTag("feature_addition/has_fallen_trees_sparse");
+
+        // Rocks & terrain
+        public static final TagKey<Biome> HAS_PEBBLES = createBiomeTag("feature_addition/has_pebbles");
+        public static final TagKey<Biome> HAS_FOREST_ROCK = createBiomeTag("feature_addition/has_forest_rock");
+        public static final TagKey<Biome> HAS_STONE_BOULDER = createBiomeTag("feature_addition/has_stone_boulder");
+        public static final TagKey<Biome> HAS_POND_COMMON = createBiomeTag("feature_addition/has_pond_common");
+        public static final TagKey<Biome> HAS_POND_COMMON_SNOWY = createBiomeTag("feature_addition/has_pond_common_snowy");
+        public static final TagKey<Biome> HAS_POND_SWAMP = createBiomeTag("feature_addition/has_pond_swamp");
+        public static final TagKey<Biome> HAS_QUARTZITE_GEODE = createBiomeTag("feature_addition/has_quartzite_geode");
+        public static final TagKey<Biome> HAS_NETHER_QUARTZITE_GEODE = createBiomeTag("feature_addition/has_nether_quartzite_geode");
+        public static final TagKey<Biome> HAS_MUD_PATCH = createBiomeTag("feature_addition/has_mud_patch");
+
+        // Extra mushroom stuff
+        public static final TagKey<Biome> HAS_SHELF_MUSHROOM_CIRCLE = createBiomeTag("feature_addition/has_shelf_mushroom_circle");
+        public static final TagKey<Biome> HAS_SHELF_MUSHROOM_FOREST = createBiomeTag("feature_addition/has_shelf_mushroom_forest");
+        public static final TagKey<Biome> HAS_SHELF_MUSHROOM_OLD_GROWTH = createBiomeTag("feature_addition/has_shelf_mushroom_old_growth");
+        public static final TagKey<Biome> HAS_SHELF_MUSHROOM_TAIGA = createBiomeTag("feature_addition/has_shelf_mushroom_taiga");
+    }
+
+    public static class FeatureRemoval {
+        public static final TagKey<Biome> NO_CATTAIL = createBiomeTag("feature_removal/no_cattail");
+    }
+
     private static SharedTag createSharedTag(String name) {
         return new SharedTag(name);
     }

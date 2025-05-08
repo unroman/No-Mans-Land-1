@@ -20,6 +20,10 @@ public class NMLPlacedFeatures {
         return ResourceKey.create(Registries.PLACED_FEATURE, NoMansLand.location("flower_patches/flowerbed_" + flowerBed));
     }
 
+    public static ResourceKey<PlacedFeature> trees(String tree) {
+        return ResourceKey.create(Registries.PLACED_FEATURE, NoMansLand.location("biome_trees/trees_" + tree));
+    }
+
     public static ResourceKey<PlacedFeature> feature(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, NoMansLand.location(name));
     }

@@ -53,6 +53,11 @@ public class BiomeModifierBuilder {
         return this;
     }
 
+    public final BiomeModifierBuilder changeColors(int fogColor, int waterColor, int waterFogColor, int skyColor, int foliageColor) {
+        this.changeColors = new ChangeColorsBiomeModifier(biome, fogColor, waterColor, waterFogColor, skyColor, foliageColor);
+        return this;
+    }
+
     public final BiomeModifierBuilder changeColors(int fogColor, int waterColor, int waterFogColor, int skyColor) {
         this.changeColors = new ChangeColorsBiomeModifier(biome, fogColor, waterColor, waterFogColor, skyColor);
         return this;
