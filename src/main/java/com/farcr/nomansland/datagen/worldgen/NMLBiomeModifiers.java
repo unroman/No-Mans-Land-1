@@ -173,7 +173,7 @@ public class NMLBiomeModifiers {
                         6523436
                 )
                 .addFeatures(FeatureWithStep.vegetationFeatures(
-                        flowers("flowers_maple"),
+                        flowers("maple"),
                         flowerBed("red"),
                         patch("rose_bush"),
                         feature("shelf_mushroom_dark_forest"),
