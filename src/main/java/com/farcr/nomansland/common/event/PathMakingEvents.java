@@ -93,13 +93,13 @@ public class PathMakingEvents {
         }
 
         //Dirt Path into Farmland
-        if (stack.is(ItemTags.HOES) && state.is(NMLBlocks.DIRT_PATH.get()) && !player.isSpectator() && level.isEmptyBlock(pos.above())) {
+        if (stack.is(ItemTags.HOES) && (state.is(NMLBlocks.DIRT_PATH.get()) || state.is(Blocks.PODZOL)) && !player.isSpectator() && level.isEmptyBlock(pos.above())) {
             level.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 
             if (!level.isClientSide()) {
                 stack.hurtAndBreak(1, player, stack.getEquipmentSlot());
 
-                level.setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
+                level.setBlockAndUpdate(pos, state.is(Blocks.PODZOL) ? Blocks.DIRT.defaultBlockState() : Blocks.FARMLAND.defaultBlockState());
             }
 
             event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
