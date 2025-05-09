@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:dark_forest",
+    "nomansland:dark_swamp"
+  ],
+  "features": "nomansland:shelf_mushroom_dark_forest",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "nomansland:dark_taiga",
+    "nomansland:old_growth_forest",
+    "nomansland:old_growth_forest_clearing",
+    "nomansland:old_growth_forest_edge"
+  ],
+  "features": "nomansland:patch_grass_old_growth",
+  "step": "vegetal_decoration"
+}

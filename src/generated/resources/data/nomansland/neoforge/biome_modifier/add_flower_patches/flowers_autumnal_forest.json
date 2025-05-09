@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "nomansland:autumnal_forest",
+  "features": "nomansland:flower_patches/flowers_autumnal_forest",
+  "step": "vegetal_decoration"
+}
