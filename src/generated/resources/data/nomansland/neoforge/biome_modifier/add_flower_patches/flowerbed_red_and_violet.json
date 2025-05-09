@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "nomansland:bog",
-  "features": "nomansland:flower_patches/flowerbed_red_and_violet",
-  "step": "vegetal_decoration"
-}
