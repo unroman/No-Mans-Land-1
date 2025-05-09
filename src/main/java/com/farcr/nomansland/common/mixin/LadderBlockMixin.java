@@ -22,7 +22,7 @@ public class LadderBlockMixin {
         BlockState blockState = blockReader.getBlockState(mutable);
         BlockState ladderState;
 
-        if (blockState.isFaceSturdy(blockReader, mutable, direction)) {
+        if (blockState.isFaceSturdy(blockReader, mutable, direction) || blockState.isFaceSturdy(blockReader, mutable, Direction.UP)) {
             cir.setReturnValue(true);
             return;
         }

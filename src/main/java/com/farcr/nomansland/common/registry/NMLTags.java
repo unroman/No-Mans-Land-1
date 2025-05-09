@@ -77,7 +77,7 @@ public class NMLTags {
         public static final TagKey<Biome> HAS_MUD_PATCH = createBiomeTag("feature_addition/has_mud_patch");
 
         // Extra mushroom stuff
-        public static final TagKey<Biome> HAS_SHELF_MUSHROOM_CIRCLE = createBiomeTag("feature_addition/has_shelf_mushroom_circle");
+        public static final TagKey<Biome> HAS_FIELD_MUSHROOM_CIRCLE = createBiomeTag("feature_addition/has_field_mushroom_circle");
         public static final TagKey<Biome> HAS_SHELF_MUSHROOM_FOREST = createBiomeTag("feature_addition/has_shelf_mushroom_forest");
         public static final TagKey<Biome> HAS_SHELF_MUSHROOM_OLD_GROWTH = createBiomeTag("feature_addition/has_shelf_mushroom_old_growth");
         public static final TagKey<Biome> HAS_SHELF_MUSHROOM_TAIGA = createBiomeTag("feature_addition/has_shelf_mushroom_taiga");

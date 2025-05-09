@@ -42,9 +42,9 @@ public class BiomeModifierBuilder {
     private AddSpawnsBiomeModifier addSpawns = null;
     private RemoveSpawnsBiomeModifier removeSpawns = null;
 
-    public BiomeModifierBuilder(BootstrapContext<BiomeModifier> bootstrap, String name, ResourceKey<Biome> key) {
+    public BiomeModifierBuilder(BootstrapContext<BiomeModifier> bootstrap, ResourceKey<Biome> key) {
         this.bootstrap = bootstrap;
-        this.name = name;
+        this.name = key.location().getPath();
         this.biome = HolderSet.direct(bootstrap.lookup(Registries.BIOME).getOrThrow(key));
     }
 
