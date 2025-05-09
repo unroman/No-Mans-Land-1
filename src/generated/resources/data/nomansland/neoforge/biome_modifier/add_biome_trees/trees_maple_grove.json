@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "nomansland:maple_grove",
+  "features": "nomansland:biome_trees/trees_maple_grove",
+  "step": "vegetal_decoration"
+}

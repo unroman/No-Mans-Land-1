@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "nomansland:autumnal_forest",
+    "nomansland:dark_taiga",
+    "nomansland:maple_grove"
+  ],
+  "features": "minecraft:red_mushroom_taiga",
+  "step": "vegetal_decoration"
+}

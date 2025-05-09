@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "nomansland:bayou",
+  "features": "minecraft:patch_tall_grass_2",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:dark_forest",
+    "nomansland:dark_swamp",
+    "nomansland:maple_forest",
+    "nomansland:maple_grove",
+    "nomansland:old_growth_forest",
+    "nomansland:old_growth_forest_clearing",
+    "nomansland:old_growth_forest_edge"
+  ],
+  "features": "nomansland:flower_patches/flowerbed_red",
+  "step": "vegetal_decoration"
+}

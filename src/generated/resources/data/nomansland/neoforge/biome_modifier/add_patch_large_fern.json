@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "nomansland:dark_taiga",
+    "nomansland:frozen_woods",
+    "nomansland:maple_grove"
+  ],
+  "features": "minecraft:patch_large_fern",
+  "step": "vegetal_decoration"
+}
