@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.registry.worldgen;
 
 import com.farcr.nomansland.NoMansLand;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -36,6 +37,8 @@ public class NMLBiomes {
     public static final ResourceKey<Biome> CAVES = createKey("caves");
     public static final ResourceKey<Biome> CAVE_DEPTHS = createKey("cave_depths");
 
+    public static Holder<Biome> CAVES_HOLDER;
+    public static Holder<Biome> CAVE_DEPTHS_HOLDER;
 
     private static ResourceKey<Biome> createKey(String name) {
         ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME, NoMansLand.location(name));

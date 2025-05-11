@@ -37,6 +37,7 @@
     "WaterlilyBlockMixin",
     "WolfMixin",
     "ZombieMixin",
+    "caves.MultiNoiseBiomeSourceMixin",
     "integration.PloughMovementBehaviorMixin",
     "integration.RichSoilBlockMixin",
     "integration.ScaffoldingEventMixin",
