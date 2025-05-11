@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:snowy_taiga",
+    "nomansland:maple_grove"
+  ],
+  "features": "nomansland:vanilla/patch_berry_common",
+  "step": "vegetal_decoration"
+}

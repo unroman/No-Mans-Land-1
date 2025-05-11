@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:river",
+    "nomansland:bog",
+    "nomansland:dark_swamp"
+  ],
+  "features": "nomansland:vanilla/patch_grass_normal",
+  "step": "vegetal_decoration"
+}

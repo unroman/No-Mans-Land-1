@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "nomansland:bayou",
+    "nomansland:bog",
+    "nomansland:dark_swamp"
+  ],
+  "features": "nomansland:vanilla/brown_mushroom_swamp",
+  "step": "vegetal_decoration"
+}
