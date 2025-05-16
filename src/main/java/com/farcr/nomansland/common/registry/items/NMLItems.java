@@ -69,26 +69,27 @@ public class NMLItems {
             () -> new Item(new Properties().food(NMLFoods.PEAR)));
     public static final ItemDefinition<Item> SYRUPED_PEAR = register("syruped_pear",
             () -> new MapleFoodItem(new Properties().food(NMLFoods.SYRUPED_PEAR)));
-    public static final ItemDefinition<Item> PANCAKE = register("pancake",
-            () -> new MapleFoodItem(new Properties().food(NMLFoods.PANCAKE)));
     public static final ItemDefinition<Item> HONEYED_APPLE = register("honeyed_apple",
             () -> new HoneyFoodItem(new Properties().food(NMLFoods.HONEYED_APPLE)));
-    public static final ItemDefinition<Item> WALNUTS = register("walnuts",
-            () -> new Item(new Properties().food(NMLFoods.WALNUTS)));
-
-    public static final ItemDefinition<Item> TRAIL_MIX = register("trail_mix",
-            () -> new Item(new Properties().food(NMLFoods.TRAIL_MIX)));
-    public static final ItemDefinition<Item> MAPLE_TART = register("maple_tart",
-            () -> new MapleFoodItem(new Properties().food(NMLFoods.MAPLE_TART)));
-    public static final ItemDefinition<Item> HARDTACK = register("hardtack",
-            () -> new Item(new Properties().food(NMLFoods.HARDTACK)));
-    public static final ItemDefinition<Item> PINE_NUTS = register("pine_nuts",
-            () -> new Item(new Properties().food(NMLFoods.PINE_NUTS)));
-
-    //Materials
+    public static final ItemDefinition<Item> PANCAKE = register("pancake",
+            () -> new MapleFoodItem(new Properties().food(NMLFoods.PANCAKE)));
     public static final ItemDefinition<Item> MAPLE_SYRUP_BOTTLE = register("maple_syrup_bottle",
             () -> new MapleSyrupBottleItem(new Properties().food(NMLFoods.MAPLE_SYRUP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
+    public static final ItemDefinition<Item> MAPLE_TART = register("maple_tart",
+            () -> new MapleFoodItem(new Properties().food(NMLFoods.MAPLE_TART)));
+    public static final ItemDefinition<Item> SWEET_TART = register("sweet_tart",
+            () -> new Item(new Properties().food(NMLFoods.SWEET_TART)));
+    public static final ItemDefinition<Item> PINE_NUTS = register("pine_nuts",
+            () -> new Item(new Properties().food(NMLFoods.PINE_NUTS)));
+    public static final ItemDefinition<Item> WALNUTS = register("walnuts",
+            () -> new Item(new Properties().food(NMLFoods.WALNUTS)));
+    public static final ItemDefinition<Item> TRAIL_MIX = register("trail_mix",
+            () -> new Item(new Properties().food(NMLFoods.TRAIL_MIX)));
 
+    public static final ItemDefinition<Item> HARDTACK = register("hardtack",
+            () -> new Item(new Properties().food(NMLFoods.HARDTACK)));
+
+    //Materials
     public static final ItemDefinition<Item> RESIN = register("resin",
             () -> new Item(new Properties()));
 
