@@ -95,11 +95,15 @@ public class FDIntegration {
             () -> new BlockItem(FRUIT_CAKE.get(), new Item.Properties()));
 
     public static final ItemDefinition<DrinkableItem> PEAR_JUICE = NMLItems.register("pear_juice",
-            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PEAR_JUICE), true));
+            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(FDIntegration.PEAR_JUICE_FOOD), true));
+
+    public static final FoodProperties PEAR_JUICE_FOOD = new FoodProperties.Builder().alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 300, 0), 1).build();
 
     public static final ItemDefinition<DrinkableItem> PESTO_BOTTLE = NMLItems.register("pesto_bottle",
-            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(NMLFoods.PESTO_BOTTLE)));
+            () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(FDIntegration.PESTO_BOTTLE_FOOD)));
 
+    public static final FoodProperties PESTO_BOTTLE_FOOD = new FoodProperties.Builder().nutrition(3).saturationModifier(1.2F).build();
     public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         event.modify(
                 ModBlockEntityTypes.CABINET.get(),
