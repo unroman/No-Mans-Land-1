@@ -79,7 +79,7 @@ public class NMLItems {
     public static final ItemDefinition<Item> TRAIL_MIX = register("trail_mix",
             () -> new Item(new Properties().food(NMLFoods.TRAIL_MIX)));
     public static final ItemDefinition<Item> MAPLE_TART = register("maple_tart",
-            () -> new Item(new Properties().food(NMLFoods.MAPLE_TART)));
+            () -> new MapleFoodItem(new Properties().food(NMLFoods.MAPLE_TART)));
     public static final ItemDefinition<Item> HARDTACK = register("hardtack",
             () -> new Item(new Properties().food(NMLFoods.HARDTACK)));
     public static final ItemDefinition<Item> PINE_NUTS = register("pine_nuts",
