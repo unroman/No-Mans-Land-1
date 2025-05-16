@@ -28,7 +28,7 @@ public class NMLFoods {
     public static final FoodProperties PEAR = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build();
     public static final FoodProperties SYRUPED_PEAR = new FoodProperties.Builder().nutrition(6).saturationModifier(0.4F).build();
     public static final FoodProperties PEAR_JUICE = new FoodProperties.Builder().alwaysEdible()
-            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600, 0), 1).build();
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 300, 0), 1).build();
     public static final FoodProperties PANCAKE = new FoodProperties.Builder().nutrition(8).saturationModifier(0.5F).build();
 
     public static final FoodProperties HONEYED_APPLE = new FoodProperties.Builder().nutrition(7).saturationModifier(0.5F).build();
