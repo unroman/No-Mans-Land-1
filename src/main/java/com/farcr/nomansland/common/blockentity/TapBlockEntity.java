@@ -31,7 +31,7 @@ public class TapBlockEntity extends BlockEntity {
         BlockPos cauldronPos = getCauldronPos(level, pos);
         boolean cauldronFound = cauldronPos != null;
         cauldronPos = cauldronFound ? cauldronPos : pos.below();
-         BlockState cauldronState = level.getBlockState(cauldronPos);
+        BlockState cauldronState = level.getBlockState(cauldronPos);
         BlockState stateBehind = getBlockStateBehind(level, pos, state);
         BlockPos posBehind = pos.relative(state.getValue(FACING).getOpposite());
         Block cauldronBlock = cauldronState.getBlock();
@@ -80,7 +80,9 @@ public class TapBlockEntity extends BlockEntity {
                     level.setBlockAndUpdate(cauldronPos, Blocks.LAVA_CAULDRON.defaultBlockState());
                 } else {
                     LayeredCauldronBlock.lowerFillLevel(stateBehind, level, posBehind);
-                    level.setBlockAndUpdate(cauldronPos, stateBehind.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1));
+                    if (cauldronState.hasProperty(LEVEL))
+                        level.setBlockAndUpdate(cauldronPos, cauldronState.setValue(LEVEL, cauldronState.getValue(LEVEL) + 1));
+                    else level.setBlockAndUpdate(cauldronPos, stateBehind.getBlock().defaultBlockState());
                 }
 
                 level.gameEvent(GameEvent.BLOCK_CHANGE, cauldronPos, GameEvent.Context.of(cauldronState));

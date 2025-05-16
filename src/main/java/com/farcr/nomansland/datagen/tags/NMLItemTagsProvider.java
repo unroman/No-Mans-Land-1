@@ -1,7 +1,6 @@
 package com.farcr.nomansland.datagen.tags;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.block.LogBlock;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.definitions.ItemDefinition;
 import com.farcr.nomansland.common.integration.BlueprintIntegration;
@@ -11,7 +10,6 @@ import com.farcr.nomansland.common.registry.items.NMLItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BoatItem;
@@ -21,7 +19,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class NMLItemTagsProvider extends ItemTagsProvider {
@@ -96,11 +94,11 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
 
     @SafeVarargs
     protected final void addToTags(Item item, TagKey<Item>... itemTags) {
-        Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).add(item));
+        List.of(itemTags).forEach(itemTag -> tag(itemTag).add(item));
     }
 
     @SafeVarargs
     protected final void addToTags(TagKey<Item> item, TagKey<Item>... itemTags) {
-        Arrays.stream(itemTags).toList().forEach(itemTag -> tag(itemTag).addTag(item));
+        List.of(itemTags).forEach(itemTag -> tag(itemTag).addTag(item));
     }
 }

@@ -20,13 +20,16 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import static com.farcr.nomansland.common.registry.worldgen.NMLPlacedFeatures.*;
 import static net.minecraft.data.worldgen.placement.MiscOverworldPlacements.*;
 import static net.minecraft.data.worldgen.placement.VegetationPlacements.*;
-import static com.farcr.nomansland.common.registry.worldgen.NMLPlacedFeatures.*;
 import static net.minecraft.sounds.SoundEvents.*;
-import static net.neoforged.neoforge.common.world.BiomeModifiers.*;
+import static net.neoforged.neoforge.common.world.BiomeModifiers.AddFeaturesBiomeModifier;
 
 public class NMLBiomeModifiers {
     private final BootstrapContext<BiomeModifier> bootstrap;

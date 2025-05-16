@@ -14,7 +14,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class NMLBiomeTagsProvider extends BiomeTagsProvider {
@@ -54,11 +54,11 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
 
     @SafeVarargs
     protected final void addToTags(ResourceKey<Biome> biome, TagKey<Biome>... biomeTags) {
-        Arrays.stream(biomeTags).toList().forEach(biomeTag -> tag(biomeTag).add(biome));
+        List.of(biomeTags).forEach(biomeTag -> tag(biomeTag).add(biome));
     }
 
     @SafeVarargs
     protected final void addToTags(TagKey<Biome> biome, TagKey<Biome>... biomeTags) {
-        Arrays.stream(biomeTags).toList().forEach(biomeTag -> tag(biomeTag).addTag(biome));
+        List.of(biomeTags).forEach(biomeTag -> tag(biomeTag).addTag(biome));
     }
 }

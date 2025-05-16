@@ -1,9 +1,9 @@
 package com.farcr.nomansland.common.registry.worldgen;
 
 import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.world.biomemodifiers.ChangeParticleBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeColorsBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeMusicBiomeModifier;
+import com.farcr.nomansland.common.world.biomemodifiers.ChangeParticleBiomeModifier;
 import com.farcr.nomansland.common.world.biomemodifiers.ChangeSpawnsBiomeModifier;
 import com.mojang.serialization.MapCodec;
 import net.neoforged.neoforge.common.world.BiomeModifier;

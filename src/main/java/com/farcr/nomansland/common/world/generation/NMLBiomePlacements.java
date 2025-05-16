@@ -9,7 +9,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.biome.Climate;
 import net.neoforged.neoforge.common.Tags;
 
 import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
@@ -17,47 +16,47 @@ import static com.terraformersmc.biolith.api.biome.sub.CriterionBuilder.*;
 public class NMLBiomePlacements {
     public static void register() {
 
-        if (NMLConfig.CAVES_BIOMES.get()) {
-            BiomePlacement.addOverworld(NMLBiomes.CAVES,
-                    Climate.parameters(
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(0.15F, 0.3F),
-                            Climate.Parameter.span(-2F, 2F),
-                            0.15F));
-
-            BiomePlacement.addOverworld(NMLBiomes.CAVES,
-                    Climate.parameters(
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(0.3F, 0.5F),
-                            Climate.Parameter.span(-2F, 2F),
-                            0.15F));
-
-            BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
-                    Climate.parameters(
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(0.6F, 0.8F),
-                            Climate.Parameter.span(-2F, 2F),
-                            0.15F));
-
-            BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
-                    Climate.parameters(
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            Climate.Parameter.span(0.8F, 2F),
-                            Climate.Parameter.span(-2F, 2F),
-                            0.1F));
-        }
+//        if (NMLConfig.CAVES_BIOMES.get()) {
+//            BiomePlacement.addOverworld(NMLBiomes.CAVES,
+//                    Climate.parameters(
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(0.15F, 0.3F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            0.15F));
+//
+//            BiomePlacement.addOverworld(NMLBiomes.CAVES,
+//                    Climate.parameters(
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(0.3F, 0.5F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            0.15F));
+//
+//            BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
+//                    Climate.parameters(
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(0.6F, 0.8F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            0.15F));
+//
+//            BiomePlacement.addOverworld(NMLBiomes.CAVE_DEPTHS,
+//                    Climate.parameters(
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            Climate.Parameter.span(0.8F, 2F),
+//                            Climate.Parameter.span(-2F, 2F),
+//                            0.1F));
+//        }
 
         if (NMLConfig.MAPLE_BIOMES.get()) {
             BiomePlacement.replaceOverworld(

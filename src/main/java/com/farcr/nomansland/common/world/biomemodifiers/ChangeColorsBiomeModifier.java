@@ -47,7 +47,7 @@ public record ChangeColorsBiomeModifier(HolderSet<Biome> biomes, Optional<Intege
             waterColor.ifPresent(effectsBuilder::waterColor);
             waterFogColor.ifPresent(effectsBuilder::waterFogColor);
             skyColor.ifPresent(effectsBuilder::skyColor);
-            if (effectsBuilder.getGrassColorModifier() != BiomeSpecialEffects.GrassColorModifier.NONE) grassColor.ifPresent(effectsBuilder::grassColorOverride);
+            if (effectsBuilder.getGrassColorModifier() == BiomeSpecialEffects.GrassColorModifier.NONE) grassColor.ifPresent(effectsBuilder::grassColorOverride);
             foliageColor.ifPresent(effectsBuilder::foliageColorOverride);
         }
     }

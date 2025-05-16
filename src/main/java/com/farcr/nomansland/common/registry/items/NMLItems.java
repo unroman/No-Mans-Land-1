@@ -22,7 +22,6 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;

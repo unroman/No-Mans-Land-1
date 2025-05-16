@@ -1,14 +1,14 @@
 {
-  "remove":[
-  "#c:is_ocean",
-  "#c:is_river",
-  "#c:is_desert",
-  "#c:is_cave",
-  "minecraft:frozen_peaks",
-  "minecraft:eroded_badlands",
-  "minecraft:badlands"
-  ],
   "values": [
     "#minecraft:is_overworld"
+  ],
+  "remove":[
+    "#c:is_ocean",
+    "#c:is_river",
+    "#c:is_desert",
+    "#c:is_cave",
+    "minecraft:frozen_peaks",
+    "minecraft:eroded_badlands",
+    "minecraft:badlands"
   ]
 }
