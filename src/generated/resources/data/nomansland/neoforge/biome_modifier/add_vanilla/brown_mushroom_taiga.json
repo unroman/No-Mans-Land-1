@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": [
-    "nomansland:autumnal_forest",
-    "nomansland:dark_taiga"
-  ],
-  "features": "nomansland:vanilla/brown_mushroom_taiga",
-  "step": "vegetal_decoration"
-}

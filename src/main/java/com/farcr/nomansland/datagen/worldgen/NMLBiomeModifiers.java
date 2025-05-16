@@ -139,9 +139,9 @@ public class NMLBiomeModifiers {
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         flowerBed("white_and_violet"),
                         flowers("cherry"),
-                        patchVanilla("sugar_cane"),
-                        featureVanilla("brown_mushroom_normal"),
-                        patchVanilla("waterlily")
+                        PATCH_SUGAR_CANE,
+                        BROWN_MUSHROOM_NORMAL,
+                        PATCH_WATERLILY
                 ))
                 .removeFeatures(TREES_CHERRY)
                 .changeSpawns(
@@ -182,7 +182,7 @@ public class NMLBiomeModifiers {
                         flowerBed("red"),
                         patch("rose_bush"),
                         feature("shelf_mushroom_dark_forest"),
-                        featureVanilla("brown_mushroom_old_growth")
+                        BROWN_MUSHROOM_OLD_GROWTH
                 ))
                 .removeFeatures(FLOWER_DEFAULT, FOREST_FLOWERS, BROWN_MUSHROOM_NORMAL)
                 .changeSpawns(new SpawnerData(EntityType.CHICKEN, 14, 4, 6))
@@ -530,8 +530,8 @@ public class NMLBiomeModifiers {
                         patch("field_mushroom_extra"),
                         feature("clover_patch_meadow"),
                         feature("field_mushroom_circle_meadow"),
-                        featureVanilla("brown_mushroom_normal"),
-                        featureVanilla("red_mushroom_normal")
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_NORMAL
                 ))
                 .changeSpawns(
                         new SpawnerData(EntityType.DONKEY, 1, 1, 2)
@@ -551,7 +551,7 @@ public class NMLBiomeModifiers {
                         FeatureWithStep.vegetationFeatures(
                                 patch("mycelium_growths"),
                                 patch("duckweed_sparse"),
-                                patchVanilla("dead_bush"),
+                                PATCH_DEAD_BUSH,
                                 patch("dried_grass_mycelium")
                         )
                 )
@@ -693,7 +693,7 @@ public class NMLBiomeModifiers {
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         flowers("white"),
                         flowerBed("white"),
-                        patchVanilla("grass_normal")
+                        PATCH_GRASS_NORMAL
                 ))
                 .removeFeatures(FLOWER_DEFAULT, PATCH_GRASS_BADLANDS)
                 .build(featureToBiomes);
@@ -758,7 +758,7 @@ public class NMLBiomeModifiers {
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         flowers("white"),
                         flowerBed("frosted"),
-                        featureVanilla("trees_water")
+                        TREES_WATER
                 ))
                 .removeFeatures(FLOWER_DEFAULT)
                 .build(featureToBiomes);
@@ -805,7 +805,7 @@ public class NMLBiomeModifiers {
                         flowers("white"),
                         flowerBed("frosted"),
                         patch("grass_snowy"),
-                        patchVanilla("berry_common")
+                        PATCH_BERRY_COMMON
                 ))
                 .removeFeatures(TREES_TAIGA, FLOWER_DEFAULT, PATCH_GRASS_TAIGA_2, PATCH_BERRY_RARE)
                 .changeSpawns(
@@ -916,6 +916,10 @@ public class NMLBiomeModifiers {
                         new SpawnerData(EntityType.PIG, 16, 4, 4),
                         new SpawnerData(EntityType.CHICKEN, 6, 4, 4)
                 )
+                .addFeatures(FeatureWithStep.vegetationFeatures(
+                        PATCH_PUMPKIN
+                ))
+                .removeFeatures(PATCH_PUMPKIN)
                 .build(featureToBiomes);
 
         // TODO: Change temperature from 0.25 to 0.35
@@ -954,7 +958,7 @@ public class NMLBiomeModifiers {
                         7516981
                 )
                 .addFeatures(FeatureWithStep.vegetationFeatures(
-                        featureVanilla("flower_warm"),
+                        FLOWER_WARM,
                         flowerBed("jungle")
                 ))
                 .removeFeatures(FLOWER_DEFAULT)
@@ -1045,10 +1049,10 @@ public class NMLBiomeModifiers {
                         8558386
                 )
                 .addFeatures(FeatureWithStep.vegetationFeatures(
-                        patchVanilla("tall_grass"),
+                        PATCH_TALL_GRASS,
                         flowers("savanna"),
                         flowerBed("savanna"),
-                        patchVanilla("grass_savanna"),
+                        PATCH_GRASS_SAVANNA,
                         patch("barrel_cactus_normal"),
                         patch("succulent_normal")
                 ))
@@ -1073,11 +1077,11 @@ public class NMLBiomeModifiers {
                         trees("autumnal_forest"),
                         flowers("autumnal_forest"),
                         flowerBed("autumnal"),
-                        patchVanilla("grass_forest"),
-                        featureVanilla("brown_mushroom_taiga"),
-                        featureVanilla("red_mushroom_taiga"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin"),
+                        PATCH_GRASS_FOREST,
+                        BROWN_MUSHROOM_TAIGA,
+                        RED_MUSHROOM_TAIGA,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN,
                         patch("pumpkin_autumnal")
                 ))
                 .build(featureToBiomes);
@@ -1085,19 +1089,19 @@ public class NMLBiomeModifiers {
         modifyBiome(NMLBiomes.BAYOU)
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         trees("bayou"),
-                        featureVanilla("bamboo_light"),
-                        featureVanilla("flower_warm"),
+                        BAMBOO_LIGHT,
+                        FLOWER_WARM,
                         flowerBed("jungle"),
-                        patchVanilla("grass_jungle"),
-                        patchVanilla("tall_grass_2"),
-                        patchVanilla("dead_bush"),
-                        patchVanilla("waterlily"),
+                        PATCH_GRASS_JUNGLE,
+                        PATCH_TALL_GRASS_2,
+                        PATCH_DEAD_BUSH,
+                        PATCH_WATERLILY,
                         patch("water_mosaic"),
-                        featureVanilla("brown_mushroom_swamp"),
-                        featureVanilla("red_mushroom_swamp"),
-                        patchVanilla("sugar_cane_swamp"),
-                        featureVanilla("vines"),
-                        patchVanilla("melon_sparse"),
+                        BROWN_MUSHROOM_SWAMP,
+                        RED_MUSHROOM_SWAMP,
+                        PATCH_SUGAR_CANE_SWAMP,
+                        VINES,
+                        PATCH_MELON_SPARSE,
                         patch("hearty_succulent")
                 ))
                 .build(featureToBiomes);
@@ -1107,15 +1111,15 @@ public class NMLBiomeModifiers {
                         trees("bog"),
                         flowers("bog"),
                         flowerBed("red_and_violet"),
-                        patchVanilla("grass_normal"),
-                        patchVanilla("dead_bush"),
-                        patchVanilla("waterlily"),
-                        featureVanilla("brown_mushroom_swamp"),
-                        featureVanilla("red_mushroom_swamp"),
-                        featureVanilla("brown_mushroom_normal"),
-                        featureVanilla("red_mushroom_normal"),
-                        patchVanilla("sugar_cane_swamp"),
-                        patchVanilla("pumpkin")
+                        PATCH_GRASS_NORMAL,
+                        PATCH_DEAD_BUSH,
+                        PATCH_WATERLILY,
+                        BROWN_MUSHROOM_SWAMP,
+                        RED_MUSHROOM_SWAMP,
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_NORMAL,
+                        PATCH_SUGAR_CANE_SWAMP,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 
@@ -1125,16 +1129,16 @@ public class NMLBiomeModifiers {
                         flowers("maple"),
                         flowerBed("red"),
                         patch("rose_bush"),
-                        patchVanilla("grass_normal"),
-                        patchVanilla("dead_bush"),
-                        patchVanilla("waterlily"),
-                        featureVanilla("brown_mushroom_swamp"),
-                        featureVanilla("red_mushroom_swamp"),
-                        featureVanilla("brown_mushroom_old_growth"),
-                        featureVanilla("red_mushroom_normal"),
+                        PATCH_GRASS_NORMAL,
+                        PATCH_DEAD_BUSH,
+                        PATCH_WATERLILY,
+                        BROWN_MUSHROOM_SWAMP,
+                        RED_MUSHROOM_SWAMP,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_NORMAL,
                         feature("shelf_mushroom_dark_forest"),
-                        patchVanilla("sugar_cane_swamp"),
-                        patchVanilla("pumpkin")
+                        PATCH_SUGAR_CANE_SWAMP,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 
@@ -1144,12 +1148,12 @@ public class NMLBiomeModifiers {
                         flowers("dark_taiga"),
                         flowerBed("violet"),
                         patch("grass_old_growth"),
-                        patchVanilla("large_fern"),
+                        PATCH_LARGE_FERN,
                         patch("large_fern_many"),
-                        featureVanilla("brown_mushroom_taiga"),
-                        featureVanilla("red_mushroom_taiga"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin")
+                        BROWN_MUSHROOM_TAIGA,
+                        RED_MUSHROOM_TAIGA,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 
@@ -1159,8 +1163,8 @@ public class NMLBiomeModifiers {
                         flowers("frosted"),
                         flowerBed("frosted"),
                         patch("grass_snowy"),
-                        patchVanilla("large_fern"),
-                        patchVanilla("dead_bush")
+                        PATCH_LARGE_FERN,
+                        PATCH_DEAD_BUSH
                 ))
                 .build(featureToBiomes);
 
@@ -1170,12 +1174,12 @@ public class NMLBiomeModifiers {
                         flowers("maple"),
                         flowerBed("red"),
                         patch("rose_bush"),
-                        patchVanilla("grass_forest"),
-                        featureVanilla("red_mushroom_old_growth"),
-                        featureVanilla("brown_mushroom_normal"),
-                        featureVanilla("red_mushroom_normal"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin")
+                        PATCH_GRASS_FOREST,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_NORMAL,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 
@@ -1185,12 +1189,12 @@ public class NMLBiomeModifiers {
                         flowers("maple"),
                         flowerBed("red"),
                         patch("grass_snowy"),
-                        patchVanilla("large_fern"),
-                        featureVanilla("brown_mushroom_normal"),
-                        featureVanilla("red_mushroom_taiga"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin"),
-                        patchVanilla("berry_common")
+                        PATCH_LARGE_FERN,
+                        BROWN_MUSHROOM_NORMAL,
+                        RED_MUSHROOM_TAIGA,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN,
+                        PATCH_BERRY_COMMON
                 ))
                 .build(featureToBiomes);
 
@@ -1201,11 +1205,11 @@ public class NMLBiomeModifiers {
                         flowers("maple"),
                         flowerBed("red"),
                         patch("rose_bush"),
-                        patchVanilla("dead_bush"),
-                        featureVanilla("brown_mushroom_old_growth"),
-                        featureVanilla("red_mushroom_old_growth"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin")
+                        PATCH_DEAD_BUSH,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 
@@ -1216,11 +1220,11 @@ public class NMLBiomeModifiers {
                         flowers("maple"),
                         flowerBed("red"),
                         patch("rose_bush"),
-                        patchVanilla("dead_bush"),
-                        featureVanilla("brown_mushroom_old_growth"),
-                        featureVanilla("red_mushroom_old_growth"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin")
+                        PATCH_DEAD_BUSH,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 
@@ -1231,11 +1235,11 @@ public class NMLBiomeModifiers {
                         flowers("maple"),
                         flowerBed("red"),
                         patch("rose_bush"),
-                        patchVanilla("dead_bush"),
-                        featureVanilla("brown_mushroom_old_growth"),
-                        featureVanilla("red_mushroom_old_growth"),
-                        patchVanilla("sugar_cane"),
-                        patchVanilla("pumpkin")
+                        PATCH_DEAD_BUSH,
+                        BROWN_MUSHROOM_OLD_GROWTH,
+                        RED_MUSHROOM_OLD_GROWTH,
+                        PATCH_SUGAR_CANE,
+                        PATCH_PUMPKIN
                 ))
                 .build(featureToBiomes);
 

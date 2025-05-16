@@ -16,6 +16,7 @@
     "DispenserBlockMixin",
     "EntityMixin",
     "FallLocationMixin",
+    "ChunkGeneratorMixin",
     "FlowerBlockMixin",
     "LadderBlockMixin",
     "LeaveVineDecoratorMixin",

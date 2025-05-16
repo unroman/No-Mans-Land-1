@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:warm_ocean",
-    "nomansland:bayou"
-  ],
-  "features": "nomansland:vanilla/flower_warm",
-  "step": "vegetal_decoration"
-}
