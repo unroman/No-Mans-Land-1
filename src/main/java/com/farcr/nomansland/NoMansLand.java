@@ -62,7 +62,6 @@ public class NoMansLand {
         }
 
         if (Mods.BLOCKBOX.isLoaded()) BBIntegration.register();
-        if (Mods.CREATE.isLoaded()) CIntegration.register();
         if (Mods.BOATLOAD.isLoaded()) BoatloadIntegration.register();
 
         modEventBus.register(new CreativeModeTabHandler());

@@ -19,14 +19,12 @@ public class NMLLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         for (BlockDefinition<?> definition : NMLBlocks.BLOCK_DEFINITIONS) {
-
             if (!definition.hasCustomLang()) {
                 add(definition.langKey(), definition.langName());
             }
         }
 
         for (ItemDefinition<?> definition : NMLItems.ITEM_DEFINITIONS) {
-
             if (!definition.hasCustomLang() && !definition.isBlockItem()) {
                 add(definition.langKey(), definition.langName());
             }
