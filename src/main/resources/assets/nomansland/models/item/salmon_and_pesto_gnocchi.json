@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nomansland:item/salmon_and_pesto_gnocchi"
+  }
+}

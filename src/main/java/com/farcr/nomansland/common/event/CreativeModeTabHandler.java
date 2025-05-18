@@ -311,20 +311,25 @@ public class CreativeModeTabHandler {
             insertAfter(Items.COOKED_RABBIT, COOKED_FROG_LEG);
             insertAfter(Items.COOKED_RABBIT, FROG_LEG);
             insertAfter(Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE);
-            if (Mods.FARMERSDELIGHT.isLoaded()) {
-                insertAfter(Items.HONEY_BOTTLE, FDIntegration.PEAR_JUICE);
-                insertAfter(Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_ITEM);
-                insertAfter(Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_SLICE);
-            }
             insertAfter(Items.PUMPKIN_PIE, PANCAKE);
+            if (Mods.FARMERSDELIGHT.isLoaded()) {
+                insertAfter(Items.PUMPKIN_PIE, FDIntegration.PEAR_COBBLER_ITEM);
+                insertAfter(Items.CAKE, FDIntegration.FRUIT_CAKE);
+                insertBefore(Items.MILK_BUCKET, FDIntegration.PESTO_BOTTLE);
+            }
+            insertAfter(Items.COOKIE, MAPLE_TART);
+            insertAfter(Items.COOKIE, SWEET_TART);
             insertAfter(Items.ENCHANTED_GOLDEN_APPLE, SYRUPED_PEAR);
             insertAfter(Items.ENCHANTED_GOLDEN_APPLE, PEAR);
             insertAfter(Items.APPLE, HONEYED_APPLE);
+            insertAfter(Items.MELON_SLICE, TRAIL_MIX);
             insertAfter(Items.MELON_SLICE, WALNUTS);
+            insertAfter(Items.MELON_SLICE, PINE_NUTS);
             insertAfter(Items.MUSHROOM_STEW, MASHED_POTATOES_WITH_MUSHROOMS);
             insertAfter(Items.POISONOUS_POTATO, GRILLED_MUSHROOMS);
             insertAfter(Items.COOKED_SALMON, COOKED_BILLHOOK_BASS);
             insertAfter(Items.COOKED_SALMON, BILLHOOK_BASS);
+            insertAfter(Items.SPIDER_EYE, HARDTACK);
 //            insertAfter(Items.TROPICAL_FISH, CAVE_CARP);
         }
 

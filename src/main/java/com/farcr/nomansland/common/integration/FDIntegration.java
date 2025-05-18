@@ -73,6 +73,12 @@ public class FDIntegration {
     public static final ItemDefinition<ConsumableItem> PASTA_WITH_PESTO = NMLItems.register("pasta_with_pesto",
             () -> new ConsumableItem(new Item.Properties().food(PASTA_WITH_PESTO_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
+    public static final FoodProperties SALMON_AND_PESTO_GNOCCHI_FOOD = new FoodProperties.Builder().nutrition(16).saturationModifier(0.75F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 6000, 0, true, false), 1).build();
+
+    public static final ItemDefinition<ConsumableItem> SALMON_AND_PESTO_GNOCCHI = NMLItems.register("salmon_and_pesto_gnocchi",
+            () -> new ConsumableItem(new Item.Properties().food(SALMON_AND_PESTO_GNOCCHI_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
+
     public static final ItemDefinition<ConsumableItem> SEARED_VENISON = NMLItems.register("seared_venison",
             () -> new ConsumableItem(new Item.Properties().food(SEARED_VENISON_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
@@ -104,6 +110,7 @@ public class FDIntegration {
             () -> new DrinkableItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(FDIntegration.PESTO_BOTTLE_FOOD)));
 
     public static final FoodProperties PESTO_BOTTLE_FOOD = new FoodProperties.Builder().nutrition(3).saturationModifier(1.2F).build();
+
     public static void addBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         event.modify(
                 ModBlockEntityTypes.CABINET.get(),
