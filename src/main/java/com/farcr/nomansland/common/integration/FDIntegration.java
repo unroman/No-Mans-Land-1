@@ -62,10 +62,21 @@ public class FDIntegration {
     public static final FoodProperties SEARED_VENISON_FOOD = new FoodProperties.Builder().nutrition(12).saturationModifier(0.9F).usingConvertsTo(Items.BOWL)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0, true, false), 1.0F).build();
 
+    public static final ItemDefinition<ConsumableItem> SEARED_VENISON = NMLItems.register("seared_venison",
+            () -> new ConsumableItem(new Item.Properties().food(SEARED_VENISON_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
+
+    public static final FoodProperties STALLION_STRIP_FOOD = new FoodProperties.Builder().nutrition(10).saturationModifier(1.1F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0, true, false), 1.0F).build();
+
+    public static final ItemDefinition<ConsumableItem> STALLION_STRIP = NMLItems.register("stallion_strip",
+            () -> new ConsumableItem(new Item.Properties().food(STALLION_STRIP_FOOD).stacksTo(64), true));
+
     public static final FoodProperties WITCH_STEW_FOOD = new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0), 0.1F)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 360, 0), 1).build();
 
+    public static final ItemDefinition<ConsumableItem> WITCH_STEW = NMLItems.register("witch_stew",
+            () -> new ConsumableItem(new Item.Properties().food(WITCH_STEW_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
     public static final FoodProperties PASTA_WITH_PESTO_FOOD = new FoodProperties.Builder().nutrition(14).saturationModifier(0.75F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 6000, 0, true, false), 1).build();
@@ -78,9 +89,6 @@ public class FDIntegration {
 
     public static final ItemDefinition<ConsumableItem> SALMON_AND_PESTO_GNOCCHI = NMLItems.register("salmon_and_pesto_gnocchi",
             () -> new ConsumableItem(new Item.Properties().food(SALMON_AND_PESTO_GNOCCHI_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
-
-    public static final ItemDefinition<ConsumableItem> SEARED_VENISON = NMLItems.register("seared_venison",
-            () -> new ConsumableItem(new Item.Properties().food(SEARED_VENISON_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
     public static final ItemDefinition<Item> PEAR_COBBLER_SLICE = NMLItems.register("pear_cobbler_slice",
             () -> new Item(new Item.Properties().food(FoodValues.PIE_SLICE)));
