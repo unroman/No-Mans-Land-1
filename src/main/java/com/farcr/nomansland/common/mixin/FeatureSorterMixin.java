@@ -9,30 +9,24 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.util.Graph;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.FeatureSorter;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-@Mixin(ChunkGenerator.class)
-public class ChunkGeneratorMixin {
-    @Shadow public Supplier<List<FeatureSorter.StepFeatureData>> featuresPerStep;
-
-    private static <T> List<FeatureSorter.StepFeatureData> buildFeaturesPerStep(
-            List<T> biomes, Function<T, List<HolderSet<PlacedFeature>>> biomeToFeatureSetFunction, boolean notRecursiveFlag
+@Mixin(FeatureSorter.class)
+public class FeatureSorterMixin {
+    @Unique
+    private static <T> List<FeatureSorter.StepFeatureData> no_Mans_Land$buildFeaturesPerStep(
+            List<T> biomes, Function<T, List<HolderSet<PlacedFeature>>> biomeToFeatureSetFunction
     ) {
         // Map of each placed feature to a unique index (provided by mutableint)
         Object2IntMap<PlacedFeature> indexMap = new Object2IntOpenHashMap<>();
@@ -84,32 +78,6 @@ public class ChunkGeneratorMixin {
             // DFS returns false if we do a regular path to a dead end, or if at any point we hit somewhere we've already visited
             // If it returns true it means we've found a loop in the process of the current path traversal
             if (!visitedNodesUnique.contains(featureData) && Graph.depthFirstSearch(dependencyMap, visitedNodesUnique, currentPathNodes, visitedNodes::add, featureData)) {
-                /*if (!notRecursiveFlag) {
-                    throw new IllegalStateException("Feature order cycle found");
-                }
-
-                List<T> list3 = new ArrayList<>(biomes);
-
-                int j1;
-                do {
-                    j1 = list3.size();
-                    ListIterator<T> listiterator = list3.listIterator();
-
-                    while (listiterator.hasNext()) {
-                        T t1 = listiterator.next();
-                        listiterator.remove();
-
-                        try {
-                            buildFeaturesPerStep(list3, biomeToFeatureSetFunction, false);
-                        } catch (IllegalStateException illegalstateexception) {
-                            continue;
-                        }
-
-                        listiterator.add(t1);
-                    }
-                } while (j1 != list3.size());
-
-                throw new IllegalStateException("Feature order cycle found, involved sources: " + list3);*/
                 // instead of fussing about feature order cycles, just collect the path from where we died and add it to the list
                 for (FeatureData pathNode : currentPathNodes) {
                     if (visitedNodesUnique.add(pathNode))
@@ -132,11 +100,9 @@ public class ChunkGeneratorMixin {
         return builder.build();
     }
 
-    @Inject(method = "<init>(Lnet/minecraft/world/level/biome/BiomeSource;Ljava/util/function/Function;)V", at = @At("TAIL"))
-    private void replaceFeaturesPerStep(BiomeSource biomeSource, Function<Holder<Biome>, BiomeGenerationSettings> generationSettingsGetter, CallbackInfo ci)
+    @Inject(method = "buildFeaturesPerStep", at = @At("HEAD"), cancellable = true)
+    private static void replaceFeaturesPerStep(List<Holder<Biome>> featureSetSources, Function<Holder<Biome>, List<HolderSet<PlacedFeature>>> toFeatueSetFunction, boolean notRecursiveFlag, CallbackInfoReturnable<List<FeatureSorter.StepFeatureData>> cir)
     {
-        this.featuresPerStep = net.neoforged.neoforge.common.util.Lazy.of(
-                () -> buildFeaturesPerStep(List.copyOf(biomeSource.possibleBiomes()), holder -> generationSettingsGetter.apply(holder).features(), true)
-        );
+        cir.setReturnValue(no_Mans_Land$buildFeaturesPerStep(featureSetSources, toFeatueSetFunction));
     }
 }
