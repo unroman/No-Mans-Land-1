@@ -72,8 +72,8 @@ public class FDIntegration {
             () -> new ConsumableItem(new Item.Properties().food(STALLION_STRIP_FOOD).stacksTo(64), true));
 
     public static final FoodProperties WITCH_STEW_FOOD = new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0), 0.1F)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 360, 0), 1).build();
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0, true, false), 0.1F)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 360, 0, true, false), 1).build();
 
     public static final ItemDefinition<ConsumableItem> WITCH_STEW = NMLItems.register("witch_stew",
             () -> new ConsumableItem(new Item.Properties().food(WITCH_STEW_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
