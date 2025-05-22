@@ -73,7 +73,7 @@ public class FDIntegration {
     public static final ItemDefinition<ConsumableItem> SEARED_VENISON = NMLItems.register("seared_venison",
             () -> new ConsumableItem(new Item.Properties().food(SEARED_VENISON_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
-    public static final FoodProperties STALLION_STRIP_FOOD = new FoodProperties.Builder().nutrition(10).saturationModifier(1.1F)
+    public static final FoodProperties STALLION_STRIP_FOOD = new FoodProperties.Builder().nutrition(10).saturationModifier(0.8F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0, true, false), 1.0F).build();
 
     public static final FoodProperties WITCH_STEW_FOOD = new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F)
