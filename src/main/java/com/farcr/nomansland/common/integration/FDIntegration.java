@@ -34,13 +34,11 @@ import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
-import vectorwing.farmersdelight.common.block.ShepherdsPieBlock;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModEffects;
-import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ModTags;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
 
@@ -91,13 +89,13 @@ public class FDIntegration {
     public static final ItemDefinition<ConsumableItem> WITCH_STEW_ITEM = NMLItems.register("witch_stew",
             () -> new ConsumableItem(new Item.Properties().food(WITCH_STEW_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
 
-    public static final ItemDefinition<ConsumableItem> STALLION_STRIPS = NMLItems.register("stallion_strips",
+    public static final ItemDefinition<ConsumableItem> STALLION_STRIP = NMLItems.register("stallion_strip",
             () -> new ConsumableItem(new Item.Properties().food(STALLION_STRIP_FOOD).stacksTo(64), true));
 
     public static final BlockDefinition<StallionStripsBlock> STALLION_STRIPS_BLOCK = NMLBlocks.registerNoItem("stallion_strips",
-            () -> new StallionStripsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE), STALLION_STRIPS::item, true));
+            () -> new StallionStripsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE)));
 
-    public static final ItemDefinition<BlockItem> STALLION_STRIPS_BLOCK_ITEM = NMLItems.register("stallion_strips_block",
+    public static final ItemDefinition<BlockItem> STALLION_STRIPS_BLOCK_ITEM = NMLItems.register("stallion_strips",
             () -> new BlockItem(STALLION_STRIPS_BLOCK.block(), new Item.Properties().stacksTo(1)));
 
     public static final FoodProperties PASTA_WITH_PESTO_FOOD = new FoodProperties.Builder().nutrition(14).saturationModifier(0.75F)
