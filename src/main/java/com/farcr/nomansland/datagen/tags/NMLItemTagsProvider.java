@@ -59,6 +59,7 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
             tag(ItemTags.SIGNS).add(woodset.sign().item());
             tag(ItemTags.HANGING_SIGNS).add(woodset.hangingSign().item());
             tag(ItemTags.PLANKS).add(woodset.planks().item());
+            tag(ItemTags.PLANKS).add(woodset.trimmedPlanks().item());
             tag(NMLTags.BOOKSHELVES.itemTag()).add(woodset.bookshelf().item());
             tag(Tags.Items.FENCE_GATES_WOODEN).add(woodset.fenceGate().item());
             tag(Tags.Items.FENCES_WOODEN).add(woodset.fence().item());
@@ -88,7 +89,7 @@ public class NMLItemTagsProvider extends ItemTagsProvider {
         );
 
         addToTags(NMLTags.BOOKSHELVES.itemTag(), Tags.Items.BOOKSHELVES, BlueprintIntegration.woodenBookshelves().itemTag());
-        addToTags(NMLTags.TRIMMED_PLANKS_ITEM, ItemTags.PLANKS);
+        tag(ItemTags.PLANKS).addTag(NMLTags.TRIMMED_PLANKS.itemTag());
 
         tag(ItemTags.LOGS_THAT_BURN).addTags(NMLTags.MAPLE_LOGS.itemTag(), NMLTags.PINE_LOGS.itemTag(), NMLTags.WALNUT_LOGS.itemTag(), NMLTags.WILLOW_LOGS.itemTag());
     }

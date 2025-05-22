@@ -3,6 +3,8 @@ package com.farcr.nomansland.common.definitions;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+import java.util.List;
+
 public class Definition<R, T extends R> extends DeferredHolder<R, T> {
 
     private final boolean customLang;
@@ -24,14 +26,16 @@ public class Definition<R, T extends R> extends DeferredHolder<R, T> {
     public String langName() {
         String processed = getRegisteredName().split(":")[1].replace("_", " ");
 
+        List<String> nonCapital = List.of("of", "and", "with");
+
         String[] words = processed.split(" ");
         StringBuilder result = new StringBuilder();
 
         for (String word : words) {
             if (!word.isEmpty()) {
-                result.append(Character.toUpperCase(word.charAt(0)))
-                        .append(word.substring(1))
-                        .append(" ");
+                if (!nonCapital.contains(word)) result.append(Character.toUpperCase(word.charAt(0)));
+                else result.append(word.charAt(0));
+                result.append(word.substring(1)).append(" ");
             }
         }
 

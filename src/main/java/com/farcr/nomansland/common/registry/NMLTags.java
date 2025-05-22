@@ -15,13 +15,13 @@ public class NMLTags {
     public static final TagKey<Item> DEER_FOOD = createItemTag("deer_food");
     public static final TagKey<Item> MOOSE_FOOD = createItemTag("moose_food");
     public static final TagKey<Item> MAKES_RESIN_OIL = createItemTag("makes_resin_oil");
-    public static final TagKey<Item> TRIMMED_PLANKS_ITEM = createItemTag("trimmed_planks");
 
     public static final SharedTag MAPLE_LOGS = createSharedTag("maple_logs");
     public static final SharedTag PINE_LOGS = createSharedTag("pine_logs");
     public static final SharedTag WALNUT_LOGS = createSharedTag("walnut_logs");
     public static final SharedTag WILLOW_LOGS = createSharedTag("willow_logs");
     public static final SharedTag BOOKSHELVES = createSharedTag("bookshelves");
+    public static final SharedTag TRIMMED_PLANKS = createSharedTag("trimmed_planks");
 
     public static final TagKey<Block> MUSHROOM_BLOCKS = createBlockTag("mushroom_blocks");
     public static final TagKey<Block> BONEMEALABLE_FLOWERS = createBlockTag("bonemealable_flowers");

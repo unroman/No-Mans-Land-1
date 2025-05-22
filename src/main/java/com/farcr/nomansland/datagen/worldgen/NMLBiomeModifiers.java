@@ -137,6 +137,7 @@ public class NMLBiomeModifiers {
                         9098883
                 )
                 .addFeatures(FeatureWithStep.vegetationFeatures(
+                        trees("cherry_grove"),
                         flowerBed("white_and_violet"),
                         flowers("cherry"),
                         PATCH_SUGAR_CANE,
@@ -271,12 +272,12 @@ public class NMLBiomeModifiers {
 
         modifyBiome(Biomes.DESERT)
                 .changeColors(
-                        15200511,
-                        4223408,
-                        2383519,
-                        8431871,
-                        10205860,
-                        9680231
+                        15527891,
+                        4106959,
+                        3048361,
+                        12113081,
+                        14663027,
+                        12762457
                 )
                 .removeFeatures(
                         PATCH_SUGAR_CANE_DESERT

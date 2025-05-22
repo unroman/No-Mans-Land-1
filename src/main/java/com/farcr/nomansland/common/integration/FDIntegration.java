@@ -1,6 +1,11 @@
 package com.farcr.nomansland.common.integration;
 
+import com.farcr.nomansland.common.block.StallionStripsBlock;
+import com.farcr.nomansland.common.block.cauldrons.EmptyWitchStewCauldron;
+import com.farcr.nomansland.common.block.cauldrons.WitchStewBlockItem;
+import com.farcr.nomansland.common.block.cauldrons.WitchStewCauldron;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
+import com.farcr.nomansland.common.definitions.BlockProperties;
 import com.farcr.nomansland.common.definitions.ItemDefinition;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.items.NMLFoods;
@@ -21,6 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CakeBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -28,11 +34,13 @@ import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
+import vectorwing.farmersdelight.common.block.ShepherdsPieBlock;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModEffects;
+import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ModTags;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
 
@@ -68,15 +76,29 @@ public class FDIntegration {
     public static final FoodProperties STALLION_STRIP_FOOD = new FoodProperties.Builder().nutrition(10).saturationModifier(1.1F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 3600, 0, true, false), 1.0F).build();
 
-    public static final ItemDefinition<ConsumableItem> STALLION_STRIP = NMLItems.register("stallion_strip",
-            () -> new ConsumableItem(new Item.Properties().food(STALLION_STRIP_FOOD).stacksTo(64), true));
-
     public static final FoodProperties WITCH_STEW_FOOD = new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0, true, false), 0.1F)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 360, 0, true, false), 1).build();
 
-    public static final ItemDefinition<ConsumableItem> WITCH_STEW = NMLItems.register("witch_stew",
+    public static final BlockDefinition<WitchStewCauldron> WITCH_STEW = NMLBlocks.registerNoItem("pot_of_witch_stew", WitchStewCauldron::new);
+
+    public static final BlockDefinition<EmptyWitchStewCauldron> EMPTY_WITCH_STEW = NMLBlocks.registerNoItem("empty_pot_of_witch_stew",
+            () -> new EmptyWitchStewCauldron(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)), BlockProperties.custom(true));
+
+    public static final ItemDefinition<BlockItem> WITCH_STEW_BLOCK_ITEM = NMLItems.register("pot_of_witch_stew",
+            () -> new WitchStewBlockItem(WITCH_STEW.block(), new Item.Properties().stacksTo(1)));
+
+    public static final ItemDefinition<ConsumableItem> WITCH_STEW_ITEM = NMLItems.register("witch_stew",
             () -> new ConsumableItem(new Item.Properties().food(WITCH_STEW_FOOD).craftRemainder(Items.BOWL).stacksTo(16), true));
+
+    public static final ItemDefinition<ConsumableItem> STALLION_STRIPS = NMLItems.register("stallion_strips",
+            () -> new ConsumableItem(new Item.Properties().food(STALLION_STRIP_FOOD).stacksTo(64), true));
+
+    public static final BlockDefinition<StallionStripsBlock> STALLION_STRIPS_BLOCK = NMLBlocks.registerNoItem("stallion_strips",
+            () -> new StallionStripsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE), STALLION_STRIPS::item, true));
+
+    public static final ItemDefinition<BlockItem> STALLION_STRIPS_BLOCK_ITEM = NMLItems.register("stallion_strips_block",
+            () -> new BlockItem(STALLION_STRIPS_BLOCK.block(), new Item.Properties().stacksTo(1)));
 
     public static final FoodProperties PASTA_WITH_PESTO_FOOD = new FoodProperties.Builder().nutrition(14).saturationModifier(0.75F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 6000, 0, true, false), 1).build();

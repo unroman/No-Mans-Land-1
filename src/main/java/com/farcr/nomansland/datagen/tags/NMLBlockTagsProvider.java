@@ -8,6 +8,7 @@ import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
@@ -79,6 +80,7 @@ public class NMLBlockTagsProvider extends BlockTagsProvider {
         );
 
         addToTags(NMLTags.BOOKSHELVES.blockTag(), Tags.Blocks.BOOKSHELVES, BlockTags.ENCHANTMENT_POWER_PROVIDER, BlueprintIntegration.woodenBookshelves().blockTag());
+        tag(BlockTags.PLANKS).addTag(NMLTags.TRIMMED_PLANKS.blockTag());
 
         tag(BlockTags.LOGS_THAT_BURN).addTags(NMLTags.MAPLE_LOGS.blockTag(), NMLTags.PINE_LOGS.blockTag(), NMLTags.WALNUT_LOGS.blockTag(), NMLTags.WILLOW_LOGS.blockTag());
         tag(BlockTags.OVERWORLD_NATURAL_LOGS).add(

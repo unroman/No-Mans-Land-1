@@ -1,8 +1,5 @@
 {
   "variants": {
-    "level=0": {
-      "model": "nomansland:block/food/witch_stew_cauldron_empty"
-    },
     "level=1": {
       "model": "nomansland:block/food/witch_stew_cauldron_1"
     },

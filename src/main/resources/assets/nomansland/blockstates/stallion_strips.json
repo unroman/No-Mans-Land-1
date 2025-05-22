@@ -1,22 +1,94 @@
 {
   "variants": {
-    "level=0": {
+    "facing=north,servings=0": {
       "model": "nomansland:block/food/stallion_strips_0"
     },
-    "level=1": {
+    "facing=north,servings=1": {
       "model": "nomansland:block/food/stallion_strips_1"
     },
-    "level=2": {
+    "facing=north,servings=2": {
       "model": "nomansland:block/food/stallion_strips_2"
     },
-    "level=3": {
+    "facing=north,servings=3": {
       "model": "nomansland:block/food/stallion_strips_3"
     },
-    "level=4": {
+    "facing=north,servings=4": {
       "model": "nomansland:block/food/stallion_strips_4"
     },
-    "level=5": {
+    "facing=north,servings=5": {
       "model": "nomansland:block/food/stallion_strips_5"
+    },
+    "facing=east,servings=0": {
+      "model": "nomansland:block/food/stallion_strips_0",
+      "y": 90
+    },
+    "facing=east,servings=1": {
+      "model": "nomansland:block/food/stallion_strips_1",
+      "y": 90
+    },
+    "facing=east,servings=2": {
+      "model": "nomansland:block/food/stallion_strips_2",
+      "y": 90
+    },
+    "facing=east,servings=3": {
+      "model": "nomansland:block/food/stallion_strips_3",
+      "y": 90
+    },
+    "facing=east,servings=4": {
+      "model": "nomansland:block/food/stallion_strips_4",
+      "y": 90
+    },
+    "facing=east,servings=5": {
+      "model": "nomansland:block/food/stallion_strips_5",
+      "y": 90
+    },
+    "facing=south,servings=0": {
+      "model": "nomansland:block/food/stallion_strips_0",
+      "y": 180
+    },
+    "facing=south,servings=1": {
+      "model": "nomansland:block/food/stallion_strips_1",
+      "y": 180
+    },
+    "facing=south,servings=2": {
+      "model": "nomansland:block/food/stallion_strips_2",
+      "y": 180
+    },
+    "facing=south,servings=3": {
+      "model": "nomansland:block/food/stallion_strips_3",
+      "y": 180
+    },
+    "facing=south,servings=4": {
+      "model": "nomansland:block/food/stallion_strips_4",
+      "y": 180
+    },
+    "facing=south,servings=5": {
+      "model": "nomansland:block/food/stallion_strips_5",
+      "y": 180
+    },
+    "facing=west,servings=0": {
+      "model": "nomansland:block/food/stallion_strips_0",
+      "y": 270
+    },
+    "facing=west,servings=1": {
+      "model": "nomansland:block/food/stallion_strips_1",
+      "y": 270
+    },
+    "facing=west,servings=2": {
+      "model": "nomansland:block/food/stallion_strips_2",
+      "y": 270
+    },
+    "facing=west,servings=3": {
+      "model": "nomansland:block/food/stallion_strips_3",
+      "y": 270
+    },
+    "facing=west,servings=4": {
+      "model": "nomansland:block/food/stallion_strips_4",
+      "y": 270
+    },
+    "facing=west,servings=5": {
+      "model": "nomansland:block/food/stallion_strips_5",
+      "y": 270
     }
   }
 }

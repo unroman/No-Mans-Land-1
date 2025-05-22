@@ -41,7 +41,7 @@ public class NMLItems {
     public static LinkedHashSet<ItemDefinition<?>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
     //Foods
     public static final ItemDefinition<Item> MASHED_POTATOES_WITH_MUSHROOMS = register("mashed_potatoes_with_mushrooms",
-            () -> new Item(new Properties().food(NMLFoods.MASHED_POTATOES_WITH_MUSHROOMS).stacksTo(1)), true);
+            () -> new Item(new Properties().food(NMLFoods.MASHED_POTATOES_WITH_MUSHROOMS).stacksTo(1)));
     public static final ItemDefinition<Item> GRILLED_MUSHROOMS = register("grilled_mushrooms",
             () -> new Item(new Properties().food(NMLFoods.GRILLED_MUSHROOMS)));
 
