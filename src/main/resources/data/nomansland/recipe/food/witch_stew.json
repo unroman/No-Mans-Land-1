@@ -7,23 +7,29 @@
     ],
     "type": "farmersdelight:cooking",
     "container": {
-      "id": "minecraft:bowl"
+      "id": "minecraft:cauldron"
     },
     "cookingtime": 100,
     "experience": 1.0,
     "ingredients": [
       {
-        "item": "nomansland:pesto_bottle"
+        "item": "nomansland:billhook_bass"
       },
       {
-        "item": "farmersdelight:raw_pasta"
+        "item": "nomansland:frog_leg"
       },
       {
-        "tag": "nomansland:edible_mushrooms"
+        "item": "nomansland:duckweed"
+      },
+      {
+        "item": "minecraft:brown_mushroom"
+      },
+      {
+        "item": "farmersdelight:onion"
       }
     ],
     "recipe_book_tab": "meals",
     "result": {
-      "id": "nomansland:pasta_with_pesto"
+      "id": "nomansland:pot_of_witch_stew"
     }
   }

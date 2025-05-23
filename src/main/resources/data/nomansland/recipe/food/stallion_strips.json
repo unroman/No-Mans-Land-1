@@ -16,14 +16,20 @@
         "item": "nomansland:pesto_bottle"
       },
       {
-        "item": "farmersdelight:raw_pasta"
+        "item": "nomansland:raw_horse"
       },
       {
-        "tag": "nomansland:edible_mushrooms"
+        "item": "nomansland:raw_horse"
+      },
+      {
+        "item": "minecraft:carrot"
+      },
+      {
+        "item": "farmersdelight:onion"
       }
     ],
     "recipe_book_tab": "meals",
     "result": {
-      "id": "nomansland:pasta_with_pesto"
+      "id": "nomansland:stallion_strips"
     }
   }
