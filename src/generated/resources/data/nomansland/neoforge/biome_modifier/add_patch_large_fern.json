@@ -1,11 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:jungle",
-    "nomansland:dark_taiga",
-    "nomansland:frozen_woods",
-    "nomansland:maple_grove"
-  ],
+  "biomes": "minecraft:jungle",
   "features": "minecraft:patch_large_fern",
   "step": "vegetal_decoration"
 }

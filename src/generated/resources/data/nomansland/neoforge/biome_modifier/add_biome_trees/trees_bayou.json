@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "nomansland:bayou",
-  "features": "nomansland:biome_trees/trees_bayou",
-  "step": "vegetal_decoration"
-}

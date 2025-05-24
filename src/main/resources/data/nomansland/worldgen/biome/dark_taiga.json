@@ -73,7 +73,18 @@
       "minecraft:disk_clay",
       "minecraft:disk_gravel"
     ],
-    [],
+    [
+      "nomansland:biome_trees/trees_dark_taiga",
+      "nomansland:flower_patches/flowers_dark_taiga",
+      "nomansland:flower_patches/flowerbed_violet",
+      "nomansland:patch_grass_old_growth",
+      "minecraft:patch_large_fern",
+      "nomansland:patch_large_fern_many",
+      "minecraft:brown_mushroom_taiga",
+      "minecraft:red_mushroom_taiga",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin"
+    ],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"

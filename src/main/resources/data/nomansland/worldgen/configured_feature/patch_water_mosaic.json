@@ -9,6 +9,7 @@
 		  },
 		"y_spread": 1,
 		"sparseness": 3,
+		"randomness": 0.25,
 		"features": [
 		
 			{

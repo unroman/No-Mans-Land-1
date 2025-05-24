@@ -4,8 +4,7 @@
     "minecraft:bamboo_jungle",
     "minecraft:jungle",
     "minecraft:sparse_jungle",
-    "minecraft:warm_ocean",
-    "nomansland:bayou"
+    "minecraft:warm_ocean"
   ],
   "features": "nomansland:flower_patches/flowerbed_jungle",
   "step": "vegetal_decoration"

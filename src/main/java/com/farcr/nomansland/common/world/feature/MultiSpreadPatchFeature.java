@@ -25,6 +25,7 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
         int ySpread = config.ySpread().sample(random);
         int tries = Math.round(xzSpread * xzSpread * ySpread * tryDensity);
         double sparseness = config.sparseness();
+        double randomness = config.randomness();
 
         BlockPos.MutableBlockPos pos = origin.mutable();
         for (int i = 0; i < tries; i++) {
@@ -37,9 +38,9 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
                 break;
 
             float distanceFromOriginXZ = Mth.sqrt((x - origin.getX())*(x - origin.getX()) + (z - origin.getZ())*(z - origin.getZ()));
-            float modifiedDistanceFromOriginXZ = distanceFromOriginXZ + ((random.nextFloat() * 2) - 1) * 0.8f;
-            modifiedDistanceFromOriginXZ = Mth.clamp(modifiedDistanceFromOriginXZ / (xzSpread*3), 0.0f, 0.99f);
-            int index = Mth.floor(modifiedDistanceFromOriginXZ * config.features().size());
+            float modifiedDistanceFromOriginXZ = Mth.sqrt(Mth.clamp(distanceFromOriginXZ / (xzSpread*Mth.SQRT_OF_TWO), 0, 1));
+            modifiedDistanceFromOriginXZ = Mth.clamp(modifiedDistanceFromOriginXZ + (2*random.nextFloat()-1) * (float)randomness, 0, 1);
+            int index = Math.min(Mth.floor(modifiedDistanceFromOriginXZ * config.features().size()), config.features().size() - 1);
 
             if (distanceFromOriginXZ < 1.5*16 && modifiedDistanceFromOriginXZ < 1.5*16) config.features().get(index).value().place(level, context.chunkGenerator(), random, pos);
         }

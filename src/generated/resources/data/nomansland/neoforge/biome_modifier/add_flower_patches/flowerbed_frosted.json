@@ -7,8 +7,7 @@
     "minecraft:ice_spikes",
     "minecraft:snowy_beach",
     "minecraft:snowy_plains",
-    "minecraft:snowy_taiga",
-    "nomansland:frozen_woods"
+    "minecraft:snowy_taiga"
   ],
   "features": "nomansland:flower_patches/flowerbed_frosted",
   "step": "vegetal_decoration"
