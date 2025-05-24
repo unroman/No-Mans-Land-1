@@ -8,10 +8,10 @@
   },
   "downfall": 0.9,
   "effects": {
-    "fog_color": 11071699,
-    "sky_color": 7194319,
-    "foliage_color": 6203171,
-    "grass_color": 6798649,
+    "fog_color": 10996903,
+    "sky_color": 7715315,
+    "foliage_color": 6975545,
+    "grass_color_modifier": "swamp",
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -22,10 +22,10 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "minecraft:music.overworld.jungle"
+      "sound": "minecraft:music.overworld.swamp"
     },
-    "water_color": 3517088,
-    "water_fog_color": 1479552
+    "water_color": 3832426,
+    "water_fog_color": 5077600
   },
   "features": [
     [],
@@ -37,6 +37,8 @@
       "minecraft:amethyst_geode"
     ],
     [
+      "minecraft:fossil_upper",
+      "minecraft:fossil_lower",
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
     ],
@@ -69,9 +71,8 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
-      "minecraft:disk_sand",
-      "minecraft:disk_clay",
-      "minecraft:disk_gravel"
+      "minecraft:disk_grass",
+      "minecraft:disk_clay"
     ],
     [],
     [
@@ -79,22 +80,20 @@
       "minecraft:spring_lava"
     ],
     [
-      "nomansland:biome_trees/trees_lush_river"
+      "nomansland:biome_trees/trees_blackwater"
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:flower_warm",
-      "nomansland:flower_patches/flowerbed_jungle",
-      "nomansland:patch_cattail",
-      "minecraft:patch_grass_jungle",
-      "minecraft:patch_large_fern",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane",
-      "minecraft:vines",
-      "minecraft:patch_melon",
-      "minecraft:seagrass_river",
-      "nomansland:patch_hearty_succulent"
+      "minecraft:flower_swamp",
+      "minecraft:patch_grass_normal",
+      "minecraft:patch_dead_bush",
+      "minecraft:patch_waterlily",
+      "minecraft:brown_mushroom_swamp",
+      "minecraft:red_mushroom_swamp",
+      "minecraft:seagrass_swamp",
+      "minecraft:patch_sugar_cane_swamp",
+      "minecraft:patch_pumpkin",
+      "minecraft:seagrass_river"
     ],
     [
       "minecraft:freeze_top_layer"
@@ -116,8 +115,8 @@
       {
         "type": "minecraft:frog",
         "maxCount": 5,
-        "minCount": 1,
-        "weight": 1
+        "minCount": 2,
+        "weight": 5
       }
     ],
     "misc": [],
@@ -144,7 +143,7 @@
         "type": "minecraft:skeleton",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 100
+        "weight": 70
       },
       {
         "type": "minecraft:creeper",
@@ -171,10 +170,16 @@
         "weight": 5
       },
       {
-        "type": "minecraft:drowned",
+        "type": "minecraft:slime",
         "maxCount": 1,
         "minCount": 1,
-        "weight": 100
+        "weight": 1
+      },
+      {
+        "type": "minecraft:bogged",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 30
       }
     ],
     "underground_water_creature": [
@@ -185,34 +190,8 @@
         "weight": 10
       }
     ],
-    "water_ambient": [
-      {
-        "type": "minecraft:salmon",
-        "maxCount": 5,
-        "minCount": 1,
-        "weight": 5
-      },
-      {
-        "type": "minecraft:tropical_fish",
-        "maxCount": 8,
-        "minCount": 2,
-        "weight": 3
-      }
-    ],
-    "water_creature": [
-      {
-        "type": "minecraft:squid",
-        "maxCount": 4,
-        "minCount": 1,
-        "weight": 4
-      },
-      {
-        "type": "minecraft:dolphin",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 2
-      }
-    ]
+    "water_ambient": [],
+    "water_creature": []
   },
-  "temperature": 0.85
+  "temperature": 0.8
 }

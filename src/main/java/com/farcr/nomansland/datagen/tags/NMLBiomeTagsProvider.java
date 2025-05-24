@@ -36,7 +36,8 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
                 NMLBiomes.MAPLE_FOREST,
                 NMLBiomes.MAPLE_GROVE,
                 NMLBiomes.FROZEN_WOODS,
-                NMLBiomes.LUSH_RIVER
+                NMLBiomes.LUSH_RIVER,
+                NMLBiomes.BLACKWATER_RIVER
         );
 
         tag(BiomeTags.IS_OVERWORLD).addTags(NMLTags.OLD_GROWTH_FOREST, NMLTags.CAVES);
@@ -53,6 +54,7 @@ public class NMLBiomeTagsProvider extends BiomeTagsProvider {
         addToTags(NMLBiomes.FROZEN_WOODS, Tags.Biomes.IS_RARE, Tags.Biomes.IS_CONIFEROUS_TREE, Tags.Biomes.IS_COLD, Tags.Biomes.IS_SNOWY, BiomeTags.IS_TAIGA, Tags.Biomes.IS_DEAD, BiomeTags.HAS_IGLOO);
 
         addToTags(NMLBiomes.LUSH_RIVER, BiomeTags.IS_RIVER, BiomeTags.IS_JUNGLE, Tags.Biomes.IS_HOT, Tags.Biomes.IS_DENSE_VEGETATION, Tags.Biomes.IS_JUNGLE_TREE);
+        addToTags(NMLBiomes.BLACKWATER_RIVER, BiomeTags.IS_RIVER, Tags.Biomes.IS_TEMPERATE, Tags.Biomes.IS_SWAMP, Tags.Biomes.IS_DENSE_VEGETATION);
     }
 
     @SafeVarargs
