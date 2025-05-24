@@ -24,7 +24,7 @@
       "replace_current_music": false,
       "sound": "minecraft:music.overworld.jungle"
     },
-    "water_color": 6077880,
+    "water_color": 3517088,
     "water_fog_color": 1479552
   },
   "features": [
@@ -79,7 +79,7 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:trees_jungle"
+      "nomansland:biome_trees/trees_lush_river"
     ],
     [
       "minecraft:glow_lichen",
