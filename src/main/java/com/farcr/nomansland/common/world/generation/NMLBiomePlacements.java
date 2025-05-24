@@ -18,7 +18,7 @@ public class NMLBiomePlacements {
     public static void register() {
 
         if (NMLConfig.CAVES_BIOMES.get()) {
-            BiomePlacement.addOverworld(NMLBiomes.CAVES,
+            /*BiomePlacement.addOverworld(NMLBiomes.CAVES,
                     Climate.parameters(
                             Climate.Parameter.span(-2F, 2F),
                             Climate.Parameter.span(-2F, 2F),
@@ -56,7 +56,7 @@ public class NMLBiomePlacements {
                             Climate.Parameter.span(-2F, 2F),
                             Climate.Parameter.span(0.8F, 2F),
                             Climate.Parameter.span(-2F, 2F),
-                            0.1F));
+                            0.1F));*/
         }
 
         if (NMLConfig.MAPLE_BIOMES.get()) {
