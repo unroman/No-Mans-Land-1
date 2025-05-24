@@ -1,15 +1,23 @@
 package com.farcr.nomansland.client.model;
 
+import com.farcr.nomansland.NoMansLand;
+import com.farcr.nomansland.common.entity.Moose;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.AgeableHierarchicalModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.neoforged.neoforge.client.entity.animation.json.AnimationHolder;
 
-public class MooseModel<T extends Entity> extends EntityModel<T> {
+public class MooseModel extends AgeableHierarchicalModel<Moose> {
+    public static final AnimationHolder STOMP = getAnimation(ResourceLocation.fromNamespaceAndPath(NoMansLand.MODID, "moose/stomp"));
+
+    private final ModelPart root;
     private final ModelPart moose;
     private final ModelPart head;
     private final ModelPart upperbody;
@@ -20,6 +28,8 @@ public class MooseModel<T extends Entity> extends EntityModel<T> {
     private final ModelPart leftFrontLeg;
 
     public MooseModel(ModelPart root) {
+        super(0.75F, 0.0F);
+        this.root = root;
         this.moose = root.getChild("moose");
         this.head = moose.getChild("head");
         this.upperbody = moose.getChild("upperbody");
@@ -79,17 +89,16 @@ public class MooseModel<T extends Entity> extends EntityModel<T> {
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.xRot = headPitch * ((float) Math.PI / 180F);
+    public ModelPart root() {return this.root;}
+
+    @Override
+    public void setupAnim(Moose entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        /*this.head.xRot = headPitch * ((float) Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.rightHindLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.leftHindLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         this.rightFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leftFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-        moose.render(poseStack, buffer, packedLight, packedOverlay, color);
+        this.leftFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;*/
+        this.animate(entity.stompAnimationState, STOMP, ageInTicks);
     }
 }

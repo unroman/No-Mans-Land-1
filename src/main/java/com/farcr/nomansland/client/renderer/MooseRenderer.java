@@ -10,9 +10,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class MooseRenderer extends MobRenderer<Moose, MooseModel<Moose>> {
+public class MooseRenderer extends MobRenderer<Moose, MooseModel> {
     public MooseRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new MooseModel<>(pContext.bakeLayer(NMLModelLayers.MOOSE_LAYER)), 1.5f);
+        super(pContext, new MooseModel(pContext.bakeLayer(NMLModelLayers.MOOSE_LAYER)), 1.5f);
     }
 
     @Override
