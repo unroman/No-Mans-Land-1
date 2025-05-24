@@ -38,7 +38,7 @@ public class MultiSpreadPatchFeature extends Feature<MultiSpreadPatchConfigurati
                 break;
 
             float distanceFromOriginXZ = Mth.sqrt((x - origin.getX())*(x - origin.getX()) + (z - origin.getZ())*(z - origin.getZ()));
-            float modifiedDistanceFromOriginXZ = distanceFromOriginXZ / (xzSpread*Mth.SQRT_OF_TWO);
+            float modifiedDistanceFromOriginXZ = Mth.sqrt(Mth.clamp(distanceFromOriginXZ / (xzSpread*Mth.SQRT_OF_TWO), 0, 1));
             modifiedDistanceFromOriginXZ = Mth.clamp(modifiedDistanceFromOriginXZ + (2*random.nextFloat()-1) * (float)randomness, 0, 1);
             int index = Math.min(Mth.floor(modifiedDistanceFromOriginXZ * config.features().size()), config.features().size() - 1);
 
