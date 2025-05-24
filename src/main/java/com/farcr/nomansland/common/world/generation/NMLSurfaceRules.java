@@ -108,6 +108,15 @@ public class NMLSurfaceRules {
                                         SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
         );
 
+        SurfaceRules.RuleSource blackwater_river = SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(NMLBiomes.BLACKWATER_RIVER),
+                SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(surfaceNoiseAbove(0.5), MUD),
+                        SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0),
+                                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0)),
+                                        SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.0), WATER))))
+        );
+
         SurfaceRules.RuleSource caves = SurfaceRules.ifTrue(
                 SurfaceRules.isBiome(NMLBiomes.CAVES),
                 SurfaceRules.sequence(
@@ -127,7 +136,7 @@ public class NMLSurfaceRules {
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
                                 //Surface Biomes
-                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, frozenWoods, bog, bayou, darkSwamp, stonyShore, lush_river))),
+                                jungle, darkForest, autumnalForest, mapleForest, oldGrowthForest, frozenWoods, bog, bayou, darkSwamp, stonyShore, lush_river, blackwater_river))),
                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
                     SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), SurfaceRules.sequence(
                             // Cave Biomes
