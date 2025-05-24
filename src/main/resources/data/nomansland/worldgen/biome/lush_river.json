@@ -85,6 +85,7 @@
       "minecraft:glow_lichen",
       "minecraft:flower_warm",
       "nomansland:flower_patches/flowerbed_jungle",
+      "nomansland:patch_cattail",
       "minecraft:patch_grass_jungle",
       "minecraft:patch_large_fern",
       "minecraft:brown_mushroom_normal",
@@ -112,16 +113,10 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "minecraft:ocelot",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 2
-      },
-      {
         "type": "minecraft:frog",
-        "maxCount": 3,
+        "maxCount": 5,
         "minCount": 1,
-        "weight": 4
+        "weight": 1
       }
     ],
     "misc": [],
