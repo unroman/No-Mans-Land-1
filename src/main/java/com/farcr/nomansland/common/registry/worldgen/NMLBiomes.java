@@ -33,6 +33,8 @@ public class NMLBiomes {
 
     public static final ResourceKey<Biome> BOG = createKey("bog");
 
+    public static final ResourceKey<Biome> LUSH_RIVER = createKey("lush_river");
+
     //Underground
     public static final ResourceKey<Biome> CAVES = createKey("caves");
     public static final ResourceKey<Biome> CAVE_DEPTHS = createKey("cave_depths");

@@ -1,6 +1,7 @@
 {
   "values": [
     "#c:is_wet",
-    "minecraft:mushroom_fields"
+    "minecraft:mushroom_fields",
+    "nomansland:lush_river"
   ]
 }

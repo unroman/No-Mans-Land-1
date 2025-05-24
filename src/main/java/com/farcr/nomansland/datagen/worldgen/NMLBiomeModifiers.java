@@ -461,7 +461,8 @@ public class NMLBiomeModifiers {
                 .addFeatures(FeatureWithStep.vegetationFeatures(
                         flowerBed("jungle"),
                         patch("duckweed_sparse"),
-                        patch("hearty_succulent")
+                        patch("hearty_succulent"),
+                        PATCH_LARGE_FERN
                 ))
                 .removeFeatures(PATCH_PUMPKIN)
                 .changeSpawns(

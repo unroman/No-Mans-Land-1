@@ -19,6 +19,12 @@
                   "Name": "nomansland:fiddlehead"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "minecraft:fern"
+                },
+                "weight": 1
               }
             ]
           }
