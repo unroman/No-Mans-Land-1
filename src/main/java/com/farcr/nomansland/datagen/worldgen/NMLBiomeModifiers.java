@@ -3,7 +3,6 @@ package com.farcr.nomansland.datagen.worldgen;
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.registry.NMLParticleTypes;
 import com.farcr.nomansland.common.registry.NMLTags;
-import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
