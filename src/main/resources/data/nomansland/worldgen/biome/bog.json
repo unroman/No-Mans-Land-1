@@ -73,7 +73,20 @@
       "minecraft:underwater_magma",
       "minecraft:disk_clay"
     ],
-    [],
+    [
+      "nomansland:biome_trees/trees_bog",
+      "nomansland:flower_patches/flowers_bog",
+      "nomansland:flower_patches/flowerbed_red_and_violet",
+      "minecraft:patch_grass_normal",
+      "minecraft:patch_dead_bush",
+      "minecraft:patch_waterlily",
+      "minecraft:brown_mushroom_swamp",
+      "minecraft:red_mushroom_swamp",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal",
+      "minecraft:patch_sugar_cane_swamp",
+      "minecraft:patch_pumpkin"
+    ],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"

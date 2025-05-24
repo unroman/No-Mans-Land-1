@@ -67,7 +67,18 @@
       "minecraft:disk_clay",
       "minecraft:disk_gravel"
     ],
-    [],
+    [
+      "nomansland:biome_trees/trees_maple_grove",
+      "nomansland:flower_patches/flowers_maple",
+      "nomansland:flower_patches/flowerbed_red",
+      "nomansland:patch_grass_snowy",
+      "minecraft:patch_large_fern",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_taiga",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin",
+      "minecraft:patch_berry_common"
+    ],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"
