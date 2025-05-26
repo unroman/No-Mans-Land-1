@@ -47,7 +47,7 @@ public class DesertFoliageBlock extends BushBlock implements BonemealableBlock {
 
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        return blockState.is(NMLBlocks.SHORT_BEACHGRASS) || blockState.is(NMLBlocks.TALL_BEACHGRASS);
+        return true;
     }
 
     @Override
