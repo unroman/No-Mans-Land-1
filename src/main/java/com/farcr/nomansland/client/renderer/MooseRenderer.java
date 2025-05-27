@@ -19,14 +19,4 @@ public class MooseRenderer extends MobRenderer<Moose, MooseModel> {
     public ResourceLocation getTextureLocation(Moose pEntity) {
         return NoMansLand.location("textures/entity/moose/moose_brown.png");
     }
-
-    @Override
-    public void render(Moose pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack,
-                       MultiBufferSource pBuffer, int pPackedLight) {
-        if (pEntity.isBaby()) {
-            pMatrixStack.scale(0.5f, 0.5f, 0.5f);
-        }
-
-        super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
-    }
 }

@@ -4,6 +4,10 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.Moose;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.animation.AnimationChannel;
+import net.minecraft.client.animation.AnimationDefinition;
+import net.minecraft.client.animation.Keyframe;
+import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.model.AgeableHierarchicalModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -28,7 +32,7 @@ public class MooseModel extends AgeableHierarchicalModel<Moose> {
     private final ModelPart leftFrontLeg;
 
     public MooseModel(ModelPart root) {
-        super(0.75F, 0.0F);
+        super(0.5F, 24.0F);
         this.root = root;
         this.moose = root.getChild("moose");
         this.head = moose.getChild("head");
@@ -93,6 +97,7 @@ public class MooseModel extends AgeableHierarchicalModel<Moose> {
 
     @Override
     public void setupAnim(Moose entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
         /*this.head.xRot = headPitch * ((float) Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.rightHindLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
