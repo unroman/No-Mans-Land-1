@@ -81,7 +81,7 @@ public class FDIntegration {
     public static final BlockDefinition<WitchStewCauldron> WITCH_STEW = NMLBlocks.registerNoItem("pot_of_witch_stew", WitchStewCauldron::new);
 
     public static final BlockDefinition<EmptyWitchStewCauldron> EMPTY_WITCH_STEW = NMLBlocks.registerNoItem("empty_pot_of_witch_stew",
-            () -> new EmptyWitchStewCauldron(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)), BlockProperties.custom(true));
+            () -> new EmptyWitchStewCauldron(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)), BlockProperties.cauldron());
 
     public static final ItemDefinition<BlockItem> WITCH_STEW_BLOCK_ITEM = NMLItems.register("pot_of_witch_stew",
             () -> new WitchStewBlockItem(WITCH_STEW.block(), new Item.Properties().stacksTo(1)));
