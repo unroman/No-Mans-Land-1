@@ -1,23 +1,19 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
-import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.function.Supplier;
 
 public class EmptyWitchStewCauldron extends Block {
 
@@ -37,8 +33,9 @@ public class EmptyWitchStewCauldron extends Block {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        level.destroyBlock(pos, true, player);
         level.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
+
+        player.addItem(Items.BONE_MEAL.getDefaultInstance());
 
         return InteractionResult.SUCCESS;
     }
