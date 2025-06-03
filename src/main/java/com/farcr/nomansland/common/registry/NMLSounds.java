@@ -9,13 +9,16 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class NMLSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, NoMansLand.MODID);
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> SPIKES_EXTEND = registerSound("block.spike_trap.spikes_extend");
-    public static final DeferredHolder<SoundEvent, SoundEvent> SPIKES_RETRACT = registerSound("block.spike_trap.spikes_retract");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPIKE_TRAP_EXTEND = registerSound("block.spike_trap.extend");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPIKE_TRAP_RETRACT = registerSound("block.spike_trap.retract");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MONSTER_RESURRECTION = registerSound("block.monster_anchor.monster_resurrection");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANCHOR_ACTIVATES = registerSound("block.monster_anchor.activate");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANCHOR_DEACTIVATES = registerSound("block.monster_anchor.deactivate");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> PLAYER_DRINK_MILK = registerSound("entity.player.drink_milk");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PLAYER_HURT_SPIKE_TRAP = registerSound("entity.player.hurt_spike_trap");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> STICKY_CAULDRON_SLIDE = registerSound("entity.generic.sticky_cauldron_slide");
     public static final DeferredHolder<SoundEvent, SoundEvent> HONEYCOMB_CONSUMED = registerSound("item.honeycomb.consumed");
     public static final DeferredHolder<SoundEvent, SoundEvent> BASS_AMBIENT = registerSound("entity.billhook_bass.ambient");

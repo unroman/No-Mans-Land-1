@@ -1,15 +1,74 @@
 {
-  "block.spike_trap.spikes_extend": {
+  "block.spike_trap.extend": {
     "sounds": [
-      "nomansland:block/spike_trap/spikes_extend"
+      "nomansland:block/spike_trap/extend1",
+      "nomansland:block/spike_trap/extend2",
+      "nomansland:block/spike_trap/extend3",
+      {
+        "name": "nomansland:block/spike_trap/extend1",
+        "pitch": 1.05
+      },
+      {
+        "name": "nomansland:block/spike_trap/extend2",
+        "pitch": 1.05
+      },
+      {
+        "name": "nomansland:block/spike_trap/extend3",
+        "pitch": 1.05
+      },
+      {
+        "name": "nomansland:block/spike_trap/extend1",
+        "pitch": 0.95
+      },
+      {
+        "name": "nomansland:block/spike_trap/extend2",
+        "pitch": 0.95
+      },
+      {
+        "name": "nomansland:block/spike_trap/extend3",
+        "pitch": 0.95
+      }
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.extend"
   },
-  "block.spike_trap.spikes_retract": {
+  "block.spike_trap.retract": {
     "sounds": [
-      "nomansland:block/spike_trap/spikes_retract"
+      "nomansland:block/spike_trap/retract1",
+      "nomansland:block/spike_trap/retract2",
+      "nomansland:block/spike_trap/retract3",
+      {
+        "name": "nomansland:block/spike_trap/retract1",
+        "pitch": 1.05
+      },
+      {
+        "name": "nomansland:block/spike_trap/retract2",
+        "pitch": 1.05
+      },
+      {
+        "name": "nomansland:block/spike_trap/retract3",
+        "pitch": 1.05
+      },
+      {
+        "name": "nomansland:block/spike_trap/retract1",
+        "pitch": 0.95
+      },
+      {
+        "name": "nomansland:block/spike_trap/retract2",
+        "pitch": 0.95
+      },
+      {
+        "name": "nomansland:block/spike_trap/retract3",
+        "pitch": 0.95
+      }
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.retract"
+  },
+  "entity.player.hurt_spike_trap": {
+    "sounds": [
+      "nomansland:entity/player/hurt_spike_trap1",
+      "nomansland:entity/player/hurt_spike_trap2"
+    ],
+    "subtitle": "subtitles.entity.player.hurt"
   },
   "block.monster_anchor.monster_resurrection": {
     "sounds": [

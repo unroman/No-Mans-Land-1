@@ -126,11 +126,11 @@ SpikeTrapBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
 
         if (hasSignal && !state.getValue(POWERED)) {
             level.setBlockAndUpdate(pos, state.setValue(POWERED, true));
-            level.playSound(null, pos, NMLSounds.SPIKES_RETRACT.get(), SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.2F + 0.6F);
+            level.playSound(null, pos, NMLSounds.SPIKE_TRAP_RETRACT.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
             level.gameEvent(GameEvent.BLOCK_DEACTIVATE, pos, GameEvent.Context.of(state));
         } else if (!hasSignal && state.getValue(POWERED)) {
             level.setBlockAndUpdate(pos, state.setValue(POWERED, false));
-            level.playSound(null, pos, NMLSounds.SPIKES_EXTEND.get(), SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.2F + 0.6F);
+            level.playSound(null, pos, NMLSounds.SPIKE_TRAP_EXTEND.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
             level.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(state));
             Predicate<LivingEntity> livingEntityPredicate = LivingEntity::isAlive;
             List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos), livingEntityPredicate);
