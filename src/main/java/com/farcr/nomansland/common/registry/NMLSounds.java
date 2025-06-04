@@ -44,6 +44,7 @@ public class NMLSounds {
 
     public static final DeferredSoundType MONSTER_ANCHOR = registerSoundType("monster_anchor", 1, 1.2F);
     public static final DeferredSoundType MUSHROOM_CAP = registerSoundType("mushroom_cap", 1, 1.2F);
+    public static final DeferredSoundType SCONCE_TORCH = registerSoundType("sconce_torch", 1, 1.2F);
     public static final DeferredSoundType SEASHELLS = registerSoundType("seashells", 1, 1.2F);
 
     protected static DeferredSoundType registerSoundType(String name, float volume, float pitch) {

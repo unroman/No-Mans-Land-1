@@ -58,21 +58,21 @@ public class NMLBlocks {
 
     //Decorations
     public static final BlockDefinition<SconceTorchBlock> SCONCE_TORCH = registerNoItem("sconce_torch",
-            () -> new SconceTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.TORCH).sound(SoundType.LANTERN)), new BlockProperties(new SelfBlockLootType(), false));
+            () -> new SconceTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.TORCH).sound(NMLSounds.SCONCE_TORCH)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<ExtinguishedSconceTorchBlock> EXTINGUISHED_SCONCE_TORCH = registerNoItem("extinguished_sconce_torch",
-            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_TORCH.get()), BlockProperties.custom(true));
+            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(NMLSounds.SCONCE_TORCH).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_TORCH.get()), BlockProperties.custom(true));
     public static final BlockDefinition<SconceWallTorchBlock> SCONCE_WALL_TORCH = registerNoItem("sconce_wall_torch",
-            () -> new SconceWallTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_TORCH)), BlockProperties.custom(true));
+            () -> new SconceWallTorchBlock(ParticleTypes.FLAME, ofFullCopy(Blocks.WALL_TORCH).sound(NMLSounds.SCONCE_TORCH).lootFrom(SCONCE_TORCH)), BlockProperties.custom(true));
     public static final BlockDefinition<ExtinguishedSconceWallTorchBlock> EXTINGUISHED_SCONCE_WALL_TORCH = registerNoItem("extinguished_sconce_wall_torch",
-            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_WALL_TORCH.get(), ParticleTypes.FLAME), BlockProperties.custom(true));
+            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(NMLSounds.SCONCE_TORCH).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_WALL_TORCH.get(), ParticleTypes.FLAME), BlockProperties.custom(true));
     public static final BlockDefinition<SconceTorchBlock> SCONCE_SOUL_TORCH = registerNoItem("sconce_soul_torch",
-            () -> new SconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_TORCH).sound(SoundType.LANTERN)), new BlockProperties(new SelfBlockLootType(), false));
+            () -> new SconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_TORCH).sound(NMLSounds.SCONCE_TORCH)), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<ExtinguishedSconceTorchBlock> EXTINGUISHED_SCONCE_SOUL_TORCH = registerNoItem("extinguished_sconce_soul_torch",
-            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_TORCH.get()), BlockProperties.custom(true));
+            () -> new ExtinguishedSconceTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, of().noCollission().instabreak().sound(NMLSounds.SCONCE_TORCH).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_TORCH.get()), BlockProperties.custom(true));
     public static final BlockDefinition<SconceWallTorchBlock> SCONCE_SOUL_WALL_TORCH = registerNoItem("sconce_soul_wall_torch",
-            () -> new SconceWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_WALL_TORCH).sound(SoundType.LANTERN).lootFrom(SCONCE_SOUL_TORCH)), BlockProperties.custom(true));
+            () -> new SconceWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, ofFullCopy(Blocks.SOUL_WALL_TORCH).sound(NMLSounds.SCONCE_TORCH).lootFrom(SCONCE_SOUL_TORCH)), BlockProperties.custom(true));
     public static final BlockDefinition<ExtinguishedSconceWallTorchBlock> EXTINGUISHED_SCONCE_SOUL_WALL_TORCH = registerNoItem("extinguished_sconce_soul_wall_torch",
-            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(SoundType.LANTERN).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), ParticleTypes.SOUL_FIRE_FLAME), BlockProperties.custom(true));
+            () -> new ExtinguishedSconceWallTorchBlock(of().noCollission().instabreak().sound(NMLSounds.SCONCE_TORCH).pushReaction(PushReaction.DESTROY).noLootTable(), NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), ParticleTypes.SOUL_FIRE_FLAME), BlockProperties.custom(true));
     public static final BlockDefinition<ExtinguishedTorchBlock> EXTINGUISHED_TORCH = registerNoItem("extinguished_torch",
             () -> new ExtinguishedTorchBlock(ParticleTypes.FLAME, of().noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noLootTable(), Blocks.TORCH), BlockProperties.custom(true));
     public static final BlockDefinition<ExtinguishedWallTorchBlock> EXTINGUISHED_WALL_TORCH = registerNoItem("extinguished_wall_torch",

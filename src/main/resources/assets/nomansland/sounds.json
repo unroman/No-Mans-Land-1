@@ -169,6 +169,67 @@
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
+  "block.sconce_torch.break": {
+    "sounds": [
+      {
+        "name": "nomansland:block.sconce_torch.place",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sconce_torch.fall": {
+    "sounds": [
+      {
+        "name": "block.lantern.fall",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.sconce_torch.hit": {
+    "sounds": [
+      {
+        "name": "block.wood.hit",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sconce_torch.place": {
+    "sounds": [
+      {
+        "name": "nomansland:block/sconce_torch/place1",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/sconce_torch/place2",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/sconce_torch/place3",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/sconce_torch/place4",
+        "pitch": 1.1,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sconce_torch.step": {
+    "sounds": [
+      {
+        "name": "block.lantern.step",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
   "block.seashells.break": {
     "sounds": [
       {
