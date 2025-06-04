@@ -38,9 +38,12 @@
   },
   "block.monster_anchor.fall": {
     "sounds": [
-      "block.spawner.fall"
+      {
+        "name": "block.spawner.fall",
+        "type": "event"
+      }
     ],
-    "subtitle": "subtitles.block.generic.step"
+    "subtitle": "subtitles.block.generic.fall"
   },
   "block.monster_anchor.hit": {
     "sounds": [
@@ -83,7 +86,7 @@
         "type": "event"
       }
     ],
-    "subtitle": "subtitles.block.generic.step"
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.mushroom_cap.break": {
     "sounds": [
@@ -108,9 +111,12 @@
   },
   "block.mushroom_cap.fall": {
     "sounds": [
-      "nomansland:block.shelf_mushroom_block.step"
+      {
+        "name": "nomansland:block.shelf_mushroom_block.step",
+        "type": "event"
+      }
     ],
-    "subtitle": "subtitles.block.generic.step"
+    "subtitle": "subtitles.block.generic.fall"
   },
   "block.mushroom_cap.hit": {
     "sounds": [
@@ -161,7 +167,7 @@
         "volume": 0.8
       }
     ],
-    "subtitle": "subtitles.block.generic.step"
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.seashells.break": {
     "sounds": [
@@ -182,9 +188,12 @@
   },
   "block.seashells.fall": {
     "sounds": [
-      "nomansland:block.seashells.step"
+      {
+        "name": "nomansland:block.seashells.step",
+        "type": "event"
+      }
     ],
-    "subtitle": "subtitles.block.generic.step"
+    "subtitle": "subtitles.block.generic.fall"
   },
   "block.seashells.hit": {
     "sounds": [
@@ -227,7 +236,7 @@
         "volume": 1
       }
     ],
-    "subtitle": "subtitles.block.generic.step"
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.spike_trap.extend": {
     "sounds": [
