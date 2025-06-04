@@ -3,6 +3,7 @@ package com.farcr.nomansland.common.registry;
 import com.farcr.nomansland.NoMansLand;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
+import net.neoforged.neoforge.common.util.DeferredSoundType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -13,6 +14,7 @@ public class NMLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIKE_TRAP_RETRACT = registerSound("block.spike_trap.retract");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MONSTER_RESURRECTION = registerSound("block.monster_anchor.monster_resurrection");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MONSTER_SPAWNS = registerSound("block.monster_anchor.monster_spawns");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANCHOR_ACTIVATES = registerSound("block.monster_anchor.activate");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANCHOR_DEACTIVATES = registerSound("block.monster_anchor.deactivate");
 
@@ -40,7 +42,23 @@ public class NMLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_CONSUMED = registerSound("item.resin.consumed");
     public static final DeferredHolder<SoundEvent, SoundEvent> BOMB_PRIMED = registerSound("item.bomb.primed");
 
-    private static DeferredHolder<SoundEvent, SoundEvent> registerSound(String name) {
+    public static final DeferredSoundType MONSTER_ANCHOR = registerSoundType("monster_anchor", 1, 1.2F);
+    public static final DeferredSoundType MUSHROOM_CAP = registerSoundType("mushroom_cap", 1, 1.2F);
+    public static final DeferredSoundType SEASHELLS = registerSoundType("seashells", 1, 1.2F);
+
+    protected static DeferredSoundType registerSoundType(String name, float volume, float pitch) {
+        return new DeferredSoundType(
+                volume,
+                pitch,
+                registerSound("block." + name + "." + "break"),
+                registerSound("block." + name + "." + "step"),
+                registerSound("block." + name + "." + "place"),
+                registerSound("block." + name + "." + "hit"),
+                registerSound("block." + name + "." + "fall")
+        );
+    }
+
+    protected static DeferredHolder<SoundEvent, SoundEvent> registerSound(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(NoMansLand.location(name)));
     }
 }

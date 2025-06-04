@@ -120,14 +120,15 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
             // Select the first entity on the list
             if (i == 0) {
                 // This sound plays a bit late, so it is played before the mob is resurrected to time it perfectly
-                if (monsterAnchor.timeResurrecting <= timeBetweenResurrections - 78) {
+                if (monsterAnchor.timeResurrecting == timeBetweenResurrections - 78) {
                     // Turn the block active on mob resurrection
                     if (!state.getValue(MonsterAnchorBlock.ACTIVE)) {
-                        level.playSound(null, pos, NMLSounds.ANCHOR_ACTIVATES.get(), SoundSource.BLOCKS, 1, 0.25F);
+                        level.playSound(null, pos, NMLSounds.ANCHOR_ACTIVATES.get(), SoundSource.BLOCKS, 1, 1F);
                         level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, true));
                         level.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(state));
                     }
-                    level.playSound(null, pos, NMLSounds.MONSTER_RESURRECTION.get(), SoundSource.BLOCKS, 1, 0.5F);
+                        level.playSound(null, pos, NMLSounds.MONSTER_RESURRECTION.get(), SoundSource.BLOCKS, 1, 1F);
+
                 }
                 if (monsterAnchor.timeResurrecting == timeBetweenResurrections) {
                     monsterAnchor.timeResurrecting = 0;
@@ -151,6 +152,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                         serverLevel.gameEvent(resurrectedEntity, GameEvent.ENTITY_PLACE, spawningPosition);
                         serverLevel.broadcastEntityEvent(resurrectedEntity, (byte) 20);
                         entityQueue.remove(deadEntity);
+                        resurrectedEntity.playSound(NMLSounds.MONSTER_SPAWNS.get(), 1, 1F);
                         for (double y = 0; y <= 4; y++) {
                             if (level.getBlockState(BlockPos.containing(spawningPosition.relative(Direction.DOWN, y))).isSolid()) {
                                 double finalY = y - 1.1;

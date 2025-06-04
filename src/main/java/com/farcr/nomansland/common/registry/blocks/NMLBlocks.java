@@ -11,6 +11,7 @@ import com.farcr.nomansland.common.block.torches.*;
 import com.farcr.nomansland.common.definitions.BlockDefinition;
 import com.farcr.nomansland.common.definitions.BlockProperties;
 import com.farcr.nomansland.common.definitions.ItemDefinition;
+import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.items.NMLItems;
 import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
 import com.farcr.nomansland.common.registry.worldgen.NMLTreeGrowers;
@@ -227,7 +228,7 @@ public class NMLBlocks {
     public static final BlockDefinition<GroundPickupBlock> PEBBLES = register("pebbles",
             () -> new GroundPickupBlock(of().mapColor(MapColor.STONE).noCollission().instabreak().sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
     public static final BlockDefinition<GroundPickupBlock> SEASHELLS = register("seashells",
-            () -> new GroundPickupBlock(of().mapColor(MapColor.NONE).noCollission().instabreak().sound(SoundType.CALCITE).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ)), new BlockProperties(new SelfBlockLootType(), false));
+            () -> new GroundPickupBlock(of().mapColor(MapColor.NONE).noCollission().instabreak().sound(NMLSounds.SEASHELLS).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ)), new BlockProperties(new SelfBlockLootType(), false));
 
     public static final BlockDefinition<IciclesBlock> ICICLES = register("icicles",
             () -> new IciclesBlock(of().mapColor(MapColor.ICE).sound(SoundType.GLASS).pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ).dynamicShape()), BlockProperties.icicles());
@@ -272,7 +273,7 @@ public class NMLBlocks {
     public static final BlockDefinition<RemainsBlock> REMAINS = registerNoItem("remains",
             () -> new RemainsBlock(Blocks.COARSE_DIRT, SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED, of().mapColor(MapColor.DIRT).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY)), BlockProperties.custom(false));
     public static final BlockDefinition<MonsterAnchorBlock> MONSTER_ANCHOR = register("monster_anchor",
-            () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(SoundType.TRIAL_SPAWNER).noOcclusion()));
+            () -> new MonsterAnchorBlock(ofFullCopy(Blocks.SPAWNER).strength(7, 7).sound(NMLSounds.MONSTER_ANCHOR).noOcclusion()));
     public static final BlockDefinition<WardingEffigyBlock> WARDING_EFFIGY = register("warding_effigy",
             () -> new WardingEffigyBlock(of()
                     .strength(1.5F)
@@ -469,17 +470,17 @@ public class NMLBlocks {
 
     //Mushrooms
     public static final BlockDefinition<SurfaceMushroomBlock> FIELD_MUSHROOM = registerNoItem("field_mushroom",
-            () -> new SurfaceMushroomBlock((NMLFeatures.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).mapColor(MapColor.TERRACOTTA_WHITE))), new BlockProperties(new SelfBlockLootType(), false));
+            () -> new SurfaceMushroomBlock((NMLFeatures.HUGE_FIELD_MUSHROOM), (ofFullCopy(Blocks.RED_MUSHROOM).sound(NMLSounds.MUSHROOM_CAP).mapColor(MapColor.TERRACOTTA_WHITE))), new BlockProperties(new SelfBlockLootType(), false));
     public static final BlockDefinition<FlowerPotBlock> POTTED_FIELD_MUSHROOM = registerNoItem("potted_field_mushroom",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), NMLBlocks.FIELD_MUSHROOM,
                     ofFullCopy(Blocks.POTTED_RED_MUSHROOM).noOcclusion()), BlockProperties.flowerPot(FIELD_MUSHROOM));
     public static final BlockDefinition<HugeMushroomBlock> FIELD_MUSHROOM_BLOCK = register("field_mushroom_block",
-            () -> new HugeMushroomBlock((ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_WHITE))));
+            () -> new HugeMushroomBlock((ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).sound(NMLSounds.MUSHROOM_CAP).mapColor(MapColor.TERRACOTTA_WHITE))));
 
     public static final BlockDefinition<ShelfMushroomBlock> SHELF_MUSHROOM = register("shelf_mushroom",
-            () -> new ShelfMushroomBlock((ofFullCopy(Blocks.BROWN_MUSHROOM))));
+            () -> new ShelfMushroomBlock((ofFullCopy(Blocks.BROWN_MUSHROOM).sound(NMLSounds.MUSHROOM_CAP))));
     public static final BlockDefinition<SlabBlock> SHELF_MUSHROOM_BLOCK = register("shelf_mushroom_block",
-            () -> new SlabBlock((ofFullCopy(Blocks.BROWN_MUSHROOM_BLOCK))));
+            () -> new SlabBlock((ofFullCopy(Blocks.BROWN_MUSHROOM_BLOCK).sound(NMLSounds.MUSHROOM_CAP))));
 
     // Fruity Stuff
     public static final BlockDefinition<Block> APPLE_FRUIT = registerNoItem("apple",
