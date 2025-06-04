@@ -1,9 +1,9 @@
 package com.farcr.nomansland.common.mixin;
 
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
+import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.level.block.Blocks;
@@ -23,7 +23,7 @@ public abstract class ThrownPotionMixin extends EntityMixin {
         BlockState state = level().getBlockState(pos);
         if (state.getBlock() instanceof TorchBlock && !(state.getBlock() instanceof ExtinguishedTorchBlock)) {
         level().gameEvent(((ThrownPotion) (Object) this).getOwner(), GameEvent.BLOCK_CHANGE, pos);
-        level().playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level().playSound(null, pos, NMLSounds.TORCH_EXTINGUISH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
 
         if (state.is(Blocks.TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_TORCH.get().withPropertiesOf(state), 11);
         if (state.is(Blocks.WALL_TORCH)) level().setBlock(pos, NMLBlocks.EXTINGUISHED_WALL_TORCH.get().withPropertiesOf(state), 11);

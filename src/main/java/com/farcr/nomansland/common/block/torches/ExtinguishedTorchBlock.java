@@ -1,11 +1,11 @@
 package com.farcr.nomansland.common.block.torches;
 
+import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.NMLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +13,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -41,10 +42,10 @@ public class ExtinguishedTorchBlock extends TorchBlock {
                     player.getX(),
                     player.getY(),
                     player.getZ(),
-                    SoundEvents.FLINTANDSTEEL_USE,
+                    stack.is(Items.FLINT_AND_STEEL) ? NMLSounds.TORCH_LIGHT_BY_FLINT_AND_STEEL : NMLSounds.TORCH_LIGHT,
                     SoundSource.BLOCKS,
                     1.0F,
-                    (level.random.nextFloat() - level.random.nextFloat()) * 0.8F + 1.8F);
+                    1.0F);
             level.setBlock(pos, litBlock.defaultBlockState(), 3);
             if (!level.isClientSide) {
                 ServerLevel serverLevel = (ServerLevel) level;

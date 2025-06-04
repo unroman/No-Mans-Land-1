@@ -66,7 +66,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
 
             // Deactivate the spawners after 10 seconds of inactivity
             if (state.getValue(MonsterAnchorBlock.ACTIVE)) {
-                level.playSound(null, pos, NMLSounds.ANCHOR_DEACTIVATES.get(), SoundSource.BLOCKS, 1, 0.75F);
+                level.playSound(null, pos, NMLSounds.MONSTER_ANCHOR_DEACTIVATE.get(), SoundSource.BLOCKS, 1, 0.75F);
                 level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, false));
                 level.gameEvent(GameEvent.BLOCK_DEACTIVATE, pos, GameEvent.Context.of(state));
             } else if (monsterAnchor.timeIdle % 5 == 0) {
@@ -123,11 +123,11 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                 if (monsterAnchor.timeResurrecting == timeBetweenResurrections - 78) {
                     // Turn the block active on mob resurrection
                     if (!state.getValue(MonsterAnchorBlock.ACTIVE)) {
-                        level.playSound(null, pos, NMLSounds.ANCHOR_ACTIVATES.get(), SoundSource.BLOCKS, 1, 1F);
+                        level.playSound(null, pos, NMLSounds.MONSTER_ANCHOR_ACTIVATE.get(), SoundSource.BLOCKS, 1, 1F);
                         level.setBlockAndUpdate(pos, state.setValue(MonsterAnchorBlock.ACTIVE, true));
                         level.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(state));
                     }
-                        level.playSound(null, pos, NMLSounds.MONSTER_RESURRECTION.get(), SoundSource.BLOCKS, 1, 1F);
+                        level.playSound(null, pos, NMLSounds.MONSTER_ANCHOR_RESURRECTION.get(), SoundSource.BLOCKS, 1, 1F);
 
                 }
                 if (monsterAnchor.timeResurrecting == timeBetweenResurrections) {
@@ -152,7 +152,7 @@ public class MonsterAnchorBlockEntity extends BlockEntity implements GameEventLi
                         serverLevel.gameEvent(resurrectedEntity, GameEvent.ENTITY_PLACE, spawningPosition);
                         serverLevel.broadcastEntityEvent(resurrectedEntity, (byte) 20);
                         entityQueue.remove(deadEntity);
-                        resurrectedEntity.playSound(NMLSounds.MONSTER_SPAWNS.get(), 1, 1F);
+                        resurrectedEntity.playSound(NMLSounds.MONSTER_ANCHOR_SPAWN.get(), 1, 1F);
                         for (double y = 0; y <= 4; y++) {
                             if (level.getBlockState(BlockPos.containing(spawningPosition.relative(Direction.DOWN, y))).isSolid()) {
                                 double finalY = y - 1.1;

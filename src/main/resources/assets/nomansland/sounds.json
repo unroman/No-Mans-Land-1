@@ -363,6 +363,57 @@
     ],
     "subtitle": "nomansland.subtitles.block.spike_trap.retract"
   },
+  "block.torch.extinguish": {
+    "sounds": [
+      {
+        "name": "block.candle.extinguish",
+        "pitch": 0.85,
+        "type": "event",
+        "volume": 1.75
+      }
+    ],
+    "subtitle": "subtitles.torch.extinguish"
+  },
+  "block.torch.light": {
+    "sounds": [
+      {
+        "name": "nomansland:block/torch/light1",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/torch/light2",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/torch/light3",
+        "pitch": 1.1,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.torch.light"
+  },
+  "block.torch.light_by_flint_and_steel": {
+    "sounds": [
+      {
+        "name": "nomansland:block/torch/light_by_flint_and_steel1",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/torch/light_by_flint_and_steel2",
+        "pitch": 1.1,
+        "volume": 0.6
+      },
+      {
+        "name": "nomansland:block/torch/light_by_flint_and_steel3",
+        "pitch": 1.1,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.torch.light"
+  },
   "entity.billhook_bass.ambient": {
     "sounds": []
   },

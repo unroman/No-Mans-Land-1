@@ -5,6 +5,7 @@ import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.block.torches.ExtinguishedTorchBlock;
 import com.farcr.nomansland.common.entity.bombs.ExplosiveEntity;
 import com.farcr.nomansland.common.registry.NMLCriteriaTriggers;
+import com.farcr.nomansland.common.registry.NMLSounds;
 import com.farcr.nomansland.common.registry.NMLTags;
 import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
 import com.farcr.nomansland.common.registry.worldgen.NMLBiomes;
@@ -79,9 +80,11 @@ public class MiscellaneousEvents {
                 NMLBlocks.SCONCE_SOUL_TORCH.get(),
                 NMLBlocks.SCONCE_SOUL_WALL_TORCH.get()
         );
-        //Torch Extinguishing
+
+        // Torch Extinguishing
         if (torches.contains(state.getBlock()) && stack.is(ItemTags.SHOVELS) && !player.isSpectator() && NMLConfig.TORCH_EXTINGUISHING.get()) {
-            level.playSound(player, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.4F, 1.0F);
+            level.playSound(player, pos, NMLSounds.TORCH_EXTINGUISH.get(), SoundSource.BLOCKS, 0.4F, 1.0F);
+
             if (!level.isClientSide) {
                 stack.hurtAndBreak(1, player, stack.getEquipmentSlot());
 
@@ -96,7 +99,6 @@ public class MiscellaneousEvents {
                         Map.entry(NMLBlocks.SCONCE_SOUL_WALL_TORCH.get(), NMLBlocks.EXTINGUISHED_SCONCE_SOUL_WALL_TORCH)
                 ).get(state.getBlock()).value().withPropertiesOf(state);
 
-
                 level.setBlockAndUpdate(pos, extinguishedTorchState);
             }
             event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
@@ -105,7 +107,7 @@ public class MiscellaneousEvents {
 
         if (state.hasProperty(BlockStateProperties.LIT)) {
             if (!state.getValue(BlockStateProperties.LIT) && stack.is(NMLTags.FIRESTARTERS) && !stack.is(Items.FLINT_AND_STEEL)) {
-                level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
+                level.playSound(player, pos, NMLSounds.TORCH_LIGHT.get(), SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
                 level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, true));
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
@@ -344,7 +346,7 @@ public class MiscellaneousEvents {
             BlockState state = level.getBlockState(pos);
             if (state.getBlock() instanceof TorchBlock && !(state.getBlock() instanceof ExtinguishedTorchBlock)) {
                 level.gameEvent(explosion.getDirectSourceEntity(), GameEvent.BLOCK_CHANGE, pos);
-                level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.playSound(null, pos, NMLSounds.TORCH_EXTINGUISH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
 
                 if (state.is(Blocks.TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_TORCH.get().withPropertiesOf(state), 11);
                 if (state.is(Blocks.WALL_TORCH)) level.setBlock(pos, NMLBlocks.EXTINGUISHED_WALL_TORCH.get().withPropertiesOf(state), 11);
