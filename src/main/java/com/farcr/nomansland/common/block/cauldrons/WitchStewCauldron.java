@@ -13,8 +13,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 
 public class WitchStewCauldron extends FourLayeredCauldronBlock {
@@ -37,25 +39,27 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        boolean interacted = false;
         if (stack.is(Items.BOWL)) {
-            interacted = true;
             player.getItemInHand(hand).shrink(1);
-            player.addItem(new ItemStack(FDIntegration.WITCH_STEW_ITEM.get()));
+            player.addItem(FDIntegration.WITCH_STEW_ITEM.stack());
             level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_GENERIC.value(), SoundSource.BLOCKS);
+
             if (state.getValue(LEVEL) > 1) {
                 lowerFillLevel(state, level, pos);
             } else {
                 level.setBlockAndUpdate(pos, FDIntegration.EMPTY_WITCH_STEW.block().defaultBlockState());
             }
-        }
 
-        if (interacted) {
             player.awardStat(Stats.USE_CAULDRON);
             player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        } else {
-            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
         }
+
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+        return state.getValue(LEVEL) == 4 ? FDIntegration.WITCH_STEW_ITEM.stack() : super.getCloneItemStack(state, target, level, pos, player);
     }
 }
