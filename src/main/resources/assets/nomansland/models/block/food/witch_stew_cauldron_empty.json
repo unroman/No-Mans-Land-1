@@ -2,6 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"4": "block/cauldron_bottom",
 		"6": "nomansland:block/food/witch_stew_side_0",
