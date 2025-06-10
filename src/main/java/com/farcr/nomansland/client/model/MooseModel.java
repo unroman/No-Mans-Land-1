@@ -2,20 +2,11 @@ package com.farcr.nomansland.client.model;
 
 import com.farcr.nomansland.NoMansLand;
 import com.farcr.nomansland.common.entity.Moose;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.animation.AnimationChannel;
-import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.animation.Keyframe;
-import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.model.AgeableHierarchicalModel;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.neoforged.neoforge.client.entity.animation.json.AnimationHolder;
 
 public class MooseModel extends AgeableHierarchicalModel<Moose> {

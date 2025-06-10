@@ -2,7 +2,6 @@ package com.farcr.nomansland.common.block.cauldrons;
 
 import com.farcr.nomansland.common.integration.FDIntegration;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -30,7 +29,16 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
         double d0 = pos.getX() + 0.5 + random.nextInt(-40, 40) * 0.01;
         double d1 = pos.getY() + random.nextInt(-10, 40) * 0.001 + getContentHeight(state);
         double d2 = pos.getZ() + 0.5 + random.nextInt(-40, 40) * 0.01;
-        level.addParticle(ParticleTypes.EFFECT, d0, d1, d2, 0.0, 0.0, 0.0);
+
+//        Particle particle = Minecraft.getInstance().levelRenderer.addParticleInternal(
+//                (ParticleOptions) ParticleTypes.EFFECT, ParticleTypes.EFFECT.getOverrideLimiter(), d0, d1, d2, 0D, 0D, 0D
+//        );
+//        if (particle != null) {
+//            float f1 = 0.75F + random.nextFloat() * 0.25F;
+//            particle.setColor(135 * f1, 163 * f1, 99 * f1);
+//            particle.setPower(random.nextFloat() * 4);
+//        }
+//        level.addParticle(ParticleTypes.EFFECT, d0, d1, d2, 0.0, 0.0, 0.0);
 
         if (random.nextInt(10) == 0) {
             level.playLocalSound(d0, d1, d2, ModSounds.BLOCK_COOKING_POT_BOIL_SOUP.get(), SoundSource.BLOCKS, 0.5F, random.nextFloat() * 0.2F + 0.9F, false);
@@ -60,6 +68,6 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
 
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return state.getValue(LEVEL) == 4 ? FDIntegration.WITCH_STEW_ITEM.stack() : super.getCloneItemStack(state, target, level, pos, player);
+        return isFull(state) ? FDIntegration.WITCH_STEW_BLOCK_ITEM.stack() : super.getCloneItemStack(state, target, level, pos, player);
     }
 }
