@@ -41,6 +41,7 @@
     "ZombieMixin",
     "caves.DimensionBiomePlacementMixin",
     "integration.PloughMovementBehaviorMixin",
+    "integration.RandomUpdateHandlerMixin",
     "integration.RichSoilBlockMixin",
     "integration.ScaffoldingEventMixin",
     "integration.SeasonHooksMixin",
