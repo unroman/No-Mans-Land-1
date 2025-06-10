@@ -89,8 +89,9 @@ public class Deer extends Animal {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10)
-                .add(Attributes.JUMP_STRENGTH, 2)
-                .add(Attributes.MOVEMENT_SPEED, 0.22);
+                .add(Attributes.JUMP_STRENGTH, 0.5)
+                .add(Attributes.MOVEMENT_SPEED, 0.22)
+                .add(Attributes.STEP_HEIGHT, 1);
     }
 
     @Override
