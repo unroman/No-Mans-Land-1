@@ -76,7 +76,7 @@ public class FDIntegration {
 
     public static final FoodProperties WITCH_STEW_FOOD = new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0, true, false), 0.1F)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 360, 0, true, false), 1).build();
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 3600, 0, true, false), 1).build();
 
     public static final BlockDefinition<WitchStewCauldron> WITCH_STEW = NMLBlocks.registerNoItem("pot_of_witch_stew", WitchStewCauldron::new);
 
