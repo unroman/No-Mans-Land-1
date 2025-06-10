@@ -102,9 +102,9 @@ public class NMLBlocks {
     public static final BlockDefinition<SimpleFoliageBlock> OAT_GRASS = register("oat_grass",
             () -> new SimpleFoliageBlock(Block.Properties.ofFullCopy(Blocks.FERN).offsetType(OffsetType.XYZ)));
     public static final BlockDefinition<DesertFoliageBlock> SHORT_BEACHGRASS = register("short_beachgrass",
-            () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.SAND).offsetType(OffsetType.XYZ)));
+            () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.SAND).offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<DesertFoliageBlock> TALL_BEACHGRASS = register("tall_beachgrass",
-            () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.SAND).offsetType(OffsetType.XYZ)));
+            () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.SAND).offsetType(OffsetType.XYZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<DesertFoliageBlock> DRIED_GRASS = register("dried_grass",
             () -> new DesertFoliageBlock(Block.Properties.ofFullCopy(Blocks.DEAD_BUSH).offsetType(OffsetType.XZ)), new BlockProperties(new ShearsBlockLootType(), false));
     public static final BlockDefinition<FrostedGrassBlock> FROSTED_GRASS = registerNoItem("frosted_grass",
