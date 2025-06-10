@@ -231,8 +231,12 @@ public class TapBlock extends BaseEntityBlock {
         for (Holder.Reference<TapInteraction> tapInteractionReference : allTapInteractions) {
             boolean hasBlock = false;
             for (BlockStateProvider blockStateProvider : tapInteractionReference.value().sources()) {
-                if (stateBehind == blockStateProvider.getState(level.random, pos.relative(state.getValue(FACING).getOpposite()))) {
-                    hasBlock = true;
+                BlockState neededState = blockStateProvider.getState(level.random, pos.relative(state.getValue(FACING).getOpposite()));
+                if (stateBehind == neededState) {
+                    if (neededState.is(BlockTags.LOGS)) {
+                        if (stateBehind == getBlockStateBehind(level, pos.above(), state) && stateBehind == getBlockStateBehind(level, pos.below(), state))
+                            hasBlock = true;
+                    } else hasBlock = true;
                     break;
                 }
             }
