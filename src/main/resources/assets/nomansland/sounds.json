@@ -414,6 +414,51 @@
     ],
     "subtitle": "subtitles.torch.light"
   },
+  "block.witch_stew_cauldron.ambient": {
+    "sounds": [
+      {
+        "name": "nomansland:block/witch_stew_cauldron/ambient1",
+        "pitch": 0.8
+      },
+      {
+        "name": "nomansland:block/witch_stew_cauldron/ambient2",
+        "pitch": 0.8
+      },
+      {
+        "name": "nomansland:block/witch_stew_cauldron/ambient3",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "nomansland.subtitles.block.witch_stew_cauldron.ambient"
+  },
+  "block.witch_stew_cauldron.empty": {
+    "sounds": [
+      {
+        "name": "nomansland:block/witch_stew_cauldron/empty1",
+        "pitch": 0.8,
+        "volume": 1.2
+      },
+      {
+        "name": "nomansland:block/witch_stew_cauldron/empty2",
+        "pitch": 0.8,
+        "volume": 1.2
+      },
+      {
+        "name": "nomansland:block/witch_stew_cauldron/empty3",
+        "pitch": 0.8,
+        "volume": 1.2
+      }
+    ],
+    "subtitle": "nomansland.subtitles.block.witch_stew_cauldron.empty"
+  },
+  "block.witch_stew_cauldron.clean": {
+    "sounds": [
+      "nomansland:block/witch_stew_cauldron/clean1",
+      "nomansland:block/witch_stew_cauldron/clean2",
+      "nomansland:block/witch_stew_cauldron/clean3"
+    ],
+    "subtitle": "nomansland.subtitles.block.witch_stew_cauldron.clean"
+  },
   "entity.billhook_bass.ambient": {
     "sounds": []
   },

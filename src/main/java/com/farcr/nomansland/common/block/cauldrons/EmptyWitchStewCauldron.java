@@ -1,6 +1,8 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
+import com.farcr.nomansland.common.registry.NMLSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
@@ -37,6 +39,7 @@ public class EmptyWitchStewCauldron extends Block {
 
         player.addItem(Items.BONE_MEAL.getDefaultInstance());
 
+        level.playSound(null, pos, NMLSounds.WITCH_STEW_CAULDRON_CLEAN.value(), SoundSource.BLOCKS);
         return InteractionResult.SUCCESS;
     }
 

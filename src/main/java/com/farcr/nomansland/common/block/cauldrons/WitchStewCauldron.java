@@ -1,6 +1,7 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
 import com.farcr.nomansland.common.integration.FDIntegration;
+import com.farcr.nomansland.common.registry.NMLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -41,7 +42,7 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
 //        level.addParticle(ParticleTypes.EFFECT, d0, d1, d2, 0.0, 0.0, 0.0);
 
         if (random.nextInt(10) == 0) {
-            level.playLocalSound(d0, d1, d2, ModSounds.BLOCK_COOKING_POT_BOIL_SOUP.get(), SoundSource.BLOCKS, 0.5F, random.nextFloat() * 0.2F + 0.9F, false);
+            level.playLocalSound(d0, d1, d2, NMLSounds.WITCH_STEW_CAULDRON_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, random.nextFloat() * 0.2F + 0.9F, false);
         }
     }
 
@@ -50,7 +51,7 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
         if (stack.is(Items.BOWL)) {
             player.getItemInHand(hand).shrink(1);
             player.addItem(FDIntegration.WITCH_STEW_ITEM.stack());
-            level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_GENERIC.value(), SoundSource.BLOCKS);
+            level.playSound(null, pos, NMLSounds.WITCH_STEW_CAULDRON_EMPTY.value(), SoundSource.BLOCKS);
 
             if (state.getValue(LEVEL) > 1) {
                 lowerFillLevel(state, level, pos);

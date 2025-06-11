@@ -22,6 +22,10 @@ public class NMLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> TORCH_LIGHT_BY_FLINT_AND_STEEL = registerSound("block.torch.light_by_flint_and_steel");
     public static final DeferredHolder<SoundEvent, SoundEvent> TORCH_LIGHT = registerSound("block.torch.light");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> WITCH_STEW_CAULDRON_AMBIENT = registerSound("block.witch_stew_cauldron.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WITCH_STEW_CAULDRON_EMPTY = registerSound("block.witch_stew_cauldron.empty");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WITCH_STEW_CAULDRON_CLEAN = registerSound("block.witch_stew_cauldron.clean");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> BOMB_PRIMED = registerSound("item.bomb.primed");
     public static final DeferredHolder<SoundEvent, SoundEvent> HONEYCOMB_CONSUMED = registerSound("item.honeycomb.consumed");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_CONSUMED = registerSound("item.resin.consumed");
