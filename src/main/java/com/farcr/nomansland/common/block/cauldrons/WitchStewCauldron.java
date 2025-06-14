@@ -1,8 +1,12 @@
 package com.farcr.nomansland.common.block.cauldrons;
 
 import com.farcr.nomansland.common.integration.FDIntegration;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.Particle;
 import com.farcr.nomansland.common.registry.NMLSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -31,17 +35,17 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
         double d1 = pos.getY() + random.nextInt(-10, 40) * 0.001 + getContentHeight(state);
         double d2 = pos.getZ() + 0.5 + random.nextInt(-40, 40) * 0.01;
 
-//        Particle particle = Minecraft.getInstance().levelRenderer.addParticleInternal(
-//                (ParticleOptions) ParticleTypes.EFFECT, ParticleTypes.EFFECT.getOverrideLimiter(), d0, d1, d2, 0D, 0D, 0D
-//        );
-//        if (particle != null) {
-//            float f1 = 0.75F + random.nextFloat() * 0.25F;
-//            particle.setColor(135 * f1, 163 * f1, 99 * f1);
-//            particle.setPower(random.nextFloat() * 4);
-//        }
-//        level.addParticle(ParticleTypes.EFFECT, d0, d1, d2, 0.0, 0.0, 0.0);
+        Particle particle = Minecraft.getInstance().levelRenderer.addParticleInternal(
+                ParticleTypes.EFFECT, ParticleTypes.EFFECT.getOverrideLimiter(), d0, d1, d2, 0D, 0D, 0D
+        );
 
-        if (random.nextInt(10) == 0) {
+        if (particle != null) {
+            float f1 = 0.75F + random.nextFloat() * 0.25F;
+            particle.setColor(0.5294118F * f1, 0.6392157F * f1, 0.3882353F * f1);
+            particle.setPower(random.nextFloat() * 4);
+        }
+
+        if (random.nextInt(15) == 0) {
             level.playLocalSound(d0, d1, d2, NMLSounds.WITCH_STEW_CAULDRON_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, random.nextFloat() * 0.2F + 0.9F, false);
         }
     }
@@ -49,8 +53,15 @@ public class WitchStewCauldron extends FourLayeredCauldronBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (stack.is(Items.BOWL)) {
-            player.getItemInHand(hand).shrink(1);
-            player.addItem(FDIntegration.WITCH_STEW_ITEM.stack());
+            stack.consume(1, player);
+
+            if (!(player.isCreative() && player.getInventory().hasAnyMatching(s -> s.getItem() == FDIntegration.WITCH_STEW_ITEM.item()))) {
+                ItemStack item = new ItemStack(FDIntegration.WITCH_STEW_ITEM.item());
+                if (!player.addItem(item) ) {
+                    player.drop(item, false);
+                }
+            }
+
             level.playSound(null, pos, NMLSounds.WITCH_STEW_CAULDRON_EMPTY.value(), SoundSource.BLOCKS);
 
             if (state.getValue(LEVEL) > 1) {

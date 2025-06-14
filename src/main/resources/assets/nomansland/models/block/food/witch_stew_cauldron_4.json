@@ -1,18 +1,18 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "minecraft:block/block",
+	"parent": "block/block",
 	"ambientocclusion": false,
-	"render_type": "minecraft:cutout",
+	"render_type": "cutout",
 	"textures": {
-		"4": "minecraft:block/cauldron_bottom",
+		"4": "block/cauldron_bottom",
 		"5": "nomansland:block/food/witch_stew_fluid",
 		"6": "nomansland:block/food/witch_stew_side_0",
 		"7": "nomansland:block/food/witch_stew_side_1",
 		"8": "nomansland:block/food/witch_stew_skull",
 		"top": "nomansland:block/food/witch_stew_top",
-		"particle": "minecraft:block/cauldron_side",
-		"side": "minecraft:block/cauldron_side",
-		"inside": "nomansland:block/food/witch_stew_inner"
+		"particle": "block/cauldron_side",
+		"side": "block/cauldron_side",
+		"inside": "nomansland:block/food/witch_stew_side_inner"
 	},
 	"elements": [
 		{

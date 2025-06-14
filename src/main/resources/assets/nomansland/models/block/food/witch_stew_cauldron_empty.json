@@ -14,7 +14,7 @@
 		"top": "nomansland:block/food/witch_stew_top",
 		"particle": "block/cauldron_side",
 		"side": "block/cauldron_side",
-		"inside": "block/cauldron_inner"
+		"inside": "nomansland:block/food/witch_stew_side_inner"
 	},
 	"elements": [
 		{
