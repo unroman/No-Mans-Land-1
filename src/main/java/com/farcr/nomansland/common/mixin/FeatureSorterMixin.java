@@ -22,7 +22,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Mixin(FeatureSorter.class)
+@Mixin(value = FeatureSorter.class, priority = 900)
 public class FeatureSorterMixin {
     @Unique
     private static <T> List<FeatureSorter.StepFeatureData> no_Mans_Land$buildFeaturesPerStep(
